@@ -27,7 +27,7 @@ Well...
 
 - Knee-Deep in the Dead's maps all have music tracks from Sonic Forces. The Shores of Hell, Inferno and Hell on Earth don't yet have any music replaced.
 
-- #### RINGS!
+- # RINGS!
 
 ## Weapons
 
