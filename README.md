@@ -11,8 +11,6 @@ Well...
 
 - Doom Sonic moves a lot faster than Doomguy usually would, about 2 times as fast.
 
-- ### RINGS!
-
 - Doomguy's regular weapons have been replaced by faster variants that consume a ton of ammo.
 
 - There's **no pistol.**
@@ -28,6 +26,8 @@ Well...
 - Difficulty levels that are actually really freaking hard. Ultra-Violence is the easiest difficulty! And good luck trying to complete the hardest.
 
 - Knee-Deep in the Dead's maps all have music tracks from Sonic Forces. The Shores of Hell, Inferno and Hell on Earth don't yet have any music replaced.
+
+- #### RINGS!
 
 ## Weapons
 
