@@ -10,13 +10,23 @@ I wanted to try my hand at Doom modding.
 Well...
 
 - Doom Sonic moves a lot faster than Doomguy usually would, about 2 times as fast.
+
+- ### RINGS!
+
 - Doomguy's regular weapons have been replaced by faster variants that consume a ton of ammo.
+
 - There's **no pistol.**
+
 - The fist is way more useful, in fact so useful the chainsaw is now obsolete.
+
 - There's only one ammo type. All your weapons eat through it so fast you'll wonder where it all went.
+
 - Oh, yeah, the menu's different too. Supposed to resemble Sonic Adventure 2.
+
 - There's no BFG, because if we made a rapid-fire BFG then the game would feel too unbalanced.
+
 - Difficulty levels that are actually really freaking hard. Ultra-Violence is the easiest difficulty! And good luck trying to complete the hardest.
+
 - Knee-Deep in the Dead's maps all have music tracks from Sonic Forces. The Shores of Hell, Inferno and Hell on Earth don't yet have any music replaced.
 
 ## Weapons
