@@ -37,9 +37,9 @@ You also start out with the **Chaos Blaster**. This is… just a faster plasma r
 
 Later on, you can get the **Speedy Shotgun**, which is a super fast autoshotty that doesn't need to reload. It uses a whole load of ammo.
 
-There's also **Chaos Rain**. If you thought the regular chaingun was fast… oh boy. Do I have news for you.
+There's also the **Chaos Rain** cannon. If you thought the regular chaingun was fast… oh boy. Do I have news for you.
 
-And finally, **Rocket Stream**. This weapon is stupidly OP but it eats through ammo like a drill through dirt. Good luck not blowing yourself up.
+And finally, the **Rocket Stream** launcher. This weapon is stupidly OP but it eats through ammo like a drill through dirt. Good luck not blowing yourself up.
 
 ## Difficulty levels
 
