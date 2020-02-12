@@ -1,0 +1,39 @@
+LISTMENU "MainMenu"
+{
+	IfGame(Doom)
+	{
+		StaticPatch 94, 2, "M_DOOM"
+		Position 97, 72
+		IfOption(ReadThis)
+		{
+			Position 97, 64
+		}
+	}
+	IfGame(Doom)
+	{
+		TextItem "1P Play", "n", "PlayerclassMenu"
+		TextItem "Extra","r", "ReadThisMenu"
+		TextItem "Data Options", "d", "DataMenu"
+		TextItem "Options","o", "OptionsMenu"
+		TextItem "I'm outta here!", "q", "QuitMenu"
+	}
+}
+ListMenu "SkillMenu"
+{
+
+	IfGame(Doom)
+	{
+		StaticText 54, 38, "Choose your skill!"
+		Position 48, 63
+	}
+}
+ListMenu "DataMenu"
+{
+	IfGame(Doom)
+	{
+		StaticText 96, 38, "Data Options"
+		Position 97, 72
+		TextItem "Load", "l", "LoadGameMenu"
+		TextItem "Save", "s", "SaveGameMenu"
+	}
+}

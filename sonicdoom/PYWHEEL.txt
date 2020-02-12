@@ -1,0 +1,8 @@
+SonicPlayer
+{
+	include "Sonic's Fist";
+	include "Chaos Blaster";
+	include "Speedy Shotgun";
+	include "Rocket Stream";
+	include "Chaos Rain";
+}

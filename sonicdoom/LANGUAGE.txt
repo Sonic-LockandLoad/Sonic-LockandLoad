@@ -1,0 +1,84 @@
+[enu default]
+
+TXT_YES = "Let's go!";
+TXT_NO = "I'm outta here";
+
+E1TEXT =
+	"Once you speed through the bases and\n"
+	"defeat all the bad guys you're supposed\n"
+	"to win, aren't you? Aren't you? Where's\n"
+	"your chili dogs and portal home? What\n"
+	"in Chaos is this? It's not supposed to\n"
+	"end this way!\n"
+	"\n"
+	"It stinks like Eggman's behind, but\n"
+	"looks like some kind of base.  Looks like\n"
+	"you're stuck halfway to hell.\n"
+	"The only way out is through.\n"
+	"\n"
+	"Thank you for playing 'Sonic the\n"
+	"Hedgehog in Doom'!\n";
+E2TEXT =
+	"You've done it! The hideous giant\n"
+	"demon thing that ruled that lost moon\n"
+	"base has been slain and you are\n"
+	"triumphant! But ... where are you?\n"
+	"You clamber to the edge of the\n"
+	"moon and look down to see the awful\n"
+	"truth.\n"
+	"\n"
+	"You're floating above Hell itself!\n"
+	"You've never heard of anyone escaping\n"
+	"from Hell, but you'll make them all\n"
+	"sorry they ever heard of you! Quickly,\n"
+	"you rappel down to the surface of\n"
+	"Hell.\n"
+	"\n"
+	"Now, it's on to the final chapter of\n"
+	"DOOM! -- Inferno.";
+E3TEXT =
+	"The loathsome spider thing that\n"
+	"masterminded the invasion of the moon\n"
+	"bases and caused so much death has had\n"
+	"its ass kicked for all time.\n"
+	"\n"
+	"A hidden doorway opens and you enter.\n"
+	"You've proven too tough for Hell to\n"
+	"contain, and now Hell at last plays\n"
+	"fair -- for you emerge from the portal\n"
+	"to see the lush paradise of Green Hill!\n"
+	"Home at last.\n"
+	"\n"
+	"You wonder what's been happening \n"
+	"around here while you were battling\n"
+	"evil unleashed. It's good that nothing\n"
+	"could have come through that door\n"
+	"with you ...";
+E4TEXT =
+	"the spider mastermind must have sent forth\n"
+	"its legions of hellspawn before your\n"
+	"final confrontation with that terrible\n"
+	"beast from hell.  but you stepped forward\n"
+	"and brought forth eternal damnation and\n"
+	"suffering upon the horde as a true hero\n"
+	"would in the face of something so evil.\n"
+	"\n"
+	"besides, someone was gonna pay for what\n"
+	"happened to daisy, your pet rabbit.\n"
+	"\n"
+	"but now, you see spread before you more\n"
+	"potential pain and gibbitude as a nation\n"
+	"of demons run amok among our cities.\n"
+	"\n"
+	"next stop, hell on earth!";
+	
+QUITMSG1 = "I see your problem... too slow!";
+QUITMSG2 = "I rolled Sonic!";
+QUITMSG3 = "I've already lapped you three times...";
+QUITMSG4 = "Huh...\nI'm sure it says fast.";
+QUITMSG5 = "No TV or movies?\nI'm outta here!";
+QUITMSG6 = "HA!\nYou think this puny moat can keep out someone...\nSO FAST?!";
+QUITMSG7 = "I am too fast!";
+
+OPTVAL_MALE	= "Sonic";
+OPTVAL_FEMALE = "Also Sonic";

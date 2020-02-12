@@ -1,0 +1,52 @@
+gameinfo
+{
+   PlayerClasses = "SonicPlayer"
+   WeaponSlot = 1, "Sonic's Fist"
+   WeaponSlot = 2, "Chaos Blaster"
+   WeaponSlot = 3, "Speedy Shotgun"
+   WeaponSlot = 4, "Rocket Stream"
+   WeaponSlot = 5, "Chaos Rain"
+}
+
+skill baby
+{
+  spawnfilter = Hard
+  name = "Ultra-violence."
+  mustconfirm = "Trust me, you're gonna feel too overpowered."
+  totalinfighting
+}
+
+skill easy
+{
+  monsterhealth = 3
+  damagefactor = 0.25
+  name = "Fast track"
+  spawnfilter = Easy
+}
+
+skill normal
+{
+  monsterhealth = 6
+  damagefactor = 1.125
+  name = "Let's do this!"
+  spawnfilter = Normal
+}
+
+skill hard
+{
+  monsterhealth = 12
+  damagefactor = 2
+  name = "Speed incarnate"
+  spawnfilter = Hard
+}
+
+skill nightmare
+{
+  damagefactor = 500
+  monsterhealth = 0.001
+  spawnfilter = Nightmare
+  FastMonsters
+  DisableCheats
+  name = "Ultimate life form!"
+  mustconfirm = "Seriously?! You crazy hedgehog..."
+}

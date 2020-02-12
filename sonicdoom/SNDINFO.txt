@@ -1,0 +1,29 @@
+sonicdoom/ring              PickRing
+sonicdoom/chaosemerald      ChEmerad
+sonicdoom/angery            Angery
+sonicdoom/thanksalotwall    ThxWall
+sonicdoom/thiswallsintheway walinway
+sonicdoom/thatwaslame       Lame
+sonicdoom/scream            Scream
+
+menu/activate		OpenMenu	// Activate a new menu
+menu/backup			Return	// Backup to previous menu
+menu/prompt			Select	// Activate a prompt "menu"
+menu/cursor			Move		// Move cursor up/down
+menu/change			Move	// Select new value for option
+menu/dismiss		Return	// Dismiss a prompt message
+menu/choose			Select	// Choose a menu item
+menu/clear			Return	// Close top menu
+menu/quit1          ImOut
+menu/quit2          ImOut
+
+$random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
+$random dedlol { sonicdoom/thatwaslame sonicdoom/scream }
+
+$playeralias player male *death       dedlol
+$playeralias player male *gibbed      Scream
+$playeralias player male *usefail     useoof
+$playersound player male *jump        S_JUMP
+
+intermission/tick			ScorCont
+intermission/nextstage		Total
