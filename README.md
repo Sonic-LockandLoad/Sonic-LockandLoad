@@ -17,7 +17,7 @@ Well...
 
 - There's **no pistol.**
 
-- The fist is way more useful, in fact so useful the chainsaw is now obsolete.
+- The fist is way more useful, so much so that the chainsaw is now obsolete.
 
 - There's only one ammo type. All your weapons eat through it so fast you'll wonder where it all went.
 
