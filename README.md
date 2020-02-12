@@ -31,15 +31,15 @@ Well...
 
 ## Weapons
 
-Your first weapon in the game is **Sonic's Fist**. The speed of the attack is so fast you have no use for the chainsaw.
+Your first weapon in the game is **Sonic's Fist**. The speed of the attack is so fast you have no use for the chainsaw.![Screenshot 2020-02-12 at 8.16..30 PM](/Users/speedstriker243/Pictures/Screenshots/Screenshot 2020-02-12 at 8.16..30 PM.png)
 
-You also start out with the **Chaos Blaster**. This is… just a faster plasma rifle. I don't have the knowledge or time to create custom sprites.
+You also start out with the **Chaos Blaster**. This is… just a faster plasma rifle. I don't have the knowledge or time to create custom sprites.![Screenshot 2020-02-12 at 8.15..51 PM](/Users/speedstriker243/Pictures/Screenshots/Screenshot 2020-02-12 at 8.15..51 PM.png)
 
-Later on, you can get the **Speedy Shotgun**, which is a super fast autoshotty that doesn't need to reload. It uses a whole load of ammo.
+Later on, you can get the **Speedy Shotgun**, which is a super fast autoshotty that doesn't need to reload. It uses a whole load of ammo.![Screenshot 2020-02-12 at 8.16..50 PM](/Users/speedstriker243/Pictures/Screenshots/Screenshot 2020-02-12 at 8.16..50 PM.png)
 
-There's also the **Chaos Rain** cannon. If you thought the regular chaingun was fast… oh boy. Do I have news for you.
+There's also the **Chaos Rain** cannon. If you thought the regular chaingun was fast… oh boy. Do I have news for you.![Screenshot 2020-02-12 at 8.17..08 PM](/Users/speedstriker243/Pictures/Screenshots/Screenshot 2020-02-12 at 8.17..08 PM.png)
 
-And finally, the **Rocket Stream** launcher. This weapon is stupidly OP but it eats through ammo like a drill through dirt. Good luck not blowing yourself up.
+And finally, the **Rocket Stream** launcher. This weapon is stupidly OP but it eats through ammo like a drill through dirt. Good luck not blowing yourself up.![Screenshot 2020-02-12 at 8.17..31 PM](/Users/speedstriker243/Pictures/Screenshots/Screenshot 2020-02-12 at 8.17..31 PM.png)
 
 ## Difficulty levels
 
