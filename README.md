@@ -22,7 +22,7 @@ Well...
 ### Boost
 When you start out, you'll have Sonic's **Boost** ability. This is a dash attack which is primarily for getting around the place, though it's also a good way of attacking, especially since you don't start with any weapons.
 #### Primary fire
-The primary fire of the Boost ability is simply a dash in the direction the player is facing. If the attack comes into contact with an enemy, it'll deal 200 points of damage. This attack requires 5 Chaos Energy to use.
+The primary fire of the Boost ability is simply a dash in the direction the player is facing. If the attack comes into contact with an enemy, it'll deal 200 points of damage. This attack requires 15 Chaos Energy to use.
 #### Secondary fire
 Holding down the secondary fire will make you accelerate to rapid speeds. If you come into contact with an enemy, you basically become the chainsaw. This doesn't use any Chaos Energy to use.
 
