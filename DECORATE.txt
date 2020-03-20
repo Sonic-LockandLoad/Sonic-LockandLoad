@@ -68,7 +68,7 @@ ACTOR "Boost" : Weapon replaces Fist 1220
 {
   Weapon.SelectionOrder 3700
   Weapon.Kickback 500
-  Weapon.AmmoUse 5
+  Weapon.AmmoUse1 15
   Weapon.AmmoType "ChaosEnergy"
   +WEAPON.MELEEWEAPON
   States
