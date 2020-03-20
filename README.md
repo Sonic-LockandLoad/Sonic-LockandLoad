@@ -15,7 +15,7 @@ Well...
 
 - **Chaos Energy** is the only ammo type in the mod.
 
-- # RINGS!
+- ### RINGS!
 
 ## Weapons
 
