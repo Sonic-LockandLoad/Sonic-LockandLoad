@@ -11,20 +11,11 @@ LISTMENU "MainMenu"
 	}
 	IfGame(Doom)
 	{
-		TextItem "1P Play", "n", "PlayerclassMenu"
+		TextItem "1P Play", "n", "EpisodeMenu"
 		TextItem "Extra","r", "ReadThisMenu"
 		TextItem "Data Options", "d", "DataMenu"
 		TextItem "Options","o", "OptionsMenu"
 		TextItem "I'm outta here!", "q", "QuitMenu"
-	}
-}
-ListMenu "SkillMenu"
-{
-
-	IfGame(Doom)
-	{
-		StaticText 54, 38, "Choose your skill!"
-		Position 48, 63
 	}
 }
 ListMenu "DataMenu"
