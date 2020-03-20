@@ -1,7 +1,7 @@
 gameinfo
 {
    PlayerClasses = "SonicPlayer"
-   WeaponSlot = 1, "Boost"
+   WeaponSlot = 1, "Boost/Drift"
    WeaponSlot = 2, "Speedy Shotgun"
    WeaponSlot = 3, "Chaos Blaster"
    WeaponSlot = 4, "Rocket Stream"

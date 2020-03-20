@@ -6,10 +6,13 @@ sonicdoom/thanksalotwall    ThxWall
 sonicdoom/thiswallsintheway walinway
 sonicdoom/thatwaslame       Lame
 sonicdoom/scream            Scream
-sonicdoom/boost1            boost1
-sonicdoom/boost2            boost2
+sonicdoom/boostv1           boost1
+sonicdoom/boostv2           boost2
+sonicdoom/boostv3           boost3
 sonicdoom/aboost            aboost
 sonicdoom/spsgread          SpSGReady
+sonicdoom/drift             drift
+sonicdoom/outofboost        noboost
 
 menu/activate		OpenMenu	// Activate a new menu
 menu/backup			Return	// Backup to previous menu
@@ -24,7 +27,7 @@ menu/quit2          ImOut
 
 $random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
 $random dedlol { sonicdoom/thatwaslame sonicdoom/scream }
-$random boost  { sonicdoom/boost1 sonicdoom/boost2 }
+$random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
 
 $playeralias player male *death       dedlol
 $playeralias player male *gibbed      Scream
