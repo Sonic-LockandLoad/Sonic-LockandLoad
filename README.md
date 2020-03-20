@@ -19,12 +19,12 @@ Well...
 
 ## Weapons
 
-### Boost
-When you start out, you'll have Sonic's **Boost** ability. This is a dash attack which is primarily for getting around the place, though it's also a good way of attacking, especially since you don't start with any weapons.
-#### Primary fire
-The primary fire of the Boost ability is simply a dash in the direction the player is facing. If the attack comes into contact with an enemy, it'll deal 200 points of damage. This attack requires 15 Chaos Energy to use.
-#### Secondary fire
-Holding down the secondary fire will make you accelerate to rapid speeds. If you come into contact with an enemy, you basically become the chainsaw. This doesn't use any Chaos Energy to use.
+### Boost/Drift
+When you start out, you'll have Sonic's **Boost** and **Drift** techniques instead of the fist. These moves are for primarily  getting around the place, though it's also a good way of attacking, especially since you don't start with any weapons.
+#### Boost
+Pressing the primary attack button will initiate a forward Boost attack. If the attack comes into contact with an enemy, it'll deal 200 points of damage. This attack requires 15 Chaos Energy to use.
+#### Drift
+Holding down the secondary attack button will initiate the Drift, moving you forwards at high speeds. If you come into contact with an enemy, you'll deal damage gradually.
 
 
 ### Speedy shotgun
