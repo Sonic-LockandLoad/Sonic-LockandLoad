@@ -40,7 +40,7 @@ The **Chaos Blaster** is simply Doom's plasma rifle, but a lot faster. You can f
 #### Primary fire
 Simply fires a beam of plasma shots. I say beam because the projectiles come out a lot faster than the usual plasma rifle. Uses 10 Chaos Energy per shot.
 #### Secondary fire
-The secondary fire is the BFG9000. Not even kidding. This uses 3333 Chaos Energy out of the maximum of 9999. If that doesn't balance it I don't know what does.
+The Chaos Blaster currently has no altfire. If you have any ideas, suggestions are available in [issues](https://github.com/CutieGorlAstrid/sonicdoom/issues).
 
 
 ## Difficulty levels
