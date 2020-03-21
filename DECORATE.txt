@@ -153,7 +153,7 @@ ACTOR "Speedy Shotgun" : Weapon replaces Shotgun 1221
     Stop
   }
 }
-ACTOR "Chaos Blaster" : Weapon 1222
+ACTOR "Chaos Blaster" : Weapon replaces Chaingun 1222
 {
   Weapon.SelectionOrder 1400
   Weapon.AmmoType1 "ChaosEnergy"
