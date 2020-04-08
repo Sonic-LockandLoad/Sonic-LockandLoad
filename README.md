@@ -19,10 +19,11 @@ Well...
 
 ## Weapons
 
-### Boost/Drift
+### Unarmed
 When you start out, you'll have Sonic's **Boost** and **Drift** techniques instead of the fist. These moves are for primarily  getting around the place, though it's also a good way of attacking, especially since you don't start with any weapons.
 #### Boost
-Pressing the primary attack button will initiate a forward Boost attack. If the attack comes into contact with an enemy, it'll deal 200 points of damage. This attack requires 15 Chaos Energy to use.
+Pressing the primary attack button will initiate a forward Boost attack. If the attack comes into contact with an enemy, it'll deal a high amount of damage. This attack requires 15 Chaos Energy to use.
+> If you try to Boost with less than 15 Chaos Energy, you will Dash instead, dealing less damage.
 #### Drift
 Holding down the secondary attack button will initiate the Drift, moving you forwards at high speeds. If you come into contact with an enemy, you'll deal damage gradually.
 
