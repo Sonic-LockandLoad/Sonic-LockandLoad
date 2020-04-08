@@ -1,10 +1,27 @@
 gameinfo
 {
    PlayerClasses = "SonicPlayer"
-   WeaponSlot = 1, "Boost/Drift"
+   WeaponSlot = 1, "Unarmed"
    WeaponSlot = 2, "Speedy Shotgun"
    WeaponSlot = 3, "Chaos Blaster"
    WeaponSlot = 4, "Rocket Stream"
+   WeaponSlot = 5, "Unarmed"
+}
+
+episode tut
+{
+  name = "Tutorial"
+  key = "t"
+  noskillmenu
+}
+
+map tut "Tutorial"
+{
+  resethealth
+  resetinventory
+  nointermission
+  music = S_TUTMUS
+  next = E1M1
 }
 
 skill baby
@@ -21,6 +38,7 @@ skill easy
   damagefactor = 1.125
   name = "Let's do this!"
   spawnfilter = Normal
+  defaultskill
 }
 
 skill normal

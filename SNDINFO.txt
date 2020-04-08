@@ -13,6 +13,8 @@ sonicdoom/aboost            aboost
 sonicdoom/spsgread          SpSGReady
 sonicdoom/drift             drift
 sonicdoom/outofboost        noboost
+sonicdoom/hintpickup        hint
+sonicdoom/dash              homatk
 
 menu/activate		OpenMenu	// Activate a new menu
 menu/backup			Return	// Backup to previous menu
@@ -36,3 +38,6 @@ $playersound player male *jump        S_JUMP
 
 intermission/tick			ScorCont
 intermission/nextstage		Total
+
+misc/i_pkup                 pickup
+misc/k_pkup                 keypkup

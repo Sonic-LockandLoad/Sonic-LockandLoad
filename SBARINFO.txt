@@ -1,0 +1,24 @@
+StatusBar Normal
+{
+   DrawString BIGFONT, Gold, "Rings", -40, 132;
+   DrawString BIGFONT, Green, "Energy", -40, 150;
+   DrawMugShot 1, 135, 135;
+   
+   IfHealth 10
+   {
+     DrawNumber 3, HUDFONT_DOOM, White, Health, fillzeros, 35, 130;
+   }
+   IfHealth Not 10
+   {
+     DrawNumber 3, HUDFONT_DOOM, Red, Health, fillzeros, 35, 130;
+   }
+   
+   InInventory ChaosEnergy, 15
+   {
+     DrawNumber 4, HUDFONT_DOOM, White, "ChaosEnergy", 35, 148;
+   }
+   InInventory Not ChaosEnergy, 15
+   {
+     DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 35, 148;
+   }
+}
