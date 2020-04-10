@@ -28,32 +28,32 @@ skill baby
 {
   monsterhealth = 3
   damagefactor = 0.25
-  name = "Fast track"
+  name = "Piece of cake!"
   spawnfilter = Easy
 }
 
 skill easy
 {
-  monsterhealth = 4
-  damagefactor = 1.125
-  name = "Let's do this!"
+  monsterhealth = 3
+  name = "Bring it on!"
   spawnfilter = Normal
   defaultskill
 }
 
 skill normal
 {
-  monsterhealth = 6
-  damagefactor = 2
-  name = "Speed incarnate"
   spawnfilter = Hard
+  monsterhealth = 3
+  damagefactor = 2
+  name = "I can still fly!"
 }
 
 skill hard
 {
+  monsterhealth = 6
+  damagefactor = 2
+  name = "Now I'll show you!"
   spawnfilter = Hard
-  name = "Ultra-Violence."
-  mustconfirm = "Good old Ultra-Violence...?"
 }
 
 
@@ -64,6 +64,6 @@ skill nightmare
   spawnfilter = Nightmare
   FastMonsters
   DisableCheats
-  name = "Ultimate life form!"
+  name = "I'm the coolest!"
   mustconfirm = "Seriously?! You crazy hedgehog..."
 }
