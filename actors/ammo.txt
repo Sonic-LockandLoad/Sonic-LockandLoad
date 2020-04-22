@@ -11,8 +11,8 @@ ACTOR ChaosCharge : CustomInventory replaces Clip 1231
   States
   {
   Spawn:
-    CELL A -1
-    Stop
+    APLS B -1
+	Stop
   Pickup:
 	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 4)
 	Stop

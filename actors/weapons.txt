@@ -1,0 +1,239 @@
+ACTOR Unarmed : Weapon 1220
+{
+  Weapon.SelectionOrder 3700
+  Weapon.Kickback 500
+  Weapon.BobRangeX 0.0
+  Weapon.BobRangeY 0.0
+  Weapon.AmmoType "ChaosEnergy"
+  Weapon.SlotNumber 1
+  +WEAPON.MELEEWEAPON
+  States
+  {
+  Ready:
+    TNT1 A 1 A_WeaponReady
+    Loop
+  Deselect:
+    TNT1 AA 0 A_Lower
+	Goto Select
+  Select:
+	TNT1 A 1 A_Lower
+	Goto Deselect
+  Fire:
+    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 15, "Dash")
+    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 14, "Boost")
+  Boost:
+    TNT1 A 0 A_PlaySound("sonicdoom/boost")
+	TNT1 A 0 A_ZoomFactor(0.85, ZOOM_NOSCALETURNING)
+	TNT1 A 0 A_TakeInventory("ChaosEnergy",15)
+	TNT1 A 1 A_Recoil(-64)
+	TNT1 A 0 A_Light(10)
+	BOOS A 10 A_CustomPunch(200, CPF_PULLIN | CPF_NOTURN, 0, "BulletPuff", 100, 0.01)
+	TNT1 A 0 A_Light(0)
+	TNT1 A 0 A_ZoomFactor(1.0)
+    Goto Ready
+  Dash:
+    TNT1 A 0 A_PlaySound("sonicdoom/dash")
+	TNT1 A 0 A_ZoomFactor(0.9, ZOOM_NOSCALETURNING)
+	TNT1 A 1 A_Recoil(-32)
+	TNT1 A 10 A_CustomPunch(30, CPF_NOTURN, 0, "BulletPuff", 100)
+	TNT1 A 0 A_ZoomFactor(1.0)
+    Goto Ready
+  AltFire:
+    TNT1 A 0 A_PlaySound("sonicdoom/drift")
+    TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_Light(2)
+    DRFT A 1 A_CustomPunch(1)
+    Goto AfterDrift
+  AfterDrift:
+	TNT1 A 0 A_PlaySound("sonicdoom/angery")
+	TNT1 A 0 A_Light(0)
+	Goto Ready
+  }
+}
+
+ACTOR "Speedforce Pistol" : Weapon replaces Pistol
+{
+  Weapon.SelectionOrder 100
+  Weapon.Kickback 99999
+  Weapon.AmmoType "ChaosEnergy"
+  Weapon.AmmoGive 30
+  Weapon.SlotNumber 2
+  AttackSound "weapons/rbeam"
+  +EXTREMEDEATH
+  +NOAUTOFIRE
+  +FORCEPAIN
+  +WEAPON.AMMO_OPTIONAL
+  +WEAPON.ALT_AMMO_OPTIONAL
+  States
+  {
+  Ready:
+    PISG A 1 A_WeaponReady
+    Loop
+  Deselect:
+    PISG A 1 A_Lower
+    Loop
+  Select:
+    PISG A 1 A_Raise
+    Loop
+  Fire:
+    PISG A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "WeakShot")
+    PISG A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "Shoot")
+  Shoot:
+    PISG A 1
+    PISG B 1 Bright A_RailAttack(40, 0, 1, "00 b8 ff", "00 2b ff", 0, 0, "none", 0, 0, 0, 25, 1.0, 1.0)
+	PISG B 0 A_TakeInventory("ChaosEnergy", 1)
+    PISG C 1
+	PISG B 1
+    Goto Ready
+  WeakShot:
+    PISG A 1
+    PISG B 1 A_RailAttack(1, 0, 1, "45 45 45", "45 45 45", 0, 0, "none", 0, 0, 0, 10, 0.5, 0.5)
+    PISG C 1
+	PISG B 1
+    Goto Ready
+  AltFire:
+    PISG A 0 A_JumpIf(CountInv("ChaosEnergy") < 100, "FailCharge")
+    PISG A 0 A_JumpIf(CountInv("ChaosEnergy") > 99, "ChargedShot")
+  ChargedShot:
+    PISG A 1
+    PISG B 1 Bright A_RailAttack(160, 0, 1, "ff 00 00", "ff b4 00", 0, 0, "none", 0, 0, 0, 50, 2.0, 1.5)
+	PISG B 0 A_TakeInventory("ChaosEnergy", 100)
+	PISG B 0 A_Recoil(10)
+    PISG C 1
+	PISG B 1
+    Goto Ready
+  FailCharge:
+    TNT1 A 0 A_Print("You need 100 Chaos energy to fire a charged blast!")
+	TNT1 A 0 A_PlaySound("sonicdoom/error")
+	Goto Ready
+  Flash:
+    PISF A 7 Bright A_Light1
+    Goto LightDone
+    PISF A 7 Bright A_Light1
+    Goto LightDone
+  Spawn:
+    PIST A -1
+    Stop
+  }
+}
+
+ACTOR "Speedy Shotgun" : Weapon replaces Shotgun 1221
+{
+  Weapon.SelectionOrder 1300
+  Weapon.AmmoType1 "ChaosEnergy"
+  Weapon.AmmoType2 "ChaosEnergy"
+  Weapon.AmmoUse1 2
+  Weapon.AmmoUse2 32
+  Weapon.AmmoGive 16
+  Weapon.SlotNumber 3
+  Weapon.KickBack 160
+  Weapon.BobRangeX 0.0
+  Weapon.BobRangeY 1.0
+  Weapon.BobSpeed 1.0
+  Inventory.PickupMessage "Picked up the speedy shotgun!"
+  States
+  {
+  Ready:
+    SHTG A 1 A_WeaponReady
+    Loop
+  Deselect:
+    TNT1 AA 0 A_Lower
+	SHTG A 1 A_Lower
+	Goto Select+1
+  Select:
+    TNT1 AA 0 A_Lower
+	SHTG A 1 A_Lower
+	Goto Deselect+1
+  Fire:
+    SHTG A 0 A_PlaySound("sonicdoom/speedyshot")
+    SHTG A 1 A_FireBullets(3, 2, 10, 4)
+    Goto Ready
+  AltFire:
+    SHTG A 0 A_PlaySound("weapons/shotgf")
+    SHTG BCD 3 A_FireBullets(9, 6, 30, 8)
+	SHTG CBA 3
+    Goto Ready
+  Flash:
+    SHTF A 4 Bright A_Light1
+    SHTF B 3 Bright A_Light2
+    Goto LightDone
+  Spawn:
+    SHOT A -1
+    Stop
+  }
+}
+
+ACTOR "Chaos Blaster" : Weapon replaces Chaingun 1222
+{
+  Weapon.SelectionOrder 1400
+  Weapon.AmmoType1 "ChaosEnergy"
+  Weapon.AmmoType2 "ChaosEnergy"
+  Weapon.AmmoUse 10
+  Weapon.AmmoGive 25
+  Weapon.SlotNumber 4
+  Weapon.KickBack 100
+  Weapon.BobRangeX 0.0
+  Weapon.BobRangeY 1.0
+  Weapon.BobSpeed 1.0
+  Inventory.PickupMessage "Picked up the Chaos energy blaster!"
+  States
+  {
+  Ready:
+    PLSG A 1 A_WeaponReady
+    Loop
+  Deselect:
+    TNT1 AA 0 A_Lower
+	PLSG A 1 A_Lower
+	Goto Select+1
+  Select:
+    TNT1 AA 0 A_Lower
+	PLSG A 1 A_Lower
+	Goto Deselect+1
+  Fire:
+    PLSG A 1 A_FirePlasma
+    Goto Ready
+  Spawn:
+    PLAS A -1
+    Stop
+  }
+}
+
+ACTOR "Rocket Stream" : Weapon replaces RocketLauncher 1223
+{
+  Weapon.SelectionOrder 1500
+  Weapon.AmmoUse 40
+  Weapon.AmmoGive 40
+  Weapon.SlotNumber 5
+  Weapon.AmmoType "ChaosEnergy"
+  Inventory.PickupMessage "Picked up the rocket stream launcher! Try not to break everything."
+  Weapon.BobRangeX 0.0
+  Weapon.BobRangeY 1.0
+  Weapon.BobSpeed 1.0
+  States
+  {
+  Ready:
+    MISG A 1 A_WeaponReady
+    Loop
+  Deselect:
+    TNT1 AA 0 A_Lower
+	MISG A 1 A_Lower
+	Goto Select+1
+  Select:
+    TNT1 AA 0 A_Lower
+	MISG A 1 A_Lower
+	Goto Deselect+1
+  Fire:
+    MISG B 1 A_GunFlash
+    MISG B 1 A_FireMissile
+    MISG B 0 A_ReFire
+    Goto Ready
+  Flash:
+    MISF A 3 Bright A_Light1
+    MISF B 4 Bright
+    MISF CD 4 Bright A_Light2
+    Goto LightDone
+  Spawn:
+    LAUN A -1
+    Stop
+  }
+}
