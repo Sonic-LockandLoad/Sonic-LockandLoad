@@ -1,6 +1,8 @@
 # Sonic the Hedgehog in Doom
 This is a Doom mod that replaces Doomguy with Sonic, including voice clips and a HUD sprite. Changes the weapons too.
 
+> **Note:** This README file is only for the most current *release* version. For the most current non-release version, see the [wiki](https://github.com/CutieGorlAstrid/sonicdoom/wiki).
+
 ## Okay, but… why?
 
 I wanted to try my hand at Doom modding.
