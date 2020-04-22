@@ -15,10 +15,6 @@ sonicdoom/drift             drift
 sonicdoom/outofboost        noboost
 sonicdoom/hintpickup        hint
 sonicdoom/dash              homatk
-sonicdoom/cantwin           cantwin
-sonicdoom/boxdestroy        destroy
-sonicdoom/specialring       specring
-sonicdoom/lostrings         LoseRing
 
 menu/activate		OpenMenu	// Activate a new menu
 menu/backup			Return	// Backup to previous menu

@@ -1,50 +1,24 @@
 StatusBar Normal
 {
-   DrawMugShot 1, 145, 135;
-   DrawKeyBar 10, vertical, auto, 190, 145, 0, 3, auto;
-   
-   IfHealth 10
-   {
-     DrawNumber 3, BIGFONT, Gold, Health, fillzeros, 130, 140;
-   }
-   IfHealth Not 10
-   {
-     DrawNumber 3, BIGFONT, Red, Health, fillzeros, 130, 140;
-   }
-   
-   InInventory ChaosEnergy, 15
-   {
-     DrawNumber 4, BIGFONT, Green, "ChaosEnergy", 130, 160;
-   }
-   InInventory Not ChaosEnergy, 15
-   {
-     DrawNumber 4, BIGFONT, Red, "ChaosEnergy", 130, 160;
-   }
-}
-StatusBar Fullscreen
-{
-   DrawString BIGFONT, LightBlue, "Time", -40, 114;
    DrawString BIGFONT, Gold, "Rings", -40, 132;
    DrawString BIGFONT, Green, "Energy", -40, 150;
-   DrawString BIGFONT, White, time, -15, 114;
-   DrawMugShot 1, 145, 135;
-   DrawKeyBar 10, horizontal, 15, 112, 175;
+   DrawMugShot 1, 135, 135;
    
    IfHealth 10
    {
-     DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 132;
+     DrawNumber 3, HUDFONT_DOOM, White, Health, fillzeros, 35, 130;
    }
    IfHealth Not 10
    {
-     DrawNumber 3, BIGFONT, Red, Health, fillzeros, 66, 132;
+     DrawNumber 3, HUDFONT_DOOM, Red, Health, fillzeros, 35, 130;
    }
    
    InInventory ChaosEnergy, 15
    {
-     DrawNumber 4, BIGFONT, White, "ChaosEnergy", 66, 150;
+     DrawNumber 4, HUDFONT_DOOM, White, "ChaosEnergy", 35, 148;
    }
    InInventory Not ChaosEnergy, 15
    {
-     DrawNumber 4, BIGFONT, Red, "ChaosEnergy", 66, 150;
+     DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 35, 148;
    }
 }
