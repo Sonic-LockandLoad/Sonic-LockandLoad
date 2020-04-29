@@ -1,7 +1,7 @@
-[enu default]
+[en default]
 
-TXT_YES = "Let's go!";
-TXT_NO = "I'm outta here";
+TXT_YES = "Yeah!";
+TXT_NO = "No!";
 
 E1TEXT =
 	"Once you speed through the bases and\n"
@@ -78,7 +78,7 @@ QUITMSG3 = "I've already lapped you three times...";
 QUITMSG4 = "Huh...\nI'm sure it says fast.";
 QUITMSG5 = "No TV or movies?\nI'm outta here!";
 QUITMSG6 = "HA!\nYou think this puny moat can keep out someone...\nSO FAST?!";
-QUITMSG7 = "I am too fast!";
 
 OPTVAL_MALE	= "Sonic";
 OPTVAL_FEMALE = "Also Sonic";
+

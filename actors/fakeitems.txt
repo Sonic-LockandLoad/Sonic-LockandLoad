@@ -12,37 +12,9 @@ ACTOR FakeBackpack : CustomInventory replaces Backpack
   }
 }
 
-ACTOR FakeChainsaw : CustomInventory replaces Chainsaw
-{
-  Inventory.PickupMessage "Picked up the chainsaw... which is too heavy for you to use."
-  States
-  {
-  Spawn:
-    CSAW A -1
-    Stop
-  Pickup:
-    TNT1 A 0 A_StartSound ("sonicdoom/cantwin")
-	Stop
-  }
-}
-
 ACTOR FakeSSG : CustomInventory replaces SuperShotgun
 {
   Inventory.PickupMessage "You found Doomguy's super shotgun! You should return it to him."
-  States
-  {
-  Spawn:
-    SGN2 A -1
-    Stop
-  Pickup:
-    TNT1 A 0 A_StartSound ("sonicdoom/cantwin")
-	Stop
-  }
-}
-
-ACTOR FakeRocketLauncher : CustomInventory replaces RocketLauncher
-{
-  Inventory.PickupMessage "You found a really heavy rocket launcher!\nYou're not gonna be able to carry this around."
   States
   {
   Spawn:
@@ -60,7 +32,7 @@ ACTOR FakePlasmaRifle : CustomInventory replaces PlasmaRifle
   States
   {
   Spawn:
-    SGN2 A -1
+    PLAS A -1
     Stop
   Pickup:
     TNT1 A 0 A_StartSound ("sonicdoom/cantwin")
@@ -74,7 +46,7 @@ ACTOR FakeBFG : CustomInventory replaces BFG9000
   States
   {
   Spawn:
-    SGN2 A -1
+    BFUG A -1
     Stop
   Pickup:
     TNT1 A 0 A_StartSound ("sonicdoom/cantwin")

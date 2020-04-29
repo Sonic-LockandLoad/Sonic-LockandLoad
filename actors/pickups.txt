@@ -2,7 +2,6 @@ ACTOR Ring : Health replaces HealthBonus 1000
 {
   Inventory.PickupMessage "Picked up a ring."
   Inventory.PickupSound "sonicdoom/ring"
-  Inventory.MaxAmount 999
   +COUNTITEM
   +INVENTORY.ALWAYSPICKUP
   States
@@ -55,56 +54,203 @@ ACTOR ChaosRing : CustomInventory replaces ArmorBonus 3021
     RIN3 A -1
     Stop
   Pickup:
+	TNT1 A 0 A_GiveInventory("Ring", 5)
 	TNT1 A 0 A_GiveInventory("ChaosEnergy", 1)
   }
 }
-
-ACTOR ChaosEmerald : CustomInventory replaces Soulsphere 1003
+ACTOR SoulRing : CustomInventory replaces BlueArmor 3022
 {
-  Inventory.PickupMessage "You got a Chaos Emerald!!"
-  Inventory.PickupSound "sonicdoom/chaosemerald"
+  Inventory.PickupMessage "Picked up a Soul ring."
+  Inventory.PickupSound "sonicdoom/ring"
   +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
   States
   {
   Spawn:
-    CHSM A -1
+    RIN4 A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("Ring", 999)
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 9999)
-	TNT1 A 0 A_GiveInventory ("InvulnerabilitySphere", 1)
+	TNT1 A 0 A_GiveInventory("Soul")
 	Stop
   }
 }
-ACTOR ChaosEmeraldForMegasphere : CustomInventory replaces Megasphere 1004
+ACTOR SoulRecharge : CustomInventory replaces Berserk 1004
 {
-  Inventory.PickupMessage "You got a Chaos Emerald!!"
-  Inventory.PickupSound "sonicdoom/chaosemerald"
-  +COUNTITEM
-  States
-  {
-  Spawn:
-    CHSM A -1
-    Stop
-  Pickup:
-	TNT1 A 0 A_GiveInventory ("Ring", 999)
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 9999)
-	TNT1 A 0 A_GiveInventory ("InvulnerabilitySphere", 1)
-	Stop
-  }
-}
-
-ACTOR ReplenishBox : CustomInventory replaces Berserk
-{
-  Inventory.PickupMessage "Found a replenishing box!"
+  Inventory.PickupMessage "Picked up a Soul recharge!"
+  Inventory.PickupSound "sonicdoom/specialring"
   States
   {
   Spawn:
     PSTR A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("Health", 125)
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 999)
+	TNT1 A 0 A_GiveInventory("Soul", 10)
+    TNT1 A 0 A_SelectWeapon("Caliburn")
+	Stop
+  }
+}
+ACTOR SoulRechargeReplacingBFG : CustomInventory replaces BFG9000
+{
+  Inventory.PickupMessage "Picked up a Soul recharge!"
+  Inventory.PickupSound "sonicdoom/specialring"
+  States
+  {
+  Spawn:
+    PSTR A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory("SoulRecharge", 1)
+    TNT1 A 0 A_SelectWeapon("Caliburn")
+	Stop
+  }
+}
+
+ACTOR ChaosEmeralds : CustomInventory replaces Soulsphere 1003
+{
+  Inventory.PickupMessage "Picked up the seven Chaos Emeralds!"
+  Inventory.PickupSound "sonicdoom/chaosemerald"
+  +COUNTITEM
+  States
+  {
+  Spawn:
+    CHSM A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory("Ring", 999)
+	TNT1 A 0 A_GiveInventory("ChaosEnergy", 9999)
+	TNT1 A 0 A_GiveInventory("Untouchable", 1)
+	TNT1 A 0 A_PlaySound("sonicdoom/supersonic", 6)
+	TNT1 A 0 A_PlaySound("sonicdoom/supertransform", 4)
+	TNT1 A 0 A_PlaySound("sonicdoom/supertheme", 5)
+	Stop
+  }
+}
+ACTOR ChaosEmeraldsForMegasphere : CustomInventory replaces Megasphere
+{
+  Inventory.PickupMessage "Picked up the seven Chaos Emeralds!"
+  Inventory.PickupSound "sonicdoom/chaosemerald"
+  +COUNTITEM
+  States
+  {
+  Spawn:
+    CHSM A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory("Ring", 999)
+	TNT1 A 0 A_GiveInventory("ChaosEnergy", 9999)
+	TNT1 A 0 A_GiveInventory("Untouchable", 1)
+	TNT1 A 0 A_PlaySound("sonicdoom/supersonic", 6)
+	TNT1 A 0 A_PlaySound("sonicdoom/supertransform", 4)
+	TNT1 A 0 A_PlaySound("sonicdoom/supertheme", 5)
+	Stop
+  }
+}
+ACTOR Untouchable : PowerupGiver
+{
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.BIGPOWERUP
+  Inventory.MaxAmount 0
+  Powerup.Type "Invulnerable"
+  Powerup.Duration -51
+  Powerup.Color "FF D7 00", 0.1
+  Inventory.PickupMessage "$GOTINVUL"
+  States
+  {
+  Spawn:
+    PINV ABCD 6 Bright
+    Loop
+  }
+}
+ACTOR ChaosCharge : CustomInventory replaces Clip 1231
+{
+  Inventory.PickupMessage "Picked up a Chaos charge."
+  States
+  {
+  Spawn:
+    APLS B -1
+	Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 4)
+	Stop
+  }
+}
+ACTOR LargeChaosEnergy : CustomInventory replaces GreenArmor 1232
+{
+  Inventory.PickupMessage "Picked up a pack of Chaos Energy."
+  States
+  {
+  Spawn:
+    CELP A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 200)
+	Stop
+  }
+}
+ACTOR ChaosChargeX4 : CustomInventory replaces Shell 1233
+{
+  Inventory.PickupMessage "Picked up four Chaos charges."
+  States
+  {
+  Spawn:
+    SHEL A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 16)
+	Stop
+  }
+}
+ACTOR ChaosChargeBox : CustomInventory replaces ClipBox 1234
+{
+  Inventory.PickupMessage "Picked up a box of Chaos charges."
+  States
+  {
+  Spawn:
+    AMMO A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 80)
+	Stop
+  }
+}
+ACTOR LargeChaosChargeBox : CustomInventory replaces ShellBox 1235
+{
+  Inventory.PickupMessage "Picked up a large box of Chaos charges."
+  States
+  {
+  Spawn:
+    SBOX A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 160)
+	Stop
+  }
+}
+ACTOR ChaosEnergyCapsule : CustomInventory replaces RocketAmmo 1236
+{
+  Inventory.PickupMessage "Picked up a Chaos Energy capsule."
+  States
+  {
+  Spawn:
+    ROCK A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 400)
+	Stop
+  }
+}
+ACTOR ChaosEnergyCapsuleBox : CustomInventory replaces RocketBox 1237
+{
+  Inventory.PickupMessage "Picked up a box of Chaos Energy capsules."
+  States
+  {
+  Spawn:
+    BROK A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 250)
 	Stop
   }
 }

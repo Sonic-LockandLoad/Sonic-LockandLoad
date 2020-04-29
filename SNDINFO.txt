@@ -1,5 +1,6 @@
 sonicdoom/ring              PickRing
 sonicdoom/speedyshot        SpSGShot
+sonicdoom/missilefire       MislFire
 sonicdoom/chaosemerald      ChEmerad
 sonicdoom/angery            Angery
 sonicdoom/thanksalotwall    ThxWall
@@ -12,9 +13,24 @@ sonicdoom/boostv3           boost3
 sonicdoom/aboost            aboost
 sonicdoom/spsgread          SpSGReady
 sonicdoom/drift             drift
-sonicdoom/outofboost        noboost
+sonicdoom/error             error
 sonicdoom/hintpickup        hint
 sonicdoom/dash              homatk
+sonicdoom/cantwin           cantwin
+sonicdoom/boxdestroy        destroy
+sonicdoom/specialring       specring
+sonicdoom/lostrings         LoseRing
+sonicdoom/ohno              ohno
+sonicdoom/swing1            swing1
+sonicdoom/swing2            swing2
+sonicdoom/swing3            swing3
+sonicdoom/hit               hit1
+sonicdoom/finalhit          hit2
+sonicdoom/soulsurge         surge
+sonicdoom/supersonic        supsonic
+sonicdoom/supertheme        m_supsnc
+sonicdoom/superready        supready
+sonicdoom/supertransform    suptrnsf
 
 menu/activate		OpenMenu	// Activate a new menu
 menu/backup			Return	// Backup to previous menu
@@ -28,11 +44,11 @@ menu/quit1          ImOut
 menu/quit2          ImOut
 
 $random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
-$random dedlol { sonicdoom/thatwaslame sonicdoom/scream }
+$random sdeath { sonicdoom/thatwaslame sonicdoom/scream }
 $random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
+$random sonicdoom/swordswing { sonicdoom/swing1 sonicdoom/swing2 sonicdoom/swing3 }
 
-$playeralias player male *death       dedlol
-$playeralias player male *gibbed      Scream
+$playersound player male *death       sdeath
 $playeralias player male *usefail     useoof
 $playersound player male *jump        S_JUMP
 
