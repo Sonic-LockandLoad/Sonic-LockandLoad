@@ -1,5 +1,7 @@
 sonicdoom/ring              PickRing
 sonicdoom/speedyshot        SpSGShot
+sonicdoom/speedyblast       SpSGBlst
+sonicdoom/speedyreload      SpSGRlod
 sonicdoom/missilefire       MislFire
 sonicdoom/chaosemerald      ChEmerad
 sonicdoom/angery            Angery
@@ -11,7 +13,6 @@ sonicdoom/boostv1           boost1
 sonicdoom/boostv2           boost2
 sonicdoom/boostv3           boost3
 sonicdoom/aboost            aboost
-sonicdoom/spsgread          SpSGReady
 sonicdoom/drift             drift
 sonicdoom/error             error
 sonicdoom/hintpickup        hint
@@ -31,6 +32,7 @@ sonicdoom/supersonic        supsonic
 sonicdoom/supertheme        m_supsnc
 sonicdoom/superready        supready
 sonicdoom/supertransform    suptrnsf
+sonicdoom/healthcharge      hpcharge
 
 menu/activate		OpenMenu	// Activate a new menu
 menu/backup			Return	// Backup to previous menu

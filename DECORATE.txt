@@ -1,6 +1,6 @@
 #include "actors/ammo.txt"
 #include "actors/hints.txt"
-#include "actors/fakeitems.txt"
+#include "actors/replacements.txt"
 #include "actors/weapons.txt"
 #include "actors/pickups.txt"
 #include "actors/enemies.txt"
@@ -16,7 +16,7 @@ ACTOR SonicPlayer : PlayerPawn
   Player.DisplayName "Sonic the Hedgehog"
   Player.JumpZ 10.0
   Player.StartItem "Unarmed"
-  Player.StartItem "Speedforce Pistol"
+  Player.StartItem "Speedforce Railgun"
   Player.StartItem "ChaosEnergy", 30
   States
   {

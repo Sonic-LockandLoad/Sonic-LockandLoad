@@ -7,11 +7,11 @@ StatusBar Normal
    DrawMugShot 1, 135, 115;
    DrawKeyBar 10, horizontal, 15, 112, 175;
    
-   IfHealth 10
+   IfHealth 20
    {
      DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 132;
    }
-   IfHealth Not 10
+   IfHealth Not 20
    {
      DrawNumber 3, BIGFONT, Red, Health, fillzeros, 66, 132;
    }
