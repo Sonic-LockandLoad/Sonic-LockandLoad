@@ -1,0 +1,8 @@
+ACTOR ChaosEnergy : Ammo
+{
+  Inventory.MaxAmount 9999
+}
+ACTOR Soul : Ammo
+{
+  Inventory.MaxAmount 10
+}

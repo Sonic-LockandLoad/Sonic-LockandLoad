@@ -1,0 +1,2 @@
+STARTUPTITLE = "Sonic The Hedgehog in Doom"
+STARTUPCOLORS = "00FF00", "0000FF"

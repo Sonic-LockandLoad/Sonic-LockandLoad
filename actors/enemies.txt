@@ -1,0 +1,29 @@
+ACTOR EnergyZombieman : Zombieman replaces Zombieman 
+{
+  DropItem ChaosCharge
+}
+
+ACTOR EnergyShotgunGuy : ShotgunGuy replaces ShotgunGuy 
+{
+  DropItem ChaosCharge
+}
+
+ACTOR EnergyImp : DoomImp replaces DoomImp 
+{
+  DropItem ChaosChargeX4
+}
+
+ACTOR EnergyChainGuy : ChaingunGuy replaces ChaingunGuy 
+{
+  DropItem ChaosChargeBox
+}
+
+ACTOR EnergyPinky : Demon replaces Demon 
+{
+  DropItem ChaosEnergyCapsule
+}
+
+ACTOR ActualLostSoul : LostSoul replaces LostSoul 
+{
+  DropItem SoulRing
+}
