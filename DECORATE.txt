@@ -13,7 +13,7 @@ ACTOR SonicPlayer : PlayerPawn
   Height 46
   PainChance 255
   Player.MaxHealth 999
-  Player.DisplayName "Sonic the Hedgehog"
+  Player.DisplayName "Sonic"
   Player.JumpZ 10.0
   Player.StartItem "Unarmed"
   Player.StartItem "Speedforce Railgun"

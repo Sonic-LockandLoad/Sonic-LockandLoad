@@ -14,7 +14,7 @@ ACTOR FakeBackpack : CustomInventory replaces Backpack
 
 ACTOR SpedSgnReplacesSSG : CustomInventory replaces SuperShotgun
 {
-  Inventory.PickupMessage "Picked up the speedy shotgun!"
+  Inventory.PickupMessage "Cool, a shotgun!"
   States
   {
   Spawn:
@@ -28,7 +28,7 @@ ACTOR SpedSgnReplacesSSG : CustomInventory replaces SuperShotgun
 
 ACTOR EcliBlasReplacesPRifle : CustomInventory replaces PlasmaRifle
 {
-  Inventory.PickupMessage "Picked up the Eclipse blaster!"
+  Inventory.PickupMessage "Eclipse Blaster! Now we're talking."
   States
   {
   Spawn:

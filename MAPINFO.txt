@@ -1,7 +1,7 @@
 gameinfo
 {
    PlayerClasses = "SonicPlayer"
-   QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6" 
+   QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7"
 }
 
 episode tut
@@ -15,6 +15,27 @@ map tut "Tutorial"
 {
   music = S_TUTMUS
   next = EndTitle
+  par = 15
+  spawnwithweaponraised
+}
+
+map map31 "Wolfenstein"
+{
+  music = S_CHEM
+  secretnext = "map32"
+  next = "map16"
+  sky1 = "SKY3"
+  cluster = 9
+  par = 120
+}
+
+map map32 "Grosse"
+{
+  music = S_IRNF
+  next = "map16"
+  sky1 = "SKY3"
+  cluster = 10
+  par = 30
 }
 
 clearskills
@@ -80,4 +101,53 @@ skill ohno
   picname = "ohno"
   mustconfirm = "Are you sure? This skill level isn't even remotely challenging, it's just stupid..."
   replaceactor = "ExplosiveBarrel", "BaronOfHell"
+}
+
+
+// DOOM II first cluster (up thru level 6)
+
+cluster 5
+{
+	pic = "recap"
+	exittext = lookup, "C1TEXT"
+}
+
+// DOOM II second cluster (up thru level 11)
+
+cluster 6
+{
+	pic = "recap"
+	exittext = lookup, "C2TEXT"
+}
+
+// DOOM II third cluster (up thru level 20)
+
+cluster 7
+{
+	pic = "recap"
+	exittext = lookup, "C3TEXT"
+}
+
+// DOOM II fourth cluster (up thru level 30)
+
+cluster 8
+{
+	pic = "recap"
+	exittext = lookup, "C4TEXT"
+}
+
+// DOOM II fifth cluster (level 31)
+
+cluster 9
+{
+	pic = "recap"
+	entertext = lookup, "C5TEXT"
+}
+
+// DOOM II sixth cluster (level 32)
+
+cluster 10
+{
+	pic = "recap"
+	entertext = lookup, "C6TEXT"
 }

@@ -25,12 +25,12 @@ actor DriftHint : Hint 256
 	  HELP A -1
 	  Stop
     Pickup:
-      TNT1 A 0 A_Print("Hold down the secondary fire button to drift.\nYou will move forwards with gradually increasing speeds.\nCombine this with jumping for extra momentum.")
+      TNT1 A 0 A_Print("Hold down the secondary fire button to perform the Boost.\nThis technique generates Chaos Energy and lowers gravity,\nallowing for greater vertical movement.")
 	  Stop
   }
 }
 
-actor BoostHint : Hint 257
+actor JumpHint : Hint 257
 {
   States
   {
@@ -38,7 +38,7 @@ actor BoostHint : Hint 257
 	  HELP A -1
 	  Stop
     Pickup:
-      TNT1 A 0 A_Print("Press the primary fire button to boost.\nThis is instant and does a lot more damage than drifting,\nhowever it requires 15 Chaos energy to use.\nBoosting without enough energy\nwill Dash instead, which does very little damage.")
+      TNT1 A 0 A_Print("Boost in midair to get past this.")
 	  Stop
   }
 }
@@ -51,7 +51,7 @@ actor AttackHint : Hint 258
 	  HELP A -1
 	  Stop
     Pickup:
-      TNT1 A 0 A_Print("Boosting or Drifting will deal damage, but they aren't reliable attack methods.\nSwitch to your Speedforce Pistol to deal ranged damage. Altfire is more powerful.")
+      TNT1 A 0 A_Print("Press the primary fire button to kick.\nYou can kick enemies to send them away from you.")
 	  Stop
   }
 }

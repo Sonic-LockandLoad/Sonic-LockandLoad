@@ -11,7 +11,7 @@ LISTMENU "MainMenu"
 	}
 	IfGame(Doom)
 	{
-		TextItem "1P Play", "n", "EpisodeMenu"
+		TextItem "1P Play", "n", "PlayerclassMenu"
 		TextItem "Extra","r", "ReadThisMenu"
 		TextItem "Data Options", "d", "DataMenu"
 		TextItem "Options","o", "OptionsMenu"

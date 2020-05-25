@@ -13,7 +13,7 @@ E1TEXT =
 	"\n"
 	"It stinks like Eggman's behind, but\n"
 	"looks like some kind of base.  Looks like\n"
-	"you're stuck halfway to hell.\n"
+	"you're stuck in this strange place.\n"
 	"The only way out is through.\n"
 	"\n"
 	"Thank you for playing 'Sonic the\n"
@@ -72,13 +72,84 @@ E4TEXT =
 	"\n"
 	"next stop, hell on earth!";
 	
+C1TEXT =
+	"I've been getting closer and closer to the\n"
+	"starport, but something seems off.\n"
+	"These monsters seem to be interrupting\n"
+	"the humans' tech!\n"
+	"\n"
+	"I can see a Hell outpost up ahead...\n"
+	"if I can get past it, then I can find\n"
+	"out how I can destroy whatever's causing\n"
+	"the people of Earth to be stuck like this!\n";
+C2TEXT =
+	"Cool! I did it! Now the humans can evacuate\n"
+	"to safety! Only thing left here\n"
+	"are me, and all these aliens.\n"
+	"\n"
+	"Maybe it's time for me to head home, too.\n"
+	"\n"
+	"Wait, what's that up there? Looks like some\n"
+	"kind of message: \"SENSORS HAVE LOCATED\n"
+	"THE SOURCE OF THE ALIEN INVASION. IF YOU\n"
+	"GO THERE, YOU MAY BE ABLE TO BLOCK THEIR\n"
+	"ENTRY.  THE ALIEN BASE IS IN THE HEART OF\n"
+	"A NEARBY CITY, NOT FAR FROM THE STARPORT.\"\n"
+	"So much for returning home.\n"
+	"This day can't get any weirder...";
+C3TEXT =
+	"I arrived to where I was supposed to be,\n"
+	"at the heart of the city.\n"
+	"\n"
+	"There's no way to destroy the aliens' way\n"
+	"in from here, so I'm gonna have to go\n"
+	"through to the other side!\n"
+	"\n"
+	"So what if I need to go through hell\n"
+	"to get there?";
+C4TEXT =
+	"Admittedly... that was kind of a boring\n"
+	"fight. But still, I exploded its brain into\n"
+	"pieces of...brain!\n\n"
+	"That sounded better in my head.\n\n"
+	"Anyway, it's all finally over!\n"
+	"I singlehandedly saved the people of Earth!\n\n"
+	"In any case, I'm getting tired, and\n"
+	"I should return home now. A convenient portal\n"
+	"appeared after that huge monster exploded.\n"
+	"\n"
+	"Mobius, here I come!\n";
+C5TEXT =
+	"Hey, what's this? Looks like an\n"
+	"abandoned... prison? Looks super old.\n"
+	"\n"
+	"I should really be saving Earth\n"
+	"though... Eh, screw it.\n"
+	"\n"
+	"I've got time to spare!\n";
+C6TEXT =
+	"Looks like this place has another\n"
+	"challenge for me!\n"
+	"\n"
+	"No problem, I got this!\n";
+	
 QUITMSG1 = "I see your problem... too slow!";
 QUITMSG2 = "I rolled Sonic!";
 QUITMSG3 = "I've already lapped you three times...";
 QUITMSG4 = "Huh...\nI'm sure it says fast.";
 QUITMSG5 = "No TV or movies?\nI'm outta here!";
 QUITMSG6 = "HA!\nYou think this puny moat can keep out someone...\nSO FAST?!";
+QUITMSG7 = "Astrid please add quit message";
 
 OPTVAL_MALE	= "Sonic";
 OPTVAL_FEMALE = "Also Sonic";
+
+STSTR_DQDON = "Super Sonic ON";
+STSTR_DQDOFF = "Super Sonic OFF";
+STSTR_DQD2ON = "Ultra Instinct Sonic ON";
+STSTR_DQD2OFF = "Ultra Instinct Sonic OFF";
+STSTR_KFAADDED = "I've got everything!";
+STSTR_FAADDED = "Who needs keys? I've got an Eclipse Blaster!";
+
+DOSY = "Thanks for playing Sonic Doom!";
 

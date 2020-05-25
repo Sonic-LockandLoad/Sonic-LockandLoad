@@ -33,6 +33,10 @@ sonicdoom/supertheme        m_supsnc
 sonicdoom/superready        supready
 sonicdoom/supertransform    suptrnsf
 sonicdoom/healthcharge      hpcharge
+sonicdoom/grunt1            grunt1
+sonicdoom/grunt2            grunt1
+sonicdoom/grunt3            grunt3
+sonicdoom/boosttrail        bstrail
 
 menu/activate		OpenMenu	// Activate a new menu
 menu/backup			Return	// Backup to previous menu
@@ -42,13 +46,14 @@ menu/change			Move	// Select new value for option
 menu/dismiss		Return	// Dismiss a prompt message
 menu/choose			Select	// Choose a menu item
 menu/clear			Return	// Close top menu
-menu/quit1          ImOut
-menu/quit2          ImOut
+menu/quit1         ImOut
+menu/quit2         ImOut
 
 $random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
 $random sdeath { sonicdoom/thatwaslame sonicdoom/scream }
 $random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
 $random sonicdoom/swordswing { sonicdoom/swing1 sonicdoom/swing2 sonicdoom/swing3 }
+$random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 }
 
 $playersound player male *death       sdeath
 $playeralias player male *usefail     useoof
@@ -57,5 +62,6 @@ $playersound player male *jump        S_JUMP
 intermission/tick			ScorCont
 intermission/nextstage		Total
 
-misc/i_pkup                 pickup
-misc/k_pkup                 keypkup
+misc/i_pkup                pickup
+misc/k_pkup                keypkup
+misc/keytry                barr
