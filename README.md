@@ -3,3 +3,7 @@
 
 ## Information
 For information regarding the mod, see the [wiki](https://github.com/CutieGorlAstrid/sonicdoom/wiki).
+
+## Credits
+id Software for Doom
+FroggyMudd on The Spriters Resource for the [Amy Rose sprites](https://www.spriters-resource.com/custom_edited/sonicthehedgehogcustoms/sheet/111906/)
