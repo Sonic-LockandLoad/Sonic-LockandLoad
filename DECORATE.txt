@@ -1,0 +1,169 @@
+#include "actors/ammo.txt"
+#include "actors/hints.txt"
+#include "actors/replacements.txt"
+#include "actors/sonicweapons.txt"
+#include "actors/amyweapons.txt"
+#include "actors/pickups.txt"
+#include "actors/enemies.txt"
+#include "actors/dummy.txt"
+
+ACTOR SonicPlayer : PlayerPawn
+{
+  Speed 2
+  Health 125
+  Radius 10
+  Height 46
+  PainChance 255
+  Mass 50
+  Player.MaxHealth 999
+  Player.DisplayName "Sonic"
+  Player.Face "STF"
+  Player.JumpZ 9.0
+  Player.SoundClass "sonic"
+  Player.StartItem "SonicAbilities"
+  Player.StartItem "SonicCheck"
+  Player.StartItem "AcceleratedRailgun"
+  Player.StartItem "ChaosEnergy", 100
+  Player.WeaponSlot 1, "SonicAbilities", "Caliburn"
+  Player.WeaponSlot 2, "AcceleratedRailgun"
+  Player.WeaponSlot 3, "SpeedyShotgun"
+  Player.WeaponSlot 4, "EclipseBlaster"
+  Player.WeaponSlot 5, "RocketStream"
+  States
+  {
+  Spawn:
+    PLAY A -1
+    Loop
+  See:
+    PLAY ABCD 4 
+    Loop
+  Missile:
+    PLAY E 12
+    Goto Spawn
+  Melee:
+    PLAY F 6 BRIGHT
+    Goto Missile
+  Pain:
+    PLAY G 4 
+    PLAY G 4 A_PlaySound("sonicdoom/sonichurt")
+    Goto Spawn
+  Death:
+    PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
+  Death1:
+    PLAY H 10
+    PLAY I 10 A_PlaySound("sonicdoom/scream")
+    PLAY J 10 A_NoBlocking
+    PLAY KLM 10
+    PLAY N -1
+    Stop
+  XDeath:
+    PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
+  XDeath1:
+    PLAY O 5
+    PLAY P 5 A_PlaySound("sonicdoom/ohno")
+    PLAY Q 5 A_NoBlocking
+    PLAY RSTUV 5
+    PLAY W -1
+    Stop
+  AltSkinDeath:
+    PLAY H 6
+    PLAY I 6 A_PlaySound("sonicdoom/scream")
+    PLAY JK 6
+    PLAY L 6 A_NoBlocking
+    PLAY MNO 6
+    PLAY P -1
+    Stop
+  AltSkinXDeath:
+    PLAY Q 5 A_PlaySound("sonicdoom/ohno")
+    PLAY R 0 A_NoBlocking
+    PLAY R 5 A_SkullPop
+    PLAY STUVWX 5
+    PLAY Y -1
+    Stop
+  }
+}
+ACTOR AmyPlayer : PlayerPawn
+{
+  Speed 1.5
+  Health 200
+  Radius 10
+  Height 36
+  PainChance 255
+  Mass 50
+  Player.MaxHealth 999
+  Player.DisplayName "Amy"
+  Player.Face "ATF"
+  Player.JumpZ 11.0
+  Player.SoundClass "amy"
+  Player.StartItem "AmyAbilities"
+  Player.StartItem "AmyCheck"
+  Player.StartItem "PikoPikoHammer"
+  Player.StartItem "ChaosEnergy", 60
+  Player.StartItem "GlideTime", 100
+  Player.WeaponSlot 1, "AmyAbilities", "PikoPikoHammer"
+  Player.WeaponSlot 2, "SilentRosePistol"
+  Player.WeaponSlot 3, "PrecisionShotgun"
+  Player.WeaponSlot 4, "AmyEclipseBlaster"
+  Player.WeaponSlot 5, "RapidMissiles"
+  States
+  {
+  Spawn:
+    PLAY A -1
+    Loop
+  See:
+    PLAY ABCD 4 
+    Loop
+  Missile:
+    PLAY E 12
+    Goto Spawn
+  Melee:
+    PLAY F 6 BRIGHT
+    Goto Missile
+  Pain:
+    PLAY G 4 
+    PLAY G 4 A_PlaySound("sonicdoom/amyhurt")
+    Goto Spawn
+  Death:
+    PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
+  Death1:
+    PLAY H 10
+    PLAY I 10 A_PlaySound("sonicdoom/amyscream")
+    PLAY J 10 A_NoBlocking
+    PLAY KLM 10
+    PLAY N -1
+    Stop
+  XDeath:
+    PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
+  XDeath1:
+    PLAY O 5
+    PLAY P 5 A_PlaySound("sonicdoom/amyohno")
+    PLAY Q 5 A_NoBlocking
+    PLAY RSTUV 5
+    PLAY W -1
+    Stop
+  AltSkinDeath:
+    PLAY H 6
+    PLAY I 6 A_PlaySound("sonicdoom/amyscream")
+    PLAY JK 6
+    PLAY L 6 A_NoBlocking
+    PLAY MNO 6
+    PLAY P -1
+    Stop
+  AltSkinXDeath:
+    PLAY Q 5 A_PlaySound("sonicdoom/amyohno")
+    PLAY R 0 A_NoBlocking
+    PLAY R 5 A_SkullPop
+    PLAY STUVWX 5
+    PLAY Y -1
+    Stop
+  }
+}
+
+ACTOR SonicCheck : Inventory 
+{
+  Inventory.MaxAmount 1
+}
+ACTOR AmyCheck : Inventory 
+{
+  Inventory.MaxAmount 1
+}

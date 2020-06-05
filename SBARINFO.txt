@@ -1,0 +1,125 @@
+StatusBar Normal
+{
+   DrawString BIGFONT, LightBlue, "Time", -40, 114;
+   DrawString BIGFONT, Gold, "Rings", -40, 132;
+   DrawString BIGFONT, Green, "Energy", -40, 150;
+   DrawString BIGFONT, White, time, -15, 114;
+   DrawMugShot 1, 135, 115;
+   DrawKeyBar 10, horizontal, 15, 112, 175;
+   
+   IfHealth 20
+   {
+     DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 132;
+   }
+   IfHealth Not 20
+   {
+     DrawNumber 3, BIGFONT, Red, Health, fillzeros, 66, 132;
+   }
+   
+   InInventory ChaosEnergy, 1
+   {
+     DrawNumber 4, BIGFONT, White, "ChaosEnergy", 66, 150;
+   }
+   InInventory Not ChaosEnergy, 1
+   {
+     DrawNumber 4, BIGFONT, Red, "ChaosEnergy", 66, 150;
+   }
+   
+   InInventory ZoomCharge, 100
+   {
+     DrawString BIGFONT, Purple, "Ready", 190, 70;
+   }
+   
+   InInventory Caliburn, 1
+   {
+     InInventory Soul, 10
+	 {
+       DrawString SMALLFONT, DarkRed, "Surge Ready", 193, 110;
+	 }
+   }
+   InInventory PikoPikoHammer, 1
+   {
+     InInventory Not GlideStage, 1
+	 {
+       InInventory Not GlideStage, 2
+	   {
+         DrawString SMALLFONT, Cream, "Glide Ready",  193, 110;
+	   }
+	 }
+	 InInventory GlideStage, 1
+	 {
+       InInventory Not GlideStage, 2
+	   {
+	     DrawString SMALLFONT, Cream, "Gliding", 176, 110;
+	   }
+	 }
+	 InInventory GlideStage, 2
+	 {
+       DrawString SMALLFONT, Cream, "Glide Charging", 200, 110;
+	 }
+   }
+}
+StatusBar Fullscreen
+{
+   DrawMugShot 1, 140, 165;
+   DrawKeyBar 10, vertical, auto, 220, 145, 0, 3, auto;
+   
+   IfHealth 10
+   {
+     DrawNumber 3, HUDFONT_DOOM, Gold, Health, fillzeros, 130, 180;
+   }
+   IfHealth Not 10
+   {
+     DrawNumber 3, HUDFONT_DOOM, Red, Health, fillzeros, 130, 180;
+   }
+   DrawImage "sprites/pickups/RIN2A0.png", 114, 175, centerbottom;
+   
+   InInventory ChaosEnergy, 1
+   {
+     DrawNumber 4, HUDFONT_DOOM, Green, "ChaosEnergy", 80, 180;
+   }
+   InInventory Not ChaosEnergy, 1
+   {
+     DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 80, 180;
+   }
+   DrawImage "sprites/pickups/EMRLA0.png", 60, 170, centerbottom;
+   
+   InInventory ZoomCharge, 100
+   {
+     DrawString BIGFONT, Purple, "Ready", 190, 90;
+   }
+   
+   InInventory Caliburn, 1
+   {
+     InInventory Soul, 10
+	 {
+       DrawString BIGFONT, DarkRed, "Ready", 260, 180;
+	 }
+   }
+   
+   InInventory PikoPikoHammer, 1
+   {
+     InInventory Not GlideStage, 1
+	 {
+       InInventory Not GlideStage, 2
+	   {
+         DrawString BIGFONT, Cream, "Ready", 260, 180;
+	   }
+	 }
+	 InInventory GlideStage, 1
+	 {
+       InInventory Not GlideStage, 2
+	   {
+	     DrawString BIGFONT, Cream, "Gliding", 265, 180;
+	   }
+	 }
+	 InInventory GlideStage, 2
+	 {
+       DrawString BIGFONT, Cream, "Charging", 290, 180;
+	 }
+   }
+}
+Mugshot "Rampage"
+{
+	RMPG 20;
+}

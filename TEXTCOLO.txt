@@ -1,0 +1,17 @@
+SonicBlue
+{
+	#003a66  #99d3ff
+Console:
+	#003a66  #99d3ff
+Flat:
+	#0092ff
+}
+
+AmyPink
+{
+	#7f276a  #ffa7e9
+Console:
+	#7f276a  #ffa7e9
+Flat:
+	#FF4FD4
+}

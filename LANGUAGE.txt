@@ -1,0 +1,163 @@
+[en default]
+
+SECRETMESSAGE = "Found a secret!";
+TXT_YES = "Yeah!";
+TXT_NO = "No!";
+
+E1TEXT =
+	"Once you speed through the bases and\n"
+	"defeat all the bad guys you're supposed\n"
+	"to win, aren't you? Aren't you? Where's\n"
+	"your chili dogs and portal home? What\n"
+	"in Chaos is this? It's not supposed to\n"
+	"end this way!\n"
+	"\n"
+	"It stinks like Eggman's behind, but\n"
+	"looks like some kind of base.  Looks like\n"
+	"you're stuck in this strange place.\n"
+	"The only way out is through.\n"
+	"\n"
+	"Thank you for playing 'Sonic the\n"
+	"Hedgehog in Doom'!\n";
+E2TEXT =
+	"You've done it! The hideous giant\n"
+	"demon thing that ruled that lost moon\n"
+	"base has been slain and you are\n"
+	"triumphant! But ... where are you?\n"
+	"You clamber to the edge of the\n"
+	"moon and look down to see the awful\n"
+	"truth.\n"
+	"\n"
+	"You're floating above Hell itself!\n"
+	"You've never heard of anyone escaping\n"
+	"from Hell, but you'll make them all\n"
+	"sorry they ever heard of you! Quickly,\n"
+	"you rappel down to the surface of\n"
+	"Hell.\n"
+	"\n"
+	"Now, it's on to the final chapter of\n"
+	"DOOM! -- Inferno.";
+E3TEXT =
+	"The loathsome spider thing that\n"
+	"masterminded the invasion of the moon\n"
+	"bases and caused so much death has had\n"
+	"its ass kicked for all time.\n"
+	"\n"
+	"A hidden doorway opens and you enter.\n"
+	"You've proven too tough for Hell to\n"
+	"contain, and now Hell at last plays\n"
+	"fair -- for you emerge from the portal\n"
+	"to see the lush paradise of Green Hill!\n"
+	"Home at last.\n"
+	"\n"
+	"You wonder what's been happening \n"
+	"around here while you were battling\n"
+	"evil unleashed. It's good that nothing\n"
+	"could have come through that door\n"
+	"with you ...";
+E4TEXT =
+	"the spider mastermind must have sent forth\n"
+	"its legions of hellspawn before your\n"
+	"final confrontation with that terrible\n"
+	"beast from hell.  but you stepped forward\n"
+	"and brought forth eternal damnation and\n"
+	"suffering upon the horde as a true hero\n"
+	"would in the face of something so evil.\n"
+	"\n"
+	"besides, someone was gonna pay for what\n"
+	"happened to daisy, your pet rabbit.\n"
+	"\n"
+	"but now, you see spread before you more\n"
+	"potential pain and gibbitude as a nation\n"
+	"of demons run amok among our cities.\n"
+	"\n"
+	"next stop, hell on earth!";
+	
+C1TEXT =
+	"We've been getting closer and closer to\n"
+	"the starport, but something seems off.\n"
+	"These monsters seem to be interrupting\n"
+	"the humans' tech!\n"
+	"\n"
+	"There's a Hell outpost up ahead...\n"
+	"if we can get past it, then we can find\n"
+	"out how I can destroy whatever's causing\n"
+	"the people of Earth to be stuck like this!\n";
+C2TEXT =
+	"We finally did it! Now the humans can evacuate\n"
+	"to safety! Only thing left here\n"
+	"are me, Sonic, and all these aliens.\n"
+	"\n"
+	"Maybe it's time for us to head home, too.\n"
+	"\n"
+	"Wait, what's that up there? Looks like some\n"
+	"kind of message: \"SENSORS HAVE LOCATED\n"
+	"THE SOURCE OF THE ALIEN INVASION. IF YOU\n"
+	"GO THERE, YOU MAY BE ABLE TO BLOCK THEIR\n"
+	"ENTRY.  THE ALIEN BASE IS IN THE HEART OF\n"
+	"A NEARBY CITY, NOT FAR FROM THE STARPORT.\"\n"
+	"So much for returning home.\n"
+	"This day can't get any weirder...";
+C3TEXT =
+	"We arrived to where we was supposed to be,\n"
+	"at the heart of the city.\n"
+	"\n"
+	"There's no way to destroy the aliens' way\n"
+	"in from here, so we'll just have to go\n"
+	"through to the other side!\n"
+	"\n"
+	"So what if we need to go through hell\n"
+	"to get there?";
+C4TEXT =
+	"That was kinda boring, wasn't it? Oh well,\n"
+	"at least we can finally return home!\n"
+	"\n"
+	"It's all finally over!\n"
+	"The two of us saved the people of Earth!\n"
+	"\n"
+	"In any case, I'm getting tired, and\n"
+	"I'd like to be home now. A portal appeared\n"
+	"after that huge monster exploded.\n"
+	"\n"
+	"Mobius, here we come!\n";
+C5TEXT =
+	"Hey, what's this? Looks like an\n"
+	"abandoned... prison? Looks super old.\n"
+	"\n"
+	"We should really be saving Earth\n"
+	"though... Eh, screw it.\n"
+	"\n"
+	"I've got time to spare!\n";
+C6TEXT =
+	"Sonic, we really don't have time for this!\n"
+	"\n"
+	"Ugh, this'd better be quick...\n";
+	
+CAMPEND =
+	"Thanks for trying the work-in progress campaign!\n"
+	"This is for the most part unfinished and updates\n"
+	"will be done to it.\n"
+	"\n"
+	"Suggestions? Open up an issue on the GitHub page\n"
+	"and I'll get back to you as soon as possible!\n"
+	"\n"
+	"Thanks for playing Sonic: Lock and Load!\n"
+	"- SpeedStriker243";
+	
+QUITMSG1 = "I see your problem... too slow!";
+QUITMSG2 = "I rolled Sonic!";
+QUITMSG3 = "I've already lapped you three times...";
+QUITMSG4 = "Huh...\nI'm sure it says fast.";
+QUITMSG5 = "No TV or movies?\nI'm outta here!";
+QUITMSG6 = "HA!\nYou think this puny moat can keep out someone...\nSO FAST?!";
+QUITMSG7 = "Astrid please add quit message";
+
+STSTR_DQDON = "Super Sonic ON";
+STSTR_DQDOFF = "Super Sonic OFF";
+STSTR_DQD2ON = "Ultra Instinct Sonic ON";
+STSTR_DQD2OFF = "Ultra Instinct Sonic OFF";
+STSTR_KFAADDED = "I've got everything!";
+STSTR_FAADDED = "Who needs keys? I've got an Eclipse Blaster!";
+
+DOSY = "Thanks for playing Sonic: Lock and Load!";
+

@@ -1,0 +1,103 @@
+sonicdoom/ring              PickRing
+sonicdoom/speedyshot        SpSGShot
+sonicdoom/speedyblast       SpSGBlst
+sonicdoom/speedyreload      SpSGRlod
+sonicdoom/missilefire       MislFire
+sonicdoom/chaosemerald      ChEmerad
+sonicdoom/angery            Angery
+sonicdoom/thanksalotwall    ThxWall
+sonicdoom/thiswallsintheway walinway
+sonicdoom/thatwaslame       Lame
+sonicdoom/scream            Scream
+sonicdoom/boostv1           boost1
+sonicdoom/boostv2           boost2
+sonicdoom/boostv3           boost3
+sonicdoom/aboost            aboost
+sonicdoom/drift             drift
+sonicdoom/error             error
+sonicdoom/amyerror          a_error
+sonicdoom/hintpickup        hint
+sonicdoom/dash              homatk
+sonicdoom/cantwin           cantwin
+sonicdoom/boxdestroy        destroy
+sonicdoom/specialring       specring
+sonicdoom/lostrings         LoseRing
+sonicdoom/ohno              ohno
+sonicdoom/swing1            swing1
+sonicdoom/swing2            swing2
+sonicdoom/swing3            swing3
+sonicdoom/hit               hit1
+sonicdoom/finalhit          hit2
+sonicdoom/soulsurge         surge
+sonicdoom/supertheme        m_supsnc
+sonicdoom/supertheme2       m_supamy
+sonicdoom/superready        supready
+sonicdoom/supertransform    suptrnsf
+sonicdoom/healthcharge      hpcharge
+sonicdoom/grunt1            grunt1
+sonicdoom/grunt2            grunt2
+sonicdoom/grunt3            grunt3
+sonicdoom/amygrunt1         agrunt1
+sonicdoom/amygrunt2         agrunt2
+sonicdoom/boosttrail        bstrail
+sonicdoom/amyscream         amscrem
+sonicdoom/amyohno           amohno
+sonicdoom/sonichurt         sonihurt
+sonicdoom/amyhurt1          amyhurt1
+sonicdoom/amyhurt2          amyhurt2
+sonicdoom/glidestart        aglide
+sonicdoom/glidefinish       aglidend
+sonicdoom/sliding           sliding
+sonicdoom/deadend1          deadend1
+sonicdoom/deadend2          deadend2
+sonicdoom/hammerswing       pikoswng
+sonicdoom/rosepistol        pistshot
+sonicdoom/preciseshot       precshot
+sonicdoom/amypickup         a_pickup
+sonicdoom/sonicpickup       s_pickup
+sonicdoom/zoom              zoom
+sonicdoom/zoomend           zend
+sonicdoom/zoomfire          zshot
+sonicdoom/invincibility     invinc
+sonicdoom/caliburnready     caliredy
+
+menu/activate		OpenMenu	// Activate a new menu
+menu/backup			Return	// Backup to previous menu
+menu/prompt			Select	// Activate a prompt "menu"
+menu/cursor			Move		// Move cursor up/down
+menu/change			Move	// Select new value for option
+menu/dismiss		Return	// Dismiss a prompt message
+menu/choose			Select	// Choose a menu item
+menu/clear			Return	// Close top menu
+menu/quit1          ImOut
+menu/quit2          ImOut
+
+$random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
+$random auseof { sonicdoom/deadend1 sonicdoom/deadend2 }
+$random sdeath { sonicdoom/thatwaslame sonicdoom/scream }
+$random adeath { sonicdoom/amyohno sonicdoom/amyscream }
+$random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
+$random sonicdoom/swordswing { sonicdoom/swing1 sonicdoom/swing2 sonicdoom/swing3 }
+$random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 }
+$random sonicdoom/amygrunt { sonicdoom/amygrunt1 sonicdoom/amygrunt2 }
+$random sonicdoom/amyhurt { sonicdoom/amyhurt1 sonicdoom/amyhurt2 }
+
+$playersound sonic male *death                 sdeath
+$playeralias sonic male *usefail               useoof
+$playersound sonic male *jump                  S_JUMP
+$playersound sonic male sonicdoom/supersonic   nowshow
+
+$playersound amy female *death                 adeath
+$playeralias amy female *usefail               auseof
+$playersound amy female *jump                  A_JUMP
+$playersound amy female sonicdoom/supersonic   destrall
+
+$playersound sonic male nextlvl                tearuptr
+$playersound amy female nextlvl                norest
+
+intermission/tick			ScorCont
+intermission/nextstage		Total
+
+misc/i_pkup                pickup
+misc/k_pkup                keypkup
+misc/secret                SecretFd

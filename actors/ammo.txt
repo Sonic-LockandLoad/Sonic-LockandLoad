@@ -1,0 +1,195 @@
+ACTOR ChaosEnergy : Ammo
+{
+  Inventory.MaxAmount 999
+}
+ACTOR Soul : Ammo
+{
+  Inventory.MaxAmount 10
+}
+ACTOR GlideTime : Ammo
+{
+  Inventory.MaxAmount 100
+}
+
+ACTOR ZoomCharge : Inventory 
+{
+  Inventory.MaxAmount 100
+}
+
+ACTOR ChaosRocket
+{
+  Radius 11
+  Height 8
+  Speed 30
+  Damage 25
+  Projectile
+  ProjectileKickBack 0
+  +RANDOMIZE
+  +DEHEXPLOSION
+  +ROCKETTRAIL
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  States
+  {
+  Spawn:
+    MISL A 1 Bright
+    Loop
+  Death:
+    MISL B 8 Bright A_Explode
+    MISL C 6 Bright
+    MISL D 4 Bright
+    Stop
+  }
+}
+ACTOR ChaosMissile
+{
+  Radius 11
+  Height 8
+  Speed 100
+  Damage 10
+  Projectile
+  +RANDOMIZE
+  +DEHEXPLOSION
+  +ROCKETTRAIL
+  ProjectileKickBack 999999999
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  States
+  {
+  Spawn:
+    MISL A 1 Bright
+    Loop
+  Death:
+    MISL B 4 Bright A_Explode
+    MISL C 3 Bright
+    MISL D 2 Bright
+    Stop
+  }
+}
+ACTOR ChaosEnergyBall
+{
+  Radius 13
+  Height 8
+  Speed 60
+  Damage 20
+  Projectile
+  +RANDOMIZE
+  +EXTREMEDEATH
+  +ZDOOMTRANS
+  RenderStyle Add
+  Alpha 0.75
+  SeeSound "weapons/plasmaf"
+  DeathSound "weapons/plasmax"
+  States
+  {
+  Spawn:
+    PLSS AB 6 Bright
+    Loop
+  Death:
+    PLSE ABCDE 4 Bright
+    Stop
+  }
+}
+ACTOR ChaosEnergyBallAmy
+{
+  Radius 13
+  Height 8
+  Speed 25
+  Damage 40
+  Projectile
+  +RANDOMIZE
+  +EXTREMEDEATH
+  +ZDOOMTRANS
+  RenderStyle Add
+  Alpha 0.75
+  SeeSound "weapons/plasmaf"
+  DeathSound "weapons/plasmax"
+  States
+  {
+  Spawn:
+    PRSS AB 6 Bright
+    Loop
+  Death:
+    PRSE ABCDE 4 Bright
+    Stop
+  }
+}
+
+ACTOR NoGibPuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +ALLOWPARTICLES
+  +RANDOMIZE
+  +NOEXTREMEDEATH
+  RenderStyle Normal
+  Alpha 0.5
+  VSpeed 1
+  Mass 5
+  States
+  {
+  Spawn:
+    PUFF A 4 Bright
+    PUFF B 4
+  Melee:
+    PUFF CD 4
+    Stop
+  }
+}
+ACTOR InvisiblePuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +RANDOMIZE
+  RenderStyle None
+  Alpha 0.5
+  VSpeed 1
+  Mass 5
+  States
+  {
+  Spawn:
+    TNT1 A 4 Bright
+    TNT1 B 4
+  Melee:
+    TNT1 CD 4
+    Stop
+  }
+}
+ACTOR GibPuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +RANDOMIZE
+  +EXTREMEDEATH
+  RenderStyle None
+  Alpha 0.5
+  VSpeed 1
+  Mass 5
+  States
+  {
+  Spawn:
+    TNT1 A 4 Bright
+    TNT1 B 4
+  Melee:
+    TNT1 CD 4
+    Stop
+  }
+}
+ACTOR SwordPuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  RenderStyle Normal
+  Alpha 0.5
+  VSpeed 1
+  Mass 5
+  States
+  {
+  Spawn:
+    SPUF A 4 Bright
+    SPUF B 4
+  Melee:
+    SPUF CDEFG 4
+    Stop
+  }
+}

@@ -1,0 +1,24 @@
+ACTOR BoostCheck : Inventory 
+{
+  Inventory.MaxAmount 1
+}
+
+ACTOR GlideStage : Inventory 
+{
+  Inventory.MaxAmount 2
+}
+
+ACTOR ZoomCheck : Inventory 
+{
+  Inventory.MaxAmount 1
+}
+
+ACTOR ZoomCheck2 : Inventory 
+{
+  Inventory.MaxAmount 1
+}
+
+ACTOR SoulReady : Inventory
+{
+  Inventory.MaxAmount 1
+}

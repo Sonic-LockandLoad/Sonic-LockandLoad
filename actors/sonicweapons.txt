@@ -1,0 +1,433 @@
+ACTOR SonicAbilities : Weapon 1220
+{
+  Weapon.SelectionOrder 3700
+  Weapon.Kickback 9999999999999
+  Weapon.BobRangeX 0.0
+  Weapon.BobRangeY 0.0
+  Weapon.AmmoType "ChaosEnergy"
+  Tag "Sonic the Hedgehog"
+  +WEAPON.MELEEWEAPON
+  States
+  {
+  Ready:
+    TNT1 A 1 A_WeaponReady
+    Loop
+  Deselect:
+    TNT1 AA 0 A_Lower
+	Goto Select
+  Select:
+	TNT1 A 1 A_Lower
+	Goto Deselect
+  Fire:
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperKick")
+    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
+    TNT1 A 0 A_PlaySound("sonicdoom/grunt",2)
+    KICK BC 1
+    KICK D 1 A_CustomPunch(random(1,16)*10, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK EFG 1
+	TNT1 A 2
+    Goto Ready
+  SuperKick:
+    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
+    TNT1 A 0 A_PlaySound("sonicdoom/grunt",2)
+    SKIK BC 1
+	SKIK D 1 A_CustomPunch(random(1,16)*100, true, CPF_NOTURN, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    SKIK EFG 1
+	TNT1 A 2
+    Goto Ready
+  AltFire:
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperBoost")
+    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "Boost")
+	TNT1 A 0 A_Print("\c[SonicBlue]I'm all out of energy!")
+    TNT1 A 0 A_PlaySound("sonicdoom/error", 4096)
+	TNT1 A 0 A_Gravity
+	TNT1 A 0 A_TakeInventory("BoostCheck")
+	TNT1 A 0 A_StopSound(1)
+	Goto Ready
+  Boost:
+    // Sonic's Boost technique
+    TNT1 A 0
+	{
+	  if (CountInv("BoostCheck") < 1)
+	  {
+		A_GiveInventory("BoostCheck");
+	    A_PlaySound("sonicdoom/boost", 6);
+	  }
+	}
+    TNT1 A 0 A_PlaySound("sonicdoom/boosttrail", 1, 1.0, true)
+	TNT1 A 0 A_LowGravity
+    TNT1 A 0 A_Recoil(-15)
+	TNT1 A 0 A_Light(2)
+	TNT1 A 0 A_TakeInventory("ChaosEnergy", 1)
+    BOOS A 1 A_CustomPunch(999, false, CPF_NOTURN, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	BOOS A 0 A_ReFire
+	TNT1 A 0 A_Gravity
+	TNT1 A 0 A_TakeInventory("BoostCheck")
+	TNT1 A 0 A_StopSound(1)
+	Goto Ready
+  SuperBoost:
+    TNT1 A 0
+	{
+	  if (CountInv("BoostCheck") < 1)
+	  {
+		A_GiveInventory("BoostCheck");
+	    A_PlaySound("sonicdoom/boost", 2);
+	  }
+	}
+    TNT1 A 0 A_PlaySound("sonicdoom/boosttrail", 1, 1.0, true)
+	TNT1 A 0 A_LowGravity
+    TNT1 A 0 A_Recoil(-30)
+	TNT1 A 0 A_Light(2)
+    BOOS B 1 A_CustomPunch(999, false, CPF_NOTURN, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	BOOS B 0 A_ReFire
+	TNT1 A 0 A_Gravity
+	TNT1 A 0 A_TakeInventory("BoostCheck")
+	TNT1 A 0 A_StopSound(1)
+	Goto Ready
+  Spawn:
+    SONC A -1
+    Stop
+  }
+}
+
+ACTOR Caliburn : Weapon 
+{
+  Weapon.SelectionOrder 1
+  Weapon.Kickback 1000
+  Weapon.AmmoType "Soul"
+  Inventory.PickupMessage "\c[SonicBlue]Hey, it's Caliburn!"
+  Inventory.PickupSound "sonicdoom/caliburnready"
+  +WEAPON.MELEEWEAPON
+  States
+  {
+  Ready:
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SReady")
+    CALI A 1 A_WeaponReady
+    Loop
+  SReady:
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "Ready")
+    EXCA A 1 A_WeaponReady
+    Loop
+  Deselect:
+    CALI A 1 A_Lower
+    Loop
+  Select:
+    CALI A 1 A_Raise
+    Loop
+  Fire:
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "Swing")
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperSwing")
+  Swing:
+    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
+    TNT1 A 0 A_PlaySound("sonicdoom/grunt",2)
+    CALI B 1
+    CALI C 1 A_CustomPunch(20, CPF_PULLIN, 0, "SwordPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
+    CALI D 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
+    CALI E 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
+    CALI F 1 A_CustomPunch(40, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI E 2 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
+    CALI D 2 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
+    CALI C 2 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
+    CALI B 1
+    Goto Ready
+  SuperSwing:
+    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
+    TNT1 A 0 A_PlaySound("sonicdoom/grunt",2)
+    EXCA B 1
+    EXCA C 1 A_CustomPunch(60, CPF_PULLIN, 0, "SwordPuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA D 1 A_CustomPunch(100, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA E 1 A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA F 1 A_CustomPunch(400, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA G 1 A_CustomPunch(400, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA H 1 A_CustomPunch(400, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA G 1 A_CustomPunch(400, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA F 1 A_CustomPunch(400, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA E 2 A_CustomPunch(120, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA D 2 A_CustomPunch(80, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA C 2 A_CustomPunch(40, CPF_PULLIN, 0, "InvisiblePuff", 250, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    EXCA B 1
+    Goto SReady
+  AltFire:
+    TNT1 A 0 A_JumpIf(CountInv("Soul") < 10, "NoSurge")
+    TNT1 A 0 A_JumpIf(CountInv("Soul") > 9, "SoulSurge")
+  SoulSurge:
+    TNT1 A 0 A_TakeInventory("SoulReady")
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperSurge")
+    TNT1 A 0 A_PlaySound("sonicdoom/soulsurge")
+	TNT1 A 0 A_ZoomFactor(0.90, ZOOM_NOSCALETURNING)
+	TNT1 A 0 A_TakeInventory("Soul", 10)
+	TNT1 A 1 A_Recoil(-80)
+	TNT1 A 0 A_Light(10)
+	CALI G 0 A_FireBullets(28, 12, 400, 99999, "GibPuff")
+	CALI G 10 A_CustomPunch(99999, CPF_PULLIN, 0, "GibPuff", 150, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	TNT1 A 0 A_Light(0)
+	TNT1 A 0 A_ZoomFactor(1.0)
+	Goto Ready
+  SuperSurge:
+    TNT1 A 0 A_TakeInventory("SoulReady")
+    TNT1 A 0 A_PlaySound("sonicdoom/soulsurge")
+	TNT1 A 0 A_ZoomFactor(0.90, ZOOM_NOSCALETURNING)
+	TNT1 A 0 A_TakeInventory("Soul", 10)
+	TNT1 A 1 A_Recoil(-80)
+	TNT1 A 0 A_Light(10)
+	EXCA I 0 A_FireBullets(28, 12, 400, 99999, "GibPuff")
+	EXCA I 10 A_CustomPunch(99999, CPF_PULLIN, 0, "GibPuff", 150, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	TNT1 A 0 A_Light(0)
+	TNT1 A 0 A_ZoomFactor(1.0)
+	Goto SReady
+  NoSurge:
+    TNT1 A 0 A_Print("\c[SonicBlue]I can't Soul Surge yet!")
+	TNT1 A 0 A_PlaySound("sonicdoom/error")
+	Goto Ready
+  Spawn:
+    CBRN A -1
+    Stop
+  }
+}
+
+ACTOR AcceleratedRailgun : Weapon
+{
+  Weapon.SelectionOrder 100
+  Weapon.Kickback 9999999
+  Weapon.AmmoType "ChaosEnergy"
+  Weapon.AmmoGive 60
+  AttackSound "weapons/rbeam"
+  Inventory.PickupMessage "\c[SonicBlue]Cool, got an extra railgun!"
+  Inventory.PickupSound "sonicdoom/sonicpickup"
+  Tag "Accelerated Railgun"
+  +EXTREMEDEATH
+  +FORCEPAIN
+  +WEAPON.AMMO_OPTIONAL
+  +WEAPON.ALT_AMMO_OPTIONAL
+  States
+  {
+  Ready:
+    SPFR A 1 A_WeaponReady
+    Loop
+  Deselect:
+    SPFR A 1 A_Lower
+    Loop
+  Select:
+    SPFR A 1 A_Raise
+    Loop
+  Fire:
+    TNT1 A 0 A_JumpIf(CountInv("SuperUntouchable") < 1, "StandardFire")
+    TNT1 A 0 A_JumpIf(CountInv("SuperUntouchable") > 0, "SuperShot")
+  StandardFire:
+    SPFR A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "WeakShot")
+    SPFR A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "Shoot")
+  Shoot:
+    SPFR A 0 Bright A_RailAttack(15, 0, 1, "00 b8 ff", "00 2b ff", 0, 0, "none", 0, 0, 0, 25, 1.0, 1.0)
+	SPFR A 0 A_TakeInventory("ChaosEnergy", 1)
+    SPFR ABCD 1
+    Goto Ready
+  WeakShot:
+    SPFR A 3 A_RailAttack(1, 0, 1, "45 45 45", "45 45 45", 0, 0, "none", 0, 0, 0, 10, 0.5, 0.5)
+    SPFR ABCD 3
+    Goto Ready
+  AltFire:
+    SPFR A 0 A_JumpIf(CountInv("ChaosEnergy") < 10, "FailCharge")
+    SPFR A 0 A_JumpIf(CountInv("ChaosEnergy") > 9, "AltShot")
+  SuperShot:
+    SPFR A 0 Bright A_RailAttack(320, 0, 1, "ff ff 00", "ff b4 00", 0, 0, "none", 0, 0, 0, 100, 4.0, 3.0)
+    SPFR ABCD 1
+    Goto Ready
+  AltShot:
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "ChargedShot")
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperShot")
+  ChargedShot:
+    SPFR A 1 Bright A_RailAttack(160, 0, 1, "ff 00 00", "ff b4 00", 0, 0, "none", 0, 0, 0, 50, 2.0, 1.5)
+	SPFR A 0 A_Recoil(40)
+	SPFR A 0 A_TakeInventory("ChaosEnergy", 10)
+    SPFR ABCD 1
+    Goto Ready
+  FailCharge:
+    TNT1 A 0 A_Print("I need 10 Chaos energy for a charged burst!")
+	TNT1 A 0 A_PlaySound("sonicdoom/error")
+	Goto Ready
+  Spawn:
+    SPER A -1
+    Stop
+  }
+}
+
+
+ACTOR SpeedyShotgun : Weapon 1221
+{
+  Weapon.SelectionOrder 1300
+  Weapon.AmmoType1 "ChaosEnergy"
+  Weapon.AmmoType2 "ChaosEnergy"
+  Weapon.AmmoUse1 5
+  Weapon.AmmoUse2 60
+  Weapon.AmmoGive 60
+  Weapon.KickBack 160
+  Weapon.BobRangeX 0.0
+  Weapon.BobRangeY 1.0
+  Weapon.BobSpeed 2.0
+  Inventory.PickupMessage "\c[SonicBlue]This shotgun's all mine!"
+  Tag "Speedy Shotgun"
+  States
+  {
+  Ready:
+    SPSG A 1 A_WeaponReady
+    Loop
+  Deselect:
+    TNT1 AA 0 A_Lower
+	SPSG A 1 A_Lower
+	Goto Select+1
+  Select:
+    TNT1 AA 0 A_Lower
+	SPSG A 1 A_Lower
+	Goto Deselect+1
+  Fire:
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "SpeedyShot")
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "WTFShot")
+  SpeedyShot:
+    SPSG A 0 A_PlaySound("sonicdoom/speedyshot")
+	SPSG A 0 A_FireBullets(8, 2, 10, 4)
+    SPSG BCDEFG 1
+	SPSG GEC 1
+	Goto Ready
+  WTFShot:
+    SPSG A 0 A_PlaySound("sonicdoom/speedyshot")
+	SPSG A 0 A_FireBullets(3, 6, 50, 8)
+	SPSG A 0 A_GiveInventory("ChaosEnergy", 5)
+    SPSG DF 1
+	SPSG GE 1
+	Goto Ready
+  AltFire:
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "SpeedyBlast")
+    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "WTFBlast")
+  SpeedyBlast:
+    SPSG A 0 A_PlaySound("sonicdoom/speedyblast")
+	SPSG A 0 A_FireBullets(6, 8, 30, 4)
+	SPSG A 7 A_GunFlash
+    SPSG BCDEFG 1 
+	TNT1 A 8 A_PlaySound("sonicdoom/speedyreload")
+	SPSG GFEDCB 1
+	SPSG A 9
+    Goto Ready
+  WTFBlast:
+    SPSG A 0 A_PlaySound("sonicdoom/speedyblast")
+	SPSG A 0 A_FireBullets(8, 11, 100, 32)
+	SPSG A 0 A_GiveInventory("ChaosEnergy", 120)
+    SPSG BCDEFG 1
+	SPSG GFEDCB 1
+	Goto Ready
+  Flash:
+    SHTF A 4 Bright A_Light1
+    SHTF B 3 Bright A_Light2
+    Goto LightDone
+  Spawn:
+    SPEG A -1
+    Stop
+  }
+}
+
+
+ACTOR EclipseBlaster : Weapon
+{
+  Weapon.SelectionOrder 1400
+  Weapon.AmmoType1 "ChaosEnergy"
+  Weapon.AmmoType2 "ChaosEnergy"
+  Weapon.AmmoUse 5
+  Weapon.AmmoGive 25
+  Weapon.KickBack 100000000
+  Weapon.BobRangeX 0.0
+  Weapon.BobRangeY 1.0
+  Weapon.BobSpeed 1.0
+  +EXTREMEDEATH
+  Inventory.PickupMessage "\c[SonicBlue]The Eclipse Blaster Mk. V, the greatest in plasma weaponry!"
+  Tag "Eclipse Blaster Mk. V"
+  States
+  {
+  Ready:
+    ECBL A 1 A_WeaponReady
+    Loop
+  Deselect:
+    TNT1 AA 0 A_Lower
+	ECBL A 1 A_Lower
+	Goto Select+1
+  Select:
+    TNT1 AA 0 A_Lower
+	ECBL A 1 A_Lower
+	Goto Deselect+1
+  Fire:
+	ECBL B 1
+	{
+	  if (CountInv("PowerInvulnerable")) {
+        A_FireProjectile("ChaosEnergyBall", 0, 0);
+	  }
+	  else {
+	    A_FireProjectile("ChaosEnergyBall", 0, 1);
+	  }
+	}
+    Goto Ready
+  AltFire:
+    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
+    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NoEnergy")
+  RingCheck:
+    TNT1 A 0 A_JumpIf(Health > 998, "RingsFull")
+    TNT1 A 0 A_JumpIf(Health < 999, "ChaosHeal")
+  NoEnergy:
+    TNT1 A 0 A_Print("\c[SonicBlue]I'm all out of energy!")
+	TNT1 A 0 A_PlaySound("sonicdoom/error", 4096)
+	Goto Ready
+  RingsFull:
+    TNT1 A 0 A_Print("\c[SonicBlue]I'm already at full Rings!")
+	TNT1 A 0 A_PlaySound("sonicdoom/error", 4096)
+	Goto Ready
+  ChaosHeal:
+    ECBL C 0 A_PlaySound("sonicdoom/healthcharge", 4096)
+    ECBL C 2 A_TakeInventory("ChaosEnergy", 1)
+    ECBL C 0 A_GiveInventory("Ring", 4)
+	Goto Ready
+  Spawn:
+    ECLI A -1
+    Stop
+
+  }
+}
+
+ACTOR RocketStream : Weapon 1223
+{
+  Weapon.SelectionOrder 1500
+  Weapon.AmmoUse1 10
+  Weapon.AmmoGive 80
+  Weapon.AmmoType1 "ChaosEnergy"
+  Weapon.AmmoType2 "ChaosEnergy"
+  Inventory.PickupMessage "\c[SonicBlue]Heck yeah! Rocket time!"
+  Tag "Rocket Stream"
+  Weapon.BobRangeX 0.0
+  Weapon.BobRangeY 1.0
+  Weapon.BobSpeed 1.0
+  States
+  {
+  Ready:
+    MISG A 1 A_WeaponReady
+    Loop
+  Deselect:
+    TNT1 AA 0 A_Lower
+	MISG A 1 A_Lower
+	Goto Select+1
+  Select:
+    TNT1 AA 0 A_Lower
+	MISG A 1 A_Lower
+	Goto Deselect+1
+  Fire:
+    MISG B 1
+	{
+	  if (CountInv("PowerInvulnerable")) {
+        A_FireProjectile("ChaosRocket", 0, 0);
+	  }
+	  else {
+	    A_FireProjectile("ChaosRocket", 0, 1);
+	  }
+	}
+    MISG B 1 A_ReFire
+    Goto Ready
+  Spawn:
+    LAUN A -1
+    Stop
+  }
+}

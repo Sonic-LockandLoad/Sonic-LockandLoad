@@ -1,0 +1,161 @@
+gameinfo
+{
+   PlayerClasses = "SonicPlayer", "AmyPlayer"
+   QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7"
+}
+
+map map31 "Wolfenstein"
+{
+  music = S_CHEM
+  secretnext = "map32"
+  next = "map16"
+  sky1 = "SKY3"
+  cluster = 9
+  par = 120
+}
+
+map map32 "Grosse"
+{
+  music = S_IRNF
+  next = "map16"
+  sky1 = "SKY3"
+  cluster = 10
+  par = 30
+}
+
+episode zone01
+{
+  name = "Campaign"
+  key = "c"
+}
+
+map zone01 "Green Hill Zone"
+{
+  music = S_GHZ
+  sky1 = "GHZSKYA"
+  sky2 = "GHZSKYB"
+  next = EndPic, "TITLEPIC"
+  cluster = 11
+}
+
+clearskills
+
+skill justwhy
+{
+  damagefactor = 0
+  monsterhealth = 0.00001
+  ammofactor = 9999
+  name = "Too easy!"
+  spawnfilter = Hard
+  totalinfighting
+  mustconfirm = "Are you sure? This skill level isn't even remotely fair... for the demons."
+}
+
+skill cake
+{
+  damagefactor = 0.25
+  name = "Piece of cake!"
+  spawnfilter = Easy
+  totalinfighting
+}
+
+skill standard
+{
+  name = "Bring it on!"
+  spawnfilter = Normal
+  defaultskill
+}
+
+skill hard
+{
+  spawnfilter = Hard
+  damagefactor = 2
+  name = "I can still fly!"
+}
+
+skill harder
+{
+  monsterhealth = 2
+  damagefactor = 3
+  name = "Now I'll show you!"
+  spawnfilter = Hard
+}
+
+
+skill reallyhard
+{
+  monsterhealth = 12
+  damagefactor = 4
+  spawnfilter = Nightmare
+  FastMonsters
+  name = "I'm the coolest!"
+  mustconfirm
+}
+
+skill ohno
+{
+  monsterhealth = 0.001
+  damagefactor = 1000000
+  spawnfilter = Nightmare
+  FastMonsters
+  picname = "ohno"
+  mustconfirm = "Are you sure? This skill level isn't even remotely challenging, it's just stupid..."
+  replaceactor = "ExplosiveBarrel", "BaronOfHell"
+}
+
+
+// DOOM II first cluster (up thru level 6)
+
+cluster 5
+{
+	pic = "s_recap"
+	exittext = lookup, "C1TEXT"
+}
+
+// DOOM II second cluster (up thru level 11)
+
+cluster 6
+{
+	pic = "a_recap"
+	exittext = "/c[SonicBlue]C2TEXT"
+}
+
+// DOOM II third cluster (up thru level 20)
+
+cluster 7
+{
+	pic = "s_recap"
+	exittext = lookup, "C3TEXT"
+}
+
+// DOOM II fourth cluster (up thru level 30)
+
+cluster 8
+{
+	pic = "a_recap"
+	exittext = lookup, "C4TEXT"
+}
+
+// DOOM II fifth cluster (level 31)
+
+cluster 9
+{
+	pic = "s_recap"
+	entertext = lookup, "C5TEXT"
+}
+
+// DOOM II sixth cluster (level 32)
+
+cluster 10
+{
+	pic = "a_recap"
+	entertext = lookup, "C6TEXT"
+}
+
+// Sonic Doom Campaign end cluster
+
+cluster 11
+{
+	flat = "GHZFL1"
+	exittext = lookup, "CAMPEND"
+}

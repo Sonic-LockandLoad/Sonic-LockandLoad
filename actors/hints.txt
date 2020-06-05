@@ -1,0 +1,19 @@
+actor Hint : CustomInventory
+{
+  Inventory.PickupMessage ""
+  Inventory.PickupSound "sonicdoom/hintpickup"
+}
+
+actor WIPHint : Hint 261
+
+{
+  States
+  {
+    Spawn:
+	  HELP A -1
+	  Stop
+    Pickup:
+      TNT1 A 0 A_Print("The Sonic the Hedgehog in Doom Campaign is still\nin early stages of development and is nowhere near complete.")
+	  Stop
+  }
+}
