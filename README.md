@@ -5,9 +5,7 @@ For information regarding the mod, see the [wiki](https://github.com/CutieGorlAs
 ## Dark Update
 "Don't be late." "Same to you."
 
-Get ready for Shadow to blast his way into *Sonic: Lock & Load*! Dark Update coming soon.
-
-[Watch trailer](https://www.youtu.be/l0Vm1pDx7Q8)
+Get ready for Shadow to blast his way into *Sonic: Lock & Load*! Dark Update coming soon. [Watch trailer](https://www.youtu.be/l0Vm1pDx7Q8)
 ## Credits
 - id Software for Doom
 - FroggyMudd on The Spriters Resource for the [Amy Rose sprites](https://www.spriters-resource.com/custom_edited/sonicthehedgehogcustoms/sheet/111906/)
