@@ -4,7 +4,7 @@
 For information regarding the mod, see the [wiki](https://github.com/CutieGorlAstrid/sonicdoom/wiki).
 ## Dark Update Trailer
 "Don't be late." "Same to you."
-Get ready for Shadow to blast his way into *Sonic: Lock and Load*! Dark Update coming soon.
+Get ready for Shadow to blast his way into *Sonic: Lock & Load*! Dark Update coming soon.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l0Vm1pDx7Q8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ## Credits
 - id Software for Doom
