@@ -31,6 +31,7 @@ sonicdoom/finalhit          hit2
 sonicdoom/soulsurge         surge
 sonicdoom/supertheme        m_supsnc
 sonicdoom/supertheme2       m_supamy
+sonicdoom/supertheme3       m_supsha
 sonicdoom/superready        supready
 sonicdoom/supertransform    suptrnsf
 sonicdoom/healthcharge      hpcharge
@@ -60,20 +61,52 @@ sonicdoom/zoomend           zend
 sonicdoom/zoomfire          zshot
 sonicdoom/invincibility     invinc
 sonicdoom/caliburnready     caliredy
+sonicdoom/soulcharge        schg
+sonicdoom/shurikenhit       shurhit
+sonicdoom/shurikenfire1     shuri1
+sonicdoom/shurikenfire2     shuri2
+sonicdoom/shadowgrunt1      dgrunt1
+sonicdoom/shadowgrunt2      dgrunt2
+sonicdoom/shadowgrunt3      dgrunt3
+sonicdoom/shadowgrunt4      dgrunt4
+sonicdoom/shadowgrunt5      dgrunt5
+sonicdoom/shadowgrunt6      dgrunt6
+sonicdoom/shadowgruntc      dgruntc
+sonicdoom/there             there
+sonicdoom/shadowpain        d_pain
+sonicdoom/shadowscream      nooooooo
+sonicdoom/chaosspear        spshoot
+sonicdoom/spearimpact       spimpact
+sonicdoom/damn4thchaos      demerald
+sonicdoom/no                no
+sonicdoom/huh               huh
+sonicdoom/focused           focused
+sonicdoom/shadowerror       d_error
+sonicdoom/passivezoomin     pzoomin
+sonicdoom/passivezoomout    pzoomout
+sonicdoom/blockattack       block1
+sonicdoom/blockattackx      block2
+sonicdoom/blockready        blkready
+sonicdoom/sonictaunt1       staunt1
+sonicdoom/sonictaunt2       staunt2
+sonicdoom/amytaunt          a_taunt
+sonicdoom/shadowtaunt1      dtaunt1
+sonicdoom/shadowtaunt2      dtaunt2
 
-menu/activate		OpenMenu	// Activate a new menu
+menu/activate		OpenMenu// Activate a new menu
 menu/backup			Return	// Backup to previous menu
 menu/prompt			Select	// Activate a prompt "menu"
-menu/cursor			Move		// Move cursor up/down
-menu/change			Move	// Select new value for option
-menu/dismiss		Return	// Dismiss a prompt message
-menu/choose			Select	// Choose a menu item
-menu/clear			Return	// Close top menu
-menu/quit1          ImOut
-menu/quit2          ImOut
+menu/cursor         Move   // Move cursor up/down
+menu/change	        Move	// Select new value for option
+menu/dismiss       Return	// Dismiss a prompt message
+menu/choose        Select	// Choose a menu item
+menu/clear         ExitMenu	// Close top menu
+menu/quit1         ImOut
+menu/quit2         ImOut
 
 $random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
 $random auseof { sonicdoom/deadend1 sonicdoom/deadend2 }
+$random duseof { sonicdoom/no sonicdoom/huh sonicdoom/focused}
 $random sdeath { sonicdoom/thatwaslame sonicdoom/scream }
 $random adeath { sonicdoom/amyohno sonicdoom/amyscream }
 $random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
@@ -81,19 +114,29 @@ $random sonicdoom/swordswing { sonicdoom/swing1 sonicdoom/swing2 sonicdoom/swing
 $random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 }
 $random sonicdoom/amygrunt { sonicdoom/amygrunt1 sonicdoom/amygrunt2 }
 $random sonicdoom/amyhurt { sonicdoom/amyhurt1 sonicdoom/amyhurt2 }
+$random sonicdoom/shurikenfire { sonicdoom/shurikenfire1 sonicdoom/shurikenfire2 }
+$random sonicdoom/shadowgrunt  { sonicdoom/shadowgrunt1 sonicdoom/shadowgrunt2 sonicdoom/shadowgrunt3 sonicdoom/shadowgrunt4 sonicdoom/shadowgrunt5 sonicdoom/shadowgrunt6 }
+$random sonicdoom/chaosgrunt  { sonicdoom/shadowgruntc sonicdoom/there }
+$random sonicdoom/sonictaunt { sonicdoom/sonictaunt1 sonicdoom/sonictaunt2 }
+$random sonicdoom/shadowtaunt { sonicdoom/shadowtaunt1 sonicdoom/shadowtaunt2 }
 
-$playersound sonic male *death                 sdeath
-$playeralias sonic male *usefail               useoof
-$playersound sonic male *jump                  S_JUMP
-$playersound sonic male sonicdoom/supersonic   nowshow
+$playersound sonic male *death                  sdeath
+$playeralias sonic male *usefail                useoof
+$playersound sonic male *jump                   S_JUMP
+$playersound sonic male sonicdoom/supersonic    nowshow
+$playersound sonic male sonicdoom/taunt         sonicdoom/sonictaunt
 
-$playersound amy female *death                 adeath
-$playeralias amy female *usefail               auseof
-$playersound amy female *jump                  A_JUMP
-$playersound amy female sonicdoom/supersonic   destrall
+$playersound amy female *death                  adeath
+$playeralias amy female *usefail                auseof
+$playersound amy female *jump                   A_JUMP
+$playersound amy female sonicdoom/supersonic    destrall
+$playersound amy female sonicdoom/taunt         sonicdoom/amytaunt
 
-$playersound sonic male nextlvl                tearuptr
-$playersound amy female nextlvl                norest
+$playersound shadow male *death                 nooooooo
+$playeralias shadow male *usefail               duseof
+$playersound shadow male *jump                  D_JUMP
+$playersound shadow male sonicdoom/supersonic   ultimate
+$playersound shadow male sonicdoom/taunt        sonicdoom/shadowtaunt
 
 intermission/tick			ScorCont
 intermission/nextstage		Total

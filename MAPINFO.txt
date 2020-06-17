@@ -1,6 +1,6 @@
 gameinfo
 {
-   PlayerClasses = "SonicPlayer", "AmyPlayer"
+   PlayerClasses = "SonicPlayer", "ShadowPlayer", "AmyPlayer" 
    QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7"
 }
 
@@ -103,12 +103,37 @@ skill ohno
   replaceactor = "ExplosiveBarrel", "BaronOfHell"
 }
 
+// Ultimate Doom episode clusters
+
+cluster 1
+{
+	pic = "RECAP"
+	exittext = lookup, "E1TEXT"
+}
+
+cluster 2
+{
+	pic = "RECAP"
+	exittext = lookup, "E2TEXT"
+}
+
+cluster 3
+{
+	pic = "RECAP"
+	exittext = lookup, "E3TEXT"
+}
+
+cluster 4
+{
+	pic = "RECAP"
+	exittext = lookup, "E4TEXT"
+}
 
 // DOOM II first cluster (up thru level 6)
 
 cluster 5
 {
-	pic = "s_recap"
+	pic = "RECAP"
 	exittext = lookup, "C1TEXT"
 }
 
@@ -116,15 +141,15 @@ cluster 5
 
 cluster 6
 {
-	pic = "a_recap"
-	exittext = "/c[SonicBlue]C2TEXT"
+	pic = "RECAP"
+	exittext = lookup, "C2TEXT"
 }
 
 // DOOM II third cluster (up thru level 20)
 
 cluster 7
 {
-	pic = "s_recap"
+	pic = "RECAP"
 	exittext = lookup, "C3TEXT"
 }
 
@@ -132,7 +157,7 @@ cluster 7
 
 cluster 8
 {
-	pic = "a_recap"
+	pic = "RECAP"
 	exittext = lookup, "C4TEXT"
 }
 
@@ -140,7 +165,7 @@ cluster 8
 
 cluster 9
 {
-	pic = "s_recap"
+	pic = "RECAP"
 	entertext = lookup, "C5TEXT"
 }
 
@@ -148,7 +173,7 @@ cluster 9
 
 cluster 10
 {
-	pic = "a_recap"
+	pic = "RECAP"
 	entertext = lookup, "C6TEXT"
 }
 

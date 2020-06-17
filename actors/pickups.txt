@@ -1,4 +1,4 @@
-ACTOR Ring : Health replaces HealthBonus 1000
+ACTOR Ring : CustomInventory replaces HealthBonus 1000
 {
   Inventory.PickupMessage "Picked up a ring."
   Inventory.PickupSound "sonicdoom/ring"
@@ -9,6 +9,15 @@ ACTOR Ring : Health replaces HealthBonus 1000
   Spawn:
     RIN1 A -1
     Stop
+  Pickup:
+    TNT1 A 5 A_GiveInventory("Health", 1)
+	TNT1 A 0 
+	{
+	  if (CountInv("ShadowCheck") > 0)
+	  {
+	    A_GiveInventory("ChaosEnergyEX", 1);
+	  }
+	}
   }
 }
 ACTOR RingBox : CustomInventory replaces Stimpack 1001
@@ -23,7 +32,14 @@ ACTOR RingBox : CustomInventory replaces Stimpack 1001
     RBOX A -1
     Stop
   Pickup:
-    TNT1 A 5 A_GiveInventory ("Ring", 10)
+    TNT1 A 5 A_GiveInventory("Health", 10)
+	TNT1 A 0 
+	{
+	  if (CountInv("ShadowCheck") > 0)
+	  {
+	    A_GiveInventory("ChaosEnergyEX", 10);
+	  }
+	}
   }
 }
 ACTOR SpecialRing : CustomInventory replaces Medikit 1002
@@ -38,7 +54,14 @@ ACTOR SpecialRing : CustomInventory replaces Medikit 1002
     RIN2 A -1
     Stop
   Pickup:
-    TNT1 A 0 A_GiveInventory ("Ring", 50)
+    TNT1 A 0 A_GiveInventory ("Health", 50)
+	TNT1 A 0 
+	{
+	  if (CountInv("ShadowCheck") > 0)
+	  {
+	    A_GiveInventory("ChaosEnergyEX", 50);
+	  }
+	}
 	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 50)
   }
 }
@@ -54,7 +77,14 @@ ACTOR ChaosRing : CustomInventory replaces ArmorBonus 3021
     RIN3 A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory("Ring", 5)
+	TNT1 A 0 A_GiveInventory("Health", 5)
+	TNT1 A 0 
+	{
+	  if (CountInv("ShadowCheck") > 0)
+	  {
+	    A_GiveInventory("ChaosEnergyEX", 5);
+	  }
+	}
 	TNT1 A 0 A_GiveInventory("ChaosEnergy", 1)
   }
 }
@@ -92,7 +122,7 @@ ACTOR SoulRing : CustomInventory replaces BlueArmor 3022
   }
 }
 
-ACTOR SoulRecharge : CustomInventory replaces Berserk 1004
+ACTOR SoulRecharge : CustomInventory
 {
   Inventory.PickupMessage "Picked up a Soul recharge!"
   Inventory.PickupSound "sonicdoom/specialring"
@@ -124,7 +154,22 @@ ACTOR SoulRecharge : CustomInventory replaces Berserk 1004
 	Stop
   }
 }
-ACTOR Invincibility : CustomInventory replaces InvulnerabilitySphere 10002
+ACTOR EmeraldRecharge : CustomInventory
+{
+  Inventory.PickupMessage "Picked up an Emerald recharge!"
+  Inventory.PickupSound "sonicdoom/specialring"
+  States
+  {
+  Spawn:
+    CPAK A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory("ChaosEnergyEX", 500)
+    TNT1 A 0 A_SelectWeapon("ChaosEmerald")
+	Stop
+  }
+}
+ACTOR InvincibilityBox : CustomInventory replaces InvulnerabilitySphere 10002
 {
   Inventory.PickupMessage "Invincibility!"
   Inventory.PickupSound "sonicdoom/boxdestroy"
@@ -135,7 +180,7 @@ ACTOR Invincibility : CustomInventory replaces InvulnerabilitySphere 10002
     INVC A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory("Untouchable", 1)
+	TNT1 A 0 A_GiveInventory("Invincibility", 1)
 	TNT1 A 0 A_PlaySound("sonicdoom/invincibility", 6)
 	Stop
   }
@@ -151,9 +196,10 @@ ACTOR ChaosEmeralds : CustomInventory replaces Soulsphere 1003
     CHSM A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory("Ring", 999)
+	TNT1 A 0 A_GiveInventory("Health", 999)
 	TNT1 A 0 A_GiveInventory("ChaosEnergy", 9999)
-	TNT1 A 0 A_GiveInventory("SuperUntouchable", 1)
+	TNT1 A 0 A_GiveInventory("SuperForm", 1)
+	TNT1 A 0 A_GiveInventory("Invincibility", 1)
 	TNT1 A 0 A_PlaySound("sonicdoom/supersonic", 6)
 	TNT1 A 0 A_PlaySound("sonicdoom/supertransform", 4)
 	TNT1 A 0 
@@ -168,21 +214,27 @@ ACTOR ChaosEmeralds : CustomInventory replaces Soulsphere 1003
 	    A_PlaySound("sonicdoom/supertheme2", 5);
 	    A_Log("\c[AmyPink]I'll destroy all of you!!");
 	  }
+	  else if (CountInv("ShadowCheck")) 
+	  {
+	    A_PlaySound("sonicdoom/supertheme3", 5);
+	    A_Log("\c[ShadowRedBlack]Witness the might of my power!!");
+	  }
 	}
 	Stop
   }
 }
-ACTOR Untouchable : PowerupGiver
+ACTOR Invincibility : PowerupGiver
 {
   +COUNTITEM
   +INVENTORY.AUTOACTIVATE
   +INVENTORY.ALWAYSPICKUP
   +INVENTORY.BIGPOWERUP
-  Inventory.MaxAmount 0
+  Inventory.MaxAmount 1
   Powerup.Type "Invulnerable"
   Powerup.Duration -55
-  Powerup.Color "FF FF FF", 0.1
+  Powerup.Color "FF FF FF", 0
   Inventory.PickupMessage "$GOTINVUL"
+  Inventory.Icon "INVCA0"
   States
   {
   Spawn:
@@ -190,16 +242,15 @@ ACTOR Untouchable : PowerupGiver
     Loop
   }
 }
-ACTOR SuperUntouchable : PowerupGiver
+ACTOR SuperForm : PowerupGiver
 {
   +COUNTITEM
   +INVENTORY.AUTOACTIVATE
   +INVENTORY.ALWAYSPICKUP
   +INVENTORY.BIGPOWERUP
-  Inventory.MaxAmount 0
-  Powerup.Type "Invulnerable"
-  Powerup.Duration -51
-  Powerup.Color "FF D7 00", 0.1
+  Inventory.MaxAmount 1
+  Powerup.Type "Super"
+  Powerup.Color "F0 BC 18", 0.1
   Inventory.PickupMessage "$GOTINVUL"
   States
   {
@@ -208,6 +259,25 @@ ACTOR SuperUntouchable : PowerupGiver
     Loop
   }
 }
+ACTOR PowerSuper : Powerup 
+{
+  Powerup.Duration -51
+  Inventory.Icon "CHSMA0"
+} 
+
+ACTOR HammerBlock : PowerupGiver
+{
+  Powerup.Color "00 CC FF" 0.1
+  Inventory.MaxAmount 0
+  Powerup.Type "Blocking"
+  Powerup.Duration -30
+  +INVENTORY.AUTOACTIVATE
+}
+ACTOR PowerBlocking : PowerProtection
+{
+  DamageFactor "Normal", 0.1
+}
+
 ACTOR ChaosCharge : CustomInventory replaces Clip 1231
 {
   Inventory.PickupMessage "Picked up a Chaos charge."
@@ -309,6 +379,22 @@ ACTOR ChaosEnergyCapsuleBox : CustomInventory replaces RocketBox 1237
     Stop
   Pickup:
 	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 400)
+	Stop
+  }
+}
+
+ACTOR MacAndCheese : CustomInventory
+{
+  Inventory.PickupMessage "Picked up some mac and cheese."
+  States
+  {
+  Spawn:
+    FMAC A -1
+    Stop
+  Pickup:
+    TNT1 A 0 A_Print("\c[ShadowRedBlack]I'm making mac and cheese,\n\c[ShadowRedBlack]and nobody can stop me!")
+	TNT1 A 0 A_GiveInventory("Health", 100)
+	TNT1 A 0 A_GiveInventory("ChaosEnergyEX", 100)
 	Stop
   }
 }

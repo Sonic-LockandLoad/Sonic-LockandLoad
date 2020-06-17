@@ -19,9 +19,8 @@ ACTOR SonicAbilities : Weapon 1220
 	TNT1 A 1 A_Lower
 	Goto Deselect
   Fire:
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperKick")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperKick")
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
-    TNT1 A 0 A_PlaySound("sonicdoom/grunt",2)
     KICK BC 1
     KICK D 1 A_CustomPunch(random(1,16)*10, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EFG 1
@@ -29,14 +28,13 @@ ACTOR SonicAbilities : Weapon 1220
     Goto Ready
   SuperKick:
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
-    TNT1 A 0 A_PlaySound("sonicdoom/grunt",2)
     SKIK BC 1
 	SKIK D 1 A_CustomPunch(random(1,16)*100, true, CPF_NOTURN, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     SKIK EFG 1
 	TNT1 A 2
     Goto Ready
   AltFire:
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperBoost")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperBoost")
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "Boost")
 	TNT1 A 0 A_Print("\c[SonicBlue]I'm all out of energy!")
     TNT1 A 0 A_PlaySound("sonicdoom/error", 4096)
@@ -54,6 +52,7 @@ ACTOR SonicAbilities : Weapon 1220
 	    A_PlaySound("sonicdoom/boost", 6);
 	  }
 	}
+    TNT1 A 0 A_SetMugShotState("Boost")
     TNT1 A 0 A_PlaySound("sonicdoom/boosttrail", 1, 1.0, true)
 	TNT1 A 0 A_LowGravity
     TNT1 A 0 A_Recoil(-15)
@@ -101,11 +100,11 @@ ACTOR Caliburn : Weapon
   States
   {
   Ready:
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SReady")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SReady")
     CALI A 1 A_WeaponReady
     Loop
   SReady:
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "Ready")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") < 1, "Ready")
     EXCA A 1 A_WeaponReady
     Loop
   Deselect:
@@ -115,20 +114,25 @@ ACTOR Caliburn : Weapon
     CALI A 1 A_Raise
     Loop
   Fire:
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "Swing")
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperSwing")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") < 1, "Swing")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperSwing")
   Swing:
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     TNT1 A 0 A_PlaySound("sonicdoom/grunt",2)
     CALI B 1
-    CALI C 1 A_CustomPunch(20, CPF_PULLIN, 0, "SwordPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
-    CALI D 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
-    CALI E 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
+    CALI C 1 A_CustomPunch(20, CPF_PULLIN, 0, "SwordPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI D 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI E 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     CALI F 1 A_CustomPunch(40, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
-    CALI E 2 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
-    CALI D 2 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
-    CALI C 2 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit")
-    CALI B 1
+    CALI G 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI H 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI I 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI J 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI K 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI L 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI M 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI N 1 A_CustomPunch(20, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    CALI B 0 A_ReFire
     Goto Ready
   SuperSwing:
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
@@ -149,17 +153,22 @@ ACTOR Caliburn : Weapon
     Goto SReady
   AltFire:
     TNT1 A 0 A_JumpIf(CountInv("Soul") < 10, "NoSurge")
-    TNT1 A 0 A_JumpIf(CountInv("Soul") > 9, "SoulSurge")
-  SoulSurge:
-    TNT1 A 0 A_TakeInventory("SoulReady")
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperSurge")
-    TNT1 A 0 A_PlaySound("sonicdoom/soulsurge")
+    SURG A 0 A_SetSpeed(0.5)
 	TNT1 A 0 A_ZoomFactor(0.90, ZOOM_NOSCALETURNING)
-	TNT1 A 0 A_TakeInventory("Soul", 10)
-	TNT1 A 1 A_Recoil(-80)
+    TNT1 A 0 A_PlaySound("sonicdoom/soulcharge", 4096)
 	TNT1 A 0 A_Light(10)
-	CALI G 0 A_FireBullets(28, 12, 400, 99999, "GibPuff")
-	CALI G 10 A_CustomPunch(99999, CPF_PULLIN, 0, "GibPuff", 150, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	SURG A 1 A_WeaponReady(WRF_DISABLESWITCH)
+	SURG A 0 A_ReFire
+	SURG A 0 A_ZoomFactor(1)
+    SURG A 0 A_SetSpeed(2)
+	Goto SoulSurge
+  SoulSurge:
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperSurge")
+    TNT1 A 0 A_TakeInventory("SoulReady")
+    TNT1 A 0 A_PlaySound("sonicdoom/soulsurge", 4096)
+	TNT1 A 0 A_TakeInventory("Soul", 10)
+	TNT1 A 0 A_FireBullets(28, 12, 400, 99999, "GibPuff")
+	TNT1 A 0 A_Recoil(-80)
 	TNT1 A 0 A_Light(0)
 	TNT1 A 0 A_ZoomFactor(1.0)
 	Goto Ready
@@ -211,8 +220,8 @@ ACTOR AcceleratedRailgun : Weapon
     SPFR A 1 A_Raise
     Loop
   Fire:
-    TNT1 A 0 A_JumpIf(CountInv("SuperUntouchable") < 1, "StandardFire")
-    TNT1 A 0 A_JumpIf(CountInv("SuperUntouchable") > 0, "SuperShot")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") < 1, "StandardFire")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperShot")
   StandardFire:
     SPFR A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "WeakShot")
     SPFR A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "Shoot")
@@ -233,8 +242,8 @@ ACTOR AcceleratedRailgun : Weapon
     SPFR ABCD 1
     Goto Ready
   AltShot:
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "ChargedShot")
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "SuperShot")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") < 1, "ChargedShot")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperShot")
   ChargedShot:
     SPFR A 1 Bright A_RailAttack(160, 0, 1, "ff 00 00", "ff b4 00", 0, 0, "none", 0, 0, 0, 50, 2.0, 1.5)
 	SPFR A 0 A_Recoil(40)
@@ -280,8 +289,8 @@ ACTOR SpeedyShotgun : Weapon 1221
 	SPSG A 1 A_Lower
 	Goto Deselect+1
   Fire:
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "SpeedyShot")
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "WTFShot")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") < 1, "SpeedyShot")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "WTFShot")
   SpeedyShot:
     SPSG A 0 A_PlaySound("sonicdoom/speedyshot")
 	SPSG A 0 A_FireBullets(8, 2, 10, 4)
@@ -296,8 +305,8 @@ ACTOR SpeedyShotgun : Weapon 1221
 	SPSG GE 1
 	Goto Ready
   AltFire:
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") < 1, "SpeedyBlast")
-    TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable") > 0, "WTFBlast")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") < 1, "SpeedyBlast")
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "WTFBlast")
   SpeedyBlast:
     SPSG A 0 A_PlaySound("sonicdoom/speedyblast")
 	SPSG A 0 A_FireBullets(6, 8, 30, 4)
@@ -324,6 +333,45 @@ ACTOR SpeedyShotgun : Weapon 1221
   }
 }
 
+ACTOR ShurikenCrossbow : Weapon 
+{
+  Weapon.SelectionOrder 800
+  Weapon.AmmoUse 15
+  Weapon.AmmoGive 100
+  Weapon.AmmoType "ChaosEnergy"
+  Inventory.PickupMessage "\c[SonicBlue]Is that a crossbow that fires shurikens?! Awesome!"
+  Tag "Shuriken Crossbow"
+  States
+  {
+  Ready:
+    SHRL A 1 A_WeaponReady
+    Loop
+  Deselect:
+    SHRL A 1 A_Lower
+    Loop
+  Select:
+    SHRL A 1 A_Raise
+    Loop
+  Fire:
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperFire")
+    TNT1 A 0 A_SetGravity(0.3)
+    SHRL B 12 A_FireProjectile("Shuriken", 0, 1)
+    TNT1 A 0 A_SetGravity(1)
+    SHRL CDEFG 1
+	Goto Ready
+  SuperFire:
+    TNT1 A 0 A_SetGravity(0.1)
+    SHRL B 3 A_FireProjectile("Shuriken", 0, 0)
+    TNT1 A 0 A_SetGravity(1)
+	TNT1 A 0 A_ReFire
+    SHRL CDEFG 1
+	Goto Ready
+  Spawn:
+    SURI A -1
+    Stop
+  }
+}
+
 
 ACTOR EclipseBlaster : Weapon
 {
@@ -337,7 +385,7 @@ ACTOR EclipseBlaster : Weapon
   Weapon.BobRangeY 1.0
   Weapon.BobSpeed 1.0
   +EXTREMEDEATH
-  Inventory.PickupMessage "\c[SonicBlue]The Eclipse Blaster Mk. V, the greatest in plasma weaponry!"
+  Inventory.PickupMessage "\c[SonicBlue]The Eclipse Blaster Mk. V, the ultimate in plasma weaponry!"
   Tag "Eclipse Blaster Mk. V"
   States
   {
@@ -355,7 +403,7 @@ ACTOR EclipseBlaster : Weapon
   Fire:
 	ECBL B 1
 	{
-	  if (CountInv("PowerInvulnerable")) {
+	  if (CountInv("PowerSuper")) {
         A_FireProjectile("ChaosEnergyBall", 0, 0);
 	  }
 	  else {
@@ -417,7 +465,7 @@ ACTOR RocketStream : Weapon 1223
   Fire:
     MISG B 1
 	{
-	  if (CountInv("PowerInvulnerable")) {
+	  if (CountInv("PowerSuper")) {
         A_FireProjectile("ChaosRocket", 0, 0);
 	  }
 	  else {

@@ -3,6 +3,21 @@ ACTOR BoostCheck : Inventory
   Inventory.MaxAmount 1
 }
 
+ACTOR ThrowCheck : Inventory 
+{
+  Inventory.MaxAmount 1
+}
+
+ACTOR GuardCheck : Inventory 
+{
+  Inventory.MaxAmount 1
+}
+
+ACTOR SpearCheck : Inventory 
+{
+  Inventory.MaxAmount 1
+}
+
 ACTOR GlideStage : Inventory 
 {
   Inventory.MaxAmount 2

@@ -1,0 +1,7 @@
+addkeysection "Sonic: Lock and Load - Keybinds" LLKeybinds
+
+addmenukey "Taunt" SonicTaunt
+alias SonicTaunt "puke 1"
+
+addmenukey "Remove Weapon" ClearWeapon
+alias ClearWeapon "puke 3"

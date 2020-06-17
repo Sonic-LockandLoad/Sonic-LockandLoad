@@ -38,7 +38,8 @@ ListMenu "PlayerclassMenu"
 		StaticText 120, 25, "Select"
 		StaticText 97, 42, "Character"
 		Position 97, 100
-		StaticPatch 130, 60, "sonic"
-		StaticPatch 170, 65, "amy"
+		StaticPatch 100, 60, "sonic"
+		StaticPatch 150, 60, "shadow"
+		StaticPatch 200, 60, "amy"
 	}
 }

@@ -1,0 +1,54 @@
+#include "zcommon.acs"
+
+script 1 (void)
+{
+	switch(PlayerClass(PlayerNumber()))
+      {
+            case 0:
+                 AmbientSound("sonicdoom/sonictaunt", 127);
+                 break;
+            case 1:
+                 AmbientSound("sonicdoom/shadowtaunt", 127);
+                 break;
+            case 2:
+                 AmbientSound("sonicdoom/amytaunt", 127);
+                 break;
+            case -1:
+                 //monster activated the script but we do not care about that
+            default:
+                 //something happened but we are just gonna break
+                 break;
+        }
+}
+
+script 2 (void)
+{
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+
+	if (buttons & BT_CROUCH)
+	{
+		ThrustThingZ(0, 70, 0, 1);
+        AmbientSound("*jump", 127);
+	}
+}
+
+script 3 (void)
+{
+	switch(PlayerClass(PlayerNumber()))
+      {
+            case 0:
+                 SetWeapon("SonicAbilities");
+                 break;
+            case 1:
+                 SetWeapon("ShadowAbilities");
+                 break;
+            case 2:
+                 SetWeapon("AmyAbilities");
+                 break;
+            case -1:
+                 //monster activated the script but we do not care about that
+            default:
+                 //something happened but we are just gonna break
+                 break;
+        }
+}

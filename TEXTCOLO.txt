@@ -15,3 +15,12 @@ Console:
 Flat:
 	#FF4FD4
 }
+
+ShadowRedBlack
+{
+	#000000  #dd0000
+Console:
+	#222222  #ff0000
+Flat:
+	#b60000
+}

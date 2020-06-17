@@ -1,28 +1,28 @@
 StatusBar Normal
 {
-   DrawString BIGFONT, LightBlue, "Time", -40, 114;
-   DrawString BIGFONT, Gold, "Rings", -40, 132;
-   DrawString BIGFONT, Green, "Energy", -40, 150;
-   DrawString BIGFONT, White, time, -15, 114;
+   DrawString BIGFONT, LightBlue, "Time", -40, 96;
+   DrawString BIGFONT, Gold, "Rings", -40, 114;
+   DrawString BIGFONT, Green, "Energy", -40, 132;
+   DrawString BIGFONT, White, time, -15, 96;
    DrawMugShot 1, 135, 115;
    DrawKeyBar 10, horizontal, 15, 112, 175;
    
    IfHealth 20
    {
-     DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 132;
+     DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 114;
    }
    IfHealth Not 20
    {
-     DrawNumber 3, BIGFONT, Red, Health, fillzeros, 66, 132;
+     DrawNumber 3, BIGFONT, Red, Health, fillzeros, 66, 114;
    }
    
    InInventory ChaosEnergy, 1
    {
-     DrawNumber 4, BIGFONT, White, "ChaosEnergy", 66, 150;
+     DrawNumber 4, BIGFONT, White, "ChaosEnergy", 66, 132;
    }
    InInventory Not ChaosEnergy, 1
    {
-     DrawNumber 4, BIGFONT, Red, "ChaosEnergy", 66, 150;
+     DrawNumber 4, BIGFONT, Red, "ChaosEnergy", 66, 132;
    }
    
    InInventory ZoomCharge, 100
@@ -36,7 +36,29 @@ StatusBar Normal
 	 {
        DrawString SMALLFONT, DarkRed, "Surge Ready", 193, 110;
 	 }
+	 InInventory Not Soul, 10
+	 {
+	   InInventory Soul, 1
+	   {
+	     DrawNumber 1, SMALLFONT, DarkRed, "Soul", 145, 110;
+         DrawString SMALLFONT, DarkRed, "/10", 165, 110;
+	   }
+	 }
    }
+   
+   InInventory ChaosEmerald, 1
+   {
+     DrawString BIGFONT, DarkGreen, "Emerald", -40, 150;
+     InInventory ChaosEnergyEX, 1
+     {
+       DrawNumber 4, BIGFONT, White, "ChaosEnergyEX", 66, 150;
+     }
+     InInventory Not ChaosEnergyEX, 1
+     {
+       DrawNumber 4, BIGFONT, Red, "ChaosEnergyEX", 66, 150;
+     }
+   }
+   
    InInventory PikoPikoHammer, 1
    {
      InInventory Not GlideStage, 1
@@ -56,7 +78,9 @@ StatusBar Normal
 	 InInventory GlideStage, 2
 	 {
        DrawString SMALLFONT, Cream, "Glide Charging", 200, 110;
-	 }
+	 }     
+	 DrawString BIGFONT, Cyan, "Shield", -40, 150;
+     DrawNumber 4, BIGFONT, White, PowerupTime HammerBlock, 66, 150;
    }
 }
 StatusBar Fullscreen
@@ -95,6 +119,18 @@ StatusBar Fullscreen
 	 {
        DrawString BIGFONT, DarkRed, "Ready", 260, 180;
 	 }
+	 InInventory Not Soul, 10
+	 {
+	   InInventory Soul, 1
+	   {
+         DrawString BIGFONT, DarkRed, "Charging", 290, 180;
+	   }
+	 }
+   }
+   
+   InInventory ChaosEmerald, 1
+   {
+     DrawNumber 4, HUDFONT_DOOM, DarkGreen, "ChaosEnergyEX", 230, 180;
    }
    
    InInventory PikoPikoHammer, 1
@@ -119,7 +155,41 @@ StatusBar Fullscreen
 	 }
    }
 }
-Mugshot "Rampage"
+mugshot "Rampage"
 {
 	RMPG 20;
+}
+
+mugshot "Boost"
+{
+	BOOS 20;
+}
+
+mugshot "Normal"
+{
+	{ST00, ST01, ST02} 17;
+}
+
+mugshot "Pain", directional
+{
+	{TR00, KILL0, TL00} 35;
+}
+
+mugshot "Ouch"
+{
+	OUCH0 35;
+}
+
+mugshot "Grin"
+{
+	EVL0 70;
+}
+
+mugshot "God"
+{
+	GOD0 -1;
+}
+mugshot "Death"
+{
+	DEAD0 -1;
 }

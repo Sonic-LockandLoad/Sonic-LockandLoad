@@ -5,133 +5,113 @@ TXT_YES = "Yeah!";
 TXT_NO = "No!";
 
 E1TEXT =
-	"Once you speed through the bases and\n"
-	"defeat all the bad guys you're supposed\n"
-	"to win, aren't you? Aren't you? Where's\n"
-	"your chili dogs and portal home? What\n"
-	"in Chaos is this? It's not supposed to\n"
-	"end this way!\n"
+	"Shadow: Hmph, those demons were no\n"
+	"challenge.\n"
 	"\n"
-	"It stinks like Eggman's behind, but\n"
-	"looks like some kind of base.  Looks like\n"
-	"you're stuck in this strange place.\n"
-	"The only way out is through.\n"
+	"Sonic: Easy for you to say... Wait a minute,\n"
+	"where are we?\n"
 	"\n"
-	"Thank you for playing 'Sonic the\n"
-	"Hedgehog in Doom'!\n";
+	"Amy: It looks like some kind of base, and\n"
+	"there are more of those monsters!\n"
+	"\n"
+	"Sonic: I guess we're not done here just\n"
+	"yet...";
 E2TEXT =
-	"You've done it! The hideous giant\n"
-	"demon thing that ruled that lost moon\n"
-	"base has been slain and you are\n"
-	"triumphant! But ... where are you?\n"
-	"You clamber to the edge of the\n"
-	"moon and look down to see the awful\n"
-	"truth.\n"
+	"Sonic: That huge thing was tough!\n"
 	"\n"
-	"You're floating above Hell itself!\n"
-	"You've never heard of anyone escaping\n"
-	"from Hell, but you'll make them all\n"
-	"sorry they ever heard of you! Quickly,\n"
-	"you rappel down to the surface of\n"
-	"Hell.\n"
+	"Amy: Tell me about it! I need a break already!\n"
 	"\n"
-	"Now, it's on to the final chapter of\n"
-	"DOOM! -- Inferno.";
+	"Shadow: Don't get too comfortable.\n"
+	"Look down there.\n"
+	"\n" 
+	"Sonic: Holy crap! We're floating above Hell!\n"
+	"\n"
+	"Amy: Aaah! I want to go home!\n"
+	"\n"
+	"Shadow: There's no turning back from this\n"
+	"point. We can only go more forward.";
 E3TEXT =
-	"The loathsome spider thing that\n"
-	"masterminded the invasion of the moon\n"
-	"bases and caused so much death has had\n"
-	"its ass kicked for all time.\n"
+	"Amy: Phew... I'm so glad it's over.\n"
 	"\n"
-	"A hidden doorway opens and you enter.\n"
-	"You've proven too tough for Hell to\n"
-	"contain, and now Hell at last plays\n"
-	"fair -- for you emerge from the portal\n"
-	"to see the lush paradise of Green Hill!\n"
-	"Home at last.\n"
+	"Sonic: You said it, Amy... Let's head home.\n"
 	"\n"
-	"You wonder what's been happening \n"
-	"around here while you were battling\n"
-	"evil unleashed. It's good that nothing\n"
-	"could have come through that door\n"
-	"with you ...";
+	"Shadow: Hold on...\n"
+	"\n"
+	"Sonic: Wait, what?!\n"
+	"\n"
+	"Amy: Aaah!! More of them?!\n"
+	"\n"
+	"Shadow: Not only more, but they're even\n"
+	"stronger.\n"
+	"\n"
+	"Sonic: No rest for the living, huh?";
 E4TEXT =
-	"the spider mastermind must have sent forth\n"
-	"its legions of hellspawn before your\n"
-	"final confrontation with that terrible\n"
-	"beast from hell.  but you stepped forward\n"
-	"and brought forth eternal damnation and\n"
-	"suffering upon the horde as a true hero\n"
-	"would in the face of something so evil.\n"
+	"Amy: Come on! What are the chances there's\n"
+	"ANOTHER one of those weird spider robots?\n"
 	"\n"
-	"besides, someone was gonna pay for what\n"
-	"happened to daisy, your pet rabbit.\n"
+	"Sonic: Let's hope that was the last one...\n"
+	"For now, we really gotta get going before\n"
+	"this invasion wipes out the world's population!\n"
 	"\n"
-	"but now, you see spread before you more\n"
-	"potential pain and gibbitude as a nation\n"
-	"of demons run amok among our cities.\n"
-	"\n"
-	"next stop, hell on earth!";
+	"Shadow: Next stop: Hell on Earth.";
 	
 C1TEXT =
-	"We've been getting closer and closer to\n"
-	"the starport, but something seems off.\n"
-	"These monsters seem to be interrupting\n"
-	"the humans' tech!\n"
+	"Sonic: Hmm... Something seems off.\n"
 	"\n"
-	"There's a Hell outpost up ahead...\n"
-	"if we can get past it, then we can find\n"
-	"out how I can destroy whatever's causing\n"
-	"the people of Earth to be stuck like this!\n";
+	"Shadow: It seems these aliens are interrupting\n"
+	"the humans' tech.\n"
+	"\n"
+	"Amy: Look! Up ahead!\n"
+	"If we can get past that point, then we're one\n"
+	"step closer to rescuing everyone!\n";
 C2TEXT =
-	"We finally did it! Now the humans can evacuate\n"
-	"to safety! Only thing left here\n"
-	"are me, Sonic, and all these aliens.\n"
+	"Amy: We finally did it! Now the humans can get\n"
+	"to safety!"
 	"\n"
-	"Maybe it's time for us to head home, too.\n"
+	"Sonic: Maybe it's time for us to head home.\n"
+	"Wait... What's that up there?\n"
 	"\n"
-	"Wait, what's that up there? Looks like some\n"
-	"kind of message: \"SENSORS HAVE LOCATED\n"
-	"THE SOURCE OF THE ALIEN INVASION. IF YOU\n"
-	"GO THERE, YOU MAY BE ABLE TO BLOCK THEIR\n"
-	"ENTRY.  THE ALIEN BASE IS IN THE HEART OF\n"
-	"A NEARBY CITY, NOT FAR FROM THE STARPORT.\"\n"
-	"So much for returning home.\n"
+	"Shadow: Looks like a message...\n"
+	"\"SENSORS HAVE LOCATED THE SOURCE\n"
+	"OF THE ALIEN INVASION. IF YOU GO THERE, YOU\n"
+	"MAY BE ABLE TO BLOCK THEIR ENTRY.\n"
+	"THE ALIEN BASE IS IN THE HEART OF A NEARBY CITY,\n"
+	"NOT FAR FROM THE STARPORT.\"\n"
+	"\n"
+	"Sonic: So much for returning home.\n"
 	"This day can't get any weirder...";
 C3TEXT =
-	"We arrived to where we was supposed to be,\n"
-	"at the heart of the city.\n"
+	"Amy: We arrived at the city, but... There's no way\n"
+	"to get in from here!\n"
 	"\n"
-	"There's no way to destroy the aliens' way\n"
-	"in from here, so we'll just have to go\n"
-	"through to the other side!\n"
+	"Sonic: I guess we'll just have to go through to\n"
+	"the other side.\n"
 	"\n"
-	"So what if we need to go through hell\n"
-	"to get there?";
+	"Shadow: So what if we need to go through hell to get\n"
+	"there?";
 C4TEXT =
-	"That was kinda boring, wasn't it? Oh well,\n"
-	"at least we can finally return home!\n"
+	"Shadow: That was a disappointing fight...\n"
+	"Oh well, at least we can return home now."
 	"\n"
-	"It's all finally over!\n"
-	"The two of us saved the people of Earth!\n"
+	"Sonic: It's all finally over!\n"
+	"We all saved the people of Earth!\n"
 	"\n"
-	"In any case, I'm getting tired, and\n"
-	"I'd like to be home now. A portal appeared\n"
-	"after that huge monster exploded.\n"
+	"Amy: In any case, I'm getting tired, and I'd like to\n"
+	"be home now.\n"
 	"\n"
-	"Mobius, here we come!\n";
+	"Sonic: Mobius, here we come!\n";
 C5TEXT =
-	"Hey, what's this? Looks like an\n"
-	"abandoned... prison? Looks super old.\n"
+	"Sonic: Hey, what's this? Looks like an abandoned...\n"
+	"prison? Looks super old.\n"
 	"\n"
-	"We should really be saving Earth\n"
-	"though... Eh, screw it.\n"
+	"Amy: Sonic! We don't have time for this!\n"
 	"\n"
-	"I've got time to spare!\n";
+	"Sonic: Nah, we've got time to spare!\n";
 C6TEXT =
-	"Sonic, we really don't have time for this!\n"
+	"Shadow: He's not gonna stop, is he?\n"
 	"\n"
-	"Ugh, this'd better be quick...\n";
+	"Amy: Don't worry, this is the only other secret\n"
+	"level in this game...";
 	
 CAMPEND =
 	"Thanks for trying the work-in progress campaign!\n"
@@ -156,8 +136,6 @@ STSTR_DQDON = "Super Sonic ON";
 STSTR_DQDOFF = "Super Sonic OFF";
 STSTR_DQD2ON = "Ultra Instinct Sonic ON";
 STSTR_DQD2OFF = "Ultra Instinct Sonic OFF";
-STSTR_KFAADDED = "I've got everything!";
-STSTR_FAADDED = "Who needs keys? I've got an Eclipse Blaster!";
 
 DOSY = "Thanks for playing Sonic: Lock and Load!";
 
