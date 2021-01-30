@@ -6,10 +6,6 @@ ACTOR ChaosEnergyEX : Ammo
 {
   Inventory.MaxAmount 999
 }
-ACTOR Soul : Ammo
-{
-  Inventory.MaxAmount 10
-}
 ACTOR GlideTime : Ammo
 {
   Inventory.MaxAmount 100
@@ -24,14 +20,14 @@ ACTOR ChaosRocket
 {
   Radius 11
   Height 8
-  Speed 30
+  Speed 40
   Damage 25
   Projectile
   ProjectileKickBack 0
   +RANDOMIZE
   +DEHEXPLOSION
   +ROCKETTRAIL
-  SeeSound "weapons/rocklf"
+  SeeSound "sonicdoom/missilefire"
   DeathSound "weapons/rocklx"
   States
   {
@@ -39,9 +35,34 @@ ACTOR ChaosRocket
     MISL A 1 Bright
     Loop
   Death:
-    MISL B 8 Bright A_Explode
-    MISL C 6 Bright
-    MISL D 4 Bright
+    MISL B 4 Bright A_Explode
+    MISL C 3 Bright
+    MISL D 2 Bright
+    Stop
+  }
+}
+ACTOR AirstrikeRocket
+{
+  Radius 11
+  Height 8
+  Speed 30
+  Damage 100
+  Projectile
+  ProjectileKickBack 0
+  +RANDOMIZE
+  +DEHEXPLOSION
+  +ROCKETTRAIL
+  SeeSound "sonicdoom/missilefire"
+  DeathSound "weapons/rocklx"
+  States
+  {
+  Spawn:
+    MISL A 1 Bright
+    Loop
+  Death:
+    MISL B 4 Bright A_Explode(100, 200)
+    MISL C 3 Bright
+    MISL D 2 Bright
     Stop
   }
 }
@@ -49,14 +70,15 @@ ACTOR ChaosMissile
 {
   Radius 11
   Height 8
-  Speed 100
+  Speed 70
   Damage 10
+  Scale 0.7
   Projectile
   +RANDOMIZE
   +DEHEXPLOSION
   +ROCKETTRAIL
   ProjectileKickBack 999999999
-  SeeSound "weapons/rocklf"
+  SeeSound "sonicdoom/missilefire"
   DeathSound "weapons/rocklx"
   States
   {
@@ -74,8 +96,8 @@ ACTOR ChaosEnergyBall
 {
   Radius 13
   Height 8
-  Speed 60
-  Damage 20
+  Speed 50
+  Damage 8
   Projectile
   +RANDOMIZE
   +EXTREMEDEATH
@@ -147,7 +169,7 @@ ACTOR ChaosEnergyBallAmy
   Radius 13
   Height 8
   Speed 25
-  Damage 40
+  Damage 60
   Projectile
   +RANDOMIZE
   +EXTREMEDEATH
@@ -163,6 +185,27 @@ ACTOR ChaosEnergyBallAmy
     Loop
   Death:
     PRSE ABCDE 4 Bright
+    Stop
+  }
+}
+
+ACTOR ShardPuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +ALLOWPARTICLES
+  +RANDOMIZE
+  RenderStyle Normal
+  Alpha 0.5
+  VSpeed 1
+  Mass 5
+  States
+  {
+  Spawn:
+    SHPF A 4 Bright
+    SHPF B 4
+  Melee:
+    SHPF CD 4
     Stop
   }
 }
@@ -194,7 +237,7 @@ ACTOR InvisiblePuff
   +NOGRAVITY
   +RANDOMIZE
   RenderStyle None
-  Alpha 0.5
+  Alpha 0
   VSpeed 1
   Mass 5
   States
@@ -213,8 +256,28 @@ ACTOR GibPuff
   +NOGRAVITY
   +RANDOMIZE
   +EXTREMEDEATH
-  RenderStyle None
+  RenderStyle Normal
   Alpha 0.5
+  VSpeed 1
+  Mass 5
+  States
+  {
+  Spawn:
+    PUFF A 4 Bright
+    PUFF B 4
+  Melee:
+    PUFF CD 4
+    Stop
+  }
+}
+ACTOR InvisibleGibPuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +RANDOMIZE
+  +EXTREMEDEATH
+  RenderStyle None
+  Alpha 0
   VSpeed 1
   Mass 5
   States
@@ -250,7 +313,7 @@ ACTOR Shuriken
 {
   Radius 8
   Height 2
-  Speed 100
+  Speed 60
   Damage 25
   Projectile
   +RIPPER
@@ -258,6 +321,7 @@ ACTOR Shuriken
   RenderStyle Normal
   Alpha 1
   SeeSound "sonicdoom/shurikenfire"
+  AttackSound "sonicdoom/hit"
   DeathSound "sonicdoom/shurikenhit"
   States
   {
@@ -270,6 +334,31 @@ ACTOR Shuriken
   Fade:
     SHUR A 1 A_FadeOut(0.1)
 	Loop
+  }
+}
+
+ACTOR ThrownSword
+{
+  Radius 8
+  Height 2
+  Speed 80
+  Damage 25
+  Projectile
+  +RIPPER
+  +NOEXTREMEDEATH
+  RenderStyle Normal
+  Alpha 1
+  SeeSound "sonicdoom/swordswing"
+  AttackSound "sonicdoom/hit"
+  DeathSound "sonicdoom/shurikenhit"
+  States
+  {
+  Spawn:
+    TCAL A -1
+    Loop
+  Death:
+    TNT1 A 0 A_DropItem("Caliburn")
+	Stop
   }
 }
 
@@ -332,5 +421,53 @@ ACTOR ShadowGrenade
     MISL C 4 Bright
     MISL D 2 Bright
     Stop
+  }
+}
+
+ACTOR EnergyBladeLeft
+{
+  Radius 8
+  Scale 0.5
+  Height 2
+  Speed 80
+  Damage 25
+  Projectile
+  +RIPPER
+  +EXTREMEDEATH
+  RenderStyle Normal
+  Alpha 1
+  SeeSound "sonicdoom/soulsurge"
+  AttackSound "sonicdoom/soulsurge"
+  States
+  {
+  Spawn:
+    ENSL A -1
+    Loop
+  Death:
+	Stop
+  }
+}
+
+ACTOR EnergyBladeRight
+{
+  Radius 8
+  Scale 0.5
+  Height 2
+  Speed 80
+  Damage 25
+  Projectile
+  +RIPPER
+  +EXTREMEDEATH
+  RenderStyle Normal
+  Alpha 1
+  SeeSound "sonicdoom/soulsurge"
+  AttackSound "sonicdoom/soulsurge"
+  States
+  {
+  Spawn:
+    ENSL B -1
+    Loop
+  Death:
+	Stop
   }
 }

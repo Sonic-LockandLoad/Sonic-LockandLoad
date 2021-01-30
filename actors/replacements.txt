@@ -22,6 +22,19 @@ ACTOR FakeBackpack : CustomInventory
   }
 }
 
+ACTOR FakeChainsaw : CustomInventory replaces Chainsaw
+{
+  Inventory.PickupMessage "Picked up a useless chainsaw."
+  States
+  {
+  Spawn:
+    CSAW A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_Print("\cYYour fist is fast enough.",0, LargeFont)
+  }
+}
+
 ACTOR ChaosEmeraldsForMegasphere : CustomInventory replaces Megasphere
 {
   States 
@@ -74,6 +87,16 @@ States {
  }
 }
 
+ACTOR SoulsphereReplace replaces Soulsphere
+{
+  States
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("ChaosEmeralds")
+       Stop
+   }
+}
+
 ACTOR PistolReplace replaces Pistol
 {
   States
@@ -81,13 +104,14 @@ ACTOR PistolReplace replaces Pistol
      Spawn:
        TNT1 A 0 NoDelay A_JumpIfInventory("AmyCheck",1,"AltSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_JumpIfInventory("ShadowCheck",1,"ShadSpawn",AAPTR_PLAYER1)
-       TNT1 A 0 A_SpawnItem("AcceleratedRailgun")
+       TNT1 A 0 A_JumpIfInventory("ClassicCheck",1,"ClassicSpawn",AAPTR_PLAYER1)
+       TNT1 A 0 A_SpawnItem("AcceleratedPistol")
        Stop
 	 AltSpawn:
        TNT1 A 0 A_SpawnItem("SilentRosePistol")
        Stop
-     ShadSpawn:
-       TNT1 A 0 A_SpawnItem("ChaosEmerald")
+     ClassicSpawn:
+       TNT1 A 0 A_SpawnItem("ChaosBlaster")
        Stop
    }
 }
@@ -99,13 +123,21 @@ Actor ChainsawReplace replaces Chainsaw
      Spawn:
        TNT1 A 0 NoDelay A_JumpIfInventory("AmyCheck",1,"AltSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_JumpIfInventory("ShadowCheck",1,"ShadSpawn",AAPTR_PLAYER1)
+       TNT1 A 0 A_JumpIfInventory("TailsCheck",1,"TailsSpawn",AAPTR_PLAYER1)
+       TNT1 A 0 A_JumpIfInventory("ClassicCheck",1,"ClassicSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_SpawnItem("Caliburn")
        Stop
      AltSpawn:
        TNT1 A 0 A_SpawnItem("SilentRosePistol")
        Stop
      ShadSpawn:
-       TNT1 A 0 A_SpawnItem("ChaosEmerald")
+       TNT1 A 0 A_SpawnItem("ChaosEmeraldGreen")
+       Stop
+     TailsSpawn:
+       TNT1 A 0 A_SpawnItem("Wrench")
+       Stop
+     ClassicSpawn:
+       TNT1 A 0 A_SpawnItem("FakeChainsaw")
        Stop
   }
 }
@@ -116,13 +148,17 @@ Actor ShotgunReplace replaces Shotgun
      Spawn:
        TNT1 A 0 NoDelay A_JumpIfInventory("AmyCheck",1,"AltSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_JumpIfInventory("ShadowCheck",1,"ShadSpawn",AAPTR_PLAYER1)
-       TNT1 A 0 A_SpawnItem("SpeedyShotgun")
+       TNT1 A 0 A_JumpIfInventory("ClassicCheck",1,"ClassicSpawn",AAPTR_PLAYER1)
+       TNT1 A 0 A_SpawnItem("RapidShotty")
        Stop
      AltSpawn:
        TNT1 A 0 A_SpawnItem("PrecisionShotgun")
        Stop
      ShadSpawn:
        TNT1 A 0 A_SpawnItem("DualShotguns")
+       Stop
+     ClassicSpawn:
+       TNT1 A 0 A_SpawnItem("SpeedyShotgun")
        Stop
    }
 }
@@ -133,6 +169,7 @@ Actor ChaingunReplace replaces Chaingun
      Spawn:
        TNT1 A 0 NoDelay A_JumpIfInventory("AmyCheck",1,"AltSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_JumpIfInventory("ShadowCheck",1,"ShadSpawn",AAPTR_PLAYER1)
+       TNT1 A 0 A_JumpIfInventory("ClassicCheck",1,"ClassicSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_SpawnItem("EclipseBlaster")
        Stop
      AltSpawn:
@@ -140,6 +177,9 @@ Actor ChaingunReplace replaces Chaingun
        Stop
      ShadSpawn:
        TNT1 A 0 A_SpawnItem("ShadowEclipseBlaster")
+       Stop
+     ClassicSpawn:
+       TNT1 A 0 A_SpawnItem("ChaosRain")
        Stop
    }
 }
@@ -150,6 +190,7 @@ Actor SSGReplace replaces SuperShotgun
      Spawn:
        TNT1 A 0 NoDelay A_JumpIfInventory("AmyCheck",1,"AltSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_JumpIfInventory("ShadowCheck",1,"ShadSpawn",AAPTR_PLAYER1)
+       TNT1 A 0 A_JumpIfInventory("ClassicCheck",1,"ClassicSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_SpawnItem("ShurikenCrossbow")
        Stop
      AltSpawn:
@@ -157,6 +198,9 @@ Actor SSGReplace replaces SuperShotgun
        Stop
      ShadSpawn:
        TNT1 A 0 A_SpawnItem("DualShotguns")
+       Stop
+     ClassicSpawn:
+       TNT1 A 0 A_SpawnItem("SpeedyShotgun")
        Stop
    }
 }
@@ -167,13 +211,17 @@ Actor RocketReplace replaces RocketLauncher
      Spawn:
        TNT1 A 0 NoDelay A_JumpIfInventory("AmyCheck",1,"AltSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_JumpIfInventory("ShadowCheck",1,"ShadSpawn",AAPTR_PLAYER1)
-       TNT1 A 0 A_SpawnItem("RocketStream")
+       TNT1 A 0 A_JumpIfInventory("ClassicCheck",1,"ClassicSpawn",AAPTR_PLAYER1)
+       TNT1 A 0 A_SpawnItem("AirStrikeLauncher")
        Stop
      AltSpawn:
        TNT1 A 0 A_SpawnItem("RapidMissiles")
        Stop
 	 ShadSpawn:
        TNT1 A 0 A_SpawnItem("ShadowGrenades")
+       Stop
+     ClassicSpawn:
+       TNT1 A 0 A_SpawnItem("ClassicRocketStream")
        Stop
    }
 }
@@ -184,6 +232,7 @@ Actor PlasmaRifleReplace replaces PlasmaRifle
      Spawn:
        TNT1 A 0 NoDelay A_JumpIfInventory("AmyCheck",1,"AltSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_JumpIfInventory("ShadowCheck",1,"ShadSpawn",AAPTR_PLAYER1)
+       TNT1 A 0 A_JumpIfInventory("ClassicCheck",1,"ClassicSpawn",AAPTR_PLAYER1)
        TNT1 A 0 A_SpawnItem("EclipseBlaster")
        Stop
      AltSpawn:
@@ -191,6 +240,9 @@ Actor PlasmaRifleReplace replaces PlasmaRifle
        Stop
      ShadSpawn:
        TNT1 A 0 A_SpawnItem("ShadowEclipseBlaster")
+       Stop
+     ClassicSpawn:
+       TNT1 A 0 A_SpawnItem("ChaosRain")
        Stop
    }
 }

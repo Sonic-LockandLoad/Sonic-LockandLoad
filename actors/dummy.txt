@@ -37,3 +37,14 @@ ACTOR SoulReady : Inventory
 {
   Inventory.MaxAmount 1
 }
+
+ACTOR PeeloutCheck : Inventory
+{
+  Inventory.MaxAmount 1
+}
+
+ACTOR SpinCharges : Inventory
+{
+  Inventory.MaxAmount 99
+}
+

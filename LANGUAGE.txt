@@ -24,12 +24,12 @@ E2TEXT =
 	"Shadow: Don't get too comfortable.\n"
 	"Look down there.\n"
 	"\n" 
-	"Sonic: Holy crap! We're floating above Hell!\n"
+	"Sonic: Jeez! We're floating above Hell!\n"
 	"\n"
 	"Amy: Aaah! I want to go home!\n"
 	"\n"
-	"Shadow: There's no turning back from this\n"
-	"point. We can only go more forward.";
+	"Shadow: Well, if we don't fix this NOW,\n"
+	"there'll be no home to go back to.";
 E3TEXT =
 	"Amy: Phew... I'm so glad it's over.\n"
 	"\n"
@@ -132,10 +132,8 @@ QUITMSG5 = "No TV or movies?\nI'm outta here!";
 QUITMSG6 = "HA!\nYou think this puny moat can keep out someone...\nSO FAST?!";
 QUITMSG7 = "Astrid please add quit message";
 
-STSTR_DQDON = "Super Sonic ON";
-STSTR_DQDOFF = "Super Sonic OFF";
-STSTR_DQD2ON = "Ultra Instinct Sonic ON";
-STSTR_DQD2OFF = "Ultra Instinct Sonic OFF";
+STSTR_DQD2ON = "Super Degreeless Mode ON";
+STSTR_DQD2OFF = "Super Degreeless Mode OFF";
 
 DOSY = "Thanks for playing Sonic: Lock and Load!";
 

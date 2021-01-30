@@ -92,6 +92,21 @@ sonicdoom/sonictaunt2       staunt2
 sonicdoom/amytaunt          a_taunt
 sonicdoom/shadowtaunt1      dtaunt1
 sonicdoom/shadowtaunt2      dtaunt2
+sonicdoom/tailshurt         tailhurt
+sonicdoom/tailsfly          tailsfly
+sonicdoom/fsonictaunt       notgeten
+sonicdoom/shockwave         shock
+sonicdoom/shardshot         sharshot
+sonicdoom/10rings           10Ring
+sonicdoom/peelout           peelc
+sonicdoom/peeloutrelease    peelr
+sonicdoom/spin              Roll
+sonicdoom/herewe            herewe
+sonicdoom/go                go
+sonicdoom/sonicpistol       fpistol
+sonicdoom/classicpain       churt
+sonicdoom/classicdeath      cdead
+sonicdoom/sliding           Sliding
 
 menu/activate		OpenMenu// Activate a new menu
 menu/backup			Return	// Backup to previous menu
@@ -126,6 +141,12 @@ $playersound sonic male *jump                   S_JUMP
 $playersound sonic male sonicdoom/supersonic    nowshow
 $playersound sonic male sonicdoom/taunt         sonicdoom/sonictaunt
 
+$playersound fsonic female *death                  adeath
+$playeralias fsonic female *usefail                auseof
+$playersound fsonic female *jump                   A_JUMP
+$playersound fsonic female sonicdoom/supersonic    fnowshow
+$playersound fsonic female sonicdoom/taunt         sonicdoom/amytaunt
+
 $playersound amy female *death                  adeath
 $playeralias amy female *usefail                auseof
 $playersound amy female *jump                   A_JUMP
@@ -137,6 +158,16 @@ $playeralias shadow male *usefail               duseof
 $playersound shadow male *jump                  D_JUMP
 $playersound shadow male sonicdoom/supersonic   ultimate
 $playersound shadow male sonicdoom/taunt        sonicdoom/shadowtaunt
+
+$playersound tails male *death                  nooooooo
+$playeralias tails male *usefail                duseof
+$playersound tails male *jump                   T_JUMP
+$playersound tails male sonicdoom/supersonic    ultimate
+$playersound tails male sonicdoom/taunt         sonicdoom/shadowtaunt
+
+$playersound classic male *death                cdead
+$playersound classic male *usefail              cuseof
+$playersound classic male *jump                 cjump
 
 intermission/tick			ScorCont
 intermission/nextstage		Total

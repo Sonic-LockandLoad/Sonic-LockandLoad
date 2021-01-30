@@ -1,6 +1,6 @@
 gameinfo
 {
-   PlayerClasses = "SonicPlayer", "ShadowPlayer", "AmyPlayer" 
+   PlayerClasses = "SonicPlayer", "AmyPlayer", "ClassicSonicPlayer"
    QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7"
 }
 
@@ -23,12 +23,6 @@ map map32 "Grosse"
   par = 30
 }
 
-episode zone01
-{
-  name = "Campaign"
-  key = "c"
-}
-
 map zone01 "Green Hill Zone"
 {
   music = S_GHZ
@@ -49,6 +43,7 @@ skill justwhy
   spawnfilter = Hard
   totalinfighting
   mustconfirm = "Are you sure? This skill level isn't even remotely fair... for the demons."
+  SlowMonsters
 }
 
 skill cake
@@ -79,6 +74,7 @@ skill harder
   damagefactor = 3
   name = "Now I'll show you!"
   spawnfilter = Hard
+  FastMonsters
 }
 
 

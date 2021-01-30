@@ -24,3 +24,12 @@ Console:
 Flat:
 	#b60000
 }
+
+TailsYellow
+{
+	#e38208  #df5b02
+Console:
+	#e1e113  #fd9900
+Flat:
+	#FFFF00
+}
