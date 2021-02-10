@@ -141,17 +141,16 @@ $playersound sonic male *jump                   S_JUMP
 $playersound sonic male sonicdoom/supersonic    nowshow
 $playersound sonic male sonicdoom/taunt         sonicdoom/sonictaunt
 
-$playersound fsonic female *death                  adeath
-$playeralias fsonic female *usefail                auseof
-$playersound fsonic female *jump                   A_JUMP
-$playersound fsonic female sonicdoom/supersonic    fnowshow
-$playersound fsonic female sonicdoom/taunt         sonicdoom/amytaunt
-
 $playersound amy female *death                  adeath
 $playeralias amy female *usefail                auseof
 $playersound amy female *jump                   A_JUMP
 $playersound amy female sonicdoom/supersonic    destrall
 $playersound amy female sonicdoom/taunt         sonicdoom/amytaunt
+
+$playersound classic male *death                cdead
+$playersound classic male *usefail              cuseof
+$playersound classic male *jump                 cjump
+$playersound classic male sonicdoom/supersonic  supsonic
 
 $playersound shadow male *death                 nooooooo
 $playeralias shadow male *usefail               duseof
@@ -159,15 +158,13 @@ $playersound shadow male *jump                  D_JUMP
 $playersound shadow male sonicdoom/supersonic   ultimate
 $playersound shadow male sonicdoom/taunt        sonicdoom/shadowtaunt
 
+/*
 $playersound tails male *death                  nooooooo
 $playeralias tails male *usefail                duseof
 $playersound tails male *jump                   T_JUMP
 $playersound tails male sonicdoom/supersonic    ultimate
 $playersound tails male sonicdoom/taunt         sonicdoom/shadowtaunt
-
-$playersound classic male *death                cdead
-$playersound classic male *usefail              cuseof
-$playersound classic male *jump                 cjump
+*/
 
 intermission/tick			ScorCont
 intermission/nextstage		Total

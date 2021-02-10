@@ -13,6 +13,9 @@ script 1 (void)
             case 1:
                  AmbientSound("sonicdoom/amytaunt", 127);
                  break;
+            case 3:
+                 AmbientSound("sonicdoom/shadowtaunt", 127);
+                 break;
             case -1:
                  //monster activated the script but we do not care about that
             default:
@@ -52,6 +55,9 @@ script 4 (void)
             case 2:
                  SetMusic("m_supcls", 0);
                  break;
+            case 3:
+                 SetMusic("m_supsha", 0);
+                 break;
             case -1:
                  //monster activated the script but we do not care about that
             default:
@@ -86,6 +92,9 @@ script 5 (void)
                  break;
             case 2:
                  SetMusic("c_invinc", 0);
+                 break;
+            case 3:
+                 SetMusic("s_invinc", 0);
                  break;
             case -1:
                  //monster activated the script but we do not care about that

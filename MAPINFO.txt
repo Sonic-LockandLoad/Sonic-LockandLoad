@@ -1,7 +1,8 @@
 gameinfo
 {
-   PlayerClasses = "SonicPlayer", "AmyPlayer", "ClassicSonicPlayer"
+   PlayerClasses = "SonicPlayer", "AmyPlayer", "ClassicSonicPlayer", "ShadowPlayer"
    QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7"
+   InfoPage = "CONTROL", "DISPLAY"
 }
 
 map map31 "Wolfenstein"
@@ -32,6 +33,23 @@ map zone01 "Green Hill Zone"
   cluster = 11
 }
 
+map E3M10 "Dis Is It"
+{
+  levelnum = 28
+  titlepatch = "WILV27"
+  next = "endbunny"
+  secretnext = "E3M9"
+  sky1 = "SKY3"
+  cluster = 3
+  par = 30
+  nointermission
+  nosoundclipping
+  spidermastermindspecial
+  specialaction_exitlevel
+  music = S_BOSS
+  needclustertext
+}
+
 clearskills
 
 skill justwhy
@@ -39,24 +57,36 @@ skill justwhy
   damagefactor = 0
   monsterhealth = 0.00001
   ammofactor = 9999
-  name = "Too easy!"
+  PlayerClassName = "Sonic", "Too easy"
+  PlayerClassName = "Amy", "Without Thorns"
+  PlayerClassName = "Classic", "No Way? No Way!"
+  PlayerClassName = "Shadow", "Infinite"
+  name = "Just Why"
   spawnfilter = Hard
   totalinfighting
-  mustconfirm = "Are you sure? This skill level isn't even remotely fair... for the demons."
+  mustconfirm = "Are you sure? Everything literally dies in one hit..."
   SlowMonsters
 }
 
-skill cake
+skill easy
 {
   damagefactor = 0.25
-  name = "Piece of cake!"
+  PlayerClassName = "Sonic", "Piece of cake"
+  PlayerClassName = "Amy", "A breeze"
+  PlayerClassName = "Classic", "Genesis"
+  PlayerClassName = "Shadow", "Faker"
+  name = "Easy"
   spawnfilter = Easy
   totalinfighting
 }
 
 skill standard
 {
-  name = "Bring it on!"
+  PlayerClassName = "Sonic", "Bring it on!"
+  PlayerClassName = "Amy", "Just perfect!"
+  PlayerClassName = "Classic", "Like 1991"
+  PlayerClassName = "Shadow", "Chaos Controller"
+  name = "Standard"
   spawnfilter = Normal
   defaultskill
 }
@@ -64,28 +94,37 @@ skill standard
 skill hard
 {
   spawnfilter = Hard
-  damagefactor = 2
-  name = "I can still fly!"
+  PlayerClassName = "Sonic", "I can still fly!"
+  PlayerClassName = "Amy", "Never give up!"
+  PlayerClassName = "Classic", "I am SEGA!"
+  PlayerClassName = "Shadow", "Damn 4th Difficulty"
+  name = "Hard"
 }
 
 skill harder
 {
-  monsterhealth = 2
-  damagefactor = 3
-  name = "Now I'll show you!"
+  damagefactor = 2
+  PlayerClassName = "Sonic", "Now I'll show you!"
+  PlayerClassName = "Amy", "True Passion"
+  PlayerClassName = "Classic", "Strange, isn't it?"
+  PlayerClassName = "Shadow", "Ultimate Life Form"
+  name = "Harder"
   spawnfilter = Hard
   FastMonsters
 }
 
-
-skill reallyhard
+skill wtf
 {
-  monsterhealth = 12
+  monsterhealth = 2
   damagefactor = 4
   spawnfilter = Nightmare
   FastMonsters
-  name = "I'm the coolest!"
-  mustconfirm
+  PlayerClassName = "Sonic", "Blue Streak"
+  PlayerClassName = "Amy", "Thorned Rose"
+  PlayerClassName = "Classic", "Fun is Infinite"
+  PlayerClassName = "Shadow", "All Fail Shadow"
+  name = "WTF"
+  mustconfirm = "This'll force you to bring out your best. You sure you're up for it?"
 }
 
 skill ohno
@@ -95,8 +134,9 @@ skill ohno
   spawnfilter = Nightmare
   FastMonsters
   picname = "ohno"
-  mustconfirm = "Are you sure? This skill level isn't even remotely challenging, it's just stupid..."
+  mustconfirm = "Are you sure? This skill level is just stupid..."
   replaceactor = "ExplosiveBarrel", "BaronOfHell"
+  replaceactor = "ChaosEmeralds", "Cyberdemon"
 }
 
 // Ultimate Doom episode clusters

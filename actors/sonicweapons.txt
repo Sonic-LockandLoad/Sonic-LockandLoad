@@ -1,4 +1,4 @@
-ACTOR SonicAbilities : Weapon 1220
+ACTOR SonicAbilities : Weapon
 {
   Weapon.SelectionOrder 3700
   Weapon.Kickback 9999999999999
@@ -11,6 +11,13 @@ ACTOR SonicAbilities : Weapon 1220
   {
   Ready:
     TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -22,6 +29,8 @@ ACTOR SonicAbilities : Weapon 1220
     // Spin Charge
 	SPIN A 2
 	{
+	  A_Stop;
+	  A_SetGravity(0);
 	  A_GiveInventory("PeeloutCheck");
 	  A_PlaySound("sonicdoom/peelout", 5);
 	  A_GiveInventory("SpinCharges", 1);
@@ -32,7 +41,6 @@ ACTOR SonicAbilities : Weapon 1220
 	  }
 	}
     TNT1 A 0 A_GiveInventory("SpindashBlock")
-	TNT1 A 0 A_Stop
 	TNT1 A 1 A_ReFire
     TNT1 A 0 A_TakeInventory("PowerBlocks")
 	TNT1 A 0 A_JumpIf(CountInv("SpinCharges")>11,"SuperSpinDash")
@@ -50,15 +58,15 @@ ACTOR SonicAbilities : Weapon 1220
 	KICK A 1 A_CheckFloor("KickEX")
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(3, 3, 100, 15, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -66,15 +74,15 @@ ACTOR SonicAbilities : Weapon 1220
 	KICK A 1
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(5, 5, 100, 45, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -155,7 +163,7 @@ ACTOR SonicAbilities : Weapon 1220
 ACTOR Caliburn : Weapon 
 {
   Weapon.SelectionOrder 1
-  Weapon.Kickback 1000
+  Weapon.Kickback 1
   Inventory.PickupMessage "\c[SonicBlue]Hey, it's Caliburn!"
   Inventory.PickupSound "sonicdoom/sonicpickup"
   +WEAPON.MELEEWEAPON
@@ -163,6 +171,13 @@ ACTOR Caliburn : Weapon
   {
   Ready:
     CALI A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -252,15 +267,15 @@ ACTOR Caliburn : Weapon
 	KICK A 1 A_CheckFloor("KickEX")
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(3, 3, 100, 15, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -268,15 +283,15 @@ ACTOR Caliburn : Weapon
 	KICK A 1
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(5, 5, 100, 45, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -305,6 +320,13 @@ ACTOR AcceleratedPistol : Weapon
   {
   Ready:
     SPIS A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -317,13 +339,6 @@ ACTOR AcceleratedPistol : Weapon
   Fire:
     SPIS A 0 A_PlaySound("sonicdoom/sonicpistol")
     SPIS A 0 A_FireBullets(2, 2, 1, 12, "NoGibPuff")
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory("ChaosEnergy", 1);
-		}
-	}
 	SPIS A 1 A_GunFlash
 	SPIS BCA 1
 	SPIS A 0 A_ReFire
@@ -346,15 +361,15 @@ ACTOR AcceleratedPistol : Weapon
 	KICK A 1 A_CheckFloor("KickEX")
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(3, 3, 100, 15, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -362,15 +377,15 @@ ACTOR AcceleratedPistol : Weapon
 	KICK A 1
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(5, 5, 100, 45, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -402,6 +417,13 @@ ACTOR RapidShotty : Weapon 1221
   {
   Ready:
     SCTG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -413,14 +435,7 @@ ACTOR RapidShotty : Weapon 1221
     Goto Select+1
   Fire:
     SCTG A 0 A_PlaySound("sonicdoom/shardshot")
-	SCTG A 0 A_FireBullets(10, 6, 20, 4, "BulletPuff")
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory("ChaosEnergy", 8);
-		}
-	}
+	SCTG A 0 A_FireBullets(25, 15, 20, 4, "BulletPuff")
 	SCTG B 6 A_GunFlash
 	SCTG C 10
 	SCTG A 0 A_ReFire
@@ -429,15 +444,15 @@ ACTOR RapidShotty : Weapon 1221
 	KICK A 1 A_CheckFloor("KickEX")
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(3, 3, 100, 15, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -445,15 +460,15 @@ ACTOR RapidShotty : Weapon 1221
 	KICK A 1
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(5, 5, 100, 45, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -473,12 +488,19 @@ ACTOR ShurikenCrossbow : Weapon
   Weapon.AmmoGive 100
   Weapon.Kickback 1
   Weapon.AmmoType "ChaosEnergy"
-  Inventory.PickupMessage "\c[SonicBlue]Is that a crossbow that fires shurikens?! Awesome!"
+  Inventory.PickupMessage "\c[SonicBlue]Is that a crossbow that fires shurikens?! Awesome!!"
   Tag "Shuriken Crossbow"
   States
   {
   Ready:
     SHRL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -490,13 +512,11 @@ ACTOR ShurikenCrossbow : Weapon
     Goto Select+1
   Fire:
     TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperFire")
-    TNT1 A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
     SHRL B 12 A_FireProjectile("Shuriken", 0, 1)
     SHRL CDEFG 1
 	Goto Ready
   SuperFire:
-    TNT1 A 0 A_ChangeVelocity (Cos(Pitch) * -20, 0, Sin(Pitch) * 20, CVF_Relative)
-    SHRL B 6 A_FireProjectile("Shuriken", 0, 0)
+    SHRL B 6 A_FireProjectile("Shuriken", 0, 1)
 	TNT1 A 1 A_ReFire
     SHRL CDEFG 1
 	Goto Ready
@@ -504,15 +524,15 @@ ACTOR ShurikenCrossbow : Weapon
 	KICK A 1 A_CheckFloor("KickEX")
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(3, 3, 100, 15, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -520,19 +540,18 @@ ACTOR ShurikenCrossbow : Weapon
 	KICK A 1
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(5, 5, 100, 45, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
-  Spawn:
     SURI A -1
     Stop
   }
@@ -557,6 +576,13 @@ ACTOR EclipseBlaster : Weapon
   {
   Ready:
     ECBL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -567,15 +593,7 @@ ACTOR EclipseBlaster : Weapon
     ECBL A 1 A_Raise
     Goto Select+1
   Fire:
-	ECBL B 1
-	{
-	  if (CountInv("PowerSuper")) {
-        A_FireProjectile("ChaosEnergyBall", 0, 0);
-	  }
-	  else {
-	    A_FireProjectile("ChaosEnergyBall", 0, 1);
-	  }
-	}
+	ECBL B 1 A_FireProjectile("ChaosEnergyBall", 0, 1)
     Goto Ready
   AltFire:
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
@@ -593,22 +611,22 @@ ACTOR EclipseBlaster : Weapon
 	Goto Ready
   ChaosHeal:
     ECBL C 0 A_PlaySound("sonicdoom/healthcharge", 4096)
-    ECBL C 0 A_TakeInventory("ChaosEnergy", 1)
-    ECBL C 2 A_GiveInventory("Health", 4)
+    ECBL C 0 A_TakeInventory("ChaosEnergy", 8)
+    ECBL C 1 A_GiveInventory("Health", 4)
 	Goto Ready
   Reload:
 	KICK A 1 A_CheckFloor("KickEX")
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(3, 3, 100, 15, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -616,15 +634,15 @@ ACTOR EclipseBlaster : Weapon
 	KICK A 1
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(5, 5, 100, 45, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -653,6 +671,13 @@ ACTOR AirStrikeLauncher : Weapon 1223
   {
   Ready:
     MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -667,49 +692,29 @@ ACTOR AirStrikeLauncher : Weapon 1223
 	TNT1 A 0 A_Jump(256, "AirstrikeRocket")
     Goto Ready
   StandardRocket:
-	MISG A 0
-	{
-	  if (CountInv("PowerSuper")) {
-        A_FireProjectile("ChaosRocket", 0, 0);
-	  }
-	  else {
-	    A_FireProjectile("ChaosRocket", 0, 1);
-	  }
-	}
+	MISG A 0 A_FireProjectile("ChaosRocket", 0, 1)
 	MISG A 1
 	MISG B 2
     Goto Ready
   AirstrikeRocket:
-	MISG A 0
-	{
-	  if (CountInv("PowerSuper")) {
-        A_FireProjectile("AirstrikeRocket", 0, 0);
-	  }
-	  else {
-	    A_FireProjectile("AirstrikeRocket", 0, 1);
-	  }
-	  A_ChangeVelocity (Cos(Pitch) * -10, 0, Sin(Pitch) * 10, CVF_Relative);
-	}
+	MISG A 0 A_FireProjectile("AirstrikeRocket", 0, 1)
+	MISG A 0 A_ChangeVelocity (Cos(Pitch) * -10, 0, Sin(Pitch) * 10, CVF_Relative)
 	MISG A 1
 	MISG B 2
-	Goto Ready
-  RocketFail:
-    TNT1 A 0 A_Print("\c[SonicBlue]I can't fire this on the ground!")
-	TNT1 A 0 A_PlaySound("sonicdoom/error", 4096)
 	Goto Ready
   Reload:
 	KICK A 1 A_CheckFloor("KickEX")
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(3, 3, 100, 15, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready
@@ -717,15 +722,15 @@ ACTOR AirStrikeLauncher : Weapon 1223
 	KICK A 1
     TNT1 A 0
 	{
-	  if (CountInv("PowerSuper") > 0)
+	  if (CountInv("PowerSuper") > 0) 
 	  {
-	    A_PlaySound("sonicdoom/shockwave", 5);
-		A_FireBullets(5, 5, 100, 45, "GibPuff");
+		A_StartSound("sonicdoom/shockwave", 5);
+		A_FireBullets(2, 2, 25, 30, "InvisibleGibPuff");
 	  }
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     KICK BC 1
-    KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+    KICK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     KICK EF 1
 	TNT1 A 2
     Goto Ready

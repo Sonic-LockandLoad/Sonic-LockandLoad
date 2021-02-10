@@ -27,3 +27,46 @@ ACTOR ActualLostSoul : LostSoul replaces LostSoul
 {
   DropItem SoulRing
 }
+
+ACTOR FastSpiderdemon : SpiderMastermind 19924
+{
+  Speed 200
+  Mass 100000000
+  PainChance "Eclipse", 256
+  DamageFactor "Eclipse", 0.1
+  DamageFactor "SonicKick", 2
+  DamageFactor "ShadowMelee", 2
+  DamageFactor "Piko", 2
+  
+  States
+  {
+  Spawn:
+    SPID AB 10 A_Look
+    Loop
+  See:
+    SPID A 1 A_Metal
+    SPID ABB 1 A_Chase
+    SPID C 1 A_Metal
+    SPID CDD 1 A_Chase
+    SPID E 1 A_Metal
+    SPID EFF 1 A_Chase
+    Loop
+  Missile:
+    SPID A 10 Bright A_FaceTarget
+    SPID G 1 Bright A_SPosAttackUseAtkSound
+    SPID H 1 Bright A_SPosAttackUseAtkSound
+    SPID H 1 Bright A_SpidRefire
+    Goto Missile+1
+  Pain:
+    SPID I 6
+    SPID I 6 A_Pain
+    Goto See
+  Death:
+    SPID J 20 A_Scream
+    SPID K 10 A_NoBlocking
+    SPID LMNOPQR 10
+    SPID S 30
+    SPID S -1 A_BossDeath
+    Stop
+  }
+}

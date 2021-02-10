@@ -131,7 +131,7 @@ Actor ChainsawReplace replaces Chainsaw
        TNT1 A 0 A_SpawnItem("SilentRosePistol")
        Stop
      ShadSpawn:
-       TNT1 A 0 A_SpawnItem("ChaosEmeraldGreen")
+       TNT1 A 0 A_SpawnItem("ChaosEmerald")
        Stop
      TailsSpawn:
        TNT1 A 0 A_SpawnItem("Wrench")
@@ -239,7 +239,7 @@ Actor PlasmaRifleReplace replaces PlasmaRifle
        TNT1 A 0 A_SpawnItem("AmyEclipseBlaster")
        Stop
      ShadSpawn:
-       TNT1 A 0 A_SpawnItem("ShadowEclipseBlaster")
+       TNT1 A 0 A_SpawnItem("ChaosEmerald")
        Stop
      ClassicSpawn:
        TNT1 A 0 A_SpawnItem("ChaosRain")

@@ -16,6 +16,27 @@ ACTOR ZoomCharge : Inventory
   Inventory.MaxAmount 100
 }
 
+DamageType SonicKick
+{
+   Factor 1
+}
+DamageType ShadowMelee
+{
+   Factor 1
+}
+DamageType Piko
+{
+   Factor 1
+}
+DamageType Eclipse
+{
+   Factor 1
+}
+DamageType RocketStream
+{
+   Factor 1
+}
+
 ACTOR ChaosRocket
 {
   Radius 11
@@ -92,12 +113,39 @@ ACTOR ChaosMissile
     Stop
   }
 }
+ACTOR StreamRocket
+{
+  Radius 11
+  Height 8
+  Speed 40
+  Damage 20
+  DamageType "RocketStream"
+  Projectile
+  +RANDOMIZE
+  +DEHEXPLOSION
+  +ROCKETTRAIL
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  Obituary "$OB_MPROCKET" // "%o rode %k's rocket."
+  States
+  {
+  Spawn:
+    MISL A 1 Bright
+    Loop
+  Death:
+    MISL B 4 Bright A_Explode
+    MISL C 3 Bright
+    MISL D 2 Bright
+    Stop
+  }
+}
 ACTOR ChaosEnergyBall
 {
   Radius 13
   Height 8
   Speed 50
   Damage 8
+  DamageType "Eclipse"
   Projectile
   +RANDOMIZE
   +EXTREMEDEATH
@@ -122,6 +170,7 @@ ACTOR SuperChaosEnergyBall
   Height 8
   Speed 40
   Damage 70
+  DamageType "Eclipse"
   Projectile
   +RANDOMIZE
   +EXTREMEDEATH
@@ -148,6 +197,7 @@ ACTOR SilentChaosEnergyBall
   Height 8
   Speed 60
   Damage 20
+  DamageType "Eclipse"
   Projectile
   +RANDOMIZE
   +EXTREMEDEATH
@@ -170,6 +220,7 @@ ACTOR ChaosEnergyBallAmy
   Height 8
   Speed 25
   Damage 60
+  DamageType "Eclipse"
   Projectile
   +RANDOMIZE
   +EXTREMEDEATH
@@ -210,6 +261,42 @@ ACTOR ShardPuff
   }
 }
 
+ACTOR SonicKickPuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  RenderStyle None
+  Alpha 0
+  VSpeed 1
+  Mass 5
+  DamageType "SonicKick"
+  States
+  {
+  Spawn:
+    TNT1 A 0
+  Melee:
+    TNT1 A 0
+    Stop
+  }
+}
+ACTOR ShadowMeleeAtk
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  RenderStyle None
+  Alpha 0
+  VSpeed 1
+  Mass 5
+  DamageType "ShadowMelee"
+  States
+  {
+  Spawn:
+    TNT1 A 0
+  Melee:
+    TNT1 A 0
+    Stop
+  }
+}
 ACTOR NoGibPuff
 {
   +NOBLOCKMAP

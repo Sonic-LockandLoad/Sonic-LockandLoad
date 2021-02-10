@@ -6,14 +6,15 @@ LISTMENU "MainMenu"
 	}
 	Else
 	{
-		Position 97, 72
-		StaticText 60, 72, "Sonic: Lock and Load"
-		StaticText 18, 89, "does not support this game."
+		Position 97, 122
+		StaticText 85, 52, "Sonic: Lock and Load"
+		StaticText 55, 69, "does not support this game."
+		TextItem "Quit", "q", "QuitMenu"
 	}
 	IfGame(Doom)
 	{
 		TextItem "1P Play", "n", "PlayerclassMenu"
-		TextItem "Extra","r", "ReadThisMenu"
+		TextItem "Setup","r", "ReadThisMenu"
 		TextItem "Data Options", "d", "DataMenu"
 		TextItem "Options","o", "OptionsMenu"
 		TextItem "I'm outta here!", "q", "QuitMenu"
@@ -36,7 +37,8 @@ ListMenu "PlayerclassMenu"
 		StaticText 57, 48, "Select Character"
 		Position 90, 75
 		StaticPatch 200, 60, "sonic"
-		StaticPatch 200, 93, "amy"
+		StaticPatch 200, 90, "amy"
 		StaticPatch 200, 120, "classic"
+		StaticPatch 200, 150, "shadow"
 	}
 }

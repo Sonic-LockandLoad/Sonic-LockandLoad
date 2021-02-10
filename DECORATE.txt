@@ -89,7 +89,7 @@ ACTOR SonicPlayer : PlayerPawn
 } 
 ACTOR AmyPlayer : PlayerPawn 
 {
-  Speed 1.5
+  Speed 1.2
   Health 100
   DamageFactor 2.0
   Radius 15
@@ -99,7 +99,7 @@ ACTOR AmyPlayer : PlayerPawn
   Player.MaxHealth 999
   Player.DisplayName "Amy"
   Player.Face "ATF"
-  Player.JumpZ 11.0
+  Player.JumpZ 9.0
   Player.SoundClass "amy"
   Player.StartItem "AmyCheck"
   Player.StartItem "PikoPikoHammer"
@@ -183,15 +183,12 @@ ACTOR ShadowPlayer : PlayerPawn
   Player.MaxHealth 999
   Player.DisplayName "Shadow"
   Player.Face "DTF"
-  Player.JumpZ 9.0
+  Player.JumpZ 25.0
   Player.SoundClass "shadow"
   Player.StartItem "ShadowAbilities"
   Player.StartItem "ShadowCheck"
   Player.StartItem "ChaosEnergy", 30
-  Player.WeaponSlot 1, "ShadowAbilities", "ChaosEmeraldGreen"
-  Player.WeaponSlot 2, "DualShotguns"
-  Player.WeaponSlot 3, "ShadowEclipseBlaster"
-  Player.WeaponSlot 4, "ShadowGrenades"
+  Player.WeaponSlot 1, "ShadowAbilities", "ChaosEmerald"
   States
   {
   Spawn:
@@ -325,6 +322,7 @@ ACTOR ClassicSonicPlayer : PlayerPawn
   Radius 10
   Height 46
   PainChance 255
+  DamageFactor "RocketStream", 0.2
   Player.MaxHealth 999
   Player.DisplayName "Classic"
   Player.SoundClass "classic"

@@ -10,8 +10,15 @@ ACTOR PikoPikoHammer : Weapon
   {
   Ready:
     PIKO A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_SetGravity(1)
+	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     PIKO A 1 A_Lower
@@ -22,11 +29,15 @@ ACTOR PikoPikoHammer : Weapon
   Fire:
     PIKO A 0 A_PlaySound("sonicdoom/hammerswing",1)
 	PIKO A 0 ACS_Execute(2)
-    PIKO BCD 1
+    PIKO B 1
+	PIKO C 1 A_CustomPunch(100, 0, 0, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	PIKO D 1
     PIKO E 4 A_CustomPunch(200, CPF_PULLIN, 0, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
 	PIKO A 0 A_ReFire
-    PIKO DCB 1
-	PIKO A 0 A_SetGravity(1)
+    PIKO D 1
+	PIKO C 1 A_CustomPunch(100, 0, 0, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	PIKO B 1
+	PIKO A 0 A_SetGravity(0.75)
     Goto Ready
   Hold:
     TNT1 A 0
@@ -41,7 +52,7 @@ ACTOR PikoPikoHammer : Weapon
 	  }
 	}
     PIKO E 1 A_GiveInventory("HammerBlock")
-	PIKO A 0 A_SetGravity(1)
+	PIKO A 0 A_SetGravity(0.75)
 	PIKO A 0 A_ReFire
 	PIKO DCB 1
 	PIKO A 0 A_TakeInventory("GuardCheck")
@@ -73,8 +84,15 @@ ACTOR SilentRosePistol : Weapon
   {
   Ready:
     RSFP A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_SetGravity(1)
+	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     RSFP A 1 A_Lower
@@ -89,7 +107,7 @@ ACTOR SilentRosePistol : Weapon
     RSFP DEFGHIHGFED 1
     Goto Ready
   SuperShot:
-    RSFP A 0 A_FireBullets(0, 0, 1, 50, "NoGibPuff", 0)
+    RSFP A 0 A_FireBullets(0, 0, 1, 50, "NoGibPuff", FBF_USEAMMO|FBF_NORANDOM)
     RSFP ABCBA 1
 	RSFP A 0 A_ReFire
     RSFP DEFGHIHGFED 1
@@ -121,6 +139,13 @@ ACTOR Revolver : Weapon
   {
   Ready:
     REVO A 1 A_WeaponReady
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -166,8 +191,15 @@ ACTOR PrecisionShotgun : Weapon
   {
   Ready:
     SPSG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_SetGravity(1)
+	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -208,10 +240,7 @@ ACTOR PrecisionShotgun : Weapon
 	{
 	  if (CountInv("ZoomCharge") > 99)
 	  {
-	    if (CountInv("PowerSuper") < 1)
-	    {
-	      A_TakeInventory("ChaosEnergy", 120);
-	    }
+	    A_TakeInventory("ChaosEnergy", 120);
 	    A_FireBullets(0, 0, 50, 16, "NoGibPuff");
 		A_PlaySound("sonicdoom/zoomfire", 6);
 	  }
@@ -288,8 +317,15 @@ ACTOR AmyEclipseBlaster : Weapon
   {
   Ready:
     ACBL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_SetGravity(1)
+	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -303,12 +339,7 @@ ACTOR AmyEclipseBlaster : Weapon
 	ACBL B 4
 	{
 	  A_AlertMonsters;
-	  if (CountInv("PowerSuper")) {
-        A_FireProjectile("ChaosEnergyBallAmy", 0, 0);
-	  }
-	  else {
-	    A_FireProjectile("ChaosEnergyBallAmy", 0, 1);
-	  }
+	  A_FireProjectile("ChaosEnergyBallAmy", 0, 1);
 	}
     Goto Ready
   AltFire:
@@ -360,8 +391,15 @@ ACTOR RapidMissiles : Weapon
   {
   Ready:
     MMSL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_SetGravity(1)
+	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
+	TNT1 A 0
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_GiveInventory("ChaosEnergy", 15);
+	  }
+	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -373,45 +411,13 @@ ACTOR RapidMissiles : Weapon
 	Goto Deselect+1
   Fire:
 	MMSL B 2
-	MMSL A 2
-	{
-	  if (CountInv("PowerSuper")) {
-        A_FireProjectile("ChaosMissile", 0, 0, 0, 5);
-	  }
-	  else {
-	    A_FireProjectile("ChaosMissile", 0, 1, 0, 5);
-	  }
-	}
+	MMSL A 2 A_FireProjectile("ChaosMissile", 0, 1, 0, 5)
     MMSL B 0 A_ReFire
     Goto Ready
   AltFire:
-    MMSL A 0
-	{
-	  if (CountInv("PowerSuper")) {
-        A_FireProjectile("ChaosMissile", 0, 0, -8, 5);
-	  }
-	  else {
-	    A_FireProjectile("ChaosMissile", 0, 1, -8, 5);
-	  }
-	}
-	MMSL A 0
-	{
-	  if (CountInv("PowerSuper")) {
-        A_FireProjectile("ChaosMissile", 0, 0, 0, 5);
-	  }
-	  else {
-	    A_FireProjectile("ChaosMissile", 0, 1, 0, 5);
-	  }
-	}
-	MMSL A 0
-	{
-	  if (CountInv("PowerSuper")) {
-        A_FireProjectile("ChaosMissile", 0, 0, 8, 5);
-	  }
-	  else {
-	    A_FireProjectile("ChaosMissile", 0, 1, 8, 5);
-	  }
-	}
+    MMSL A 0 A_FireProjectile("ChaosMissile", 0, 1, -8, 5)
+	MMSL A 0 A_FireProjectile("ChaosMissile", 0, 1, 0, 5)
+	MMSL A 0 A_FireProjectile("ChaosMissile", 0, 1, 8, 5)
 	MMSL B 8
 	MMSL A 8
     MMSL B 0 A_ReFire

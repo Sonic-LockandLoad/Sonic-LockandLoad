@@ -48,3 +48,8 @@ ACTOR SpinCharges : Inventory
   Inventory.MaxAmount 99
 }
 
+ACTOR TeleportCooldown : Inventory
+{
+  Inventory.MaxAmount 50
+}
+

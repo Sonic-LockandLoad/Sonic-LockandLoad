@@ -31,36 +31,23 @@ StatusBar Normal
      DrawNumber 3, BIGFONT, Red, "ChaosEnergy", fillzeros, 115, 135;
    }
    
+   InInventory TeleportCooldown, 1
+   {
+     DrawNumber 3, BIGFONT, White, "TeleportCooldown", -24, 165;
+   }
+   
    InInventory ZoomCharge, 100
    {
      DrawString BIGFONT, Purple, "Ready", 190, 70;
    } 
-   
-   InInventory PikoPikoHammer, 1
-   {
-     InInventory Not GlideStage, 1
-	 {
-       InInventory Not GlideStage, 2
-	   {
-         DrawString SMALLFONT, Cream, "Glide Ready",  193, 110;
-	   }
-	 }
-	 InInventory GlideStage, 1
-	 {
-       InInventory Not GlideStage, 2
-	   {
-	     DrawString SMALLFONT, Cream, "Gliding", 176, 110;
-	   }
-	 }
-	 InInventory GlideStage, 2
-	 {
-       DrawString SMALLFONT, Cream, "Glide Charging", 200, 110;
-	 }     
-   }
 }
 StatusBar Fullscreen
 {
    DrawMugShot 1, 140, 165;
+   InInventory TeleportCooldown, 1
+   {
+     DrawNumber 3, BIGFONT, White, "TeleportCooldown", 155, 155;
+   }
    DrawKeyBar 10, vertical, auto, 220, 145, 0, 3, auto;
    
    IfHealth 10
@@ -75,39 +62,17 @@ StatusBar Fullscreen
    
    InInventory ChaosEnergy, 1
    {
-     DrawNumber 4, HUDFONT_DOOM, Green, "ChaosEnergy", 80, 180;
+     DrawNumber 4, HUDFONT_DOOM, Green, "ChaosEnergy", 220, 180;
    }
    InInventory Not ChaosEnergy, 1
    {
-     DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 80, 180;
+     DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 220, 180;
    }
-   DrawImage "sprites/pickups/EMRLA0.png", 60, 170, centerbottom;
+   DrawImage "sprites/pickups/EMRLA0.png", 200, 170, centerbottom;
    
    InInventory ZoomCharge, 100
    {
      DrawString BIGFONT, Purple, "Ready", 190, 90;
-   } 
-   
-   InInventory PikoPikoHammer, 1
-   {
-     InInventory Not GlideStage, 1
-	 {
-       InInventory Not GlideStage, 2
-	   {
-         DrawString BIGFONT, Cream, "Ready", 260, 180;
-	   }
-	 }
-	 InInventory GlideStage, 1
-	 {
-       InInventory Not GlideStage, 2
-	   {
-	     DrawString BIGFONT, Cream, "Gliding", 265, 180;
-	   }
-	 }
-	 InInventory GlideStage, 2
-	 {
-       DrawString BIGFONT, Cream, "Charging", 290, 180;
-	 }
    }
 }
 mugshot "Rampage"
