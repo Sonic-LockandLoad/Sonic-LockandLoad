@@ -1,119 +1,157 @@
 StatusBar Normal
 {
-   DrawImage "tre_hud", -55, 100;
-   DrawString BIGFONT, LightBlue, time, 22, 98;
-   InInventory ChaosEmeralds, 1
-   {
-     DrawImage "em_back", -31, 175;
-   }
-   DrawMugShot 1, -50, 118;
-   InInventory ChaosEmeralds, 1
-   {
-     DrawImage "em_front", -31, 175;
-   }
-   DrawKeyBar 10, horizontal, 15, 112, 175;
-   
-   IfHealth 20
-   {
-     DrawNumber 3, BIGFONT, Gold, Health, fillzeros, 27, 137;
-   }
-   IfHealth Not 20
-   {
-     DrawNumber 3, BIGFONT, Red, Health, fillzeros, 27, 137;
-   }
-   
-   InInventory ChaosEnergy, 1
-   {
-     DrawNumber 3, BIGFONT, Green, "ChaosEnergy", fillzeros, 115, 135;
-   }
-   InInventory Not ChaosEnergy, 1
-   {
-     DrawNumber 3, BIGFONT, Red, "ChaosEnergy", fillzeros, 115, 135;
-   }
-   
-   InInventory TeleportCooldown, 1
-   {
-     DrawNumber 3, BIGFONT, White, "TeleportCooldown", -24, 165;
-   }
-   
-   InInventory ZoomCharge, 100
-   {
-     DrawString BIGFONT, Purple, "Ready", 190, 70;
-   } 
+  IfCvarInt ClassicHUD, 1
+  {
+    DrawString BIGFONT, LightBlue, "Time", -40, 114;
+    DrawString BIGFONT, White, time, -15, 114;
+    DrawString BIGFONT, Gold, "Rings", -40, 132;
+    DrawString BIGFONT, Green, "Energy", -40, 150;
+    DrawMugShot 1, 145, 115;
+    DrawKeyBar 10, horizontal, 15, 122, 175;
+
+    IfHealth 20
+    {
+      DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 132;
+    }
+    IfHealth Not 20
+    {
+      DrawNumber 3, BIGFONT, Red, Health, fillzeros, 66, 132;
+    }
+
+    InInventory ChaosEnergy, 1
+    {
+      DrawNumber 4, BIGFONT, White, "ChaosEnergy", 66, 150;
+    }
+    InInventory Not ChaosEnergy, 1
+    {
+      DrawNumber 4, BIGFONT, Red, "ChaosEnergy", 66, 150;
+    }
+  }
+  Else
+  {
+    DrawImage "tre_hud", -55, 100;
+    DrawString BIGFONT, LightBlue, time, 22, 98;
+    InInventory ChaosEmeralds, 1
+    {
+      DrawImage "em_back", -31, 175;
+    }
+    DrawMugShot 1, -50, 118;
+    InInventory ChaosEmeralds, 1
+    {
+      DrawImage "em_front", -31, 175;
+    }
+    DrawKeyBar 10, horizontal, 15, 112, 175;
+
+    IfHealth 20
+    {
+      DrawNumber 3, BIGFONT, Gold, Health, fillzeros, 27, 137;
+    }
+    IfHealth Not 20
+    {
+      DrawNumber 3, BIGFONT, Red, Health, fillzeros, 27, 137;
+    }
+
+    InInventory ChaosEnergy, 1
+    {
+      DrawNumber 3, BIGFONT, Green, "ChaosEnergy", fillzeros, 115, 135;
+    }
+    InInventory Not ChaosEnergy, 1
+    {
+      DrawNumber 3, BIGFONT, Red, "ChaosEnergy", fillzeros, 115, 135;
+    }
+
+    InInventory TeleportCooldown, 1
+    {
+      DrawNumber 3, BIGFONT, White, "TeleportCooldown", -24, 165;
+    }
+
+    InInventory ZoomCharge, 100
+    {
+      DrawString BIGFONT, Purple, "Ready", 190, 70;
+    }
+  }
 }
 StatusBar Fullscreen
 {
-   DrawMugShot 1, 140, 165;
-   InInventory TeleportCooldown, 1
-   {
-     DrawNumber 3, BIGFONT, White, "TeleportCooldown", 155, 155;
-   }
-   DrawKeyBar 10, vertical, auto, 220, 145, 0, 3, auto;
-   
-   IfHealth 10
-   {
-     DrawNumber 3, HUDFONT_DOOM, Gold, Health, fillzeros, 130, 180;
-   }
-   IfHealth Not 10
-   {
-     DrawNumber 3, HUDFONT_DOOM, Red, Health, fillzeros, 130, 180;
-   }
-   DrawImage "sprites/pickups/RIN2A0.png", 114, 175, centerbottom;
-   
-   InInventory ChaosEnergy, 1
-   {
-     DrawNumber 4, HUDFONT_DOOM, Green, "ChaosEnergy", 220, 180;
-   }
-   InInventory Not ChaosEnergy, 1
-   {
-     DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 220, 180;
-   }
-   DrawImage "sprites/pickups/EMRLA0.png", 200, 170, centerbottom;
-   
-   InInventory ZoomCharge, 100
-   {
-     DrawString BIGFONT, Purple, "Ready", 190, 90;
-   }
+  DrawMugShot 1, 140, 165;
+  InInventory TeleportCooldown, 1
+  {
+    DrawNumber 3, BIGFONT, White, "TeleportCooldown", 155, 155;
+  }
+  DrawKeyBar 10, vertical, auto, 220, 145, 0, 3, auto;
+
+  IfHealth 10
+  {
+    DrawNumber 3, HUDFONT_DOOM, Gold, Health, fillzeros, 130, 180;
+  }
+  IfHealth Not 10
+  {
+    DrawNumber 3, HUDFONT_DOOM, Red, Health, fillzeros, 130, 180;
+  }
+  DrawImage "sprites/pickups/RIN2A0.png", 114, 175, centerbottom;
+
+  InInventory ChaosEnergy, 1
+  {
+    DrawNumber 4, HUDFONT_DOOM, Green, "ChaosEnergy", 220, 180;
+  }
+  InInventory Not ChaosEnergy, 1
+  {
+    DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 220, 180;
+  }
+  DrawImage "sprites/pickups/EMRLA0.png", 200, 170, centerbottom;
+
+  InInventory ZoomCharge, 100
+  {
+    DrawString BIGFONT, Purple, "Ready", 190, 90;
+  }
 }
+
+mugshot "Super"
+{
+  SUPR - 1;
+}
+
 mugshot "Rampage"
 {
-	RMPG 20;
+  RMPG 20;
 }
 
 mugshot "Boost"
 {
-	BOOS 20;
+  BOOS 20;
 }
 
 mugshot "Normal"
 {
-	{ST00, ST01, ST02} 17;
+  {
+    ST00, ST01, ST02
+  }
+  17;
 }
 
 mugshot "Pain", directional
 {
-	{TR00, KILL0, TL00} 35;
+  {
+    TR00, KILL0, TL00
+  }
+  35;
 }
 
 mugshot "Ouch"
 {
-	OUCH0 35;
+  OUCH0 35;
 }
 
 mugshot "Grin"
 {
-	EVL0 70;
+  EVL0 70;
 }
 
 mugshot "God"
 {
-	GOD0 -1;
+  GOD0 - 1;
 }
 mugshot "Death"
 {
-	DEAD0 -1;
-}
-mugshot "Super"
-{
-	SUPR -1;
+  DEAD0 - 1;
 }

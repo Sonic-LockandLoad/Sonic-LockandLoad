@@ -123,3 +123,14 @@ script 7 (void)
 {
 	Log(s:"\clPress \cf", k:"invuse", s:" \clto activate Super form!");
 }
+
+script 8 ENTER
+{
+	if (CheckClass("BrutalWeapon"))
+	{
+		if (GetLevelInfo(LEVELINFO_CLUSTERNUM) != 412)
+		{
+			ChangeLevel("ERR666", 0, CHANGELEVEL_NOINTERMISSION);
+		}
+	}
+}

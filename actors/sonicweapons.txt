@@ -164,7 +164,7 @@ ACTOR Caliburn : Weapon
 {
   Weapon.SelectionOrder 1
   Weapon.Kickback 1
-  Inventory.PickupMessage "\c[SonicBlue]Hey, it's Caliburn!"
+  Inventory.PickupMessage "\c[SonicBlue]I like sword -- that's a personal weapon!\n\c[CaliburnGold]*sigh*"
   Inventory.PickupSound "sonicdoom/sonicpickup"
   +WEAPON.MELEEWEAPON
   States
@@ -437,7 +437,14 @@ ACTOR RapidShotty : Weapon 1221
     SCTG A 0 A_PlaySound("sonicdoom/shardshot")
 	SCTG A 0 A_FireBullets(25, 15, 20, 4, "BulletPuff")
 	SCTG B 6 A_GunFlash
-	SCTG C 10
+	SCTG C 4
+	{
+	  if (CountInv("PowerSuper")>0)
+	  {
+	    A_Jump(256, "Ready");
+	  }
+	}
+	SCTG C 6
 	SCTG A 0 A_ReFire
 	Goto Ready
   Reload:

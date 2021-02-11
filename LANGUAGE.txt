@@ -124,13 +124,23 @@ CAMPEND =
 	"Thanks for playing Sonic: Lock and Load!\n"
 	"- SpeedStriker243";
 	
+INCOMPAT =
+	"An incompatible mod has been detected.\n"
+	"This mod will not work with Sonic: Lock & Load.\n"
+	"\n"
+	"Relaunch the game without the mod, and remove\n"
+	"the mod from your autoload folder if present.\n"
+	"\n"
+	"Please check your GZDoom installation for more\n"
+	"information.";
+	
 QUITMSG1 = "I see your problem... too slow!";
-QUITMSG2 = "I rolled Sonic!";
+QUITMSG2 = "What's the matter? Can't keep up?";
 QUITMSG3 = "I've already lapped you three times...";
-QUITMSG4 = "Huh...\nI'm sure it says fast.";
-QUITMSG5 = "No TV or movies?\nI'm outta here!";
-QUITMSG6 = "HA!\nYou think this puny moat can keep out someone...\nSO FAST?!";
-QUITMSG7 = "Astrid please add quit message";
+QUITMSG4 = "Hey! Wait! What about your memories?!";
+QUITMSG5 = "Talk about low budget mods,\n no ZScript or fancy textures...";
+QUITMSG6 = "How long is this game gonna go on?";
+QUITMSG7 = "<Insert funny Sonic reference here>";
 
 STSTR_DQD2ON = "Super Degreeless Mode ON";
 STSTR_DQD2OFF = "Super Degreeless Mode OFF";

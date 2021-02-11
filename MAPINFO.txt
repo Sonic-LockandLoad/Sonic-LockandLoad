@@ -35,7 +35,7 @@ map zone01 "Green Hill Zone"
 
 map E3M10 "Dis Is It"
 {
-  levelnum = 28
+  levelnum = 30
   titlepatch = "WILV27"
   next = "endbunny"
   secretnext = "E3M9"
@@ -48,6 +48,12 @@ map E3M10 "Dis Is It"
   specialaction_exitlevel
   music = S_BOSS
   needclustertext
+}
+
+map ERR666 "Mod Incompatible"
+{
+  music = S_ERR666
+  cluster = 412
 }
 
 clearskills
@@ -219,4 +225,12 @@ cluster 11
 {
 	flat = "GHZFL1"
 	exittext = lookup, "CAMPEND"
+}
+
+// Brutal Doom detection cluster
+cluster 412
+{
+	pic = "INFINFUN"
+	entertext = lookup, "INCOMPAT"
+	music = "S_GMOVR6"
 }

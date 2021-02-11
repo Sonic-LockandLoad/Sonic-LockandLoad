@@ -2,21 +2,24 @@ LISTMENU "MainMenu"
 {
 	IfGame(Doom)
 	{
-		Position 97, 54
+		Position 80, 54
 	}
 	Else
 	{
 		Position 97, 122
+	    Font "BIGFONT", "InactiveOption", "ActiveOption"
 		StaticText 85, 52, "Sonic: Lock and Load"
 		StaticText 55, 69, "does not support this game."
 		TextItem "Quit", "q", "QuitMenu"
 	}
 	IfGame(Doom)
 	{
+	    Font "BIGFONT", "InactiveOption", "ActiveOption"
 		TextItem "1P Play", "n", "PlayerclassMenu"
-		TextItem "Setup","r", "ReadThisMenu"
+		TextItem "Game Setup","r", "ReadThisMenu"
+		TextItem "GZDoom Options","o", "OptionsMenu"
 		TextItem "Data Options", "d", "DataMenu"
-		TextItem "Options","o", "OptionsMenu"
+		TextItem "Mod Options", "e", "LockandLoadOptions"
 		TextItem "I'm outta here!", "q", "QuitMenu"
 	}
 }
@@ -24,6 +27,7 @@ ListMenu "DataMenu"
 {
 	IfGame(Doom)
 	{
+	    Font "BIGFONT", "InactiveOption", "ActiveOption"
 		StaticText 96, 38, "Data Options"
 		Position 97, 72
 		TextItem "Load", "l", "LoadGameMenu"
@@ -34,6 +38,7 @@ ListMenu "PlayerclassMenu"
 {
 	IfGame(Doom)
 	{
+	    Font "BIGFONT", "InactiveOption", "ActiveOption"
 		StaticText 57, 48, "Select Character"
 		Position 90, 75
 		StaticPatch 200, 60, "sonic"
@@ -41,4 +46,15 @@ ListMenu "PlayerclassMenu"
 		StaticPatch 200, 120, "classic"
 		StaticPatch 200, 150, "shadow"
 	}
+}
+OptionMenu "LockandLoadOptions"
+{
+	Title "Sonic: Lock & Load Options"
+	Option "Enable Classic HUD", "ClassicHUD", "YesNo"
+	StaticText "If you preferred the cleaner HUD used in the", "White"
+	StaticText "Dark Update and before, enable this option.", "White"
+}
+AddListMenu "SkillMenu"
+{
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }

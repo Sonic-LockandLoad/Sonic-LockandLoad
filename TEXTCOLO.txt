@@ -7,6 +7,16 @@ Flat:
 	#0092ff
 }
 
+ActiveOption
+{
+	#002bff  #00d2ff
+}
+
+InactiveOption
+{
+	#6b0000  #B21A86
+}
+
 AmyPink
 {
 	#7f276a  #ffa7e9
@@ -32,4 +42,13 @@ Console:
 	#e1e113  #fd9900
 Flat:
 	#FFFF00
+}
+
+CaliburnGold
+{
+	#B29600  #FFD700
+Console:
+    #B29600  #FFD700
+Flat:
+	#FFD700
 }
