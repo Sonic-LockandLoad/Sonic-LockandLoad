@@ -1,51 +1,36 @@
 LISTMENU "MainMenu"
 {
-	IfGame(Doom)
+	Position 80, 54
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
+	TextItem "1P Play", "n", "PlayerclassMenu"
+	TextItem "Game Setup","r", "ReadThisMenu"
+	TextItem "GZDoom Options","o", "OptionsMenu"
+	TextItem "Data Options", "d", "DataMenu"
+	TextItem "Mod Options", "e", "LockandLoadOptions"
+	TextItem "I'm outta here!", "q", "QuitMenu"
+	IfGame(Heretic, Hexen, Strife)
 	{
-		Position 80, 54
-	}
-	Else
-	{
-		Position 97, 122
-	    Font "BIGFONT", "InactiveOption", "ActiveOption"
-		StaticText 85, 52, "Sonic: Lock and Load"
-		StaticText 55, 69, "does not support this game."
-		TextItem "Quit", "q", "QuitMenu"
-	}
-	IfGame(Doom)
-	{
-	    Font "BIGFONT", "InactiveOption", "ActiveOption"
-		TextItem "1P Play", "n", "PlayerclassMenu"
-		TextItem "Game Setup","r", "ReadThisMenu"
-		TextItem "GZDoom Options","o", "OptionsMenu"
-		TextItem "Data Options", "d", "DataMenu"
-		TextItem "Mod Options", "e", "LockandLoadOptions"
-		TextItem "I'm outta here!", "q", "QuitMenu"
+		Font "SMALLFONT"
+		StaticText 78, 40, "Unsupported game"
 	}
 }
 ListMenu "DataMenu"
 {
-	IfGame(Doom)
-	{
-	    Font "BIGFONT", "InactiveOption", "ActiveOption"
-		StaticText 96, 38, "Data Options"
-		Position 97, 72
-		TextItem "Load", "l", "LoadGameMenu"
-		TextItem "Save", "s", "SaveGameMenu"
-	}
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
+	StaticText 96, 38, "Data Options"
+	Position 97, 72
+	TextItem "Load", "l", "LoadGameMenu"
+	TextItem "Save", "s", "SaveGameMenu"
 }
 ListMenu "PlayerclassMenu"
 {
-	IfGame(Doom)
-	{
-	    Font "BIGFONT", "InactiveOption", "ActiveOption"
-		StaticText 57, 48, "Select Character"
-		Position 90, 75
-		StaticPatch 200, 60, "sonic"
-		StaticPatch 200, 90, "amy"
-		StaticPatch 200, 120, "classic"
-		StaticPatch 200, 150, "shadow"
-	}
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
+	StaticText 57, 48, "Select Character"
+	Position 90, 75
+	StaticPatch 200, 60, "sonic"
+	StaticPatch 200, 90, "amy"
+	StaticPatch 200, 120, "classic"
+	StaticPatch 200, 150, "shadow"
 }
 OptionMenu "LockandLoadOptions"
 {
