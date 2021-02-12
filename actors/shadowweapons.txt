@@ -69,6 +69,7 @@ ACTOR ShadowAbilities : Weapon
 	TNT1 A 0 A_PlaySound("sonicdoom/chaosspear")
 	TNT1 A 4
 	TNT1 A 0 A_GiveInventory("TeleportCooldown", 50)
+	TNT1 A 0 A_ChangeFlag("GHOST", false)
 	TNT1 A 0 A_Stop
 	Goto Ready
   Spawn:

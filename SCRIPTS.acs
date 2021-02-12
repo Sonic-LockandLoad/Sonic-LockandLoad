@@ -133,4 +133,13 @@ script 8 ENTER
 			ChangeLevel("ERR666", 0, CHANGELEVEL_NOINTERMISSION);
 		}
 	}
+	else
+	{
+		if (GetLevelInfo(LEVELINFO_CLUSTERNUM) == 412)
+		{
+			Print(s:"Hold it, you aren't supposed to be here");
+			Delay(200);
+			ChangeLevel("E1M1", 0, CHANGELEVEL_NOINTERMISSION);
+		}
+	}
 }
