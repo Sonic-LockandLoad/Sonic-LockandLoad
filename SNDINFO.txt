@@ -107,6 +107,7 @@ sonicdoom/sonicpistol       fpistol
 sonicdoom/classicpain       churt
 sonicdoom/classicdeath      cdead
 sonicdoom/sliding           Sliding
+sonicdoom/AllFailShadow     allfail
 
 menu/activate		OpenMenu// Activate a new menu
 menu/backup			Return	// Backup to previous menu
