@@ -95,10 +95,13 @@ ACTOR ChaosBlaster : Weapon
 ACTOR SpeedyShotgun : Weapon
 {
   Weapon.SelectionOrder 1300
-  Weapon.AmmoUse 8
+  Weapon.AmmoUse1 8
+  Weapon.AmmoUse2 4
   Weapon.AmmoGive 32
   Weapon.KickBack 500
-  Weapon.AmmoType "ChaosEnergy"
+  Weapon.AmmoType1 "ChaosEnergy"
+  Weapon.AmmoType2 "ChaosEnergy"
+  AttackSound "weapons/shotgf"
   Tag "Speedy Shotgun"
   Inventory.PickupMessage "Picked up the speedy shotgun!"
   States
@@ -120,19 +123,33 @@ ACTOR SpeedyShotgun : Weapon
     SHTG A 1 A_Raise
     Loop
   Fire:
-    SHTG A 1
-    SHTG A 0 A_FireShotgun
-	SHTG A 3
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory("ChaosEnergy", 8);
-		}
-	}
+    SHTG A 2
+	SHTG A 3 A_FireShotgun
+    Goto Ready
+  AltFire:
+    SHTG A 0 A_FireBullets (8, 3, 10, 8, "BulletPuff")
+    SHTG A 3 A_GunFlash("QuickFlash")
+    SHTG A 0 A_FireBullets (5, 2, 10, 8, "BulletPuff")
+    SHTG A 3 A_GunFlash("QuickFlash")
+    SHTG A 0 A_FireBullets (3, 1, 10, 8, "BulletPuff")
+    SHTG A 3 A_GunFlash("QuickFlash")
+    SHTG A 0 A_FireBullets (1, 0, 10, 8, "BulletPuff")
+    SHTG A 3 A_GunFlash("QuickFlash")
+    SHTG A 0 A_FireBullets (0, 0, 10, 8, "BulletPuff")
+    SHTG A 7 A_GunFlash
+    SHTG BC 5
+    SHTG D 4
+    SHTG CB 5
+    SHTG A 3
+    SHTG A 7 A_ReFire
     Goto Ready
   Flash:
     SHTF A 4 Bright A_Light1
     SHTF B 3 Bright A_Light2
+    Goto LightDone
+  QuickFlash:
+    SHTF A 1 Bright A_Light1
+    SHTF B 1 Bright A_Light2
     Goto LightDone
   Spawn:
     SHOT A -1
