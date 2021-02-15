@@ -1,0 +1,130 @@
+version "4.0"
+
+Class SonicKick : CustomInventory
+{
+	int inuse;
+	int EXKick;
+	States
+	{
+	Use:
+		TNT1 A 0 A_Overlay(-2, "TimeCheck");
+		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		Fail;
+	TimeCheck:
+		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "FloorCheck");
+		Stop;
+	FloorCheck:
+		TNT1 A 0
+		{
+			invoker.EXKick = 0;
+		}
+	    TNT1 A 0 A_CheckFloor("KickAttack");
+		TNT1 A 0
+		{
+			invoker.EXKick = 1;
+		}
+	KickAttack:
+		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		KICK A 1 A_PlaySound("sonicdoom/swordswing", 7);
+		KICK BC 1;
+		KICK D 1 
+		{
+			if (invoker.EXKick > 0)
+			{
+				A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+			}
+			else
+			{
+				A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+			}
+		}
+		KICK EF 1 A_ReFire();
+		TNT1 A 1 A_TakeInventory("KickCooldown", 25);
+		Stop;
+	}
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (inuse > 0)
+		{
+			inuse--;
+		}
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
+		{
+			owner.UseInventory(self);
+			inuse = 5;
+		}
+	}
+}
+
+Class ShadowDash : CustomInventory
+{
+	int inuse;
+	States
+	{
+	Use:
+		TNT1 A 0 A_Overlay(-2, "DashCheck");
+		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		Fail;
+	DashCheck:
+		TNT1 A 0 A_JumpIf(CountInv("TeleportCooldown")<1, "Dash");
+		Stop;
+	Dash:
+		TNT1 A 0 A_Stop();
+		TNT1 A 0 A_SetGravity(0);
+		TNT1 A 4;
+		TNT1 A 0 A_ChangeFlag("GHOST", true);
+		TNT1 A 0 A_SetGravity(2);
+		TNT1 A 0 ThrustThing(angle * 256 / 360, 150, 1, 0);
+		TNT1 A 0 A_PlaySound("sonicdoom/chaosspear");
+		TNT1 A 4;
+		TNT1 A 0 A_GiveInventory("TeleportCooldown", 50);
+		TNT1 A 0 A_ChangeFlag("GHOST", false);
+		TNT1 A 0 A_Stop();
+		Stop;
+	}
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (inuse > 0)
+		{
+			inuse--;
+		}
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
+		{
+			owner.UseInventory(self);
+			inuse = 8;
+		}
+	}
+}
+
+Class SonicKickPuff : BulletPuff
+{
+	Default
+	{
+		+NOBLOCKMAP;
+		+NOGRAVITY;
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+		DamageType "SonicKick";
+		ProjectileKickBack 1000;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Melee:
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+Class KickCooldown : Inventory
+{
+	Default
+	{
+		Inventory.MaxAmount 25;
+	}
+}

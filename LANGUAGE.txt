@@ -138,7 +138,7 @@ QUITMSG1 = "I see your problem... too slow!";
 QUITMSG2 = "What's the matter? Can't keep up?";
 QUITMSG3 = "I've already lapped you three times...";
 QUITMSG4 = "Hey! Wait! What about your memories?!";
-QUITMSG5 = "Talk about low budget mods,\n no ZScript or fancy textures...";
+QUITMSG5 = "Talk about low budget mods,\nno campaign or tutorial...";
 QUITMSG6 = "How long is this game gonna go on?";
 QUITMSG7 = "<Insert funny Sonic reference here>";
 

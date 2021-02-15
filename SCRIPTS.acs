@@ -117,6 +117,7 @@ script 5 (void)
 script 6 ENTER
 {
 	SetMugShotState("Normal");
+	SetMusic("*", 0);
 }
 
 script 7 (void)
@@ -142,4 +143,9 @@ script 8 ENTER
 			ChangeLevel("E1M1", 0, CHANGELEVEL_NOINTERMISSION);
 		}
 	}
+}
+
+script 9 (void)
+{
+	SetMusic("allfail", 0);
 }
