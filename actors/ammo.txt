@@ -15,11 +15,6 @@ ACTOR ZoomCharge : Inventory
 {
   Inventory.MaxAmount 100
 }
-
-DamageType SonicKick
-{
-   Factor 1
-}
 DamageType ShadowMelee
 {
    Factor 1
@@ -257,25 +252,6 @@ ACTOR ShardPuff
     SHPF B 4
   Melee:
     SHPF CD 4
-    Stop
-  }
-}
-
-ACTOR SonicKickPuff
-{
-  +NOBLOCKMAP
-  +NOGRAVITY
-  RenderStyle None
-  Alpha 0
-  VSpeed 1
-  Mass 5
-  DamageType "SonicKick"
-  States
-  {
-  Spawn:
-    TNT1 A 0
-  Melee:
-    TNT1 A 0
     Stop
   }
 }

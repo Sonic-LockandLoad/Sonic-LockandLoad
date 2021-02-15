@@ -95,8 +95,8 @@ ACTOR ChaosBlaster : Weapon
 ACTOR SpeedyShotgun : Weapon
 {
   Weapon.SelectionOrder 1300
-  Weapon.AmmoUse1 8
-  Weapon.AmmoUse2 4
+  Weapon.AmmoUse1 16
+  Weapon.AmmoUse2 8
   Weapon.AmmoGive 32
   Weapon.KickBack 500
   Weapon.AmmoType1 "ChaosEnergy"
@@ -124,17 +124,24 @@ ACTOR SpeedyShotgun : Weapon
     Loop
   Fire:
     SHTG A 2
-	SHTG A 3 A_FireShotgun
+	SHTG A 0 A_FireBullets(5.6, 0, 7, 3, "BulletPuff")
+    SHTG A 0 A_PlaySound ("weapons/shotgf", CHAN_WEAPON)
+    SHTG A 3 A_GunFlash
     Goto Ready
   AltFire:
-    SHTG A 0 A_FireBullets (8, 3, 10, 8, "BulletPuff")
+	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
+    SHTG A 0 A_FireBullets (8, 3, 10, 4, "BulletPuff")
     SHTG A 3 A_GunFlash("QuickFlash")
-    SHTG A 0 A_FireBullets (5, 2, 10, 8, "BulletPuff")
+	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
+    SHTG A 0 A_FireBullets (5, 2, 10, 5, "BulletPuff")
     SHTG A 3 A_GunFlash("QuickFlash")
-    SHTG A 0 A_FireBullets (3, 1, 10, 8, "BulletPuff")
+	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
+    SHTG A 0 A_FireBullets (3, 1, 10, 6, "BulletPuff")
     SHTG A 3 A_GunFlash("QuickFlash")
-    SHTG A 0 A_FireBullets (1, 0, 10, 8, "BulletPuff")
+	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
+    SHTG A 0 A_FireBullets (1, 0, 10, 7, "BulletPuff")
     SHTG A 3 A_GunFlash("QuickFlash")
+	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
     SHTG A 0 A_FireBullets (0, 0, 10, 8, "BulletPuff")
     SHTG A 7 A_GunFlash
     SHTG BC 5

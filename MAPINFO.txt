@@ -5,6 +5,11 @@ gameinfo
    InfoPage = "CONTROL", "DISPLAY"
 }
 
+DamageType SonicKick
+{
+   Factor = 1
+}
+
 map map31 "Wolfenstein"
 {
   music = S_CHEM
