@@ -9,3 +9,7 @@ Sonic the Hedgehog is property of SEGA. DOOM is property of id Software.
 At the top of the page, click `Code`, then `Download ZIP`.<br>
 Run `sonicdoom-master.zip` with GZDoom.<br>
 Optionally, you can rename `sonicdoom-master.zip` to `sonicdoom-master.pk3`.
+
+## Does this mod support multiplayer?
+Right now, no, it doesn't. At least not from what I've tested. Feel free to test it out yourself if possible and bring it up as an issue.
+Either way, multiplayer is NOT the focus of this mod. Maybe in the future, but for now it only focuses on a single player experience.
