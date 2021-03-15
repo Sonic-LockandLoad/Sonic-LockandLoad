@@ -12,13 +12,6 @@ ACTOR PikoPikoHammer : Weapon
     PIKO A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	}
     Loop
   Deselect:
     PIKO A 1 A_Lower
@@ -86,13 +79,6 @@ ACTOR SilentRosePistol : Weapon
     RSFP A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	}
     Loop
   Deselect:
     RSFP A 1 A_Lower
@@ -107,7 +93,7 @@ ACTOR SilentRosePistol : Weapon
     RSFP DEFGHIHGFED 1
     Goto Ready
   SuperShot:
-    RSFP A 0 A_FireBullets(0, 0, 1, 50, "NoGibPuff", FBF_USEAMMO|FBF_NORANDOM)
+    RSFP A 0 A_FireBullets(0, 0, 1, 50, "NoGibPuff", FBF_NORANDOM)
     RSFP ABCBA 1
 	RSFP A 0 A_ReFire
     RSFP DEFGHIHGFED 1
@@ -139,13 +125,6 @@ ACTOR Revolver : Weapon
   {
   Ready:
     REVO A 1 A_WeaponReady
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -193,13 +172,6 @@ ACTOR PrecisionShotgun : Weapon
     SPSG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -277,6 +249,13 @@ ACTOR PrecisionShotgun : Weapon
     AIMA A 0 A_SetSpeed(0.5)
 	AIMA A 1 A_WeaponReady(WRF_NOBOB|WRF_DISABLESWITCH)
 	AIMA A 0 A_ReFire 
+    TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory("ChaosEnergy", 120);
+		}
+	}
 	AIMA A 0 A_PlaySound("sonicdoom/zoomend", 6)
 	AIMA A 0 A_ZoomFactor(1)
     AIMA A 0 A_SetSpeed(1.5)
@@ -319,13 +298,6 @@ ACTOR AmyEclipseBlaster : Weapon
     ACBL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -338,11 +310,16 @@ ACTOR AmyEclipseBlaster : Weapon
   Fire:
 	ACBL B 4
 	{
+	  if (CountInv("PowerSuper") > 0)
+	  {
+	  	  A_GiveInventory("ChaosEnergy", 15);
+	  }
 	  A_AlertMonsters;
 	  A_FireProjectile("ChaosEnergyBallAmy", 0, 1);
 	}
     Goto Ready
   AltFire:
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "NoTime")
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NoEnergy")
   RingCheck:
@@ -350,6 +327,10 @@ ACTOR AmyEclipseBlaster : Weapon
     TNT1 A 0 A_JumpIf(Health < 999, "ChaosHeal")
   NoEnergy:
     TNT1 A 0 A_Print("\c[AmyPink]I'm out of energy!")
+	TNT1 A 0 A_PlaySound("sonicdoom/amyerror", 4096)
+	Goto Ready
+  NoTime:
+    TNT1 A 0 A_Print("\c[AmyPink]Waste of time.")
 	TNT1 A 0 A_PlaySound("sonicdoom/amyerror", 4096)
 	Goto Ready
   RingsFull:
@@ -393,13 +374,6 @@ ACTOR RapidMissiles : Weapon
     MMSL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	TNT1 A 0 A_SetGravity(0.75)
 	TNT1 A 0 A_StopSound(1)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -410,11 +384,25 @@ ACTOR RapidMissiles : Weapon
 	MMSL A 1 A_Lower
 	Goto Deselect+1
   Fire:
+    TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory("ChaosEnergy", 20);
+		}
+	}
 	MMSL B 2
 	MMSL A 2 A_FireProjectile("ChaosMissile", 0, 1, 0, 5)
     MMSL B 0 A_ReFire
     Goto Ready
   AltFire:
+    TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory("ChaosEnergy", 60);
+		}
+	}
     MMSL A 0 A_FireProjectile("ChaosMissile", 0, 1, -8, 5)
 	MMSL A 0 A_FireProjectile("ChaosMissile", 0, 1, 0, 5)
 	MMSL A 0 A_FireProjectile("ChaosMissile", 0, 1, 8, 5)

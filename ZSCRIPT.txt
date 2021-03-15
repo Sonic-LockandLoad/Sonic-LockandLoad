@@ -25,6 +25,7 @@ Class SonicKick : CustomInventory
 		}
 	KickAttack:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		TNT1 A 0 A_PlaySound("sonicdoom/grunt", 8);
 		KICK A 1 A_PlaySound("sonicdoom/swordswing", 7);
 		KICK BC 1;
 		KICK D 1 

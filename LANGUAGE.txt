@@ -124,6 +124,17 @@ CAMPEND =
 	"Thanks for playing Sonic: Lock and Load!\n"
 	"- SpeedStriker243";
 	
+BOSSEND =
+	"After defeating the E-SP567 robot,\n"
+	"Sonic comes to a standstill.\n"
+	"\n"
+	"'Awesome, I beat that stupid thing!...\n"
+	"Now, how the heck do I get out of here...?'\n"
+	"\n"
+	"He proceeds to keep staring at the blank\n"
+	"stone wall, waiting for the player to\n"
+	"start a new game...";
+	
 INCOMPAT =
 	"An incompatible mod has been detected.\n"
 	"This mod will not work with Sonic: Lock & Load.\n"
@@ -134,6 +145,13 @@ INCOMPAT =
 	"Please check your GZDoom installation for more\n"
 	"information.";
 	
+WAITWTF =
+	"...\n"
+	"...\n"
+	"\n"
+	"What the hell?\n"
+	"How did you do that?!";
+	
 QUITMSG1 = "I see your problem... too slow!";
 QUITMSG2 = "What's the matter? Can't keep up?";
 QUITMSG3 = "I've already lapped you three times...";
@@ -141,9 +159,6 @@ QUITMSG4 = "Hey! Wait! What about your memories?!";
 QUITMSG5 = "Talk about low budget mods,\nno campaign or tutorial...";
 QUITMSG6 = "How long is this game gonna go on?";
 QUITMSG7 = "<Insert funny Sonic reference here>";
-
-STSTR_DQD2ON = "Super Degreeless Mode ON";
-STSTR_DQD2OFF = "Super Degreeless Mode OFF";
 
 DOSY = "Thanks for playing Sonic: Lock and Load!";
 

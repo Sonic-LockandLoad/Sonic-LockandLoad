@@ -17,9 +17,7 @@ script 1 (void)
                  AmbientSound("sonicdoom/shadowtaunt", 127);
                  break;
             case -1:
-                 //monster activated the script but we do not care about that
             default:
-                 //something happened but we are just gonna break
                  break;
         }
 }
@@ -59,9 +57,7 @@ script 4 (void)
                  SetMusic("m_supsha", 0);
                  break;
             case -1:
-                 //monster activated the script but we do not care about that
             default:
-                 //something happened but we are just gonna break
                  break;
         }
 		while (CheckInventory("PowerSuper"))
@@ -80,37 +76,38 @@ script 4 (void)
 
 script 5 (void)
 {
-	if (CheckInventory("PowerInvulnerable"))
+	if (CheckInventory("PowerSuper") != true)
 	{
-       switch(PlayerClass(PlayerNumber()))
+		if (CheckInventory("PowerInvulnerable"))
 		{
-            case 0:
-                 SetMusic("s_invinc", 0);
-                 break;
-            case 1:
-                 SetMusic("a_invinc", 0);
-                 break;
-            case 2:
-                 SetMusic("c_invinc", 0);
-                 break;
-            case 3:
-                 SetMusic("s_invinc", 0);
-                 break;
-            case -1:
-                 //monster activated the script but we do not care about that
-            default:
-                 //something happened but we are just gonna break
-                 break;
-        }
-		while (CheckInventory("PowerInvulnerable"))
-		{
-			delay(35);
+			switch(PlayerClass(PlayerNumber()))
+			{
+				case 0:
+					SetMusic("s_invinc", 0);
+					break;
+				case 1:
+					SetMusic("a_invinc", 0);
+					break;
+				case 2:
+					SetMusic("c_invinc", 0);
+					break;
+				case 3:
+					SetMusic("s_invinc", 0);
+					break;
+				case -1:
+				default:
+					break;
+			}
+			while (CheckInventory("PowerInvulnerable"))
+			{
+				delay(15);
+			}
+			SetMusic("*", 0);
 		}
-		SetMusic("*", 0);
-	}
-	else
-	{
-		SetMusic("*", 0);
+		else
+		{
+			SetMusic("*", 0);
+		}
 	}
 }
 
@@ -122,7 +119,18 @@ script 6 ENTER
 
 script 7 (void)
 {
-	Log(s:"\clPress \cf", k:"invuse", s:" \clto activate Super form!");
+	switch(PlayerClass(PlayerNumber()))
+	{
+        case 1:
+			Log(s:"\clPress \cf", k:"invuse", s:" \clto activate Dark form!");
+             break;
+        case -1:
+			Log(s:"\clPress \cf", k:"invuse", s:" \clto activate Super form!");
+			break;
+        default:
+			Log(s:"\clPress \cf", k:"invuse", s:" \clto activate Super form!");
+			break;
+    }
 }
 
 script 8 ENTER
@@ -138,14 +146,65 @@ script 8 ENTER
 	{
 		if (GetLevelInfo(LEVELINFO_CLUSTERNUM) == 412)
 		{
-			Print(s:"Hold it, you aren't supposed to be here");
-			Delay(200);
-			ChangeLevel("E1M1", 0, CHANGELEVEL_NOINTERMISSION);
+			switch (Random(1, 6))
+			{
+				case 1:
+					Print(s:"See you next game!");
+					break;
+				case 2:
+					Print(s:"You aren't meant to be here");
+					break;
+				case 3:
+					Print(s:"Sorry, this level is only for heretics");
+					break;
+				case 4:
+					Print(s:"No! This isn't the way you're supposed to play the game!");
+					break;
+				case 5:
+					Print(s:"lol no");
+					break;
+				case 6:
+					Print(s:"Why would you even...?");
+					break;
+				default:
+					Print(s:"Send chicken wings");
+					break;
+			}
+			Exit_Normal(0);
 		}
 	}
 }
 
 script 9 (void)
 {
-	SetMusic("allfail", 0);
+	switch(PlayerClass(PlayerNumber()))
+	{
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			SetMusic("noway", 0);
+			break;
+		case 3:
+			SetMusic("allfail", 0);
+			break;
+		case -1:
+		default:
+			break;
+	}
+}
+
+script 10 (void)
+{
+	while (CheckInventory("PowerSuper"))
+	{
+		Delay(3);
+		TakeInventory("ChaosEnergy", 1);
+		if (!CheckInventory("ChaosEnergy"))
+		{
+			TakeInventory("PowerSuper", 1);
+			TakeInventory("PowerInvulnerable", 1);
+		}
+	}
 }

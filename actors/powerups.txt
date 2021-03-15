@@ -25,7 +25,7 @@ ACTOR SuperInvincibility : PowerupGiver
   +INVENTORY.BIGPOWERUP
   Inventory.MaxAmount 1
   Powerup.Type "Invulnerable"
-  Powerup.Duration -60
+  Powerup.Duration -9999999
   Powerup.Color "FF FF FF", 0
   Inventory.PickupMessage "$GOTINVUL"
   Inventory.Icon "INVCA0"
@@ -55,7 +55,7 @@ ACTOR SuperForm : PowerupGiver
 }
 ACTOR PowerSuper : Powerup 
 {
-  Powerup.Duration -60
+  Powerup.Duration -9999999
 }
 ACTOR HammerBlock : PowerupGiver
 {

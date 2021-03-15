@@ -33,15 +33,12 @@ ACTOR FastSpiderdemon : SpiderMastermind 19924
   Speed 200
   Mass 100000000
   PainChance "Eclipse", 256
-  DamageFactor "Eclipse", 0.1
-  DamageFactor "SonicKick", 2
-  DamageFactor "ShadowMelee", 2
-  DamageFactor "Piko", 2
+  DamageFactor "Eclipse", 0.01
   
   States
   {
   Spawn:
-    SPID AB 10 A_Look
+    SPID AB 10 A_LookEx(LOF_FULLVOLSEESOUND, 50, 0, 0, 30, "See")
     Loop
   See:
     SPID A 1 A_Metal
@@ -67,6 +64,7 @@ ACTOR FastSpiderdemon : SpiderMastermind 19924
     SPID LMNOPQR 10
     SPID S 30
     SPID S -1 A_BossDeath
+	TNT1 A 0 Exit_Normal(0)
     Stop
   }
 }

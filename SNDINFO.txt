@@ -35,9 +35,11 @@ sonicdoom/supertheme3       m_supsha
 sonicdoom/superready        supready
 sonicdoom/supertransform    suptrnsf
 sonicdoom/healthcharge      hpcharge
-sonicdoom/grunt1            grunt1
-sonicdoom/grunt2            grunt2
-sonicdoom/grunt3            grunt3
+sonicdoom/grunt1            Wave21
+sonicdoom/grunt2            Wave22
+sonicdoom/grunt3            Wave23
+sonicdoom/grunt4            Wave24
+sonicdoom/grunt5            Wave25
 sonicdoom/amygrunt1         agrunt1
 sonicdoom/amygrunt2         agrunt2
 sonicdoom/boosttrail        bstrail
@@ -107,6 +109,7 @@ sonicdoom/sonicpistol       fpistol
 sonicdoom/classicpain       churt
 sonicdoom/classicdeath      cdead
 sonicdoom/sliding           Sliding
+sonicdoom/swordspin         swing4
 
 menu/activate		OpenMenu// Activate a new menu
 menu/backup			Return	// Backup to previous menu
@@ -126,7 +129,7 @@ $random sdeath { sonicdoom/thatwaslame sonicdoom/scream }
 $random adeath { sonicdoom/amyohno sonicdoom/amyscream }
 $random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
 $random sonicdoom/swordswing { sonicdoom/swing1 sonicdoom/swing2 sonicdoom/swing3 }
-$random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 }
+$random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 sonicdoom/grunt4 sonicdoom/grunt5 }
 $random sonicdoom/amygrunt { sonicdoom/amygrunt1 sonicdoom/amygrunt2 }
 $random sonicdoom/amyhurt { sonicdoom/amyhurt1 sonicdoom/amyhurt2 }
 $random sonicdoom/shurikenfire { sonicdoom/shurikenfire1 sonicdoom/shurikenfire2 }

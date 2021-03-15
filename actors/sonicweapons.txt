@@ -12,14 +12,7 @@ ACTOR SonicAbilities : Weapon
   {
   Ready:
     TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	  A_TakeInventory("KickCooldown", 1);
-	}
+	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -28,11 +21,10 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 1 A_Lower
 	Goto Deselect
   Fire:
-    // Spin Charge
-	SPIN A 2
+	TNT1 A 2
 	{
-	  A_Stop;
-	  A_SetGravity(0);
+	  A_OverlayFlags(9, PSPF_ADDWEAPON, true);
+	  A_Overlay(9, "SpinAnim", true);
 	  A_GiveInventory("PeeloutCheck");
 	  A_PlaySound("sonicdoom/peelout", 5);
 	  A_GiveInventory("SpinCharges", 1);
@@ -42,14 +34,13 @@ ACTOR SonicAbilities : Weapon
 	    A_Light(6);
 	  }
 	}
-    TNT1 A 0 A_GiveInventory("SpindashBlock")
+	TNT1 A 0 A_SetSpeed(0.1)
 	TNT1 A 1 A_ReFire
-    TNT1 A 0 A_TakeInventory("PowerBlocks")
+	TNT1 A 0 A_ClearOverlays(0, 0)
 	TNT1 A 0 A_JumpIf(CountInv("SpinCharges")>11,"SuperSpinDash")
 	TNT1 A 0 A_JumpIf(CountInv("SpinCharges")>5,"SpinDash")
   Spin:
-	TNT1 A 0 A_SetSpeed(2)
-	TNT1 A 0 A_Gravity
+	TNT1 A 0 A_SetSpeed(4)
     TNT1 A 0 A_PlaySound("sonicdoom/peeloutrelease", 5)
 	TNT1 A 0 A_TakeInventory("PeeloutCheck")
 	TNT1 A 0 A_TakeInventory("SpinCharges", 99)
@@ -60,8 +51,7 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 0 A_GiveInventory("SonicKick")
 	Goto Ready
   SpinDash:
-	TNT1 A 0 A_SetSpeed(2)
-	TNT1 A 0 A_Gravity
+	TNT1 A 0 A_SetSpeed(4)
     TNT1 A 0 A_PlaySound("sonicdoom/peeloutrelease", 5)
 	TNT1 A 0 A_TakeInventory("PeeloutCheck")
 	TNT1 A 0 A_TakeInventory("SpinCharges", 99)
@@ -69,8 +59,7 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 64, 0, Sin(Pitch) * -64, CVF_Relative)
 	Goto Ready
   SuperSpinDash:
-	TNT1 A 0 A_SetSpeed(2)
-	TNT1 A 0 A_Gravity
+	TNT1 A 0 A_SetSpeed(8)
 	TNT1 A 0 A_PlaySound("sonicdoom/go", 2)
 	TNT1 A 0 A_StopSound(5)
     TNT1 A 0 A_PlaySound("sonicdoom/peeloutrelease", 6)
@@ -128,6 +117,11 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 0 A_TakeInventory("BoostCheck")
 	TNT1 A 0 A_StopSound(1)
 	Goto Ready
+  SpinAnim:
+	SPIN ABCDEFEDCB 1
+    Loop
+  SpinAnimEnd:
+    Goto Ready
   Spawn:
     SONC A -1
     Stop
@@ -145,14 +139,8 @@ ACTOR Caliburn : Weapon
   {
   Ready:
     CALI A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	  A_TakeInventory("KickCooldown", 1);
-	}
+	TNT1 A 0 A_Gravity
+	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -163,7 +151,11 @@ ACTOR Caliburn : Weapon
     CALI A 1 A_Raise
     Goto Select+1
   Fire:
+	TNT1 A 0 A_CheckFloor("GroundAttack")
+	Goto AirStart
+  GroundAttack:
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
+    TNT1 A 0 A_PlaySound("sonicdoom/grunt",7)
 	TNT1 A 0
 	{
 	  if (CountInv("PowerSuper") > 0)
@@ -175,6 +167,27 @@ ACTOR Caliburn : Weapon
 	CALI E 5
     CALI A 0 A_ReFire
 	Goto Ready
+  AirStart:
+	TNT1 A 0 A_PlaySound("sonicdoom/airgrunt",7)
+	CSPN A 0 ThrustThingZ(0, 30, 0, 1)
+  AirAttack:
+	TNT1 A 0 ThrustThingZ(0, 5, 1, 1)
+    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
+    CSPN A 1 A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	TNT1 A 0 ThrustThingZ(0, 5, 1, 1)
+    CSPN B 1 A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	TNT1 A 0 ThrustThingZ(0, 5, 1, 1)
+    CSPN C 1 A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	TNT1 A 0 ThrustThingZ(0, 5, 1, 1)
+    CSPN D 1 A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	TNT1 A 0 ThrustThingZ(0, 5, 1, 1)
+    CSPN E 1
+	TNT1 A 0 ThrustThingZ(0, 5, 1, 1)
+    CSPN F 1
+	TNT1 A 0 ThrustThingZ(0, 5, 1, 1)
+    CSPN G 1
+    CALI B 0 A_CheckFloor("Ready")
+    Goto AirAttack
   Hold:
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
 	TNT1 A 0
@@ -266,14 +279,7 @@ ACTOR AcceleratedPistol : Weapon
   {
   Ready:
     SPIS A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	  A_TakeInventory("KickCooldown", 1);
-	}
+	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -284,6 +290,13 @@ ACTOR AcceleratedPistol : Weapon
     SPIS A 1 A_Raise
     Goto Select+1
   Fire:
+    TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory("ChaosEnergy", 1);
+		}
+	}
     SPIS A 0 A_PlaySound("sonicdoom/sonicpistol")
     SPIS A 0 A_FireBullets(2, 2, 1, 12, "NoGibPuff")
 	SPIS A 1 A_GunFlash
@@ -291,16 +304,21 @@ ACTOR AcceleratedPistol : Weapon
 	SPIS A 0 A_ReFire
     Goto Ready
   AltFire:
-    SPIS A 0 A_PlaySound("weapons/rbeam")
-    SPIS A 0 A_RailAttack(24, 0, 1, "c5 fe ff", "c5 c6 ff", RGF_FULLBRIGHT, 0, "NoGibPuff", 0, 0, 0, 25, 1.0, 1.0)
-	SPIS A 0
+    SPIS A 0
 	{
+		A_PlaySound("weapons/rbeam");
 		if (CountInv("PowerSuper") > 0)
 		{
+			A_RailAttack(96, 0, 1, "06 b4 00", "fd ff 00", RGF_FULLBRIGHT, 0, "GibPuff", 0, 0, 0, 25, 1.0, 1.0);
+			A_ChangeVelocity (Cos(Pitch) * -50, 0, Sin(Pitch) * 50, CVF_Relative);
 			A_GiveInventory("ChaosEnergy", 2);
 		}
+		else
+		{
+			A_RailAttack(24, 0, 1, "c5 fe ff", "c5 c6 ff", RGF_FULLBRIGHT, 0, "NoGibPuff", 0, 0, 0, 25, 1.0, 1.0);
+			A_ChangeVelocity (Cos(Pitch) * -25, 0, Sin(Pitch) * 25, CVF_Relative);
+		}
 	}
-	SPIS A 0 A_ChangeVelocity (Cos(Pitch) * -25, 0, Sin(Pitch) * 25, CVF_Relative)
     SPIS BC 1
 	SPIS C 2
     Goto Ready
@@ -335,14 +353,7 @@ ACTOR RapidShotty : Weapon 1221
   {
   Ready:
     SCTG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	  A_TakeInventory("KickCooldown", 1);
-	}
+	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -353,17 +364,21 @@ ACTOR RapidShotty : Weapon 1221
     SCTG A 1 A_Raise
     Goto Select+1
   Fire:
+    TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperFire")
     SCTG A 0 A_PlaySound("sonicdoom/shardshot")
 	SCTG A 0 A_FireBullets(25, 15, 20, 4, "BulletPuff")
 	SCTG B 6 A_GunFlash
 	SCTG C 4
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_Jump(256, "Ready");
-	  }
-	}
 	SCTG C 6
+	SCTG A 0 A_ReFire
+	Goto Ready
+  SuperFire:
+    TNT1 A 0 A_GiveInventory("ChaosEnergy", 8)
+    SCTG A 0 A_PlaySound("sonicdoom/shardshot")
+	SCTG A 0 A_FireBullets(25, 15, 20, 4, "BulletPuff")
+	SCTG B 3 A_GunFlash("SuperFlash")
+	SCTG C 2
+	SCTG C 3
 	SCTG A 0 A_ReFire
 	Goto Ready
   Reload:
@@ -371,6 +386,9 @@ ACTOR RapidShotty : Weapon 1221
 	Goto Ready
   Flash:
     SCTF A 4 Bright
+	Stop
+  SuperFlash:
+    SCTF A 2 Bright
 	Stop
   Spawn:
     SCAT A -1
@@ -392,14 +410,7 @@ ACTOR ShurikenCrossbow : Weapon
   {
   Ready:
     SHRL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	  A_TakeInventory("KickCooldown", 1);
-	}
+	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -410,6 +421,13 @@ ACTOR ShurikenCrossbow : Weapon
     SHRL A 1 A_Raise
     Goto Select+1
   Fire:
+    TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory("ChaosEnergy", 16);
+		}
+	}
     TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperFire")
     SHRL B 12 A_FireProjectile("Shuriken", 0, 1)
     SHRL CDEFG 1
@@ -449,14 +467,7 @@ ACTOR EclipseBlaster : Weapon
   {
   Ready:
     ECBL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	  A_TakeInventory("KickCooldown", 1);
-	}
+	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -467,6 +478,13 @@ ACTOR EclipseBlaster : Weapon
     ECBL A 1 A_Raise
     Goto Select+1
   Fire:
+    TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory("ChaosEnergy", 2);
+		}
+	}
 	ECBL B 1 A_FireProjectile("ChaosEnergyBall", 0, 1)
 	TNT1 A 0 A_ReFire
     Goto Ready
@@ -518,14 +536,7 @@ ACTOR AirStrikeLauncher : Weapon 1223
   {
   Ready:
     MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	  A_TakeInventory("KickCooldown", 1);
-	}
+	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -541,11 +552,25 @@ ACTOR AirStrikeLauncher : Weapon 1223
     Goto Ready
   StandardRocket:
 	MISG A 0 A_FireProjectile("ChaosRocket", 0, 1)
+    TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory("ChaosEnergy", 25);
+		}
+	}
 	MISG A 1
 	MISG B 2
     Goto Ready
   AirstrikeRocket:
 	MISG A 0 A_FireProjectile("AirstrikeRocket", 0, 1)
+    TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory("ChaosEnergy", 25);
+		}
+	}
 	MISG A 0 A_ChangeVelocity (Cos(Pitch) * -10, 0, Sin(Pitch) * 10, CVF_Relative)
 	MISG A 1
 	MISG B 2

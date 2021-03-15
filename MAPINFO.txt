@@ -42,15 +42,13 @@ map E3M10 "Dis Is It"
 {
   levelnum = 30
   titlepatch = "WILV27"
-  next = "endbunny"
+  next = endpic, "bossend"
   secretnext = "E3M9"
   sky1 = "SKY3"
-  cluster = 3
+  cluster = 12
   par = 30
   nointermission
   nosoundclipping
-  spidermastermindspecial
-  specialaction_exitlevel
   music = S_BOSS
   needclustertext
 }
@@ -59,6 +57,8 @@ map ERR666 "Mod Incompatible"
 {
   music = S_ERR666
   cluster = 412
+  next = endpic, "TITLEPIC"
+  nointermission
 }
 
 clearskills
@@ -230,6 +230,15 @@ cluster 11
 {
 	flat = "GHZFL1"
 	exittext = lookup, "CAMPEND"
+}
+
+// E3M10 secret boss
+
+cluster 12
+{
+	pic = "S_INTER"
+	exittext = lookup, "BOSSEND"
+	music = "D_VICTOR"
 }
 
 // Brutal Doom detection cluster
