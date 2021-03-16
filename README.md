@@ -7,8 +7,8 @@ Sonic the Hedgehog is property of SEGA. DOOM is property of id Software.
 
 ## Playing a pre-release version
 At the top of the page, click `Code`, then `Download ZIP`.<br>
-Run `sonicdoom-main.zip` with GZDoom.<br>
-Optionally, you can rename `sonicdoom-main.zip` to `sonicdoom-main.pk3`.
+Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
+Optionally, you can rename `Sonic-LockandLoad-main.zip` to `Sonic-LockandLoad-main.pk3`.
 
 ## Does this mod support multiplayer?
 Right now, no, it doesn't. At least not from what I've tested. Feel free to test it out yourself if possible and bring it up as an issue.
