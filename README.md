@@ -11,5 +11,9 @@ Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
 Optionally, you can rename `Sonic-LockandLoad-main.zip` to `Sonic-LockandLoad-main.pk3`.
 
 ## Does this mod support multiplayer?
-Right now, no, it doesn't. At least not from what I've tested. Feel free to test it out yourself if possible and bring it up as an issue.
-Either way, multiplayer is NOT the focus of this mod. Maybe in the future, but for now it only focuses on a single player experience.
+No, for multiple reasons:
+
+- The purpose of this mod is single player only.
+- The weapons are way too unbalanced for multiplayer. Try it and see.
+- The ACS crap I've done makes multiplayer hard to achieve.
+- Every character will just look like Doomguy, because I haven't bothered to make sprites for the player character.
