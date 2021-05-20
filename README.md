@@ -17,3 +17,5 @@ No, for multiple reasons:
 - The weapons are way too unbalanced for multiplayer. Try it and see.
 - The ACS crap I've done makes multiplayer hard to achieve.
 - Every character will just look like Doomguy, because I haven't bothered to make sprites for the player character.
+- This mod uses ZScript, so it's incompatible with Zandronum.
+- GZDoom is not intended for multiplayer.
