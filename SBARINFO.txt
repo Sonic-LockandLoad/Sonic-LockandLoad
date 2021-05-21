@@ -121,6 +121,11 @@ mugshot "Boost"
   BOOS 20;
 }
 
+mugshot "Shield"
+{
+  SHLD 20;
+}
+
 mugshot "Normal"
 {
   {
@@ -134,12 +139,12 @@ mugshot "Pain", directional
   {
     TR00, KILL0, TL00
   }
-  35;
+  5;
 }
 
 mugshot "Ouch"
 {
-  OUCH0 35;
+  OUCH0 5;
 }
 
 mugshot "Grin"

@@ -110,14 +110,28 @@ ACTOR SpecialRing : CustomInventory replaces Medikit 1002
 			}
 			else
 			{
-				A_GiveInventory("Health", 50);
 				A_GiveInventory("ChaosEnergy", 50);
+				if (Health < 300)
+				{
+					A_GiveInventory("Health", 50);
+					if (Health > 300)
+					{
+						A_SetHealth(300);
+					}
+				}
 			}
 		}
 		else
 		{
-			A_GiveInventory("Health", 50);
 			A_GiveInventory("ChaosEnergy", 50);
+			if (Health < 300)
+			{
+				A_GiveInventory("Health", 50);
+				if (Health > 300)
+				{
+					A_SetHealth(300);
+				}
+			}
 		}
 	}
 	Stop
@@ -234,7 +248,7 @@ ACTOR ChaosEmeralds : CustomInventory
     TNT1 A 0 ACS_Execute(7)
 	Stop
   Use:
-    TNT1 A 0 A_TakeInventory("ChaosEmeralds")
+    TNT1 A 0 A_TakeInventory("ChaosEmeralds", 1)
 	TNT1 A 0
 	{
 		if (CountInv("AmyCheck") > 0)            // If playing as Amy...
@@ -289,7 +303,17 @@ ACTOR ChaosCharge : CustomInventory replaces Clip 1231
     APLS B -1
 	Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 4)
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 2);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 4);
+		}
+	}
 	Stop
   }
 }
@@ -302,8 +326,17 @@ ACTOR LargeChaosEnergy : CustomInventory replaces GreenArmor 1232
     CELP A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 100)
-	Stop
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 50);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 100);
+		}
+	}
   }
 }
 ACTOR LargeChaosEnergy2 : CustomInventory replaces Cell
@@ -315,7 +348,17 @@ ACTOR LargeChaosEnergy2 : CustomInventory replaces Cell
     CELP A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 100)
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 50);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 100);
+		}
+	}
 	Stop
   }
 }
@@ -328,7 +371,17 @@ ACTOR ChaosChargeX4 : CustomInventory replaces Shell 1233
     SHEL A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 16)
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 8);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 16);
+		}
+	}
 	Stop
   }
 }
@@ -341,7 +394,17 @@ ACTOR ChaosChargeBox : CustomInventory replaces ClipBox 1234
     AMMO A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 80)
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 40);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 80);
+		}
+	}
 	Stop
   }
 }
@@ -354,7 +417,17 @@ ACTOR LargeChaosChargeBox : CustomInventory replaces ShellBox 1235
     SBOX A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 160)
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 80);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 160);
+		}
+	}
 	Stop
   }
 }
@@ -367,7 +440,17 @@ ACTOR ChaosEnergyCapsule : CustomInventory replaces RocketAmmo 1236
     ROCK A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 200)
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 100);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 200);
+		}
+	}
 	Stop
   }
 }
@@ -380,7 +463,17 @@ ACTOR ChaosEnergyCapsuleBox : CustomInventory replaces RocketBox 1237
     BROK A -1
     Stop
   Pickup:
-	TNT1 A 0 A_GiveInventory ("ChaosEnergy", 400)
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 200);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 400);
+		}
+	}
 	Stop
   }
 }
@@ -396,7 +489,7 @@ ACTOR MacAndCheese : CustomInventory
   Pickup:
     TNT1 A 0 A_Print("\c[ShadowRedBlack]I'm making mac and cheese,\n\c[ShadowRedBlack]and nobody can stop me!")
 	TNT1 A 0 A_GiveInventory("Health", 100)
-	TNT1 A 0 A_GiveInventory("ChaosEnergyEX", 100)
+	TNT1 A 0 A_GiveInventory("ChaosEnergy", 100)
 	Stop
   }
 }

@@ -18,9 +18,9 @@ ACTOR SpearCheck : Inventory
   Inventory.MaxAmount 1
 }
 
-ACTOR GlideStage : Inventory 
+ACTOR LegOut : Inventory 
 {
-  Inventory.MaxAmount 2
+  Inventory.MaxAmount 1
 }
 
 ACTOR ZoomCheck : Inventory 
@@ -51,4 +51,9 @@ ACTOR SpinCharges : Inventory
 ACTOR TeleportCooldown : Inventory
 {
   Inventory.MaxAmount 50
+}
+
+ACTOR RemoteDet : Inventory
+{
+  Inventory.MaxAmount 1
 }

@@ -160,5 +160,4 @@ QUITMSG5 = "Talk about low budget mods,\nno campaign or tutorial...";
 QUITMSG6 = "How long is this game gonna go on?";
 QUITMSG7 = "<Insert funny Sonic reference here>";
 
-DOSY = "Thanks for playing Sonic: Lock and Load!";
-
+DOSY = "Thanks for playing Sonic: Lock and Load!";+

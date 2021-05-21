@@ -9,6 +9,26 @@ DamageType SonicKick
 {
    Factor = 1
 }
+DamageType ShadowMelee
+{
+   Factor = 1
+}
+DamageType Piko
+{
+   Factor = 1
+}
+DamageType Eclipse
+{
+   Factor = 1
+}
+DamageType EclipseEX
+{
+   Factor = 2
+}
+DamageType RocketStream
+{
+   Factor = 1
+}
 
 map map31 "Wolfenstein"
 {
@@ -70,7 +90,7 @@ skill justwhy
   ammofactor = 9999
   PlayerClassName = "Sonic", "Too easy"
   PlayerClassName = "Amy", "Without Thorns"
-  PlayerClassName = "Classic", "No Way? No Way!"
+  PlayerClassName = "C.Sonic", "No Way? No Way!"
   PlayerClassName = "Shadow", "Infinite"
   name = "Just Why"
   spawnfilter = Hard
@@ -84,7 +104,7 @@ skill easy
   damagefactor = 0.25
   PlayerClassName = "Sonic", "Piece of cake"
   PlayerClassName = "Amy", "A breeze"
-  PlayerClassName = "Classic", "Genesis"
+  PlayerClassName = "C.Sonic", "Genesis"
   PlayerClassName = "Shadow", "Faker"
   name = "Easy"
   spawnfilter = Easy
@@ -95,7 +115,7 @@ skill standard
 {
   PlayerClassName = "Sonic", "Bring it on!"
   PlayerClassName = "Amy", "Just perfect!"
-  PlayerClassName = "Classic", "Like 1991"
+  PlayerClassName = "C.Sonic", "Like 1991"
   PlayerClassName = "Shadow", "Chaos Controller"
   name = "Standard"
   spawnfilter = Normal
@@ -107,7 +127,7 @@ skill hard
   spawnfilter = Hard
   PlayerClassName = "Sonic", "I can still fly!"
   PlayerClassName = "Amy", "Never give up!"
-  PlayerClassName = "Classic", "I am SEGA!"
+  PlayerClassName = "C.Sonic", "I am SEGA!"
   PlayerClassName = "Shadow", "Damn 4th Difficulty"
   name = "Hard"
 }
@@ -117,7 +137,7 @@ skill harder
   damagefactor = 2
   PlayerClassName = "Sonic", "Now I'll show you!"
   PlayerClassName = "Amy", "True Passion"
-  PlayerClassName = "Classic", "Strange, isn't it?"
+  PlayerClassName = "C.Sonic", "Strange, isn't it?"
   PlayerClassName = "Shadow", "Ultimate Life Form"
   name = "Harder"
   spawnfilter = Hard
@@ -132,7 +152,7 @@ skill wtf
   FastMonsters
   PlayerClassName = "Sonic", "Blue Streak"
   PlayerClassName = "Amy", "Thorned Rose"
-  PlayerClassName = "Classic", "Fun is Infinite"
+  PlayerClassName = "C.Sonic", "Fun is Infinite"
   PlayerClassName = "Shadow", "All Fail Shadow"
   name = "WTF"
   mustconfirm = "This'll force you to bring out your best. You sure you're up for it?"

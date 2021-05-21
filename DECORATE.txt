@@ -4,7 +4,7 @@
 #include "actors/sonicweapons.txt"
 #include "actors/amyweapons.txt"
 #include "actors/shadowweapons.txt"
-#include "actors/tailsweapons.txt"
+//#include "actors/tailsweapons.txt"
 #include "actors/classicweapons.txt"
 #include "actors/pickups.txt"
 #include "actors/powerups.txt"
@@ -61,18 +61,20 @@ ACTOR SonicPlayer : PlayerPawn
     Goto Missile
   Pain:
     PLAY G 4 
-    PLAY G 4 A_PlaySound("sonicdoom/sonichurt")
+    PLAY G 0 A_PlaySound("sonicdoom/loserings", 2)
+    PLAY G 4 A_PlaySound("sonicdoom/sonicpain", 1)
     Goto Spawn
   Death:
     PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
   Death1:
     PLAY H 10
-    PLAY I 10 A_PlaySound("sonicdoom/scream")
+    PLAY I 10 A_PlaySound("sonicdoom/death")
     PLAY J 10 A_NoBlocking
     PLAY KLM 10
     PLAY N -1
     Stop
   XDeath:
+    TNT1 A 0 A_Log("OH NO")
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
     PLAY O 5
@@ -83,7 +85,7 @@ ACTOR SonicPlayer : PlayerPawn
     Stop
   AltSkinDeath:
     PLAY H 6
-    PLAY I 6 A_PlaySound("sonicdoom/scream")
+    PLAY I 6 A_PlaySound("sonicdoom/death")
     PLAY JK 6
     PLAY L 6 A_NoBlocking
     PLAY MNO 6
@@ -114,7 +116,8 @@ ACTOR AmyPlayer : PlayerPawn
   Player.SoundClass "amy"
   Player.StartItem "AmyCheck"
   Player.StartItem "PikoPikoHammer"
-  Player.StartItem "GlideTime", 100
+  Player.StartItem "SilentRosePistol"
+  Player.StartItem "ChaosEnergy", 50
   Player.WeaponSlot 1, "PikoPikoHammer"
   Player.WeaponSlot 2, "SilentRosePistol"
   Player.WeaponSlot 3, "PrecisionShotgun"
@@ -158,6 +161,7 @@ ACTOR AmyPlayer : PlayerPawn
     PLAY N -1
     Stop
   XDeath:
+    TNT1 A 0 A_Log("OH NO")
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
     PLAY O 5
@@ -228,6 +232,7 @@ ACTOR ShadowPlayer : PlayerPawn
     PLAY N -1
     Stop
   XDeath:
+    TNT1 A 0 A_Log("ALL FAIL SHADOW")
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
     PLAY O 5
@@ -335,7 +340,7 @@ ACTOR ClassicSonicPlayer : PlayerPawn
   PainChance 255
   DamageFactor "RocketStream", 0.2
   Player.MaxHealth 999
-  Player.DisplayName "Classic"
+  Player.DisplayName "C.Sonic"
   Player.SoundClass "classic"
   Player.Face "CTF"
   Player.StartItem "SonicFist"
@@ -369,6 +374,105 @@ ACTOR ClassicSonicPlayer : PlayerPawn
     PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
   Death1:
     PLAY H 10
+    PLAY I 10
+	{
+		if (random(1,4) == 4)
+		{
+			A_PlaySound("sonicdoom/memorycard");
+		}
+		else 
+		{
+			A_PlaySound("sonicdoom/classicdeath");
+		}
+	}
+    PLAY J 10 A_NoBlocking
+    PLAY KLM 10
+    PLAY N -1
+    Stop
+  XDeath:
+    TNT1 A 0 A_Log("NO WAY? NO WAY!")
+    PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
+  XDeath1:
+	TNT1 A 0 ACS_Execute(9) // play No Way? No Way!
+    PLAY O 5
+    PLAY P 5
+    PLAY Q 5 A_NoBlocking
+    PLAY RSTUV 5
+    PLAY W -1
+    Stop
+  AltSkinDeath:
+    PLAY H 6
+    PLAY I 6
+	{
+		if (random(1,4) == 4)
+		{
+			A_PlaySound("sonicdoom/memorycard");
+		}
+		else 
+		{
+			A_PlaySound("sonicdoom/classicdeath");
+		}
+	}
+    PLAY JK 6
+    PLAY L 6 A_NoBlocking
+    PLAY MNO 6
+    PLAY P -1
+    Stop
+  AltSkinXDeath:
+	TNT1 A 0 ACS_Execute(9) // play No Way? No Way!
+    PLAY Q 5 
+    PLAY R 0 A_NoBlocking
+    PLAY R 5 A_SkullPop
+    PLAY STUVWX 5
+    PLAY Y -1
+    Stop
+  }
+}
+
+ACTOR SonAmyPlayer : PlayerPawn
+{
+  Speed 2
+  Health 125
+  Radius 10
+  Height 46
+  PainChance 255
+  DamageFactor "RocketStream", 0.2
+  Player.MaxHealth 999
+  Player.DisplayName "Sonic + Amy"
+  Player.SoundClass "sonic"
+  Player.Face "CTF"
+  Player.StartItem "SonicAbilities"
+  Player.StartItem "PikoPikoHammer"
+  Player.StartItem "AcceleratedPistol"
+  Player.StartItem "ChaosEnergy", 400
+  Player.StartItem "SonicCheck"
+  Player.WeaponSlot 1, "SonicAbilities", "PikoPikoHammer"
+  Player.WeaponSlot 2, "AcceleratedPistol"
+  Player.WeaponSlot 3, "PrecisionShotgun"
+  Player.WeaponSlot 4, "EclipseBlaster"
+  Player.WeaponSlot 5, "RapidMissiles"
+  States
+  {
+  Spawn:
+    PLAY A -1
+    Loop
+  See:
+    PLAY ABCD 4 
+    Loop
+  Missile:
+    PLAY E 12
+    Goto Spawn
+  Melee:
+    PLAY F 6 BRIGHT
+    Goto Missile
+  Pain:
+    PLAY G 4 
+    PLAY G 4 A_PlaySound("sonicdoom/classicpain")
+    Goto Spawn
+  Death:
+    PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
+  Death1:
+    PLAY H 10
     PLAY I 10 A_PlaySound("sonicdoom/classicdeath")
     PLAY J 10 A_NoBlocking
     PLAY KLM 10
@@ -379,7 +483,7 @@ ACTOR ClassicSonicPlayer : PlayerPawn
   XDeath1:
 	TNT1 A 0 ACS_Execute(9) // play No Way? No Way!
     PLAY O 5
-    PLAY P 5 A_PlaySound("sonicdoom/classicdeath")
+    PLAY P 5
     PLAY Q 5 A_NoBlocking
     PLAY RSTUV 5
     PLAY W -1
@@ -394,7 +498,7 @@ ACTOR ClassicSonicPlayer : PlayerPawn
     Stop
   AltSkinXDeath:
 	TNT1 A 0 ACS_Execute(9) // play No Way? No Way!
-    PLAY Q 5 A_PlaySound("sonicdoom/classicdeath")
+    PLAY Q 5 
     PLAY R 0 A_NoBlocking
     PLAY R 5 A_SkullPop
     PLAY STUVWX 5

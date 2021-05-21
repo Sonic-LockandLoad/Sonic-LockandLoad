@@ -89,7 +89,7 @@ ACTOR SonicAbilities : Weapon
     TNT1 A 0 A_SetMugShotState("Boost")
     TNT1 A 0 A_PlaySound("sonicdoom/boosttrail", 1, 1.0, true)
 	TNT1 A 0 A_LowGravity
-	TNT1 A 0 A_Recoil(-20)
+	TNT1 A 0 A_Recoil(-40)
 	TNT1 A 0 A_Light(2)
 	TNT1 A 0 A_TakeInventory("ChaosEnergy", 1)
     BOOS A 1 A_CustomPunch(5, false, CPF_NOTURN, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
@@ -109,7 +109,7 @@ ACTOR SonicAbilities : Weapon
 	}
     TNT1 A 0 A_PlaySound("sonicdoom/boosttrail", 1, 1.0, true)
 	TNT1 A 0 A_SetGravity(0.1)
-	TNT1 A 0 A_Recoil(-30)
+	TNT1 A 0 A_Recoil(-60)
 	TNT1 A 0 A_Light(2)
     BOOS B 1 A_CustomPunch(999, false, CPF_NOTURN, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
 	BOOS B 0 A_ReFire
@@ -341,7 +341,7 @@ ACTOR RapidShotty : Weapon 1221
   Weapon.AmmoType1 "ChaosEnergy"
   Weapon.AmmoType2 "ChaosEnergy"
   Weapon.AmmoUse1 8
-  Weapon.AmmoUse2 60
+  Weapon.AmmoUse2 32
   Weapon.AmmoGive 60
   Weapon.Kickback 1000
   Inventory.PickupMessage "\c[SonicBlue]I'm runnin' circles around ya!"
@@ -372,6 +372,18 @@ ACTOR RapidShotty : Weapon 1221
 	SCTG C 6
 	SCTG A 0 A_ReFire
 	Goto Ready
+  AltFire:
+    SCTG A 0 A_PlaySound("sonicdoom/forceshot")
+	SCTG A 0 A_ChangeVelocity(Cos(Pitch) * -35, 0, Sin(Pitch) * 35, CVF_Relative)
+	SCTG A 0 A_FireBullets(8, 2, 24, 8, "BulletPuff")
+	SCTG B 12 A_GunFlash("ForceFlash")
+	SCTG A 0 { if (CountInv("PowerSuper") > 0) { A_GiveInventory("ChaosEnergy", 32); A_ReFire; } }
+	SCTG CDE 1
+	SCTG F 28 A_PlaySound("sonicdoom/forcereload", 6)
+	SCTG EDC 1
+	SCTG A 14
+	SCTG A 0 A_ReFire
+	Goto Ready
   SuperFire:
     TNT1 A 0 A_GiveInventory("ChaosEnergy", 8)
     SCTG A 0 A_PlaySound("sonicdoom/shardshot")
@@ -389,6 +401,9 @@ ACTOR RapidShotty : Weapon 1221
 	Stop
   SuperFlash:
     SCTF A 2 Bright
+	Stop
+  ForceFlash:
+    SCTF B 4 Bright
 	Stop
   Spawn:
     SCAT A -1
@@ -478,28 +493,29 @@ ACTOR EclipseBlaster : Weapon
     ECBL A 1 A_Raise
     Goto Select+1
   Fire:
-    TNT1 A 0
+	ECBL B 1
 	{
 		if (CountInv("PowerSuper") > 0)
 		{
-			A_GiveInventory("ChaosEnergy", 2);
+			A_FireProjectile("ChaosEnergyBallEX", 0, 0);
+		}
+		else
+		{
+			A_FireProjectile("ChaosEnergyBall", 0, 1);
 		}
 	}
-	ECBL B 1 A_FireProjectile("ChaosEnergyBall", 0, 1)
 	TNT1 A 0 A_ReFire
     Goto Ready
   AltFire:
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NoEnergy")
   RingCheck:
-    TNT1 A 0 A_JumpIf(Health > 998, "RingsFull")
-    TNT1 A 0 A_JumpIf(Health < 999, "ChaosHeal")
+    TNT1 A 0 A_JumpIf(Health > 299, "RingsFull")
+    TNT1 A 0 A_JumpIf(Health < 300, "ChaosHeal")
   NoEnergy:
-    TNT1 A 0 A_Print("\c[SonicBlue]I'm all out of energy!")
 	TNT1 A 0 A_PlaySound("sonicdoom/error", 4096)
 	Goto Ready
   RingsFull:
-    TNT1 A 0 A_Print("\c[SonicBlue]I'm already at full Rings!")
 	TNT1 A 0 A_PlaySound("sonicdoom/error", 4096)
 	Goto Ready
   ChaosHeal:
@@ -532,6 +548,7 @@ ACTOR AirStrikeLauncher : Weapon 1223
   Weapon.Kickback 1000
   +WEAPON.NOAUTOFIRE
   +WEAPON.NOAUTOAIM
+  +WEAPON.ALT_AMMO_OPTIONAL
   States
   {
   Ready:
@@ -575,6 +592,10 @@ ACTOR AirStrikeLauncher : Weapon 1223
 	MISG A 1
 	MISG B 2
 	Goto Ready
+  AltFire:
+	MISG A 1 A_GiveInventory("RemoteDet")
+	MISG B 1 A_ReFire
+	MISG A 1 A_TakeInventory("RemoteDet")
   Reload:
 	TNT1 A 0 A_GiveInventory("SonicKick")
 	Goto Ready

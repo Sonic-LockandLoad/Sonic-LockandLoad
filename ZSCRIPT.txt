@@ -24,7 +24,9 @@ Class SonicKick : CustomInventory
 			invoker.EXKick = 1;
 		}
 	KickAttack:
+		TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		TNT1 A 0 A_AlertMonsters();
 		TNT1 A 0 A_PlaySound("sonicdoom/grunt", 8);
 		KICK A 1 A_PlaySound("sonicdoom/swordswing", 7);
 		KICK BC 1;
@@ -39,8 +41,28 @@ Class SonicKick : CustomInventory
 				A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
 			}
 		}
-		KICK EF 1 A_ReFire();
-		TNT1 A 1 A_TakeInventory("KickCooldown", 25);
+		KICK EF 1;
+		TNT1 A 1 A_SetInventory("KickCooldown", 5);
+		Stop;
+	SuperKickAttack:
+		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		TNT1 A 0 A_AlertMonsters();
+		TNT1 A 0 A_PlaySound("sonicdoom/grunt", 8);
+		SKIK A 1 A_PlaySound("sonicdoom/swordswing", 7);
+		SKIK BC 1;
+		SKIK D 1 
+		{
+			if (invoker.EXKick > 0)
+			{
+				A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+			}
+			else
+			{
+				A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+			}
+		}
+		SKIK EF 1;
+		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
 	}
 	override void DoEffect()
@@ -99,6 +121,44 @@ Class ShadowDash : CustomInventory
 	}
 }
 
+Class AmyKick : CustomInventory
+{
+	int inuse;
+	States
+	{
+	Use:
+		TNT1 A 0 A_Overlay(-2, "TimeCheck");
+		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		Fail;
+	TimeCheck:
+		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "KickAttack");
+		Stop;
+	KickAttack:
+		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		AKIK A 1 A_PlaySound("sonicdoom/swordswing", 7);
+		TNT1 A 0 A_GiveInventory("LegOut", 1);
+		AKIK BC 1;
+		AKIK D 1 A_CustomPunch(10, false, CPF_NOTURN, "AmyKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		AKIK EFG 1;
+		TNT1 A 0 A_TakeInventory("LegOut", 1);
+		TNT1 A 1 A_SetInventory("KickCooldown", 10);
+		Stop;
+	}
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (inuse > 0)
+		{
+			inuse--;
+		}
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
+		{
+			owner.UseInventory(self);
+			inuse = 6;
+		}
+	}
+}
+
 Class SonicKickPuff : BulletPuff
 {
 	Default
@@ -111,6 +171,29 @@ Class SonicKickPuff : BulletPuff
 		Mass 5;
 		DamageType "SonicKick";
 		ProjectileKickBack 1000;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Melee:
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+Class AmyKickPuff : BulletPuff
+{
+	Default
+	{
+		+NOBLOCKMAP;
+		+NOGRAVITY;
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+		DamageType "SonicKick";
+		ProjectileKickBack 2000;
 	}
 	States
 	{

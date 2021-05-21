@@ -35,11 +35,12 @@ sonicdoom/supertheme3       m_supsha
 sonicdoom/superready        supready
 sonicdoom/supertransform    suptrnsf
 sonicdoom/healthcharge      hpcharge
-sonicdoom/grunt1            Wave21
-sonicdoom/grunt2            Wave22
-sonicdoom/grunt3            Wave23
-sonicdoom/grunt4            Wave24
-sonicdoom/grunt5            Wave25
+sonicdoom/grunt1            SonicGr1
+sonicdoom/grunt2            SonicGr2
+sonicdoom/grunt3            SonicGr3
+sonicdoom/grunt4            SonicGr4
+sonicdoom/grunt5            SonicGr5
+sonicdoom/grunt6            SonicGr6
 sonicdoom/amygrunt1         agrunt1
 sonicdoom/amygrunt2         agrunt2
 sonicdoom/boosttrail        bstrail
@@ -99,6 +100,8 @@ sonicdoom/tailsfly          tailsfly
 sonicdoom/fsonictaunt       notgeten
 sonicdoom/shockwave         shock
 sonicdoom/shardshot         sharshot
+sonicdoom/forceshot         sha2shot
+sonicdoom/forcereload       forcrlod
 sonicdoom/10rings           10Ring
 sonicdoom/peelout           peelc
 sonicdoom/peeloutrelease    peelr
@@ -107,9 +110,31 @@ sonicdoom/herewe            herewe
 sonicdoom/go                go
 sonicdoom/sonicpistol       fpistol
 sonicdoom/classicpain       churt
-sonicdoom/classicdeath      cdead
 sonicdoom/sliding           Sliding
 sonicdoom/swordspin         swing4
+sonicdoom/loserings         LoseRing
+
+sonicdoom/yo                yo
+sonicdoom/illplay           heyillpl
+
+sonicdoom/memorycard		memcard
+
+sonicdoom/classicno         noc
+sonicdoom/woa1              woa1
+sonicdoom/woa2              woa2
+sonicdoom/classicherego     cherego
+sonicdoom/ifyoucan          catchme
+sonicdoom/underestimate     csncspd
+sonicdoom/teria				teria
+
+sonicdoom/oof1    		    oof1
+sonicdoom/oof2 		        oof2
+sonicdoom/oof3 		        oof3
+sonicdoom/oof4 		        oof4
+sonicdoom/oof5 		        oof5
+       
+sonicdoom/sonicpainx1       SonicOw1
+sonicdoom/sonicpainx2       SonicOw2
 
 menu/activate		OpenMenu// Activate a new menu
 menu/backup			Return	// Backup to previous menu
@@ -124,21 +149,26 @@ menu/quit2         ImOut
 
 $random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
 $random auseof { sonicdoom/deadend1 sonicdoom/deadend2 }
-$random duseof { sonicdoom/no sonicdoom/huh sonicdoom/focused}
-$random sdeath { sonicdoom/thatwaslame sonicdoom/scream }
+$random duseof { sonicdoom/no sonicdoom/huh sonicdoom/focused }
+$random claoof { sonicdoom/oof1 sonicdoom/oof2 sonicdoom/oof3 sonicdoom/oof4 sonicdoom/oof5 }
+$random sonicdoom/driftline { sonicdoom/ifyoucan sonicdoom/classicherego sonicdoom/underestimate sonicdoom/teria }
+$random sonicdoom/death { sonicdoom/thatwaslame sonicdoom/scream }
 $random adeath { sonicdoom/amyohno sonicdoom/amyscream }
+$random sonicdoom/classicdeath { sonicdoom/classicno sonicdoom/woa1 sonicdoom/woa2 }
 $random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
 $random sonicdoom/swordswing { sonicdoom/swing1 sonicdoom/swing2 sonicdoom/swing3 }
-$random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 sonicdoom/grunt4 sonicdoom/grunt5 }
+$random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 sonicdoom/grunt4 sonicdoom/grunt5 sonicdoom/grunt6 }
 $random sonicdoom/amygrunt { sonicdoom/amygrunt1 sonicdoom/amygrunt2 }
+$random sonicdoom/sonicpain { sonicdoom/sonichurt sonicdoom/sonicpainx1 sonicdoom/sonicpainx2 }
 $random sonicdoom/amyhurt { sonicdoom/amyhurt1 sonicdoom/amyhurt2 }
 $random sonicdoom/shurikenfire { sonicdoom/shurikenfire1 sonicdoom/shurikenfire2 }
 $random sonicdoom/shadowgrunt  { sonicdoom/shadowgrunt1 sonicdoom/shadowgrunt2 sonicdoom/shadowgrunt3 sonicdoom/shadowgrunt4 sonicdoom/shadowgrunt5 sonicdoom/shadowgrunt6 }
 $random sonicdoom/chaosgrunt  { sonicdoom/shadowgruntc sonicdoom/there }
 $random sonicdoom/sonictaunt { sonicdoom/sonictaunt1 sonicdoom/sonictaunt2 }
 $random sonicdoom/shadowtaunt { sonicdoom/shadowtaunt1 sonicdoom/shadowtaunt2 }
+$random sonicdoom/classictaunt { sonicdoom/yo sonicdoom/illplay }
 
-$playersound sonic male *death                  sdeath
+$playersound sonic male *death                  sonicdoom/death
 $playeralias sonic male *usefail                useoof
 $playersound sonic male *jump                   S_JUMP
 $playersound sonic male sonicdoom/supersonic    nowshow
@@ -150,10 +180,11 @@ $playersound amy female *jump                   A_JUMP
 $playersound amy female sonicdoom/supersonic    destrall
 $playersound amy female sonicdoom/taunt         sonicdoom/amytaunt
 
-$playersound classic male *death                cdead
-$playersound classic male *usefail              cuseof
+$playersound classic male *death                sonicdoom/cdeath
+$playeralias classic male *usefail              claoof
 $playersound classic male *jump                 cjump
 $playersound classic male sonicdoom/supersonic  supsonic
+$playersound classic male sonicdoom/taunt       sonicdoom/classictaunt
 
 $playersound shadow male *death                 nooooooo
 $playeralias shadow male *usefail               duseof
