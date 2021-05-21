@@ -19,3 +19,13 @@ No, for multiple reasons:
 - Every character will just look like Doomguy, because I haven't bothered to make sprites for the player character.
 - This mod uses ZScript, so it's incompatible with Zandronum.
 - GZDoom is not intended for multiplayer.
+
+## Known issues
+### All versions
+- **Sonic's Boost feels sluggish and goes slower than it should**
+    - This indicates a problem with your GZDoom config. (I'm not sure which problem that is specifically.) One way of fixing this is to delete your `gzdoom.ini` configuration file, launch GZDoom, and reconfigure everything.
+### Chaos Update (pre-release)
+- **The mod doesn't work with a specific map**
+    - This is an issue I've noticed with the Chaos Update, but I've no idea what causes it.
+- **The mod displays a message about an incompatible mod**
+    - [Then don't run this mod with Brutal Doom.](https://forum.zdoom.org/viewtopic.php?t=47678)
