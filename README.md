@@ -1,11 +1,11 @@
 # Welcome to Sonic: Lock and Load! ![GitHub all releases](https://img.shields.io/github/downloads/SpeedStriker243/sonicdoom/total)
-*Sonic: Lock and Load* is a modification for classic DOOM which includes Sonic the Hedgehog, as well as a host of new weapons and techniques.
+*Sonic: Lock and Load* is a DOOM mod for the GZDoom source port based on Sonic the Hedgehog.
+Includes player classes, weapons and certain techniques.
 
-## Legal stuff
-Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
-Sonic the Hedgehog is property of SEGA. DOOM is property of id Software.
+## Playing a release version
+Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases).
 
-## Playing a pre-release version
+## Playing an unstable (non-release) version
 At the top of the page, click `Code`, then `Download ZIP`.<br>
 Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
 Optionally, you can rename `Sonic-LockandLoad-main.zip` to `Sonic-LockandLoad-main.pk3`.
@@ -24,8 +24,12 @@ No, for multiple reasons:
 ### All versions
 - **Sonic's Boost feels sluggish and goes slower than it should**
     - This indicates a problem with your GZDoom config. (I'm not sure which problem that is specifically.) One way of fixing this is to delete your `gzdoom.ini` configuration file, launch GZDoom, and reconfigure everything.
-### Chaos Update (pre-release)
+### Chaos Update
 - **The mod doesn't work with a specific map**
     - This is an issue I've noticed with the Chaos Update, but I've no idea what causes it.
 - **The mod displays a message about an incompatible mod**
     - [Then don't run this mod with Brutal Doom.](https://forum.zdoom.org/viewtopic.php?t=47678)
+
+## Copyright
+Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
+Sonic the Hedgehog is property of SEGA. DOOM is property of id Software.
