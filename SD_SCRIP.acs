@@ -130,7 +130,7 @@ script 7 (void)
 	if (CheckInventory("PowerSuper"))
 	{
 		TakeInventory("ChaosEmeralds", 1);
-		GiveInventory("ChaosEnergy", 100);
+		GiveInventory("ChaosEnergy", 999);
 	}
 	else
 	{
