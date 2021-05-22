@@ -136,6 +136,8 @@ sonicdoom/oof5 		        oof5
 sonicdoom/sonicpainx1       SonicOw1
 sonicdoom/sonicpainx2       SonicOw2
 
+sonicdoom/hammerbonk		HamBonk
+
 menu/activate		OpenMenu// Activate a new menu
 menu/backup			Return	// Backup to previous menu
 menu/prompt			Select	// Activate a prompt "menu"
