@@ -1,4 +1,4 @@
-ACTOR Ring : CustomInventory replaces HealthBonus 1000
+ACTOR Ring : CustomInventory replaces HealthBonus
 {
   Inventory.PickupMessage "Picked up a ring."
   Inventory.PickupSound "sonicdoom/ring"
@@ -31,7 +31,7 @@ ACTOR Ring : CustomInventory replaces HealthBonus 1000
 	Stop
   }
 }
-ACTOR RingBox : CustomInventory replaces Stimpack 1001
+ACTOR RingBox : CustomInventory replaces Stimpack
 {
   Health 1
   Radius 20
@@ -88,7 +88,7 @@ ACTOR 10Rings : CustomInventory
 	Stop
   }
 }
-ACTOR SpecialRing : CustomInventory replaces Medikit 1002
+ACTOR SpecialRing : CustomInventory replaces Medikit
 {
   Inventory.PickupMessage "Picked up a Special ring."
   Inventory.PickupSound "sonicdoom/specialring"
@@ -137,7 +137,7 @@ ACTOR SpecialRing : CustomInventory replaces Medikit 1002
 	Stop
   }
 }
-ACTOR ChaosRing : CustomInventory replaces ArmorBonus 3021
+ACTOR ChaosRing : CustomInventory replaces ArmorBonus
 {
   Inventory.PickupMessage "Picked up a Chaos ring."
   Inventory.PickupSound "sonicdoom/ring"
@@ -172,7 +172,7 @@ ACTOR ChaosRing : CustomInventory replaces ArmorBonus 3021
 	Stop
   } 
 }
-ACTOR SoulRing : CustomInventory replaces BlueArmor
+ACTOR SoulRing : CustomInventory
 {
   Inventory.PickupMessage "Picked up a Soul ring."
   Inventory.PickupSound "sonicdoom/ring"
@@ -293,174 +293,58 @@ ACTOR ChaosEmeralds : CustomInventory
   }
 }
 
-
-ACTOR ChaosCharge : CustomInventory replaces Clip 1231
-{
-  Inventory.PickupMessage "Picked up a Chaos charge."
-  States
-  {
-  Spawn:
-    APLS B -1
-	Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 2);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 4);
-		}
-	}
-	Stop
-  }
-}
-ACTOR LargeChaosEnergy : CustomInventory replaces GreenArmor 1232
-{
-  Inventory.PickupMessage "Picked up a pack of Chaos Energy."
-  States
-  {
-  Spawn:
-    CELP A -1
-    Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 50);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 100);
-		}
-	}
-  }
-}
-ACTOR LargeChaosEnergy2 : CustomInventory replaces Cell
-{
-  Inventory.PickupMessage "Picked up a pack of Chaos Energy."
-  States
-  {
-  Spawn:
-    CELP A -1
-    Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 50);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 100);
-		}
-	}
-	Stop
-  }
-}
-ACTOR ChaosChargeX4 : CustomInventory replaces Shell 1233
-{
-  Inventory.PickupMessage "Picked up four Chaos charges."
-  States
-  {
-  Spawn:
-    SHEL A -1
-    Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 8);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 16);
-		}
-	}
-	Stop
-  }
-}
-ACTOR ChaosChargeBox : CustomInventory replaces ClipBox 1234
-{
-  Inventory.PickupMessage "Picked up a box of Chaos charges."
-  States
-  {
-  Spawn:
-    AMMO A -1
-    Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 40);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 80);
-		}
-	}
-	Stop
-  }
-}
-ACTOR LargeChaosChargeBox : CustomInventory replaces ShellBox 1235
-{
-  Inventory.PickupMessage "Picked up a large box of Chaos charges."
-  States
-  {
-  Spawn:
-    SBOX A -1
-    Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 80);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 160);
-		}
-	}
-	Stop
-  }
-}
-ACTOR ChaosEnergyCapsule : CustomInventory replaces RocketAmmo 1236
+ACTOR ChaosCapsule : CustomInventory
 {
   Inventory.PickupMessage "Picked up a Chaos Energy capsule."
   States
   {
   Spawn:
-    ROCK A -1
+    CHSC A -1
+	Stop
+  Pickup:
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_GiveInventory ("ChaosEnergy", 10);
+		}
+		if (CountInv("PowerSuper") < 1)
+		{
+			A_GiveInventory ("ChaosEnergy", 20);
+		}
+	}
+	Stop
+  }
+}
+ACTOR BlueChaosCapsule : CustomInventory
+{
+  Inventory.PickupMessage "Picked up a blue Chaos Energy capsule."
+  States
+  {
+  Spawn:
+    CHSC B -1
     Stop
   Pickup:
 	TNT1 A 0
 	{
 		if (CountInv("PowerSuper") > 0)
 		{
-			A_GiveInventory ("ChaosEnergy", 100);
+			A_GiveInventory ("ChaosEnergy", 50);
 		}
 		if (CountInv("PowerSuper") < 1)
 		{
-			A_GiveInventory ("ChaosEnergy", 200);
+			A_GiveInventory ("ChaosEnergy", 100);
 		}
 	}
-	Stop
   }
 }
-ACTOR ChaosEnergyCapsuleBox : CustomInventory replaces RocketBox 1237
+ACTOR RedChaosCapsule : CustomInventory
 {
-  Inventory.PickupMessage "Picked up a box of Chaos Energy capsules."
+  Inventory.PickupMessage "Picked up a red Chaos Energy capsule."
   States
   {
   Spawn:
-    BROK A -1
+    CHSC C -1
     Stop
   Pickup:
 	TNT1 A 0

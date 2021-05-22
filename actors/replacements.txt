@@ -66,7 +66,7 @@ ACTOR BerserkReplace replaces Berserk
 States {
  Spawn:
  TNT1 A 0 NoDelay A_JumpIfInventory("ShadowCheck",1,"AltSpawn",AAPTR_PLAYER1)
- TNT1 A 0 A_SpawnItem("SoulRecharge")
+ TNT1 A 0 A_SpawnItem("RedChaosCapsule")
  Stop
  AltSpawn:
  TNT1 A 0 A_SpawnItem("EmeraldRecharge")
@@ -239,6 +239,98 @@ Actor PlasmaRifleReplace replaces PlasmaRifle
        Stop
      ClassicSpawn:
        TNT1 A 0 A_SpawnItem("ChaosRain")
+       Stop
+   }
+}
+
+ACTOR ClipReplace : CustomInventory replaces Clip
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("ChaosRing")
+       Stop
+   }
+}
+ACTOR ArmorReplace : CustomInventory replaces GreenArmor
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("ChaosCapsule")
+       Stop
+   }
+}
+ACTOR BlueArmorReplace : CustomInventory replaces BlueArmor
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("RedChaosCapsule")
+       Stop
+   }
+}
+ACTOR ShellReplace : CustomInventory replaces Shell
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("ChaosCapsule")
+       Stop
+  }
+}
+ACTOR ClipBoxReplace : CustomInventory replaces ClipBox
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("ChaosCapsule")
+       Stop
+   }
+}
+ACTOR ShellBoxReplace : CustomInventory replaces ShellBox
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("BlueChaosCapsule")
+       Stop
+   }
+}
+ACTOR RocketAmmoReplace : CustomInventory replaces RocketAmmo
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("BlueChaosCapsule")
+       Stop
+   }
+}
+ACTOR RocketBoxReplace : CustomInventory replaces RocketBox
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("RedChaosCapsule")
+       Stop
+   }
+}
+
+ACTOR CellReplace : CustomInventory replaces Cell
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("BlueChaosCapsule")
+       Stop
+   }
+}
+ACTOR CellPackReplace : CustomInventory replaces CellPack
+{
+  States 
+  {
+     Spawn:
+       TNT1 A 0 NoDelay A_SpawnItem("RedChaosCapsule")
        Stop
    }
 }
