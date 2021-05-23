@@ -307,7 +307,21 @@ ACTOR ChaosRain : Weapon
 			 A_GiveInventory("ChaosEnergy", 1);
 		 }
 	 }
-     CHGG B 0 A_FireBullets(5.6, 0, 1, 1, "BulletPuff")
+     CHGG B 0 
+	 {
+		if (CountInv("PowerSuper") > 0)
+		{
+			A_PlaySound("weapons/shotgf", CHAN_WEAPON);
+			A_GunFlash;
+			A_FireBullets(7, 2, 5, 1, "BulletPuff");
+		}
+		else
+		{
+			A_PlaySound("weapons/chngun", CHAN_WEAPON);
+			A_GunFlash;
+			A_FireBullets(5.6, 0, 1, 1, "BulletPuff");
+		}
+	 }
 	 CHGG B 1
 	 {
 		 if (CountInv("PowerSuper") > 0)

@@ -129,6 +129,7 @@ script 7 (void)
 {
 	if (CheckInventory("PowerSuper"))
 	{
+		Log(s:"Chaos Energy refilled!");
 		TakeInventory("ChaosEmeralds", 1);
 		GiveInventory("ChaosEnergy", 999);
 	}

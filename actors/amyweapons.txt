@@ -22,7 +22,17 @@ ACTOR PikoPikoHammer : Weapon
   Fire:
     PIKO A 0 A_PlaySound("sonicdoom/hammerswing",1)
     PIKO B 1
-	PIKO C 1 A_CustomPunch(100, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hammerbonk")
+	PIKO C 1
+	{
+		if (random(1,8) == 8)
+		{
+			A_CustomPunch(400, 0, CPF_PULLIN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hammerbonk");
+		}
+		else
+		{
+			A_CustomPunch(200, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		}
+	}
 	PIKO D 1
 	PIKO A 0 A_JumpIf(ACS_ExecuteWithResult(2) == 1, "HammerJump")
 	PIKO A 0
@@ -36,10 +46,10 @@ ACTOR PikoPikoHammer : Weapon
 			}
 		}
 	}
-    PIKO E 4 A_CustomPunch(200, CPF_PULLIN, 0, "NoGibPuff", 75)
+    PIKO E 4 
 	PIKO A 0 A_ReFire
     PIKO D 1
-	PIKO C 1 A_CustomPunch(100, 0, 0, "NoGibPuff", 75)
+	PIKO C 1
 	PIKO B 1
     Goto Ready
   HammerJump:
