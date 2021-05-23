@@ -375,7 +375,7 @@ ACTOR RapidShotty : Weapon 1221
   AltFire:
     SCTG A 0 A_PlaySound("sonicdoom/forceshot")
 	SCTG A 0 A_ChangeVelocity(Cos(Pitch) * -20, 0, Sin(Pitch) * 20, CVF_Relative)
-	SCTG A 0 A_FireBullets(8, 2, 24, 8, "BulletPuff")
+	SCTG A 0 A_FireBullets(8, 2, 24, 4, "BulletPuff")
 	SCTG B 12 A_GunFlash("ForceFlash")
 	SCTG A 0 { if (CountInv("PowerSuper") > 0) { A_GiveInventory("ChaosEnergy", 32); A_ReFire; } }
 	SCTG CDE 1
