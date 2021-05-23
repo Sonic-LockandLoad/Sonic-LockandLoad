@@ -366,7 +366,7 @@ ACTOR RapidShotty : Weapon 1221
   Fire:
     TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperFire")
     SCTG A 0 A_PlaySound("sonicdoom/shardshot")
-	SCTG A 0 A_FireBullets(25, 15, 20, 4, "BulletPuff")
+	SCTG A 0 A_FireBullets(18, 10, 20, 4, "BulletPuff")
 	SCTG B 6 A_GunFlash
 	SCTG C 4
 	SCTG C 6
