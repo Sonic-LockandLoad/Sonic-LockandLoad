@@ -8,7 +8,7 @@ LISTMENU "MainMenu"
 	TextItem "Data Options", "d", "DataMenu"
 	TextItem "Mod Options", "e", "LockandLoadOptions"
 	TextItem "I'm outta here!", "q", "QuitMenu"
-	IfGame(Heretic, Hexen, Strife)
+	IfGame(Heretic, Hexen, Strife, Chex)
 	{
 		Font "SMALLFONT"
 		StaticText 78, 40, "Unsupported game"
@@ -36,8 +36,12 @@ OptionMenu "LockandLoadOptions"
 {
 	Title "Sonic: Lock & Load Options"
 	Option "Enable Classic HUD", "ClassicHUD", "YesNo"
-	StaticText "If you preferred the cleaner HUD used in the", "White"
-	StaticText "Dark Update and before, enable this option.", "White"
+	StaticText "If you preferred the cleaner HUD used in the Dark Update and before, enable this option.", "White"
+	StaticText "This will take effect as soon as you unpause the game.", "Yellow"
+	StaticText ""
+	Option "Vocal Super Form Tracks", "VocalTracks", "YesNo"
+	StaticText "This option enables or disables vocal tracks for certain Super forms.", "White"
+	StaticText "This will take effect the next time you transform.", "Yellow"
 }
 AddListMenu "SkillMenu"
 {

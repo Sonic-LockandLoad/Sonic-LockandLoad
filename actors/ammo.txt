@@ -400,7 +400,7 @@ ACTOR Shuriken
   Radius 8
   Height 2
   Speed 60
-  Damage 25
+  Damage 15
   Projectile
   +RIPPER
   +NOEXTREMEDEATH

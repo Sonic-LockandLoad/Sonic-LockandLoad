@@ -53,7 +53,28 @@ ACTOR SuperForm : PowerupGiver
     Loop
   }
 }
+ACTOR HyperForm : PowerupGiver
+{
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.BIGPOWERUP
+  Inventory.MaxAmount 1
+  Powerup.Type "Hyper"
+  Powerup.Color "F0 BC 18", 0.1
+  Inventory.PickupMessage "$GOTINVUL"
+  States
+  {
+  Spawn:
+    PINV ABCD 6 Bright
+    Loop
+  }
+}
 ACTOR PowerSuper : Powerup 
+{
+  Powerup.Duration -9999999
+}
+ACTOR PowerHyper : Powerup 
 {
   Powerup.Duration -9999999
 }

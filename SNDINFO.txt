@@ -126,6 +126,7 @@ sonicdoom/classicherego     cherego
 sonicdoom/ifyoucan          catchme
 sonicdoom/underestimate     csncspd
 sonicdoom/teria				teria
+sonicdoom/classichoming		clahomi
 
 sonicdoom/oof1    		    oof1
 sonicdoom/oof2 		        oof2

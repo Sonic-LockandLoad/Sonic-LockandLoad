@@ -1,1 +1,2 @@
 user bool ClassicHUD = false;
+user bool VocalTracks = true;

@@ -53,13 +53,27 @@ script 4 (void)
 		switch(PlayerClass(PlayerNumber()))
 		{
             case 0: // Sonic
-                 SetMusic("m_supsnc", 0);
+                 if (GetCvar("VocalTracks"))
+				 {
+					 SetMusic("v_supsnc", 0);
+				 }
+				 else
+				 {
+					 SetMusic("m_supsnc", 0);
+				 }
                  break;
             case 1: // Amy
                  SetMusic("m_supamy", 0);
                  break;
             case 2: // Classic Sonic
-                 SetMusic("m_supcls", 0);
+                 if (GetCvar("VocalTracks"))
+				 {
+					 SetMusic("v_supcls", 0);
+				 }
+				 else
+				 {
+					 SetMusic("m_supcls", 0);
+				 }
                  break;
             case 3: // Shadow
                  SetMusic("m_supsha", 0);
@@ -72,6 +86,26 @@ script 4 (void)
 		{
 		    SetMugShotState("Super");
 			Delay(35);
+		}
+		SetMusic("*", 0);
+		SetMugShotState("Normal");
+	}
+	else
+	{
+		SetMusic("*", 0);
+	}
+}
+
+script "TransformHyper" (void)
+{
+	if (CheckInventory("PowerHyper"))
+	{
+		while (CheckInventory("PowerHyper"))
+		{
+			SetMusic("m_hypcls", 0);
+		    SetMugShotState("Hyper");
+			TakeInventory("ChaosEmeralds", 1);
+			Delay(35); 
 		}
 		SetMusic("*", 0);
 		SetMugShotState("Normal");
@@ -129,9 +163,19 @@ script 7 (void)
 {
 	if (CheckInventory("PowerSuper"))
 	{
-		Log(s:"Chaos Energy refilled!");
-		TakeInventory("ChaosEmeralds", 1);
-		GiveInventory("ChaosEnergy", 999);
+		if (PlayerClass(PlayerNumber()) == 2) // If playing as Classic Sonic...
+		{
+			Log(s:"Hyper Sonic!!");
+			TakeInventory("PowerSuper", 1);
+			GiveInventory("HyperForm", 1);
+			ACS_NamedExecute("TransformHyper", 0);
+		}
+		else
+		{
+			Log(s:"Chaos Energy refilled!");
+			TakeInventory("ChaosEmeralds", 1);
+			GiveInventory("ChaosEnergy", 999);
+		}
 	}
 	else
 	{
@@ -224,4 +268,26 @@ script 10 (void)
 			TakeInventory("PowerInvulnerable", 1);
 		}
 	}
+}
+
+script "SetAirControl" ENTER
+{
+	switch(PlayerClass(PlayerNumber()))
+	{
+		case 0:
+            SetAirControl(0.5);
+            break;
+        case 1:
+            SetAirControl(1.0);
+            break;
+        case 2:
+            SetAirControl(0.35);
+            break;
+        case 3:
+            SetAirControl(0.5);
+            break;
+        case -1:
+        default:
+            break;
+    }
 }
