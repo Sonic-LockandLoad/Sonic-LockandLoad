@@ -1,7 +1,7 @@
 ACTOR PikoPikoHammer : Weapon
 {
   Weapon.SelectionOrder 1
-  Weapon.Kickback 10
+  Weapon.Kickback 1000000
   Tag "Piko Piko Hammer"
   +WEAPON.MELEEWEAPON
   +WEAPON.NOALERT

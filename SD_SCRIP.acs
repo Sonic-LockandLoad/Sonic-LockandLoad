@@ -118,7 +118,7 @@ script "TransformHyper" (void)
 
 script 5 (void)
 {
-	if (CheckInventory("PowerSuper") != true)
+	if (!CheckInventory("PowerSuper") && !CheckInventory("PowerHyper"))
 	{
 		if (CheckInventory("PowerInvulnerable"))
 		{
@@ -163,12 +163,14 @@ script 7 (void)
 {
 	if (CheckInventory("PowerSuper"))
 	{
-		if (PlayerClass(PlayerNumber()) == 2) // If playing as Classic Sonic...
+		if (PlayerClass(PlayerNumber()) == 2 && !CheckInventory("PowerHyper"))
+		/* If playing as Classic Sonic and you're not already in Hyper form... */
 		{
 			Log(s:"Hyper Sonic!!");
 			TakeInventory("PowerSuper", 1);
 			GiveInventory("HyperForm", 1);
 			ACS_NamedExecute("TransformHyper", 0);
+			ACS_Execute(11, 0);
 		}
 		else
 		{
@@ -265,6 +267,20 @@ script 10 (void)
 		if (!CheckInventory("ChaosEnergy"))
 		{
 			TakeInventory("PowerSuper", 1);
+			TakeInventory("PowerInvulnerable", 1);
+		}
+	}
+}
+
+script 11 (void)
+{
+	while (CheckInventory("PowerHyper"))
+	{
+		Delay(2);
+		TakeInventory("ChaosEnergy", 2);
+		if (!CheckInventory("ChaosEnergy"))
+		{
+			TakeInventory("PowerHyper", 1);
 			TakeInventory("PowerInvulnerable", 1);
 		}
 	}

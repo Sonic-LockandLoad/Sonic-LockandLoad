@@ -24,7 +24,21 @@ ACTOR ClassicAbilities : Weapon replaces Fist 1212
 	TNT1 A 0 A_PlaySound("sonicdoom/classichoming", 3, 0.75)
 	TNT1 A 0 A_ChangeVelocity (Cos(Pitch) * 32, 0, Sin(Pitch) * -32, CVF_Relative)
 	TNT1 A 0 A_Light(10)
-	TNT1 A 5 A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicKickPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+	TNT1 A 5
+	{
+		if (CountInv("PowerSuper") < 1 && CountInv("PowerHyper") < 1)
+		{
+			A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicKickPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		}
+		else if (CountInv("PowerSuper"))
+		{
+			A_CustomPunch(160, CPF_PULLIN | CPF_NOTURN, 0, "SonicKickPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		}
+		else if (CountInv("PowerHyper"))
+		{
+			A_CustomPunch(320, CPF_PULLIN | CPF_NOTURN, 0, "SonicKickPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		}
+	}
 	TNT1 A 0 A_Light(0)
     Goto Ready
   AltFire:
@@ -146,7 +160,17 @@ ACTOR SpeedyShotgun : Weapon
 	}
 	SHTG A 0 A_FireBullets(5.6, 0, 7, 3, "BulletPuff")
     SHTG A 0 A_PlaySound ("weapons/shotgf", CHAN_WEAPON)
-    SHTG A 0 A_GunFlash
+    SHTG A 0
+	{
+		if (CountInv("PowerHyper") > 0)
+		{
+			A_GunFlash("HyperFlash");
+		}
+		else
+		{
+			A_GunFlash;
+		}
+	}
 	SHTG A 1
 	{
 		if (CountInv("PowerHyper") > 0)
@@ -226,24 +250,24 @@ ACTOR SpeedyShotgun : Weapon
 	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
     SHTG A 0 A_FireBullets (8, 3, 10, 4, "BulletPuff")
 	SHTG A 0 A_GiveInventory("ChaosEnergy", 8)
-    SHTG A 1 A_GunFlash("QuickFlash")
+    SHTG A 1 A_GunFlash("HyperFlash")
 	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
     SHTG A 0 A_FireBullets (5, 2, 10, 5, "BulletPuff")
 	SHTG A 0 A_GiveInventory("ChaosEnergy", 8)
-    SHTG A 1 A_GunFlash("QuickFlash")
+    SHTG A 1 A_GunFlash("HyperFlash")
 	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
     SHTG A 0 A_FireBullets (3, 1, 10, 6, "BulletPuff")
 	SHTG A 0 A_GiveInventory("ChaosEnergy", 8)
-    SHTG A 1 A_GunFlash("QuickFlash")
+    SHTG A 1 A_GunFlash("HyperFlash")
 	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
     SHTG A 0 A_FireBullets (1, 0, 10, 7, "BulletPuff")
 	SHTG A 0 A_GiveInventory("ChaosEnergy", 8)
-    SHTG A 1 A_GunFlash("QuickFlash")
+    SHTG A 1 A_GunFlash("HyperFlash")
 	SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative)
     SHTG A 0 A_FireBullets (0, 0, 10, 8, "BulletPuff")
 	SHTG A 0 A_GiveInventory("ChaosEnergy", 8)
-	SHTG A 0 { A_GunFlash; A_ReFire; }
-    SHTG A 1 A_GunFlash
+	SHTG A 0 { A_GunFlash("HyperFlash"); A_ReFire; }
+    SHTG A 1 A_GunFlash("HyperFlash")
     SHTG BC 3
     SHTG D 2
     SHTG CB 3
@@ -260,6 +284,14 @@ ACTOR SpeedyShotgun : Weapon
   QuickFlash:
     SHTF A 1 Bright A_Light1
     SHTF B 1 Bright A_Light2
+    Goto LightDone
+  HyperFlash:
+    TNT1 A 0 A_JumpIf(random(1, 2) > 1, "HFlash2")
+  HFlash1:
+	SHTF A 1 Bright A_Light1
+    Goto LightDone
+  HFlash2:
+	SHTF B 1 Bright A_Light1
     Goto LightDone
   Spawn:
     SHOT A -1
@@ -332,12 +364,19 @@ ACTOR ChaosRain : Weapon
    Fire:
      CHGG A 0 
 	 {
-		if (CountInv("PowerSuper") > 0 || CountInv("PowerHyper") > 0)
+		if (CountInv("PowerSuper") > 0)
 		{
 			A_PlaySound("weapons/shotgf", CHAN_WEAPON);
 			A_GunFlash;
 			A_FireBullets(7, 2, 5, 1, "BulletPuff");
 		}
+		else if (CountInv("PowerHyper") > 0)
+		{
+			A_PlaySound("weapons/shotgf", CHAN_WEAPON);
+			A_GunFlash;
+			A_FireBullets(9, 4, 15, 1, "BulletPuff");
+		}
+		
 		else
 		{
 			A_PlaySound("weapons/chngun", CHAN_WEAPON);

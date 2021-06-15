@@ -35,15 +35,37 @@ ListMenu "PlayerclassMenu"
 OptionMenu "LockandLoadOptions"
 {
 	Title "Sonic: Lock & Load Options"
-	Option "Enable Classic HUD", "ClassicHUD", "YesNo"
-	StaticText "If you preferred the cleaner HUD used in the Dark Update and before, enable this option.", "White"
+	Option "HUD Type", "ClassicHUD", "HUDType"
+	StaticText "Changes which HUD is displayed. This does not affect Minimal HUD.", "White"
 	StaticText "This will take effect as soon as you unpause the game.", "Yellow"
 	StaticText ""
-	Option "Vocal Super Form Tracks", "VocalTracks", "YesNo"
-	StaticText "This option enables or disables vocal tracks for certain Super forms.", "White"
+	Option "Super Form Tracks", "VocalTracks", "TrackType"
+	StaticText "Enables or disables vocal tracks for certain Super form themes.", "White"
 	StaticText "This will take effect the next time you transform.", "Yellow"
+	StaticText ""
+	Option "Boost Type", "VerticalBoost", "BoostType"
+	StaticText "Changes how Sonic's Boost works.", "White"
+	StaticText "Type A - Can only be aimed horizontally, grants anti-gravity and is twice as fast as Type B.", "White"
+	StaticText "Type B - Can be aimed vertically as well as horizontally, but travels at half the speed of Type A.", "White"
+	StaticText "This takes effect immediately.", "Yellow"
 }
 AddListMenu "SkillMenu"
 {
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
+}
+
+OptionValue "BoostType"
+{
+	0, "Type A"
+	1, "Type B"
+}
+OptionValue "TrackType"
+{
+	0, "Instrumental"
+	1, "Vocal"
+}
+OptionValue "HUDType"
+{
+	0, "Modern" // Chaos Update HUD
+	1, "Classic" // Pre-Chaos Update HUD
 }

@@ -12,15 +12,7 @@ ACTOR ShadowAbilities : Weapon
   {
   Ready:
     TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_SetGravity(2.5)
 	TNT1 A 0 A_TakeInventory("TeleportCooldown", 1)
-	TNT1 A 0
-	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	}
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -29,35 +21,12 @@ ACTOR ShadowAbilities : Weapon
 	TNT1 A 1 A_Lower
 	Goto Deselect
   Fire:
-    TNT1 A 0 A_CheckFloor("Punch")
-  Kick:
-    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
-    DKIK ABC 1
-    DKIK D 1 A_CustomPunch(random(1,64)*10, true, CPF_NOTURN, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
-    DKIK EF 1
-	TNT1 A 2 A_ReFire("Kick2")
-    Goto Ready
-  Punch:
     TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
     DPNR ABC 1
     DPNR D 2 A_CustomPunch(random(1,64)*15, true, CPF_NOTURN, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     DPNR CBA 1
-	TNT1 A 2 A_ReFire("Punch2")
-    Goto Ready
-  Kick2:
-    TNT1 A 0 A_CheckFloor("Punch")
-    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
-    DKIK ABC 1
-    DKIK D 1 A_CustomPunch(random(1,64)*10, true, CPF_NOTURN, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
-    DKIK EF 1
-	TNT1 A 2 A_ReFire
-  Punch2:
-    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
-    DPNL ABC 1
-    DPNL D 2 A_CustomPunch(random(1,64)*25, true, CPF_NOTURN, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
-    DPNL CBA 1
-	TNT1 A 2 A_ReFire
-    Goto Ready
+	TNT1 A 2
+	Goto Ready
   Reload:
 	TNT1 A 0 A_GiveInventory("ShadowDash")
 	Goto Ready
@@ -83,11 +52,7 @@ ACTOR ChaosEmerald : Weapon
     CARM A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	TNT1 A 0
 	{
-	  if (CountInv("PowerSuper")>0)
-	  {
-	    A_GiveInventory("ChaosEnergy", 15);
-	  }
-	  else
+	  if (!CountInv("PowerSuper"))
 	  {
 	    A_GiveInventory("ChaosEnergy", 1);
 	  }

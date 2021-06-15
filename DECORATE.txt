@@ -197,7 +197,7 @@ ACTOR ShadowPlayer : PlayerPawn
   Player.MaxHealth 999
   Player.DisplayName "Shadow"
   Player.Face "DTF"
-  Player.JumpZ 25.0
+  Player.JumpZ 12.0
   Player.SoundClass "shadow"
   Player.StartItem "ShadowAbilities"
   Player.StartItem "ShadowCheck"
