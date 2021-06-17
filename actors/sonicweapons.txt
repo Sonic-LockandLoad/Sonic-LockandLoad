@@ -123,7 +123,7 @@ ACTOR SonicAbilities : Weapon
 	    A_PlaySound("sonicdoom/boost", 6);
 	  }
 	}
-    TNT1 A 0 A_SetMugShotState("Boost")
+    TNT1 A 0 A_SetMugShotState("SuperBoost")
     TNT1 A 0 A_PlaySound("sonicdoom/boosttrail", 1, 1.0, true)
 	TNT1 A 0
 	{
@@ -291,7 +291,7 @@ ACTOR Caliburn : Weapon
 	    A_PlaySound("sonicdoom/boost", 6);
 	  }
 	}
-    TNT1 A 0 A_SetMugShotState("Boost")
+    TNT1 A 0 A_SetMugShotState("Super Boost")
     TNT1 A 0 A_PlaySound("sonicdoom/boosttrail", 1, 1.0, true)
 	TNT1 A 0
 	{

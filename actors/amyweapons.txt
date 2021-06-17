@@ -33,7 +33,7 @@ ACTOR PikoPikoHammer : Weapon
 		}
 	}
 	PIKO D 1
-	PIKO A 0 A_JumpIf(ACS_ExecuteWithResult(2) == 1, "HammerJump")
+	PIKO A 0 A_JumpIf(ACS_NamedExecuteWithResult("HammerJump") == 1, "HammerJump")
 	PIKO A 0
 	{
 		if (CountInv("LegOut") > 0)

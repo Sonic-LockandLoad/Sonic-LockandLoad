@@ -3,7 +3,7 @@
 #define CSF_SOLIDACTORS 2
 #define CSF_ALL (CSF_SOLIDGROUND|CSF_SOLIDACTORS)
 
-script 1 (void)
+script "Taunt" (void)
 {
 	switch(PlayerClass(PlayerNumber()))
       {
@@ -25,7 +25,7 @@ script 1 (void)
         }
 }
 
-script 2 (void)
+script "HammerJump" (void)
 {
 	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
 
@@ -41,12 +41,12 @@ script 2 (void)
 	}
 }
 
-script 3 (void)
+script 3 (void) // I have no clue what this is supposed to do
 {
     ThrustThingZ(0, 7, 0, 1);
 }
 
-script 4 (void)
+script "TransformSuper" (void)
 {
 	if (CheckInventory("PowerSuper"))
 	{
@@ -104,6 +104,7 @@ script "TransformHyper" (void)
 		{
 			SetMusic("m_hypcls", 0);
 		    SetMugShotState("Hyper");
+			TakeInventory("PowerSuper", 1);
 			TakeInventory("ChaosEmeralds", 1);
 			Delay(35); 
 		}
@@ -116,7 +117,7 @@ script "TransformHyper" (void)
 	}
 }
 
-script 5 (void)
+script "Invincibility" (void)
 {
 	if (!CheckInventory("PowerSuper") && !CheckInventory("PowerHyper"))
 	{
@@ -153,15 +154,15 @@ script 5 (void)
 	}
 }
 
-script 6 ENTER
+script "ResetMusic" ENTER
 {
 	SetMugShotState("Normal");
 	SetMusic("*", 0);
 }
 
-script 7 (void)
+script "ChaosEmeraldHandler" (void)
 {
-	if (CheckInventory("PowerSuper"))
+	if (CheckInventory("PowerSuper") || CheckInventory("PowerHyper"))
 	{
 		if (PlayerClass(PlayerNumber()) == 2 && !CheckInventory("PowerHyper"))
 		/* If playing as Classic Sonic and you're not already in Hyper form... */
@@ -170,7 +171,7 @@ script 7 (void)
 			TakeInventory("PowerSuper", 1);
 			GiveInventory("HyperForm", 1);
 			ACS_NamedExecute("TransformHyper", 0);
-			ACS_Execute(11, 0);
+			ACS_NamedExecute("TakeRingsIfHyper", 0);
 		}
 		else
 		{
@@ -196,7 +197,7 @@ script 7 (void)
 	}
 }
 
-script 8 ENTER
+script "NoBrutal4U" ENTER
 {
 	if (CheckClass("BrutalWeapon"))
 	{
@@ -238,7 +239,7 @@ script 8 ENTER
 	}
 }
 
-script 9 (void)
+script "DeathMusic" (void)
 {
 	switch(PlayerClass(PlayerNumber()))
 	{
@@ -258,7 +259,7 @@ script 9 (void)
 	}
 }
 
-script 10 (void)
+script "TakeRingsIfSuper" (void)
 {
 	while (CheckInventory("PowerSuper"))
 	{
@@ -272,7 +273,7 @@ script 10 (void)
 	}
 }
 
-script 11 (void)
+script "TakeRingsIfHyper" (void)
 {
 	while (CheckInventory("PowerHyper"))
 	{

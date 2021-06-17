@@ -1,10 +1,5 @@
 addkeysection "Sonic: Lock and Load - Keybinds" LLKeybinds
 
-addmenukey "Taunt" SonicTaunt
-alias SonicTaunt "puke 1"
+addmenukey "Taunt" "pukename Taunt"
 
 addmenukey "Super Form" invuse
-
-addmenukey "Fire Weapon" "+attack"
-addmenukey "Weapon Ability" "+altattack"
-addmenukey "Offhand Attack" "+reload"

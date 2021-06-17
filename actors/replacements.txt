@@ -334,3 +334,12 @@ ACTOR CellPackReplace : CustomInventory replaces CellPack
        Stop
    }
 }
+ACTOR RadSuitReplace : CustomInventory replaces RadSuit
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SpawnItem("InvincibilityBox")
+			Stop
+	}
+}

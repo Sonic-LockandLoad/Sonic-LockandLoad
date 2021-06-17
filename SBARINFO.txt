@@ -131,6 +131,11 @@ mugshot "Shield"
   SHLD 20;
 }
 
+mugshot "SuperBoost"
+{
+  SBOS 20;
+}
+
 mugshot "Normal"
 {
   {
