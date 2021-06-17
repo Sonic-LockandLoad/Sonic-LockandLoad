@@ -10,6 +10,9 @@ At the top of the page, click `Code`, then `Download ZIP`.<br>
 Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
 Optionally, you can rename `Sonic-LockandLoad-main.zip` to `Sonic-LockandLoad-main.pk3`.
 
+## Screenshots, so I can see what it's about?
+None that I can easily take. I did [stream it on YouTube]("https://www.youtube.com/embed/o8zHD-PQBJ8"), though; you can have a look at that.
+
 ## Does this mod support multiplayer?
 No, for multiple reasons:
 
