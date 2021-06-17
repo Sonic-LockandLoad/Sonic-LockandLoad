@@ -3,7 +3,7 @@
 Includes player classes, weapons, items and certain techniques.
 
 ## Playing a release version
-Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases).
+Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases). Considering that the currently unstable Chaos Update is VASTLY different from any release so far, this is not recommended.
 
 ## Playing an unstable (non-release) version
 At the top of the page, click `Code`, then `Download ZIP`.<br>
