@@ -3,12 +3,16 @@
 Includes player classes, weapons, items and certain techniques.
 
 ## Playing a release version
-Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases).
+#### Considering that the currently unstable Chaos Update is VASTLY different from any release so far, this is not recommended.
+Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases). 
 
 ## Playing an unstable (non-release) version
 At the top of the page, click `Code`, then `Download ZIP`.<br>
 Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
 Optionally, you can rename `Sonic-LockandLoad-main.zip` to `Sonic-LockandLoad-main.pk3`.
+
+## Screenshots, so I can see what it's about?
+None that I can easily take. I did [stream it on YouTube](https://www.youtube.com/embed/o8zHD-PQBJ8), though; you can have a look at that. (it is [outdated](https://github.com/That1M8Head/Sonic-LockandLoad/tree/617fbe9babf6ddc7941ee91a8628a01ce0de5413) though)
 
 ## Does this mod support multiplayer?
 No, for multiple reasons:
