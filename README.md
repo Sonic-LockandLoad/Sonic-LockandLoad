@@ -2,6 +2,11 @@
 *Sonic: Lock and Load* is a DOOM mod for the GZDoom source port based on Sonic the Hedgehog.
 Includes player classes, weapons, items and certain techniques.
 
+
+## Compatibility
+Sonic: Lock and Load is intended to be played in the latest version of **GZDoom** -- it uses features which are not currently available in LZDoom, will never be available in standard ZDoom, and don't even get me started on Zandronum.
+
+
 ## Playing a release version
 #### Considering that the currently unstable Chaos Update is VASTLY different from any release so far, this is not recommended.
 Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases). 
@@ -13,6 +18,7 @@ Optionally, you can rename `Sonic-LockandLoad-main.zip` to `Sonic-LockandLoad-ma
 
 ## Screenshots, so I can see what it's about?
 None that I can easily take. I did [stream it on YouTube](https://www.youtube.com/embed/o8zHD-PQBJ8), though; you can have a look at that. (it is [outdated](https://github.com/That1M8Head/Sonic-LockandLoad/tree/617fbe9babf6ddc7941ee91a8628a01ce0de5413) though)
+You need **at least GZDoom 4.5.0**.
 
 ## Does this mod support multiplayer?
 No, for multiple reasons:
