@@ -308,3 +308,12 @@ script "SetAirControl" ENTER
             break;
     }
 }
+
+script "KickCooldown" (void)
+{
+	while (CheckInventory("KickCooldown"))
+	{
+		TakeInventory("KickCooldown", 1);
+		Delay(1);
+	}
+}

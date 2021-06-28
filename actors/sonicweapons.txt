@@ -11,8 +11,8 @@ ACTOR SonicAbilities : Weapon
   States
   {
   Ready:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -173,9 +173,9 @@ ACTOR Caliburn : Weapon
   States
   {
   Ready:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     CALI A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	TNT1 A 0 A_Gravity
-	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -232,6 +232,7 @@ ACTOR Caliburn : Weapon
 		A_FireProjectile("EnergyBladeRight");
 	  }
 	}
+	
     CALI FGHI 1 A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
 	CALI J 5
     CALI A 0 A_ReFire("Fire")
@@ -346,8 +347,8 @@ ACTOR AcceleratedPistol : Weapon
   States
   {
   Ready:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     SPIS A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -377,11 +378,13 @@ ACTOR AcceleratedPistol : Weapon
 			A_FireBullets(2, 2, 1, 12, "NoGibPuff");
 		}
 	}
+	TNT1 A 0 A_TakeInventory("KickCooldown", 4)
 	SPIS A 1 A_GunFlash
 	SPIS BCA 1
 	SPIS A 0 A_ReFire
     Goto Ready
   AltFire:
+	TNT1 A 0 A_TakeInventory("KickCooldown", 4)
     SPIS A 0
 	{
 		A_PlaySound("weapons/rbeam");
@@ -430,8 +433,8 @@ ACTOR RapidShotty : Weapon 1221
   States
   {
   Ready:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     SCTG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -442,6 +445,7 @@ ACTOR RapidShotty : Weapon 1221
     SCTG A 1 A_Raise
     Goto Select+1
   Fire:
+	TNT1 A 0 A_TakeInventory("KickCooldown", 110)
     TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperFire")
     SCTG A 0 A_PlaySound("sonicdoom/shardshot")
 	SCTG A 0 A_FireBullets(18, 10, 20, 4, "BulletPuff")
@@ -451,6 +455,7 @@ ACTOR RapidShotty : Weapon 1221
 	SCTG A 0 A_ReFire
 	Goto Ready
   AltFire:
+	TNT1 A 0 A_TakeInventory("KickCooldown", 60)
     SCTG A 0 A_PlaySound("sonicdoom/forceshot")
 	SCTG A 0 A_ChangeVelocity(Cos(Pitch) * -20, 0, Sin(Pitch) * 20, CVF_Relative)
 	SCTG A 0 A_FireBullets(8, 2, 24, 4, "BulletPuff")
@@ -463,6 +468,7 @@ ACTOR RapidShotty : Weapon 1221
 	SCTG A 0 A_ReFire
 	Goto Ready
   SuperFire:
+	TNT1 A 0 A_TakeInventory("KickCooldown", 8)
     TNT1 A 0 A_GiveInventory("ChaosEnergy", 16)
     SCTG A 0 A_PlaySound("sonicdoom/shardshot")
 	SCTG A 0 A_FireBullets(18, 10, 20, 4, "BulletPuff")
@@ -502,8 +508,8 @@ ACTOR ShurikenCrossbow : Weapon
   States
   {
   Ready:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     SHRL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -514,6 +520,7 @@ ACTOR ShurikenCrossbow : Weapon
     SHRL A 1 A_Raise
     Goto Select+1
   Fire:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     TNT1 A 0
 	{
 		if (CountInv("PowerSuper") > 0)
@@ -527,6 +534,7 @@ ACTOR ShurikenCrossbow : Weapon
 	TNT1 A 0 A_ReFire
 	Goto Ready
   SuperFire:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     SHRL B 6 A_FireProjectile("Shuriken", 0, 1)
 	TNT1 A 1 A_ReFire
     SHRL CDEFG 1
@@ -559,8 +567,8 @@ ACTOR EclipseBlaster : Weapon
   States
   {
   Ready:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     ECBL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -571,6 +579,7 @@ ACTOR EclipseBlaster : Weapon
     ECBL A 1 A_Raise
     Goto Select+1
   Fire:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
 	ECBL B 1
 	{
 		if (CountInv("PowerSuper") > 0)
@@ -585,6 +594,7 @@ ACTOR EclipseBlaster : Weapon
 	TNT1 A 0 A_ReFire
     Goto Ready
   AltFire:
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NoEnergy")
   RingCheck:
@@ -631,7 +641,7 @@ ACTOR AirStrikeLauncher : Weapon 1223
   {
   Ready:
     MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_TakeInventory("KickCooldown", 1)
+	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     Loop
   Deselect:
     TNT1 AA 0 A_Lower
@@ -642,6 +652,7 @@ ACTOR AirStrikeLauncher : Weapon 1223
     MISG A 1 A_Raise
     Goto Select+1
   Fire:
+	TNT1 A 0 A_TakeInventory("KickCooldown", 3)
     TNT1 A 0 A_CheckFloor("StandardRocket")
 	TNT1 A 0 A_Jump(256, "AirstrikeRocket")
     Goto Ready
@@ -671,6 +682,7 @@ ACTOR AirStrikeLauncher : Weapon 1223
 	MISG B 2
 	Goto Ready
   AltFire:
+	
 	MISG A 1 A_GiveInventory("RemoteDet")
 	MISG B 1 A_ReFire
 	MISG A 1 A_TakeInventory("RemoteDet")

@@ -231,7 +231,7 @@ ACTOR ChaosEnergyBallAmy
   Radius 13
   Height 8
   Speed 25
-  Damage 60
+  Damage 40
   DamageType "Eclipse"
   Projectile
   +RANDOMIZE

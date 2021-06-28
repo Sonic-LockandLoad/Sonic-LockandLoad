@@ -293,72 +293,37 @@ ACTOR ChaosEmeralds : CustomInventory
   }
 }
 
-ACTOR ChaosCapsule : CustomInventory
+ACTOR ChaosCapsule : ChaosEnergy
 {
   Inventory.PickupMessage "Picked up a Chaos Energy capsule."
+  Inventory.Amount 20
   States
   {
   Spawn:
     CHSC A -1
 	Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 10);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 20);
-		}
-	}
-	Stop
   }
 }
-ACTOR BlueChaosCapsule : CustomInventory
+ACTOR BlueChaosCapsule : ChaosEnergy
 {
   Inventory.PickupMessage "Picked up a blue Chaos Energy capsule."
+  Inventory.Amount 100
   States
   {
   Spawn:
     CHSC B -1
     Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 50);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 100);
-		}
-	}
   }
 }
-ACTOR RedChaosCapsule : CustomInventory
+ACTOR RedChaosCapsule : ChaosEnergy
 {
   Inventory.PickupMessage "Picked up a red Chaos Energy capsule."
+  Inventory.Amount 400
   States
   {
   Spawn:
     CHSC C -1
     Stop
-  Pickup:
-	TNT1 A 0
-	{
-		if (CountInv("PowerSuper") > 0)
-		{
-			A_GiveInventory ("ChaosEnergy", 200);
-		}
-		if (CountInv("PowerSuper") < 1)
-		{
-			A_GiveInventory ("ChaosEnergy", 400);
-		}
-	}
-	Stop
   }
 }
 

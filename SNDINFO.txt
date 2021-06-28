@@ -138,6 +138,7 @@ sonicdoom/sonicpainx1       SonicOw1
 sonicdoom/sonicpainx2       SonicOw2
 
 sonicdoom/hammerbonk		HamBonk
+sonicdoom/darkshotty		assashot
 
 menu/activate		OpenMenu// Activate a new menu
 menu/backup			Return	// Backup to previous menu
@@ -149,6 +150,9 @@ menu/choose        Select	// Choose a menu item
 menu/clear         ExitMenu	// Close top menu
 menu/quit1         ImOut
 menu/quit2         ImOut
+
+sonicdoom/amyreload1		ashtrld1
+sonicdoom/amyreload2		ashtrld2
 
 $random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
 $random auseof { sonicdoom/deadend1 sonicdoom/deadend2 }

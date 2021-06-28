@@ -203,6 +203,7 @@ ACTOR ShadowPlayer : PlayerPawn
   Player.StartItem "ShadowCheck"
   Player.StartItem "ChaosEnergy", 30
   Player.WeaponSlot 1, "ShadowAbilities", "ChaosEmerald"
+  Player.WeaponSlot 2, "DarkAssault"
   States
   {
   Spawn:
@@ -429,7 +430,7 @@ ACTOR ClassicSonicPlayer : PlayerPawn
   }
 }
 
-ACTOR SonAmyPlayer : PlayerPawn
+/*ACTOR SonAmyPlayer : PlayerPawn
 {
   Speed 2
   Health 125
@@ -505,7 +506,7 @@ ACTOR SonAmyPlayer : PlayerPawn
     PLAY Y -1
     Stop
   }
-}
+}*/
 
 ACTOR SonicCheck : Inventory 
 {

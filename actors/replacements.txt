@@ -151,7 +151,7 @@ Actor ShotgunReplace replaces Shotgun
        TNT1 A 0 A_SpawnItem("PrecisionShotgun")
        Stop
      ShadSpawn:
-       TNT1 A 0 A_SpawnItem("MacAndCheese")
+       TNT1 A 0 A_SpawnItem("DarkAssault")
        Stop
      ClassicSpawn:
        TNT1 A 0 A_SpawnItem("SpeedyShotgun")
