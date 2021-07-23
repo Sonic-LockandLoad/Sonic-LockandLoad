@@ -135,7 +135,7 @@ script "Invincibility" (void)
 					SetMusic("c_invinc", 0);
 					break;
 				case 3:
-					SetMusic("s_invinc", 0);
+					SetMusic("d_invinc", 0);
 					break;
 				case -1:
 				default:

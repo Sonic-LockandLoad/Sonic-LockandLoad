@@ -236,7 +236,7 @@ ACTOR ShadowPlayer : PlayerPawn
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
     PLAY O 5
-    PLAY P 5 ACS_Execute(9) // play All Fail Shadow
+    PLAY P 5 ACS_NamedExecute("DeathMusic") // play All Fail Shadow
     PLAY Q 5 A_NoBlocking
     PLAY RSTUV 5
     PLAY W -1
@@ -394,7 +394,7 @@ ACTOR ClassicSonicPlayer : PlayerPawn
     TNT1 A 0 A_Log("NO WAY? NO WAY!")
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
-	TNT1 A 0 ACS_Execute(9) // play No Way? No Way!
+	TNT1 A 0 ACS_NamedExecute("DeathMusic") // play No Way? No Way!
     PLAY O 5
     PLAY P 5
     PLAY Q 5 A_NoBlocking

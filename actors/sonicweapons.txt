@@ -21,6 +21,7 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 1 A_Lower
 	Goto Deselect
   Fire:
+	TNT1 A 0 A_JumpIf(CountInv("SpinCharges")>20,"LightSpeedAttack")
 	TNT1 A 2
 	{
 	  A_OverlayFlags(9, PSPF_ADDWEAPON, true);
@@ -29,23 +30,22 @@ ACTOR SonicAbilities : Weapon
 	  A_PlaySound("sonicdoom/peelout", 5);
 	  A_GiveInventory("SpinCharges", 1);
 	  A_Light(3);
-	  if (CountInv("SpinCharges")>11)
-	  {
-	    A_Light(6);
-	  }
 	}
 	TNT1 A 0 A_SetSpeed(0.1)
 	TNT1 A 1 A_ReFire
 	TNT1 A 0 A_ClearOverlays(0, 0)
-	TNT1 A 0 A_JumpIf(CountInv("SpinCharges")>11,"SuperSpinDash")
-	TNT1 A 0 A_JumpIf(CountInv("SpinCharges")>5,"SpinDash")
+	TNT1 A 0 A_JumpIf(CountInv("SpinCharges")>8,"SpinDash")
   Spin:
 	TNT1 A 0 A_SetSpeed(4)
     TNT1 A 0 A_PlaySound("sonicdoom/peeloutrelease", 5)
 	TNT1 A 0 A_TakeInventory("PeeloutCheck")
 	TNT1 A 0 A_TakeInventory("SpinCharges", 99)
 	TNT1 A 0 A_Light(0)
-	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 16, 0, Sin(Pitch) * -16, CVF_Relative)
+	TNT1 AAAA 1
+	{
+		A_ChangeVelocity (Cos(Pitch) * 8, 0, Sin(Pitch) * -8, CVF_Relative);
+		A_CustomPunch(25, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit");
+	}
 	Goto Ready
   Reload:
 	TNT1 A 0 A_GiveInventory("SonicKick")
@@ -56,17 +56,34 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 0 A_TakeInventory("PeeloutCheck")
 	TNT1 A 0 A_TakeInventory("SpinCharges", 99)
 	TNT1 A 0 A_Light(0)
-	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 64, 0, Sin(Pitch) * -64, CVF_Relative)
+	TNT1 AAAAAA 1
+	{
+		A_ChangeVelocity (Cos(Pitch) * 16, 0, Sin(Pitch) * -16, CVF_Relative);
+		A_CustomPunch(50, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit");
+	}
 	Goto Ready
-  SuperSpinDash:
-	TNT1 A 0 A_SetSpeed(8)
-	TNT1 A 0 A_PlaySound("sonicdoom/go", 2)
+  LightSpeedAttack:
+	TNT1 A 0 A_ClearOverlays(0, 0)
 	TNT1 A 0 A_StopSound(5)
-    TNT1 A 0 A_PlaySound("sonicdoom/peeloutrelease", 6)
+	TNT1 A 0 A_SetSpeed(1.5)
 	TNT1 A 0 A_TakeInventory("PeeloutCheck")
+    TNT1 A 1
+	{
+	  if (CountInv("LightSpeedCheck") < 1)
+	  {
+		A_GiveInventory("LightSpeedCheck");
+	    A_PlaySound("sonicdoom/herewe", 6);
+	  }
+	}
+	TNT1 A 0 A_ReFire
 	TNT1 A 0 A_TakeInventory("SpinCharges", 99)
+	TNT1 A 0 A_TakeInventory("LightSpeedCheck")
+	TNT1 A 0 A_SetSpeed(8)
+	TNT1 A 0 A_PlaySound("sonicdoom/go", 6)
+    TNT1 A 0 A_PlaySound("sonicdoom/peeloutrelease", 7)
 	TNT1 A 0 A_Light(0)
-	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 128, 0, Sin(Pitch) * -128, CVF_Relative)
+	TNT1 A 0 A_CustomPunch(120, 0, CPF_PULLIN, "SonicKick", 1024)
+	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 256, 0, Sin(Pitch) * -256, CVF_Relative)
 	Goto Ready
   AltFire:
     TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperBoost")

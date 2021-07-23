@@ -57,3 +57,8 @@ ACTOR RemoteDet : Inventory
 {
   Inventory.MaxAmount 1
 }
+
+ACTOR LightSpeedCheck : Inventory 
+{
+  Inventory.MaxAmount 1
+}

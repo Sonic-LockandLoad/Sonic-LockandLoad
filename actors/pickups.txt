@@ -217,7 +217,7 @@ ACTOR EmeraldRecharge : CustomInventory
 	Stop
   }
 }
-ACTOR InvincibilityBox : CustomInventory replaces InvulnerabilitySphere 10002
+ACTOR InvincibilityBox : CustomInventory
 {
   Inventory.PickupMessage "Invincibility!"
   Inventory.PickupSound "sonicdoom/boxdestroy"
@@ -226,6 +226,22 @@ ACTOR InvincibilityBox : CustomInventory replaces InvulnerabilitySphere 10002
   {
   Spawn:
     INVC A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_GiveInventory("Invincibility", 1)
+	TNT1 A 0 ACS_NamedExecute("Invincibility")
+	Stop
+  }
+}
+ACTOR ShadowFever : CustomInventory
+{
+  Inventory.PickupMessage "Shadow Fever!"
+  Inventory.PickupSound "sonicdoom/boxdestroy"
+  +COUNTITEM
+  States
+  {
+  Spawn:
+    SHAF A -1
     Stop
   Pickup:
 	TNT1 A 0 A_GiveInventory("Invincibility", 1)

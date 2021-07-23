@@ -343,3 +343,16 @@ ACTOR RadSuitReplace : CustomInventory replaces RadSuit
 			Stop
 	}
 }
+ACTOR InvulReplace : CustomInventory replaces InvulnerabilitySphere
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_JumpIfInventory("ShadowCheck", 1, "ShadSpawn", AAPTR_PLAYER1)
+			TNT1 A 0 A_SpawnItem("InvincibilityBox")
+			Stop
+		ShadSpawn:
+			TNT1 A 0 A_SpawnItem("ShadowFever")
+			Stop
+	}
+}
