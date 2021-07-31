@@ -36,10 +36,12 @@ ACTOR SonicPlayer : PlayerPawn
   States
   {
   Spawn:
+    TNT1 A 0  
     PLAY A -1
     Loop
   See:
-	TNT1 A 0
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
+	TNT1 A 0 
 	{
 		if (CountInv("PowerSuper") > 0)
 		{
@@ -53,12 +55,15 @@ ACTOR SonicPlayer : PlayerPawn
     PLAY ABCD 4
     Loop
   Missile:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY E 12
     Goto Spawn
   Melee:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY F 6 BRIGHT
     Goto Missile
   Pain:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY G 4 
     PLAY G 0 A_PlaySound("sonicdoom/loserings", 2)
     PLAY G 4 A_PlaySound("sonicdoom/sonicpain", 1)
@@ -73,7 +78,7 @@ ACTOR SonicPlayer : PlayerPawn
     PLAY N -1
     Stop
   XDeath:
-    TNT1 A 0 A_Log("OH NO")
+    TNT1 A 0  A_Log("OH NO")
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
     PLAY O 5
@@ -125,18 +130,23 @@ ACTOR AmyPlayer : PlayerPawn
   States
   {
   Spawn:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY A -1
     Loop
   See:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY ABCD 4 
     Loop
   Missile:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY E 12
     Goto Spawn
   Melee:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY F 6 BRIGHT
     Goto Missile
   Pain:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY G 4 
 	PLAY G 4
 	{
@@ -160,7 +170,7 @@ ACTOR AmyPlayer : PlayerPawn
     PLAY N -1
     Stop
   XDeath:
-    TNT1 A 0 A_Log("OH NO")
+    TNT1 A 0  A_Log("OH NO")
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
     PLAY O 5
@@ -207,18 +217,23 @@ ACTOR ShadowPlayer : PlayerPawn
   States
   {
   Spawn:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY A -1
     Loop
   See:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY ABCD 4 
     Loop
   Missile:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY E 12
     Goto Spawn
   Melee:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY F 6 BRIGHT
     Goto Missile
   Pain:
+    TNT1 A 0  
     PLAY G 4 
     PLAY G 4 A_PlaySound("sonicdoom/shadowpain")
     Goto Spawn
@@ -232,7 +247,7 @@ ACTOR ShadowPlayer : PlayerPawn
     PLAY N -1
     Stop
   XDeath:
-    TNT1 A 0 A_Log("ALL FAIL SHADOW")
+    TNT1 A 0  A_Log("ALL FAIL SHADOW")
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
     PLAY O 5
@@ -258,79 +273,7 @@ ACTOR ShadowPlayer : PlayerPawn
     Stop
   }
 }
-/*
-ACTOR TailsPlayer : PlayerPawn 
-{
-  Speed 1.8
-  Health 110
-  Radius 15
-  Height 42
-  PainChance 250
-  Mass 25
-  Player.MaxHealth 999
-  Player.DisplayName "Tails"
-  Player.Face "TTF"
-  Player.JumpZ 8.0
-  Player.SoundClass "tails"
-  Player.StartItem "TailsAbilities"
-  Player.StartItem "TailsCheck"
-  Player.StartItem "ChaosEnergy", 10
-  Player.WeaponSlot 1, "TailsAbilities", "Wrench"
-  +NOMENU
-  States
-  {
-  Spawn:
-    PLAY A -1
-    Loop
-  See:
-    PLAY ABCD 4 
-    Loop
-  Missile:
-    PLAY E 12
-    Goto Spawn
-  Melee:
-    PLAY F 6 BRIGHT
-    Goto Missile
-  Pain:
-    PLAY G 4 
-    PLAY G 4 A_PlaySound("sonicdoom/tailshurt")
-    Goto Spawn
-  Death:
-    PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
-  Death1:
-    PLAY H 10
-    PLAY I 10 A_PlaySound("sonicdoom/scream")
-    PLAY J 10 A_NoBlocking
-    PLAY KLM 10
-    PLAY N -1
-    Stop
-  XDeath:
-    PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
-  XDeath1:
-    PLAY O 5
-    PLAY P 5 A_PlaySound("sonicdoom/ohno")
-    PLAY Q 5 A_NoBlocking
-    PLAY RSTUV 5
-    PLAY W -1
-    Stop
-  AltSkinDeath:
-    PLAY H 6
-    PLAY I 6 A_PlaySound("sonicdoom/scream")
-    PLAY JK 6
-    PLAY L 6 A_NoBlocking
-    PLAY MNO 6
-    PLAY P -1
-    Stop
-  AltSkinXDeath:
-    PLAY Q 5 A_PlaySound("sonicdoom/ohno")
-    PLAY R 0 A_NoBlocking
-    PLAY R 5 A_SkullPop
-    PLAY STUVWX 5
-    PLAY Y -1
-    Stop
-  }
-}
-*/
+
 ACTOR ClassicSonicPlayer : PlayerPawn
 {
   Speed 2
@@ -356,18 +299,23 @@ ACTOR ClassicSonicPlayer : PlayerPawn
   States
   {
   Spawn:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY A -1
     Loop
   See:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY ABCD 4 
     Loop
   Missile:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY E 12
     Goto Spawn
   Melee:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY F 6 BRIGHT
     Goto Missile
   Pain:
+    TNT1 A 0 ACS_NamedExecute("RingCountCheck")
     PLAY G 4 
     PLAY G 4 A_PlaySound("sonicdoom/classicpain")
     Goto Spawn
@@ -391,10 +339,10 @@ ACTOR ClassicSonicPlayer : PlayerPawn
     PLAY N -1
     Stop
   XDeath:
-    TNT1 A 0 A_Log("NO WAY? NO WAY!")
+    TNT1 A 0  A_Log("NO WAY? NO WAY!")
     PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
   XDeath1:
-	TNT1 A 0 ACS_NamedExecute("DeathMusic") // play No Way? No Way!
+	TNT1 A 0  ACS_NamedExecute("DeathMusic") // play No Way? No Way!
     PLAY O 5
     PLAY P 5
     PLAY Q 5 A_NoBlocking
@@ -420,7 +368,7 @@ ACTOR ClassicSonicPlayer : PlayerPawn
     PLAY P -1
     Stop
   AltSkinXDeath:
-	TNT1 A 0 ACS_Execute(9) // play No Way? No Way!
+	TNT1 A 0  ACS_Execute(9) // play No Way? No Way!
     PLAY Q 5 
     PLAY R 0 A_NoBlocking
     PLAY R 5 A_SkullPop
@@ -429,84 +377,6 @@ ACTOR ClassicSonicPlayer : PlayerPawn
     Stop
   }
 }
-
-/*ACTOR SonAmyPlayer : PlayerPawn
-{
-  Speed 2
-  Health 125
-  Radius 10
-  Height 46
-  PainChance 255
-  DamageFactor "RocketStream", 0.2
-  Player.MaxHealth 999
-  Player.DisplayName "Sonic + Amy"
-  Player.SoundClass "sonic"
-  Player.Face "CTF"
-  Player.StartItem "SonicAbilities"
-  Player.StartItem "PikoPikoHammer"
-  Player.StartItem "AcceleratedPistol"
-  Player.StartItem "ChaosEnergy", 400
-  Player.StartItem "SonicCheck"
-  Player.WeaponSlot 1, "SonicAbilities", "PikoPikoHammer"
-  Player.WeaponSlot 2, "AcceleratedPistol"
-  Player.WeaponSlot 3, "PrecisionShotgun"
-  Player.WeaponSlot 4, "EclipseBlaster"
-  Player.WeaponSlot 5, "RapidMissiles"
-  States
-  {
-  Spawn:
-    PLAY A -1
-    Loop
-  See:
-    PLAY ABCD 4 
-    Loop
-  Missile:
-    PLAY E 12
-    Goto Spawn
-  Melee:
-    PLAY F 6 BRIGHT
-    Goto Missile
-  Pain:
-    PLAY G 4 
-    PLAY G 4 A_PlaySound("sonicdoom/classicpain")
-    Goto Spawn
-  Death:
-    PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
-  Death1:
-    PLAY H 10
-    PLAY I 10 A_PlaySound("sonicdoom/classicdeath")
-    PLAY J 10 A_NoBlocking
-    PLAY KLM 10
-    PLAY N -1
-    Stop
-  XDeath:
-    PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
-  XDeath1:
-	TNT1 A 0 ACS_Execute(9) // play No Way? No Way!
-    PLAY O 5
-    PLAY P 5
-    PLAY Q 5 A_NoBlocking
-    PLAY RSTUV 5
-    PLAY W -1
-    Stop
-  AltSkinDeath:
-    PLAY H 6
-    PLAY I 6 A_PlaySound("sonicdoom/classicdeath")
-    PLAY JK 6
-    PLAY L 6 A_NoBlocking
-    PLAY MNO 6
-    PLAY P -1
-    Stop
-  AltSkinXDeath:
-	TNT1 A 0 ACS_Execute(9) // play No Way? No Way!
-    PLAY Q 5 
-    PLAY R 0 A_NoBlocking
-    PLAY R 5 A_SkullPop
-    PLAY STUVWX 5
-    PLAY Y -1
-    Stop
-  }
-}*/
 
 ACTOR SonicCheck : Inventory 
 {

@@ -92,6 +92,7 @@ sonicdoom/blockattackx      block2
 sonicdoom/blockready        blkready
 sonicdoom/sonictaunt1       staunt1
 sonicdoom/sonictaunt2       staunt2
+sonicdoom/sonictaunt3       staunt3
 sonicdoom/amytaunt          a_taunt
 sonicdoom/shadowtaunt1      dtaunt1
 sonicdoom/shadowtaunt2      dtaunt2
@@ -171,7 +172,7 @@ $random sonicdoom/amyhurt { sonicdoom/amyhurt1 sonicdoom/amyhurt2 }
 $random sonicdoom/shurikenfire { sonicdoom/shurikenfire1 sonicdoom/shurikenfire2 }
 $random sonicdoom/shadowgrunt  { sonicdoom/shadowgrunt1 sonicdoom/shadowgrunt2 sonicdoom/shadowgrunt3 sonicdoom/shadowgrunt4 sonicdoom/shadowgrunt5 sonicdoom/shadowgrunt6 }
 $random sonicdoom/chaosgrunt  { sonicdoom/shadowgruntc sonicdoom/there }
-$random sonicdoom/sonictaunt { sonicdoom/sonictaunt1 sonicdoom/sonictaunt2 }
+$random sonicdoom/sonictaunt { sonicdoom/sonictaunt1 sonicdoom/sonictaunt2 sonicdoom/sonictaunt3 }
 $random sonicdoom/shadowtaunt { sonicdoom/shadowtaunt1 sonicdoom/shadowtaunt2 }
 $random sonicdoom/classictaunt { sonicdoom/yo sonicdoom/illplay }
 

@@ -297,6 +297,25 @@ ACTOR ShadowMeleeAtk
     Stop
   }
 }
+ACTOR LightAttack
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	RenderStyle "None"
+	Alpha 0
+	VSpeed 1
+	Mass 5
+	DamageType "SonicKick"
+	ProjectileKickBack 0
+	States
+	{
+		Spawn:
+			TNT1 A 0
+		Melee:
+			TNT1 A 0
+			Stop
+	}
+}
 ACTOR NoGibPuff
 {
   +NOBLOCKMAP

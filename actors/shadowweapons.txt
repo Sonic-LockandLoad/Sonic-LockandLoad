@@ -21,7 +21,7 @@ ACTOR ShadowAbilities : Weapon
 	TNT1 A 1 A_Lower
 	Goto Deselect
   Fire:
-    TNT1 A 0 A_PlaySound("sonicdoom/swordswing",1)
+    TNT1 A 0 A_PlaySound("sonicdoom/swordswing", 1)
     DPNR ABC 1
     DPNR D 2 A_CustomPunch(random(1,64)*15, true, CPF_NOTURN, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
     DPNR CBA 1

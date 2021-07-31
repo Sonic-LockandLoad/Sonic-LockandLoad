@@ -19,7 +19,7 @@ ACTOR PikoPikoHammer : Weapon
     PIKO A 1 A_Raise
     Loop
   Fire:
-    PIKO A 0 A_PlaySound("sonicdoom/hammerswing",1)
+    PIKO A 0 A_PlaySound("sonicdoom/hammerswing", 1)
     PIKO B 1
 	PIKO C 1
 	{

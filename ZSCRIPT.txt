@@ -176,6 +176,7 @@ Class SonicKickPuff : BulletPuff
 	}
 }
 
+
 Class AmyKickPuff : BulletPuff
 {
 	Default
