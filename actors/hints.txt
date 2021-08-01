@@ -4,8 +4,7 @@ actor Hint : CustomInventory
   Inventory.PickupSound "sonicdoom/hintpickup"
 }
 
-actor WIPHint : Hint 261
-
+actor BossHint : Hint 261
 {
   States
   {
@@ -13,7 +12,7 @@ actor WIPHint : Hint 261
 	  HELP A -1
 	  Stop
     Pickup:
-      TNT1 A 0 A_Print("The Sonic the Hedgehog in Doom Campaign is still\nin early stages of development and is nowhere near complete.")
+      TNT1 A 0 A_Print("The E-SP567 prototype will absorb your plasma shots.\nDon't bother shooting at it.")
 	  Stop
   }
 }

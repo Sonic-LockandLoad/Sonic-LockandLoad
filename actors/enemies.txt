@@ -5,6 +5,7 @@ ACTOR ActualLostSoul : LostSoul replaces LostSoul
 
 ACTOR FastSpiderdemon : SpiderMastermind 19924
 {
+  Tag "E-SP567"
   Speed 200
   Radius 60
   Height 100
