@@ -6,6 +6,7 @@
 
 script "Taunt" (void)
 {
+	NoiseAlert(0, 0);
 	switch(PlayerClass(PlayerNumber()))
       {
             case 0:
@@ -77,7 +78,14 @@ script "TransformSuper" (void)
 				 }
                  break;
             case 3: // Shadow
-                 SetMusic("m_supsha", 0);
+                 if (GetCvar("VocalTracks"))
+				 {
+					 SetMusic("v_supsha", 0);
+				 }
+				 else
+				 {
+					 SetMusic("m_supsha", 0);
+				 }
                  break;
             case -1:
             default:

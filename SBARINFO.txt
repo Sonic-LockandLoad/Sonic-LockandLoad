@@ -1,76 +1,122 @@
 StatusBar Normal
 {
-  IfCvarInt ClassicHUD, 1
+  IfCvarInt HUDType, 2 // Legacy
   {
-    DrawString BIGFONT, LightBlue, "Time", -40, 114;
-    DrawString BIGFONT, White, time, -15, 114;
-    DrawString BIGFONT, Gold, "Rings", -40, 132;
-    DrawString BIGFONT, Green, "Energy", -40, 150;
-    DrawMugShot 1, 145, 115;
-    DrawKeyBar 10, horizontal, 15, 122, 175;
+	DrawMugShot 1, 145, 165;
+	DrawKeyBar 10, vertical, auto, 240, 172, 0, 3, auto;
 
-    IfHealth 20
-    {
-      DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 132;
-    }
-    IfHealth Not 20
-    {
-      DrawNumber 3, BIGFONT, Red, Health, fillzeros, 66, 132;
-    }
+	IfHealth 10
+	{
+		DrawNumber 3, HUDFONT_DOOM, Gold, Health, fillzeros, 135, 172;
+	}
+	IfHealth Not 10
+	{
+		DrawNumber 3, HUDFONT_DOOM, Red, Health, fillzeros, 135, 172;
+	}
+	DrawString SMALLFONT, Gold, "RINGS", 133, 190;
 
-    InInventory ChaosEnergy, 1
-    {
-      DrawNumber 4, BIGFONT, White, "ChaosEnergy", 66, 150;
-    }
-    InInventory Not ChaosEnergy, 1
-    {
-      DrawNumber 4, BIGFONT, Red, "ChaosEnergy", 66, 150;
-    }
+	InInventory ChaosEnergy, 1
+	{
+		InInventory PowerSuper, 1
+		{
+			DrawNumber 4, HUDFONT_DOOM, Gold, "ChaosEnergy", 230, 172;
+		}
+		Else
+		{
+			DrawNumber 4, HUDFONT_DOOM, Green, "ChaosEnergy", 230, 172;
+		}
+	}
+	InInventory Not ChaosEnergy, 1
+	{
+		DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 230, 172;
+	}
+	InInventory PowerSuper, 1
+	{
+		DrawString SMALLFONT, Gold, "SUPER", 229, 190;
+	}
+	Else
+	{
+		DrawString SMALLFONT, Green, "ENERGY", 233, 190;
+	}
   }
   Else
   {
-    DrawImage "tre_hud", -55, 100;
-    DrawString BIGFONT, LightBlue, time, 22, 98;
-    InInventory ChaosEmeralds, 1
-    {
-      DrawImage "em_back", -31, 175;
-    }
-    DrawMugShot 1, -50, 118;
-    InInventory ChaosEmeralds, 1
-    {
-      DrawImage "em_front", -31, 175;
-    }
-    DrawKeyBar 10, horizontal, 15, 112, 175;
+	  IfCvarInt HUDType, 1 // Classic
+	  {
+		DrawString BIGFONT, LightBlue, "Time", -40, 114;
+		DrawString BIGFONT, White, time, -15, 114;
+		DrawString BIGFONT, Gold, "Rings", -40, 132;
+		DrawString BIGFONT, Green, "Energy", -40, 150;
+		DrawMugShot 1, 145, 115;
+		DrawKeyBar 10, horizontal, 15, 122, 175;
 
-    IfHealth 20
-    {
-      DrawNumber 3, BIGFONT, Gold, Health, fillzeros, 27, 137;
-    }
-    IfHealth Not 20
-    {
-      DrawNumber 3, BIGFONT, Red, Health, fillzeros, 27, 137;
-    }
+		IfHealth 20
+		{
+		  DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 132;
+		}
+		IfHealth Not 20
+		{
+		  DrawNumber 3, BIGFONT, Red, Health, fillzeros, 66, 132;
+		}
 
-    InInventory ChaosEnergy, 1
-    {
-      DrawNumber 3, BIGFONT, Green, "ChaosEnergy", fillzeros, 115, 135;
-    }
-    InInventory Not ChaosEnergy, 1
-    {
-      DrawNumber 3, BIGFONT, Red, "ChaosEnergy", fillzeros, 115, 135;
-    }
+		InInventory ChaosEnergy, 1
+		{
+		  DrawNumber 4, BIGFONT, White, "ChaosEnergy", 66, 150;
+		}
+		InInventory Not ChaosEnergy, 1
+		{
+		  DrawNumber 4, BIGFONT, Red, "ChaosEnergy", 66, 150;
+		}
+	  }
+	  else
+	  {
+		  IfCvarInt HUDType, 0 // Modern
+		  {
+			DrawImage "tre_hud", -55, 100;
+			DrawString BIGFONT, LightBlue, time, 22, 98;
+			InInventory ChaosEmeralds, 1
+			{
+			  DrawImage "em_back", -31, 175;
+			}
+			DrawMugShot 1, -50, 118;
+			InInventory ChaosEmeralds, 1
+			{
+			  DrawImage "em_front", -31, 175;
+			}
+			DrawKeyBar 10, horizontal, 15, 112, 175;
 
-    InInventory TeleportCooldown, 1
-    {
-      DrawNumber 3, BIGFONT, White, "TeleportCooldown", -24, 165;
-    }
+			IfHealth 20
+			{
+			  DrawNumber 3, BIGFONT, Gold, Health, fillzeros, 27, 137;
+			}
+			IfHealth Not 20
+			{
+			  DrawNumber 3, BIGFONT, Red, Health, fillzeros, 27, 137;
+			}
 
-    InInventory ZoomCharge, 100
-    {
-      DrawString BIGFONT, Purple, "Ready", 190, 70;
-    }
+			InInventory ChaosEnergy, 1
+			{
+			  DrawNumber 3, BIGFONT, Green, "ChaosEnergy", fillzeros, 115, 135;
+			}
+			InInventory Not ChaosEnergy, 1
+			{
+			  DrawNumber 3, BIGFONT, Red, "ChaosEnergy", fillzeros, 115, 135;
+			}
+
+			InInventory TeleportCooldown, 1
+			{
+			  DrawNumber 3, BIGFONT, White, "TeleportCooldown", -24, 165;
+			}
+
+			InInventory ZoomCharge, 100
+			{
+			  DrawString BIGFONT, Purple, "Ready", 190, 70;
+			}
+		  }
+	  }
   }
 }
+/*
 StatusBar Fullscreen
 {
   DrawMugShot 1, 140, 165;
@@ -105,6 +151,7 @@ StatusBar Fullscreen
     DrawString BIGFONT, Purple, "Ready", 190, 90;
   }
 }
+*/
 
 mugshot "Hyper"
 {

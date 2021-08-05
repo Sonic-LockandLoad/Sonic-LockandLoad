@@ -35,8 +35,8 @@ ListMenu "PlayerclassMenu"
 OptionMenu "LockandLoadOptions"
 {
 	Title "Sonic: Lock & Load Options"
-	Option "HUD Type", "ClassicHUD", "HUDType"
-	StaticText "Changes which HUD is displayed. This does not affect Minimal HUD.", "White"
+	Option "HUD Type", "HUDType", "HUDType"
+	StaticText "Changes which HUD is displayed.", "White"
 	StaticText "This will take effect as soon as you unpause the game.", "Yellow"
 	StaticText ""
 	Option "Super Form Tracks", "VocalTracks", "TrackType"
@@ -68,4 +68,5 @@ OptionValue "HUDType"
 {
 	0, "Modern" // Chaos Update HUD
 	1, "Classic" // Pre-Chaos Update HUD
+	2, "Legacy" // Minimal HUD, ripped from STHiD Legacy Edition
 }

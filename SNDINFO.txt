@@ -114,9 +114,13 @@ sonicdoom/classicpain       churt
 sonicdoom/sliding           Sliding
 sonicdoom/swordspin         swing4
 sonicdoom/loserings         LoseRing
+sonicdoom/notmyday			notmyday
 
 sonicdoom/yo                yo
 sonicdoom/illplay           heyillpl
+sonicdoom/soundtest         sndtest
+sonicdoom/putemup			putemup
+sonicdoom/sandineye			sandeye
 
 sonicdoom/memorycard		memcard
 
@@ -155,7 +159,7 @@ menu/quit2         ImOut
 sonicdoom/amyreload1		ashtrld1
 sonicdoom/amyreload2		ashtrld2
 
-$random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway }
+$random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway sonicdoom/notmyday }
 $random auseof { sonicdoom/deadend1 sonicdoom/deadend2 }
 $random duseof { sonicdoom/no sonicdoom/huh sonicdoom/focused }
 $random claoof { sonicdoom/oof1 sonicdoom/oof2 sonicdoom/oof3 sonicdoom/oof4 sonicdoom/oof5 }
@@ -174,7 +178,7 @@ $random sonicdoom/shadowgrunt  { sonicdoom/shadowgrunt1 sonicdoom/shadowgrunt2 s
 $random sonicdoom/chaosgrunt  { sonicdoom/shadowgruntc sonicdoom/there }
 $random sonicdoom/sonictaunt { sonicdoom/sonictaunt1 sonicdoom/sonictaunt2 sonicdoom/sonictaunt3 }
 $random sonicdoom/shadowtaunt { sonicdoom/shadowtaunt1 sonicdoom/shadowtaunt2 }
-$random sonicdoom/classictaunt { sonicdoom/yo sonicdoom/illplay }
+$random sonicdoom/classictaunt { sonicdoom/yo sonicdoom/illplay sonicdoom/soundtest sonicdoom/putemup sonicdoom/sandineye }
 
 $playersound sonic male *death                  sonicdoom/death
 $playeralias sonic male *usefail                useoof

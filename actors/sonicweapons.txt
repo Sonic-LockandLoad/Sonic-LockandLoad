@@ -185,6 +185,8 @@ ACTOR Caliburn : Weapon
   Weapon.Kickback 1
   Inventory.PickupMessage "\c[SonicBlue]I like sword -- that's a personal weapon!\n\c[CaliburnGold]*sigh*"
   Inventory.PickupSound "sonicdoom/sonicpickup"
+  Weapon.BobRangeX 0.5
+  Weapon.BobSpeed 1.5
   +WEAPON.MELEEWEAPON
   +WEAPON.NOAUTOFIRE
   States
@@ -355,6 +357,7 @@ ACTOR AcceleratedPistol : Weapon
   Weapon.AmmoUse1 1
   Weapon.AmmoUse2 4
   Weapon.AmmoGive 60
+  Weapon.BobSpeed 1.5
   Inventory.PickupMessage "Picked up a pistol."
   Tag "Accelerated Pistol"
   +FORCEPAIN
@@ -442,6 +445,7 @@ ACTOR RapidShotty : Weapon 1221
   Weapon.AmmoUse2 42
   Weapon.AmmoGive 64
   Weapon.Kickback 1000
+  Weapon.BobSpeed 1.5
   Inventory.PickupMessage "\c[SonicBlue]I'm runnin' circles around ya!"
   Tag "Rapid Shotty"
   +PUFFONACTORS
@@ -518,6 +522,7 @@ ACTOR ShurikenCrossbow : Weapon
   Weapon.AmmoUse 24
   Weapon.AmmoGive 100
   Weapon.Kickback 1
+  Weapon.BobSpeed 1.5
   Weapon.AmmoType "ChaosEnergy"
   Inventory.PickupMessage "\c[SonicBlue]Is that a crossbow that fires shurikens?! Awesome!!"
   Tag "Shuriken Crossbow"
@@ -574,9 +579,7 @@ ACTOR EclipseBlaster : Weapon
   Weapon.AmmoUse 4
   Weapon.AmmoGive 25
   Weapon.KickBack 100000000
-  Weapon.BobRangeX 0.0
-  Weapon.BobRangeY 1.0
-  Weapon.BobSpeed 1.0
+  Weapon.BobSpeed 1.5
   +EXTREMEDEATH
   +WEAPON.NOAUTOFIRE
   Inventory.PickupMessage "\c[SonicBlue]The Eclipse Blaster Mk. V, the ultimate in plasma weaponry!"
@@ -647,9 +650,7 @@ ACTOR AirStrikeLauncher : Weapon 1223
   Weapon.AmmoType "ChaosEnergy"
   Inventory.PickupMessage "\c[SonicBlue]Time for some sick air strikes!"
   Tag "Rocket Rioter"
-  Weapon.BobRangeX 0.0
-  Weapon.BobRangeY 1.0
-  Weapon.BobSpeed 1.0
+  Weapon.BobSpeed 1.5
   Weapon.Kickback 1000
   +WEAPON.NOAUTOFIRE
   +WEAPON.NOAUTOAIM

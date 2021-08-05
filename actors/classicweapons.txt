@@ -90,6 +90,8 @@ ACTOR ChaosBlaster : Weapon
   Weapon.AmmoUse 2
   Weapon.AmmoGive 25
   Weapon.KickBack 100
+  Weapon.BobSpeed 1.5
+  Weapon.BobRangeX 0.5
   Weapon.AmmoType "ChaosEnergy"
   Tag "Chaos Blaster"
   Inventory.PickupMessage "Picked up the Chaos energy blaster!"
@@ -138,6 +140,8 @@ ACTOR SpeedyShotgun : Weapon
   Weapon.AmmoType2 "ChaosEnergy"
   AttackSound "weapons/shotgf"
   Tag "Speedy Shotgun"
+  Weapon.BobSpeed 1.5
+  Weapon.BobRangeX 0.5
   Inventory.PickupMessage "Picked up the speedy shotgun!"
   States
   {
@@ -307,6 +311,8 @@ ACTOR ClassicRocketStream : Weapon
   Weapon.AmmoGive 45
   Weapon.AmmoType "ChaosEnergy"
   Tag "Rocket Stream"
+  Weapon.BobSpeed 1.5
+  Weapon.BobRangeX 0.5
   Inventory.PickupMessage "Picked up the rocket stream launcher!"
   States
   {
@@ -350,6 +356,8 @@ ACTOR ChaosRain : Weapon
    Weapon.AmmoGive 20
    Weapon.AmmoType "ChaosEnergy"
    Tag "Chaos Rain"
+   Weapon.BobSpeed 1.5
+   Weapon.BobRangeX 0.5
    Inventory.PickupMessage "Picked up the Chaos Rain cannon!"
    States
    {
@@ -377,7 +385,6 @@ ACTOR ChaosRain : Weapon
 			A_GunFlash;
 			A_FireBullets(6, 4, 15, 30, "BulletPuff");
 		}
-		
 		else
 		{
 			A_PlaySound("weapons/chngun", CHAN_WEAPON);
