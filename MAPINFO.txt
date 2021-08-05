@@ -97,6 +97,10 @@ skill justwhy
   totalinfighting
   mustconfirm = "Are you sure? Everything literally dies in one hit..."
   SlowMonsters
+  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
+  PlayerClassName = "Normal (Rifle Start)", "ERROR"
+  PlayerClassName = "Normal (Pistol Start)", "ERROR"
+  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
 }
 
 skill easy
@@ -109,6 +113,10 @@ skill easy
   name = "Easy"
   spawnfilter = Easy
   totalinfighting
+  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
+  PlayerClassName = "Normal (Rifle Start)", "ERROR"
+  PlayerClassName = "Normal (Pistol Start)", "ERROR"
+  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
 }
 
 skill standard
@@ -120,6 +128,10 @@ skill standard
   name = "Standard"
   spawnfilter = Normal
   defaultskill
+  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
+  PlayerClassName = "Normal (Rifle Start)", "ERROR"
+  PlayerClassName = "Normal (Pistol Start)", "ERROR"
+  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
 }
 
 skill hard
@@ -130,6 +142,10 @@ skill hard
   PlayerClassName = "C.Sonic", "I am SEGA!"
   PlayerClassName = "Shadow", "Damn 4th Difficulty"
   name = "Hard"
+  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
+  PlayerClassName = "Normal (Rifle Start)", "ERROR"
+  PlayerClassName = "Normal (Pistol Start)", "ERROR"
+  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
 }
 
 skill harder
@@ -142,6 +158,10 @@ skill harder
   name = "Harder"
   spawnfilter = Hard
   FastMonsters
+  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
+  PlayerClassName = "Normal (Rifle Start)", "ERROR"
+  PlayerClassName = "Normal (Pistol Start)", "ERROR"
+  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
 }
 
 skill wtf
@@ -156,6 +176,10 @@ skill wtf
   PlayerClassName = "Shadow", "All Fail Shadow"
   name = "WTF"
   mustconfirm = "This'll force you to bring out your best. You sure you're up for it?"
+  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
+  PlayerClassName = "Normal (Rifle Start)", "ERROR"
+  PlayerClassName = "Normal (Pistol Start)", "ERROR"
+  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
 }
 
 skill ohno
@@ -168,6 +192,10 @@ skill ohno
   mustconfirm = "Are you sure? This skill level is just stupid..."
   replaceactor = "ExplosiveBarrel", "BaronOfHell"
   replaceactor = "ChaosEmeralds", "Cyberdemon"
+  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
+  PlayerClassName = "Normal (Rifle Start)", "ERROR"
+  PlayerClassName = "Normal (Pistol Start)", "ERROR"
+  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
 }
 
 // Ultimate Doom episode clusters

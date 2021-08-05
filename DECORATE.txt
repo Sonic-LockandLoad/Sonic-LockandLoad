@@ -211,9 +211,10 @@ ACTOR ShadowPlayer : PlayerPawn
   Player.SoundClass "shadow"
   Player.StartItem "ShadowAbilities"
   Player.StartItem "ShadowCheck"
-  Player.StartItem "ChaosEnergy", 30
-  Player.WeaponSlot 1, "ShadowAbilities", "ChaosEmerald"
+  Player.StartItem "ChaosEnergy", 120
+  Player.WeaponSlot 1, "ShadowAbilities", "HighShovel"
   Player.WeaponSlot 2, "DarkAssault"
+  Player.WeaponSlot 3, "ChaosEmerald"
   States
   {
   Spawn:

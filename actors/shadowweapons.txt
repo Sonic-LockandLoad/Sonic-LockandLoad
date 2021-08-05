@@ -181,3 +181,50 @@ ACTOR DarkAssault : Weapon
     Stop
   }
 }
+
+ACTOR HighShovel : Weapon
+{
+  Weapon.SelectionOrder 1400
+  Weapon.KickBack 1500
+  Tag "High Shovel"
+  Inventory.PickupMessage "\c[ShadowRedBlack]High shovel!"
+  +WEAPON.MELEEWEAPON
+  +WEAPON.NOAUTOFIRE
+  States
+  {
+  Ready:
+    SHOV A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    Loop
+  Deselect:
+    SHOV A 1 A_Lower
+    Loop
+  Select:
+    SHOV A 1 A_Raise
+    Loop
+  Fire:
+	SHOV D 1
+	TNT1 A 0 A_ReFire
+    SHOV A 1 A_PlaySound("sonicdoom/swordswing", 1)
+    SHOV B 1
+	SHOV C 10
+	{
+		if (CountInv("PowerSuper"))
+		{
+			A_CustomPunch(600, 0, 0, "GibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/shovelbonk");
+		}
+		else
+		{
+			A_CustomPunch(300, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/shovelbonk");
+		}
+	}
+	SHOV B 1
+	SHOV A 1
+    Goto Ready
+  Reload:
+	TNT1 A 0 A_GiveInventory("ShadowDash")
+	Goto Ready
+  Spawn:
+    SHVL A -1
+    Stop
+  }
+}

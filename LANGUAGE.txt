@@ -136,14 +136,21 @@ BOSSEND =
 	"start a new game...";
 	
 INCOMPAT =
-	"An incompatible mod has been detected.\n"
+	"An irregularity has been detected.\n"
+	"\n"
+	"An actor class from an incompatible mod\n"
+	"was loaded or is present.\n"
+	"\n"
 	"This mod will not work with Sonic: Lock & Load.\n"
 	"\n"
 	"Relaunch the game without the mod, and remove\n"
 	"the mod from your autoload folder if present.\n"
 	"\n"
 	"Please check your GZDoom installation for more\n"
-	"information.";
+	"information.\n"
+	"\n"
+	"Sonic: Lock and Load will no longer function\n"
+	"until the incompatibility is corrected.";
 	
 WAITWTF =
 	"...\n"

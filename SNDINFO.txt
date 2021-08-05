@@ -115,6 +115,7 @@ sonicdoom/sliding           Sliding
 sonicdoom/swordspin         swing4
 sonicdoom/loserings         LoseRing
 sonicdoom/notmyday			notmyday
+sonicdoom/shovelbonk		shovbonk
 
 sonicdoom/yo                yo
 sonicdoom/illplay           heyillpl
