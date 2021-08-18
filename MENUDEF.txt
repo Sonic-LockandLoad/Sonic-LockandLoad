@@ -47,7 +47,12 @@ OptionMenu "LockandLoadOptions"
 	StaticText "Changes how Sonic's Boost works.", "White"
 	StaticText "Type A - Can only be aimed horizontally, grants anti-gravity and is twice as fast as Type B.", "White"
 	StaticText "Type B - Can be aimed vertically as well as horizontally, but travels at half the speed of Type A.", "White"
-	StaticText "This takes effect immediately.", "Yellow"
+	StaticText "This will take effect the next time you Boost.", "Yellow"
+	StaticText ""
+	Option "Hyper Sonic", "HyperSonic", "HyperSonic"
+	StaticText "Enables or disables Hyper form for Classic Sonic.", "White"
+	StaticText "When enabled, you can pick up a second set of Chaos Emeralds as Classic Super Sonic to transform into Hyper Sonic.", "White"
+	StaticText "This will take effect the next time you transform.", "Yellow"
 }
 AddListMenu "SkillMenu"
 {
@@ -63,6 +68,11 @@ OptionValue "TrackType"
 {
 	0, "Instrumental"
 	1, "Vocal"
+}
+OptionValue "HyperSonic"
+{
+	0, "Disabled"
+	1, "Enabled"
 }
 OptionValue "HUDType"
 {

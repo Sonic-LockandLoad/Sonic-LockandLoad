@@ -14,7 +14,7 @@ ActiveOption
 
 InactiveOption
 {
-	#6b0000  #B21A86
+	#000f47  #1a24b2
 }
 
 AmyPink

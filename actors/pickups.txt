@@ -300,7 +300,7 @@ ACTOR ChaosEmeralds : CustomInventory
 	  }
 	  else if (CountInv("ClassicCheck")) 
 	  {
-	    A_Log("Super Sonic activated!");
+	    A_Log("\c[SonicBlue]Let's blast through with SONIC SPEED!");
 	  }
 	}
 	TNT1 A 0 ACS_NamedExecute("TransformSuper")

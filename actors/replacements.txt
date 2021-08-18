@@ -17,6 +17,10 @@ ACTOR FakeBackpack : CustomInventory
 	  {
 	    A_Print("\c[AmyPink]What a pretty backpack!"); // print this message to the screen.
 	  }
+	  else if (CountInv("ClassicCheck")) // If playing as Classic Sonic...
+	  {
+	    A_Print("\c[ClassicBlue]Oh well, at least it looks cool."); // ... You get it by now.
+	  }
 	}
 	Stop
   }
@@ -31,7 +35,7 @@ ACTOR FakeChainsaw : CustomInventory replaces Chainsaw
     CSAW A -1
     Stop
   Pickup:
-	TNT1 A 0 A_Print("\cYYour fist is fast enough.",0, LargeFont)
+	TNT1 A 0 A_Print("\c[ClassicBlue]Chainsaw, huh? Yeah, I can't use this.",0, LargeFont)
   }
 }
 
@@ -339,7 +343,11 @@ ACTOR RadSuitReplace : CustomInventory replaces RadSuit
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay A_SpawnItem("InvincibilityBox")
+			TNT1 A 0 NoDelay A_JumpIfInventory("ShadowCheck", 1, "ShadSpawn", AAPTR_PLAYER1)
+			TNT1 A 0 A_SpawnItem("InvincibilityBox")
+			Stop
+		ShadSpawn:
+			TNT1 A 0 A_SpawnItem("ShadowFever")
 			Stop
 	}
 }

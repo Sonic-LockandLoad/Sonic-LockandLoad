@@ -24,13 +24,18 @@ ACTOR ClassicAbilities : Weapon replaces Fist 1212
     PUNG B 1
     PUNG C 1
 	{
-		if (CountInv("PowerSuper") < 1)
+		if (CountInv("PowerHyper"))
 		{
-			A_CustomPunch(4, false, 0, "InvisiblePuff", 86, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+			A_CustomPunch(160, false, 0, "InvisiblePuff", 86, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+			A_FireProjectile("ChaosEnergyBallEX", 0, false);
 		}
-		if (CountInv("PowerSuper") > 0)
+		else if (CountInv("PowerSuper"))
 		{
 			A_CustomPunch(40, false, 0, "InvisiblePuff", 86, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		}
+		else
+		{
+			A_CustomPunch(4, false, 0, "InvisiblePuff", 86, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
 		}
 	}
     PUNG D 1

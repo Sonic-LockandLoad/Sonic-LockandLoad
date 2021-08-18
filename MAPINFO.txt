@@ -30,6 +30,12 @@ DamageType RocketStream
    Factor = 1
 }
 
+DamageType Drowning
+{
+   ReplaceFactor
+   Factor = 8
+}
+
 map map31 "Wolfenstein"
 {
   music = S_CHEM
@@ -89,13 +95,13 @@ skill justwhy
   monsterhealth = 0.00001
   ammofactor = 9999
   PlayerClassName = "Sonic", "Too easy"
-  PlayerClassName = "Amy", "Without Thorns"
+  PlayerClassName = "Amy", "Without thorns"
   PlayerClassName = "C.Sonic", "No Way? No Way!"
-  PlayerClassName = "Shadow", "Infinite"
-  name = "Just Why"
+  PlayerClassName = "Shadow", "Just another fake"
+  name = "Just why...?"
   spawnfilter = Hard
   totalinfighting
-  mustconfirm = "Are you sure? Everything literally dies in one hit..."
+  mustconfirm = "This difficulty is for people that can't play games."
   SlowMonsters
   PlayerClassName = "Purist (Oldschool mode)", "ERROR"
   PlayerClassName = "Normal (Rifle Start)", "ERROR"
@@ -109,8 +115,8 @@ skill easy
   PlayerClassName = "Sonic", "Piece of cake"
   PlayerClassName = "Amy", "A breeze"
   PlayerClassName = "C.Sonic", "Genesis"
-  PlayerClassName = "Shadow", "Faker"
-  name = "Easy"
+  PlayerClassName = "Shadow", "Waste of time"
+  name = "Not too fast"
   spawnfilter = Easy
   totalinfighting
   PlayerClassName = "Purist (Oldschool mode)", "ERROR"
@@ -125,7 +131,7 @@ skill standard
   PlayerClassName = "Amy", "Just perfect!"
   PlayerClassName = "C.Sonic", "Like 1991"
   PlayerClassName = "Shadow", "Chaos Controller"
-  name = "Standard"
+  name = "Steady speed"
   spawnfilter = Normal
   defaultskill
   PlayerClassName = "Purist (Oldschool mode)", "ERROR"
@@ -141,7 +147,7 @@ skill hard
   PlayerClassName = "Amy", "Never give up!"
   PlayerClassName = "C.Sonic", "I am SEGA!"
   PlayerClassName = "Shadow", "Damn 4th Difficulty"
-  name = "Hard"
+  name = "Getting faster"
   PlayerClassName = "Purist (Oldschool mode)", "ERROR"
   PlayerClassName = "Normal (Rifle Start)", "ERROR"
   PlayerClassName = "Normal (Pistol Start)", "ERROR"
@@ -155,7 +161,7 @@ skill harder
   PlayerClassName = "Amy", "True Passion"
   PlayerClassName = "C.Sonic", "Strange, isn't it?"
   PlayerClassName = "Shadow", "Ultimate Life Form"
-  name = "Harder"
+  name = "Speed fastest"
   spawnfilter = Hard
   FastMonsters
   PlayerClassName = "Purist (Oldschool mode)", "ERROR"
@@ -174,7 +180,7 @@ skill wtf
   PlayerClassName = "Amy", "Thorned Rose"
   PlayerClassName = "C.Sonic", "Fun is Infinite"
   PlayerClassName = "Shadow", "All Fail Shadow"
-  name = "WTF"
+  name = "Out of control"
   mustconfirm = "This'll force you to bring out your best. You sure you're up for it?"
   PlayerClassName = "Purist (Oldschool mode)", "ERROR"
   PlayerClassName = "Normal (Rifle Start)", "ERROR"
@@ -189,7 +195,7 @@ skill ohno
   spawnfilter = Nightmare
   FastMonsters
   picname = "ohno"
-  mustconfirm = "Are you sure? This skill level is just stupid..."
+  mustconfirm = "The recommended difficulty for memelords and masochists."
   replaceactor = "ExplosiveBarrel", "BaronOfHell"
   replaceactor = "ChaosEmeralds", "Cyberdemon"
   PlayerClassName = "Purist (Oldschool mode)", "ERROR"

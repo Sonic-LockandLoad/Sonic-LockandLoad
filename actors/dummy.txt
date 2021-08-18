@@ -62,3 +62,8 @@ ACTOR LightSpeedCheck : Inventory
 {
   Inventory.MaxAmount 1
 }
+
+ACTOR Damn4thChaos : Inventory 
+{
+  Inventory.MaxAmount 1
+}

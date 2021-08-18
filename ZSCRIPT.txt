@@ -175,15 +175,15 @@ Class SonicDash : CustomInventory
 		{
 			if (CountInv("PowerSuper") < 1 && CountInv("PowerHyper") < 1)
 			{
-				A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicKickPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+				A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
 			}
 			else if (CountInv("PowerSuper"))
 			{
-				A_CustomPunch(160, CPF_PULLIN | CPF_NOTURN, 0, "SonicKickPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+				A_CustomPunch(160, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
 			}
 			else if (CountInv("PowerHyper"))
 			{
-				A_CustomPunch(320, CPF_PULLIN | CPF_NOTURN, 0, "SonicKickPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+				A_CustomPunch(320, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
 			}
 		}
 		TNT1 A 1 A_SetInventory("KickCooldown", 10);
@@ -240,6 +240,29 @@ Class AmyKickPuff : BulletPuff
 		Mass 5;
 		DamageType "SonicKick";
 		ProjectileKickBack 2000;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Melee:
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+Class SonicDashPuff : BulletPuff
+{
+	Default
+	{
+		+NOBLOCKMAP;
+		+NOGRAVITY;
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+		DamageType "SonicKick";
+		ProjectileKickBack 1000000;
 	}
 	States
 	{

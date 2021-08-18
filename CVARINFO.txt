@@ -1,3 +1,4 @@
 user int HUDType = 0;
 user bool VocalTracks = true;
 user bool VerticalBoost = false;
+user int HyperSonic = 1;

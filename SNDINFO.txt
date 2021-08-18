@@ -126,19 +126,24 @@ sonicdoom/sandineye			sandeye
 sonicdoom/memorycard		memcard
 
 sonicdoom/classicno         noc
-sonicdoom/woa1              woa1
-sonicdoom/woa2              woa2
 sonicdoom/classicherego     cherego
 sonicdoom/ifyoucan          catchme
 sonicdoom/underestimate     csncspd
 sonicdoom/teria				teria
 sonicdoom/classichoming		clahomi
+sonicdoom/classichyper		chyptrns
 
 sonicdoom/oof1    		    oof1
 sonicdoom/oof2 		        oof2
 sonicdoom/oof3 		        oof3
 sonicdoom/oof4 		        oof4
 sonicdoom/oof5 		        oof5
+
+sonicdoom/woa1              woa1
+sonicdoom/woa2              woa2
+sonicdoom/woa3              woa3
+sonicdoom/woa4              woa4
+sonicdoom/woa5              woa5
        
 sonicdoom/sonicpainx1       SonicOw1
 sonicdoom/sonicpainx2       SonicOw2
@@ -167,7 +172,7 @@ $random claoof { sonicdoom/oof1 sonicdoom/oof2 sonicdoom/oof3 sonicdoom/oof4 son
 $random sonicdoom/driftline { sonicdoom/ifyoucan sonicdoom/classicherego sonicdoom/underestimate sonicdoom/teria }
 $random sonicdoom/death { sonicdoom/thatwaslame sonicdoom/scream }
 $random adeath { sonicdoom/amyohno sonicdoom/amyscream }
-$random sonicdoom/classicdeath { sonicdoom/classicno sonicdoom/woa1 sonicdoom/woa2 }
+$random sonicdoom/classicdeath { sonicdoom/classicno sonicdoom/woa1 sonicdoom/woa2 sonicdoom/woa3 sonicdoom/woa4 sonicdoom/woa5 }
 $random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
 $random sonicdoom/swordswing { sonicdoom/swing1 sonicdoom/swing2 sonicdoom/swing3 }
 $random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 sonicdoom/grunt4 sonicdoom/grunt5 sonicdoom/grunt6 }
@@ -196,7 +201,7 @@ $playersound amy female sonicdoom/taunt         sonicdoom/amytaunt
 $playersound classic male *death                sonicdoom/cdeath
 $playeralias classic male *usefail              claoof
 $playersound classic male *jump                 cjump
-$playersound classic male sonicdoom/supersonic  supsonic
+$playersound classic male sonicdoom/supersonic  csuptrns
 $playersound classic male sonicdoom/taunt       sonicdoom/classictaunt
 
 $playersound shadow male *death                 nooooooo
