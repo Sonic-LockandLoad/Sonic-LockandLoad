@@ -53,34 +53,37 @@ script "TransformSuper" (void)
 		switch(PlayerClass(PlayerNumber()))
 		{
             case 0: // Sonic
-                 if (GetCvar("VocalTracks"))
+                 if (GetCvar("SuperMusic") == 1)
 				 {
 					 SetMusic("v_supsnc", 0);
 				 }
-				 else
+				 else if (GetCvar("SuperMusic") == 2)
 				 {
 					 SetMusic("m_supsnc", 0);
 				 }
                  break;
             case 1: // Amy
-                 SetMusic("m_supamy", 0);
+                 if (GetCvar("SuperMusic") > 0)
+				 {
+					SetMusic("m_supamy", 0);
+				 }
                  break;
             case 2: // Classic Sonic
-                 if (GetCvar("VocalTracks"))
+                 if (GetCvar("SuperMusic") == 1)
 				 {
 					 SetMusic("v_supcls", 0);
 				 }
-				 else
+				 else if (GetCvar("SuperMusic") == 2)
 				 {
 					 SetMusic("m_supcls", 0);
 				 }
                  break;
             case 3: // Shadow
-                 if (GetCvar("VocalTracks"))
+                 if (GetCvar("SuperMusic") == 1)
 				 {
 					 SetMusic("v_supsha", 0);
 				 }
-				 else
+				 else if (GetCvar("SuperMusic") == 2)
 				 {
 					 SetMusic("m_supsha", 0);
 				 }
@@ -109,7 +112,10 @@ script "TransformHyper" (void)
 	{
 		while (CheckInventory("PowerHyper"))
 		{
-			SetMusic("m_hypcls", 0);
+			if (GetCvar("SuperMusic") > 0)
+			{
+				SetMusic("m_hypcls", 0);
+			}
 		    SetMugShotState("Hyper");
 			TakeInventory("PowerSuper", 1);
 			TakeInventory("ChaosEmeralds", 1);
@@ -130,23 +136,26 @@ script "Invincibility" (void)
 	{
 		if (CheckInventory("PowerInvulnerable"))
 		{
-			switch(PlayerClass(PlayerNumber()))
+			if (GetCvar("InvincibilityMusic"))
 			{
-				case 0: 
-					SetMusic("s_invinc", 0);
-					break;
-				case 1: 
-					SetMusic("a_invinc", 0);
-					break;
-				case 2: 
-					SetMusic("c_invinc", 0);
-					break;
-				case 3:
-					SetMusic("d_invinc", 0);
-					break;
-				case -1:
-				default:
-					break;
+				switch(PlayerClass(PlayerNumber()))
+				{
+					case 0: 
+						SetMusic("s_invinc", 0);
+						break;
+					case 1: 
+						SetMusic("a_invinc", 0);
+						break;
+					case 2: 
+						SetMusic("c_invinc", 0);
+						break;
+					case 3:
+						SetMusic("d_invinc", 0);
+						break;
+					case -1:
+					default:
+						break;
+				}
 			}
 			while (CheckInventory("PowerInvulnerable"))
 			{

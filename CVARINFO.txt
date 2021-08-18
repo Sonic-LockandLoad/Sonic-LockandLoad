@@ -1,4 +1,5 @@
 user int HUDType = 0;
-user bool VocalTracks = true;
+user int SuperMusic = 1;
+user int InvincibilityMusic = 1;
 user bool VerticalBoost = false;
 user int HyperSonic = 1;
