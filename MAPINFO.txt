@@ -69,13 +69,26 @@ map E3M10 "Dis Is It"
   levelnum = 30
   titlepatch = "WILV27"
   next = endpic, "bossend"
-  secretnext = "E3M9"
   sky1 = "SKY3"
   cluster = 12
   par = 30
   nointermission
   nosoundclipping
   music = S_BOSS
+  needclustertext
+}
+
+map LMAONO "You Idiot, You Fricked It Up"
+{
+  levelnum = 30
+  titlepatch = "WILV27"
+  next = endpic, "bossend"
+  sky1 = "SKY3"
+  cluster = 413
+  par = 30
+  nointermission
+  nosoundclipping
+  music = MISTAKE
   needclustertext
 }
 
@@ -295,10 +308,17 @@ cluster 12
 	music = "D_VICTOR"
 }
 
-// Brutal Doom detection cluster
+// Brutal Doom detection clusters
 cluster 412
 {
 	pic = "INFINFUN"
 	entertext = lookup, "INCOMPAT"
 	music = "S_GMOVR6"
+}
+
+cluster 413
+{
+	pic = "BLACK"
+	entertext = lookup, "FAILURE"
+	music = "Y0uD1dNt"
 }

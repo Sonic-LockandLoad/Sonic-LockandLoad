@@ -310,9 +310,7 @@ ACTOR LightAttack
 	States
 	{
 		Spawn:
-			TNT1 A 0
-		Melee:
-			TNT1 A 0
+			LSAT A 1
 			Stop
 	}
 }
@@ -374,6 +372,24 @@ ACTOR GibPuff
   Melee:
     PUFF CD 4
     Stop
+  }
+}
+ACTOR ReticlePuff
+{
+  +WALLSPRITE
+  +NOGRAVITY
+  +PUFFONACTORS
+  RenderStyle Normal
+  Alpha 1
+  VSpeed 0
+  Mass 0
+  States
+  {
+  Spawn:
+    LSAT A 1 Bright
+  Melee:
+    LSAT A 1 Bright
+	Stop
   }
 }
 ACTOR InvisibleGibPuff

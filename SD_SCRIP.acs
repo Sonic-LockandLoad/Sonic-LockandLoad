@@ -4,6 +4,8 @@
 #define CSF_SOLIDACTORS 2
 #define CSF_ALL (CSF_SOLIDGROUND|CSF_SOLIDACTORS)
 
+//int StopBeingBrutal = 0;
+
 script "Taunt" (void)
 {
 	NoiseAlert(0, 0);
@@ -218,9 +220,17 @@ script "NoBrutal4U" ENTER
 {
 	if (CheckClass("BrutalWeapon"))
 	{
-		if (GetLevelInfo(LEVELINFO_CLUSTERNUM) != 412)
+		if (GetLevelInfo(LEVELINFO_CLUSTERNUM) != 412 && GetLevelInfo(LEVELINFO_CLUSTERNUM) != 413)
 		{
-			ChangeLevel("ERR666", 0, CHANGELEVEL_NOINTERMISSION);
+			if (GetCvar("StopBeingBrutal") == 1)
+			{
+				ChangeLevel("LMAONO", 0, CHANGELEVEL_NOINTERMISSION);
+			}
+			else
+			{
+				SetCvar("StopBeingBrutal", 1);
+				ChangeLevel("ERR666", 0, CHANGELEVEL_NOINTERMISSION);
+			}
 		}
 	}
 	else

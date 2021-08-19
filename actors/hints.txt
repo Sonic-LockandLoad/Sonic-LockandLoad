@@ -12,7 +12,25 @@ actor BossHint : Hint 261
 	  HELP A -1
 	  Stop
     Pickup:
-      TNT1 A 0 A_Print("The E-SP567 prototype will absorb your plasma shots.\nDon't bother shooting at it.")
+      TNT1 A 0
+	  {
+	      if (CountInv("SonicCheck"))
+		  {
+		      A_Print("The E-SP567 prototype will absorb your plasma shots.\nDon't bother shooting at it.");
+		  }
+	      else if (CountInv("AmyCheck"))
+		  {
+		      A_Print("This room is for Sonic, no girls allowed!");
+		  }
+	      else if (CountInv("ClassicCheck"))
+		  {
+		      A_Print("You're the wrong Sonic!!");
+		  }
+	      else if (CountInv("ShadowCheck"))
+		  {
+		      A_Print("Get out of here, faker!");
+		  }
+	  }
 	  Stop
   }
 }

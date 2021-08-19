@@ -43,7 +43,7 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 0 A_Light(0)
 	TNT1 AAAA 1
 	{
-		A_ChangeVelocity (Cos(Pitch) * 8, 0, Sin(Pitch) * -8, CVF_Relative);
+		A_Recoil(-8);
 		A_CustomPunch(25, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit");
 	}
 	Goto Ready
@@ -58,7 +58,7 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 0 A_Light(0)
 	TNT1 AAAAAA 1
 	{
-		A_ChangeVelocity (Cos(Pitch) * 16, 0, Sin(Pitch) * -16, CVF_Relative);
+		A_Recoil(-16);
 		A_CustomPunch(50, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit");
 	}
 	Goto Ready
@@ -75,6 +75,7 @@ ACTOR SonicAbilities : Weapon
 	    A_PlaySound("sonicdoom/herewe", 6);
 	  }
 	}
+	TNT1 A 0 A_FireBullets(0, 0, 1, 0, "ReticlePuff")
 	TNT1 A 0 A_ReFire
 	TNT1 A 0 A_TakeInventory("SpinCharges", 99)
 	TNT1 A 0 A_TakeInventory("LightSpeedCheck")
@@ -83,7 +84,7 @@ ACTOR SonicAbilities : Weapon
     TNT1 A 0 A_PlaySound("sonicdoom/peeloutrelease", 7)
 	TNT1 A 0 A_Light(0)
 	TNT1 A 0 A_FireBullets(0, 0, 10, 24, "LightAttack")
-	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 256, 0, Sin(Pitch) * -256, CVF_Relative)
+	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 512, 0, Sin(Pitch) * -512, CVF_Relative)
 	Goto Ready
   AltFire:
     TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperBoost")
