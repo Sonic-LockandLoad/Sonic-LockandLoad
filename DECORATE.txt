@@ -241,7 +241,7 @@ ACTOR ShadowPlayer : PlayerPawn
   Player.StartItem "ShadowAbilities"
   Player.StartItem "ShadowCheck"
   Player.StartItem "ChaosEnergy", 120
-  Player.WeaponSlot 1, "ShadowAbilities", "HighShovel"
+  Player.WeaponSlot 1, "ShadowAbilities", "HighShovel", "ShadowKnife"
   Player.WeaponSlot 2, "DarkAssault"
   Player.WeaponSlot 3, "ChaosEmerald"
   States

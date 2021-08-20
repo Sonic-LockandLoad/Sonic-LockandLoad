@@ -303,14 +303,14 @@ ACTOR LightAttack
 	+NOGRAVITY
 	RenderStyle "None"
 	Alpha 0
-	VSpeed 1
-	Mass 5
+	VSpeed 0
+	Mass 0
 	DamageType "SonicKick"
 	ProjectileKickBack 0
 	States
 	{
 		Spawn:
-			LSAT A 1
+			TNT1 A 0
 			Stop
 	}
 }
@@ -374,7 +374,7 @@ ACTOR GibPuff
     Stop
   }
 }
-ACTOR ReticlePuff
+ACTOR SonicReticle
 {
   +WALLSPRITE
   +NOGRAVITY
@@ -386,9 +386,27 @@ ACTOR ReticlePuff
   States
   {
   Spawn:
-    LSAT A 1 Bright
+    RETI A 1 Bright
   Melee:
-    LSAT A 1 Bright
+    RETI A 1 Bright
+	Stop
+  }
+}
+ACTOR LightSpeedReticle
+{
+  +WALLSPRITE
+  +NOGRAVITY
+  +PUFFONACTORS
+  RenderStyle Normal
+  Alpha 1
+  VSpeed 0
+  Mass 0
+  States
+  {
+  Spawn:
+    RETI B 1 Bright
+  Melee:
+    RETI B 1 Bright
 	Stop
   }
 }

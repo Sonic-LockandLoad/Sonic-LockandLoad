@@ -43,7 +43,7 @@ ACTOR PeeloutCheck : Inventory
   Inventory.MaxAmount 1
 }
 
-ACTOR SpinCharges : Inventory
+ACTOR HomingCharges : Inventory
 {
   Inventory.MaxAmount 99
 }

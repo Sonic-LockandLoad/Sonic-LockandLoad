@@ -228,3 +228,36 @@ ACTOR ChaosEmerald : Weapon
     Stop
   }
 }
+
+ACTOR ShadowKnife : Weapon
+{
+	Weapon.SelectionOrder 3800
+	Weapon.KickBack 0
+	Inventory.PickupSound "theycant/trollyouif"
+	Inventory.PickupMessage "\c[ShadowRedBlack]They cant troll you if there dead!"
+	Tag "Troll Slaiying Knife"
+	+WEAPON.MELEEWEAPON
+	States
+	{
+		Ready:
+			KNIF A 1 A_WeaponReady
+			Loop
+		Deselect:
+			KNIF A 1 A_Lower
+			Loop
+		Select:
+			KNIF A 1 A_Raise
+			Loop
+		Fire:
+			KNIF B 2
+			KNIF C 2 
+			KNIF D 3
+			KNIF E 6 A_CustomPunch(69, true, 0, "NoGibPuff", 64, 0, 0, "ArmorBonus", "sonicdoom/finalhit")
+			KNIF C 2
+			KNIF B 5 A_ReFire
+			Goto Ready
+		Spawn:
+			SLAI Y -1
+			Stop
+	}
+}

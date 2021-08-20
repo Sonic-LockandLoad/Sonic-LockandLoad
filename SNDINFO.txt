@@ -18,6 +18,7 @@ sonicdoom/error             error
 sonicdoom/amyerror          a_error
 sonicdoom/hintpickup        hint
 sonicdoom/dash              homatk
+sonicdoom/sdash             homing
 sonicdoom/cantwin           cantwin
 sonicdoom/boxdestroy        destroy
 sonicdoom/specialring       specring
@@ -116,6 +117,7 @@ sonicdoom/swordspin         swing4
 sonicdoom/loserings         LoseRing
 sonicdoom/notmyday			notmyday
 sonicdoom/shovelbonk		shovbonk
+sonicdoom/reticle			SoniReti
 
 sonicdoom/yo                yo
 sonicdoom/illplay           heyillpl
@@ -150,6 +152,8 @@ sonicdoom/sonicpainx2       SonicOw2
 
 sonicdoom/hammerbonk		HamBonk
 sonicdoom/darkshotty		assashot
+
+theycant/trollyouif			thereded
 
 menu/activate		OpenMenu// Activate a new menu
 menu/backup			Return	// Backup to previous menu
