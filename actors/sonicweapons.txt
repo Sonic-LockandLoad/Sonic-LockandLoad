@@ -23,14 +23,7 @@ ACTOR SonicAbilities : Weapon
   Fire:
 	TNT1 A 0 A_JumpIf(CountInv("HomingCharges")>40,"LightSpeedAttack")
 	TNT1 A 0 A_SetSpeed(0.1)
-    TNT1 A 1
-	{
-	  if (CountInv("PeeloutCheck") < 1)
-	  {
-	    A_PlaySound("sonicdoom/reticle", 7);
-	  }
-	}
-	TNT1 A 0 A_FireBullets(0, 0, 1, 0, "SonicReticle", FBF_NORANDOMPUFFZ)
+    TNT1 A 1 A_FireBullets(0, 0, 1, 0, "SonicReticle", FBF_NORANDOMPUFFZ, 1024)
 	TNT1 A 0
 	{
 	  A_GiveInventory("PeeloutCheck");
@@ -41,8 +34,19 @@ ACTOR SonicAbilities : Weapon
     TNT1 A 0 A_PlaySound("sonicdoom/sdash", 5)
 	TNT1 A 0 A_TakeInventory("PeeloutCheck")
 	TNT1 A 0 A_TakeInventory("HomingCharges", 99)
-	TNT1 A 0 A_FireBullets(0, 0, 10, 12, "LightAttack")
-	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 100, 0, Sin(Pitch) * -100, CVF_Relative)
+	TNT1 A 0 A_SetSpeed(4)
+	TNT1 A 0
+	{
+		if (CountInv("PowerSuper"))
+		{
+			A_FireBullets(0, 0, 1, random(1,16)*48, "LightAttack", FBF_NORANDOM, 1024);
+		}
+		else
+		{
+			A_FireBullets(0, 0, 1, random(1,16)*24, "LightAttack", FBF_NORANDOM, 1024);
+		}
+	}
+	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 50, 0, Sin(Pitch) * -50, CVF_Relative)
 	Goto Ready
   LightSpeedAttack:
 	TNT1 A 0 A_FireBullets(0, 0, 1, 0, "LightSpeedReticle", FBF_NORANDOMPUFFZ)
@@ -62,8 +66,18 @@ ACTOR SonicAbilities : Weapon
 	TNT1 A 0 A_SetSpeed(8)
 	TNT1 A 0 A_PlaySound("sonicdoom/go", 6)
     TNT1 A 0 A_PlaySound("sonicdoom/sdash", 7)
-	TNT1 A 0 A_FireBullets(0, 0, 20, 24, "LightAttack")
-	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 512, 0, Sin(Pitch) * -512, CVF_Relative)
+	TNT1 A 0 
+	{
+		if (CountInv("PowerSuper"))
+		{
+			A_FireBullets(0, 0, 20, random(1,16)*48, "LightAttack", FBF_NORANDOM);
+		}
+		else
+		{
+			A_FireBullets(0, 0, 20, random(1,16)*24, "LightAttack", FBF_NORANDOM);
+		}
+	}
+	TNT1 A 1 A_ChangeVelocity (Cos(Pitch) * 260, 0, Sin(Pitch) * -260, CVF_Relative)
 	Goto Ready
   Reload:
 	TNT1 A 0 A_GiveInventory("SonicKick")
@@ -367,11 +381,11 @@ ACTOR AcceleratedPistol : Weapon
 	{
 		if (CountInv("PowerSuper"))
 		{
-			A_FireBullets(0, 0, 1, 16, "NoGibPuff");
+			A_FireBullets(0, 0, 1, 24, "NoGibPuff");
 		}
 		else
 		{
-			A_FireBullets(2, 2, 1, 12, "NoGibPuff");
+			A_FireBullets(2, 2, -1, 12, "NoGibPuff");
 		}
 	}
 	TNT1 A 0 A_TakeInventory("KickCooldown", 4)

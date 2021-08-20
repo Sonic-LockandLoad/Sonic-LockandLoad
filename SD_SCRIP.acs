@@ -378,3 +378,8 @@ script "ResetMusic" (void)
 {
 	SetMusic("*", 0);
 }
+
+script "ReticleSound" (void)
+{
+	AmbientSound("sonicdoom/reticle", 127);
+}

@@ -301,6 +301,7 @@ ACTOR LightAttack
 {
 	+NOBLOCKMAP
 	+NOGRAVITY
+	+NOEXTREMEDEATH
 	RenderStyle "None"
 	Alpha 0
 	VSpeed 0
@@ -386,9 +387,15 @@ ACTOR SonicReticle
   States
   {
   Spawn:
-    RETI A 1 Bright
+    TNT1 A 0
   Melee:
     RETI A 1 Bright
+	{
+	  if (CountInv("PeeloutCheck", AAPTR_PLAYER1) < 1)
+	  {
+	    ACS_NamedExecute("ReticleSound");
+	  }
+	}
 	Stop
   }
 }
@@ -404,7 +411,7 @@ ACTOR LightSpeedReticle
   States
   {
   Spawn:
-    RETI B 1 Bright
+    TNT1 A 0 Bright
   Melee:
     RETI B 1 Bright
 	Stop
