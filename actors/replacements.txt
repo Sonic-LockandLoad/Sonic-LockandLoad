@@ -52,7 +52,7 @@ ACTOR ChaosEmeraldsForMegasphere : CustomInventory replaces Megasphere
 ACTOR SoulRechargeReplacingBFG : CustomInventory replaces BFG9000
 {
   Inventory.PickupMessage "Picked up a Soul recharge!"
-  Inventory.PickupSound "sonicdoom/specialring"
+  Inventory.PickupSound "spickup/specialring"
   States
   {
   Spawn:

@@ -26,7 +26,7 @@ ACTOR ChaosRocket
   ProjectileKickBack 0
   +RANDOMIZE
   +ROCKETTRAIL
-  SeeSound "sonicdoom/missilefire"
+  SeeSound "sweapons/missilefire"
   DeathSound "weapons/rocklx"
   States
   {
@@ -53,7 +53,7 @@ ACTOR AirstrikeRocket
   ProjectileKickBack 0
   +RANDOMIZE
   +ROCKETTRAIL
-  SeeSound "sonicdoom/missilefire"
+  SeeSound "sweapons/missilefire"
   DeathSound "weapons/rocklx"
   States
   {
@@ -82,7 +82,7 @@ ACTOR ChaosMissile
   +DEHEXPLOSION
   +ROCKETTRAIL
   ProjectileKickBack 999999999
-  SeeSound "sonicdoom/missilefire"
+  SeeSound "sweapons/missilefire"
   DeathSound "weapons/rocklx"
   States
   {
@@ -189,7 +189,7 @@ ACTOR SuperChaosEnergyBall
   +ZDOOMTRANS
   RenderStyle Add
   Alpha 0.75
-  SeeSound "sonicdoom/chaosspear"
+  SeeSound "sweapons/chaosspear"
   DeathSound "weapons/bfgx"
   States
   {
@@ -467,9 +467,9 @@ ACTOR Shuriken
   +NOEXTREMEDEATH
   RenderStyle Normal
   Alpha 1
-  SeeSound "sonicdoom/shurikenfire"
-  AttackSound "sonicdoom/hit"
-  DeathSound "sonicdoom/shurikenhit"
+  SeeSound "sweapons/shurikenfire"
+  AttackSound "sweapons/hit"
+  DeathSound "sweapons/shurikenhit"
   States
   {
   Spawn:
@@ -484,31 +484,6 @@ ACTOR Shuriken
   }
 }
 
-ACTOR ThrownSword
-{
-  Radius 8
-  Height 2
-  Speed 80
-  Damage 25
-  Projectile
-  +RIPPER
-  +NOEXTREMEDEATH
-  RenderStyle Normal
-  Alpha 1
-  SeeSound "sonicdoom/swordswing"
-  AttackSound "sonicdoom/hit"
-  DeathSound "sonicdoom/shurikenhit"
-  States
-  {
-  Spawn:
-    TCAL A -1
-    Loop
-  Death:
-    TNT1 A 0 A_DropItem("Caliburn")
-	Stop
-  }
-}
-
 ACTOR ChaosSpear
 {
   Radius 5
@@ -520,7 +495,7 @@ ACTOR ChaosSpear
   +ROCKETTRAIL
   RenderStyle Add
   Alpha 0.75
-  SeeSound "sonicdoom/chaosspear"
+  SeeSound "sweapons/chaosspear"
   States
   {
   Spawn:
@@ -532,42 +507,12 @@ ACTOR ChaosSpear
 	{
 	  if (CountInv("SpearCheck") < 1)
 	  {
-		A_PlaySound("sonicdoom/spearimpact");
+		A_PlaySound("sweapons/spearimpact");
 	  }
 	}
 	TNT1 A 0 A_GiveInventory("SpearCheck")
     CSPE A 1 A_FadeOut(0.1, 0)
     Loop
-  }
-}
-
-ACTOR ShadowGrenade
-{
-  Radius 8
-  Height 8
-  Speed 75
-  Damage 40
-  Projectile
-  -NOGRAVITY
-  +RANDOMIZE
-  +GRENADETRAIL
-  BounceType "Doom"
-  BounceFactor 1
-  WallBounceFactor 0.8
-  Gravity 0.25
-  SeeSound "weapons/swordswing"
-  DeathSound "weapons/rocklx"
-  DamageType Grenade
-  States
-  {
-  Spawn:
-    CAGD A 1 Bright
-    Loop
-  Death:
-    MISL B 6 Bright A_Explode
-    MISL C 4 Bright
-    MISL D 2 Bright
-    Stop
   }
 }
 
@@ -583,8 +528,8 @@ ACTOR EnergyBladeLeft
   +EXTREMEDEATH
   RenderStyle Normal
   Alpha 1
-  SeeSound "sonicdoom/soulsurge"
-  AttackSound "sonicdoom/soulsurge"
+  SeeSound "sweapons/soulsurge"
+  AttackSound "sweapons/soulsurge"
   States
   {
   Spawn:
@@ -607,8 +552,8 @@ ACTOR EnergyBladeRight
   +EXTREMEDEATH
   RenderStyle Normal
   Alpha 1
-  SeeSound "sonicdoom/soulsurge"
-  AttackSound "sonicdoom/soulsurge"
+  SeeSound "sweapons/soulsurge"
+  AttackSound "sweapons/soulsurge"
   States
   {
   Spawn:

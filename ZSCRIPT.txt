@@ -27,36 +27,36 @@ Class SonicKick : CustomInventory
 		TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 		TNT1 A 0 A_AlertMonsters();
-		TNT1 A 0 A_PlaySound("sonicdoom/grunt", 8);
+		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
-		KICK A 1 A_PlaySound("sonicdoom/swordswing", 7);
+		KICK A 1 A_PlaySound("sweapons/swordswing", 7);
 		KICK BC 1;
-		KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		KICK EF 1;
 		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
 	SonicEagle:
-		EAGL A 1 A_PlaySound("sonicdoom/swordswing", 7);
+		EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
 		EAGL BC 1;
-		EAGL D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		EAGL D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		EAGL E 1;
 		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
 	SuperKickAttack:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 		TNT1 A 0 A_AlertMonsters();
-		TNT1 A 0 A_PlaySound("sonicdoom/grunt", 8);
+		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
-		SKIK A 1 A_PlaySound("sonicdoom/swordswing", 7);
+		SKIK A 1 A_PlaySound("sweapons/swordswing", 7);
 		SKIK BC 1;
-		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		SKIK EF 1;
 		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
 	SuperSonicEagle:
-		SEAG A 1 A_PlaySound("sonicdoom/swordswing", 7);
+		SEAG A 1 A_PlaySound("sweapons/swordswing", 7);
 		SEAG BC 1;
-		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		SEAG E 1;
 		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
@@ -94,7 +94,6 @@ Class ShadowDash : CustomInventory
 		TNT1 A 4;
 		TNT1 A 0 A_SetGravity(1);
 		TNT1 A 0 ThrustThing(angle * 256 / 360, 150, 1, 0);
-		TNT1 A 0 A_PlaySound("sonicdoom/chaosspear");
 		TNT1 A 4;
 		TNT1 A 0 A_GiveInventory("TeleportCooldown", 50);
 		TNT1 A 0 A_Stop();
@@ -129,10 +128,10 @@ Class AmyKick : CustomInventory
 		Stop;
 	KickAttack:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
-		AKIK A 1 A_PlaySound("sonicdoom/swordswing", 7);
+		AKIK A 1 A_PlaySound("sweapons/swordswing", 7);
 		TNT1 A 0 A_GiveInventory("LegOut", 1);
 		AKIK BC 1;
-		AKIK D 1 A_CustomPunch(10, false, CPF_NOTURN, "AmyKickPuff", 75, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+		AKIK D 1 A_CustomPunch(10, false, CPF_NOTURN, "AmyKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		AKIK EFG 1;
 		TNT1 A 0 A_TakeInventory("LegOut", 1);
 		TNT1 A 1 A_SetInventory("KickCooldown", 10);
@@ -168,22 +167,22 @@ Class SonicDash : CustomInventory
 	DashAtk:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 		TNT1 A 0 A_AlertMonsters();
-		TNT1 A 0 A_PlaySound("sonicdoom/dash", 2);
-		TNT1 A 0 A_PlaySound("sonicdoom/classichoming", 3, 0.75);
+		TNT1 A 0 A_PlaySound("classic/dash", 2);
+		TNT1 A 0 A_PlaySound("classic/homing", 3, 0.75);
 		TNT1 A 0 A_ChangeVelocity (Cos(Pitch) * 32, 0, Sin(Pitch) * -32, CVF_Relative);
 		TNT1 A 5
 		{
 			if (CountInv("PowerSuper") < 1 && CountInv("PowerHyper") < 1)
 			{
-				A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+				A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			}
 			else if (CountInv("PowerSuper"))
 			{
-				A_CustomPunch(160, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+				A_CustomPunch(160, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			}
 			else if (CountInv("PowerHyper"))
 			{
-				A_CustomPunch(320, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+				A_CustomPunch(320, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			}
 		}
 		TNT1 A 1 A_SetInventory("KickCooldown", 10);

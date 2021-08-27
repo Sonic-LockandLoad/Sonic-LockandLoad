@@ -55,6 +55,8 @@ ACTOR FasterSpiderdemon : SpiderMastermind 19925
   Radius 60
   Height 100
   Mass 100000000
+  Health 1
+  Obituary "%o didn't heed the warnings and met with a terrible fate."
   DamageFactor "Normal", 0
   States
   {

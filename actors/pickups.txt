@@ -1,7 +1,7 @@
 ACTOR Ring : CustomInventory replaces HealthBonus
 {
   Inventory.PickupMessage "Picked up a ring."
-  Inventory.PickupSound "sonicdoom/ring"
+  Inventory.PickupSound "spickup/ring"
   +COUNTITEM
   +INVENTORY.ALWAYSPICKUP
   States
@@ -37,7 +37,7 @@ ACTOR RingBox : CustomInventory replaces Stimpack
   Radius 20
   Height 30
   Inventory.PickupMessage ""
-  DeathSound "sonicdoom/boxdestroy"
+  DeathSound "spickup/boxdestroy"
   +COUNTITEM
   +INVENTORY.ALWAYSPICKUP
   +SHOOTABLE
@@ -57,7 +57,7 @@ ACTOR RingBox : CustomInventory replaces Stimpack
 ACTOR 10Rings : CustomInventory
 {
   Inventory.PickupMessage "Picked up 10 rings."
-  Inventory.PickupSound "sonicdoom/10rings"
+  Inventory.PickupSound "spickup/10rings"
   +COUNTITEM
   +INVENTORY.ALWAYSPICKUP
   States
@@ -91,7 +91,7 @@ ACTOR 10Rings : CustomInventory
 ACTOR SpecialRing : CustomInventory replaces Medikit
 {
   Inventory.PickupMessage "Picked up a Special ring."
-  Inventory.PickupSound "sonicdoom/specialring"
+  Inventory.PickupSound "spickup/specialring"
   +COUNTITEM
   +INVENTORY.ALWAYSPICKUP
   States
@@ -140,7 +140,7 @@ ACTOR SpecialRing : CustomInventory replaces Medikit
 ACTOR ChaosRing : CustomInventory replaces ArmorBonus
 {
   Inventory.PickupMessage "Picked up a Chaos ring."
-  Inventory.PickupSound "sonicdoom/ring"
+  Inventory.PickupSound "spickup/ring"
   +COUNTITEM
   +INVENTORY.ALWAYSPICKUP
   States
@@ -175,7 +175,7 @@ ACTOR ChaosRing : CustomInventory replaces ArmorBonus
 ACTOR SoulRing : CustomInventory
 {
   Inventory.PickupMessage "Picked up a Soul ring."
-  Inventory.PickupSound "sonicdoom/ring"
+  Inventory.PickupSound "spickup/ring"
   +COUNTITEM
   +INVENTORY.ALWAYSPICKUP
   States
@@ -192,7 +192,7 @@ ACTOR SoulRing : CustomInventory
 ACTOR SoulRecharge : CustomInventory
 {
   Inventory.PickupMessage "Picked up a box of Soul rings!"
-  Inventory.PickupSound "sonicdoom/specialring"
+  Inventory.PickupSound "spickup/specialring"
   States
   {
   Spawn:
@@ -206,7 +206,7 @@ ACTOR SoulRecharge : CustomInventory
 ACTOR EmeraldRecharge : CustomInventory
 {
   Inventory.PickupMessage "Picked up an Emerald recharge!"
-  Inventory.PickupSound "sonicdoom/specialring"
+  Inventory.PickupSound "spickup/specialring"
   States
   {
   Spawn:
@@ -220,7 +220,7 @@ ACTOR EmeraldRecharge : CustomInventory
 ACTOR InvincibilityBox : CustomInventory
 {
   Inventory.PickupMessage "Invincibility!"
-  Inventory.PickupSound "sonicdoom/boxdestroy"
+  Inventory.PickupSound "spickup/boxdestroy"
   +COUNTITEM
   States
   {
@@ -236,7 +236,7 @@ ACTOR InvincibilityBox : CustomInventory
 ACTOR ShadowFever : CustomInventory
 {
   Inventory.PickupMessage "Shadow Fever!"
-  Inventory.PickupSound "sonicdoom/boxdestroy"
+  Inventory.PickupSound "spickup/boxdestroy"
   +COUNTITEM
   States
   {
@@ -252,7 +252,7 @@ ACTOR ShadowFever : CustomInventory
 ACTOR ChaosEmeralds : CustomInventory 
 {
   Inventory.PickupMessage ""
-  Inventory.PickupSound "sonicdoom/chaosemerald"
+  Inventory.PickupSound "spickup/chaosemerald"
   +COUNTITEM
   +INVENTORY.INVBAR
   States
@@ -282,8 +282,8 @@ ACTOR ChaosEmeralds : CustomInventory
 	}
 	TNT1 A 0 A_GiveInventory("SuperForm", 1)
 	TNT1 A 0 A_GiveInventory("SuperInvincibility", 1)
-	TNT1 A 0 A_PlaySound("sonicdoom/supersonic", 6)
-	TNT1 A 0 A_PlaySound("sonicdoom/supertransform", 4)
+	TNT1 A 0 A_PlaySound("sglobal/supersonic", 6)
+	TNT1 A 0 A_PlaySound("sglobal/supertransform", 4)
 	TNT1 A 0 
 	{
 	  if (CountInv("SonicCheck")) 

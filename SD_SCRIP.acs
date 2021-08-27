@@ -12,16 +12,16 @@ script "Taunt" (void)
 	switch(PlayerClass(PlayerNumber()))
       {
             case 0:
-                 PlaySound(1001, "sonicdoom/sonictaunt", CHAN_BODY, 1.0);
+                 PlaySound(1001, "sonic/taunt", CHAN_BODY, 1.0);
                  break;
             case 1:
-                 PlaySound(1001, "sonicdoom/amytaunt", CHAN_BODY, 1.0);
+                 PlaySound(1001, "amy/taunt", CHAN_BODY, 1.0);
                  break;
             case 2:
-                 PlaySound(1001, "sonicdoom/classictaunt", CHAN_BODY, 1.0);
+                 PlaySound(1001, "classic/taunt", CHAN_BODY, 1.0);
                  break;
             case 3:
-                 PlaySound(1001, "sonicdoom/shadowtaunt", CHAN_BODY, 1.0);
+                 PlaySound(1001, "shadow/taunt", CHAN_BODY, 1.0);
                  break;
             case -1:
             default:
@@ -185,7 +185,7 @@ script "ChaosEmeraldHandler" (void)
 		if (PlayerClass(PlayerNumber()) == 2 && !CheckInventory("PowerHyper") && GetCvar("HyperSonic"))
 		/* If playing as Classic Sonic, you're not already in Hyper form and Hyper form is enabled... */
 		{
-            PlaySound(1001, "sonicdoom/classichyper", CHAN_BODY, 1.0);
+            PlaySound(1001, "super/classich", CHAN_BODY, 1.0);
 			Log(s:"\c[SonicBlue]Okay, NO more playing around!!");
 			TakeInventory("PowerSuper", 1);
 			GiveInventory("HyperForm", 1);
@@ -361,7 +361,7 @@ script "GiveTID" ENTER
 
 script "Damn4thChaosEmerald" (void)
 {
-	AmbientSound("sonicdoom/damn4thchaos", 127);
+	AmbientSound("shadow/damn4thchaos", 127);
 }
 
 script "Drowning" (void)
@@ -381,5 +381,5 @@ script "ResetMusic" (void)
 
 script "ReticleSound" (void)
 {
-	AmbientSound("sonicdoom/reticle", 127);
+	AmbientSound("sweapons/reticle", 127);
 }

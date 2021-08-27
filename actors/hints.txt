@@ -1,7 +1,7 @@
 actor Hint : CustomInventory
 {
   Inventory.PickupMessage ""
-  Inventory.PickupSound "sonicdoom/hintpickup"
+  Inventory.PickupSound "spickup/hint"
 }
 
 actor BossHint : Hint 261

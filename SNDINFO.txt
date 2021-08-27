@@ -1,230 +1,242 @@
-sonicdoom/ring              PickRing
-sonicdoom/speedyshot        SpSGShot
-sonicdoom/speedyblast       SpSGBlst
-sonicdoom/speedyreload      SpSGRlod
-sonicdoom/missilefire       MislFire
-sonicdoom/chaosemerald      ChEmerad
-sonicdoom/angery            Angery
-sonicdoom/thanksalotwall    ThxWall
-sonicdoom/thiswallsintheway walinway
-sonicdoom/thatwaslame       Lame
-sonicdoom/scream            Scream
-sonicdoom/boostv1           boost1
-sonicdoom/boostv2           boost2
-sonicdoom/boostv3           boost3
-sonicdoom/aboost            aboost
-sonicdoom/drift             drift
-sonicdoom/error             error
-sonicdoom/amyerror          a_error
-sonicdoom/hintpickup        hint
-sonicdoom/dash              homatk
-sonicdoom/sdash             homing
-sonicdoom/cantwin           cantwin
-sonicdoom/boxdestroy        destroy
-sonicdoom/specialring       specring
-sonicdoom/lostrings         LoseRing
-sonicdoom/ohno              ohno
-sonicdoom/swing1            swing1
-sonicdoom/swing2            swing2
-sonicdoom/swing3            swing3
-sonicdoom/hit               hit1
-sonicdoom/finalhit          hit2
-sonicdoom/soulsurge         surge
-sonicdoom/supertheme        m_supsnc
-sonicdoom/supertheme2       m_supamy
-sonicdoom/supertheme3       m_supsha
-sonicdoom/superready        supready
-sonicdoom/supertransform    suptrnsf
-sonicdoom/healthcharge      hpcharge
-sonicdoom/grunt1            SonicGr1
-sonicdoom/grunt2            SonicGr2
-sonicdoom/grunt3            SonicGr3
-sonicdoom/grunt4            SonicGr4
-sonicdoom/grunt5            SonicGr5
-sonicdoom/grunt6            SonicGr6
-sonicdoom/amygrunt1         agrunt1
-sonicdoom/amygrunt2         agrunt2
-sonicdoom/boosttrail        bstrail
-sonicdoom/amyscream         amscrem
-sonicdoom/amyohno           amohno
-sonicdoom/sonichurt         sonihurt
-sonicdoom/amyhurt1          amyhurt1
-sonicdoom/amyhurt2          amyhurt2
-sonicdoom/glidestart        aglide
-sonicdoom/glidefinish       aglidend
-sonicdoom/sliding           sliding
-sonicdoom/deadend1          deadend1
-sonicdoom/deadend2          deadend2
-sonicdoom/hammerswing       pikoswng
-sonicdoom/rosepistol        pistshot
-sonicdoom/preciseshot       precshot
-sonicdoom/amypickup         a_pickup
-sonicdoom/sonicpickup       s_pickup
-sonicdoom/zoom              zoom
-sonicdoom/zoomend           zend
-sonicdoom/zoomfire          zshot
-sonicdoom/invincibility     invinc
-sonicdoom/caliburnready     caliredy
-sonicdoom/soulcharge        schg
-sonicdoom/shurikenhit       shurhit
-sonicdoom/shurikenfire1     shuri1
-sonicdoom/shurikenfire2     shuri2
-sonicdoom/shadowgrunt1      dgrunt1
-sonicdoom/shadowgrunt2      dgrunt2
-sonicdoom/shadowgrunt3      dgrunt3
-sonicdoom/shadowgrunt4      dgrunt4
-sonicdoom/shadowgrunt5      dgrunt5
-sonicdoom/shadowgrunt6      dgrunt6
-sonicdoom/shadowgruntc      dgruntc
-sonicdoom/there             there
-sonicdoom/shadowpain        d_pain
-sonicdoom/shadowscream      nooooooo
-sonicdoom/chaosspear        spshoot
-sonicdoom/spearimpact       spimpact
-sonicdoom/damn4thchaos      demerald
-sonicdoom/no                no
-sonicdoom/huh               huh
-sonicdoom/focused           focused
-sonicdoom/shadowerror       d_error
-sonicdoom/passivezoomin     pzoomin
-sonicdoom/passivezoomout    pzoomout
-sonicdoom/blockattack       block1
-sonicdoom/blockattackx      block2
-sonicdoom/blockready        blkready
-sonicdoom/sonictaunt1       staunt1
-sonicdoom/sonictaunt2       staunt2
-sonicdoom/sonictaunt3       staunt3
-sonicdoom/amytaunt          a_taunt
-sonicdoom/shadowtaunt1      dtaunt1
-sonicdoom/shadowtaunt2      dtaunt2
-sonicdoom/tailshurt         tailhurt
-sonicdoom/tailsfly          tailsfly
-sonicdoom/fsonictaunt       notgeten
-sonicdoom/shockwave         shock
-sonicdoom/shardshot         sharshot
-sonicdoom/forceshot         sha2shot
-sonicdoom/forcereload       forcrlod
-sonicdoom/10rings           10Ring
-sonicdoom/peelout           peelc
-sonicdoom/peeloutrelease    peelr
-sonicdoom/spin              Roll
-sonicdoom/herewe            herewe
-sonicdoom/go                go
-sonicdoom/sonicpistol       fpistol
-sonicdoom/classicpain       churt
-sonicdoom/sliding           Sliding
-sonicdoom/swordspin         swing4
-sonicdoom/loserings         LoseRing
-sonicdoom/notmyday			notmyday
-sonicdoom/shovelbonk		shovbonk
-sonicdoom/reticle			SoniReti
+// Global
 
-sonicdoom/yo                yo
-sonicdoom/illplay           heyillpl
-sonicdoom/soundtest         sndtest
-sonicdoom/putemup			putemup
-sonicdoom/sandineye			sandeye
+sglobal/loserings         	LoseRing
+sglobal/superready        	supready
+sglobal/supertransform    	suptrnsf
+sglobal/invincibility     	invinc
+sglobal/nextlevel	 		letsgo
 
-sonicdoom/memorycard		memcard
+// Pickups
 
-sonicdoom/classicno         noc
-sonicdoom/classicherego     cherego
-sonicdoom/ifyoucan          catchme
-sonicdoom/underestimate     csncspd
-sonicdoom/teria				teria
-sonicdoom/classichoming		clahomi
-sonicdoom/classichyper		chyptrns
+spickup/ring				PickRing
+spickup/10rings           	10Ring
+spickup/specialring       	specring
+spickup/chaosemerald		ChEmerad
+spickup/hint				hint
+spickup/boxdestroy        	destroy
+spickup/amy         		a_pickup
+spickup/sonic       		s_pickup
+spickup/damn4thchaos      	demerald
 
-sonicdoom/oof1    		    oof1
-sonicdoom/oof2 		        oof2
-sonicdoom/oof3 		        oof3
-sonicdoom/oof4 		        oof4
-sonicdoom/oof5 		        oof5
+// Weapons (subject to reorganisation)
 
-sonicdoom/woa1              woa1
-sonicdoom/woa2              woa2
-sonicdoom/woa3              woa3
-sonicdoom/woa4              woa4
-sonicdoom/woa5              woa5
-       
-sonicdoom/sonicpainx1       SonicOw1
-sonicdoom/sonicpainx2       SonicOw2
+sweapons/speedyshot        	SpSGShot
+sweapons/speedyblast       	SpSGBlst
+sweapons/speedyreload      	SpSGRlod
+sweapons/missilefire       	MislFire
+sweapons/hit               	hit1
+sweapons/finalhit          	hit2
+sweapons/swing1            	swing1
+sweapons/swing2            	swing2
+sweapons/swing3            	swing3
+sweapons/soulsurge         	surge
+sweapons/swing1            	swing1
+sweapons/swing2            	swing2
+sweapons/swing3            	swing3
+sweapons/soulsurge         	surge
+sweapons/hammerswing       	pikoswng
+sweapons/apistol        	pistshot
+sweapons/preciseshot       	precshot
+sweapons/zoom              	zoom
+sweapons/zoomend           	zend
+sweapons/zoomfire          	zshot
+sweapons/soulcharge        	schg
+sweapons/shurikenhit       	shurhit
+sweapons/shurikenfire1     	shuri1
+sweapons/shurikenfire2     	shuri2
+sweapons/chaosspear        	spshoot
+sweapons/spearimpact       	spimpact
+sweapons/blockattack       	block1
+sweapons/blockattackx      	block2
+sweapons/blockready        	blkready
+sweapons/shockwave         	shock
+sweapons/shardshot         	sharshot
+sweapons/forceshot         	sha2shot
+sweapons/forcereload       	forcrlod
+sweapons/pistol       		fpistol
+sweapons/swordspin         	swing4
+sweapons/shovelbonk			shovbonk
+sweapons/hammerbonk			HamBonk
+sweapons/darkshotty			assashot
+sweapons/amyreload1			ashtrld1
+sweapons/amyreload2			ashtrld2
+sweapons/drift            	drift
+sweapons/uboost           	uboost
+sweapons/healthcharge     	hpcharge
+sweapons/boosttrail       	bstrail
+sweapons/peelout          	peelc
+sweapons/peeloutrelease   	peelr
+sweapons/spin             	Roll
+sweapons/sdash				homing
+sweapons/reticle			SoniReti
+$random sweapons/shurikenfire { sweapons/shurikenfire1 sweapons/shurikenfire2 }
 
-sonicdoom/hammerbonk		HamBonk
-sonicdoom/darkshotty		assashot
+// Character
 
+sonic/thanksalotwall    	ThxWall
+sonic/thiswallsintheway 	walinway
+sonic/thatwaslame       	Lame
+sonic/scream            	Scream
+sonic/boostv1           	boost1
+sonic/boostv2           	boost2
+sonic/boostv3           	boost3
+sonic/error             	error
+sonic/ohno              	ohno
+sonic/grunt1            	SonicGr1
+sonic/grunt2            	SonicGr2
+sonic/grunt3            	SonicGr3
+sonic/grunt4            	SonicGr4
+sonic/grunt5            	SonicGr5
+sonic/grunt6            	SonicGr6
+sonic/hurt         			sonihurt
+sonic/taunt1       			staunt1
+sonic/taunt2       			staunt2
+sonic/taunt3       			staunt3
+sonic/herewe            	herewe
+sonic/go                	go
+sonic/notmyday				notmyday
+sonic/painx1       			SonicOw1
+sonic/painx2       			SonicOw2
+sonic/nextlevel				letsgo
+
+amy/error          			a_error
+amy/grunt1         			agrunt1
+amy/grunt2         			agrunt2
+amy/scream         			amscrem
+amy/ohno           			amohno
+amy/hurt1          			amyhurt1
+amy/hurt2          			amyhurt2
+amy/deadend1          		deadend1
+amy/deadend2          		deadend2
+amy/nextlevel				alright
+
+classic/dash              	homatk
+classic/taunt1              yo
+classic/taunt2           	heyillpl
+classic/taunt3         		sndtest
+classic/taunt4				putemup
+classic/taunt5				sandeye
+classic/pain       			churt
+classic/memorycard			memcard
+classic/no         			noc
+classic/herego     			cherego
+classic/ifyoucan          	catchme
+classic/underestimate     	csncspd
+classic/teria				teria
+classic/homing				clahomi
+classic/oof1    		    oof1
+classic/oof2 		        oof2
+classic/oof3 		        oof3
+classic/oof4 		        oof4
+classic/oof5 		        oof5
+classic/woa1              	woa1
+classic/woa2              	woa2
+classic/woa3              	woa3
+classic/woa4              	woa4
+classic/woa5              	woa5
+classic/nextlevel			letsrock
+$random classic/driftline { classic/ifyoucan classic/herego classic/underestimate classic/teria }
+
+shadow/grunt1      			dgrunt1
+shadow/grunt2      			dgrunt2
+shadow/grunt3      			dgrunt3
+shadow/grunt4      			dgrunt4
+shadow/grunt5      			dgrunt5
+shadow/grunt6      			dgrunt6
+shadow/gruntc      			dgruntc
+shadow/there             	there
+shadow/shadowpain        	d_pain
+shadow/scream      			nooooooo
+shadow/no                	no
+shadow/huh               	huh
+shadow/focused           	focused
+shadow/error       			d_error
+shadow/taunt1      			dtaunt1
+shadow/taunt2      			dtaunt2
+shadow/nextlevel			moving
 theycant/trollyouif			thereded
+$random shadow/grunt  		{ shadow/grunt1 shadow/grunt2 shadow/grunt3 shadow/grunt4 shadow/grunt5 shadow/grunt6 }
+$random shadow/cgrunt   	{ shadow/gruntc shadow/there }
 
-menu/activate		OpenMenu// Activate a new menu
-menu/backup			Return	// Backup to previous menu
-menu/prompt			Select	// Activate a prompt "menu"
-menu/cursor         Move   // Move cursor up/down
-menu/change	        Move	// Select new value for option
-menu/dismiss       Return	// Dismiss a prompt message
-menu/choose        Select	// Choose a menu item
-menu/clear         ExitMenu	// Close top menu
-menu/quit1         ImOut
-menu/quit2         ImOut
+super/classich				chyptrns
 
-sonicdoom/amyreload1		ashtrld1
-sonicdoom/amyreload2		ashtrld2
+// Menu
 
-$random useoof { sonicdoom/thanksalotwall sonicdoom/thiswallsintheway sonicdoom/notmyday }
-$random auseof { sonicdoom/deadend1 sonicdoom/deadend2 }
-$random duseof { sonicdoom/no sonicdoom/huh sonicdoom/focused }
-$random claoof { sonicdoom/oof1 sonicdoom/oof2 sonicdoom/oof3 sonicdoom/oof4 sonicdoom/oof5 }
-$random sonicdoom/driftline { sonicdoom/ifyoucan sonicdoom/classicherego sonicdoom/underestimate sonicdoom/teria }
-$random sonicdoom/death { sonicdoom/thatwaslame sonicdoom/scream }
-$random adeath { sonicdoom/amyohno sonicdoom/amyscream }
-$random sonicdoom/classicdeath { sonicdoom/classicno sonicdoom/woa1 sonicdoom/woa2 sonicdoom/woa3 sonicdoom/woa4 sonicdoom/woa5 }
-$random sonicdoom/boost  { sonicdoom/boostv1 sonicdoom/boostv2 sonicdoom/boostv3 }
-$random sonicdoom/swordswing { sonicdoom/swing1 sonicdoom/swing2 sonicdoom/swing3 }
-$random sonicdoom/grunt { sonicdoom/grunt1 sonicdoom/grunt2 sonicdoom/grunt3 sonicdoom/grunt4 sonicdoom/grunt5 sonicdoom/grunt6 }
-$random sonicdoom/amygrunt { sonicdoom/amygrunt1 sonicdoom/amygrunt2 }
-$random sonicdoom/sonicpain { sonicdoom/sonichurt sonicdoom/sonicpainx1 sonicdoom/sonicpainx2 }
-$random sonicdoom/amyhurt { sonicdoom/amyhurt1 sonicdoom/amyhurt2 }
-$random sonicdoom/shurikenfire { sonicdoom/shurikenfire1 sonicdoom/shurikenfire2 }
-$random sonicdoom/shadowgrunt  { sonicdoom/shadowgrunt1 sonicdoom/shadowgrunt2 sonicdoom/shadowgrunt3 sonicdoom/shadowgrunt4 sonicdoom/shadowgrunt5 sonicdoom/shadowgrunt6 }
-$random sonicdoom/chaosgrunt  { sonicdoom/shadowgruntc sonicdoom/there }
-$random sonicdoom/sonictaunt { sonicdoom/sonictaunt1 sonicdoom/sonictaunt2 sonicdoom/sonictaunt3 }
-$random sonicdoom/shadowtaunt { sonicdoom/shadowtaunt1 sonicdoom/shadowtaunt2 }
-$random sonicdoom/classictaunt { sonicdoom/yo sonicdoom/illplay sonicdoom/soundtest sonicdoom/putemup sonicdoom/sandineye }
+menu/activate				OpenMenu	// Activate a new menu
+menu/backup					Return		// Backup to previous menu
+menu/prompt					Select		// Activate a prompt "menu"
+menu/cursor         		Move   		// Move cursor up/down
+menu/change	        		Move		// Select new value for option
+menu/dismiss       			Return		// Dismiss a prompt message
+menu/choose        			Select		// Choose a menu item
+menu/clear         			ExitMenu	// Close top menu
+menu/quit1         			ImOut
+menu/quit2         			ImOut
 
-$playersound sonic male *death                  sonicdoom/death
-$playeralias sonic male *usefail                useoof
-$playersound sonic male *jump                   S_JUMP
-$playersound sonic male sonicdoom/supersonic    nowshow
-$playersound sonic male sonicdoom/taunt         sonicdoom/sonictaunt
+// Mostly random but also not but idk I feel like this should be its own category
 
-$playersound amy female *death                  adeath
-$playeralias amy female *usefail                auseof
-$playersound amy female *jump                   A_JUMP
-$playersound amy female sonicdoom/supersonic    destrall
-$playersound amy female sonicdoom/taunt         sonicdoom/amytaunt
+$random sonic/cantuse 		{ sonic/thanksalotwall sonic/thiswallsintheway sonic/notmyday }
+$random amy/cantuse 		{ amy/deadend1 amy/deadend2 }
+$random shadow/cantuse 		{ shadow/no shadow/huh shadow/focused }
+$random classic/cantuse 	{ classic/oof1 classic/oof2 classic/oof3 classic/oof4 classic/oof5 }
 
-$playersound classic male *death                sonicdoom/cdeath
-$playeralias classic male *usefail              claoof
-$playersound classic male *jump                 cjump
-$playersound classic male sonicdoom/supersonic  csuptrns
-$playersound classic male sonicdoom/taunt       sonicdoom/classictaunt
+$random sonic/death 		{ sonic/thatwaslame sonic/scream }
+$random amy/death 			{ amy/ohno amy/scream }
+		shadow/death		  nooooooo
+$random classic/death 		{ classic/no classic/woa1 classic/woa2 classic/woa3 classic/woa4 classic/woa5 }
 
-$playersound shadow male *death                 nooooooo
-$playeralias shadow male *usefail               duseof
-$playersound shadow male *jump                  D_JUMP
-$playersound shadow male sonicdoom/supersonic   ultimate
-$playersound shadow male sonicdoom/taunt        sonicdoom/shadowtaunt
+$random sonic/boost 		{ sonic/boostv1 sonic/boostv2 sonic/boostv3 }
+$random sweapons/swordswing { sweapons/swing1 sweapons/swing2 sweapons/swing3 }
 
-/*
-$playersound tails male *death                  nooooooo
-$playeralias tails male *usefail                duseof
-$playersound tails male *jump                   T_JUMP
-$playersound tails male sonicdoom/supersonic    ultimate
-$playersound tails male sonicdoom/taunt         sonicdoom/shadowtaunt
-*/
+$random sonic/grunt 		{ sonic/grunt1 sonic/grunt2 sonic/grunt3 sonic/grunt4 sonic/grunt5 sonic/grunt6 }
+$random amy/grunt 			{ amy/grunt1 amy/grunt2 }
 
-intermission/tick			ScorCont
-intermission/nextstage		Total
+$random sonic/pain 			{ sonic/hurt sonic/painx1 sonic/painx2 }
+$random amy/pain 			{ amy/hurt1 amy/hurt2 }
 
-misc/i_pkup                pickup
-misc/k_pkup                keypkup
-misc/secret                SecretFd
+$random sonic/taunt 		{ sonic/taunt1 sonic/taunt2 sonic/taunt3 }
+		amy/taunt			  a_taunt
+$random shadow/taunt 		{ shadow/taunt1 shadow/taunt2 }
+$random classic/taunt 		{ classic/yo classic/illplay classic/soundtest classic/putemup classic/sandineye }
+
+$random sglobal/nextlevel { sonic/nextlevel amy/nextlevel classic/nextlevel shadow/nextlevel }
+$alias intermission/paststats sglobal/nextlevel
+
+// Player
+
+$playersound sonic 	 male 		*death                  sonic/death
+$playeralias sonic 	 male 		*usefail                sonic/cantuse
+$playersound sonic 	 male 		*jump                   S_JUMP
+$playersound sonic 	 male 		*grunt                  S_LAND
+$playersound sonic 	 male 		*land                   S_LAND
+$playersound sonic 	 male 		sglobal/supersonic    	nowshow
+
+$playersound amy	 female 	*death                  adeath
+$playeralias amy	 female 	*usefail                amy/cantuse
+$playersound amy	 female 	*jump                   A_JUMP
+$playersound amy	 female 	*grunt                  A_LAND
+$playersound amy	 female 	*land                   A_LAND
+$playersound amy	 female 	sglobal/supersonic    	destrall
+
+$playersound classic male 		*death                	sonicdoom/cdeath
+$playeralias classic male 		*usefail              	classic/cantuse
+$playersound classic male 		*jump                 	cjump
+$playersound classic male 		*grunt                	S_LAND
+$playersound classic male 		*land                 	S_LAND
+$playersound classic male 		sglobal/supersonic  	csuptrns
+
+$playersound shadow  male 		*death                 	nooooooo
+$playeralias shadow  male 		*usefail               	shadow/cantuse
+$playersound shadow  male 		*jump                  	D_JUMP
+$playersound shadow  male 		*grunt                 	S_LAND
+$playersound shadow  male 		*land                  	S_LAND
+$playersound shadow  male 		sglobal/supersonic   	ultimate
+
+// Other
+
+intermission/tick				ScorCont
+intermission/nextstage			Total
+
+misc/i_pkup                		pickup
+misc/k_pkup                		keypkup
+misc/secret                		SecretFd
