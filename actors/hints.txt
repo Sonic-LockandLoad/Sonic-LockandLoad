@@ -34,3 +34,26 @@ actor BossHint : Hint 261
 	  Stop
   }
 }
+
+actor PlatformingHint : Hint 263
+{
+  States
+  {
+    Spawn:
+	  HELP A -1
+	  Stop
+    Pickup:
+      TNT1 A 0
+	  {
+	      if (CountInv("AmyCheck"))
+		  {
+		      A_Print("Crouch and press primary fire with the Piko Piko Hammer\nto Hammer Jump, allowing you to gain extra height.");
+		  }
+	      else
+		  {
+		      A_Print("You can jump across these gaps, no problem.\nYou did bind a jump key... right?");
+		  }
+	  }
+	  Stop
+  }
+}

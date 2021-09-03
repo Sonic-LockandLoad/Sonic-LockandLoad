@@ -27,20 +27,20 @@ ListMenu "PlayerclassMenu"
 {
 	Font "BIGFONT", "ActiveOption"
 	Position 42, 63
-	StaticText 46, 38, "Select your character!"
+	StaticText 38, 38, "Select your character!"
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
-	Position 90, 75
-	StaticPatch 200, 60, "sonic"
-	StaticPatch 200, 90, "amy"
-	StaticPatch 200, 120, "classic"
-	StaticPatch 200, 150, "shadow"
+	Position 120, 75
+	StaticPatch 220, 60, "sonic"
+	StaticPatch 220, 85, "amy"
+	StaticPatch 220, 110, "classic"
+	StaticPatch 220, 135, "shadow"
 }
 ListMenu "EpisodeMenu"
 {
 	Font "BIGFONT", "ActiveOption"
 	Position 42, 63
 	StaticText 46, 38, "Where are you headed?"
-	Position 58, 63
+	Position 68, 63
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
 ListMenu "SkillMenu"

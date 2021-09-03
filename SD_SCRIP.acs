@@ -29,7 +29,7 @@ script "Taunt" (void)
         }
 }
 
-script "HammerJump" (void)
+script "IsCrouching" (void)
 {
 	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
 
@@ -423,33 +423,37 @@ script "GoalRing" (void)
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case 0:
-			if (LevelTime < GetLevelInfo(LEVELINFO_PAR_TIME))
-			{
-				PlaySound(1001, "sonic/goodresult");
-			}
-			else
+			if (LevelTime > GetLevelInfo(LEVELINFO_PAR_TIME))
 			{
 				PlaySound(1001, "sonic/badresult");
 			}
+			else
+			{
+				PlaySound(1001, "sonic/goodresult");
+			}
 			break;
 		case 1:
-			if (GetActorProperty(1001, APROP_Health) > 20)
-			{
-				PlaySound(1001, "amy/goodresult");
-			}
-			else
+			if (GetActorProperty(1001, APROP_Health) < 40)
 			{
 				PlaySound(1001, "amy/badresult");
 			}
+			else
+			{
+				PlaySound(1001, "amy/goodresult");
+			}
 			break;
 		case 2:
-			if (GetActorProperty(1001, APROP_Health) > 20)
+			if (GetActorProperty(1001, APROP_Health) < 21)
 			{
-				PlaySound(1001, "classic/goodresult");
+				PlaySound(1001, "classic/badresult");
+			}
+			else if (LevelTime > GetLevelInfo(LEVELINFO_PAR_TIME))
+			{
+				PlaySound(1001, "classic/okayresult");
 			}
 			else
 			{
-				PlaySound(1001, "classic/badresult");
+				PlaySound(1001, "classic/goodresult");
 			}
 			break;
 		case 3:

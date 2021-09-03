@@ -20,7 +20,7 @@ ACTOR SonicPlayer : PlayerPawn
   Mass 50
   Player.MaxHealth 999
   Player.DisplayName "Sonic"
-  Player.Face "STF"
+  Player.Face "SNF"
   Player.JumpZ 12.0
   Player.SoundClass "sonic"
   Player.StartItem "SonicAbilities"
@@ -126,7 +126,7 @@ ACTOR AmyPlayer : PlayerPawn
   Mass 50
   Player.MaxHealth 999
   Player.DisplayName "Amy"
-  Player.Face "ATF"
+  Player.Face "AMF"
   Player.JumpZ 10.0
   Player.SoundClass "amy"
   Player.StartItem "AmyCheck"
@@ -235,7 +235,7 @@ ACTOR ShadowPlayer : PlayerPawn
   Mass 50
   Player.MaxHealth 999
   Player.DisplayName "Shadow"
-  Player.Face "DTF"
+  Player.Face "SHF"
   Player.JumpZ 12.0
   Player.SoundClass "shadow"
   Player.StartItem "ShadowAbilities"
@@ -323,7 +323,7 @@ ACTOR ClassicSonicPlayer : PlayerPawn
   Player.DisplayName "C.Sonic"
   Player.SoundClass "classic"
   Player.JumpZ 12.0
-  Player.Face "CTF"
+  Player.Face "CLF"
   Player.StartItem "ClassicAbilities"
   Player.StartItem "ChaosBlaster"
   Player.StartItem "ChaosEnergy", 150
@@ -446,10 +446,6 @@ ACTOR AmyCheck : Inventory
   Inventory.MaxAmount 1
 }
 ACTOR ShadowCheck : Inventory 
-{
-  Inventory.MaxAmount 1
-}
-ACTOR TailsCheck : Inventory 
 {
   Inventory.MaxAmount 1
 }
