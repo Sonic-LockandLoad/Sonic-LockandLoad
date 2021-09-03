@@ -4,3 +4,4 @@ user int InvincibilityMusic = 1;
 user bool VerticalBoost = false;
 user int HyperSonic = 1;
 user noarchive int StopBeingBrutal = 0;
+user int DkgBruTecFpgA = 0;

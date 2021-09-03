@@ -5,17 +5,19 @@ TXT_YES = "Yeah!";
 TXT_NO = "No!";
 
 E1TEXT =
-	"Shadow: Hmph, those demons were no\n"
-	"challenge.\n"
+	"Shadow scoffs. 'Those demons were no\n"
+	"challenge.'\n"
 	"\n"
-	"Sonic: Easy for you to say... Wait a minute,\n"
-	"where are we?\n"
+	"Sonic looks at him, displeased.\n"
+	"'Easy for you to say... Wait a minute...\n"
+	"where are we?'\n"
 	"\n"
-	"Amy: It looks like some kind of base, and\n"
-	"there are more of those monsters!\n"
+	"Amy looks around.\n"
+	"'Some kind of base... And more monsters?'\n"
 	"\n"
-	"Sonic: I guess we're not done here just\n"
-	"yet...";
+	"Sonic sighs.\n"
+	"'Figures... I guess we're not done here\n"
+	"just yet.'";
 E2TEXT =
 	"Sonic: That huge thing was tough!\n"
 	"\n"
@@ -112,17 +114,6 @@ C6TEXT =
 	"\n"
 	"Amy: Don't worry, this is the only other secret\n"
 	"level in this game...";
-	
-CAMPEND =
-	"Thanks for trying the work-in progress campaign!\n"
-	"This is for the most part unfinished and updates\n"
-	"will be done to it.\n"
-	"\n"
-	"Suggestions? Open up an issue on the GitHub page\n"
-	"and I'll get back to you as soon as possible!\n"
-	"\n"
-	"Thanks for playing Sonic: Lock and Load!\n"
-	"- SpeedStriker243";
 	
 BOSSEND =
 	"After defeating the E-SP567 robot,\n"

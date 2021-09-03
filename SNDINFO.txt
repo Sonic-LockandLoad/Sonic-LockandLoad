@@ -16,7 +16,7 @@ spickup/hint				hint
 spickup/boxdestroy        	destroy
 spickup/amy         		a_pickup
 spickup/sonic       		s_pickup
-spickup/damn4thchaos      	demerald
+spickup/goalring			goalring
 
 // Weapons (subject to reorganisation)
 
@@ -98,6 +98,8 @@ sonic/notmyday				notmyday
 sonic/painx1       			SonicOw1
 sonic/painx2       			SonicOw2
 sonic/nextlevel				letsgo
+sonic/goodresult			S_GOOD
+sonic/badresult				S_BAD
 
 amy/error          			a_error
 amy/grunt1         			agrunt1
@@ -109,6 +111,8 @@ amy/hurt2          			amyhurt2
 amy/deadend1          		deadend1
 amy/deadend2          		deadend2
 amy/nextlevel				alright
+amy/goodresult				A_GOOD
+amy/badresult				A_BAD
 
 classic/dash              	homatk
 classic/taunt1              yo
@@ -136,6 +140,8 @@ classic/woa4              	woa4
 classic/woa5              	woa5
 classic/nextlevel			letsrock
 $random classic/driftline { classic/ifyoucan classic/herego classic/underestimate classic/teria }
+classic/goodresult			C_GOOD
+classic/badresult			C_BAD
 
 shadow/grunt1      			dgrunt1
 shadow/grunt2      			dgrunt2
@@ -154,9 +160,12 @@ shadow/error       			d_error
 shadow/taunt1      			dtaunt1
 shadow/taunt2      			dtaunt2
 shadow/nextlevel			moving
+shadow/damn4thchaos      	demerald
 theycant/trollyouif			thereded
 $random shadow/grunt  		{ shadow/grunt1 shadow/grunt2 shadow/grunt3 shadow/grunt4 shadow/grunt5 shadow/grunt6 }
 $random shadow/cgrunt   	{ shadow/gruntc shadow/there }
+shadow/goodresult			D_GOOD
+shadow/badresult			D_BAD
 
 super/classich				chyptrns
 
@@ -232,7 +241,7 @@ $playersound shadow  male 		*grunt                 	S_LAND
 $playersound shadow  male 		*land                  	S_LAND
 $playersound shadow  male 		sglobal/supersonic   	ultimate
 
-// Other
+// DOOM replacements
 
 intermission/tick				ScorCont
 intermission/nextstage			Total
@@ -240,3 +249,5 @@ intermission/nextstage			Total
 misc/i_pkup                		pickup
 misc/k_pkup                		keypkup
 misc/secret                		SecretFd
+
+brain/sight						RIAHESON

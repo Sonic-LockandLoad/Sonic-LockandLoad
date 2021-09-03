@@ -1,232 +1,232 @@
 ACTOR ShadowAbilities : Weapon
 {
-  Weapon.SelectionOrder 3700
-  Weapon.Kickback 9999999999999
-  Weapon.BobRangeX 0.0
-  Weapon.BobRangeY 0.0
-  Weapon.AmmoType "ChaosEnergy"
-  Tag "Shadow the Hedgehog"
-  +WEAPON.MELEEWEAPON
-  +WEAPON.NOAUTOFIRE
-  States
-  {
-  Ready:
-    TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0 A_TakeInventory("TeleportCooldown", 1)
-    Loop
-  Deselect:
-    TNT1 AA 0 A_Lower
-	Goto Select
-  Select:
-	TNT1 A 1 A_Lower
-	Goto Deselect
-  Fire:
-    TNT1 A 0 A_PlaySound("sweapons/swordswing", 1)
-    DPNR ABC 1
-    DPNR D 2 A_CustomPunch(random(1,64)*15, true, CPF_NOTURN, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sweapons/finalhit")
-    DPNR CBA 1
-	TNT1 A 2
-	Goto Ready
-  Reload:
-	TNT1 A 0 A_GiveInventory("ShadowDash")
-	Goto Ready
-  Spawn:
-    SHAD A -1
-    Stop
-  }
+    Weapon.SelectionOrder 3700
+    Weapon.Kickback 9999999999999
+    Weapon.BobRangeX 0.0
+    Weapon.BobRangeY 0.0
+    Weapon.AmmoType "ChaosEnergy"
+    Tag "Shadow the Hedgehog"
+    +WEAPON.MELEEWEAPON
+    +WEAPON.NOAUTOFIRE
+    States
+    {
+    Ready:
+        TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+		TNT1 A 0 A_TakeInventory("TeleportCooldown", 1)
+        Loop
+    Deselect:
+		TNT1 AA 0 A_Lower
+		Goto Select
+    Select:
+		TNT1 A 1 A_Lower
+		Goto Deselect
+    Fire:
+        TNT1 A 0 A_PlaySound("sweapons/swordswing", 1)
+        DPNR ABC 1
+        DPNR D 2 A_CustomPunch(random(1,64)*15, true, CPF_NOTURN, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sweapons/finalhit")
+        DPNR CBA 1
+		TNT1 A 2
+		Goto Ready
+    Reload:
+		TNT1 A 0 A_GiveInventory("ShadowDash")
+		Goto Ready
+    Spawn:
+        SHAD A -1
+        Stop
+    }
 }
 
 ACTOR HighShovel : Weapon
 {
-  Weapon.SelectionOrder 1400
-  Weapon.KickBack 1500
-  Tag "High Shovel"
-  Inventory.PickupMessage "\c[ShadowRedBlack]High shovel!"
-  +WEAPON.MELEEWEAPON
-  +WEAPON.NOAUTOFIRE
-  States
-  {
-  Ready:
-    SHOV A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-    Loop
-  Deselect:
-    SHOV A 1 A_Lower
-    Loop
-  Select:
-    SHOV A 1 A_Raise
-    Loop
-  Fire:
-	SHOV D 1
-	TNT1 A 0 A_ReFire
-    SHOV A 1 A_PlaySound("sweapons/swordswing", 1)
-    SHOV B 1
-	SHOV C 10
-	{
-		if (CountInv("PowerSuper"))
+    Weapon.SelectionOrder 1400
+    Weapon.KickBack 1500
+    Tag "High Shovel"
+    Inventory.PickupMessage "\c[ShadowRedBlack]High shovel!"
+    +WEAPON.MELEEWEAPON
+    +WEAPON.NOAUTOFIRE
+    States
+    {
+    Ready:
+        SHOV A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+        Loop
+    Deselect:
+        SHOV A 1 A_Lower
+        Loop
+    Select:
+        SHOV A 1 A_Raise
+        Loop
+    Fire:
+		SHOV D 1
+		TNT1 A 0 A_ReFire
+        SHOV A 1 A_PlaySound("sweapons/swordswing", 1)
+        SHOV B 1
+		SHOV C 10
 		{
-			A_CustomPunch(600, 0, 0, "GibPuff", 75, 0, 0, "ArmorBonus", "sweapons/shovelbonk");
+			if (CountInv("PowerSuper"))
+			{
+				A_CustomPunch(600, 0, 0, "GibPuff", 75, 0, 0, "ArmorBonus", "sweapons/shovelbonk");
+			}
+			else
+			{
+				A_CustomPunch(300, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/shovelbonk");
+			}
 		}
-		else
-		{
-			A_CustomPunch(300, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/shovelbonk");
-		}
-	}
-	SHOV B 1
-	SHOV A 1
-    Goto Ready
-  Reload:
-	TNT1 A 0 A_GiveInventory("ShadowDash")
-	Goto Ready
-  Spawn:
-    SHVL A -1
-    Stop
-  }
+		SHOV B 1
+		SHOV A 1
+        Goto Ready
+    Reload:
+		TNT1 A 0 A_GiveInventory("ShadowDash")
+		Goto Ready
+    Spawn:
+        SHVL A -1
+        Stop
+    }
 }
 
 ACTOR DarkAssault : Weapon
 {
-  Weapon.SelectionOrder 1300
-  Weapon.AmmoUse 20
-  Weapon.AmmoGive 20
-  Weapon.KickBack 500
-  Weapon.AmmoType "ChaosEnergy"
-  AttackSound "weapons/shotgf"
-  Tag "Dark Assaulter"
-  Inventory.PickupMessage "\c[ShadowRedBlack]Looks like this shotgun still works."
-  States
-  {
-  Ready:
-    AA12 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-    Loop
-  Deselect:
-    AA12 A 1 A_Lower
-    Loop
-  Select:
-    AA12 A 1 A_Raise
-    Loop
-  Fire:
-    AA12 A 2
-	AA12 A 0
-	{
-		if (CountInv("PowerSuper"))
+    Weapon.SelectionOrder 1300
+    Weapon.AmmoUse 20
+    Weapon.AmmoGive 20
+    Weapon.KickBack 500
+    Weapon.AmmoType "ChaosEnergy"
+    AttackSound "weapons/shotgf"
+    Tag "Dark Assaulter"
+    Inventory.PickupMessage "\c[ShadowRedBlack]Looks like this shotgun still works."
+    States
+    {
+    Ready:
+        AA12 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+        Loop
+    Deselect:
+        AA12 A 1 A_Lower
+        Loop
+    Select:
+        AA12 A 1 A_Raise
+        Loop
+    Fire:
+        AA12 A 2
+		AA12 A 0
 		{
-			A_GiveInventory("ChaosEnergy", 20);
+			if (CountInv("PowerSuper"))
+			{
+				A_GiveInventory("ChaosEnergy", 20);
+			}
 		}
-	}
-	AA12 A 0 A_FireBullets(6, 2, 8, 9, "BulletPuff")
-    AA12 A 0 A_PlaySound ("sweapons/darkshotty", CHAN_WEAPON)
-    AA12 A 0
-	{
-		if (CountInv("PowerSuper"))
+		AA12 A 0 A_FireBullets(6, 2, 8, 9, "BulletPuff")
+		AA12 A 0 A_PlaySound ("sweapons/darkshotty", CHAN_WEAPON)
+		AA12 A 0
 		{
-			A_GunFlash("SuperFlash");
-		} 
-		else
-		{
-			A_GunFlash;
+			if (CountInv("PowerSuper"))
+			{
+				A_GunFlash("SuperFlash");
+			} 
+			else
+			{
+				A_GunFlash;
+			}
 		}
-	}
-	AA12 A 3
-	{
-		if (CountInv("PowerSuper")) { A_ReFire; }
-	}
-	AA12 B 2
-    Goto Ready
-  Reload:
-	TNT1 A 0 A_GiveInventory("ShadowDash")
-	Goto Ready
-  Flash:
-    AAFL A 2 Bright A_Light1
-    Goto LightDone
-  SuperFlash:
-    AAFL A 1 Bright A_Light1
-    Goto LightDone
-  Spawn:
-    SHOT A -1
-    Stop
-  }
+		AA12 A 3
+		{
+			if (CountInv("PowerSuper")) { A_ReFire; }
+		}
+		AA12 B 2
+        Goto Ready
+    Reload:
+		TNT1 A 0 A_GiveInventory("ShadowDash")
+		Goto Ready
+    Flash:
+        AAFL A 2 Bright A_Light1
+        Goto LightDone
+    SuperFlash:
+        AAFL A 1 Bright A_Light1
+        Goto LightDone
+    Spawn:
+        SHOT A -1
+        Stop
+    }
 }
 
 ACTOR ChaosEmerald : Weapon
 {
-  Weapon.SelectionOrder 3700
-  Weapon.AmmoType "ChaosEnergy"
-  Weapon.AmmoUse 400
-  Weapon.AmmoGive 100
-  Inventory.PickupMessage "\c[ShadowRedBlack]That damn 4th Chaos Emerald!"
-  Tag "Chaos Emerald"
-  +AMMO_OPTIONAL
-  States
-  {
-  Ready:
-    CARM A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-	TNT1 A 0
-	{
-	  if (!CountInv("Damn4thChaos"))
-	  {
-		A_GiveInventory("Damn4thChaos");
-		ACS_NamedExecute("Damn4thChaosEmerald");
-	  }
-	  if (!CountInv("PowerSuper"))
-	  {
-	    A_GiveInventory("ChaosEnergy", 1);
-	  }
-	}
-    Loop
-  Deselect:
-    CARM AA 0 A_Lower
-	Goto Select
-  Select:
+    Weapon.SelectionOrder 3700
+    Weapon.AmmoType "ChaosEnergy"
+    Weapon.AmmoUse 400
+    Weapon.AmmoGive 100
+    Inventory.PickupMessage "\c[ShadowRedBlack]That damn 4th Chaos Emerald!"
+    Tag "Chaos Emerald"
+    +AMMO_OPTIONAL
+    States
+    {
+    Ready:
+        CARM A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+		TNT1 A 0
+		{
+			if (!CountInv("Damn4thChaos"))
+			{
+			A_GiveInventory("Damn4thChaos");
+			ACS_NamedExecute("Damn4thChaosEmerald");
+			}
+			if (!CountInv("PowerSuper"))
+			{
+				A_GiveInventory("ChaosEnergy", 1);
+			}
+		}
+        Loop
+    Deselect:
+        CARM AA 0 A_Lower
+		Goto Select
+    Select:
 	CARM A 1 A_Lower
 	Goto Deselect
-  Fire:
-    TNT1 A 0 A_JumpIf(CountInv("PowerSuper"), "AFire")
-    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 400, "NotEnoughEnergy")
-  AFire:
-	TNT1 A 0 A_PlaySound("shadow/cgrunt", 2)
-    CARM A 1
-	{
-		if (CountInv("PowerSuper"))
+    Fire:
+        TNT1 A 0 A_JumpIf(CountInv("PowerSuper"), "AFire")
+        TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 400, "NotEnoughEnergy")
+    AFire:
+		TNT1 A 0 A_PlaySound("shadow/cgrunt", 2)
+		CARM A 1
 		{
-			 A_FireProjectile("SuperChaosEnergyBall", 0, false);
+			if (CountInv("PowerSuper"))
+			{
+				 A_FireProjectile("SuperChaosEnergyBall", 0, false);
+			}
+			else
+			{
+				 A_FireProjectile("SuperChaosEnergyBall", 0, true);
+			}
 		}
-		else
-		{
-			 A_FireProjectile("SuperChaosEnergyBall", 0, true);
-		}
-	}
-	CARM BCDE 1
-	CARM E 10
-	CARM DCB 1
-	TNT1 A 0 A_ReFire
-    Goto Ready
-  AltFire:
-    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
-    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NotEnoughEnergy")
-    Goto Ready
-  RingCheck:
-    TNT1 A 0 A_JumpIf(CountInv("Health") > 998, "RingsFull")
-    TNT1 A 0 A_JumpIf(CountInv("Health") < 999, "ChaosCharge")
-    Goto Ready
-  NotEnoughEnergy:
-	TNT1 A 0 A_PlaySound("shadow/error", 4096)
-	Goto Ready
-  RingsFull:
-	TNT1 A 0 A_PlaySound("shadow/error", 4096)
-	Goto Ready
-  ChaosCharge:
-    TNT1 A 0 A_PlaySound("sweapons/healthcharge", 4096)
-    CARM F 1 A_TakeInventory("ChaosEnergy", 5)
-    TNT1 A 0 A_GiveInventory("Health", 15)
-	TNT1 A 0 A_ReFire("AltFire")
-	Goto Ready
-  Reload:
-	TNT1 A 0 A_GiveInventory("ShadowDash")
-	Goto Ready
-  Spawn:
-    CHSM G -1
-    Stop
-  }
+		CARM BCDE 1
+		CARM E 10
+		CARM DCB 1
+		TNT1 A 0 A_ReFire
+        Goto Ready
+    AltFire:
+        TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
+        TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NotEnoughEnergy")
+        Goto Ready
+    RingCheck:
+        TNT1 A 0 A_JumpIf(CountInv("Health") > 998, "RingsFull")
+        TNT1 A 0 A_JumpIf(CountInv("Health") < 999, "ChaosCharge")
+        Goto Ready
+    NotEnoughEnergy:
+		TNT1 A 0 A_PlaySound("shadow/error", 4096)
+		Goto Ready
+    RingsFull:
+		TNT1 A 0 A_PlaySound("shadow/error", 4096)
+		Goto Ready
+    ChaosCharge:
+        TNT1 A 0 A_PlaySound("sweapons/healthcharge", 4096)
+        CARM F 1 A_TakeInventory("ChaosEnergy", 5)
+        TNT1 A 0 A_GiveInventory("Health", 15)
+		TNT1 A 0 A_ReFire("AltFire")
+		Goto Ready
+    Reload:
+		TNT1 A 0 A_GiveInventory("ShadowDash")
+		Goto Ready
+    Spawn:
+        CHSM G -1
+        Stop
+    }
 }
 
 ACTOR ShadowKnife : Weapon
@@ -258,6 +258,40 @@ ACTOR ShadowKnife : Weapon
 			Goto Ready
 		Spawn:
 			SLAI Y -1
+			Stop
+	}
+}
+
+ACTOR QuadShotty : Weapon
+{
+	Weapon.SelectionOrder 400
+	Weapon.AmmoUse 40
+	Weapon.AmmoGive 160
+	Weapon.AmmoType "ChaosEnergy"
+	Inventory.PickupMessage "\c[ShadowRedBlack]Too heavy? No problem."
+	Tag "Quarternary Decimator"
+	States
+	{
+		Ready:
+			SHT4 A 1 A_WeaponReady
+			Loop
+		Deselect:
+			SHT4 A 1 A_Lower
+			Loop
+		Select:
+			SHT4 A 1 A_Raise
+			Loop
+		Fire:
+			SHT4 A 3
+			SHT4 B 7 A_FireShotgun2
+			SHT4 A 3 
+			SHT4 C 7 A_ReFire
+			Goto Ready
+		Flash:
+			SH4F A 4 Bright A_Light1
+			Goto LightDone
+		Spawn:
+			SGN2 A -1
 			Stop
 	}
 }

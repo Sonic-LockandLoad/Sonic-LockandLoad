@@ -16,21 +16,40 @@ LISTMENU "MainMenu"
 }
 ListMenu "DataMenu"
 {
-	Font "BIGFONT", "InactiveOption", "ActiveOption"
+	Font "BIGFONT", "ActiveOption"
 	StaticText 96, 38, "Data Options"
 	Position 97, 72
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
 	TextItem "Load", "l", "LoadGameMenu"
 	TextItem "Save", "s", "SaveGameMenu"
 }
 ListMenu "PlayerclassMenu"
 {
+	Font "BIGFONT", "ActiveOption"
+	Position 42, 63
+	StaticText 46, 38, "Select your character!"
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
-	StaticText 57, 48, "Select Character"
 	Position 90, 75
 	StaticPatch 200, 60, "sonic"
 	StaticPatch 200, 90, "amy"
 	StaticPatch 200, 120, "classic"
 	StaticPatch 200, 150, "shadow"
+}
+ListMenu "EpisodeMenu"
+{
+	Font "BIGFONT", "ActiveOption"
+	Position 42, 63
+	StaticText 46, 38, "Where are you headed?"
+	Position 58, 63
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
+}
+ListMenu "SkillMenu"
+{
+	Position 42, 63
+	Font "BIGFONT", "ActiveOption"
+	StaticText 40, 38, "Select your skill!"
+	Position 58, 63
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
 OptionMenu "LockandLoadOptions"
 {
@@ -57,10 +76,6 @@ OptionMenu "LockandLoadOptions"
 	StaticText "Enables or disables Hyper form for Classic Sonic.", "White"
 	StaticText "When enabled, you can pick up a second set of Chaos Emeralds as Classic Super Sonic to transform into Hyper Sonic.", "White"
 	StaticText "This will take effect the next time you transform.", "Yellow"
-}
-AddListMenu "SkillMenu"
-{
-	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
 
 OptionValue "BoostType"

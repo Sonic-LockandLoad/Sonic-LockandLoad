@@ -67,3 +67,13 @@ ACTOR Damn4thChaos : Inventory
 {
   Inventory.MaxAmount 1
 }
+
+ACTOR Continuer 31935
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay ACS_NamedExecute("ContinuingSucks")
+			Stop
+	}
+}

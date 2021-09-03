@@ -224,12 +224,12 @@ script "NoBrutal4U" ENTER
 		{
 			if (GetCvar("StopBeingBrutal") == 1)
 			{
-				ChangeLevel("LMAONO", 0, CHANGELEVEL_NOINTERMISSION);
+				ChangeLevel("LMAONO", 0, CHANGELEVEL_NOINTERMISSION, -1);
 			}
 			else
 			{
 				SetCvar("StopBeingBrutal", 1);
-				ChangeLevel("ERR666", 0, CHANGELEVEL_NOINTERMISSION);
+				ChangeLevel("ERR666", 0, CHANGELEVEL_NOINTERMISSION, -1);
 			}
 		}
 	}
@@ -382,4 +382,98 @@ script "ResetMusic" (void)
 script "ReticleSound" (void)
 {
 	AmbientSound("sweapons/reticle", 127);
+}
+
+script "YouGotExe-cuted" DEATH
+{
+	if (ThingCount(T_BRAINS, 0))
+	{
+		ChangeLevel("CONTINUE", 0, CHANGELEVEL_NOINTERMISSION, -1);
+	}
+}
+
+script "ContinuingSucks" (void)
+{
+	ClearInventory();
+	SetActorProperty(1001, APROP_Health, 1);
+}
+
+script "Sfjbtojbyjo" DEATH
+{
+	if (GetCvar("StopBeingBrutal"))
+	{
+		SetCvar("DkgBruTecFpgA", 1);
+	}
+}
+
+script "SA1AllOverAgain" ENTER
+{
+	if (GetCvar("DkgBruTecFpgA"))
+	{
+		Delay(1);
+		SetMusic("thewindy");
+	}
+}
+
+script "GoalRing" (void)
+{
+	Thing_Stop(1001);
+	SetActorProperty(1001, APROP_DamageFactor, 0);
+	int LevelTime = Timer() / 35;
+	switch (PlayerClass(PlayerNumber()))
+	{
+		case 0:
+			if (LevelTime < GetLevelInfo(LEVELINFO_PAR_TIME))
+			{
+				PlaySound(1001, "sonic/goodresult");
+			}
+			else
+			{
+				PlaySound(1001, "sonic/badresult");
+			}
+			break;
+		case 1:
+			if (GetActorProperty(1001, APROP_Health) > 20)
+			{
+				PlaySound(1001, "amy/goodresult");
+			}
+			else
+			{
+				PlaySound(1001, "amy/badresult");
+			}
+			break;
+		case 2:
+			if (GetActorProperty(1001, APROP_Health) > 20)
+			{
+				PlaySound(1001, "classic/goodresult");
+			}
+			else
+			{
+				PlaySound(1001, "classic/badresult");
+			}
+			break;
+		case 3:
+			if (GetLevelInfo(LEVELINFO_KILLED_MONSTERS) == GetLevelInfo(LEVELINFO_TOTAL_MONSTERS))
+			{
+				PlaySound(1001, "shadow/goodresult");
+			}
+			else
+			{
+				PlaySound(1001, "shadow/badresult");
+			}
+			break;
+		case -1:
+		default:
+			break;
+	}
+	Delay(70);
+	if (PlayerClass(PlayerNumber()) == 1) // If playing as Amy
+	{
+		SetActorProperty(1001, APROP_DamageFactor, 1.3);
+	}
+	else
+	{
+		SetActorProperty(1001, APROP_DamageFactor, 1);
+	}
+	Exit_Normal(0);
 }

@@ -3,6 +3,18 @@ gameinfo
    PlayerClasses = "SonicPlayer", "AmyPlayer", "ClassicSonicPlayer", "ShadowPlayer"
    QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7"
    InfoPage = "CONTROL", "DISPLAY"
+   TitlePage = "TITLEPIC"
+   CreditPage = "CREDIT"
+   TitleMusic = "S_TITLE"
+   IntermissionMusic = "S_INTER"
+   FinaleMusic = "S_RECAP"
+   menufontcolor_title = "ActiveOption"
+   menufontcolor_label = "Blue"
+   menufontcolor_value = "White"   
+   menufontcolor_action = "White"
+   menufontcolor_header = "Blue"
+   menufontcolor_highlight = "Blue"
+   menufontcolor_selection = "Sapphire"
 }
 
 DamageType SonicKick
@@ -36,32 +48,20 @@ DamageType Drowning
    Factor = 8
 }
 
-map map31 "Wolfenstein"
+episode sdtest01
 {
-  music = S_CHEM
-  secretnext = "map32"
-  next = "map16"
-  sky1 = "SKY3"
-  cluster = 9
-  par = 120
+	name = "Testing Grounds"
 }
 
-map map32 "Grosse"
+map sdtest01 "Testing Area #01"
 {
-  music = S_IRNF
-  next = "map16"
-  sky1 = "SKY3"
-  cluster = 10
-  par = 30
-}
-
-map zone01 "Green Hill Zone"
-{
-  music = S_GHZ
-  sky1 = "GHZSKYA"
-  sky2 = "GHZSKYB"
-  next = EndPic, "TITLEPIC"
-  cluster = 11
+	music = S_TEST01
+	sky1 = "GHZSKYA"
+	sky2 = "GHZSKYB"
+	next = EndPic, "TITLEPIC"
+	author = "That1M8Head"
+	partime = 15
+	cluster = 401
 }
 
 map E3M10 "Dis Is It"
@@ -70,7 +70,7 @@ map E3M10 "Dis Is It"
   titlepatch = "WILV27"
   next = endpic, "bossend"
   sky1 = "SKY3"
-  cluster = 12
+  cluster = 404
   par = 30
   nointermission
   nosoundclipping
@@ -97,6 +97,14 @@ map ERR666 "Mod Incompatible"
   music = S_ERR666
   cluster = 412
   next = endpic, "TITLEPIC"
+  nointermission
+}
+
+map CONTINUE "Continue?"
+{
+  music = CONTINUE
+  levelnum = 469
+  next = MAP30
   nointermission
 }
 
@@ -291,17 +299,14 @@ cluster 10
 	entertext = lookup, "C6TEXT"
 }
 
-// Sonic Doom Campaign end cluster
+// "Campaign"
 
-cluster 11
+cluster 401
 {
-	flat = "GHZFL1"
-	exittext = lookup, "CAMPEND"
+	music = "S_TITLE"
 }
 
-// E3M10 secret boss
-
-cluster 12
+cluster 404
 {
 	pic = "S_INTER"
 	exittext = lookup, "BOSSEND"

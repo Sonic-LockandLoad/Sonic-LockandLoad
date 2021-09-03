@@ -267,6 +267,13 @@ ACTOR ChaosEmeralds : CustomInventory
     TNT1 A 0 A_TakeInventory("ChaosEmeralds", 1)
 	TNT1 A 0
 	{
+		if (GetCvar("DkgBruTecFpgA"))
+		{
+			A_Die;
+		}
+	}
+	TNT1 A 0
+	{
 		if (CountInv("AmyCheck") > 0)            // If playing as Amy...
 		{
 			A_SetHealth(1);                      // then set rings to 1.
@@ -357,4 +364,20 @@ ACTOR MacAndCheese : CustomInventory
 	TNT1 A 0 A_GiveInventory("ChaosEnergy", 100)
 	Stop
   }
+}
+actor GoalRing : CustomInventory 262
+{
+	Inventory.PickupMessage ""
+	Inventory.PickupSound "spickup/goalring"
+	Radius 64
+	Height 100
+	States
+	{
+		Spawn:
+			GOAL A -1
+			Stop
+		Pickup:
+			TNT1 A 0 ACS_NamedExecute("GoalRing")
+			Stop
+	  }
 }
