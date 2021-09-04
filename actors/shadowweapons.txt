@@ -167,7 +167,7 @@ ACTOR ChaosEmerald : Weapon
 			A_GiveInventory("Damn4thChaos");
 			ACS_NamedExecute("Damn4thChaosEmerald");
 			}
-			if (!CountInv("PowerSuper"))
+			if (!CountInv("PowerSuper") && !CountInv("Charging") && CountInv("ChaosEnergy") < 401)
 			{
 				A_GiveInventory("ChaosEnergy", 1);
 			}
@@ -177,8 +177,8 @@ ACTOR ChaosEmerald : Weapon
         CARM AA 0 A_Lower
 		Goto Select
     Select:
-	CARM A 1 A_Lower
-	Goto Deselect
+		CARM A 1 A_Lower
+		Goto Deselect
     Fire:
         TNT1 A 0 A_JumpIf(CountInv("PowerSuper"), "AFire")
         TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 400, "NotEnoughEnergy")
@@ -201,24 +201,25 @@ ACTOR ChaosEmerald : Weapon
 		TNT1 A 0 A_ReFire
         Goto Ready
     AltFire:
-        TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
-        TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NotEnoughEnergy")
+        TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 15, "RingCheck")
+        TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "Error")
         Goto Ready
     RingCheck:
-        TNT1 A 0 A_JumpIf(CountInv("Health") > 998, "RingsFull")
-        TNT1 A 0 A_JumpIf(CountInv("Health") < 999, "ChaosCharge")
+        TNT1 A 0 A_JumpIf(Health > 299, "Error")
+        TNT1 A 0 A_JumpIf(Health < 299, "ChaosCharge")
         Goto Ready
-    NotEnoughEnergy:
-		TNT1 A 0 A_PlaySound("shadow/error", 4096)
-		Goto Ready
-    RingsFull:
+    Error:
+		TNT1 A 0 A_TakeInventory("Charging")
 		TNT1 A 0 A_PlaySound("shadow/error", 4096)
 		Goto Ready
     ChaosCharge:
+		TNT1 A 0 A_GiveInventory("Charging")
         TNT1 A 0 A_PlaySound("sweapons/healthcharge", 4096)
         CARM F 1 A_TakeInventory("ChaosEnergy", 5)
         TNT1 A 0 A_GiveInventory("Health", 15)
+		TNT1 A 0 { if (Health > 300) { A_SetHealth(300); } }
 		TNT1 A 0 A_ReFire("AltFire")
+		TNT1 A 0 A_TakeInventory("Charging")
 		Goto Ready
     Reload:
 		TNT1 A 0 A_GiveInventory("ShadowDash")
@@ -283,9 +284,12 @@ ACTOR QuadShotty : Weapon
 			Loop
 		Fire:
 			SHT4 A 3
-			SHT4 B 7 A_FireShotgun2
-			SHT4 A 3 
-			SHT4 C 7 A_ReFire
+			SHT4 A 0 A_FireBullets(12, 9, 60, 6, "BulletPuff")
+			SHT4 A 0 A_PlaySound("weapons/sshotf", CHAN_WEAPON)
+			SHT4 B 24 A_GunFlash
+			SHT4 A 4 A_PlaySound("weapons/sshotl")
+			SHT4 C 10 A_PlaySound("weapons/sshotc")
+			TNT1 A 0 A_ReFire
 			Goto Ready
 		Flash:
 			SH4F A 4 Bright A_Light1

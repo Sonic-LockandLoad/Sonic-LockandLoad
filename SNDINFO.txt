@@ -152,7 +152,6 @@ shadow/grunt5      			dgrunt5
 shadow/grunt6      			dgrunt6
 shadow/gruntc      			dgruntc
 shadow/there             	there
-shadow/shadowpain        	d_pain
 shadow/scream      			nooooooo
 shadow/no                	no
 shadow/huh               	huh
@@ -163,8 +162,6 @@ shadow/taunt2      			dtaunt2
 shadow/nextlevel			moving
 shadow/damn4thchaos      	demerald
 theycant/trollyouif			thereded
-$random shadow/grunt  		{ shadow/grunt1 shadow/grunt2 shadow/grunt3 shadow/grunt4 shadow/grunt5 shadow/grunt6 }
-$random shadow/cgrunt   	{ shadow/gruntc shadow/there }
 shadow/goodresult			D_GOOD
 shadow/badresult			D_BAD
 
@@ -200,14 +197,17 @@ $random sweapons/swordswing { sweapons/swing1 sweapons/swing2 sweapons/swing3 }
 
 $random sonic/grunt 		{ sonic/grunt1 sonic/grunt2 sonic/grunt3 sonic/grunt4 sonic/grunt5 sonic/grunt6 }
 $random amy/grunt 			{ amy/grunt1 amy/grunt2 }
+$random shadow/grunt  		{ shadow/grunt1 shadow/grunt2 shadow/grunt3 shadow/grunt4 shadow/grunt5 shadow/grunt6 }
+$random shadow/cgrunt   	{ shadow/gruntc shadow/there }
 
 $random sonic/pain 			{ sonic/hurt sonic/painx1 sonic/painx2 }
 $random amy/pain 			{ amy/hurt1 amy/hurt2 }
+		shadow/pain        	  d_pain
 
 $random sonic/taunt 		{ sonic/taunt1 sonic/taunt2 sonic/taunt3 }
 		amy/taunt			  a_taunt
 $random shadow/taunt 		{ shadow/taunt1 shadow/taunt2 }
-$random classic/taunt 		{ classic/yo classic/illplay classic/soundtest classic/putemup classic/sandineye }
+$random classic/taunt 		{ classic/taunt1 classic/taunt2 classic/taunt3 classic/taunt4 classic/taunt5 }
 
 $random sglobal/nextlevel { sonic/nextlevel amy/nextlevel classic/nextlevel shadow/nextlevel }
 $alias intermission/paststats sglobal/nextlevel

@@ -68,6 +68,11 @@ ACTOR Damn4thChaos : Inventory
   Inventory.MaxAmount 1
 }
 
+ACTOR Charging : Inventory
+{
+	Inventory.MaxAmount 1
+}
+
 ACTOR Continuer 31935
 {
 	States

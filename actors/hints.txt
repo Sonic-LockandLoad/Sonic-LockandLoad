@@ -1,16 +1,23 @@
 actor Hint : CustomInventory
 {
-  Inventory.PickupMessage ""
-  Inventory.PickupSound "spickup/hint"
+	Inventory.PickupMessage ""
+	Inventory.PickupSound "spickup/hint"
+	States
+	{
+		Spawn:
+			HELP A -1
+			Stop
+		Pickup:
+			TNT1 A 0 A_Print("This is a hint!")
+		Removed:
+			Stop
+	}
 }
 
 actor BossHint : Hint 261
 {
   States
   {
-    Spawn:
-	  HELP A -1
-	  Stop
     Pickup:
       TNT1 A 0
 	  {
@@ -35,25 +42,28 @@ actor BossHint : Hint 261
   }
 }
 
-actor PlatformingHint : Hint 263
+actor HammerJumpHint : Hint 263
 {
   States
   {
     Spawn:
-	  HELP A -1
-	  Stop
+	  HELP A 1 A_JumpIf(!CountInv("AmyCheck"), "Removed")
+	  Loop
     Pickup:
-      TNT1 A 0
-	  {
-	      if (CountInv("AmyCheck"))
-		  {
-		      A_Print("Crouch and press primary fire with the Piko Piko Hammer\nto Hammer Jump, allowing you to gain extra height.");
-		  }
-	      else
-		  {
-		      A_Print("You can jump across these gaps, no problem.\nYou did bind a jump key... right?");
-		  }
-	  }
+      TNT1 A 0 A_Print("Crouch and press primary fire with the Piko Piko Hammer\nto Hammer Jump, allowing you to gain extra height.")
+	  Stop
+  }
+}
+
+actor HammerJumpHint2 : Hint 264
+{
+  States
+  {
+    Spawn:
+	  HELP A 1 A_JumpIf(!CountInv("AmyCheck"), "Removed")
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("Hold down the primary fire during a Hammer Jump and move\nin any direction to gain extra distance.")
 	  Stop
   }
 }

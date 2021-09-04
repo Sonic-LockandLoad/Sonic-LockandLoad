@@ -612,20 +612,18 @@ ACTOR EclipseBlaster : Weapon
   AltFire:
 	TNT1 A 0 ACS_NamedExecute("KickCooldown")
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
-    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NoEnergy")
+    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "Error")
   RingCheck:
-    TNT1 A 0 A_JumpIf(Health > 299, "RingsFull")
+    TNT1 A 0 A_JumpIf(Health > 299, "Error")
     TNT1 A 0 A_JumpIf(Health < 300, "ChaosHeal")
-  NoEnergy:
+  Error:
 	TNT1 A 0 A_PlaySound("sonic/error", 4096)
-	Goto Ready
-  RingsFull:
-	TNT1 A 0 A_PlaySound("sweapons/error", 4096)
 	Goto Ready
   ChaosHeal:
     ECBL C 0 A_PlaySound("sweapons/healthcharge", 4096)
     ECBL C 0 A_TakeInventory("ChaosEnergy", 8)
     ECBL C 1 A_GiveInventory("Health", 4)
+	TNT1 A 0 { if (Health > 300) { A_SetHealth(300); } }
 	TNT1 A 0 A_ReFire
 	Goto Ready
   Reload:

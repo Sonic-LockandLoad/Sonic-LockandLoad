@@ -2,15 +2,6 @@ ACTOR ChaosEnergy : Ammo
 {
   Inventory.MaxAmount 999
 }
-ACTOR ChaosEnergyEX : Ammo
-{
-  Inventory.MaxAmount 999
-}
-ACTOR GlideTime : Ammo
-{
-  Inventory.MaxAmount 100
-}
-
 ACTOR ZoomCharge : Inventory 
 {
   Inventory.MaxAmount 100

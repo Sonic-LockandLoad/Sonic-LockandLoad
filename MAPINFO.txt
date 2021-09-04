@@ -48,14 +48,14 @@ DamageType Drowning
    Factor = 8
 }
 
-episode sdtest01
+episode SDLvl01
 {
-	name = "Testing Grounds"
+	name = "Side Levels"
 }
 
-map sdtest01 "Testing Area #01"
+map SDLvl01 "Green Hill"
 {
-	music = S_TEST01
+	music = S_LVL01
 	sky1 = "GHZSKYA"
 	sky2 = "GHZSKYB"
 	next = EndPic, "TITLEPIC"

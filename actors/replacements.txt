@@ -197,7 +197,7 @@ Actor SSGReplace replaces SuperShotgun
        TNT1 A 0 A_SpawnItem("PrecisionShotgun")
        Stop
      ShadSpawn:
-       TNT1 A 0 A_SpawnItem("MacAndCheese")
+       TNT1 A 0 A_SpawnItem("QuadShotty")
        Stop
      ClassicSpawn:
        TNT1 A 0 A_SpawnItem("SpeedyShotgun")

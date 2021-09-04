@@ -347,24 +347,22 @@ ACTOR AmyEclipseBlaster : Weapon
   AltFire:
     TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "NoTime")
     TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck")
-    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "NoEnergy")
+    TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "Error")
   RingCheck:
-    TNT1 A 0 A_JumpIf(Health >= 150, "RingsFull")
-    TNT1 A 0 A_JumpIf(Health < 150, "ChaosHeal")
-  NoEnergy:
+    TNT1 A 0 A_JumpIf(Health >= 200, "RingsFull")
+    TNT1 A 0 A_JumpIf(Health < 200, "ChaosHeal")
+  Error:
 	TNT1 A 0 A_PlaySound("amy/error", 4096)
 	Goto Ready
   NoTime:
     TNT1 A 0 A_Print("\c[AmyPink]Waste of time.")
 	TNT1 A 0 A_PlaySound("amy/error", 4096)
 	Goto Ready
-  RingsFull:
-	TNT1 A 0 A_PlaySound("amy/error", 4096)
-	Goto Ready
   ChaosHeal:
     ECBL C 0 A_PlaySound("sweapons/healthcharge", 4096)
-    ECBL C 2 A_TakeInventory("ChaosEnergy", 1)
-    ECBL C 0 A_GiveInventory("Ring", 4)
+    ECBL C 1 A_TakeInventory("ChaosEnergy", 4)
+    ECBL C 0 A_GiveInventory("Health", 16)
+	TNT1 A 0 { if (Health > 200) { A_SetHealth(200); } }
 	Goto Ready
   Reload:
 	TNT1 A 0 A_GiveInventory("AmyKick")

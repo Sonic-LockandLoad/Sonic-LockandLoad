@@ -242,7 +242,7 @@ Class AmyKickPuff : BulletPuff
 		VSpeed 1;
 		Mass 5;
 		DamageType "SonicKick";
-		ProjectileKickBack 2000;
+		ProjectileKickBack 9999999;
 	}
 	States
 	{
