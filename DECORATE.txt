@@ -185,6 +185,7 @@ ACTOR AmyPlayer : PlayerPawn
 	  }
 	  else
 	  {
+	    A_PlaySound("sglobal/loserings", 6);
 	    A_PlaySound("amy/pain", 7);
 	  }
 	}

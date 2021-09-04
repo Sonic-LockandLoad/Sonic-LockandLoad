@@ -438,10 +438,12 @@ script "GoalRing" (void)
 			if (GetActorProperty(1001, APROP_Health) < 40)
 			{
 				PlaySound(1001, "amy/badresult");
+				SetMugShotState("Failure");
 			}
 			else
 			{
-				PlaySound(1001, "amy/goodresult");
+				PlaySound(1001, "amy/goodresult", 0.7);
+				SetMugShotState("Grin");
 			}
 			break;
 		case 2:
@@ -468,6 +470,7 @@ script "GoalRing" (void)
 			else
 			{
 				PlaySound(1001, "shadow/badresult");
+				SetMugShotState("Failure");
 			}
 			break;
 		case -1:
