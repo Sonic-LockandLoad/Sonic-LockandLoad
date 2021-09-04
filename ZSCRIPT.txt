@@ -80,44 +80,6 @@ Class SonicKick : CustomInventory
 	}
 }
 
-Class ShadowDash : CustomInventory
-{
-	int inuse;
-	States
-	{
-	Use:
-		TNT1 A 0 A_Overlay(-2, "DashCheck");
-		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
-		Fail;
-	DashCheck:
-		TNT1 A 0 A_JumpIf(CountInv("TeleportCooldown")<1, "Dash");
-		Stop;
-	Dash:
-		TNT1 A 0 A_Stop();
-		TNT1 A 0 A_SetGravity(0);
-		TNT1 A 4;
-		TNT1 A 0 A_SetGravity(1);
-		TNT1 A 0 ThrustThing(angle * 256 / 360, 150, 1, 0);
-		TNT1 A 4;
-		TNT1 A 0 A_GiveInventory("TeleportCooldown", 50);
-		TNT1 A 0 A_Stop();
-		Stop;
-	}
-	override void DoEffect()
-	{
-		Super.DoEffect();
-		if (inuse > 0)
-		{
-			inuse--;
-		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
-		{
-			owner.UseInventory(self);
-			inuse = 8;
-		}
-	}
-}
-
 Class AmyKick : CustomInventory
 {
 	int inuse;

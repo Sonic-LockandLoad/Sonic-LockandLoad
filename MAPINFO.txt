@@ -299,7 +299,7 @@ cluster 10
 	entertext = lookup, "C6TEXT"
 }
 
-// "Campaign"
+// Side Levels
 
 cluster 401
 {
@@ -310,7 +310,7 @@ cluster 404
 {
 	pic = "S_INTER"
 	exittext = lookup, "BOSSEND"
-	music = "D_VICTOR"
+	music = "S_ENDING"
 }
 
 // Brutal Doom detection clusters
