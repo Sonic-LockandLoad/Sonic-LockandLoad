@@ -4,6 +4,7 @@ sglobal/loserings         	LoseRing
 sglobal/superready        	supready
 sglobal/supertransform    	suptrnsf
 sglobal/invincibility     	invinc
+sglobal/spring		     	spring
 sglobal/nextlevel	 		letsgo
 
 // Pickups

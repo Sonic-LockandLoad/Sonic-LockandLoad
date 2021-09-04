@@ -1,4 +1,4 @@
-ACTOR Ring : CustomInventory replaces HealthBonus
+ACTOR Ring : CustomInventory replaces HealthBonus 2014
 {
   Inventory.PickupMessage "Picked up a ring."
   Inventory.PickupSound "spickup/ring"
@@ -31,7 +31,7 @@ ACTOR Ring : CustomInventory replaces HealthBonus
 	Stop
   }
 }
-ACTOR RingBox : CustomInventory replaces Stimpack
+ACTOR RingBox : CustomInventory replaces Stimpack 2011
 {
   Health 1
   Radius 20
@@ -88,7 +88,7 @@ ACTOR 10Rings : CustomInventory
 	Stop
   }
 }
-ACTOR SpecialRing : CustomInventory replaces Medikit
+ACTOR SpecialRing : CustomInventory replaces Medikit 2012
 {
   Inventory.PickupMessage "Picked up a Special ring."
   Inventory.PickupSound "spickup/specialring"
@@ -137,7 +137,7 @@ ACTOR SpecialRing : CustomInventory replaces Medikit
 	Stop
   }
 }
-ACTOR ChaosRing : CustomInventory replaces ArmorBonus
+ACTOR ChaosRing : CustomInventory replaces ArmorBonus 2015
 {
   Inventory.PickupMessage "Picked up a Chaos ring."
   Inventory.PickupSound "spickup/ring"

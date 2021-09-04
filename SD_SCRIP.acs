@@ -426,10 +426,12 @@ script "GoalRing" (void)
 			if (LevelTime > GetLevelInfo(LEVELINFO_PAR_TIME))
 			{
 				PlaySound(1001, "sonic/badresult");
+				SetMugShotState("Failure");
 			}
 			else
 			{
 				PlaySound(1001, "sonic/goodresult");
+				SetMugShotState("Grin");
 			}
 			break;
 		case 1:
@@ -446,6 +448,7 @@ script "GoalRing" (void)
 			if (GetActorProperty(1001, APROP_Health) < 21)
 			{
 				PlaySound(1001, "classic/badresult");
+				SetMugShotState("Failure");
 			}
 			else if (LevelTime > GetLevelInfo(LEVELINFO_PAR_TIME))
 			{
@@ -454,6 +457,7 @@ script "GoalRing" (void)
 			else
 			{
 				PlaySound(1001, "classic/goodresult");
+				SetMugShotState("Grin");
 			}
 			break;
 		case 3:

@@ -259,6 +259,11 @@ mugshot "Boost"
   BOOS 20;
 }
 
+mugshot "Failure"
+{
+  FAIL 80;
+}
+
 mugshot "Shield"
 {
   SHLD 20;
@@ -292,7 +297,7 @@ mugshot "Ouch"
 
 mugshot "Grin"
 {
-  EVL0 70;
+  EVL0 80;
 }
 
 mugshot "God"
