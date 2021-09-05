@@ -3,6 +3,7 @@ ACTOR Ring : CustomInventory replaces HealthBonus 2014
   Inventory.PickupMessage "Picked up a ring."
   Inventory.PickupSound "spickup/ring"
   +COUNTITEM
+  +NOGRAVITY
   +INVENTORY.ALWAYSPICKUP
   States
   {
@@ -93,6 +94,7 @@ ACTOR SpecialRing : CustomInventory replaces Medikit 2012
   Inventory.PickupMessage "Picked up a Special ring."
   Inventory.PickupSound "spickup/specialring"
   +COUNTITEM
+  +NOGRAVITY
   +INVENTORY.ALWAYSPICKUP
   States
   {
@@ -142,6 +144,7 @@ ACTOR ChaosRing : CustomInventory replaces ArmorBonus 2015
   Inventory.PickupMessage "Picked up a Chaos ring."
   Inventory.PickupSound "spickup/ring"
   +COUNTITEM
+  +NOGRAVITY
   +INVENTORY.ALWAYSPICKUP
   States
   {
@@ -171,6 +174,10 @@ ACTOR ChaosRing : CustomInventory replaces ArmorBonus 2015
 	}
 	Stop
   } 
+}
+ACTOR ChaosRingGravity : ChaosRing
+{
+	-NOGRAVITY
 }
 ACTOR SoulRing : CustomInventory
 {
@@ -217,7 +224,7 @@ ACTOR EmeraldRecharge : CustomInventory
 	Stop
   }
 }
-ACTOR InvincibilityBox : CustomInventory
+ACTOR InvincibilityBox : CustomInventory 2022
 {
   Inventory.PickupMessage "Invincibility!"
   Inventory.PickupSound "spickup/boxdestroy"
@@ -316,7 +323,7 @@ ACTOR ChaosEmeralds : CustomInventory
   }
 }
 
-ACTOR ChaosCapsule : ChaosEnergy
+ACTOR ChaosCapsule : ChaosEnergy 6021
 {
   Inventory.PickupMessage "Picked up a Chaos Energy capsule."
   Inventory.Amount 20
@@ -327,7 +334,7 @@ ACTOR ChaosCapsule : ChaosEnergy
 	Stop
   }
 }
-ACTOR BlueChaosCapsule : ChaosEnergy
+ACTOR BlueChaosCapsule : ChaosEnergy 6022
 {
   Inventory.PickupMessage "Picked up a blue Chaos Energy capsule."
   Inventory.Amount 100
@@ -338,7 +345,7 @@ ACTOR BlueChaosCapsule : ChaosEnergy
     Stop
   }
 }
-ACTOR RedChaosCapsule : ChaosEnergy
+ACTOR RedChaosCapsule : ChaosEnergy 6023
 {
   Inventory.PickupMessage "Picked up a red Chaos Energy capsule."
   Inventory.Amount 400
@@ -371,6 +378,7 @@ actor GoalRing : CustomInventory 262
 	Inventory.PickupSound "spickup/goalring"
 	Radius 64
 	Height 100
+	+NOGRAVITY
 	States
 	{
 		Spawn:

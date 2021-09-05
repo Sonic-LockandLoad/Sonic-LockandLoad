@@ -42,12 +42,195 @@ actor BossHint : Hint 261
   }
 }
 
-actor HammerJumpHint : Hint 263
+actor SonicIntro : Hint 263
 {
   States
   {
     Spawn:
-	  HELP A 1 A_JumpIf(!CountInv("AmyCheck"), "Removed")
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("Welcome to Sonic: Lock & Load!\nThis is Sonic's tutorial.\n\nPress and hold secondary fire to perform the Boost.\nThis allows you to soar forwards at lightning fast speed.")
+	  Stop
+  }
+}
+
+actor HomAtkHint : Hint 266
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("Press and hold down primary fire,\nthen let go when you see the\nreticle to perform the Homing Attack.\n\nTry it out on that target to make the floor raise.")
+	  Stop
+  }
+}
+
+actor LightAtkHint : Hint 267
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("This target is too far away for the Homing Attack to reach.\n\nKeep holding primary fire until you see a green reticle,\nthen release to perform the Light Speed Attack.")
+	  Stop
+  }
+}
+
+actor SonicJumpHint : Hint 268
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("Sonic boasts a higher jump and improved mid-air control.\n\nComplete this platforming exercise and continue to the next room.\nIf you wish to skip it, you can use the spring.")
+	  Stop
+  }
+}
+
+actor PlatformingHint2 : Hint 269
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("You can either use the Boost or the Light\nSpeed Attack to get across this gap.")
+	  Stop
+  }
+}
+
+actor SonicPistolHint : Hint 270
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("Sonic starts with the Accelerated Pistol, a rapid fire pistol.\n\nSwitch to it and take out these enemies.")
+	  Stop
+  }
+}
+
+actor SonicPistolHint2 : Hint 271
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("The Accelerated Pistol's alternate fire is the Recoil Burst,\npropelling Sonic backwards.\n\nUse it to get up here.")
+	  Stop
+  }
+}
+
+actor SonicShotgunHint : Hint 272
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("The Rapid Shotty is an automatic shotgun with high spread.\nIt has an alternate fire with tighter spread and recoil.\n\nUse it to take out these enemies.")
+	  Stop
+  }
+}
+
+actor SonicKickHint : Hint 273
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("Press the offhand key (reload key) to perform a kick.\n\nThis kick can be performed while firing weapons,\nand its damage is doubled if Sonic is in the air.")
+	  Stop
+  }
+}
+
+actor SonicEclipseHint : Hint 274
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("The Eclipse Blaster Mk. V fires super fast blasts of concentrated Chaos Energy.\nYou can use it to wreak havoc anywhere you go.\n\nWhat are you waiting for? Start wreaking havoc!")
+	  Stop
+  }
+}
+
+actor SonicEclipseHint2 : Hint 275
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("Low on Rings?\n\nThe Eclipse Blaster's alternate fire allows you to\nheal yourself up, at the cost of your energy.")
+	  Stop
+  }
+}
+
+actor SonicRocketHint : Hint 276
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("The Rocket Rioter is a rocket launcher that fires as fast as you can click.\nLike the kick, it's more powerful if Sonic is in the air.\n\nDESTROY these enemies, then continue to the end!")
+	  Stop
+  }
+}
+
+actor SonicSwordHint : Hint 277
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("Caliburn is a sword. That's it.\nOkay, there's more.\n\nHe attacks multiple times in a single swing,\nso you can usually get away with meleeing an enemy you normally wouldn't.")
+	  Stop
+  }
+}
+
+
+actor SonicEndHint : Hint 278
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
+	  Loop
+    Pickup:
+      TNT1 A 0 A_Print("You've reached the end of Sonic's tutorial!\n\nHope you have a great time playing the rest of the mod!")
+	  Stop
+  }
+}
+
+actor HammerJumpHint : Hint 264
+{
+  States
+  {
+    Spawn:
+	  HELP A 1
 	  Loop
     Pickup:
       TNT1 A 0 A_Print("Crouch and press primary fire with the Piko Piko Hammer\nto Hammer Jump, allowing you to gain extra height.")
@@ -55,12 +238,12 @@ actor HammerJumpHint : Hint 263
   }
 }
 
-actor HammerJumpHint2 : Hint 264
+actor HammerJumpHint2 : Hint 265
 {
   States
   {
     Spawn:
-	  HELP A 1 A_JumpIf(!CountInv("AmyCheck"), "Removed")
+	  HELP A 1
 	  Loop
     Pickup:
       TNT1 A 0 A_Print("Hold down the primary fire during a Hammer Jump and move\nin any direction to gain extra distance.")

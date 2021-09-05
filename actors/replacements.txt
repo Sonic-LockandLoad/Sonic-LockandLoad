@@ -252,7 +252,7 @@ ACTOR ClipReplace : CustomInventory replaces Clip
   States 
   {
      Spawn:
-       TNT1 A 0 NoDelay A_SpawnItem("ChaosRing")
+       TNT1 A 0 NoDelay A_SpawnItem("ChaosRingGravity")
        Stop
    }
 }

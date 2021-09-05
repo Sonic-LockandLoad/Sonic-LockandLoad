@@ -21,6 +21,10 @@ DamageType SonicKick
 {
    Factor = 1
 }
+DamageType HomingAttack
+{
+   Factor = 1
+}
 DamageType ShadowMelee
 {
    Factor = 1
@@ -76,6 +80,28 @@ map E3M10 "Dis Is It"
   nosoundclipping
   music = S_BOSS
   needclustertext
+}
+
+episode T_LOBBY
+{
+	name = "Tutorial"
+	noskillmenu
+}
+
+map T_LOBBY "Tutorial Lobby"
+{
+	music = S_LOBBY
+	nointermission
+}
+
+map T_SONIC "Sonic Tutorial"
+{
+	music = S_TUT
+	sky1 = "GHZSKYA"
+	sky2 = "GHZSKYB"
+	next = "SDLvl01"
+	author = "That1M8Head"
+	partime = 120
 }
 
 map LMAONO "You Idiot, You Fricked It Up"

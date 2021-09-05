@@ -1,0 +1,21 @@
+actor HomingAttackPoint 4156
+{
+	+SHOOTABLE
+	+NOBLOOD
+	+DONTFALL
+	+NOGRAVITY
+	+NOCLIP
+	Health 1
+	Mass 100000
+	DamageFactor "Normal", 0
+	DamageFactor "HomingAttack", 1
+	States
+	{
+		Spawn:
+			HMIO A -1
+			Stop
+		Death:
+			HMIO B -1
+			Stop
+	}
+}

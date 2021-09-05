@@ -297,7 +297,7 @@ ACTOR LightAttack
 	Alpha 0
 	VSpeed 0
 	Mass 0
-	DamageType "SonicKick"
+	DamageType "HomingAttack"
 	ProjectileKickBack 0
 	States
 	{

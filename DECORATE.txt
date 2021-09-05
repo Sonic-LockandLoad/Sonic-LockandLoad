@@ -9,6 +9,7 @@
 #include "actors/powerups.txt"
 #include "actors/enemies.txt"
 #include "actors/dummy.txt"
+#include "actors/decorations.txt"
 
 ACTOR SonicPlayer : PlayerPawn 
 {

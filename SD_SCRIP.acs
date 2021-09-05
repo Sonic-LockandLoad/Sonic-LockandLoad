@@ -442,7 +442,7 @@ script "GoalRing" (void)
 			}
 			else
 			{
-				PlaySound(1001, "amy/goodresult", 0.7);
+				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
 				SetMugShotState("Grin");
 			}
 			break;

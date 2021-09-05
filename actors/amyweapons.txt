@@ -314,7 +314,7 @@ ACTOR AmyEclipseBlaster : Weapon
   Weapon.SelectionOrder 1400
   Weapon.AmmoType1 "ChaosEnergy"
   Weapon.AmmoType2 "ChaosEnergy"
-  Weapon.AmmoUse 25
+  Weapon.AmmoUse 15
   Weapon.AmmoGive 70
   Weapon.KickBack 100000000
   +EXTREMEDEATH
@@ -377,8 +377,8 @@ ACTOR AmyEclipseBlaster : Weapon
 ACTOR RapidMissiles : Weapon
 {
   Weapon.SelectionOrder 1500
-  Weapon.AmmoUse1 40
-  Weapon.AmmoUse2 140
+  Weapon.AmmoUse1 20
+  Weapon.AmmoUse2 60
   Weapon.AmmoGive 40
   Weapon.AmmoType1 "ChaosEnergy"
   Weapon.AmmoType2 "ChaosEnergy"
