@@ -271,6 +271,7 @@ class Caliburn : Weapon
 					A_FireProjectile("EnergyBladeRight");
 				}
 			}
+			TNT1 A 0 A_PlaySound("sweapons/swordswing");
 			TNT1 A 0 A_SetSpeed(2.5);
 			CALI FGHI 1 A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			CALI J 5;
