@@ -33,6 +33,8 @@ No, for multiple reasons:
 ### Chaos Update
 - **The mod displays a message about an incompatible mod**
     - [Then don't run this mod with Brutal Doom.](https://forum.zdoom.org/viewtopic.php?t=47678)
+- **Some things don't show up in the Side Levels or Tutorials**
+    - These levels contain monsters from Doom II. At the moment, you will have to play with Doom II, or an alternative such as Freedoom: Phase 2.
 
 ## Copyright
 Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
