@@ -27,14 +27,14 @@ No, for multiple reasons:
 - GZDoom is not intended for multiplayer.
 
 ## Known issues
-### All versions
-- **Sonic's Boost feels sluggish and goes slower than it should**
-    - This indicates a problem with your GZDoom config. (I'm not sure which problem that is specifically.) One way of fixing this is to delete your `gzdoom.ini` configuration file, launch GZDoom, and reconfigure everything.
-### Chaos Update
+- **Sonic's Boost/Homing Attack/Light Speed Attack feels sluggish and goes slower than it should**
+    - This probably means you set compatibility to `Doom (strict)`. Change it to `Default`. If this doesn't fix it, leave a GitHub issue.
 - **The mod displays a message about an incompatible mod**
     - [Then don't run this mod with Brutal Doom.](https://forum.zdoom.org/viewtopic.php?t=47678)
 - **Some things don't show up in the Side Levels or Tutorials**
     - These levels contain monsters from Doom II. At the moment, you will have to play with Doom II, or an alternative such as Freedoom: Phase 2.
+- **Sonic is super slow, I can't kick, and dying crashes the game**
+    - Your game is borked. Delete your config and reconfigure GZDoom all over again.
 
 ## Copyright
 Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
