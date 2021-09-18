@@ -1,0 +1,192 @@
+class Invincibility : PowerupGiver
+{
+	Default
+	{
+		+COUNTITEM
+		+INVENTORY.AUTOACTIVATE
+		+INVENTORY.ALWAYSPICKUP
+		+INVENTORY.BIGPOWERUP
+		Inventory.MaxAmount 1;
+		Powerup.Type "PowerInvulnerable";
+		Powerup.Duration -50;
+		Powerup.Color "FF FF FF", 0;
+		Inventory.PickupMessage "$GOTINVUL";
+		Inventory.Icon "INVCA0";
+	}
+	States
+	{
+	Spawn:
+		PINV ABCD 6 Bright;
+		Loop;
+	}
+}
+class SuperInvincibility : PowerupGiver
+{
+	Default
+	{
+		+COUNTITEM
+		+INVENTORY.AUTOACTIVATE
+		+INVENTORY.ALWAYSPICKUP
+		+INVENTORY.BIGPOWERUP
+		Inventory.MaxAmount 1;
+		Powerup.Type "PowerInvulnerable";
+		Powerup.Duration -9999999;
+		Powerup.Color "FF FF FF", 0;
+		Inventory.PickupMessage "$GOTINVUL";
+		Inventory.Icon "INVCA0";
+	}
+	States
+	{
+	Spawn:
+		PINV ABCD 6 Bright;
+		Loop;
+	}
+}
+class SuperForm : PowerupGiver
+{
+	Default
+	{
+		+COUNTITEM
+		+INVENTORY.AUTOACTIVATE
+		+INVENTORY.ALWAYSPICKUP
+		+INVENTORY.BIGPOWERUP
+		Inventory.MaxAmount 1;
+		Powerup.Type "PowerSuper";
+		Powerup.Color "F0 BC 18", 0.1;
+		Inventory.PickupMessage "$GOTINVUL";
+	}
+	States
+	{
+	Spawn:
+		PINV ABCD 6 Bright;
+		Loop;
+	}
+}
+class HyperForm : PowerupGiver
+{
+	Default
+	{
+		+COUNTITEM
+		+INVENTORY.AUTOACTIVATE
+		+INVENTORY.ALWAYSPICKUP
+		+INVENTORY.BIGPOWERUP
+		Inventory.MaxAmount 1;
+		Powerup.Type "PowerHyper";
+		Powerup.Color "F0 BC 18", 0.1;
+		Inventory.PickupMessage "$GOTINVUL";
+	}
+	States
+	{
+	Spawn:
+		PINV ABCD 6 Bright;
+		Loop;
+	}
+}
+class PowerSuper : Powerup 
+{
+	Default
+	{
+		Powerup.Duration -9999999;
+	}
+}
+class PowerHyper : Powerup 
+{
+	Default
+	{
+		Powerup.Duration -9999999;
+	}
+}
+class HammerBlock : PowerupGiver
+{
+	Default
+	{
+		Powerup.Color "FF FF FF", 0;
+		Inventory.MaxAmount 0;
+		Powerup.Type "PowerBlocking";
+		Powerup.Duration -1;
+		+INVENTORY.AUTOACTIVATE
+	}
+}
+class SpindashBlock : PowerupGiver
+{
+	Default
+	{
+		Powerup.Color "00 CC FF", 0.1;
+		Inventory.MaxAmount 0;
+		Powerup.Type "PowerBlocks";
+		Powerup.Duration -1;
+		+INVENTORY.AUTOACTIVATE
+	}
+}
+class PowerBlocking : PowerProtection
+{
+	Default
+	{
+		DamageFactor "Normal", 0.125;
+	}
+}
+class PowerBlocks : PowerProtection
+{
+	Default
+	{
+		DamageFactor "Normal", 0;
+	}
+}
+class Unseen : PowerupGiver
+{
+	Default
+	{
+		+COUNTITEM
+		+VISIBILITYPULSE
+		+INVENTORY.AUTOACTIVATE
+		-INVENTORY.ALWAYSPICKUP
+		+INVENTORY.BIGPOWERUP
+		Inventory.MaxAmount 0;
+		Powerup.Type "PowerUnseen";
+	}
+}
+class PowerUnseen : PowerInvisibility
+{
+	Default
+	{
+		+SHADOW
+		Powerup.Duration -999;
+		Powerup.Strength 60;
+		Powerup.Mode "Translucent";
+	}
+}
+
+class OverRinged : PowerupGiver
+{
+	Default
+	{
+		Inventory.MaxAmount 0;
+		Powerup.Type "PowerOverRinged";
+		Powerup.Duration -1;
+		+INVENTORY.AUTOACTIVATE
+	}
+}
+class OverRinged2 : PowerupGiver
+{
+	Default
+	{
+		Inventory.MaxAmount 0;
+		Powerup.Type "PowerOverRinged2";
+		Powerup.Duration -1;
+		+INVENTORY.AUTOACTIVATE
+	}
+}
+class PowerOverRinged : PowerProtection
+{
+	Default
+	{
+		DamageFactor "Normal", 2;
+	}
+}
+class PowerOverRinged2 : PowerProtection
+{
+	Default
+	{
+		DamageFactor "Normal", 4;
+	}
+}

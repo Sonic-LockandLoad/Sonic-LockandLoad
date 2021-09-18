@@ -1,0 +1,304 @@
+class ShardPuff : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+ALLOWPARTICLES
+		+RANDOMIZE
+		RenderStyle "Normal";
+		Alpha 0.5;
+		VSpeed 1;
+		Mass 5;
+	}
+	States
+	{
+		Spawn:
+			SHPF A 4 Bright;
+			SHPF B 4;
+		Melee:
+			SHPF CD 4;
+			Stop;
+	}
+}
+
+class ShadowMeleeAtk : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+		DamageType "ShadowMelee";
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Melee:
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+class LightAttack : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+NOEXTREMEDEATH
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 0;
+		Mass 0;
+		DamageType "HomingAttack";
+		ProjectileKickBack 0;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+class NoGibPuff : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+ALLOWPARTICLES
+		+RANDOMIZE
+		+NOEXTREMEDEATH
+		RenderStyle "Normal";
+		Alpha 0.5;
+		VSpeed 1;
+		Mass 5;
+	}
+	States
+	{
+		Spawn:
+			PUFF A 4 Bright;
+			PUFF B 4;
+		Melee:
+			PUFF CD 4;
+			Stop;
+	}
+}
+
+class InvisiblePuff : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+RANDOMIZE
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 4 Bright;
+			TNT1 B 4;
+		Melee:
+			TNT1 CD 4;
+			Stop;
+	}
+}
+
+class GibPuff : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+RANDOMIZE
+		+EXTREMEDEATH
+		RenderStyle "Normal";
+		Alpha 0.5;
+		VSpeed 1;
+		Mass 5;
+	}
+	States
+	{
+		Spawn:
+			PUFF A 4 Bright;
+			PUFF B 4;
+		Melee:
+			PUFF CD 4;
+			Stop;
+	}
+}
+
+class SonicReticle : Actor
+{
+	Default
+	{
+		+WALLSPRITE
+		+NOGRAVITY
+		+PUFFONACTORS
+		RenderStyle "Normal";
+		Alpha 1;
+		VSpeed 0;
+		Mass 0;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+	Melee:
+		RETI A 1 Bright
+		{
+			if (CountInv("PeeloutCheck", AAPTR_PLAYER1) < 1)
+			{
+				ACS_NamedExecute("ReticleSound");
+			}
+		}
+		Stop;
+	}
+}
+
+class LightSpeedReticle : Actor
+{
+	Default
+	{
+		+WALLSPRITE
+		+NOGRAVITY
+		+PUFFONACTORS
+		RenderStyle "Normal";
+		Alpha 1;
+		VSpeed 0;
+		Mass 0;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0 Bright;
+		Melee:
+			RETI B 1 Bright;
+			Stop;
+	}
+}
+
+class InvisibleGibPuff : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+RANDOMIZE
+		+EXTREMEDEATH
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 4 Bright;
+			TNT1 B 4;
+		Melee:
+			TNT1 CD 4;
+			Stop;
+	}
+}
+
+class SwordPuff : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		RenderStyle "Normal";
+		Alpha 0.5;
+		VSpeed 1;
+		Mass 5;
+	}
+	States
+	{
+		Spawn:
+			SPUF A 4 Bright;
+			SPUF B 4;
+		Melee:
+			SPUF CDEFG 4;
+			Stop;
+	}
+}
+class SonicKickPuff : BulletPuff
+{
+	Default
+	{
+		+NOBLOCKMAP;
+		+NOGRAVITY;
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+		DamageType "SonicKick";
+		ProjectileKickBack 1000;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Melee:
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+
+class AmyKickPuff : BulletPuff
+{
+	Default
+	{
+		+NOBLOCKMAP;
+		+NOGRAVITY;
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+		DamageType "SonicKick";
+		ProjectileKickBack 9999999;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Melee:
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+class SonicDashPuff : BulletPuff
+{
+	Default
+	{
+		+NOBLOCKMAP;
+		+NOGRAVITY;
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+		DamageType "SonicKick";
+		ProjectileKickBack 1000000;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Melee:
+			TNT1 A 0;
+			Stop;
+	}
+}

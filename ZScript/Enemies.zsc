@@ -1,0 +1,102 @@
+class ActualLostSoul : LostSoul replaces LostSoul 
+{
+	Default
+	{
+		DropItem "SoulRing";
+	}
+}
+
+class FastSpiderdemon : SpiderMastermind // 19924
+{
+	Default
+	{
+		Tag "E-SP567";
+		Speed 200;
+		Radius 60;
+		Height 100;
+		Mass 100000000;
+		Obituary "%o regrets giving up.";
+		PainChance "Eclipse", 256;
+		DamageFactor "Eclipse", 0.01;
+		DamageFactor "SonicKick", 2.5;
+	}
+	States
+	{
+		Spawn:
+			SPID AB 10 A_LookEx(LOF_FULLVOLSEESOUND, 50, 0, 0, 30, "See");
+			Loop;
+		See:
+			SPID A 1 A_Metal;
+			SPID ABB 1 A_Chase;
+			SPID C 1 A_Metal;
+			SPID CDD 1 A_Chase;
+			SPID E 1 A_Metal;
+			SPID EFF 1 A_Chase;
+			Loop;
+		Missile:
+			SPID A 10 Bright A_FaceTarget;
+			SPID G 1 Bright A_SpawnProjectile("PlasmaBall");
+			SPID H 1 Bright A_SpawnProjectile("PlasmaBall");
+			SPID H 1 Bright A_SpidReFire();
+			Goto Missile+1;
+		Pain:
+			SPID I 6;
+			SPID I 6 A_Pain;
+			Goto See;
+		Death:
+			SPID J 20 A_Scream;
+			SPID K 10 A_NoBlocking;
+			SPID LMNOPQR 10;
+			SPID S 30;
+			SPID S -1 A_BossDeath;
+			TNT1 A 0 Exit_Normal(0);
+			Stop;
+	}
+}
+
+class FasterSpiderdemon : SpiderMastermind // 19925
+{
+	Default
+	{
+		Tag "E-SP666";
+		Speed 250;
+		Radius 60;
+		Height 100;
+		Mass 100000000;
+		Health 5865044;
+		Obituary "0x5865044 FATAL: Traceback: player %o experienced gateway failure";
+		DamageFactor "Normal", 0;
+	}
+	States
+	{
+		Spawn:
+			SPID AB 2 A_LookEx(LOF_FULLVOLSEESOUND, 50, 0, 0, 30, "See");
+			Loop;
+		See:
+			SPID A 1 A_Metal;
+			SPID ABB 1 A_Chase;
+			SPID C 1 A_Metal;
+			SPID CDD 1 A_Chase;
+			SPID E 1 A_Metal;
+			SPID EFF 1 A_Chase;
+			Loop;
+		Missile:
+			SPID A 2 Bright A_FaceTarget;
+			SPID G 1 Bright A_SpawnProjectile("PlasmaBall");
+			SPID H 1 Bright A_SpawnProjectile("PlasmaBall");
+			SPID H 1 Bright A_SpidReFire();
+			Goto Missile+1;
+		Pain:
+			SPID I 2;
+			SPID I 2 A_Pain;
+			Goto See;
+		Death:
+			SPID J 20 A_Scream;
+			SPID K 10 A_NoBlocking;
+			SPID LMNOPQR 10;
+			SPID S 30;
+			SPID S -1 A_BossDeath;
+			TNT1 A 0 Exit_Normal(0);
+			Stop;
+	}
+}

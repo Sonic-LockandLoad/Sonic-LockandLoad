@@ -17,6 +17,25 @@ gameinfo
    menufontcolor_selection = "Sapphire"
 }
 
+DoomEdNums
+{
+	2014  = "Ring"
+	2011  = "RingBox"
+	2012  = "SpecialRing"
+	2015  = "ChaosRing"
+	260   = "Hint"
+	6021  = "ChaosCapsule"
+	6022  = "BlueChaosCapsule"
+	6023  = "RedChaosCapsule"
+	262   = "GoalRing"
+	263   = "SoulRing"
+	2045  = "Nintendo64"
+	4156  = "HomingAttackPoint"
+	31935 = "Continuer"
+	19924 = "FastSpiderdemon"
+	19925 = "FasterSpiderdemon"
+}
+
 DamageType SonicKick
 {
    Factor = 1

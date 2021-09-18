@@ -186,7 +186,7 @@ script "ChaosEmeraldHandler" (void)
 		/* If playing as Classic Sonic, you're not already in Hyper form and Hyper form is enabled... */
 		{
             PlaySound(1001, "super/classich", CHAN_BODY, 1.0);
-			Log(s:"\c[SonicBlue]Okay, NO more playing around!!");
+			Log(s:"\c[ClassicBlue]Okay, NO more playing around!!");
 			TakeInventory("PowerSuper", 1);
 			GiveInventory("HyperForm", 1);
 			ACS_NamedExecute("TransformHyper", 0);
@@ -411,7 +411,11 @@ script "SA1AllOverAgain" ENTER
 	if (GetCvar("DkgBruTecFpgA"))
 	{
 		Delay(1);
-		SetMusic("thewindy");
+		while (true)
+		{
+			SetMusic("thewindy");
+			Delay(5);
+		}
 	}
 }
 
@@ -487,4 +491,9 @@ script "GoalRing" (void)
 		SetActorProperty(1001, APROP_DamageFactor, 1);
 	}
 	Exit_Normal(0);
+}
+
+script "SonicN64" (void)
+{
+	AmbientSound("sonic/nintendo64", 127);
 }

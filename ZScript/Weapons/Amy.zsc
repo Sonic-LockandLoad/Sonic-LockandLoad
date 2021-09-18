@@ -1,0 +1,449 @@
+class PikoPikoHammer : Weapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 1;
+		Weapon.Kickback 1000000;
+		Tag "Piko Piko Hammer";
+		+WEAPON.MELEEWEAPON
+		+WEAPON.NOALERT
+		+WEAPON.NOAUTOFIRE
+	}
+	States
+	{
+		Ready:
+			PIKO A 1 A_WeaponReady(WRF_ALLOWRELOAD);
+			TNT1 A 0 ACS_NamedExecute("KickCooldown");
+			Loop;
+		Deselect:
+			PIKO A 1 A_Lower;
+			Loop;
+		Select:
+			PIKO A 1 A_Raise;
+			Loop;
+		Fire:
+			TNT1 A 0 A_CheckFloor("GroundAtk");
+		AirAtk:
+			PIKO A 0 A_PlaySound("sweapons/hammerswing", 1);
+			PIKO B 1;
+			PIKO C 1
+			{
+				if (random(1,8) == 8)
+				{
+					A_CustomPunch(400, 0, CPF_PULLIN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
+				}
+				else
+				{
+					A_CustomPunch(200, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				}
+			}
+			PIKO D 1;
+			PIKO A 0
+			{
+				if (CountInv("LegOut") > 0)
+				{
+					if (CountInv("PowerSuper") < 1)
+					{
+						A_PlaySound("sweapons/hammerbonk");
+						A_DamageSelf(5);
+					}
+				}
+			}
+			PIKO E 4;
+			PIKO A 0 A_ReFire();
+			PIKO D 1;
+			PIKO C 1;
+			PIKO B 1;
+			Goto Ready;
+		GroundAtk:
+			PIKO A 0 A_PlaySound("sweapons/hammerswing", 1);
+			PIKO B 1;
+			PIKO C 1
+			{
+				if (random(1,8) == 8)
+				{
+					A_CustomPunch(400, 0, CPF_PULLIN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
+				}
+				else
+				{
+					A_CustomPunch(200, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				}
+			}
+			PIKO D 1;
+			PIKO A 0
+			{
+				if (ACS_NamedExecuteWithResult("IsCrouching"))
+				{
+					A_SetSpeed(4);
+					ThrustThingZ(0, 70, 0, 1);
+				}
+			}
+			PIKO A 0
+			{
+				if (CountInv("LegOut") > 0)
+				{
+					if (CountInv("PowerSuper") < 1)
+					{
+						A_PlaySound("sweapons/hammerbonk");
+						A_DamageSelf(5);
+					}
+				}
+			}
+			PIKO E 4;
+			PIKO A 0 A_ReFire();
+			PIKO D 1;
+			PIKO C 1;
+			PIKO B 1 A_SetSpeed(1.2);
+			Goto Ready;
+		Hold:
+			PIKO E 1
+			{
+				if (A_CheckFloor("Ready"))
+				{
+					A_SetSpeed(1.2);
+				}
+			}
+			PIKO A 0 A_ReFire();
+			PIKO DCB 1 A_SetSpeed(1.2);
+			Goto Ready;
+		AltFire:
+			PIKO A 0 A_GiveInventory("HammerBlock");
+			PIKO A 0 A_PlaySound("sweapons/blockready", 6);
+			TNT1 A 0
+			{
+				if (CountInv("PowerSuper") < 1)
+				{
+					A_SetMugshotState("Shield");
+				}
+			}
+			PIKO BD 1;
+			PIKO B 1 A_ReFire;
+		AltHold:
+			TNT1 A 0
+			{
+				if (CountInv("PowerSuper") < 1)
+				{
+					A_SetMugshotState("Shield");
+				}
+				if (CountInv("GuardCheck") < 1)
+				{
+					A_GiveInventory("GuardCheck");
+				}
+			}
+			PIKO E 1 A_GiveInventory("HammerBlock");
+			PIKO A 0 A_SetGravity(0.75);
+			PIKO A 0 A_ReFire();
+			PIKO DCB 1;
+			PIKO A 0 A_TakeInventory("GuardCheck");
+			Goto Ready;
+		Reload:
+			TNT1 A 0 A_GiveInventory("AmyKick");
+			Goto Ready;
+		Spawn:
+			PKPK A -1;
+			Stop;
+	}
+}
+
+class SilentRosePistol : Weapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 100;
+		Weapon.Kickback 0;
+		Weapon.AmmoType "ChaosEnergy";
+		Weapon.AmmoUse 5;
+		Weapon.AmmoGive 90;
+		AttackSound "sweapons/apistol";
+		Inventory.PickupMessage "\c[AmyPink]The Silent Rose, both pretty AND deadly!";
+		Inventory.PickupSound "spickup/amy";
+		Tag "Silent Rose";
+		+WEAPON.NOALERT
+	}
+	States
+	{
+		Ready:
+			RSFP A 1 A_WeaponReady(WRF_ALLOWRELOAD);
+			TNT1 A 0 ACS_NamedExecute("KickCooldown");
+			Loop;
+		Deselect:
+			RSFP A 1 A_Lower;
+			Loop;
+		Select:
+			RSFP A 1 A_Raise;
+			Loop;
+		Fire:
+			RSFP A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperShot");
+			RSFP A 0 A_FireBullets(0, 0, 1, 50, "NoGibPuff", FBF_USEAMMO|FBF_NORANDOM);
+			RSFP ABCBA 1;
+			RSFP DEFGHIHGFED 1;
+			Goto Ready;
+		SuperShot:
+			RSFP A 0 A_FireBullets(0, 0, 1, 50, "NoGibPuff", FBF_NORANDOM);
+			RSFP ABCBA 1;
+			RSFP A 0 A_ReFire();
+			RSFP DEFGHIHGFED 1;
+			Goto Ready;
+		Reload:
+			TNT1 A 0 A_GiveInventory("AmyKick");
+			Goto Ready;
+		Spawn:
+			ROSP A -1;
+			Stop;
+	}
+}
+
+class PrecisionShotgun : Weapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 1300;
+		Weapon.AmmoType "ChaosEnergy";
+		Weapon.AmmoUse1 15;
+		Weapon.AmmoGive 30;
+		Weapon.KickBack 160;
+		Inventory.PickupMessage "\c[AmyPink]Check me out -- I'm a sniper!";
+		Tag "Precision Shotgun";
+		+WEAPON.ALT_AMMO_OPTIONAL
+		+WEAPON.NOAUTOFIRE
+		+WEAPON.NOALERT
+	}
+	States
+	{
+		Ready:
+			AMSG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
+			TNT1 A 0 ACS_NamedExecute("KickCooldown");
+			Loop;
+		Deselect:
+			AMSG A 1 A_Lower;
+			Loop;
+		Select:
+			AMSG A 1 A_Raise;
+			Loop;
+		Fire:
+			TNT1 A 0 A_JumpIf(CountInv("PowerSuper"), "SpeedFire");
+			AMSG A 0 A_PlaySound("sweapons/speedyshot", 5);
+			AMSG A 0 A_GunFlash();
+			AMSG A 0 A_FireBullets(2, 0, 6, 8, "BulletPuff", FBF_USEAMMO);
+			AMSG A 0 A_AlertMonsters(0);
+			AMSG A 7;
+			TNT1 A 0 A_PlaySound("sweapons/amyreload1", 6);
+			AMSG B 2;
+			AMSG C 10;
+			TNT1 A 0 A_PlaySound("sweapons/amyreload2", 6);
+			AMSG B 2;
+			AMSG A 5;
+			AMSG A 0 A_ReFire();
+			Goto Ready;
+		SpeedFire:
+			AMSG A 0 A_PlaySound("sweapons/speedyshot", 5);
+			AMSG A 0 A_GunFlash;
+			AMSG A 0 A_FireBullets(2, 0, 20, 8, "BulletPuff", 0);
+			AMSG A 0 A_AlertMonsters(0);
+			AMSG A 7;
+			TNT1 A 0 A_PlaySound("sweapons/amyreload1", 6);
+			AMSG B 2;
+			AMSG C 5;
+			TNT1 A 0 A_PlaySound("sweapons/amyreload2", 6);
+			AMSG B 2;
+			AMSG A 5;
+			AMSG A 0 A_ReFire();
+			Goto Ready;
+		PreciseShot:
+			AMSG A 0 
+			{
+				if (CountInv("ZoomCharge") > 99)
+				{
+					A_TakeInventory("ChaosEnergy", 120);
+					A_FireBullets(0, 0, 50, 16, "NoGibPuff");
+					A_SetPitch(pitch-2);
+					A_PlaySound("sweapons/zoomfire", 6);
+				}
+				A_TakeInventory("ZoomCharge", 100);
+			}
+			AIMA A 1;
+			Goto Ready;
+		NoShot:
+			AMSG A 0 A_PlaySound("amy/error");
+			Goto Ready;
+		AltFire:
+			AMSG A 0 A_JumpIf(CountInv("ChaosEnergy") < 120, "NoShot");
+			AIMA A 0 A_ZoomFactor(4);
+			AIMA A 0
+			{
+				if (CountInv("ZoomCheck2") < 1) 
+				{
+					A_PlaySound("sweapons/zoom", 6);
+					A_GiveInventory("ZoomCheck2");
+				}
+			}
+			AIMA A 0 A_GiveInventory("ZoomCheck");
+			AIMA A 0
+			{
+				if (CountInv("PowerSuper") > 0)
+				{
+					A_GiveInventory("ZoomCharge", 10);
+				}
+				else
+				{
+					A_GiveInventory("ZoomCharge", 5);
+				}
+			}
+			AIMA A 0 A_SetSpeed(0.5);
+			AIMA A 1 A_WeaponReady(WRF_NOBOB|WRF_DISABLESWITCH);
+			AIMA A 0 A_ReFire();
+			TNT1 A 0
+			{
+				if (CountInv("PowerSuper") > 0)
+				{
+					A_GiveInventory("ChaosEnergy", 120);
+				}
+			}
+			AIMA A 0 A_PlaySound("sweapons/zoomend", 6);
+			AIMA A 0 A_ZoomFactor(1);
+			AIMA A 0 A_SetSpeed(1.5);
+			AIMA A 0 A_TakeInventory("ZoomCheck");
+			AIMA A 0 A_TakeInventory("ZoomCheck2");
+			Goto PreciseShot;
+		Reload:
+			TNT1 A 0 A_GiveInventory("AmyKick");
+			Goto Ready;
+		Flash:
+			AMGF A 2 Bright A_Light2;
+			AMGF A 1 Bright A_Light1;
+			Goto LightDone;
+		Spawn:
+			AMYG A -1;
+			Stop;
+	}
+}
+
+class AmyEclipseBlaster : Weapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 1400;
+		Weapon.AmmoType1 "ChaosEnergy";
+		Weapon.AmmoType2 "ChaosEnergy";
+		Weapon.AmmoUse 15;
+		Weapon.AmmoGive 70;
+		Weapon.KickBack 100000000;
+		+EXTREMEDEATH
+		+WEAPON.NOALERT
+		Inventory.PickupMessage "\c[AmyPink]The Eclipse Blaster Mk. IV! Awesome!";
+		Tag "Eclipse Blaster Mk. IV";
+	}
+	States
+	{
+		Ready:
+			ACBL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
+			TNT1 A 0 ACS_NamedExecute("KickCooldown");
+			Loop;
+		Deselect:
+			ACBL A 1 A_Lower;
+			Loop;
+		Select:
+			ACBL A 1 A_Raise;
+			Loop;
+		Fire:
+			ACBL B 3
+			{
+				if (CountInv("PowerSuper") > 0)
+				{
+					A_GiveInventory("ChaosEnergy", 25);
+				}
+				A_AlertMonsters();
+				A_FireProjectile("ChaosEnergyBallAmy", 0, 1);
+			}
+			Goto Ready;
+		AltFire:
+			TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "NoTime");
+			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck");
+			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "Error");
+		RingCheck:
+			TNT1 A 0 A_JumpIf(Health >= 200, "RingsFull");
+			TNT1 A 0 A_JumpIf(Health < 200, "ChaosHeal");
+		Error:
+			TNT1 A 0 A_PlaySound("amy/error", 4096);
+			Goto Ready;
+		NoTime:
+			TNT1 A 0 A_Print("\c[AmyPink]Waste of time.");
+			TNT1 A 0 A_PlaySound("amy/error", 4096);
+			Goto Ready;
+		ChaosHeal:
+			ECBL C 0 A_PlaySound("sweapons/healthcharge", 4096);
+			ECBL C 1 A_TakeInventory("ChaosEnergy", 4);
+			ECBL C 0 A_GiveInventory("Health", 16);
+			TNT1 A 0 { if (Health > 200) { A_SetHealth(200); } }
+			Goto Ready;
+		Reload:
+			TNT1 A 0 A_GiveInventory("AmyKick");
+			Goto Ready;
+		Spawn:
+			ACLI A -1;
+			Stop;
+  	}
+}
+
+class RapidMissiles : Weapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 1500;
+		Weapon.AmmoUse1 20;
+		Weapon.AmmoUse2 60;
+		Weapon.AmmoGive 40;
+		Weapon.AmmoType1 "ChaosEnergy";
+		Weapon.AmmoType2 "ChaosEnergy";
+		Inventory.PickupMessage "\c[AmyPink]Guess who just got a missile launcher!";
+		Tag "Rapid Missile Cannon";
+		+WEAPON.NOAUTOAIM
+	}
+	States
+	{
+		Ready:
+			MMSL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
+			TNT1 A 0 ACS_NamedExecute("KickCooldown");
+			Loop;
+		Deselect:
+			MMSL A 1 A_Lower;
+			Loop;
+		Select:
+			MMSL A 1 A_Raise;
+			Loop;
+		Fire:
+			MMSL B 2;
+			TNT1 A 0
+			{
+				if (CountInv("PowerSuper") > 0)
+				{
+					A_GiveInventory("ChaosEnergy", 40);
+				}
+				A_FireProjectile("ChaosMissile", 0, 1, 0, 5);
+			}
+			MMSL A 2;
+			MMSL B 0 A_ReFire();
+			Goto Ready;
+		AltFire:
+			TNT1 A 0
+			{
+				if (CountInv("PowerSuper") > 0)
+				{
+					A_GiveInventory("ChaosEnergy", 140);
+				}
+				A_FireProjectile("ChaosMissile", 0, 1, -8, 5);
+				A_FireProjectile("ChaosMissile", 0, 0, 0, 5);
+				A_FireProjectile("ChaosMissile", 0, 0, 8, 5);
+			}
+			MMSL B 8;
+			MMSL A 8;
+			MMSL B 0 A_ReFire();
+			Goto Ready;
+		Reload:
+			TNT1 A 0 A_GiveInventory("AmyKick");
+			Goto Ready;
+		Spawn:
+			MICR A -1;
+			Stop;
+	}
+}

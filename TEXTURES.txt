@@ -1,0 +1,7 @@
+sprite CBRNA0, 245, 643
+{
+	xscale 14
+	yscale 16
+	offset 122, 639
+	patch CBRNA0, 0, 0
+} 

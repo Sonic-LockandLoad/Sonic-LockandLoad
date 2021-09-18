@@ -1,0 +1,49 @@
+class HomingAttackPoint : Actor // 4156
+{
+	Default
+	{
+		+SHOOTABLE
+		+NOBLOOD
+		+DONTFALL
+		+NOGRAVITY
+		+NOCLIP
+		Health 1;
+		Mass 100000;
+		DamageFactor "Normal", 0;
+		DamageFactor "HomingAttack", 1;
+	}
+	States
+	{
+		Spawn:
+			HMIO A -1;
+			Stop;
+		Death:
+			HMIO B -1;
+			Stop;
+	}
+}
+
+class Continuer : Actor // 31935
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay ACS_NamedExecute("ContinuingSucks");
+			Stop;
+	}
+}
+
+class StabilityCheck : Actor
+{
+	void FatalExceptionVMAbort()
+	{
+		A_Log("\c[gold]Hey, I'll play with you some other time!");
+		ThrowAbortException("unstable game state");
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay FatalExceptionVMAbort();
+			Stop;
+	}
+}

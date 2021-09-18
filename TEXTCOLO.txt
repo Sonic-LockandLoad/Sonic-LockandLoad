@@ -1,10 +1,37 @@
-SonicBlue
+Sonic SonicBlue
+{
+	#000c66  #999bff
+Console:
+	#000c66  #999bff
+Flat:
+	#005eff
+}
+
+Amy AmyPink
+{
+	#7f276a  #ffa7e9
+Console:
+	#7f276a  #ffa7e9
+Flat:
+	#FF4FD4
+}
+
+Classic ClassicBlue
 {
 	#003a66  #99d3ff
 Console:
 	#003a66  #99d3ff
 Flat:
 	#0092ff
+}
+
+Shadow ShadowRedBlack
+{
+	#000000  #dd0000
+Console:
+	#222222  #ff0000
+Flat:
+	#b60000
 }
 
 ActiveOption
@@ -15,33 +42,6 @@ ActiveOption
 InactiveOption
 {
 	#000f47  #1a24b2
-}
-
-AmyPink
-{
-	#7f276a  #ffa7e9
-Console:
-	#7f276a  #ffa7e9
-Flat:
-	#FF4FD4
-}
-
-ShadowRedBlack
-{
-	#000000  #dd0000
-Console:
-	#222222  #ff0000
-Flat:
-	#b60000
-}
-
-TailsYellow
-{
-	#e38208  #df5b02
-Console:
-	#e1e113  #fd9900
-Flat:
-	#FFFF00
 }
 
 CaliburnGold

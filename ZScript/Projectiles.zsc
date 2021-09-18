@@ -1,0 +1,395 @@
+class ChaosRocket : Actor
+{
+	Default
+	{
+		Radius 11;
+		Height 8;
+		Speed 40;
+		Damage 25;
+		Projectile;
+		ProjectileKickBack 0;
+		+RANDOMIZE
+		+ROCKETTRAIL
+		SeeSound "sweapons/missilefire";
+		DeathSound "weapons/rocklx";
+	}
+	States
+	{
+		Spawn:
+			MISL A 1 Bright A_JumpIf(CountInv("RemoteDet", AAPTR_PLAYER1) > 0, "Detonate");
+			Loop;
+		Detonate:
+			TNT1 A 0 A_PlaySound("weapons/rocklx", 1024);
+			TNT1 A 0 A_SetSpeed(0);
+		Death:
+			MISL B 4 Bright A_Explode(100, 200);
+			MISL C 3 Bright;
+			MISL D 2 Bright;
+			Stop;
+	}
+}
+
+class AirstrikeRocket : Actor
+{
+	Default
+	{
+		Radius 11;
+		Height 8;
+		Speed 30;
+		Damage 100;
+		Projectile;
+		ProjectileKickBack 0;
+		+RANDOMIZE
+		+ROCKETTRAIL
+		SeeSound "sweapons/missilefire";
+		DeathSound "weapons/rocklx";
+	}
+	States
+	{
+		Spawn:
+			MISL A 1 Bright A_JumpIf(CountInv("RemoteDet", AAPTR_PLAYER1) > 0, "Detonate");
+			Loop;
+		Detonate:
+			TNT1 A 0 A_SetSpeed(0);
+			TNT1 A 0 A_PlaySound("weapons/rocklx", 1024);
+		Death:
+			MISL B 4 Bright A_Explode(100, 200);
+			MISL C 3 Bright;
+			MISL D 2 Bright;
+			Stop;
+	}
+}
+
+class ChaosMissile : Actor
+{
+	Default
+	{
+		Radius 11;
+		Height 8;
+		Speed 70;
+		Damage 10;
+		Scale 0.7;
+		Projectile;
+		+RANDOMIZE
+		+DEHEXPLOSION
+		+ROCKETTRAIL
+		ProjectileKickBack 999999999;
+		SeeSound "sweapons/missilefire";
+		DeathSound "weapons/rocklx";
+	}
+	States
+	{
+		Spawn:
+			MISL A 1 Bright;
+			Loop;
+		Death:
+			MISL B 4 Bright A_Explode;
+			MISL C 3 Bright;
+			MISL D 2 Bright;
+			Stop;
+	}
+}
+
+class StreamRocket : Actor
+{
+	Default
+	{
+		Radius 11;
+		Height 8;
+		Speed 40;
+		Damage 20;
+		DamageType "RocketStream";
+		Projectile;
+		+RANDOMIZE
+		+DEHEXPLOSION
+		+ROCKETTRAIL
+		SeeSound "weapons/rocklf";
+		DeathSound "weapons/rocklx";
+		Obituary "$OB_MPROCKET"; // "%o rode %k's rocket."
+	}
+	States
+	{
+		Spawn:
+			MISL A 1 Bright;
+			Loop;
+		Death:
+			TNT1 A 0 A_RadiusThrust(800);
+			MISL B 4 Bright A_Explode;
+			MISL C 3 Bright;
+			MISL D 2 Bright;
+			Stop;
+	}
+}
+
+class ChaosEnergyBall : Actor
+{
+	Default
+	{
+		Radius 13;
+		Height 8;
+		Speed 50;
+		Damage 16;
+		DamageType "Eclipse";
+		Projectile;
+		+RANDOMIZE
+		+EXTREMEDEATH
+		+ZDOOMTRANS
+		RenderStyle "Add";
+		Alpha 0.75;
+		SeeSound "weapons/plasmaf";
+		DeathSound "weapons/plasmax";
+	}
+	States
+	{
+		Spawn:
+			PLSS AB 6 Bright;
+			Loop;
+		Death:
+			PLSE ABCDE 4 Bright;
+			Stop;
+	}
+}
+
+class ChaosEnergyBallEX : Actor
+{
+	Default
+	{
+		Radius 13;
+		Height 8;
+		Scale 2;
+		Speed 100;
+		Damage 32;
+		DamageType "Eclipse";
+		Projectile;
+		+RANDOMIZE
+		+EXTREMEDEATH
+		+ZDOOMTRANS
+		RenderStyle "Add";
+		Alpha 0.75;
+		SeeSound "weapons/plasmaf";
+		DeathSound "weapons/plasmax";
+	}
+	States
+	{
+		Spawn:
+			PLSX AB 6 Bright;
+			Loop;
+		Death:
+			PLXE ABCDE 4 Bright;
+			Stop;
+	}
+}
+
+class SuperChaosEnergyBall : Actor
+{
+	Default
+	{
+		Radius 13;
+		Height 8;
+		Speed 40;
+		Damage 70;
+		DamageType "Eclipse";
+		Projectile;
+		+RANDOMIZE
+		+EXTREMEDEATH
+		+ZDOOMTRANS
+		RenderStyle "Add";
+		Alpha 0.75;
+		SeeSound "sweapons/chaosspear";
+		DeathSound "weapons/bfgx";
+	}
+	States
+	{
+		Spawn:
+			BFS1 AB 6 Bright;
+			Loop;
+		Death:
+			BFE1 AB 4 Bright;
+			BFE1 C 4 Bright A_BFGSpray();
+			BFE1 DEF 4 Bright;
+			Stop;
+	}
+}
+
+class SilentChaosEnergyBall : Actor
+{
+	Default
+	{
+		Radius 13;
+		Height 8;
+		Speed 60;
+		Damage 20;
+		DamageType "Eclipse";
+		Projectile;
+		+RANDOMIZE
+		+EXTREMEDEATH
+		+ZDOOMTRANS
+		RenderStyle "Add";
+		Alpha 0.75;
+	}
+	States
+	{
+		Spawn:
+			PLSS AB 6 Bright;
+			Loop;
+		Death:
+			PLSE ABCDE 4 Bright;
+			Stop;
+	}
+}
+
+class ChaosEnergyBallAmy : Actor
+{
+	Default
+	{
+		Radius 13;
+		Height 8;
+		Speed 25;
+		Damage 40;
+		DamageType "Eclipse";
+		Projectile;
+		+RANDOMIZE
+		+EXTREMEDEATH
+		+ZDOOMTRANS
+		RenderStyle "Add";
+		Alpha 0.75;
+		SeeSound "weapons/plasmaf";
+		DeathSound "weapons/plasmax";
+	}
+	States
+	{
+		Spawn:
+			PRSS AB 6 Bright
+			{
+				if (CountInv("LegOut", AAPTR_TARGET) > 0 || CountInv("PowerSuper", AAPTR_TARGET) > 0)
+				{
+					A_ScaleVelocity(2);
+					A_SetDamageType("EclipseEX");
+				}
+			}
+			Loop;
+		Death:
+			PRSE ABCDE 4 Bright;
+			Stop;
+	}
+}
+
+class Shuriken : Actor
+{
+	Default
+	{
+		Radius 8;
+		Height 2;
+		Speed 60;
+		Damage 15;
+		Projectile;
+		+RIPPER
+		+NOEXTREMEDEATH
+		RenderStyle "Normal";
+		Alpha 1;
+		SeeSound "sweapons/shurikenfire";
+		AttackSound "sweapons/hit";
+		DeathSound "sweapons/shurikenhit";
+	}
+	States
+	{
+		Spawn:
+			SHUR AB 2;
+			Loop;
+		Death:
+			SHUR A 30;
+			Goto Fade;
+		Fade:
+			SHUR A 1 A_FadeOut(0.1);
+			Loop;
+	}
+}
+
+class ChaosSpear : Actor
+{
+	Default
+	{
+		Radius 5;
+		Height 4;
+		Speed 40;
+		Damage 20;
+		Projectile;
+		+SEEKERMISSILE
+		+ROCKETTRAIL
+		RenderStyle "Add";
+		Alpha 0.75;
+		SeeSound "sweapons/chaosspear";
+	}
+	States
+	{
+		Spawn:
+			CSPE A 1 A_SeekerMissile(0, 90, SMF_LOOK | SMF_PRECISE);
+			CSPE A 0 A_TakeInventory("SpearCheck", 1);
+			Loop;
+		Death:
+			TNT1 A 0
+			{
+				if (CountInv("SpearCheck") < 1)
+				{
+					A_PlaySound("sweapons/spearimpact");
+				}
+			}
+			TNT1 A 0 A_GiveInventory("SpearCheck");
+			CSPE A 1 A_FadeOut(0.1, 0);
+			Loop;
+		}
+}
+
+class EnergyBladeLeft : Actor
+{
+	Default
+	{
+		Radius 8;
+		Scale 0.5;
+		Height 2;
+		Speed 80;
+		Damage 25;
+		Projectile;
+		+RIPPER
+		+EXTREMEDEATH
+		RenderStyle "Normal";
+		Alpha 1;
+		SeeSound "sweapons/soulsurge";
+		AttackSound "sweapons/soulsurge";
+	}
+	States
+	{
+		Spawn:
+			ENSL A -1;
+			Loop;
+		Death:
+			Stop;
+	}
+}
+
+class EnergyBladeRight : Actor
+{
+	Default
+	{
+		Radius 8;
+		Scale 0.5;
+		Height 2;
+		Speed 80;
+		Damage 25;
+		Projectile;
+		+RIPPER
+		+EXTREMEDEATH
+		RenderStyle "Normal";
+		Alpha 1;
+		SeeSound "sweapons/soulsurge";
+		AttackSound "sweapons/soulsurge";
+	}
+	States
+	{
+		Spawn:
+			ENSL B -1;
+			Loop;
+		Death:
+			Stop;
+	}
+}

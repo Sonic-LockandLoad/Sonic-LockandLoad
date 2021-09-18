@@ -70,6 +70,8 @@ sweapons/peeloutrelease   	peelr
 sweapons/spin             	Roll
 sweapons/sdash				homing
 sweapons/reticle			SoniReti
+sweapons/sonicfalling		sonifall
+sweapons/sonicland			soniland
 $random sweapons/shurikenfire { sweapons/shurikenfire1 sweapons/shurikenfire2 }
 
 // Character
@@ -101,6 +103,7 @@ sonic/painx2       			SonicOw2
 sonic/nextlevel				letsgo
 sonic/goodresult			S_GOOD
 sonic/badresult				S_BAD
+sonic/nintendo64			snc_n64
 
 amy/error          			a_error
 amy/grunt1         			agrunt1
