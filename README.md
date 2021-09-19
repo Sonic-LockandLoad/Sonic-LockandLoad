@@ -9,6 +9,12 @@ I eventually plan to make this mod available as a standalone game.
 Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases). 
 
 ## Playing an unstable (non-release) version
+You should have `git` installed. (You can also use [`gh-get`](https://github.com/That1M8Head/gh-get).)<br>
+Run `git clone https://github.com/That1M8Head/Sonic-LockandLoad` or `gh-get That1M8Head Sonic-LockandLoad`.
+Then run the newly cloned folder with GZDoom.
+To update, run `git pull` inside the folder.
+
+### If you don't want to install `git`
 At the top of the page, click `Code`, then `Download ZIP`.<br>
 Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
 Optionally, you can rename `Sonic-LockandLoad-main.zip` to `Sonic-LockandLoad-main.pk3`.
@@ -35,6 +41,7 @@ No, for multiple reasons:
     - These levels contain monsters from Doom II. At the moment, you will have to play with Doom II, or an alternative such as Freedoom: Phase 2.
 - **Sonic is super slow, I can't kick, and dying crashes the game**
     - Your game is borked. Delete your config and reconfigure GZDoom all over again.
+- **Textures and things are broken when editing maps**
 
 ## Copyright
 Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
