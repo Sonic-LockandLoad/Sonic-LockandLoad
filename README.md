@@ -9,6 +9,7 @@ I eventually plan to make this mod available as a standalone game.
 Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases). 
 
 ## Playing an unstable (non-release) version
+### Using `git clone`
 You should have `git` installed. (You can also use [`gh-get`](https://github.com/That1M8Head/gh-get).)<br>
 Run `git clone https://github.com/That1M8Head/Sonic-LockandLoad` or `gh-get That1M8Head Sonic-LockandLoad`.<br>
 Then run the newly cloned folder with GZDoom.<br>
@@ -17,7 +18,8 @@ To update, run `git pull` inside the folder.
 ### If you don't want to install `git`
 At the top of the page, click `Code`, then `Download ZIP`.<br>
 Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
-Optionally, you can rename `Sonic-LockandLoad-edge.zip` to `Sonic-LockandLoad-edge.pk3`.
+Optionally, you can rename `Sonic-LockandLoad-edge.zip` to `Sonic-LockandLoad-edge.pk3`.<br>
+Be warned that unless you un-nest the folder inside the ZIP, you will not be able to edit maps.
 
 ## Screenshots, so I can see what it's about?
 None that I can easily take. I did [stream it on YouTube](https://www.youtube.com/embed/o8zHD-PQBJ8), though; you can have a look at that. (it is [outdated](https://github.com/That1M8Head/Sonic-LockandLoad/tree/617fbe9babf6ddc7941ee91a8628a01ce0de5413) though)
@@ -42,6 +44,7 @@ No, for multiple reasons:
 - **Sonic is super slow, I can't kick, and dying crashes the game**
     - Your game is borked. Delete your config and reconfigure GZDoom all over again.
 - **Textures and things are broken when editing maps**
+    - This is usually because you downloaded a ZIP with a nested folder. (Thanks, GitHub.) You should [switch to using the `git clone` method](https://github.com/That1M8Head/Sonic-LockandLoad#playing-an-unstable-non-release-version) if you wish to edit maps for this mod.
 
 ## Copyright
 Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
