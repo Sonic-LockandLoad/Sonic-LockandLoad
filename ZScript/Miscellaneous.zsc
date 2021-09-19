@@ -2,6 +2,7 @@ class HomingAttackPoint : Actor // 4156
 {
 	Default
 	{
+		//$Category Lock & Load Objects
 		+SHOOTABLE
 		+NOBLOOD
 		+DONTFALL
@@ -25,6 +26,10 @@ class HomingAttackPoint : Actor // 4156
 
 class Continuer : Actor // 31935
 {
+	Default
+	{
+		//$Category Lock & Load Objects
+	}
 	States
 	{
 		Spawn:

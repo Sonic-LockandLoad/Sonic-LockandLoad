@@ -1,11 +1,3 @@
-class BoostCheck : Inventory 
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
-
 class ThrowCheck : Inventory 
 {
 	Default
@@ -78,14 +70,6 @@ class PeeloutCheck : Inventory
 	}
 }
 
-class HomingCharges : Inventory
-{
-	Default
-	{
-		Inventory.MaxAmount 99;
-	}
-}
-
 class TeleportCooldown : Inventory
 {
 	Default
@@ -95,14 +79,6 @@ class TeleportCooldown : Inventory
 }
 
 class RemoteDet : Inventory
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
-
-class LightSpeedCheck : Inventory 
 {
 	Default
 	{

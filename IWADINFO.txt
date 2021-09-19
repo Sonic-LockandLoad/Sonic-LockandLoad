@@ -1,0 +1,12 @@
+// This IWADINFO lump is here for future use.
+// It is not recommended to use Lock & Load as an IWAD.
+
+iwad
+{
+	Name = "Sonic: Lock & Load"
+	AutoName = "Doom.LockandLoad"
+	Game = "Doom"
+	Config = "Doom"
+	IWADName = "sonicdoom.pk3"
+	BannerColors = "4f1cf2", "41c90a"
+}

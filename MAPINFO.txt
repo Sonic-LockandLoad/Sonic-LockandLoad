@@ -23,17 +23,48 @@ DoomEdNums
 	2011  = "RingBox"
 	2012  = "SpecialRing"
 	2015  = "ChaosRing"
+	263   = "SoulRing"
 	260   = "Hint"
+	
 	6021  = "ChaosCapsule"
 	6022  = "BlueChaosCapsule"
 	6023  = "RedChaosCapsule"
+	
 	262   = "GoalRing"
-	263   = "SoulRing"
-	2045  = "Nintendo64"
 	4156  = "HomingAttackPoint"
 	31935 = "Continuer"
+	
 	19924 = "FastSpiderdemon"
 	19925 = "FasterSpiderdemon"
+	
+	2013  = "SoulsphereReplace"
+	83    = "MegasphereReplace"
+	
+	2023  = "BerserkReplace"
+	8     = "BackpackReplace"
+	2007  = "ClipReplace"
+	2048  = "ClipBoxReplace"
+	2008  = "ShellReplace"
+	2049  = "ShellBoxReplace"
+	2010  = "RocketAmmoReplace"
+	2046  = "RocketBoxReplace"
+	2047  = "CellReplace"
+	17    = "CellPackReplace"
+	2018  = "ArmorReplace"
+	2019  = "BlueArmorReplace"
+	
+	5010  = "PistolReplace"
+	2005  = "ChainsawReplace"
+	2001  = "ShotgunReplace"
+	2002  = "ChaingunReplace"
+	82    = "SSGReplace"
+	2003  = "RocketReplace"
+	2004  = "PlasmaRifleReplace"
+	2006  = "BFGReplace"
+	
+	2022  = "InvulReplace"
+	2025  = "RadSuitReplace"
+	2045  = "Nintendo64"
 }
 
 DamageType SonicKick
@@ -83,7 +114,7 @@ map SDLvl01 "Green Hill"
 	sky2 = "GHZSKYB"
 	next = EndPic, "TITLEPIC"
 	author = "That1M8Head"
-	partime = 15
+	partime = 25
 	cluster = 401
 }
 

@@ -1,5 +1,8 @@
 class SonicAbilities : Weapon
 {
+	bool BoostCheck;
+	bool LightSpeedCheck;
+	int HomingCharges;
 	Default
 	{
 		Weapon.SelectionOrder 3700;
@@ -25,19 +28,20 @@ class SonicAbilities : Weapon
 			Goto Deselect;
 		Fire:
 			TNT1 A 0 A_JumpIf(GetCvar("DkgBruTecFpgA"), "AltFire");
-			TNT1 A 0 A_JumpIf(CountInv("HomingCharges")>40,"LightSpeedAttack");
+			TNT1 A 0 A_JumpIf(invoker.HomingCharges > 40,"LightSpeedAttack");
 			TNT1 A 0 A_SetSpeed(0.1);
 			TNT1 A 1 A_FireBullets(0, 0, 1, 0, "SonicReticle", FBF_NORANDOMPUFFZ, 1024);
 			TNT1 A 0
 			{
 				A_GiveInventory("PeeloutCheck");
-				A_GiveInventory("HomingCharges", 1);
+				invoker.HomingCharges++;
+				invoker.LightSpeedCheck = false;
 			}
 			TNT1 A 1 A_ReFire();
 		HomingAttack:
 			TNT1 A 0 A_PlaySound("sweapons/sdash", 5);
 			TNT1 A 0 A_TakeInventory("PeeloutCheck");
-			TNT1 A 0 A_TakeInventory("HomingCharges", 99);
+			TNT1 A 0 { invoker.HomingCharges = 0; }
 			TNT1 A 0 A_SetSpeed(4);
 			TNT1 A 0
 			{
@@ -58,15 +62,18 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_TakeInventory("PeeloutCheck");
 			TNT1 A 1
 			{
-				if (CountInv("LightSpeedCheck") < 1)
+				if (!invoker.LightSpeedCheck)
 				{
-					A_GiveInventory("LightSpeedCheck");
+					invoker.LightSpeedCheck = true;
 					A_PlaySound("sonic/herewe", 6);
 				}
 			}
 			TNT1 A 0 A_ReFire();
-			TNT1 A 0 A_TakeInventory("HomingCharges", 99);
-			TNT1 A 0 A_TakeInventory("LightSpeedCheck");
+			TNT1 A 0
+			{
+				invoker.HomingCharges = false;
+				invoker.LightSpeedCheck = false;
+			}
 			TNT1 A 0 A_SetSpeed(8);
 			TNT1 A 0 A_PlaySound("sonic/go", 6);
 			TNT1 A 0 A_PlaySound("sweapons/sdash", 7);
@@ -90,15 +97,15 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperBoost");
 			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "Boost");
 			TNT1 A 0 A_Gravity;
-			TNT1 A 0 A_TakeInventory("BoostCheck");
+			TNT1 A 0 { invoker.BoostCheck = false; }
 			TNT1 A 0 A_StopSound(1);
 			Goto Ready;
 		Boost:
 			TNT1 A 0
 			{
-				if (CountInv("BoostCheck") < 1)
+				if (!invoker.BoostCheck)
 				{
-					A_GiveInventory("BoostCheck");
+					invoker.BoostCheck = true;
 					A_PlaySound("sonic/boost", 6);
 				}
 			}
@@ -130,15 +137,15 @@ class SonicAbilities : Weapon
 					A_Gravity();
 				}
 			}
-			TNT1 A 0 A_TakeInventory("BoostCheck");
+			TNT1 A 0 { invoker.BoostCheck = false; }
 			TNT1 A 0 A_StopSound(1);
 			Goto Ready;
 		SuperBoost:
 			TNT1 A 0
 			{
-				if (CountInv("BoostCheck") < 1)
+				if (!invoker.BoostCheck)
 				{
-					A_GiveInventory("BoostCheck");
+					invoker.BoostCheck = true;
 					A_PlaySound("sonic/boost", 6);
 				}
 			}
@@ -166,7 +173,7 @@ class SonicAbilities : Weapon
 					A_Gravity();
 				}
 			}
-			TNT1 A 0 A_TakeInventory("BoostCheck");
+			TNT1 A 0 { invoker.BoostCheck = false; }
 			TNT1 A 0 A_StopSound(1);
 			Goto Ready;
 		Spawn:
@@ -176,6 +183,32 @@ class SonicAbilities : Weapon
 } 
 class Caliburn : Weapon 
 {
+	bool BoostCheck;
+	action void SwordSwing(bool onright)
+	{
+		A_PlaySound("sweapons/swordswing", 1);
+		A_PlaySound("sonic/grunt", 7);
+		if (CountInv("PowerSuper")) {
+			A_PlaySound("sweapons/soulsurge", 6, 0.5);
+			if (onright) {
+				A_FireProjectile("EnergyBladeRight");
+			}
+			else {
+				A_FireProjectile("EnergyBladeLeft");
+			}
+		}
+	}
+	action void SwordSlam()
+	{
+		A_PlaySound("sweapons/sonicland", 7);
+		if (CountInv("PowerSuper")) {
+			A_Explode(280, 600, XF_NOTMISSILE);
+			A_PlaySound("sweapons/soulsurge", 6, 0.5);
+		}
+		else {
+			A_Explode(140, 300, XF_NOTMISSILE);
+		}
+	}
 	Default
 	{
 		Weapon.SelectionOrder 1;
@@ -207,17 +240,18 @@ class Caliburn : Weapon
 			TNT1 A 0 A_CheckFloor("GroundAttack");
 			Goto AirStart;
 		GroundAttack:
-			TNT1 A 0 A_PlaySound("sweapons/swordswing", 1);
-			TNT1 A 0 A_PlaySound("sonic/grunt", 7);
-			TNT1 A 0
+			TNT1 A 0 SwordSwing(false);
+			CALI BCDE 1
 			{
-				if (CountInv("PowerSuper") > 0)
-				{
-					A_FireProjectile("EnergyBladeLeft");
+				if (!CountInv("PowerSuper")) {
+					A_SetSpeed(2.5);
+					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				}
+				else {
+					A_SetSpeed(5);
+					A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 			}
-			TNT1 A 0 A_SetSpeed(2.5);
-			CALI BCDE 1 A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			CALI E 5;
 			CALI A 0 A_ReFire();
 			Goto Ready;
@@ -228,12 +262,10 @@ class Caliburn : Weapon
 			TNT1 A 0 ThrustThingZ(0, 40, 1, 1);
 			CALI JKLMN 1
 			{
-				if (CountInv("PowerSuper"))
-				{
+				if (CountInv("PowerSuper")) {
 					A_CustomPunch(70, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
-				else
-				{
+				else {
 					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 				ThrustThingZ(0, 5, 1, 1);
@@ -242,19 +274,7 @@ class Caliburn : Weapon
 			Goto AirAttack+6;
 		AirDone:
 			TNT1 A 0 A_SetSpeed(0);
-			TNT1 A 0
-			{
-				if (CountInv("PowerSuper"))
-				{
-					A_Explode(280, 600, XF_NOTMISSILE);
-					A_PlaySound("sweapons/soulsurge", 6, 0.5);
-				}
-				else
-				{
-					A_Explode(140, 300, XF_NOTMISSILE);
-				}
-			}
-			TNT1 A 0 A_PlaySound("sweapons/sonicland", 7);
+			TNT1 A 0 SwordSlam();
 			CALI N 10 A_ReFire("AirHold");
 			TNT1 A 0 A_SetSpeed(2);
 			Goto Ready;
@@ -264,16 +284,18 @@ class Caliburn : Weapon
 			TNT1 A 0 A_SetSpeed(2);
 			Goto Ready;
 		Hold:
-			TNT1 A 0
+			TNT1 A 0 SwordSwing(true);
+			CALI FGHI 1
 			{
-				if (CountInv("PowerSuper") > 0)
-				{
-					A_FireProjectile("EnergyBladeRight");
+				if (CountInv("PowerSuper")) {
+					A_SetSpeed(2.5);
+					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				}
+				else {
+					A_SetSpeed(5);
+					A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 			}
-			TNT1 A 0 A_PlaySound("sweapons/swordswing");
-			TNT1 A 0 A_SetSpeed(2.5);
-			CALI FGHI 1 A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			CALI J 5;
 			CALI A 0 A_ReFire("GroundAttack");
 			Goto Ready;
@@ -282,15 +304,15 @@ class Caliburn : Weapon
 			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "Boost");
 			TNT1 A 0 A_PlaySound("sonic/error", 4096);
 			TNT1 A 0 A_Gravity();
-			TNT1 A 0 A_TakeInventory("BoostCheck");
+			TNT1 A 0 { invoker.BoostCheck = false; }
 			TNT1 A 0 A_StopSound(1);
 			Goto Ready;
 		Boost:
 			TNT1 A 0
 			{
-				if (CountInv("BoostCheck") < 1)
+				if (!invoker.BoostCheck)
 				{
-					A_GiveInventory("BoostCheck");
+					invoker.BoostCheck = true;
 					A_PlaySound("sonic/boost", 6);
 				}
 			}
@@ -322,15 +344,15 @@ class Caliburn : Weapon
 					A_Gravity();
 				}
 			}
-			TNT1 A 0 A_TakeInventory("BoostCheck");
+			TNT1 A 0 { invoker.BoostCheck = false; }
 			TNT1 A 0 A_StopSound(1);
 			Goto Ready;
 		SuperBoost:
 			TNT1 A 0
 			{
-				if (CountInv("BoostCheck") < 1)
+				if (!invoker.BoostCheck)
 				{
-					A_GiveInventory("BoostCheck");
+					invoker.BoostCheck = true;
 					A_PlaySound("sonic/boost", 6);
 				}
 			}
@@ -359,7 +381,7 @@ class Caliburn : Weapon
 					A_Gravity();
 				}
 			}
-			TNT1 A 0 A_TakeInventory("BoostCheck");
+			TNT1 A 0 { invoker.BoostCheck = true; }
 			TNT1 A 0 A_StopSound(1);
 			Goto Ready;
 		Reload:
@@ -373,6 +395,35 @@ class Caliburn : Weapon
 
 class AcceleratedPistol : Weapon
 {
+	action void AccelFire()
+	{
+		A_PlaySound("sweapons/pistol");
+		if (CountInv("PowerSuper")) {
+			A_FireBullets(0, 0, 1, 24, "NoGibPuff");
+		}
+		else {
+			A_FireBullets(2, 2, -1, 12, "NoGibPuff");
+		}
+		A_GunFlash();
+	}
+	action void RecoilBurst()
+	{
+		A_PlaySound("weapons/rbeam");
+		if (CountInv("PowerSuper") > 0) {
+			A_RailAttack(96, 0, 1, "06 b4 00", "fd ff 00", RGF_FULLBRIGHT, 0, "GibPuff", 0, 0, 0, 25, 1.0, 1.0);
+			A_ChangeVelocity (Cos(Pitch) * -50, 0, Sin(Pitch) * 50, CVF_Relative);
+			A_GiveInventory("ChaosEnergy", 4);
+		}
+		else {
+			A_RailAttack(24, 0, 1, "c5 fe ff", "c5 c6 ff", RGF_FULLBRIGHT, 0, "NoGibPuff", 0, 0, 0, 25, 1.0, 1.0);
+			if (GetCvar("DkgBruTecFpgA")) {
+				A_ChangeVelocity (Cos(Pitch) * 25, 0, Sin(Pitch) * -25, CVF_Relative);
+			}
+			else {
+				A_ChangeVelocity (Cos(Pitch) * -25, 0, Sin(Pitch) * 20, CVF_Relative);
+			}
+		}
+	}
 	Default
 	{
 		Weapon.SelectionOrder 100;
@@ -412,47 +463,14 @@ class AcceleratedPistol : Weapon
 					A_GiveInventory("ChaosEnergy", 1);
 				}
 			}
-			SPIS A 0 A_PlaySound("sweapons/pistol", 1);
-			SPIS A 0
-			{
-				if (CountInv("PowerSuper"))
-				{
-					A_FireBullets(0, 0, 1, 24, "NoGibPuff");
-				}
-				else
-				{
-					A_FireBullets(2, 2, -1, 12, "NoGibPuff");
-				}
-			}
 			TNT1 A 0 A_TakeInventory("KickCooldown", 4);
-			SPIS A 1 A_GunFlash();
+			SPIS A 1 AccelFire();
 			SPIS BCA 1;
 			SPIS A 0 A_ReFire();
 			Goto Ready;
 		AltFire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 4);
-			SPIS A 0
-			{
-				A_PlaySound("weapons/rbeam");
-				if (CountInv("PowerSuper") > 0)
-				{
-					A_RailAttack(96, 0, 1, "06 b4 00", "fd ff 00", RGF_FULLBRIGHT, 0, "GibPuff", 0, 0, 0, 25, 1.0, 1.0);
-					A_ChangeVelocity (Cos(Pitch) * -50, 0, Sin(Pitch) * 50, CVF_Relative);
-					A_GiveInventory("ChaosEnergy", 4);
-				}
-				else
-				{
-					A_RailAttack(24, 0, 1, "c5 fe ff", "c5 c6 ff", RGF_FULLBRIGHT, 0, "NoGibPuff", 0, 0, 0, 25, 1.0, 1.0);
-					if (GetCvar("DkgBruTecFpgA"))
-					{
-						A_ChangeVelocity (Cos(Pitch) * 25, 0, Sin(Pitch) * -25, CVF_Relative);
-					}
-					else
-					{
-						A_ChangeVelocity (Cos(Pitch) * -25, 0, Sin(Pitch) * 20, CVF_Relative);
-					}
-				}
-			}
+			SPIS A 0 RecoilBurst();
 			SPIS BC 1;
 			SPIS C 15;
 			Goto Ready;
@@ -470,6 +488,26 @@ class AcceleratedPistol : Weapon
 
 class RapidShotty : Weapon 
 {
+	action void RapidFire()
+	{
+		A_PlaySound("sweapons/shardshot", 1);
+		
+		if (CountInv("PowerSuper")) {
+			A_FireBullets(18, 10, 20, 4, "BulletPuff");
+			A_GunFlash("SuperFlash");
+		}
+		else {
+			A_FireBullets(18, 10, 20, 4, "BulletPuff");
+			A_GunFlash();
+		}
+	}
+	action void ForceFire()
+	{
+		A_PlaySound("sweapons/forceshot");
+		A_ChangeVelocity(Cos(Pitch) * -20, 0, Sin(Pitch) * 20, CVF_Relative);
+		A_FireBullets(8, 2, 24, 4, "BulletPuff");
+		A_GunFlash("ForceFlash");
+	}
 	Default
 	{
 		Weapon.SelectionOrder 1300;
@@ -503,19 +541,14 @@ class RapidShotty : Weapon
 		Fire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 110);
 			TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperFire");
-			SCTG A 0 A_PlaySound("sweapons/shardshot", 1);
-			SCTG A 0 A_FireBullets(18, 10, 20, 4, "BulletPuff");
-			SCTG B 6 A_GunFlash();
+			SCTG B 6 RapidFire();
 			SCTG C 4;
 			SCTG C 6;
 			SCTG A 0 A_ReFire();
 			Goto Ready;
 		AltFire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 60);
-			SCTG A 0 A_PlaySound("sweapons/forceshot", 1);
-			SCTG A 0 A_ChangeVelocity(Cos(Pitch) * -20, 0, Sin(Pitch) * 20, CVF_Relative);
-			SCTG A 0 A_FireBullets(8, 2, 24, 4, "BulletPuff");
-			SCTG B 12 A_GunFlash("ForceFlash");
+			SCTG B 12 ForceFire();
 			SCTG A 0 { if (CountInv("PowerSuper") > 0) { A_GiveInventory("ChaosEnergy", 42); A_ReFire(); } }
 			SCTG CDE 1;
 			SCTG F 28 A_PlaySound("sweapons/forcereload", 6);
@@ -526,9 +559,7 @@ class RapidShotty : Weapon
 		SuperFire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 8);
 			TNT1 A 0 A_GiveInventory("ChaosEnergy", 16);
-			SCTG A 0 A_PlaySound("sweapons/shardshot", 1);
-			SCTG A 0 A_FireBullets(18, 10, 20, 4, "BulletPuff");
-			SCTG B 3 A_GunFlash("SuperFlash");
+			SCTG B 3 RapidFire();
 			SCTG C 2;
 			SCTG C 3;
 			SCTG A 0 A_ReFire();
@@ -595,7 +626,7 @@ class ShurikenCrossbow : Weapon
 			Goto Ready;
 		SuperFire:
 			TNT1 A 0 ACS_NamedExecute("KickCooldown");
-			SHRL B 6 A_FireProjectile("Shuriken", 0, 1);
+			SHRL B 3 A_FireProjectile("Shuriken", 0, 1);
 			TNT1 A 1 A_ReFire();
 			SHRL CDEFG 1;
 			Goto Ready;
@@ -611,6 +642,15 @@ class ShurikenCrossbow : Weapon
 
 class EclipseBlaster : Weapon
 {
+	action void EclipseFire()
+	{
+		if (CountInv("PowerSuper")) {
+			A_FireProjectile("ChaosEnergyBallEX", 0, 0);
+		}
+		else {
+			A_FireProjectile("ChaosEnergyBall", 0, 1);
+		}
+	}
 	Default
 	{
 		Weapon.SelectionOrder 1400;
@@ -641,17 +681,7 @@ class EclipseBlaster : Weapon
 			Goto Select+1;
 		Fire:
 			TNT1 A 0 ACS_NamedExecute("KickCooldown");
-			ECBL B 1
-			{
-				if (CountInv("PowerSuper") > 0)
-				{
-					A_FireProjectile("ChaosEnergyBallEX", 0, 0);
-				}
-				else
-				{
-					A_FireProjectile("ChaosEnergyBall", 0, 1);
-				}
-			}
+			ECBL B 1 EclipseFire();
 			TNT1 A 0 A_ReFire();
 			Goto Ready;
 		AltFire:
