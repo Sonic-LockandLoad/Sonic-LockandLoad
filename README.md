@@ -44,7 +44,7 @@ No, for multiple reasons:
 - **Sonic is super slow, I can't kick, and dying crashes the game**
     - Your game is borked. Delete your config and reconfigure GZDoom all over again.
 - **Textures and things are broken when editing maps**
-    - This is usually because you downloaded a ZIP with a nested folder. (Thanks, GitHub.) You should [switch to using the `git clone` method](https://github.com/That1M8Head/Sonic-LockandLoad#playing-an-unstable-non-release-version) if you wish to edit maps for this mod.
+    - This is usually because you downloaded a ZIP with a nested folder. (Thanks, GitHub.) You should [switch to using the `git clone` method](https://github.com/That1M8Head/Sonic-LockandLoad#using-git-clone) if you wish to edit maps for this mod.
 
 ## Copyright
 Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
