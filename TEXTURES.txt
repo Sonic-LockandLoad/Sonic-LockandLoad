@@ -1,7 +1,7 @@
 sprite CBRNA0, 245, 643 // Caliburn pickup
 {
-	xscale 14
-	yscale 16
+	xscale 10
+	yscale 12
 	offset 122, 639
 	patch CBRNA0, 0, 0
 }
