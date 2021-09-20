@@ -10,10 +10,14 @@ Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/rel
 
 ## Playing an unstable (non-release) version
 ### Using `git clone`
-You should have `git` installed. (You can also use [`gh-get`](https://github.com/That1M8Head/gh-get).)<br>
+You should have `git` installed. (You can also use [`gh-get`](https://github.com/That1M8Head/gh-get).)
+
+#### Downloading
 Run `git clone https://github.com/That1M8Head/Sonic-LockandLoad` or `gh-get That1M8Head Sonic-LockandLoad`.<br>
-Then run the newly cloned folder with GZDoom.<br>
-To update, run `git pull` inside the folder.
+Then run the newly cloned folder with GZDoom.
+
+#### Updating
+Run `git pull` inside the folder.
 
 ### If you don't want to install `git`
 At the top of the page, click `Code`, then `Download ZIP`.<br>
