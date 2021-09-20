@@ -46,14 +46,22 @@ class SonicKick : CustomInventory
 		TNT1 A 0 A_AlertMonsters();
 		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
-		SKIK A 1 A_PlaySound("sweapons/swordswing", 7);
+		SKIK A 1 
+		{
+			A_PlaySound("sweapons/shockwave", 7);
+			A_FireBullets(27, 9, 100, 20, "GibPuff", 0);
+		}
 		SKIK BC 1;
 		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		SKIK EF 1;
 		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
 	SuperSonicEagle:
-		SEAG A 1 A_PlaySound("sweapons/swordswing", 7);
+		SEAG A 1 
+		{
+			A_PlaySound("sweapons/shockwave", 7);
+			A_FireBullets(9, 27, 100, 40, "GibPuff", 0);
+		}
 		SEAG BC 1;
 		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		SEAG E 1;
