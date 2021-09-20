@@ -34,6 +34,9 @@ DoomEdNums
 	4156  = "HomingAttackPoint"
 	31935 = "Continuer"
 	
+	31601 = "TutorialText"
+	31602 = "SideLevelsText"
+	
 	19924 = "FastSpiderdemon"
 	19925 = "FasterSpiderdemon"
 	
@@ -102,9 +105,9 @@ DamageType Drowning
    Factor = 8
 }
 
-episode SDLvl01
+episode S_LOBBY
 {
-	name = "Side Levels"
+	name = "Lock & Load"
 }
 
 map SDLvl01 "Green Hill"
@@ -120,28 +123,26 @@ map SDLvl01 "Green Hill"
 
 map E3M10 "Dis Is It"
 {
-  levelnum = 30
-  titlepatch = "WILV27"
-  next = endpic, "bossend"
-  sky1 = "SKY3"
-  cluster = 404
-  par = 30
-  nointermission
-  nosoundclipping
-  music = S_BOSS
-  needclustertext
-}
-
-episode T_LOBBY
-{
-	name = "Tutorial"
-	noskillmenu
-}
-
-map T_LOBBY "Tutorial Lobby"
-{
-	music = S_LOBBY
+	levelnum = 30
+	titlepatch = "WILV27"
+	next = endpic, "bossend"
+	sky1 = "SKY3"
+	cluster = 404
+	par = 30
 	nointermission
+	nosoundclipping
+	music = S_BOSS
+	needclustertext
+}
+
+map S_LOBBY "Sonic's House"
+{
+	music = L_OUTSID
+	nointermission
+	sky1 = "GHZSKYA"
+	sky2 = "GHZSKYB"
+	resethealth
+	resetinventory
 }
 
 map T_SONIC "Sonic Tutorial"
@@ -149,9 +150,21 @@ map T_SONIC "Sonic Tutorial"
 	music = S_TUT
 	sky1 = "GHZSKYA"
 	sky2 = "GHZSKYB"
-	next = "SDLvl01"
+	next = "S_LOBBY"
 	author = "That1M8Head"
 	partime = 120
+	resethealth
+	resetinventory
+}
+
+map T_CLASSI "Classic Tutorial"
+{
+	music = C_TUT
+	next = "S_LOBBY"
+	author = "That1M8Head"
+	par = 12
+	resethealth
+	resetinventory
 }
 
 map LMAONO "You Idiot, You Fricked It Up"

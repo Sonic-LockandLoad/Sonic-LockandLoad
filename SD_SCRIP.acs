@@ -424,55 +424,55 @@ script "GoalRing" (void)
 	Thing_Stop(1001);
 	SetActorProperty(1001, APROP_DamageFactor, 0);
 	int LevelTime = Timer() / 35;
+	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
+	int DParTime = ParTime * 2;
+	int CurrentHealth = GetActorProperty(1001, APROP_Health);
+	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case 0:
-			if (LevelTime > GetLevelInfo(LEVELINFO_PAR_TIME))
-			{
+			if (LevelTime > DParTime) {
 				PlaySound(1001, "sonic/badresult");
 				SetMugShotState("Failure");
 			}
-			else
-			{
+			else if (LevelTime > ParTime) {
+				PlaySound(1001, "sonic/okayresult");
+				SetMugShotState("Failure");
+			}
+			else {
 				PlaySound(1001, "sonic/goodresult");
 				SetMugShotState("Grin");
 			}
 			break;
 		case 1:
-			if (GetActorProperty(1001, APROP_Health) < 40)
-			{
+			if (CurrentHealth < 40) {
 				PlaySound(1001, "amy/badresult");
 				SetMugShotState("Failure");
 			}
-			else
-			{
+			else {
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
 				SetMugShotState("Grin");
 			}
 			break;
 		case 2:
-			if (GetActorProperty(1001, APROP_Health) < 21)
-			{
+			if (CurrentHealth < 21) {
 				PlaySound(1001, "classic/badresult");
 				SetMugShotState("Failure");
 			}
-			else if (LevelTime > GetLevelInfo(LEVELINFO_PAR_TIME))
-			{
+			else if (LevelTime > ParTime) {
 				PlaySound(1001, "classic/okayresult");
 			}
-			else
-			{
+			else {
 				PlaySound(1001, "classic/goodresult");
 				SetMugShotState("Grin");
 			}
 			break;
 		case 3:
-			if (GetLevelInfo(LEVELINFO_KILLED_MONSTERS) == GetLevelInfo(LEVELINFO_TOTAL_MONSTERS))
-			{
+			if (KilledMonsters == TotalMonsters) {
 				PlaySound(1001, "shadow/goodresult");
 			}
-			else
-			{
+			else {
 				PlaySound(1001, "shadow/badresult");
 				SetMugShotState("Failure");
 			}

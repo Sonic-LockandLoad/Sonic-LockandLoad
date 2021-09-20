@@ -1,7 +1,37 @@
-sprite CBRNA0, 245, 643
+sprite CBRNA0, 245, 643 // Caliburn pickup
 {
 	xscale 14
 	yscale 16
 	offset 122, 639
 	patch CBRNA0, 0, 0
-} 
+}
+
+sprite DTXTA0, 401, 52 // Tutorial text
+{
+	xscale 4
+	yscale 4.5
+	offset 200, 40
+	patch DTXTA0, 0, 0
+}
+
+sprite DTXTB0, 517, 52 // Side Levels text
+{
+	xscale 4
+	yscale 4.5
+	offset 258, 40
+	patch DTXTB0, 0, 0
+}
+
+sprite HMIOA0, 32, 32 // Homing Attack Point
+{
+	yscale 1.2
+	offset 16, 28
+	patch HMIOA0, 0, 0
+}
+
+sprite HMIOB0, 32, 32 // Homing Attack Point (used)
+{
+	yscale 1.2
+	offset 16, 28
+	patch HMIOB0, 0, 0
+}

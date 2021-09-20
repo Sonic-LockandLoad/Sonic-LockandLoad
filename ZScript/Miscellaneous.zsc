@@ -52,3 +52,33 @@ class StabilityCheck : Actor
 			Stop;
 	}
 }
+
+class TutorialText : Actor
+{
+	Default
+	{
+		//$Category Lock & Load Text
+		+NOGRAVITY
+	}
+	States
+	{
+		Spawn:
+			DTXT A -1;
+			Stop;
+	}
+}
+
+class SideLevelsText : Actor
+{
+	Default
+	{
+		//$Category Lock & Load Text
+		+NOGRAVITY
+	}
+	States
+	{
+		Spawn:
+			DTXT B -1;
+			Stop;
+	}
+}

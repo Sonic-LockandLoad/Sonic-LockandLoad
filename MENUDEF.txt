@@ -76,6 +76,12 @@ OptionMenu "LockandLoadOptions"
 	StaticText "Enables or disables Hyper form for Classic Sonic.", "White"
 	StaticText "When enabled, you can pick up a second set of Chaos Emeralds as Classic Super Sonic to transform into Hyper Sonic.", "White"
 	StaticText "This will take effect the next time you transform.", "Yellow"
+	StaticText ""
+	Option "Dash Aiming", "DashAiming", "DashAiming"
+	StaticText "Aim Classic Sonic's dash.", "White"
+	StaticText "When enabled, you can press any direction keys (forward/back/strafe) to aim Classic Sonic's dash.", "White"
+	StaticText "When disabled, Classic will always dash forwards.", "White"
+	StaticText "This will take effect the next time you dash.", "Yellow"
 }
 
 OptionValue "BoostType"
@@ -104,4 +110,9 @@ OptionValue "HUDType"
 	0, "Modern" // Chaos Update HUD
 	1, "Classic" // Pre-Chaos Update HUD
 	2, "Legacy" // Minimal HUD, ripped from STHiD Legacy Edition
+}
+OptionValue "DashAiming"
+{
+	0, "Disabled"
+	1, "Enabled"
 }

@@ -103,6 +103,7 @@ sonic/painx2       			SonicOw2
 sonic/nextlevel				letsgo
 sonic/goodresult			S_GOOD
 sonic/badresult				S_BAD
+sonic/okayresult			S_OKAY
 sonic/nintendo64			snc_n64
 
 amy/error          			a_error
