@@ -1,5 +1,12 @@
-addkeysection "Sonic: Lock and Load - Keybinds" LLKeybinds
+addkeysection "\c[MenuActive]Lock & Load Required Bindings" LLKeybinds
+
+addmenukey "Fire" +attack
+addmenukey "Alt-Fire" +altattack
+addmenukey "Offhand" +reload
+addmenukey "Jump" +jump
+addmenukey "Crouch" +crouch
+addmenukey "Super Form" invuse
+
+addkeysection "\c[MenuActive]Lock & Load Optional Bindings" LLOptional
 
 addmenukey "Taunt" "pukename Taunt"
-
-addmenukey "Super Form" invuse

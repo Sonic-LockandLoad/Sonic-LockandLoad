@@ -9,12 +9,12 @@ gameinfo
    IntermissionMusic = "S_INTER"
    FinaleMusic = "S_RECAP"
    menufontcolor_title = "ActiveOption"
-   menufontcolor_label = "Blue"
+   menufontcolor_label = "MenuInactive"
    menufontcolor_value = "White"   
    menufontcolor_action = "White"
-   menufontcolor_header = "Blue"
-   menufontcolor_highlight = "Blue"
-   menufontcolor_selection = "Sapphire"
+   menufontcolor_header = "MenuInactive"
+   menufontcolor_highlight = "MenuInactive"
+   menufontcolor_selection = "MenuActive"
 }
 
 DoomEdNums
@@ -135,12 +135,12 @@ map E3M10 "Dis Is It"
 	needclustertext
 }
 
-map S_LOBBY "Sonic's House"
+map S_LOBBY "Station Square"
 {
 	music = L_OUTSID
 	nointermission
-	sky1 = "GHZSKYA"
-	sky2 = "GHZSKYB"
+	sky1 = "NIGHTSKY"
+	author = "That1M8Head"
 	resethealth
 	resetinventory
 }

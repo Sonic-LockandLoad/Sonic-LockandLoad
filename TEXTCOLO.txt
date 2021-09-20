@@ -1,37 +1,37 @@
 Sonic SonicBlue
 {
 	#000c66  #999bff
-Console:
-	#000c66  #999bff
-Flat:
-	#005eff
+	Console:
+		#000c66  #999bff
+	Flat:
+		#005eff
 }
 
 Amy AmyPink
 {
 	#7f276a  #ffa7e9
-Console:
-	#7f276a  #ffa7e9
-Flat:
-	#FF4FD4
+	Console:
+		#7f276a  #ffa7e9
+	Flat:
+		#FF4FD4
 }
 
 Classic ClassicBlue
 {
 	#003a66  #99d3ff
-Console:
-	#003a66  #99d3ff
-Flat:
-	#0092ff
+	Console:
+		#003a66  #99d3ff
+	Flat:
+		#0092ff
 }
 
 Shadow ShadowRedBlack
 {
 	#000000  #dd0000
-Console:
-	#222222  #ff0000
-Flat:
-	#b60000
+	Console:
+		#222222  #ff0000
+	Flat:
+		#b60000
 }
 
 ActiveOption
@@ -47,8 +47,18 @@ InactiveOption
 CaliburnGold
 {
 	#B29600  #FFD700
-Console:
-    #B29600  #FFD700
-Flat:
-	#FFD700
+	Console:
+		#B29600  #FFD700
+	Flat:
+		#FFD700
+}
+
+MenuActive
+{
+	#1B1BFF  #9B9BFF
+}
+
+MenuInactive
+{
+	#001a9c  #0078FF
 }

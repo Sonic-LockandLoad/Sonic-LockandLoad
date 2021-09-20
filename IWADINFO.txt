@@ -7,6 +7,6 @@ iwad
 	AutoName = "Doom.LockandLoad"
 	Game = "Doom"
 	Config = "Doom"
-	IWADName = "sonicdoom.pk3"
+	IWADName = "Sonic-LockandLoad"
 	BannerColors = "4f1cf2", "41c90a"
 }
