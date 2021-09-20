@@ -12,8 +12,8 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 	States
 	{
 		Spawn:
-			RIN1 A -1;
-			Stop;
+			RIN1 ABCDEFGHIJKLMNOP 1;
+			Loop;
 		Pickup:
 			TNT1 A 0
 			{
@@ -117,8 +117,8 @@ class SpecialRing : CustomInventory replaces Medikit // 2012
 	States
 	{
 		Spawn:
-			RIN2 A -1;
-			Stop;
+			RIN2 ABCDEFGHIJKLMNOP 2;
+			Loop;
 		Pickup:
 			TNT1 A 0
 			{
@@ -172,8 +172,8 @@ class ChaosRing : CustomInventory replaces ArmorBonus // 2015
 	States
 	{
 		Spawn:
-			RIN3 A -1;
-			Stop;
+			RIN3 ABCDEFGHIJKLMNOP 1;
+			Loop;
 		Pickup:
 			TNT1 A 5
 			{
@@ -239,8 +239,8 @@ class SoulRing : CustomInventory
 	States
 	{
 		Spawn:
-			RIN4 A -1;
-			Stop;
+			RIN4 ABCDEFGHIJKLMNOP 1;
+			Loop;
 		Pickup:
 			TNT1 A 5 A_GiveInventory("ChaosEnergy", 50);
 			Stop;
