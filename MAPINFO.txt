@@ -115,7 +115,7 @@ map SDLvl01 "Green Hill"
 	music = S_LVL01
 	sky1 = "GHZSKYA"
 	sky2 = "GHZSKYB"
-	next = EndPic, "TITLEPIC"
+	next = "S_LOBBY"
 	author = "That1M8Head"
 	partime = 25
 	cluster = 401
