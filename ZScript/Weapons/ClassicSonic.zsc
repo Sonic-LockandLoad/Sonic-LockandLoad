@@ -11,7 +11,6 @@ class ClassicAbilities : Weapon replaces Fist
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -117,7 +116,6 @@ class ChaosBlaster : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			PLSG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -169,7 +167,6 @@ class SpeedyShotgun : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			SHTG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -359,7 +356,6 @@ class ClassicRocketStream : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -409,7 +405,6 @@ class ChaosRain : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			CHGG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:

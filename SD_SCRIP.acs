@@ -328,30 +328,35 @@ script "SetAirControl" ENTER
     }
 }
 
-script "KickCooldown" (void)
+script "KickCooldown" ENTER
 {
-	while (CheckInventory("KickCooldown"))
+	while (true)
 	{
+		Delay(2);
 		TakeInventory("KickCooldown", 1);
-		Delay(1);
 	}
 }
 
-script "RingCountCheck" (void)
+script "RingCountCheck" ENTER
 {
-	if (CheckInventory("Health") > 500)
+	while (true)
 	{
-		GiveInventory("OverRinged2", 1);
+		Delay(2);
+		if (CheckInventory("Health") > 500)
+		{
+			GiveInventory("OverRinged2", 1);
+		}
+		else if (CheckInventory("Health") > 300)
+		{
+			GiveInventory("OverRinged", 1);
+		}
+		else
+		{
+			TakeInventory("PowerOverRinged", 1);
+			TakeInventory("PowerOverRinged2", 1);
+		}
 	}
-	else if (CheckInventory("Health") > 300)
-	{
-		GiveInventory("OverRinged", 1);
-	}
-	else
-	{
-		TakeInventory("PowerOverRinged", 1);
-		TakeInventory("PowerOverRinged2", 1);
-	}
+	
 }
 
 script "GiveTID" ENTER

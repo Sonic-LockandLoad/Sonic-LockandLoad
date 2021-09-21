@@ -17,7 +17,6 @@ class SonicAbilities : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -223,7 +222,6 @@ class Caliburn : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			CALI A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			TNT1 A 0 A_Gravity;
 			Loop;
@@ -444,7 +442,6 @@ class AcceleratedPistol : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			SPIS A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -527,7 +524,6 @@ class RapidShotty : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			SCTG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -599,7 +595,6 @@ class ShurikenCrossbow : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			SHRL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -611,7 +606,6 @@ class ShurikenCrossbow : Weapon
 			SHRL A 1 A_Raise;
 			Goto Select+1;
 		Fire:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			TNT1 A 0
 			{
 				if (CountInv("PowerSuper") > 0)
@@ -625,7 +619,6 @@ class ShurikenCrossbow : Weapon
 			TNT1 A 0 A_ReFire();
 			Goto Ready;
 		SuperFire:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			SHRL B 3 A_FireProjectile("Shuriken", 0, 1);
 			TNT1 A 1 A_ReFire();
 			SHRL CDEFG 1;
@@ -668,7 +661,6 @@ class EclipseBlaster : Weapon
 	States
 	{
 		Ready:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			ECBL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
@@ -680,12 +672,10 @@ class EclipseBlaster : Weapon
 			ECBL A 1 A_Raise;
 			Goto Select+1;
 		Fire:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			ECBL B 1 EclipseFire();
 			TNT1 A 0 A_ReFire();
 			Goto Ready;
 		AltFire:
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck");
 			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "Error");
 		RingCheck:
@@ -730,7 +720,6 @@ class AirStrikeLauncher : Weapon
 	{
 		Ready:
 			MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			Loop;
 		Deselect:
 			TNT1 AA 0 A_Lower;

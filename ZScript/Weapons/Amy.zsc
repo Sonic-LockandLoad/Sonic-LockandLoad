@@ -14,7 +14,6 @@ class PikoPikoHammer : Weapon
 	{
 		Ready:
 			PIKO A 1 A_WeaponReady(WRF_ALLOWRELOAD);
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			Loop;
 		Deselect:
 			PIKO A 1 A_Lower;
