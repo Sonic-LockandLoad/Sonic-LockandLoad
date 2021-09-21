@@ -332,7 +332,7 @@ script "KickCooldown" ENTER
 {
 	while (true)
 	{
-		Delay(2);
+		Delay(1);
 		TakeInventory("KickCooldown", 1);
 	}
 }
