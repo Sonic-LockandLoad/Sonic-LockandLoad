@@ -132,7 +132,6 @@ class PikoPikoHammer : Weapon
 				}
 			}
 			PIKO E 1 A_GiveInventory("HammerBlock");
-			PIKO A 0 A_SetGravity(0.75);
 			PIKO A 0 A_ReFire();
 			PIKO DCB 1;
 			PIKO A 0 { invoker.GuardCheck = false; }
