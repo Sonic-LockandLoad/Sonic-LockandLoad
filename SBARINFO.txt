@@ -266,7 +266,7 @@ mugshot "Failure"
 
 mugshot "Shield"
 {
-  SHLD 20;
+  SHLD - 1;
 }
 
 mugshot "SuperBoost"

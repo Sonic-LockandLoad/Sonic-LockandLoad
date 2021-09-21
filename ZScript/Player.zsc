@@ -114,7 +114,8 @@ class SonicPlayer : PlayerPawn
 			PLAY Y -1;
 			Stop;
 	}
-} 
+}
+
 class AmyPlayer : PlayerPawn 
 {
 	Default
