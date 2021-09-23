@@ -369,11 +369,6 @@ script "Damn4thChaosEmerald" (void)
 	AmbientSound("shadow/damn4thchaos", 127);
 }
 
-script "Drowning" (void)
-{
-	SetMusic("d_drown", 0);
-}
-
 script "NoMusic" (void)
 {
 	SetMusic("", 0);
@@ -389,6 +384,7 @@ script "ReticleSound" (void)
 	AmbientSound("sweapons/reticle", 127);
 }
 
+/*
 script "YouGotExe-cuted" DEATH
 {
 	if (ThingCount(T_BRAINS, 0))
@@ -396,6 +392,7 @@ script "YouGotExe-cuted" DEATH
 		ChangeLevel("CONTINUE", 0, CHANGELEVEL_NOINTERMISSION, -1);
 	}
 }
+*/
 
 script "ContinuingSucks" (void)
 {
@@ -501,4 +498,31 @@ script "GoalRing" (void)
 script "SonicN64" (void)
 {
 	AmbientSound("sonic/nintendo64", 127);
+}
+
+script "Drowning" ENTER
+{
+	int drowntimer;
+	while (1) {
+		if (GetActorProperty(1001, APROP_Waterlevel) == 3) {
+			drowntimer++;
+			if (drowntimer > 19)
+			{
+				SetMusic("d_drown");
+			}
+			if (drowntimer > 30)
+			{
+				DamageActor(1001, AAPTR_PLAYER1, 0, 0, 9999, "Drownd");
+				SetMusic("*");
+				break;
+			}
+		}
+		else {
+			if (drowntimer > 19) {
+				SetMusic("*");
+			}
+			drowntimer = 0;
+		}
+		Delay(35);
+	}
 }

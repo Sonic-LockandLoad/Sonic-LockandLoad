@@ -72,15 +72,15 @@ DoomEdNums
 
 DamageType SonicKick
 {
-   Factor = 1
+	Factor = 1
 }
 DamageType HomingAttack
 {
-   Factor = 1
+	Factor = 1
 }
 DamageType ShadowMelee
 {
-   Factor = 1
+	Factor = 1
 }
 DamageType Piko
 {
@@ -88,21 +88,26 @@ DamageType Piko
 }
 DamageType Eclipse
 {
-   Factor = 1
+	Factor = 1
 }
 DamageType EclipseEX
 {
-   Factor = 2
+	Factor = 2
 }
 DamageType RocketStream
 {
-   Factor = 1
+	Factor = 1
+}
+DamageType Drownd
+{
+	Factor = 1
+	Obituary = "%o didn't make it out in time."
 }
 
 DamageType Drowning
 {
-   ReplaceFactor
-   Factor = 8
+	ReplaceFactor
+	Factor = 0
 }
 
 episode S_LOBBY
@@ -113,8 +118,7 @@ episode S_LOBBY
 map SDLvl01 "Green Hill"
 {
 	music = S_LVL01
-	sky1 = "GHZSKYA"
-	sky2 = "GHZSKYB"
+	sky1 = "GHZSKY"
 	next = "S_LOBBY"
 	author = "That1M8Head"
 	partime = 25

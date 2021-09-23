@@ -6,6 +6,7 @@ sglobal/supertransform    	suptrnsf
 sglobal/invincibility     	invinc
 sglobal/spring		     	spring
 sglobal/nextlevel	 		letsgo
+sglobal/drown				S_DROWN
 
 // Pickups
 

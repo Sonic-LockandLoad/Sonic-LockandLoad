@@ -70,16 +70,17 @@ class PikoPikoHammer : Weapon
 				}
 			}
 			PIKO D 1;
-			PIKO A 0
+			PIKO E 4
 			{
-				if (ACS_NamedExecuteWithResult("IsCrouching"))
-				{
-					A_SetSpeed(4);
-					ThrustThingZ(0, 70, 0, 1);
+				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+				if (buttons & BT_JUMP) {
+					ThrustThingZ(0, 40, 0, 1);
 				}
-			}
-			PIKO A 0
-			{
+				else if (buttons & BT_CROUCH) {
+					ThrustThingZ(0, 70, 0, 1);
+					A_SetSpeed(4);
+				}
+				
 				if (CountInv("LegOut") > 0)
 				{
 					if (CountInv("PowerSuper") < 1)
@@ -89,7 +90,6 @@ class PikoPikoHammer : Weapon
 					}
 				}
 			}
-			PIKO E 4;
 			PIKO A 0 A_ReFire();
 			PIKO D 1;
 			PIKO C 1;
@@ -101,6 +101,10 @@ class PikoPikoHammer : Weapon
 				if (A_CheckFloor("Ready"))
 				{
 					A_SetSpeed(1.2);
+					int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+					if (buttons & BT_JUMP && A_CheckFloor("Ready")) {
+						ThrustThingZ(0, 20, 0, 1);
+					}
 				}
 			}
 			PIKO A 0 A_ReFire();
