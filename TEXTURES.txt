@@ -35,3 +35,19 @@ sprite HMIOB0, 32, 32 // Homing Attack Point (used)
 	offset 16, 28
 	patch HMIOB0, 0, 0
 }
+
+graphic M_SKULL1, 32, 389
+{
+	xscale 2
+	yscale 2.2
+	offset -34, -1
+	patch M_SKULL1, 0, 0
+}
+
+graphic M_SKULL2, 36, 38
+{
+	xscale 2
+	yscale 2.2
+	offset -32, -2
+	patch M_SKULL2, 0, 0
+}

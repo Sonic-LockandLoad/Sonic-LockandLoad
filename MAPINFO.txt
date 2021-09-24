@@ -2,7 +2,7 @@ gameinfo
 {
    PlayerClasses = "SonicPlayer", "AmyPlayer", "ClassicSonicPlayer", "ShadowPlayer"
    QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7"
-   InfoPage = "CONTROL", "DISPLAY"
+   InfoPage = "ABOUTLL"
    TitlePage = "TITLEPIC"
    CreditPage = "CREDIT"
    TitleMusic = "S_TITLE"
@@ -33,6 +33,7 @@ DoomEdNums
 	262   = "GoalRing"
 	4156  = "HomingAttackPoint"
 	31935 = "Continuer"
+	31936 = "WtfIsThis"
 	
 	31601 = "TutorialText"
 	31602 = "SideLevelsText"
