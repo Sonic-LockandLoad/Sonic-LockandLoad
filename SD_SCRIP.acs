@@ -55,37 +55,37 @@ script "TransformSuper" (void)
 		switch(PlayerClass(PlayerNumber()))
 		{
             case 0: // Sonic
-                 if (GetCvar("SuperMusic") == 1)
+                 if (GetCvar("SupSonic") == 1)
 				 {
 					 SetMusic("v_supsnc", 0);
 				 }
-				 else if (GetCvar("SuperMusic") == 2)
+				 else if (GetCvar("SupSonic") == 2)
 				 {
 					 SetMusic("m_supsnc", 0);
 				 }
                  break;
             case 1: // Amy
-                 if (GetCvar("SuperMusic") > 0)
+                 if (GetCvar("SupAmy"))
 				 {
 					SetMusic("m_supamy", 0);
 				 }
                  break;
             case 2: // Classic Sonic
-                 if (GetCvar("SuperMusic") == 1)
+                 if (GetCvar("SupClassic") == 1)
 				 {
 					 SetMusic("v_supcls", 0);
 				 }
-				 else if (GetCvar("SuperMusic") == 2)
+				 else if (GetCvar("SupClassic") == 2)
 				 {
 					 SetMusic("m_supcls", 0);
 				 }
                  break;
             case 3: // Shadow
-                 if (GetCvar("SuperMusic") == 1)
+                 if (GetCvar("SupShadow") == 1)
 				 {
 					 SetMusic("v_supsha", 0);
 				 }
-				 else if (GetCvar("SuperMusic") == 2)
+				 else if (GetCvar("SupShadow") == 2)
 				 {
 					 SetMusic("m_supsha", 0);
 				 }
@@ -114,7 +114,7 @@ script "TransformHyper" (void)
 	{
 		while (CheckInventory("PowerHyper"))
 		{
-			if (GetCvar("SuperMusic") > 0)
+			if (GetCvar("HyperMusic") > 0)
 			{
 				SetMusic("m_hypcls", 0);
 			}
@@ -123,12 +123,18 @@ script "TransformHyper" (void)
 			TakeInventory("ChaosEmeralds", 1);
 			Delay(35); 
 		}
-		SetMusic("*", 0);
+		if (GetCvar("HyperMusic") > 0)
+		{
+			SetMusic("*", 0);
+		}
 		SetMugShotState("Normal");
 	}
 	else
 	{
-		SetMusic("*", 0);
+		if (GetCvar("HyperMusic") > 0)
+		{
+			SetMusic("*", 0);
+		}
 	}
 }
 
@@ -138,26 +144,23 @@ script "Invincibility" (void)
 	{
 		if (CheckInventory("PowerInvulnerable"))
 		{
-			if (GetCvar("InvincibilityMusic"))
+			switch(PlayerClass(PlayerNumber()))
 			{
-				switch(PlayerClass(PlayerNumber()))
-				{
 					case 0: 
-						SetMusic("s_invinc", 0);
+						if (GetCvar("InvSonic")) { SetMusic("s_invinc", 0); }
 						break;
 					case 1: 
-						SetMusic("a_invinc", 0);
+						if (GetCvar("InvAmy")) { SetMusic("a_invinc", 0); }
 						break;
 					case 2: 
-						SetMusic("c_invinc", 0);
+						if (GetCvar("InvClassic")) { SetMusic("c_invinc", 0); }
 						break;
 					case 3:
-						SetMusic("d_invinc", 0);
+						if (GetCvar("InvShadow")) { SetMusic("d_invinc", 0); }
 						break;
 					case -1:
 					default:
 						break;
-				}
 			}
 			while (CheckInventory("PowerInvulnerable"))
 			{

@@ -19,10 +19,11 @@ OptionMenu "OptionsBranching"
 	Title "Options"
 	
 	SubMenu "Configure Controls", "LLControlsMenu"
-	SubMenu "Configure Controller", "JoystickOptions"
+	SubMenu "Configure Game Options", "LLCvarMenu"
 	SubMenu "Configure Mod", "LockandLoadOptions"
 	StaticText ""
-	SubMenu "All Options", "OptionsMenu"
+	SubMenu "GZDoom Options", "OptionsMenu"
+	SubMenu "Option Search", "os_menu"
 }
 OptionMenu "LLControlsMenu"
 {
@@ -40,6 +41,13 @@ OptionMenu "LLControlsMenu"
 	Control "Taunt", "pukename Taunt"
 	StaticText ""
 	SubMenu "All Control Bindings", "CustomizeControls"
+}
+OptionMenu "LLCvarMenu"
+{
+	Title "Game Options"
+	StaticText "It is highly recommended to enable these options.", "LightBlue"
+	Option "Always Run", "cl_run", "EnabledOrNot"
+	Option "Freelook", "freelook", "EnabledOrNot"
 }
 ListMenu "PlayerclassMenu"
 {
@@ -71,51 +79,63 @@ ListMenu "SkillMenu"
 }
 OptionMenu "LockandLoadOptions"
 {
+	SubMenu "Music", "SDMusic"
+	SubMenu "Gameplay", "SDGameplay"
+	StaticText ""
 	Title "Mod Options"
 	Option "HUD Type", "HUDType", "HUDType"
 	StaticText "Changes which HUD is displayed.", "White"
 	StaticText "This will take effect as soon as you unpause the game.", "LightBlue"
 	StaticText ""
-	Option "Super Form Tracks", "SuperMusic", "TrackType"
-	StaticText "Change what music is played for Super themes. This does not include Amy.", "White"
-	StaticText "This will take effect the next time you transform.", "LightBlue"
+}
+OptionMenu "SDMusic"
+{
+	Title "Music Options"
+	
+	StaticText "Invincibility", "MenuActive"
+	Option "Sonic", "InvSonic", "SonicI"
+	Option "Amy", "InvAmy", "AmyI"
+	Option "Classic Sonic", "InvClassic", "ClassicI"
+	Option "Shadow", "InvShadow", "ShadowI"
 	StaticText ""
-	Option "Invincibility Music", "InvincibilityMusic", "EnabledOrNot"
-	StaticText "Enables or disables invincibility pickups changing the currently playing music.", "White"
-	StaticText "This will take effect the next time you pick up invincibility.", "LightBlue"
+	
+	StaticText "Super Form", "MenuActive"
+	Option "Sonic", "SupSonic", "SonicS"
+	Option "Amy", "SupAmy", "AmyS"
+	Option "Classic Sonic", "SupClassic", "ClassicS"
+	Option "Shadow", "SupShadow", "ShadowS"
 	StaticText ""
+	
+	StaticText "Other", "MenuActive"
+	Option "Hyper Form Music", "HyperMusic", "EnabledOrNot"
+	StaticText "If disabling this option, it is recommended you", "LightBlue"
+	StaticText "disable Classic Sonic's Super form music.", "LightBlue"
+	StaticText ""
+	Option "Death Music", "DeathMusic", "EnabledOrNot"
+}
+OptionMenu "SDGameplay"
+{
+	Title "Gameplay Options"
+	
 	Option "Boost Type", "VerticalBoost", "BoostType"
-	StaticText "Changes how Sonic's Boost works.", "White"
-	StaticText "Type A - Can only be aimed horizontally, grants anti-gravity and is twice as fast as Type B.", "White"
-	StaticText "Type B - Can be aimed vertically as well as horizontally, but travels at half the speed of Type A.", "White"
-	StaticText "This will take effect the next time you Boost.", "LightBlue"
-	StaticText ""
-	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
-	StaticText "Enables or disables Hyper form for Classic Sonic.", "White"
-	StaticText "When enabled, you can pick up a second set of Chaos Emeralds as Classic Super Sonic to transform into Hyper Sonic.", "White"
-	StaticText "This will take effect the next time you transform.", "LightBlue"
-	StaticText ""
-	Option "Dash Aiming", "DashAiming", "DashAiming"
-	StaticText "Aim Classic Sonic's dash.", "White"
-	StaticText "When enabled, you can press any direction keys (forward/back/strafe) to aim Classic Sonic's dash.", "White"
-	StaticText "When disabled, Classic will always dash forwards.", "White"
-	StaticText "This will take effect the next time you dash.", "LightBlue"
+	StaticText "Type A - horizontal only, anti-gravity, high speed", "LightBlue"
+	StaticText "Type B - aimable, no anti-gravity, less speed (can break maps)", "LightBlue"
+	
+	Option "Hyper Classic Sonic", "HyperSonic", "EnabledOrNot"
+	
+	Option "Dash Aiming", "DashAiming", "EnabledOrNot"
+	StaticText "Hold a direction to aim Classic Sonic's dash.", "LightBlue"
+	StaticText "This won't work with controllers.", "LightBlue"
 }
 AddOptionMenu "OptionsMenu"
 {
-	Title "All Options"
+	Title "GZDoom Options"
 }
 
 OptionValue "BoostType"
 {
 	0, "Type A"
 	1, "Type B"
-}
-OptionValue "TrackType"
-{
-	0, "Disabled"
-	1, "Vocal"
-	2, "Instrumental"
 }
 OptionValue "EnabledOrNot"
 {
@@ -128,8 +148,48 @@ OptionValue "HUDType"
 	1, "Classic" // Pre-Chaos Update HUD
 	2, "Legacy" // Minimal HUD, ripped from STHiD Legacy Edition
 }
-OptionValue "DashAiming"
+
+OptionValue "SonicI"
 {
-	0, "Disabled"
-	1, "Enabled"
+	0, "None"
+	1, "Invincibility (Sonic '06)"
+}
+OptionValue "AmyI"
+{
+	0, "None"
+	1, "Invincibility (Sonic Heroes)"
+}
+OptionValue "ClassicI"
+{
+	0, "None"
+	1, "Invincibility (Sonic 3D Blast)"
+}
+OptionValue "ShadowI"
+{
+	0, "None"
+	1, "Don't Touch It"
+}
+
+OptionValue "SonicS"
+{
+	0, "None"
+	1, "Reach for the Stars Re;Colors"
+	2, "Reach for the Stars Orchestral"
+}
+OptionValue "AmyS"
+{
+	0, "None"
+	1, "End of the World (Full Mashup)"
+}
+OptionValue "ClassicS"
+{
+	0, "None"
+	1, "You Can Do Anything"
+	2, "Glimmering Gift"
+}
+OptionValue "ShadowS"
+{
+	0, "None"
+	1, "Live and Learn (30th Anniversary)"
+	2, "I Am (Devil Doom Ver.)"
 }

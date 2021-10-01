@@ -150,6 +150,7 @@ $random classic/driftline { classic/ifyoucan classic/herego classic/underestimat
 classic/goodresult			C_GOOD
 classic/badresult			C_BAD
 classic/okayresult			C_OKAY
+classic/ohno              	cono
 
 shadow/grunt1      			dgrunt1
 shadow/grunt2      			dgrunt2
