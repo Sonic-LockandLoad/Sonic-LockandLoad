@@ -174,7 +174,7 @@ OptionValue "SonicS"
 {
 	0, "None"
 	1, "Reach for the Stars Re;Colors"
-	2, "Reach for the Stars Orchestral"
+	2, "His World (Zebrahead)"
 }
 OptionValue "AmyS"
 {
