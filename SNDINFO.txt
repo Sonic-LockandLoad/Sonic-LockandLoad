@@ -172,6 +172,7 @@ shadow/damn4thchaos      	demerald
 theycant/trollyouif			thereded
 shadow/goodresult			D_GOOD
 shadow/badresult			D_BAD
+imthe/coolest				coolest
 
 super/classich				chyptrns
 

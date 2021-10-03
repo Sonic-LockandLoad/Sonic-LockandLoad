@@ -9,24 +9,27 @@
 script "Taunt" (void)
 {
 	NoiseAlert(0, 0);
-	switch(PlayerClass(PlayerNumber()))
-      {
-            case 0:
-                 PlaySound(1001, "sonic/taunt", CHAN_BODY, 1.0);
-                 break;
-            case 1:
-                 PlaySound(1001, "amy/taunt", CHAN_BODY, 1.0);
-                 break;
-            case 2:
-                 PlaySound(1001, "classic/taunt", CHAN_BODY, 1.0);
-                 break;
-            case 3:
-                 PlaySound(1001, "shadow/taunt", CHAN_BODY, 1.0);
-                 break;
-            case -1:
-            default:
-                 break;
-        }
+	switch(PlayerClass(PlayerNumber())) {
+		case 0:
+			PlaySound(1001, "sonic/taunt", CHAN_BODY, 1.0);
+            break;
+		case 1:
+			PlaySound(1001, "amy/taunt", CHAN_BODY, 1.0);
+			break;
+		case 2:
+			PlaySound(1001, "classic/taunt", CHAN_BODY, 1.0);
+			break;
+		case 3:
+			if (random(1, 35) == 35) {
+				PlaySound(1001, "imthe/coolest", CHAN_BODY, 1.0);
+			} else {
+				PlaySound(1001, "shadow/taunt", CHAN_BODY, 1.0);
+			}
+			break;
+		case -1:
+			default:
+			break;
+	}
 }
 
 script "IsCrouching" (void)
@@ -274,8 +277,10 @@ script "DeathMusic" (int xdeath)
 	if (xdeath) {
 		switch(PlayerClass(PlayerNumber())) {
 			case 0:
+				SetMusic("S_DEADM", 0);
 				break;
 			case 1:
+				SetMusic("A_DEADM", 0);
 				break;
 			case 2:
 				SetMusic("C_DEADX", 0);
