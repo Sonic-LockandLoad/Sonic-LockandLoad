@@ -10,6 +10,7 @@ class ShadowAbilities : Weapon
 		Tag "Shadow the Hedgehog";
 		+WEAPON.MELEEWEAPON
 		+WEAPON.NOAUTOFIRE
+		+WEAPON.NOAUTOAIM
 	}
 	States
 	{
@@ -35,14 +36,16 @@ class ShadowAbilities : Weapon
 			SARM ABC 1;
 			SARM D 6
 			{
+				A_PlaySound("sweapons/chaosspear");
 				if (CountInv("PowerSuper")) {
-					A_FireProjectile("ChaosSpear");
+					A_FireProjectile("ChaosSpearEX");
 				}
 				else {
 					A_FireProjectile("ChaosSpear");
 					A_TakeInventory("ChaosEnergy", 2);
 				}
 			}
+			TNT1 A 0 { if (CountInv("PowerSuper")) { A_ReFire(); } }
 			SARM CBA 1;
 			TNT1 A 5;
 			Goto Ready;

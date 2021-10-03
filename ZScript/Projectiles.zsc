@@ -317,27 +317,30 @@ class ChaosSpear : Actor
 		+SEEKERMISSILE
 		+ROCKETTRAIL
 		RenderStyle "Add";
+		DamageType "Spear";
 		Alpha 0.75;
-		SeeSound "sweapons/chaosspear";
+		ProjectileKickBack 1;
 	}
 	States
 	{
 		Spawn:
+			CSPE A 5;
 			CSPE A 1 A_SeekerMissile(0, 90, SMF_LOOK | SMF_PRECISE);
-			CSPE A 0 A_TakeInventory("SpearCheck", 1);
 			Loop;
 		Death:
-			TNT1 A 0
-			{
-				if (CountInv("SpearCheck") < 1)
-				{
-					A_PlaySound("sweapons/spearimpact");
-				}
-			}
-			TNT1 A 0 A_GiveInventory("SpearCheck");
+			TNT1 A 0 A_PlaySound("sweapons/spearimpact");
+		Ending:
 			CSPE A 1 A_FadeOut(0.1, 0);
 			Loop;
 		}
+}
+
+class ChaosSpearEX : ChaosSpear
+{
+	Default
+	{
+		Damage 80;
+	}
 }
 
 class EnergyBladeLeft : Actor

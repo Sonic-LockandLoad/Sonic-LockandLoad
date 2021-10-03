@@ -37,6 +37,10 @@ DamageType Eclipse
 {
 	Factor = 1
 }
+DamageType Spear
+{
+	Factor = 1
+}
 DamageType EclipseEX
 {
 	Factor = 2
@@ -68,7 +72,7 @@ map SDLvl01 "Green Hill"
 	sky1 = "GHZSKY"
 	next = "S_LOBBY"
 	author = "That1M8Head"
-	partime = 25
+	partime = 40
 	cluster = 401
 }
 
@@ -390,6 +394,7 @@ DoomEdNums
 	
 	19924 = "FastSpiderdemon"
 	19925 = "FasterSpiderdemon"
+	19926 = "MechZombie"
 	
 	2013  = "SoulsphereReplace"
 	83    = "MegasphereReplace"

@@ -560,3 +560,8 @@ script "Drowning" ENTER
 		Delay(35);
 	}
 }
+
+script "ReactionTime" (void)
+{
+	AmbientSound("sglobal/reaction", 127);
+}
