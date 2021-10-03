@@ -152,17 +152,17 @@ OptionValue "HUDType"
 OptionValue "SonicI"
 {
 	0, "None"
-	1, "Invincibility (Sonic '06)"
+	1, "Sonic the Hedgehog (2006)"
 }
 OptionValue "AmyI"
 {
 	0, "None"
-	1, "Invincibility (Sonic Heroes)"
+	1, "Sonic Heroes"
 }
 OptionValue "ClassicI"
 {
 	0, "None"
-	1, "Invincibility (Sonic 3D Blast)"
+	1, "Sonic 3D Blast (Saturn)"
 }
 OptionValue "ShadowI"
 {

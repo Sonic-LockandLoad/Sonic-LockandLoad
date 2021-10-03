@@ -269,23 +269,49 @@ script "NoBrutal4U" ENTER
 	}
 }
 
-script "DeathMusic" (void)
+script "DeathMusic" (int xdeath)
 {
-	switch(PlayerClass(PlayerNumber()))
-	{
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			SetMusic("noway", 0);
-			break;
-		case 3:
-			SetMusic("allfail", 0);
-			break;
-		case -1:
-		default:
-			break;
+	if (xdeath) {
+		switch(PlayerClass(PlayerNumber())) {
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				SetMusic("C_DEADX", 0);
+				break;
+			case 3:
+				SetMusic("D_DEADX", 0);
+				break;
+			case -1:
+			default:
+				break;
+		}
+	} 
+	
+	else {
+		switch(PlayerClass(PlayerNumber()))
+		{
+			case 0:
+				SetMusic("S_DEADM", 0);
+				break;
+			case 1:
+				SetMusic("A_DEADM", 0);
+				break;
+			case 2:
+				SetMusic("C_DEADM", 0);
+				Delay(9*35);
+				SetMusic("*");
+				break;
+			case 3:
+				SetMusic("D_DEADM", 0);
+				Delay(7*35);
+				SetMusic("*");
+				break;
+			case -1:
+			default:
+				break;
+		}
 	}
 }
 
