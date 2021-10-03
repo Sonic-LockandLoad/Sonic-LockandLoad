@@ -64,7 +64,7 @@ class SonicPlayer : PlayerPawn
 		Death:
 			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
 			TNT1 A 0 { if (GetCvar("DkgBruTecFpgA")) { A_SpawnItem("StabilityCheck"); } }
-			TNT1 A 0 { if (GetCvar("DeathMusic")) { ACS_NamedExecute("DeathMusic", 0, 0); } }
+			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
 			PLAY H 10;
 			PLAY I 10;
 			PLAY J 10 A_NoBlocking;
@@ -73,7 +73,7 @@ class SonicPlayer : PlayerPawn
 			Stop;
 		XDeath:
 			TNT1 A 0 { if (GetCvar("DkgBruTecFpgA")) { A_SpawnItem("StabilityCheck"); } }
-			TNT1 A 0 { if (GetCvar("DeathMusic")) { ACS_NamedExecute("DeathMusic", 0, 0); } }
+			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
 			TNT1 A 0 A_PlaySound("sonic/ohno");
 			TNT1 A 0 A_Log("OH NO");
 			PLAY O 5;
@@ -161,7 +161,7 @@ class AmyPlayer : PlayerPawn
 		Death:
 			TNT1 A 0 { if (GetCvar("DkgBruTecFpgA")) { A_SpawnItem("StabilityCheck"); } }
 			TNT1 A 0 A_PlaySound("amy/scream");
-			TNT1 A 0 { if (GetCvar("DeathMusic")) { ACS_NamedExecute("DeathMusic", 0, 0); } }
+			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
 			PLAY H 10;
 			PLAY I 10;
 			PLAY J 10 A_NoBlocking;
@@ -172,7 +172,7 @@ class AmyPlayer : PlayerPawn
 			TNT1 A 0 { if (GetCvar("DkgBruTecFpgA")) { A_SpawnItem("StabilityCheck"); } }
 			TNT1 A 0 A_Log("OH NO");
 			TNT1 A 0 A_PlaySound("amy/ohno");
-			TNT1 A 0 { if (GetCvar("DeathMusic")) { ACS_NamedExecute("DeathMusic", 0, 0); } }
+			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
 			PLAY O 5;
 			PLAY P 5;
 			PLAY Q 5 A_NoBlocking;
@@ -228,7 +228,7 @@ class ShadowPlayer : PlayerPawn
 		Death:
 			TNT1 A 0 { if (GetCvar("DkgBruTecFpgA")) { A_SpawnItem("StabilityCheck"); } }
 			TNT1 A 0 A_PlaySound("shadow/scream");
-			TNT1 A 0 { if (GetCvar("DeathMusic")) { ACS_NamedExecute("DeathMusic", 0, 0); } }
+			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0); 
 			PLAY H 10;
 			PLAY I 10;
 			PLAY J 10 A_NoBlocking;
@@ -239,7 +239,7 @@ class ShadowPlayer : PlayerPawn
 			TNT1 A 0 { if (GetCvar("DkgBruTecFpgA")) { A_SpawnItem("StabilityCheck"); } }
 			TNT1 A 0 A_Log("ALL FAIL SHADOW");
 			PLAY O 5;
-			PLAY P 5  { if (GetCvar("DeathMusic")) { ACS_NamedExecute("DeathMusic", 0, 1); } }
+			PLAY P 5 ACS_NamedExecute("DeathMusic", 0, 1);
 			PLAY Q 5 A_NoBlocking;
 			PLAY RSTUV 5;
 			PLAY W -1;
@@ -313,7 +313,7 @@ class ClassicSonicPlayer : PlayerPawn
 			TNT1 A 0 A_PlaySound("sglobal/drown");
 			Goto Death+2;
 		Death:
-			TNT1 A 0 { if (GetCvar("DkgBruTecFpgA")) { A_SpawnItem("StabilityCheck"); } }
+			TNT1 A 0 A_SpawnItem("StabilityCheck");
 			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
 			TNT1 A 0
 			{
