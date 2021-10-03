@@ -277,10 +277,8 @@ script "DeathMusic" (int xdeath)
 	if (xdeath) {
 		switch(PlayerClass(PlayerNumber())) {
 			case 0:
-				SetMusic("S_DEADM", 0);
 				break;
 			case 1:
-				SetMusic("A_DEADM", 0);
 				break;
 			case 2:
 				SetMusic("C_DEADX", 0);
