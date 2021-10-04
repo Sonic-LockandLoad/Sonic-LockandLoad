@@ -36,6 +36,20 @@ sprite HMIOB0, 32, 32 // Homing Attack Point (used)
 	patch HMIOB0, 0, 0
 }
 
+sprite CSIOA0, 32, 32 // Chaos Spear Point
+{
+	yscale 1.2
+	offset 16, 28
+	patch CSIOA0, 0, 0
+}
+
+sprite CSIOB0, 32, 32 // Chaos Spear Point (used)
+{
+	yscale 1.2
+	offset 16, 28
+	patch CSIOB0, 0, 0
+}
+
 graphic M_SKULL1, 32, 389
 {
 	xscale 2

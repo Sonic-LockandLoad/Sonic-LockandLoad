@@ -24,6 +24,33 @@ class HomingAttackPoint : Actor // 4156
 	}
 }
 
+class ChaosSpearPoint : Actor
+{
+	Default
+	{
+		//$Category Lock & Load Objects
+		+SHOOTABLE
+		+NOBLOOD
+		+DONTFALL
+		+NOGRAVITY
+		+NOCLIP
+		Health 1;
+		Mass 100000;
+		DamageFactor "Normal", 0;
+		DamageFactor "Spear", 1;
+	}
+	States
+	{
+		Spawn:
+			CSIO A -1;
+			Stop;
+		Death:
+			CSIO B -1;
+			Stop;
+	}
+}
+
+
 class Continuer : Actor // 31935
 {
 	Default
