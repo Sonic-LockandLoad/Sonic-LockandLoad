@@ -1,5 +1,7 @@
 StatusBar Fullscreen, FullscreenOffsets
 {
+	DrawKeyBar 10, horizontal, auto, -38, -40, 0, 3, auto;
+	DrawString BIGFONT, LightBlue, time, -90, 2;
     InInventory ZoomCharge, 100
     {
 	    DrawString BIGFONT, Purple, "Ready", 30 + center, -80;
@@ -12,6 +14,11 @@ StatusBar Fullscreen, FullscreenOffsets
 	{
 		DrawMugShot 1, 0, -35;
 	}
+	InInventory ChaosEmeralds, 1
+	{
+		DrawImage "em_smol", 80, -21;
+	}
+
 	
 	InInventory Not PowerSuper, 1
 	{
@@ -52,6 +59,10 @@ StatusBar Normal
   {
 	DrawMugShot 1, 145, 165;
 	DrawKeyBar 10, vertical, auto, 240, 172, 0, 3, auto;
+	InInventory ChaosEmeralds, 1
+	{
+		DrawImage "em_smol", 35, 175;
+	}
 
 	IfHealth 10
 	{
@@ -95,9 +106,17 @@ StatusBar Normal
 		DrawString BIGFONT, White, time, -15, 114;
 		DrawString BIGFONT, Gold, "Rings", -40, 132;
 		DrawString BIGFONT, Green, "Energy", -40, 150;
+		InInventory ChaosEmeralds, 1
+		{
+			DrawImage "em_back", 164, 172;
+		}
 		DrawMugShot 1, 145, 115;
+		InInventory ChaosEmeralds, 1
+		{
+			DrawImage "em_front", 164, 172;
+		}
 		DrawKeyBar 10, horizontal, 15, 122, 175;
-
+		
 		IfHealth 20
 		{
 		  DrawNumber 3, BIGFONT, White, Health, fillzeros, 66, 132;
