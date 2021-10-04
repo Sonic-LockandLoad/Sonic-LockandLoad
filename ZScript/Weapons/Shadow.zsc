@@ -36,7 +36,7 @@ class ShadowAbilities : Weapon
 			SARM ABC 1;
 			SARM D 6
 			{
-				A_PlaySound("sweapons/chaosspear");
+				A_PlaySound("sweapons/chaosspear", CHAN_WEAPON);
 				if (CountInv("PowerSuper")) {
 					A_FireProjectile("ChaosSpearEX");
 				}
