@@ -122,6 +122,7 @@ class MechZombie : Actor
 		Obituary "%o was destroyed by a mechanised zombie.";
 		Tag "Mechanised Zombie";
 		DropItem "SoulRing";
+		//$Category Lock & Load Enemies
 	}
  	States
 	{
