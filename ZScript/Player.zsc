@@ -203,6 +203,7 @@ class ShadowPlayer : PlayerPawn
 		Player.WeaponSlot 2, "DarkAssault";
 		Player.WeaponSlot 3, "QuadShotty";
 		Player.WeaponSlot 4, "ChaosEmerald";
+		Player.WeaponSlot 5, "DualRockets";
 	}
 	States
 	{

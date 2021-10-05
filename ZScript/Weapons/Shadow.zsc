@@ -329,3 +329,45 @@ class QuadShotty : Weapon
 			Stop;
 	}
 }
+
+Class DualRockets : Weapon
+{
+	Default
+	{
+		Weapon.AmmoType "ChaosEnergy";
+		Weapon.AmmoUse 32;
+		Weapon.AmmoGive 128;
+		Inventory.PickupMessage "\c[Shadow]Prepare to be assimilated!";
+		+Weapon.Explosive
+		+Weapon.NoAutoFire
+	}
+	States
+	{
+		Ready:
+			DGLG A 1 A_WeaponReady();
+			Loop;
+		Deselect:
+			DGLG A 1 A_Lower();
+			Loop;
+		Select:
+			DGLG A 1 A_Raise();
+			Loop;
+		Fire:
+			DGLG A 3;
+			DGLG A 3 Bright
+			{
+				A_GunFlash();
+				A_FireProjectile("DuellingRocket", Random(-1, -5), 1,  3);
+				A_FireProjectile("DuellingRocket", Random( 1,  5), 1, -3);
+			}
+			DGLG B 4 Bright;
+			DGLG A 15;
+			Goto Ready;
+		Flash:
+			DGLF A 7 Bright;
+			Goto LightDone;
+		Spawn:
+			DOUG A -1;
+			Stop;
+	}
+}
