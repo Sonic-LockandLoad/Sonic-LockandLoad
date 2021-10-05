@@ -53,3 +53,5 @@ No, for multiple reasons:
 ## Copyright
 Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
 Sonic the Hedgehog is property of SEGA. DOOM is property of id Software.
+
+This mod uses assets from [Realm667](https://www.realm667.com) and other games.
