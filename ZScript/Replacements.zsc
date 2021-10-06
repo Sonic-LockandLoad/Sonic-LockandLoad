@@ -273,7 +273,7 @@ class RocketReplace : Actor replaces RocketLauncher // 2003
 					A_SpawnItem("RapidMissiles");
 				}
 				else if (CountInv("ShadowCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("ChaosEmerald");
+					A_SpawnItem("DualRockets");
 				}
 				else if (CountInv("ClassicCheck", AAPTR_PLAYER1)) {
 					A_SpawnItem("ClassicRocketStream");

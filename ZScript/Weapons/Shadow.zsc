@@ -338,6 +338,7 @@ Class DualRockets : Weapon
 		Weapon.AmmoUse 32;
 		Weapon.AmmoGive 128;
 		Inventory.PickupMessage "\c[Shadow]Prepare to be assimilated!";
+		Tag "Dual Assimilator";
 		+Weapon.Explosive
 		+Weapon.NoAutoFire
 	}
@@ -354,18 +355,18 @@ Class DualRockets : Weapon
 			Loop;
 		Fire:
 			DGLG A 3;
-			DGLG A 3 Bright
+			DGLG B 7 Bright
 			{
-				A_GunFlash();
-				A_FireProjectile("DuellingRocket", Random(-1, -5), 1,  3);
-				A_FireProjectile("DuellingRocket", Random( 1,  5), 1, -3);
+				A_FireProjectile("DuellingRocket", -3, 1,  3);
+				A_FireProjectile("DuellingRocket", 3, 1, -3);
+				if (CountInv("PowerSuper")) {
+					A_FireProjectile("DuellingRocket", -5, 1,  5);
+					A_FireProjectile("DuellingRocket", 5, 1, -5);
+					A_GiveInventory("ChaosEnergy", 128);
+				}
 			}
-			DGLG B 4 Bright;
 			DGLG A 15;
 			Goto Ready;
-		Flash:
-			DGLF A 7 Bright;
-			Goto LightDone;
 		Spawn:
 			DOUG A -1;
 			Stop;
