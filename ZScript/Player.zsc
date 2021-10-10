@@ -333,6 +333,7 @@ class ClassicSonicPlayer : PlayerPawn
 			{
 				if (random(1,4) == 4)
 				{
+					A_Log("\c[Classic]You don't have enough memory in the memory card.");
 					A_PlaySound("classic/memorycard");
 				}
 				else 
