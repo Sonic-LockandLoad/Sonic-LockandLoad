@@ -106,7 +106,7 @@ map T_SONIC "Sonic Tutorial"
 	sky1 = "GHZSKY"
 	next = "S_LOBBY"
 	author = "That1M8Head"
-	partime = 120
+	partime = 125
 	resethealth
 	resetinventory
 }
@@ -116,7 +116,7 @@ map T_CLASSI "Classic Tutorial"
 	music = C_TUT
 	next = "S_LOBBY"
 	author = "That1M8Head"
-	par = 12
+	partime = 120
 	resethealth
 	resetinventory
 }
