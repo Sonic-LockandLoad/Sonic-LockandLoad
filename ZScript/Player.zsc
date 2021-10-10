@@ -7,7 +7,7 @@ class SonicPlayer : PlayerPawn
 		Radius 15;
 		Height 46;
 		PainChance 250;
-		Mass 50;
+		Mass 100;
 		Player.MaxHealth 999;
 		Player.DisplayName "Sonic";
 		Player.Face "SNF";
@@ -95,7 +95,7 @@ class AmyPlayer : PlayerPawn
 		Radius 15;
 		Height 50;
 		PainChance 256;
-		Mass 50;
+		Mass 100;
 		Player.MaxHealth 999;
 		Player.DisplayName "Amy";
 		Player.Face "AMF";
@@ -190,7 +190,7 @@ class ShadowPlayer : PlayerPawn
 		Radius 15;
 		Height 46;
 		PainChance 225;
-		Mass 50;
+		Mass 100;
 		Player.MaxHealth 999;
 		Player.DisplayName "Shadow";
 		Player.Face "SHF";
@@ -257,6 +257,7 @@ class ClassicSonicPlayer : PlayerPawn
 		Radius 10;
 		Height 46;
 		PainChance 255;
+		Mass 100;
 		DamageFactor "RocketStream", 0.2;
 		Player.MaxHealth 999;
 		Player.DisplayName "C.Sonic";
