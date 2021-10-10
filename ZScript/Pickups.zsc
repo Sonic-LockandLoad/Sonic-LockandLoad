@@ -323,6 +323,7 @@ class ChaosEmeralds : CustomInventory
 {
 	Default
 	{
+		//$Category Lock & Load Pickups
 		Inventory.PickupMessage "";
 		Inventory.PickupSound "spickup/chaosemerald";
 		+COUNTITEM

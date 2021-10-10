@@ -384,6 +384,7 @@ DoomEdNums
 	6022  = "BlueChaosCapsule"
 	6023  = "RedChaosCapsule"
 	
+	2013  = "ChaosEmeralds"
 	262   = "GoalRing"
 	4156  = "HomingAttackPoint"
 	4157  = "ChaosSpearPoint"
@@ -396,8 +397,6 @@ DoomEdNums
 	19924 = "FastSpiderdemon"
 	19925 = "FasterSpiderdemon"
 	19926 = "MechZombie"
-	
-	2013  = "SoulsphereReplace"
 	83    = "MegasphereReplace"
 	
 	2023  = "BerserkReplace"
