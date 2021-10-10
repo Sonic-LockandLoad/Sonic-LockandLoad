@@ -128,7 +128,6 @@ classic/taunt2           	heyillpl
 classic/taunt3         		sndtest
 classic/taunt4				putemup
 classic/taunt5				sandeye
-classic/pain       			churt
 classic/memorycard			memcard
 classic/no         			noc
 classic/herego     			cherego
@@ -152,6 +151,7 @@ classic/goodresult			C_GOOD
 classic/badresult			C_BAD
 classic/okayresult			C_OKAY
 classic/ohno              	cono
+classic/pain       			churt
 
 shadow/grunt1      			dgrunt1
 shadow/grunt2      			dgrunt2
