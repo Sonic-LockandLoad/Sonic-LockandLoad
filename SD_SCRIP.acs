@@ -455,6 +455,13 @@ script "SA1AllOverAgain" ENTER
 	}
 }
 
+function void SetMugshotIfNotSuper(str state)
+{
+	if (!CheckInventory("PowerSuper") && !CheckInventory("PowerHyper")) {
+		SetMugShotState(state);
+	}
+}
+
 script "GoalRing" (void)
 {
 	Thing_Stop(1001);
@@ -470,38 +477,38 @@ script "GoalRing" (void)
 		case 0:
 			if (LevelTime > DParTime) {
 				PlaySound(1001, "sonic/badresult");
-				SetMugShotState("Failure");
+				SetMugshotIfNotSuper("Failure");
 			}
 			else if (LevelTime > ParTime) {
 				PlaySound(1001, "sonic/okayresult");
-				SetMugShotState("Failure");
+				SetMugshotIfNotSuper("Failure");
 			}
 			else {
 				PlaySound(1001, "sonic/goodresult");
-				SetMugShotState("Grin");
+				SetMugshotIfNotSuper("Grin");
 			}
 			break;
 		case 1:
 			if (CurrentHealth < 40) {
 				PlaySound(1001, "amy/badresult");
-				SetMugShotState("Failure");
+				SetMugshotIfNotSuper("Failure");
 			}
 			else {
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
-				SetMugShotState("Grin");
+				SetMugshotIfNotSuper("Grin");
 			}
 			break;
 		case 2:
 			if (CurrentHealth < 21) {
 				PlaySound(1001, "classic/badresult");
-				SetMugShotState("Failure");
+				SetMugshotIfNotSuper("Failure");
 			}
 			else if (LevelTime > ParTime) {
 				PlaySound(1001, "classic/okayresult");
 			}
 			else {
 				PlaySound(1001, "classic/goodresult");
-				SetMugShotState("Grin");
+				SetMugshotIfNotSuper("Grin");
 			}
 			break;
 		case 3:
@@ -510,7 +517,7 @@ script "GoalRing" (void)
 			}
 			else {
 				PlaySound(1001, "shadow/badresult");
-				SetMugShotState("Failure");
+				SetMugshotIfNotSuper("Failure");
 			}
 			break;
 		case -1:
