@@ -107,6 +107,7 @@ sonic/goodresult			S_GOOD
 sonic/badresult				S_BAD
 sonic/okayresult			S_OKAY
 sonic/nintendo64			snc_n64
+sonic/bossvictory			yoreover
 
 amy/error          			a_error
 amy/grunt1         			agrunt1
