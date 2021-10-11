@@ -16,8 +16,10 @@ class FastSpiderdemon : SpiderMastermind // 19924
 		Height 100;
 		Mass 100000000;
 		Obituary "%o isn't very good at secret bosses.";
+		PainChance 0;
 		PainChance "Eclipse", 256;
 		DamageFactor "Eclipse", 0.01;
+		DamageFactor "HomingAttack", 0;
 		DamageFactor "SonicKick", 2.5;
 	}
 	States
