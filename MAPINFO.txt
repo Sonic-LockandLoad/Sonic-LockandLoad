@@ -121,6 +121,16 @@ map T_CLASSI "Classic Tutorial"
 	resetinventory
 }
 
+map T_SHADOW "Shadow Tutorial"
+{
+	music = D_TUT
+	next = "S_LOBBY"
+	author = "That1M8Head"
+	partime = 120
+	resethealth
+	resetinventory
+}
+
 map LMAONO "You Idiot, You Fricked It Up"
 {
   levelnum = 30
