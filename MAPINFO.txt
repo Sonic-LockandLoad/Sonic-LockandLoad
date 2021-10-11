@@ -76,7 +76,7 @@ map SDLvl01 "Green Hill"
 	cluster = 401
 }
 
-map E3M10 "Dis Is It"
+map THEBOSS "Dis Is It"
 {
 	levelnum = 30
 	titlepatch = "WILV27"
