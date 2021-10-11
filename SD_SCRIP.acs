@@ -565,3 +565,8 @@ script "ReactionTime" (void)
 {
 	AmbientSound("sglobal/reaction", 127);
 }
+
+script "BossMusic2" (void)
+{
+	SetMusic("S_BOSS2");
+}
