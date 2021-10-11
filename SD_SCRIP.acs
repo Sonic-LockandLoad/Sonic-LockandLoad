@@ -210,13 +210,13 @@ script "ChaosEmeraldHandler" (void)
 		switch(PlayerClass(PlayerNumber()))
 		{
 			case 1:
-				Log(s:"\clPress \cf", k:"invuse", s:" \clto activate Dark form!");
+				Log(s:"\c[Purple]Press \cl", k:"invuse", s:" \c[Purple]to embrace the darkness!"); // Amy
 				break;
-			case -1:
-				Log(s:"\clPress \cf", k:"invuse", s:" \clto activate Super form!");
+			case 3:
+				Log(s:"\c[Gold]Press \cl", k:"invuse", s:" \c[Gold]to activate Super Shadow!"); // Shadow
 				break;
 			default:
-				Log(s:"\clPress \cf", k:"invuse", s:" \clto activate Super form!");
+				Log(s:"\c[Gold]Press \cl", k:"invuse", s:" \c[Gold]to activate Super Sonic!"); // Sonic and Classic
 				break;
 		}
 	}
