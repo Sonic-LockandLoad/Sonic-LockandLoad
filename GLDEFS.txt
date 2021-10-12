@@ -1,0 +1,39 @@
+/* Homing Attack Point */
+PointLight HAL1 {
+	Color 0 0 1
+	Size 50
+}
+PointLight HAL2 {
+	Color 0 1 0
+	Size 50
+}
+
+/* Chaos Spear Point */
+PointLight CSL1 {
+	Color 1 0 0
+	Size 50
+}
+PointLight CSL2 {
+	Color 1 1 1
+	Size 50
+}
+
+Object HomingAttackPoint
+{
+	Frame HMIOA0 {
+		Light HAL1
+	}
+	Frame HMIOB0 {
+		Light HAL2
+	}
+}
+
+Object ChaosSpearPoint
+{
+	Frame CSIOA0 {
+		Light CSL1
+	}
+	Frame CSIOB0 {
+		Light CSL2
+	}
+}
