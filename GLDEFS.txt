@@ -18,6 +18,11 @@ PointLight CSL2 {
 	Size 50
 }
 
+PointLight SwordGlow {
+	Color 1 0 0
+	Size 75
+}
+
 Object HomingAttackPoint
 {
 	Frame HMIOA0 {
@@ -35,5 +40,18 @@ Object ChaosSpearPoint
 	}
 	Frame CSIOB0 {
 		Light CSL2
+	}
+}
+
+Object EnergyBladeLeft
+{
+	Frame ENSL {
+		Light SwordGlow
+	}
+}
+Object EnergyBladeRight
+{
+	Frame ENSL {
+		Light SwordGlow
 	}
 }
