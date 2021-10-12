@@ -10,7 +10,6 @@ class ShadowAbilities : Weapon
 		Tag "Shadow the Hedgehog";
 		+WEAPON.MELEEWEAPON
 		+WEAPON.NOAUTOFIRE
-		+WEAPON.NOAUTOAIM
 	}
 	States
 	{
