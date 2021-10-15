@@ -23,6 +23,7 @@ spickup/goalring			goalring
 
 // Weapons (subject to reorganisation)
 
+sweapons/boost				boosts
 sweapons/speedyshot        	SpSGShot
 sweapons/speedyblast       	SpSGBlst
 sweapons/speedyreload      	SpSGRlod
@@ -47,6 +48,7 @@ sweapons/soulcharge        	schg
 sweapons/shurikenhit       	shurhit
 sweapons/shurikenfire1     	shuri1
 sweapons/shurikenfire2     	shuri2
+$random sweapons/shurikenfire { sweapons/shurikenfire1 sweapons/shurikenfire2 }
 sweapons/chaosspear        	spshoot
 sweapons/spearimpact       	spimpact
 sweapons/blockattack       	block1
@@ -74,7 +76,6 @@ sweapons/sdash				homing
 sweapons/reticle			SoniReti
 sweapons/sonicfalling		sonifall
 sweapons/sonicland			soniland
-$random sweapons/shurikenfire { sweapons/shurikenfire1 sweapons/shurikenfire2 }
 
 // Character
 
@@ -82,9 +83,11 @@ sonic/thanksalotwall    	ThxWall
 sonic/thiswallsintheway 	walinway
 sonic/thatwaslame       	Lame
 sonic/scream            	Scream
-sonic/boostv1           	boost1
-sonic/boostv2           	boost2
-sonic/boostv3           	boost3
+sonic/boostv1           	boostl1
+sonic/boostv2           	boostl2
+sonic/boostv3           	boostl3
+sonic/boostv4           	boostl4
+$random sonic/boost 		{ sonic/boostv1 sonic/boostv2 sonic/boostv3 sonic/boostv4 }
 sonic/error             	error
 sonic/ohno              	ohno
 sonic/grunt1            	SonicGr1
@@ -153,6 +156,7 @@ classic/badresult			C_BAD
 classic/okayresult			C_OKAY
 classic/ohno              	cono
 classic/pain       			churt
+classic/go					cgo
 
 shadow/grunt1      			dgrunt1
 shadow/grunt2      			dgrunt2
@@ -203,7 +207,6 @@ $random amy/death 			{ amy/ohno amy/scream }
 		shadow/death		  nooooooo
 $random classic/death 		{ classic/no classic/woa1 classic/woa2 classic/woa3 classic/woa4 classic/woa5 }
 
-$random sonic/boost 		{ sonic/boostv1 sonic/boostv2 sonic/boostv3 }
 $random sweapons/swordswing { sweapons/swing1 sweapons/swing2 sweapons/swing3 }
 
 $random sonic/grunt 		{ sonic/grunt1 sonic/grunt2 sonic/grunt3 sonic/grunt4 sonic/grunt5 sonic/grunt6 }

@@ -134,7 +134,32 @@ class SonicDash : CustomInventory
 		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
 		Fail;
 	TimeCheck:
+		TNT1 A 0 A_JumpIf(CountInv("PowerSuper")||CountInv("PowerHyper"), "BoostCheck");
 		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "DashAtk");
+		Stop;
+	BoostCheck:
+		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "Boost");
+		Stop;
+	Boost:
+		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		TNT1 A 0 A_AlertMonsters();
+		TNT1 A 0 A_StartSound("classic/go", 8);
+		TNT1 A 0 A_StartSound("sweapons/boost");
+		TNT1 A 0 A_JumpIf(CountInv("PowerHyper"), "HyperBoost");
+		BOOS B 15
+		{
+			A_ChangeVelocity(Cos(Pitch) * 128, 0, Sin(Pitch) * -128, CVF_Relative);
+			A_Light(10);
+		}
+		TNT1 A 0 A_Light(0);
+		Stop;
+	HyperBoost:
+		BOOS C 15
+		{
+			A_ChangeVelocity(Cos(Pitch) * 200, 0, Sin(Pitch) * -200, CVF_Relative);
+			A_Light(10);
+		}
+		TNT1 A 0 A_Light(0);
 		Stop;
 	DashAtk:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);

@@ -105,7 +105,8 @@ class SonicAbilities : Weapon
 				if (!invoker.BoostCheck)
 				{
 					invoker.BoostCheck = true;
-					A_PlaySound("sonic/boost", 6);
+					A_StartSound("sonic/boost", 6);
+					A_StartSound("sweapons/boost", 7);
 				}
 			}
 			TNT1 A 0 A_SetMugShotState("Boost");
@@ -145,7 +146,8 @@ class SonicAbilities : Weapon
 				if (!invoker.BoostCheck)
 				{
 					invoker.BoostCheck = true;
-					A_PlaySound("sonic/boost", 6);
+					A_StartSound("sonic/boost", 6);
+					A_StartSound("sweapons/boost", 7);
 				}
 			}
 			TNT1 A 0 A_SetMugShotState("SuperBoost");
@@ -311,7 +313,8 @@ class Caliburn : Weapon
 				if (!invoker.BoostCheck)
 				{
 					invoker.BoostCheck = true;
-					A_PlaySound("sonic/boost", 6);
+					A_StartSound("sonic/boost", 6);
+					A_StartSound("sweapons/boost", 7);
 				}
 			}
 			TNT1 A 0 A_SetMugShotState("Boost");
@@ -351,7 +354,8 @@ class Caliburn : Weapon
 				if (!invoker.BoostCheck)
 				{
 					invoker.BoostCheck = true;
-					A_PlaySound("sonic/boost", 6);
+					A_StartSound("sonic/boost", 6);
+					A_StartSound("sweapons/boost", 7);
 				}
 			}
 			TNT1 A 0 A_SetMugShotState("SuperBoost");
