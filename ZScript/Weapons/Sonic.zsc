@@ -99,7 +99,7 @@ class SonicAbilities : Weapon
 			TNT1 A 0 { invoker.BoostCheck = false; }
 			TNT1 A 0 A_StopSound(1);
 			Goto Ready;
-		Boost:
+		BoostStart:
 			TNT1 A 0
 			{
 				if (!invoker.BoostCheck)

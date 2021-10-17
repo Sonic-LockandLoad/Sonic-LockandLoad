@@ -544,23 +544,39 @@ script "SonicN64" (void)
 script "Drowning" ENTER
 {
 	int drowntimer;
+	int maxdrown;
 	while (1) {
 		if (GetActorProperty(1001, APROP_Waterlevel) == 3) {
 			drowntimer++;
 			if (drowntimer > 19)
 			{
-				SetMusic("d_drown");
+				switch(PlayerClass(PlayerNumber())) {
+					case 0:
+						SetMusic("S_DROWN", 0);
+						break;
+					case 1:
+						SetMusic("A_DROWN", 0);
+						break;
+					case 2:
+						SetMusic("C_DROWN", 0);
+						break;
+					case 3:
+						SetMusic("D_DROWN", 0);
+						break;
+					default:
+						break;
+				}
 			}
-			if (drowntimer > 30)
+			if (drowntimer > 31)
 			{
 				DamageActor(1001, AAPTR_PLAYER1, 0, 0, 9999, "Drownd");
-				SetMusic("*");
+				if (!GetCvar("DeathMusic")) { SetMusic("*"); }
 				break;
 			}
 		}
 		else {
 			if (drowntimer > 19) {
-				SetMusic("*");
+				if (!GetCvar("DeathMusic")) { SetMusic("*"); }
 			}
 			drowntimer = 0;
 		}
