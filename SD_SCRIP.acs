@@ -576,7 +576,7 @@ script "Drowning" ENTER
 		}
 		else {
 			if (drowntimer > 19) {
-				if (!GetCvar("DeathMusic")) { SetMusic("*"); }
+				SetMusic("*");
 			}
 			drowntimer = 0;
 		}
