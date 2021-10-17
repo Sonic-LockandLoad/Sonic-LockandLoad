@@ -465,7 +465,8 @@ function void SetMugshotIfNotSuper(str state)
 script "GoalRing" (void)
 {
 	Thing_Stop(1001);
-	SetActorProperty(1001, APROP_DamageFactor, 0);
+	//SetActorProperty(1001, APROP_DamageFactor, 0);
+	GiveInventory("Invincibility", 1);
 	int LevelTime = Timer() / 35;
 	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
 	int DParTime = ParTime * 2;
@@ -505,6 +506,7 @@ script "GoalRing" (void)
 			}
 			else if (LevelTime > ParTime) {
 				PlaySound(1001, "classic/okayresult");
+				SetMugshotIfNotSuper("OK");
 			}
 			else {
 				PlaySound(1001, "classic/goodresult");
@@ -514,6 +516,7 @@ script "GoalRing" (void)
 		case 3:
 			if (KilledMonsters == TotalMonsters) {
 				PlaySound(1001, "shadow/goodresult");
+				SetMugshotIfNotSuper("OK");
 			}
 			else {
 				PlaySound(1001, "shadow/badresult");
@@ -525,14 +528,6 @@ script "GoalRing" (void)
 			break;
 	}
 	Delay(70);
-	if (PlayerClass(PlayerNumber()) == 1) // If playing as Amy
-	{
-		SetActorProperty(1001, APROP_DamageFactor, 1.3);
-	}
-	else
-	{
-		SetActorProperty(1001, APROP_DamageFactor, 1);
-	}
 	Exit_Normal(0);
 }
 

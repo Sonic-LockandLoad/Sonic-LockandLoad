@@ -293,6 +293,14 @@ mugshot "SuperBoost"
   SBOS 20;
 }
 
+mugshot "OK"
+{
+	{
+		ST00, ST01, ST02
+	}
+	80;
+}
+
 mugshot "Normal"
 {
   {
