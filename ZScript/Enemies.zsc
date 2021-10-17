@@ -37,7 +37,7 @@ class FastSpiderdemon : SpiderMastermind // 19924
 			Loop;
 		Missile:
 			SPID A 10 Bright A_FaceTarget;
-			TNT1 A 0 A_JumpIf(health < 1200, "SecPhasStart");
+			TNT1 A 0 A_JumpIf(health < 1500, "SecPhasStart");
 			SPID GH 1 Bright A_SpawnProjectile("PlasmaBall");
 			SPID H 1 Bright A_SpidReFire();
 			Goto Missile+1;
@@ -55,7 +55,7 @@ class FastSpiderdemon : SpiderMastermind // 19924
 			SPID I 12 A_Pain;
 			Goto See;
 		Pain2:
-			SPID I 6 A_Pain;
+			SPID I 8 A_Pain;
 			Goto See;
 		Death:
 			TNT1 A 0 A_StartSound("sonic/bossvictory", 8, 0, 1.0, ATTN_NONE);
