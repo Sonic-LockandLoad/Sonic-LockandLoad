@@ -281,25 +281,25 @@ skill ohno
 
 cluster 1
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	exittext = lookup, "E1TEXT"
 }
 
 cluster 2
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	exittext = lookup, "E2TEXT"
 }
 
 cluster 3
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	exittext = lookup, "E3TEXT"
 }
 
 cluster 4
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	exittext = lookup, "E4TEXT"
 }
 
@@ -307,7 +307,7 @@ cluster 4
 
 cluster 5
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	exittext = lookup, "C1TEXT"
 }
 
@@ -315,7 +315,7 @@ cluster 5
 
 cluster 6
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	exittext = lookup, "C2TEXT"
 }
 
@@ -323,7 +323,7 @@ cluster 6
 
 cluster 7
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	exittext = lookup, "C3TEXT"
 }
 
@@ -331,7 +331,7 @@ cluster 7
 
 cluster 8
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	exittext = lookup, "C4TEXT"
 }
 
@@ -339,7 +339,7 @@ cluster 8
 
 cluster 9
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	entertext = lookup, "C5TEXT"
 }
 
@@ -347,7 +347,7 @@ cluster 9
 
 cluster 10
 {
-	pic = "RECAP"
+	pic = "INTERPIC"
 	entertext = lookup, "C6TEXT"
 }
 
