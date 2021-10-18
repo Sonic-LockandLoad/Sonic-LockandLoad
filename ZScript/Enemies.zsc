@@ -60,7 +60,11 @@ class FastSpiderdemon : SpiderMastermind // 19924
 		Death:
 			TNT1 A 0 A_StartSound("sonic/bossvictory", 8, 0, 1.0, ATTN_NONE);
 			SPID J 20 A_Scream;
-			SPID K 10 A_NoBlocking;
+			SPID K 10 
+			{
+				A_NoBlocking();
+				A_SpawnItem("GoalRing");
+			}
 			SPID LMNOPQR 10;
 			SPID S 30;
 			SPID S -1;

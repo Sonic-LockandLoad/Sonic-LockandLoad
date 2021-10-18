@@ -83,7 +83,7 @@ map THEBOSS "Dis Is It"
 	next = endpic, "bossend"
 	sky1 = "SKY3"
 	cluster = 404
-	par = 30
+	par = 60
 	nointermission
 	nosoundclipping
 	music = S_BOSS
@@ -157,7 +157,6 @@ map CONTINUE "Continue?"
 {
   music = CONTINUE
   levelnum = 469
-  next = MAP30
   nointermission
 }
 
