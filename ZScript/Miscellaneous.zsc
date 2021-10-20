@@ -50,6 +50,32 @@ class ChaosSpearPoint : Actor
 	}
 }
 
+class PikoPikoPoint : Actor
+{
+	Default
+	{
+		//$Category Lock & Load Objects
+		+SHOOTABLE
+		+NOBLOOD
+		+DONTFALL
+		+NOGRAVITY
+		+NOCLIP
+		Health 1;
+		Mass 100000;
+		DamageFactor "Normal", 0;
+		DamageFactor "Piko", 1;
+	}
+	States
+	{
+		Spawn:
+			AMIO A -1;
+			Stop;
+		Death:
+			AMIO B -1;
+			Stop;
+	}
+}
+
 
 class Continuer : Actor // 31935
 {

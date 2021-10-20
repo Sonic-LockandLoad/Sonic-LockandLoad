@@ -18,6 +18,16 @@ PointLight CSL2 {
 	Size 50
 }
 
+/* Piko Piko Point */
+PointLight AML1 {
+	Color 1 0.5 0.7
+	Size 50
+}
+PointLight AML2 {
+	Color 1 0 1
+	Size 50
+}
+
 PointLight SwordGlow {
 	Color 1 0 0
 	Size 75
@@ -40,6 +50,16 @@ Object ChaosSpearPoint
 	}
 	Frame CSIOB0 {
 		Light CSL2
+	}
+}
+
+Object PikoPikoPoint
+{
+	Frame AMIOA0 {
+		Light AML1
+	}
+	Frame AMIOB0 {
+		Light AML2
 	}
 }
 

@@ -397,6 +397,7 @@ DoomEdNums
 	262   = "GoalRing"
 	4156  = "HomingAttackPoint"
 	4157  = "ChaosSpearPoint"
+	4158  = "PikoPikoPoint"
 	31935 = "Continuer"
 	31936 = "WtfIsThis"
 	

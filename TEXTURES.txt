@@ -50,6 +50,20 @@ sprite CSIOB0, 32, 32 // Chaos Spear Point (used)
 	patch CSIOB0, 0, 0
 }
 
+sprite AMIOA0, 32, 32 // Piko Piko Point 
+{
+	yscale 1.2
+	offset 16, 28
+	patch AMIOA0, 0, 0
+}
+
+sprite AMIOB0, 32, 32 // Piko Piko Point (used)
+{
+	yscale 1.2
+	offset 16, 28
+	patch AMIOB0, 0, 0
+}
+
 graphic M_SKULL1, 32, 389
 {
 	xscale 2

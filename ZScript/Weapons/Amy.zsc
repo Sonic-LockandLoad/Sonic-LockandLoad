@@ -30,11 +30,11 @@ class PikoPikoHammer : Weapon
 			{
 				if (random(1,8) == 8)
 				{
-					A_CustomPunch(400, 0, CPF_PULLIN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
+					A_CustomPunch(400, 0, CPF_PULLIN, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
 				}
 				else
 				{
-					A_CustomPunch(200, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+					A_CustomPunch(200, 0, 0, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 			}
 			PIKO D 1;
@@ -62,11 +62,11 @@ class PikoPikoHammer : Weapon
 			{
 				if (random(1,8) == 8)
 				{
-					A_CustomPunch(400, 0, CPF_PULLIN, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
+					A_CustomPunch(400, 0, CPF_PULLIN, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
 				}
 				else
 				{
-					A_CustomPunch(200, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+					A_CustomPunch(200, 0, 0, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 			}
 			PIKO D 1;

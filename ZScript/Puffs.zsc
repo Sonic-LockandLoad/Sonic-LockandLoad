@@ -66,6 +66,32 @@ class LightAttack : Actor
 	}
 }
 
+class PikoPuff : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+ALLOWPARTICLES
+		+RANDOMIZE
+		+NOEXTREMEDEATH
+		RenderStyle "Normal";
+		DamageType "Piko";
+		Alpha 0.5;
+		VSpeed 1;
+		Mass 5;
+	}
+	States
+	{
+		Spawn:
+			PUFF A 4 Bright;
+			PUFF B 4;
+		Melee:
+			PUFF CD 4;
+			Stop;
+	}
+}
+
 class NoGibPuff : Actor
 {
 	Default
@@ -290,7 +316,7 @@ class SonicDashPuff : BulletPuff
 		Alpha 0;
 		VSpeed 1;
 		Mass 5;
-		DamageType "SonicKick";
+		DamageType "HomingAttack";
 		ProjectileKickBack 1000000;
 	}
 	States
