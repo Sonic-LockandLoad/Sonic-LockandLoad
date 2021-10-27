@@ -398,6 +398,7 @@ DoomEdNums
 	4156  = "HomingAttackPoint"
 	4157  = "ChaosSpearPoint"
 	4158  = "PikoPikoPoint"
+	4159  = "OmniAttackPoint"
 	31935 = "Continuer"
 	31936 = "WtfIsThis"
 	

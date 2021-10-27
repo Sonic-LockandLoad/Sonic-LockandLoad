@@ -64,6 +64,20 @@ sprite AMIOB0, 32, 32 // Piko Piko Point (used)
 	patch AMIOB0, 0, 0
 }
 
+sprite OMIOA0, 32, 32 // Omni Attack Point 
+{
+	yscale 1.2
+	offset 16, 28
+	patch OMIOA0, 0, 0
+}
+
+sprite OMIOB0, 32, 32 // Omni Attack Point (used)
+{
+	yscale 1.2
+	offset 16, 28
+	patch OMIOB0, 0, 0
+}
+
 graphic M_SKULL1, 32, 389
 {
 	xscale 2

@@ -63,6 +63,16 @@ Object PikoPikoPoint
 	}
 }
 
+Object OmniAttackPoint
+{
+	Frame OMIOA0 {
+		Light CSL2
+	}
+	Frame OMIOB0 {
+		Light AML2
+	}
+}
+
 Object EnergyBladeLeft
 {
 	Frame ENSL {
