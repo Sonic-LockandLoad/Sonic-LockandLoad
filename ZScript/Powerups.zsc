@@ -20,6 +20,13 @@ class Invincibility : PowerupGiver
 		Loop;
 	}
 }
+class ClassicInvincibility : Invincibility
+{
+	Default
+	{
+		Powerup.Duration -24;
+	}
+}
 class SuperInvincibility : PowerupGiver
 {
 	Default
