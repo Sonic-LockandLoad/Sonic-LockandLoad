@@ -408,7 +408,7 @@ DoomEdNums
 	19924 = "FastSpiderdemon"
 	19925 = "FasterSpiderdemon"
 	19926 = "MechZombie"
-	83    = "MegasphereReplace"
+	19927 = "WalkingCapsule"
 	
 	2023  = "BerserkReplace"
 	8     = "BackpackReplace"
@@ -422,6 +422,7 @@ DoomEdNums
 	17    = "CellPackReplace"
 	2018  = "ArmorReplace"
 	2019  = "BlueArmorReplace"
+	83    = "MegasphereReplace"
 	
 	5010  = "PistolReplace"
 	2005  = "ChainsawReplace"

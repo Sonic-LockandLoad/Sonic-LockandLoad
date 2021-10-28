@@ -139,6 +139,21 @@ class MechZombie : Actor
 	}
 }
 
+class WalkingCapsule : Demon
+{
+	Default
+	{
+		DropItem "BlueChaosCapsule";
+		//$Category Lock & Load Enemies
+	}
+	States
+	{
+		Spawn:
+			SARG AB 10 A_Look;
+			Loop;
+	}
+}
+
 class FasterSpiderdemon : SpiderMastermind // 19925
 {
 	Default
