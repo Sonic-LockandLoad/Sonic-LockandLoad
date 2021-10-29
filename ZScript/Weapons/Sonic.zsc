@@ -53,7 +53,7 @@ class SonicAbilities : Weapon
 					A_FireBullets(0, 0, 1, random(1,16)*24, "LightAttack", FBF_NORANDOM, 1024);
 				}
 			}
-			TNT1 A 12 A_ChangeVelocity (Cos(Pitch) * 50, 0, Sin(Pitch) * -35, CVF_Relative);
+			TNT1 A 12 A_ChangeVelocity (Cos(Pitch) * 50, 0, Sin(Pitch) * -20, CVF_Relative);
 			Goto Ready;
 		LightSpeedAttack:
 			TNT1 A 0 A_FireBullets(0, 0, 1, 0, "LightSpeedReticle", FBF_NORANDOMPUFFZ);
