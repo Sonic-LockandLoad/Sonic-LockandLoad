@@ -98,6 +98,13 @@ class PikoPikoHammer : Weapon
 		Hold:
 			PIKO E 1
 			{
+				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+				if (buttons & BT_CROUCH) {
+					A_SetSpeed(16);
+				}
+				else {
+					A_SetSpeed(4);
+				}
 				if (A_CheckFloor("Ready"))
 				{
 					A_SetSpeed(1.2);
