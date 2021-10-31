@@ -34,6 +34,15 @@ Shadow ShadowRedBlack
 		#b60000
 }
 
+Tails TailsYellow
+{
+	#7f7200 #ffef00
+	Console:
+		#aa6600 #ffff00
+	Flat:
+		#ffff00
+}
+
 ActiveOption
 {
 	#002bff  #00d2ff
@@ -44,13 +53,13 @@ InactiveOption
 	#000f47  #1a24b2
 }
 
-CaliburnGold
+Caliburn CaliburnGold
 {
-	#B29600  #FFD700
+	#876600 #ffc000
 	Console:
-		#B29600  #FFD700
+		#a9a9a9  #ffcd00
 	Flat:
-		#FFD700
+		#ffcd00
 }
 
 MenuActive
