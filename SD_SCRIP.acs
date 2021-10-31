@@ -66,12 +66,14 @@ script "TransformSuper" (void)
 				 {
 					 SetMusic("m_supsnc", 0);
 				 }
+				 SetActorProperty(1001, APROP_JumpZ, 16.0);
                  break;
             case 1: // Amy
                  if (GetCvar("SupAmy"))
 				 {
 					SetMusic("m_supamy", 0);
 				 }
+				 SetActorProperty(1001, APROP_JumpZ, 13.0);
                  break;
             case 2: // Classic Sonic
                  if (GetCvar("SupClassic") == 1)
@@ -82,6 +84,7 @@ script "TransformSuper" (void)
 				 {
 					 SetMusic("m_supcls", 0);
 				 }
+				 SetActorProperty(1001, APROP_JumpZ, 15.0);
                  break;
             case 3: // Shadow
                  if (GetCvar("SupShadow") == 1)
@@ -92,6 +95,7 @@ script "TransformSuper" (void)
 				 {
 					 SetMusic("m_supsha", 0);
 				 }
+				 SetActorProperty(1001, APROP_JumpZ, 18.0);
                  break;
             case -1:
             default:
@@ -104,6 +108,15 @@ script "TransformSuper" (void)
 		}
 		SetMusic("*", 0);
 		SetMugShotState("Normal");
+		switch(PlayerClass(PlayerNumber()))
+		{
+            case 3: // Shadow
+				SetActorProperty(1001, APROP_JumpZ, 15.0);
+				break;
+            default: // Everyone else
+				SetActorProperty(1001, APROP_JumpZ, 12.0);
+				break;
+        }
 	}
 	else
 	{
@@ -117,24 +130,26 @@ script "TransformHyper" (void)
 	{
 		while (CheckInventory("PowerHyper"))
 		{
-			if (GetCvar("HyperMusic") > 0)
+			if (GetCvar("HyperMusic"))
 			{
 				SetMusic("m_hypcls", 0);
 			}
 		    SetMugShotState("Hyper");
+			SetActorProperty(1001, APROP_JumpZ, 20.0);
 			TakeInventory("PowerSuper", 1);
 			TakeInventory("ChaosEmeralds", 1);
 			Delay(35); 
 		}
-		if (GetCvar("HyperMusic") > 0)
+		if (GetCvar("HyperMusic"))
 		{
 			SetMusic("*", 0);
 		}
 		SetMugShotState("Normal");
+		SetActorProperty(1001, APROP_JumpZ, 12.0);
 	}
 	else
 	{
-		if (GetCvar("HyperMusic") > 0)
+		if (GetCvar("HyperMusic"))
 		{
 			SetMusic("*", 0);
 		}
