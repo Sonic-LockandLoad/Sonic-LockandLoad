@@ -19,10 +19,12 @@ Run `git pull` inside the folder.
 At the top of the page, click `Code`, then `Download ZIP`.<br>
 Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
 Optionally, you can rename `Sonic-LockandLoad-edge.zip` to `Sonic-LockandLoad-edge.pk3`.<br>
-Be warned that unless you un-nest the folder inside the ZIP, you will not be able to edit maps.
+
+***Be warned that unless you un-nest the folder inside the ZIP, you will not be able to edit maps.***
 
 ## Playing a pre-release version
 All pre-release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases).
+
 These are pre-releases from *ages ago,* so they are almost fundamentally different to the current unstable version -- it's recommended you play the unstable version.
 
 ## Does this mod support multiplayer?
