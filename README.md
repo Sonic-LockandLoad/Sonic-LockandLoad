@@ -4,11 +4,7 @@ Includes player classes, weapons, items and certain techniques.
 
 I eventually plan to make this mod available as a standalone game.
 
-## Playing a release version
-#### Considering that the currently unstable Chaos Update is VASTLY different from any release so far, this is not recommended.
-Release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases). 
-
-## Playing an unstable (non-release) version
+## Playing the git (unstable) version
 ### Using `git clone`
 You should have `git` installed. (You can also use [`gh-get`](https://github.com/That1M8Head/gh-get).)
 
@@ -25,8 +21,9 @@ Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
 Optionally, you can rename `Sonic-LockandLoad-edge.zip` to `Sonic-LockandLoad-edge.pk3`.<br>
 Be warned that unless you un-nest the folder inside the ZIP, you will not be able to edit maps.
 
-## Screenshots, so I can see what it's about?
-None that I can easily take. I did [stream it on YouTube](https://www.youtube.com/embed/o8zHD-PQBJ8), though; you can have a look at that. (it is [outdated](https://github.com/That1M8Head/Sonic-LockandLoad/tree/617fbe9babf6ddc7941ee91a8628a01ce0de5413) though)
+## Playing a pre-release version
+All pre-release versions are [here](https://github.com/That1M8Head/Sonic-LockandLoad/releases).
+These are pre-releases from *ages ago,* so they are almost fundamentally different to the current unstable version -- it's recommended you play the unstable version.
 
 ## Does this mod support multiplayer?
 No, for multiple reasons:
