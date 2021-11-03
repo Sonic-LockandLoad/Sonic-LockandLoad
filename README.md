@@ -1,4 +1,4 @@
-# Welcome to Sonic: Lock and Load! ![GitHub all releases](https://img.shields.io/github/downloads/SpeedStriker243/sonicdoom/total)
+# Welcome to Sonic: Lock and Load! ![GitHub repo size](https://img.shields.io/github/repo-size/Sonic-LockandLoad/Sonic-LockandLoad)
 *Sonic: Lock and Load* is a DOOM mod for the GZDoom source port based on Sonic the Hedgehog.
 Includes player classes, weapons, items and certain techniques.
 
