@@ -363,7 +363,7 @@ class AmyEclipseBlaster : Weapon
 			{
 				if (CountInv("PowerSuper") > 0)
 				{
-					A_GiveInventory("ChaosEnergy", 25);
+					A_GiveInventory("ChaosEnergy", 15);
 				}
 				A_AlertMonsters();
 				A_FireProjectile("ChaosEnergyBallAmy", 0, 1);
