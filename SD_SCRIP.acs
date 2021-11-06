@@ -153,6 +153,7 @@ script "TransformHyper" (void)
 		{
 			SetMusic("*", 0);
 		}
+		SetActorProperty(1001, APROP_JumpZ, 12.0);
 	}
 }
 
