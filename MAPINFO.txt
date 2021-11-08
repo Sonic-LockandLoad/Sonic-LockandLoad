@@ -436,4 +436,6 @@ DoomEdNums
 	2022  = "InvulReplace"
 	2025  = "RadSuitReplace"
 	2045  = "Nintendo64"
+	
+	9001  = "Doox"
 }

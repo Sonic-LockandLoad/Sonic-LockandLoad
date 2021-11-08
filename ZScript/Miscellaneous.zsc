@@ -163,3 +163,17 @@ class SideLevelsText : Actor
 			Stop;
 	}
 }
+
+class Doox : Actor
+{
+	Default
+	{
+		//$Category Lock & Load Objects
+	}
+	States
+	{
+		Spawn:
+			DOOX A -1;
+			Stop;
+	}
+}

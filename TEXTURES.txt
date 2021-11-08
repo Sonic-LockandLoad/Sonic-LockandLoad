@@ -78,6 +78,14 @@ sprite OMIOB0, 32, 32 // Omni Attack Point (used)
 	patch OMIOB0, 0, 0
 }
 
+sprite DOOXA0, 688, 688
+{
+	xscale 12
+	yscale 12
+	offset 344, 644
+	patch DOOXA0, 0, 0
+}
+
 graphic M_SKULL1, 32, 389
 {
 	xscale 2
