@@ -437,5 +437,5 @@ DoomEdNums
 	2025  = "RadSuitReplace"
 	2045  = "Nintendo64"
 	
-	9001  = "Doox"
+	9069  = "Doox"
 }
