@@ -604,5 +604,5 @@ script "ReactionTime" (void)
 
 script "BossMusic2" (void)
 {
-	SetMusic("S_BOSS2");
+	SetMusic("B_SCRT2");
 }

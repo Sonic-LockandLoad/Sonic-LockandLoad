@@ -92,7 +92,7 @@ map THEBOSS "Dis Is It"
 	par = 60
 	nointermission
 	nosoundclipping
-	music = S_BOSS
+	music = B_SCRT
 	needclustertext
 }
 
