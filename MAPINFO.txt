@@ -76,6 +76,12 @@ map SDLvl01 "Green Hill"
 	cluster = 401
 }
 
+map GrnTitle "Green Hill (Title)"
+{
+	music = S_TITLE
+	sky1 = "GHZSKY"
+}
+
 map THEBOSS "Dis Is It"
 {
 	levelnum = 30
