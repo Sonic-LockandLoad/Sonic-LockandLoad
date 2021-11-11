@@ -4,7 +4,7 @@ gameinfo
    QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7"
    InfoPage = "ABOUTLL"
    TitlePage = "TITLEPIC"
-   CreditPage = "CREDIT"
+   CreditPage = "TITLEPIC"
    TitleMusic = "S_TITLE"
    IntermissionMusic = "S_INTER"
    FinaleMusic = "S_RECAP"
