@@ -18,9 +18,9 @@ OptionMenu "OptionsBranching"
 {
 	Title "Options"
 	
+	SubMenu "Configure Mod Options", "LockandLoadOptions"
 	SubMenu "Configure Controls", "LLControlsMenu"
 	SubMenu "Configure Game Options", "LLCvarMenu"
-	SubMenu "Configure Mod", "LockandLoadOptions"
 	StaticText ""
 	SubMenu "GZDoom Options", "OptionsMenu"
 	SubMenu "Option Search", "os_menu"
@@ -79,13 +79,28 @@ ListMenu "SkillMenu"
 }
 OptionMenu "LockandLoadOptions"
 {
-	SubMenu "Music", "SDMusic"
-	SubMenu "Gameplay", "SDGameplay"
-	StaticText ""
 	Title "Mod Options"
+	
 	Option "HUD Type", "HUDType", "HUDType"
-	StaticText "Changes which HUD is displayed.", "White"
-	StaticText "This will take effect as soon as you unpause the game.", "LightBlue"
+	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
+	StaticText ""
+	
+	Option "Boost Type", "VerticalBoost", "BoostType"
+	StaticText "Lock & Load was not designed around Aimable Boost.", "LightBlue"
+	StaticText "Levels may break.", "LightBlue"
+	StaticText ""
+	
+	Option "Hyper Classic Sonic", "HyperSonic", "EnabledOrNot"
+	StaticText ""
+	
+	Option "Dash Aiming", "DashAiming", "EnabledOrNot"
+	StaticText "Hold a direction to aim Classic Sonic's dash.", "LightBlue"
+	StaticText "This won't work with controllers.", "LightBlue"
+	StaticText ""
+	
+	SubMenu "Configure Music", "SDMusic"
+	StaticText "Configure music tracks for Super forms,", "LightBlue"
+	StaticText "invincibility and death.", "LightBlue"
 	StaticText ""
 }
 OptionMenu "SDMusic"
@@ -112,20 +127,10 @@ OptionMenu "SDMusic"
 	StaticText "disable Classic Sonic's Super form music.", "LightBlue"
 	StaticText ""
 	Option "Death Music", "DeathMusic", "EnabledOrNot"
-}
-OptionMenu "SDGameplay"
-{
-	Title "Gameplay Options"
+	StaticText ""
 	
-	Option "Boost Type", "VerticalBoost", "BoostType"
-	StaticText "Type A - horizontal only, anti-gravity, high speed", "LightBlue"
-	StaticText "Type B - aimable, no anti-gravity, less speed (can break maps)", "LightBlue"
-	
-	Option "Hyper Classic Sonic", "HyperSonic", "EnabledOrNot"
-	
-	Option "Dash Aiming", "DashAiming", "EnabledOrNot"
-	StaticText "Hold a direction to aim Classic Sonic's dash.", "LightBlue"
-	StaticText "This won't work with controllers.", "LightBlue"
+	StaticText "Looking for music replacements for Doom 1 and 2?", "White"
+	StaticText "Make sure llbgm.wad is loaded.", "White"
 }
 AddOptionMenu "OptionsMenu"
 {
@@ -134,8 +139,8 @@ AddOptionMenu "OptionsMenu"
 
 OptionValue "BoostType"
 {
-	0, "Type A"
-	1, "Type B"
+	0, "Anti-gravity"
+	1, "Aimable"
 }
 OptionValue "EnabledOrNot"
 {
@@ -144,8 +149,8 @@ OptionValue "EnabledOrNot"
 }
 OptionValue "HUDType"
 {
-	0, "Modern" // Chaos Update HUD
-	1, "Classic" // Pre-Chaos Update HUD
+	0, "Unified" // Chaos Update HUD
+	1, "Classic-Style" // Pre-Chaos Update HUD
 	2, "Legacy" // Minimal HUD, ripped from STHiD Legacy Edition
 }
 
