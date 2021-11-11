@@ -1,2 +1,2 @@
 STARTUPTITLE = "Sonic: Lock and Load"
-STARTUPCOLORS = "4f1cf2", "41c90a"
+STARTUPCOLORS = "001bff", "00e6ff"
