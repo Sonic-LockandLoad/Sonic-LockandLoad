@@ -326,8 +326,16 @@ script "TakeRingsIfSuper" (void)
 {
 	while (CheckInventory("PowerSuper"))
 	{
+		switch(PlayerClass(PlayerNumber()))
+		{
+			case 1: // Amy
+				TakeInventory("ChaosEnergy", 2);
+				break;
+			default:
+				TakeInventory("ChaosEnergy", 1);
+				break;
+		}
 		Delay(2);
-		TakeInventory("ChaosEnergy", 1);
 		if (!CheckInventory("ChaosEnergy"))
 		{
 			TakeInventory("PowerSuper", 1);
