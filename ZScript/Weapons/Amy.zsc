@@ -225,7 +225,11 @@ class PrecisionShotgun : Weapon
 	{
 		Ready:
 			AMSG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
+			TNT1 A 0 {
+				ACS_NamedExecute("KickCooldown");
+				A_ZoomFactor(1);
+				A_TakeInventory("ZoomCharge", 100);
+			}
 			Loop;
 		Deselect:
 			AMSG A 1 A_Lower;
@@ -280,6 +284,7 @@ class PrecisionShotgun : Weapon
 			AMSG A 0 A_PlaySound("amy/error");
 			Goto Ready;
 		AltFire:
+			AMSG A 0 A_JumpIf(CountInv("PowerSuper"), 2);
 			AMSG A 0 A_JumpIf(CountInv("ChaosEnergy") < 120, "NoShot");
 			AIMA A 0 A_ZoomFactor(4);
 			AIMA A 0
