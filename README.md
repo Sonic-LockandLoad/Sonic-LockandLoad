@@ -27,6 +27,9 @@ All pre-release versions are [here](https://github.com/Sonic-LockandLoad/Sonic-L
 
 These are pre-releases from *ages ago,* so they are almost fundamentally different to the current unstable version -- it's recommended you play the unstable version.
 
+## Have any suggestions for or problems with the mod?
+Open a [GitHub issue](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/issues), it'll probably be resolved soon if possible.
+
 ## Does this mod support multiplayer?
 No, for multiple reasons:
 
