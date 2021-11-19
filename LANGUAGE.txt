@@ -178,7 +178,7 @@ QUITMSG1 = "\c[MenuActive] I see your problem... too slow!";
 QUITMSG2 = "\c[MenuActive] What's the matter? Can't keep up?";
 QUITMSG3 = "\c[MenuActive] I've already lapped you three times...";
 QUITMSG4 = "\c[MenuActive] Hey! Wait! What about your memories?!";
-QUITMSG5 = "\c[MenuActive] Talk about low budget mods,\nno campaign or tutorial...";
+QUITMSG5 = "\c[MenuActive] Talk about low budget mods...";
 QUITMSG6 = "\c[MenuActive] How long is this game gonna go on?";
 QUITMSG7 = "\c[MenuActive] <Insert funny Sonic reference here>";
 
