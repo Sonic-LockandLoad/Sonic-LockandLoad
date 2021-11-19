@@ -63,7 +63,7 @@ DamageType Drowning
 
 episode S_LOBBY
 {
-	name = "Lock & Load"
+	name = "Station Square"
 }
 
 map SDLvl01 "Green Hill"
@@ -444,4 +444,5 @@ DoomEdNums
 	2045  = "Nintendo64"
 	
 	9069  = "Doox"
+	9068  = "RoadClosed"
 }
