@@ -164,6 +164,21 @@ class SideLevelsText : Actor
 	}
 }
 
+class RoadClosed : Actor
+{
+	Default
+	{
+		//$Category Lock & Load Objects
+		+NOGRAVITY
+	}
+	States
+	{
+		Spawn:
+			RCLS A -1;
+			Stop;
+	}
+}
+
 class Doox : Actor
 {
 	Default

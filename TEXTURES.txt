@@ -109,3 +109,11 @@ graphic M_PAUSE, 589, 52
 	offset 0, 0
 	patch M_PAUSE, 0, 0
 }
+
+sprite RCLSA0, 165, 165
+{
+	xscale 1.6
+	yscale 1.8
+	offset 81, 161
+	patch RCLSA0, 0, 0
+}
