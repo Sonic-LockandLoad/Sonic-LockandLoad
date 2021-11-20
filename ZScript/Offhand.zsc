@@ -142,7 +142,6 @@ class SonicDash : CustomInventory
 		Stop;
 	Boost:
 		TNT1 A 0 {
-			invoker.Boosting = true;
 			A_GiveInventory("KickCooldown", 25);
 			A_AlertMonsters();
 			A_StartSound("classic/go", 8);
