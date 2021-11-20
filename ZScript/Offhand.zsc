@@ -127,6 +127,7 @@ class AmyKick : CustomInventory
 class SonicDash : CustomInventory
 {
 	int inuse;
+	bool Boosting;
 	States
 	{
 	Use:
@@ -141,28 +142,36 @@ class SonicDash : CustomInventory
 		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "Boost");
 		Stop;
 	Boost:
-		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
-		TNT1 A 0 A_AlertMonsters();
-		TNT1 A 0 A_StartSound("classic/go", 8);
-		TNT1 A 0 A_StartSound("sweapons/boost");
+		TNT1 A 0 {
+			invoker.Boosting = true;
+			A_GiveInventory("KickCooldown", 25);
+			A_AlertMonsters();
+			A_StartSound("classic/go", 8);
+			A_StartSound("sweapons/boost");
+		}
 		TNT1 A 0 A_JumpIf(CountInv("PowerHyper"), "HyperBoost");
-		BOOS B 15
-		{
+		BOOS B 15 Bright {
+			A_Light(10);
 			A_FireBullets(25, 25, 100, 200, "SonicDashPuff", FBF_NOPITCH);
 			A_TakeInventory("ChaosEnergy", 25);
 			A_ChangeVelocity(Cos(Pitch) * 128, 0, Sin(Pitch) * -128, CVF_Relative);
-			A_Light(10);
 		}
-		TNT1 A 0 A_Light(0);
+		BOOS B 0 {
+			A_Light(0);
+			invoker.Boosting = false;
+		}
 		Stop;
 	HyperBoost:
-		BOOS C 15
+		BOOS C 15 Bright
 		{
+			A_Light(10);
 			A_FireBullets(50, 50, 200, 200, "SonicDashPuff", FBF_NOPITCH);
 			A_ChangeVelocity(Cos(Pitch) * 200, 0, Sin(Pitch) * -200, CVF_Relative);
-			A_Light(10);
 		}
-		TNT1 A 0 A_Light(0);
+		BOOS B 0 {
+			A_Light(0);
+			invoker.Boosting = false;
+		}
 		Stop;
 	DashAtk:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
@@ -249,7 +258,11 @@ class SonicDash : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 4;
+			if (owner.FindInventory("PowerSuper") || owner.FindInventory("PowerHyper")) {
+				inuse = 15;
+			} else {
+				inuse = 6;
+			}
 		}
 	}
 }
