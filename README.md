@@ -2,7 +2,8 @@
 *Sonic: Lock and Load* is a DOOM mod for the GZDoom source port based on Sonic the Hedgehog.
 Includes player classes, weapons, items and certain techniques.
 
-I eventually plan to make this mod available as a standalone game.
+## Downloads
+All releases are [here](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/releases). Just download the PK3 and open it with GZDoom.
 
 ## Playing the git (unstable) version
 ### Using `git clone`
@@ -21,11 +22,6 @@ Run `Sonic-LockandLoad-main.zip` with GZDoom.<br>
 Optionally, you can rename `Sonic-LockandLoad-edge.zip` to `Sonic-LockandLoad-edge.pk3`.<br>
 
 ***Be warned that unless you un-nest the folder inside the ZIP, you will not be able to edit maps.***
-
-## Playing a pre-release version
-All pre-release versions are [here](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/releases).
-
-These are pre-releases from *ages ago,* so they are almost fundamentally different to the current unstable version -- it's recommended you play the unstable version.
 
 ## Have any suggestions for or problems with the mod?
 Open a [GitHub issue](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/issues), it'll probably be resolved soon if possible.
@@ -50,7 +46,7 @@ No, for multiple reasons:
 - **Sonic is super slow, I can't kick, and dying crashes the game**
     - Your game is borked. Delete your config and reconfigure GZDoom all over again.
 - **Textures and things are broken when editing maps**
-    - This is usually because you downloaded a ZIP with a nested folder. (Thanks, GitHub.) You should [switch to using the `git clone` method](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad#using-git-clone) if you wish to edit maps for this mod.
+    - This is usually because you downloaded a ZIP with a nested folder. (Thanks, GitHub.) You should download the Chaos Update PK3 or use `git clone`.
 
 ## Copyright
 Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
