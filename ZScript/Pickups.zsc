@@ -46,6 +46,7 @@ class RingBox : CustomInventory replaces Stimpack // 2011
 		Radius 20;
 		Height 30;
 		Inventory.PickupMessage "";
+		Inventory.PickupSound "spickup/boxdestroy";
 		DeathSound "spickup/boxdestroy";
 		+COUNTITEM
 		+INVENTORY.ALWAYSPICKUP
