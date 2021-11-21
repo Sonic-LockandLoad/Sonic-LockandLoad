@@ -60,37 +60,37 @@ script "TransformSuper" (void)
             case 0: // Sonic
                  if (GetCvar("SupSonic") == 1)
 				 {
-					 SetMusic("v_supsnc", 0);
+					 SetMusic("S_SUPER", 0);
 				 }
 				 else if (GetCvar("SupSonic") == 2)
 				 {
-					 SetMusic("m_supsnc", 0);
+					 SetMusic("S_SUPER2", 0);
 				 }
                  break;
             case 1: // Amy
                  if (GetCvar("SupAmy"))
 				 {
-					SetMusic("m_supamy", 0);
+					SetMusic("A_SUPER", 0);
 				 }
                  break;
             case 2: // Classic Sonic
                  if (GetCvar("SupClassic") == 1)
 				 {
-					 SetMusic("v_supcls", 0);
+					 SetMusic("C_SUPER", 0);
 				 }
 				 else if (GetCvar("SupClassic") == 2)
 				 {
-					 SetMusic("m_supcls", 0);
+					 SetMusic("C_SUPER2", 0);
 				 }
                  break;
             case 3: // Shadow
                  if (GetCvar("SupShadow") == 1)
 				 {
-					 SetMusic("v_supsha", 0);
+					 SetMusic("D_SUPER", 0);
 				 }
 				 else if (GetCvar("SupShadow") == 2)
 				 {
-					 SetMusic("m_supsha", 0);
+					 SetMusic("D_SUPER2", 0);
 				 }
                  break;
             case -1:

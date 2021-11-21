@@ -178,8 +178,8 @@ OptionValue "ShadowI"
 OptionValue "SonicS"
 {
 	0, "None"
-	1, "Reach for the Stars Re;Colors"
-	2, "His World (Zebrahead)"
+	1, "His World (Zebrahead)"
+	2, "Endless Possibility (30th Anniversary)"
 }
 OptionValue "AmyS"
 {
