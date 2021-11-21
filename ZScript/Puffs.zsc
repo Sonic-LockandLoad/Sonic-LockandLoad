@@ -1,27 +1,3 @@
-class ShardPuff : Actor
-{
-	Default
-	{
-		+NOBLOCKMAP
-		+NOGRAVITY
-		+ALLOWPARTICLES
-		+RANDOMIZE
-		RenderStyle "Normal";
-		Alpha 0.5;
-		VSpeed 1;
-		Mass 5;
-	}
-	States
-	{
-		Spawn:
-			SHPF A 4 Bright;
-			SHPF B 4;
-		Melee:
-			SHPF CD 4;
-			Stop;
-	}
-}
-
 class ShadowMeleeAtk : Actor
 {
 	Default
