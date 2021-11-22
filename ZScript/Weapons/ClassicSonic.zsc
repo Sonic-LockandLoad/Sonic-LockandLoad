@@ -50,7 +50,7 @@ class ClassicAbilities : Weapon replaces Fist
 			TNT1 A 0 {
 				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 				if (buttons & BT_CROUCH && A_CheckFloor("Null")) {
-					return ResolveState("SpinCheck");
+					return ResolveState("SpinCharge");
 				}
 				else
 				{
@@ -63,39 +63,31 @@ class ClassicAbilities : Weapon replaces Fist
 			}
 			// intentional passthrough
 		Drift:
-			TNT1 A 0 A_ClearOverlays(0, 0);
-			TNT1 A 0 A_PlaySound("sweapons/drift", 2);
-			TNT1 A 0
-			{
+			TNT1 A 0 {
+				A_ClearOverlays(0, 0);
+				A_PlaySound("sweapons/drift", 2);
+				A_Light(2);
 				if (A_CheckFloor("Drift")) {
 					A_Recoil(-12); // on the ground
-				}
-				else {
+				} else {
 					A_Recoil(-6); // in the air
 				}
 			}
-			TNT1 A 0 A_Light(2);
-			TNT1 A 0 
-			{
-				if (CountInv("PowerSuper") < 1 && CountInv("PowerHyper") < 1)
-				{
+			TNT1 A 0 {
+				if (CountInv("PowerSuper") < 1 && CountInv("PowerHyper") < 1) {
 					A_GiveInventory("ChaosEnergy");
 				}
 			}
-			SPIN A 1
-			{
-				if (CountInv("PowerSuper") > 0)
-				{
+			SPIN A 1 {
+				if (CountInv("PowerSuper") > 0) {
 					A_SetSpeed(8);
 					A_CustomPunch(4, false, 0, "LightAttack", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
-				else if (CountInv("PowerHyper") > 0)
-				{
+				else if (CountInv("PowerHyper") > 0) {
 					A_SetSpeed(12);
 					A_CustomPunch(8, false, 0, "LightAttack", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
-				else
-				{
+				else {
 					A_SetSpeed(4);
 					A_CustomPunch(2, false, 0, "LightAttack", 64, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
@@ -104,9 +96,8 @@ class ClassicAbilities : Weapon replaces Fist
 			TNT1 A 0 A_StopSound(2);
 			TNT1 A 0 A_Light(0);
 			Goto Ready;
-		SpinCheck:
-			TNT1 A 1
-			{
+		SpinCharge:
+			TNT1 A 1 {
 				A_OverlayFlags(9, PSPF_ADDWEAPON, true);
 				A_Overlay(9, "SpinAnim", true);
 				invoker.PeeloutCheck = true;
@@ -132,7 +123,7 @@ class ClassicAbilities : Weapon replaces Fist
 				} else {
 					A_Recoil(invoker.SpinCharges * -2);
 				}
-				A_CustomPunch(invoker.SpinCharges * 8, false, 0, "LightAttack", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				A_CustomPunch(invoker.SpinCharges, false, 0, "LightAttack", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			}
 			TNT1 A 0 { invoker.SpinCharges = 0; }
 			Goto Ready;
