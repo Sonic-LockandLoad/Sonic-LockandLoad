@@ -3,7 +3,6 @@ user bool VerticalBoost = false;
 user int HyperSonic = 1;
 user noarchive int StopBeingBrutal = 0;
 user int DkgBruTecFpgA = 0;
-user bool DashAiming = true;
 user int DeathMusic = 1;
 user int RingType = 1;
 

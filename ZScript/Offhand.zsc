@@ -183,47 +183,41 @@ class SonicDash : CustomInventory
 			if (A_CheckFloor("DashAtk")) { dashspeed = 42; } else { dashspeed = 32; }
 			invdspeed = dashspeed * -1;
 			
-			if (GetCvar("DashAiming")) {
-				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-				int input = 0;
-				
-				if (debug) {
-					A_LogInt(dashspeed);
-					A_LogInt(invdspeed);
-				}
-				
-				if (buttons & BT_FORWARD) {
-					if (debug) { A_Log("Forward"); }
-					A_ChangeVelocity(Cos(Pitch) * dashspeed, 0, Sin(Pitch) * invdspeed, CVF_Relative);
-					input = 1;
-				}
-				
-				if (buttons & BT_MOVELEFT) {
-					if (debug) { A_Log("Left"); }
-					A_ChangeVelocity(0, Cos(Pitch) * dashspeed, 0, CVF_Relative);
-					input = 1;
-				}
-				
-				if (buttons & BT_MOVERIGHT) {
-					if (debug) { A_Log("Right"); }
-					A_ChangeVelocity(0, Cos(Pitch) * invdspeed, 0, CVF_Relative);
-					input = 1;
-				}
-				
-				if (buttons & BT_BACK) {
-					if (debug) { A_Log("Back"); }
-					A_ChangeVelocity(Cos(Pitch) * invdspeed, 0, Sin(Pitch) * dashspeed, CVF_Relative);
-					input = 1;
-				}
-				
-				if (!input) {
-					if (debug) { A_Log("No keys"); }
-					A_ChangeVelocity(Cos(Pitch) * dashspeed, 0, Sin(Pitch) * invdspeed, CVF_Relative);
-				}
-				
+			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+			int input = 0;
+			
+			if (debug) {
+				A_LogInt(dashspeed);
+				A_LogInt(invdspeed);
 			}
-			else {
+			
+			if (buttons & BT_FORWARD) {
+				if (debug) { A_Log("Forward"); }
 				A_ChangeVelocity(Cos(Pitch) * dashspeed, 0, Sin(Pitch) * invdspeed, CVF_Relative);
+				input = 1;
+			}
+			
+			if (buttons & BT_MOVELEFT) {
+				if (debug) { A_Log("Left"); }
+				A_ChangeVelocity(0, Cos(Pitch) * dashspeed, 0, CVF_Relative);
+				input = 1;
+			}
+			
+			if (buttons & BT_MOVERIGHT) {
+				if (debug) { A_Log("Right"); }
+				A_ChangeVelocity(0, Cos(Pitch) * invdspeed, 0, CVF_Relative);
+				input = 1;
+			}
+			
+			if (buttons & BT_BACK) {
+				if (debug) { A_Log("Back"); }
+				A_Recoil(dashspeed); // Uses A_Recoil to disable vertical aiming
+				input = 1;
+			}
+			
+			if (!input) {
+				if (debug) { A_Log("No keys"); }
+				A_ChangeVelocity(Cos(Pitch) * (dashspeed + 14), 0, Sin(Pitch) * invdspeed, CVF_Relative);
 			}
 		}
 		TNT1 A 5

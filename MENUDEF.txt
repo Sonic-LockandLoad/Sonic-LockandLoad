@@ -93,11 +93,6 @@ OptionMenu "LockandLoadOptions"
 	Option "Hyper Classic Sonic", "HyperSonic", "EnabledOrNot"
 	StaticText ""
 	
-	Option "Dash Aiming", "DashAiming", "EnabledOrNot"
-	StaticText "Hold a direction to aim Classic Sonic's dash.", "LightBlue"
-	StaticText "This won't work with controllers.", "LightBlue"
-	StaticText ""
-	
 	SubMenu "Configure Music", "SDMusic"
 	StaticText "Configure music tracks for Super forms,", "LightBlue"
 	StaticText "invincibility and death.", "LightBlue"
