@@ -121,7 +121,7 @@ script "TransformHyper" (void)
 		{
 			if (GetCvar("HyperMusic"))
 			{
-				SetMusic("m_hypcls", 0);
+				SetMusic("C_HYPER", 0);
 			}
 		    SetMugShotState("Hyper");
 			TakeInventory("PowerSuper", 1);
