@@ -2,6 +2,7 @@ class ClassicAbilities : Weapon replaces Fist
 {
 	bool PeeloutCheck;
 	int SpinCharges;
+	int SpinDamageMultiplier;
 	Default
 	{
 		Weapon.SelectionOrder 3700;
@@ -123,7 +124,14 @@ class ClassicAbilities : Weapon replaces Fist
 				} else {
 					A_Recoil(invoker.SpinCharges * -2);
 				}
-				A_CustomPunch(invoker.SpinCharges, false, 0, "LightAttack", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				if (CountInv("PowerHyper")) { 
+					invoker.SpinDamageMultiplier = 8; 
+				} else if (CountInv("PowerSuper")) {
+					invoker.SpinDamageMultiplier = 2;
+				} else {
+					invoker.SpinDamageMultiplier = 1;
+				}
+				A_CustomPunch(invoker.SpinCharges * invoker.SpinDamageMultiplier, false, 0, "LightAttack", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			}
 			TNT1 A 0 { invoker.SpinCharges = 0; }
 			Goto Ready;
