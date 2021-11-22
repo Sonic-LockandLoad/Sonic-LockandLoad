@@ -52,13 +52,18 @@ class ClassicAbilities : Weapon replaces Fist
 				if (buttons & BT_CROUCH && A_CheckFloor("Null")) {
 					return ResolveState("SpinCheck");
 				}
-				if (random[HereWeGo](1, 2) == 1) {
-					A_PlaySound("classic/driftline", 7);
+				else
+				{
+					if (random[HereWeGo](1, 2) == 1) {
+						A_PlaySound("classic/driftline", 7);
+					}
+					return ResolveState("Drift");
 				}
-				return ResolveState("Drift");
+				return ResolveState(null);
 			}
 			// intentional passthrough
 		Drift:
+			TNT1 A 0 A_ClearOverlays(0, 0);
 			TNT1 A 0 A_PlaySound("sweapons/drift", 2);
 			TNT1 A 0
 			{
@@ -100,47 +105,40 @@ class ClassicAbilities : Weapon replaces Fist
 			TNT1 A 0 A_Light(0);
 			Goto Ready;
 		SpinCheck:
-			TNT1 A 2
+			TNT1 A 1
 			{
 				A_OverlayFlags(9, PSPF_ADDWEAPON, true);
 				A_Overlay(9, "SpinAnim", true);
 				invoker.PeeloutCheck = true;
-				A_PlaySound("sweapons/peelout", 5);
-				if (invoker.SpinCharges < 99) { invoker.SpinCharges++; }
+				if (invoker.SpinCharges < 1 || invoker.SpinCharges % 3 == 0) {
+					A_PlaySound("sweapons/peelout", 5);
+				}
+				invoker.SpinCharges++;
 				A_Light(3);
 			}
 			TNT1 A 0 A_SetSpeed(0.1);
 			TNT1 A 1 A_ReFire;
 			TNT1 A 0 A_ClearOverlays(0, 0);
-			TNT1 A 0 A_JumpIf(invoker.SpinCharges > 8,"SpinDash");
-		Spin:
-			TNT1 A 0 A_SetSpeed(4);
-			TNT1 A 0 A_PlaySound("sweapons/peeloutrelease", 5);
 			TNT1 A 0 {
-				invoker.PeeloutCheck = true;
-				invoker.SpinCharges = 0;
-			}
-			TNT1 A 0 A_Light(0);
-			TNT1 AAAA 1
-			{
-				A_Recoil(-16);
-				A_CustomPunch(25, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit");
-			}
-			Goto Ready;
-		SpinDash:
-			TNT1 A 0 A_SetSpeed(4);
-			TNT1 A 0 A_PlaySound("sweapons/peeloutrelease", 5);
-			TNT1 A 0 {
+				A_Light(0);
+				A_SetSpeed(4);
+				A_PlaySound("sweapons/peeloutrelease", 5);
 				invoker.PeeloutCheck = false;
-				invoker.SpinCharges = 0;
 			}
-			TNT1 A 0 A_Light(0);
-			TNT1 AAAAAA 1
-			{
-				A_Recoil(-32);
-				A_CustomPunch(50, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sonicdoom/hit");
+		SpinDash:
+			TNT1 AAAAAAAAAAAA 1 {
+				if (invoker.SpinCharges > 16) {
+					A_Recoil(invoker.SpinCharges * -1);
+				} else {
+					A_Recoil(invoker.SpinCharges * -2);
+				}
+				A_CustomPunch(invoker.SpinCharges * 8, false, 0, "LightAttack", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			}
+			TNT1 A 0 { invoker.SpinCharges = 0; }
 			Goto Ready;
+		SpinAnim:
+			SPIN ABCDEFEDCB 1;
+			Loop;
 	}
 }
 
