@@ -49,7 +49,7 @@ class ClassicAbilities : Weapon replaces Fist
 		AltFire:
 			TNT1 A 0 {
 				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-				if (buttons & BT_CROUCH) {
+				if (buttons & BT_CROUCH && A_CheckFloor("Null")) {
 					return ResolveState("SpinCheck");
 				}
 				if (random[HereWeGo](1, 2) == 1) {
