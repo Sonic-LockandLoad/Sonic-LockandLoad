@@ -1,6 +1,6 @@
 <h1 align=center>Welcome to Sonic: Lock and Load!</h1>
-<div align=center><a href="https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/releases">Downloads</a> | <a href="https://forum.zdoom.org/viewtopic.php?f=19&t=72593">ZDoom Forum page</a> | <a href="https://sonicfangameshq.com/forums/showcase/sonic-lock-load.1199">SFGHQ Showcase page</a> (awaiting approval)</div>
-<br>
+<p align=center><a href="https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/releases">Downloads</a> | <a href="https://forum.zdoom.org/viewtopic.php?f=19&t=72593">ZDoom Forum page</a> | <a href="https://sonicfangameshq.com/forums/showcase/sonic-lock-load.1199">SFGHQ Showcase page</a> (awaiting approval)</p>
+<p align=center><img src="https://raw.githubusercontent.com/Sonic-LockandLoad/Preview-Screenshots/edge/Sonic-LockandLoadLogo.png" width=400px /></p>
 
 *Sonic: Lock and Load* is a DOOM mod for the GZDoom source port based on Sonic the Hedgehog.
 Includes player classes, weapons, items and certain techniques.
