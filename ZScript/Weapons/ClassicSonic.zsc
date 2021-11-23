@@ -104,7 +104,7 @@ class ClassicAbilities : Weapon replaces Fist
 				A_OverlayFlags(9, PSPF_ADDWEAPON, true);
 				A_Overlay(9, "SpinAnim", true);
 				invoker.PeeloutCheck = true;
-				if (invoker.SpinCharges > 50) { invoker.ShweeDelay = 3; }
+				if (invoker.SpinCharges > 30) { invoker.ShweeDelay = 3; }
 				if (invoker.SpinCharges < 1 || invoker.SpinCharges % invoker.ShweeDelay == 0) {
 					A_PlaySound("sweapons/peelout", 5);
 				}
