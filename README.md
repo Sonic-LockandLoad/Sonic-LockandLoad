@@ -6,7 +6,7 @@
 
 **Have any suggestions for or problems with the mod?** Open a [GitHub issue](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/issues), it'll probably be resolved soon if possible.
 
-To play an unstable version of Lock & Load, use `git clone` or [`gh-get`](https://github.com/That1M8Head/gh-get) to clone it to your computer, and open the cloned repo with GZDoom, like you would with a WAD or PK3. You can update with `git pull`.
+To play an unstable version of Lock & Load, use `git clone` or [`gh-get`](https://github.com/That1M8Head/gh-get) to clone it to your computer, and open the cloned repo with GZDoom, like you would with a WAD or PK3. You can update with `git pull`. **Unstable versions contain unfinished stuff, the latest release is recommended.**
 
 ## Copyright
 Sonic: Lock & Load is a fan-made Doom mod. All copyrights go to their intended holders.<br>
