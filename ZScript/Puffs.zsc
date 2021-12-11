@@ -154,32 +154,10 @@ class SonicReticle : Actor
 	}
 	States
 	{
-	Spawn:
-		RETI A 1;
-	Melee:
-		RETI A 1 Bright;
-		Stop;
-	}
-}
-
-class LightSpeedReticle : Actor
-{
-	Default
-	{
-		+WALLSPRITE
-		+NOGRAVITY
-		+PUFFONACTORS
-		RenderStyle "Normal";
-		Alpha 1;
-		VSpeed 0;
-		Mass 0;
-	}
-	States
-	{
 		Spawn:
-			TNT1 A 0 Bright;
+			RETI A 0;
 		Melee:
-			RETI B 1 Bright;
+			RETI A 1 Bright;
 			Stop;
 	}
 }
