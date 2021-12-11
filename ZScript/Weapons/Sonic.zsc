@@ -42,9 +42,9 @@ class SonicAbilities : Weapon
 			TNT1 A 0
 			{
 				if (CountInv("PowerSuper")) {
-					A_FireBullets(0, 0, 1, random(1,16)*48, "LightAttack", FBF_NORANDOM);
+					A_FireBullets(0, 0, 5, random(1,16)*24, "LightAttack", FBF_NORANDOM);
 				} else {
-					A_FireBullets(0, 0, 1, random(1,16)*24, "LightAttack", FBF_NORANDOM);
+					A_FireBullets(0, 0, 5, random(1,16)*12, "LightAttack", FBF_NORANDOM);
 				}
 			}
 			TNT1 A 12 A_ChangeVelocity (Cos(Pitch) * 60, 0, Sin(Pitch) * -20, CVF_Relative);
