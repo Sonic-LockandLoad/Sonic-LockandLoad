@@ -155,15 +155,9 @@ class SonicReticle : Actor
 	States
 	{
 	Spawn:
-		TNT1 A 0;
+		RETI A 1;
 	Melee:
-		RETI A 1 Bright
-		{
-			if (CountInv("PeeloutCheck", AAPTR_PLAYER1) < 1)
-			{
-				ACS_NamedExecute("ReticleSound");
-			}
-		}
+		RETI A 1 Bright;
 		Stop;
 	}
 }

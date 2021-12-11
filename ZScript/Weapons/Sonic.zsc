@@ -13,6 +13,7 @@ class SonicAbilities : Weapon
 		Tag "Sonic the Hedgehog";
 		+WEAPON.MELEEWEAPON
 		+WEAPON.NOAUTOFIRE
+		+WEAPON.NOAUTOAIM
 	}
 	States
 	{
@@ -28,10 +29,15 @@ class SonicAbilities : Weapon
 		Fire:
 			TNT1 A 0 A_JumpIf(GetCvar("DkgBruTecFpgA"), "AltFire");
 			TNT1 A 0 A_JumpIf(invoker.HomingCharges > 40,"LightSpeedAttack");
-			TNT1 A 0 A_SetSpeed(0.1);
-			TNT1 A 1 A_FireBullets(0, 0, 1, 0, "SonicReticle", FBF_NORANDOMPUFFZ, 1024);
 			TNT1 A 0
 			{
+				if (CountInv("PeeloutCheck") < 1) {
+					ACS_NamedExecute("ReticleSound");
+				}
+			}
+			TNT1 A 0 A_SetSpeed(0.1);
+			TNT1 A 1 A_FireBullets(0, 0, 1, 0, "SonicReticle", FBF_NORANDOMPUFFZ);
+			TNT1 A 0 {
 				A_GiveInventory("PeeloutCheck");
 				invoker.HomingCharges++;
 				invoker.LightSpeedCheck = false;
@@ -44,16 +50,13 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_SetSpeed(4);
 			TNT1 A 0
 			{
-				if (CountInv("PowerSuper"))
-				{
-					A_FireBullets(0, 0, 1, random(1,16)*48, "LightAttack", FBF_NORANDOM, 1024);
-				}
-				else
-				{
-					A_FireBullets(0, 0, 1, random(1,16)*24, "LightAttack", FBF_NORANDOM, 1024);
+				if (CountInv("PowerSuper")) {
+					A_FireBullets(0, 0, 1, random(1,16)*48, "LightAttack", FBF_NORANDOM);
+				} else {
+					A_FireBullets(0, 0, 1, random(1,16)*24, "LightAttack", FBF_NORANDOM);
 				}
 			}
-			TNT1 A 12 A_ChangeVelocity (Cos(Pitch) * 50, 0, Sin(Pitch) * -20, CVF_Relative);
+			TNT1 A 12 A_ChangeVelocity (Cos(Pitch) * 60, 0, Sin(Pitch) * -20, CVF_Relative);
 			Goto Ready;
 		LightSpeedAttack:
 			TNT1 A 0 A_FireBullets(0, 0, 1, 0, "LightSpeedReticle", FBF_NORANDOMPUFFZ);
@@ -61,8 +64,7 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_TakeInventory("PeeloutCheck");
 			TNT1 A 1
 			{
-				if (!invoker.LightSpeedCheck)
-				{
+				if (!invoker.LightSpeedCheck) {
 					invoker.LightSpeedCheck = true;
 					A_PlaySound("sonic/herewe", 6);
 				}
@@ -78,12 +80,9 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_PlaySound("sweapons/sdash", 7);
 			TNT1 A 0 
 			{
-				if (CountInv("PowerSuper"))
-				{
+				if (CountInv("PowerSuper")) {
 					A_FireBullets(0, 0, 20, random(1,16)*48, "LightAttack", FBF_NORANDOM);
-				}
-				else
-				{
+				} else {
 					A_FireBullets(0, 0, 20, random(1,16)*24, "LightAttack", FBF_NORANDOM);
 				}
 			}
@@ -102,8 +101,7 @@ class SonicAbilities : Weapon
 		Boost:
 			TNT1 A 0
 			{
-				if (!invoker.BoostCheck)
-				{
+				if (!invoker.BoostCheck) {
 					invoker.BoostCheck = true;
 					A_StartSound("sonic/boost", 6);
 					A_StartSound("sweapons/boost", 7);
@@ -113,14 +111,10 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_PlaySound("sweapons/boosttrail", 1, 1.0, true);
 			TNT1 A 0
 			{
-				if (!GetCvar("DkgBruTecFpgA"))
-				{
-					if (GetCvar("VerticalBoost"))
-					{
+				if (!GetCvar("DkgBruTecFpgA")) {
+					if (GetCvar("VerticalBoost")) {
 						A_ChangeVelocity (Cos(Pitch) * 20, 0, Sin(Pitch) * -20, CVF_Relative);
-					}
-					else
-					{
+					} else {
 						A_LowGravity();
 						A_Recoil(-40);
 					}
