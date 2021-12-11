@@ -85,15 +85,10 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_TakeInventory("ChaosEnergy", 1);
 			BOOS A 1 A_CustomPunch(5, false, CPF_NOTURN, "GibPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			TNT1 A 0 A_ReFire();
-			TNT1 A 0
-			{
-				if (!GetCvar("VerticalBoost"))
-				{
-					A_Gravity();
-				}
-			}
+			TNT1 A 0 { if (!GetCvar("VerticalBoost")) { A_Gravity(); } }
 			TNT1 A 0 { invoker.BoostCheck = false; }
 			TNT1 A 0 A_StopSound(1);
+			TNT1 A 0 A_Light(0);
 			Goto Ready;
 		SuperBoost:
 			TNT1 A 0
