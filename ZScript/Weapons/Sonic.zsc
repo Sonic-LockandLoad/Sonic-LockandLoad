@@ -39,15 +39,8 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_PlaySound("sweapons/sdash", 5);
 			TNT1 A 0 A_TakeInventory("PeeloutCheck");
 			TNT1 A 0 A_SetSpeed(4);
-			TNT1 A 0
-			{
-				if (CountInv("PowerSuper")) {
-					A_FireBullets(0, 0, 5, random(1,16)*24, "LightAttack", FBF_NORANDOM);
-				} else {
-					A_FireBullets(0, 0, 5, random(1,16)*12, "LightAttack", FBF_NORANDOM);
-				}
-			}
-			TNT1 A 18 A_ChangeVelocity (Cos(Pitch) * 60, 0, Sin(Pitch) * -20, CVF_Relative);
+			TNT1 A 0 A_FireBullets(0, 0, 5, random(1,16)*12, "LightAttack", FBF_NORANDOM);
+			TNT1 A 18 A_ChangeVelocity(Cos(Pitch) * 60, 0, Sin(Pitch) * -20, CVF_Relative);
 			Goto Ready;
 		Reload:
 			TNT1 A 0 A_GiveInventory("SonicKick");
