@@ -70,16 +70,6 @@ map SDLvl01 "Green Hill"
 {
 	music = S_LVL01
 	sky1 = "GHZSKY"
-	next = "SDLvl02"
-	author = "That1M8Head"
-	partime = 90
-	cluster = 401
-}
-
-map SDLvl02 "City Escape"
-{
-	music = S_LVL02
-	sky1 = "CITYSKY"
 	next = "S_LOBBY"
 	author = "That1M8Head"
 	partime = 90
