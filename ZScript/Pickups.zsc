@@ -12,7 +12,7 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 	States
 	{
 		Spawn:
-			RIN1 ABCDEFGHIJKLMNOP 1 A_SetScale(1, 0.9);
+			RIN1 ABCDEFGHIJKLMNOP 1 Bright A_SetScale(1, 0.9);
 			Loop;
 		Pickup:
 			TNT1 A 0
@@ -56,7 +56,7 @@ class RingBox : CustomInventory replaces Stimpack // 2011
 	States
 	{
 		Spawn:
-			RBOX A -1;
+			RBOX A -1 Bright;
 			Stop;
 		Pickup:
 		Death:
@@ -118,7 +118,7 @@ class SpecialRing : CustomInventory replaces Medikit // 2012
 	States
 	{
 		Spawn:
-			RIN2 ABCDEFGHIJKLMNOP 2 NoDelay A_SetScale(2, 1.7);
+			RIN2 ABCDEFGHIJKLMNOP 2 NoDelay Bright A_SetScale(2, 1.7);
 			Loop;
 		Pickup:
 			TNT1 A 0
@@ -173,7 +173,7 @@ class ChaosRing : CustomInventory replaces ArmorBonus // 2015
 	States
 	{
 		Spawn:
-			RIN3 ABCDEFGHIJKLMNOP 1 A_SetScale(1, 0.9);
+			RIN3 ABCDEFGHIJKLMNOP 1 Bright A_SetScale(1, 0.9);
 			Loop;
 		Pickup:
 			TNT1 A 5
@@ -240,7 +240,7 @@ class SoulRing : CustomInventory
 	States
 	{
 		Spawn:
-			RIN4 ABCDEFGHIJKLMNOP 1 A_SetScale(1, 0.9);
+			RIN4 ABCDEFGHIJKLMNOP 1 Bright A_SetScale(1, 0.9);
 			Loop;
 		Pickup:
 			TNT1 A 5 A_GiveInventory("ChaosEnergy", 50);
@@ -341,7 +341,7 @@ class ChaosEmeralds : CustomInventory
 	States
 	{
 		Spawn:
-			CHSM A -1;
+			CHSM A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0 ACS_NamedExecute("ChaosEmeraldHandler");
@@ -410,7 +410,7 @@ class ChaosCapsule : ChaosEnergy // 6021
 	States
 	{
 		Spawn:
-			CHSC A -1;
+			CHSC A -1 Bright;
 			Stop;
 	}
 }
@@ -425,7 +425,7 @@ class BlueChaosCapsule : ChaosEnergy // 6022
 	States
 	{
 		Spawn:
-			CHSC B -1;
+			CHSC B -1 Bright;
 			Stop;
 	}
 }
@@ -440,7 +440,7 @@ class RedChaosCapsule : ChaosEnergy // 6023
 	States
 	{
 		Spawn:
-			CHSC C -1;
+			CHSC C -1 Bright;
 			Stop;
 	}
 }
