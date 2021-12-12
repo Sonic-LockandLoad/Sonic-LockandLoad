@@ -117,3 +117,11 @@ sprite RCLSA0, 165, 165
 	offset 81, 161
 	patch RCLSA0, 0, 0
 }
+
+sprite RETIA0, 710, 619
+{
+	xscale 12
+	yscale 15
+	offset 356, 362
+	patch RETIA0, 0, 0
+}
