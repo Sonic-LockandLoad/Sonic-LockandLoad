@@ -1,0 +1,13 @@
+bind Mouse1		+attack
+bind Mouse2 	+altattack
+bind Q 			+reload
+bind Y 			invuse
+bind T 			"pukename Taunt"
+
+bind W			+forward
+bind A			+moveleft
+bind S			+back
+bind D			+moveright
+bind E			+use
+bind Space 		+jump
+bind Ctrl 		+crouch

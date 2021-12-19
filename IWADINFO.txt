@@ -4,7 +4,7 @@
 iwad
 {
 	Name = "Sonic: Lock & Load"
-	AutoName = "Doom.LockandLoad"
+	AutoName = "Sonic-LockandLoad"
 	Game = "Doom"
 	Config = "Doom"
 	IWADName = "Sonic-LockandLoad"

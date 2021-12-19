@@ -1,0 +1,5 @@
+set freelook "true"
+set gl_texture_filter 0
+set gl_lightmode 2
+set cl_run "true"
+set m_use_mouse 1
