@@ -74,7 +74,7 @@ map SDLvl01 "Green Hill"
 	sky1 = "GHZSKY"
 	next = "S_LOBBY"
 	author = "That1M8Head"
-	partime = 90
+	partime = 110
 	cluster = 401
 }
 
