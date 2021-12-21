@@ -78,8 +78,8 @@ class BrokenRings : CustomInventory
 	States
 	{
 		Spawn:
-			10RI ABCDEFGH 2;
-			10RI I -1;
+			10RI ABCDEFGH 2 Bright;
+			10RI I -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0
@@ -219,7 +219,7 @@ class Hint : CustomInventory // 260
 	States
 	{
 		Spawn:
-			HELP A -1;
+			HELP A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0 A_Print("");
@@ -258,7 +258,7 @@ class SoulRecharge : CustomInventory
 	States
 	{
 		Spawn:
-			PSTR A -1;
+			PSTR A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0 A_GiveInventory("ChaosEnergy", 200);
@@ -275,7 +275,7 @@ class EmeraldRecharge : CustomInventory
 	States
 	{
 		Spawn:
-			CPAK A -1;
+			CPAK A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0 A_GiveInventory("ChaosEnergy", 500);
@@ -293,7 +293,7 @@ class InvincibilityBox : CustomInventory
 	States
 	{
 		Spawn:
-			INVC A -1;
+			INVC A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0
@@ -320,7 +320,7 @@ class ShadowFever : CustomInventory
 	States
 	{
 		Spawn:
-			SHAF A -1;
+			SHAF A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0 A_GiveInventory("Invincibility", 1);
@@ -454,7 +454,7 @@ class MacAndCheese : CustomInventory
 	States
 	{
 		Spawn:
-			FMAC A -1;
+			FMAC A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0 A_Print("\c[ShadowRedBlack]I'm making mac and cheese,\n\c[ShadowRedBlack]and nobody can stop me!");
@@ -478,7 +478,7 @@ class GoalRing : CustomInventory // 262
 	States
 	{
 		Spawn:
-			GOAL A -1;
+			GOAL A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0 ACS_NamedExecute("GoalRing");
@@ -496,7 +496,7 @@ class Nintendo64 : CustomInventory replaces Infrared // 2045
 	States
 	{
 		Spawn:
-			NINT A -1;
+			NINT A -1 Bright;
 		Pickup:
 			NINT A 0 A_GiveInventory("Infrared");
 			NINT A 0
@@ -519,7 +519,7 @@ class FakeBackpack : CustomInventory
 	States
 	{
 		Spawn:
-			BPAK A -1;
+			BPAK A -1 Bright;
 			Stop;
 		Pickup:
 			TNT1 A 0 
