@@ -5,6 +5,7 @@ user noarchive int StopBeingBrutal = 0;
 user int DkgBruTecFpgA = 0;
 user int DeathMusic = 1;
 user int RingType = 1;
+user bool ShotgunReplace2 = false;
 
 /* Invincibility music */
 user int InvSonic = 1;
