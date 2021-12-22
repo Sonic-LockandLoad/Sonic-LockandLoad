@@ -20,7 +20,6 @@ OptionMenu "OptionsBranching"
 	
 	SubMenu "Configure Mod Options", "LockandLoadOptions"
 	SubMenu "Configure Controls", "LLControlsMenu"
-	SubMenu "Configure Game Options", "LLCvarMenu"
 	StaticText ""
 	SubMenu "GZDoom Options", "OptionsMenu"
 	SubMenu "Option Search", "os_menu"
