@@ -210,13 +210,42 @@ class ChaosEnergyBallEX : Actor
 	}
 }
 
+class MinorChaosEnergyBall : Actor
+{
+	Default
+	{
+		Radius 13;
+		Height 8;
+		Speed 100;
+		Damage 10;
+		Projectile;
+		+RANDOMIZE
+		+EXTREMEDEATH
+		+ZDOOMTRANS
+		DamageType "Eclipse";
+		RenderStyle "Add";
+		Alpha 0.75;
+		SeeSound "weapons/plasmaf";
+		DeathSound "weapons/plasmax";
+	}
+	States
+	{
+		Spawn:
+			PLSS AB 6 Bright;
+			Loop;
+		Death:
+			PLSE ABCDE 4 Bright;
+			Stop;
+	}
+}
+
 class SuperChaosEnergyBall : Actor
 {
 	Default
 	{
 		Radius 13;
 		Height 8;
-		Speed 40;
+		Speed 80;
 		Damage 70;
 		DamageType "Eclipse";
 		Projectile;
@@ -237,33 +266,6 @@ class SuperChaosEnergyBall : Actor
 			BFE1 AB 4 Bright;
 			BFE1 C 4 Bright A_BFGSpray();
 			BFE1 DEF 4 Bright;
-			Stop;
-	}
-}
-
-class SilentChaosEnergyBall : Actor
-{
-	Default
-	{
-		Radius 13;
-		Height 8;
-		Speed 60;
-		Damage 20;
-		DamageType "Eclipse";
-		Projectile;
-		+RANDOMIZE
-		+EXTREMEDEATH
-		+ZDOOMTRANS
-		RenderStyle "Add";
-		Alpha 0.75;
-	}
-	States
-	{
-		Spawn:
-			PLSS AB 6 Bright;
-			Loop;
-		Death:
-			PLSE ABCDE 4 Bright;
 			Stop;
 	}
 }
@@ -361,16 +363,10 @@ class ChaosSpear : Actor
 		Ending:
 			CSPE A 1 Bright A_FadeOut(0.1, 0);
 			Loop;
-		}
-}
-
-class ChaosSpearEX : ChaosSpear
-{
-	Default
-	{
-		Damage 80;
 	}
 }
+
+class ChaosSpearEX : ChaosSpear { Default { Damage 80; } }
 
 class EnergyBladeLeft : Actor
 {
@@ -387,8 +383,7 @@ class EnergyBladeLeft : Actor
 		RenderStyle "Normal";
 		Alpha 1;
 	}
-	States
-	{
+	States {
 		Spawn:
 			ENSL A -1;
 			Loop;
@@ -399,8 +394,7 @@ class EnergyBladeLeft : Actor
 
 class EnergyBladeRight : EnergyBladeLeft
 {
-	States
-	{
+	States {
 		Spawn:
 			ENSL B -1;
 			Loop;
