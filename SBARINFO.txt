@@ -280,7 +280,7 @@ mugshot "Boost"
 
 mugshot "Failure"
 {
-  FAIL 80;
+  FAIL 245;
 }
 
 mugshot "Shield"
@@ -298,7 +298,7 @@ mugshot "OK"
 	{
 		ST00, ST01, ST02
 	}
-	80;
+	245;
 }
 
 mugshot "Normal"
@@ -324,7 +324,7 @@ mugshot "Ouch"
 
 mugshot "Grin"
 {
-  EVL0 80;
+  EVL0 245;
 }
 
 mugshot "God"

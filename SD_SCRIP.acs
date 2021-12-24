@@ -475,7 +475,6 @@ function void SetMugshotIfNotSuper(str state)
 script "GoalRing" (void)
 {
 	Thing_Stop(1001);
-	//SetActorProperty(1001, APROP_DamageFactor, 0);
 	GiveInventory("Invincibility", 1);
 	int LevelTime = Timer() / 35;
 	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
@@ -483,9 +482,12 @@ script "GoalRing" (void)
 	int CurrentHealth = GetActorProperty(1001, APROP_Health);
 	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
 	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	SetFont("BIGFONT");
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case 0:
+			SetMusic("S_VICTOR");
+			Print(s:"\c[Sonic]Stage Clear");
 			if (LevelTime > DParTime) {
 				PlaySound(1001, "sonic/badresult");
 				SetMugshotIfNotSuper("Failure");
@@ -498,8 +500,11 @@ script "GoalRing" (void)
 				PlaySound(1001, "sonic/goodresult");
 				SetMugshotIfNotSuper("Grin");
 			}
+			Delay(35*7);
 			break;
 		case 1:
+			SetMusic("A_VICTOR");
+			Print(s:"\c[Amy]Act Clear!");
 			if (CurrentHealth < 40) {
 				PlaySound(1001, "amy/badresult");
 				SetMugshotIfNotSuper("Failure");
@@ -508,8 +513,17 @@ script "GoalRing" (void)
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
 				SetMugshotIfNotSuper("Grin");
 			}
+			Delay(35*7);
 			break;
 		case 2:
+			SetMusic("C_VICTOR");
+			if (CheckInventory("PowerHyper")) {
+				Print(s:"\c[Purple]HYPER SONIC \c[White]GOT THROUGH");
+			} else if (CheckInventory("PowerSuper")) {
+				Print(s:"\c[Gold]SUPER SONIC \c[White]GOT THROUGH");
+			} else {
+				Print(s:"\c[Classic]SONIC \c[White]GOT THROUGH");
+			}
 			if (CurrentHealth < 21) {
 				PlaySound(1001, "classic/badresult");
 				SetMugshotIfNotSuper("Failure");
@@ -522,22 +536,26 @@ script "GoalRing" (void)
 				PlaySound(1001, "classic/goodresult");
 				SetMugshotIfNotSuper("Grin");
 			}
+			Delay(35*6);
 			break;
 		case 3:
+			SetMusic("D_VICTOR");
 			if (KilledMonsters == TotalMonsters) {
+				Print(s:"\c[Shadow]Mission Cleared");
 				PlaySound(1001, "shadow/goodresult");
 				SetMugshotIfNotSuper("OK");
 			}
 			else {
+				Print(s:"\c[Shadow]Mission Incomplete");
 				PlaySound(1001, "shadow/badresult");
 				SetMugshotIfNotSuper("Failure");
 			}
+			Delay(35*7);
 			break;
 		case -1:
 		default:
 			break;
 	}
-	Delay(70);
 	Exit_Normal(0);
 }
 
