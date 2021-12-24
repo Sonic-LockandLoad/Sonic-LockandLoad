@@ -42,9 +42,9 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_FireBullets(0, 0, 5, random(1,16)*12, "LightAttack", FBF_NORANDOM);
 			TNT1 A 18 {
 				if (A_CheckFloor("Null")) {
-					A_ChangeVelocity(Cos(Pitch) * 100, 0, Sin(Pitch) * -20, CVF_Relative);
+					A_ChangeVelocity(Cos(Pitch) * 100, 0, Sin(Pitch) * -10, CVF_Relative);
 				} else {
-					A_ChangeVelocity(Cos(Pitch) * 60, 0, Sin(Pitch) * -20, CVF_Relative);
+					A_ChangeVelocity(Cos(Pitch) * 60, 0, Sin(Pitch) * -10, CVF_Relative);
 				}
 			}
 			Goto Ready;
