@@ -187,12 +187,12 @@ class SilentRosePistol : Weapon
 			Loop;
 		Fire:
 			RSFP A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperShot");
-			RSFP A 0 A_FireBullets(0, 0, 1, 50, "NoGibPuff", FBF_USEAMMO|FBF_NORANDOM);
+			RSFP A 0 A_FireBullets(0, 0, 1, 75, "NoGibPuff", FBF_USEAMMO|FBF_NORANDOM);
 			RSFP ABCBA 1;
 			RSFP DEFGHIHGFED 1;
 			Goto Ready;
 		SuperShot:
-			RSFP A 0 A_FireBullets(0, 0, 1, 50, "NoGibPuff", FBF_NORANDOM);
+			RSFP A 0 A_FireBullets(0, 0, 1, 75, "NoGibPuff", FBF_NORANDOM);
 			RSFP ABCBA 1;
 			RSFP A 0 A_ReFire();
 			RSFP DEFGHIHGFED 1;
@@ -241,7 +241,7 @@ class PrecisionShotgun : Weapon
 			TNT1 A 0 A_JumpIf(CountInv("PowerSuper"), "SpeedFire");
 			AMSG A 0 A_PlaySound("sweapons/speedyshot", 5);
 			AMSG A 0 A_GunFlash();
-			AMSG A 0 A_FireBullets(2, 0, 6, 8, "BulletPuff", FBF_USEAMMO);
+			AMSG A 0 A_FireBullets(2, 0, 6, 10, "BulletPuff", FBF_USEAMMO);
 			AMSG A 0 A_AlertMonsters(0);
 			AMSG A 7;
 			TNT1 A 0 A_PlaySound("sweapons/amyreload1", 6);
