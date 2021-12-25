@@ -36,14 +36,8 @@ script "IsCrouching" (void)
 {
 	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
 
-	if (buttons & BT_CROUCH)
-	{
-		SetResultValue(1);
-	}
-	else
-	{
-		SetResultValue(0);
-	}
+	if (buttons & BT_CROUCH) { SetResultValue(1); }
+	else { SetResultValue(0); }
 }
 
 script 3 (void) // I have no clue what this is supposed to do
@@ -669,7 +663,7 @@ script "DoubleJump" enter
 	int lastZ = GetActorZ(0);
 	int olderZ;
 	int counter = 0;
-	while( true )
+	while (true)
 	{
 		olderZ = lastZ;
 		lastZ = GetActorZ(0);
@@ -679,7 +673,7 @@ script "DoubleJump" enter
 			if ((GetActorZ(0) > lastZ) && (lastZ <= olderZ)) {
 				counter = 0;
 			} else {
-				if (counter < maxDblJumps) {
+				if (counter < maxDblJumps) { 
 					ThrustThingZ(0, dblJumpThrust, 0, 0);
 					PlaySound(1001, "amy/doublejump");
 					counter++;
