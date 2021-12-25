@@ -26,7 +26,7 @@ class ShadowAbilities : Weapon
 		Fire:
 			TNT1 A 0 A_PlaySound("sweapons/swordswing", 1);
 			DPNR ABC 1;
-			DPNR D 2 A_CustomPunch(random(1,64)*15, true, CPF_NOTURN, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			DPNR D 2 A_CustomPunch(random(1,64)*15, true, CPF_NOTURN, "ShadowMeleeAtk", 95, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			DPNR CBA 1;
 			TNT1 A 2;
 			Goto Ready;
