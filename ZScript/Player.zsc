@@ -4,8 +4,9 @@ class SonicPlayer : PlayerPawn
 	{
 		Speed 2;
 		Health 125;
-		Radius 15;
-		Height 46;
+		Radius 20;
+		Height 41;
+		Player.ViewHeight 41.0;
 		PainChance 250;
 		Mass 100;
 		Player.MaxHealth 999;
@@ -105,8 +106,9 @@ class AmyPlayer : PlayerPawn
 		Speed 1.2;
 		Health 100;
 		DamageFactor 1.3;
-		Radius 15;
-		Height 50;
+		Radius 20;
+		Height 40;
+		Player.ViewHeight 40.0;
 		PainChance 256;
 		Mass 100;
 		Player.MaxHealth 999;
@@ -195,8 +197,9 @@ class ShadowPlayer : PlayerPawn
 	{
 		Speed 2;
 		Health 145;
-		Radius 15;
-		Height 46;
+		Radius 20;
+		Height 42;
+		Player.ViewHeight 42.0;
 		PainChance 225;
 		Mass 100;
 		Player.MaxHealth 999;
@@ -271,8 +274,9 @@ class ClassicSonicPlayer : PlayerPawn
 	{
 		Speed 2;
 		Health 125;
-		Radius 10;
-		Height 46;
+		Radius 20;
+		Height 41;
+		Player.ViewHeight 41.0;
 		PainChance 255;
 		Mass 100;
 		DamageFactor "RocketStream", 0.2;
