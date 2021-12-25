@@ -238,6 +238,7 @@ $playersound sonic 	 male 		sglobal/supersonic    	nowshow
 $playersound amy	 female 	*death                  adeath
 $playeralias amy	 female 	*usefail                amy/cantuse
 $playersound amy	 female 	*jump                   A_JUMP
+								amy/doublejump			A_DBJUMP
 $playersound amy	 female 	*grunt                  A_LAND
 $playersound amy	 female 	*land                   A_LAND
 $playersound amy	 female 	sglobal/supersonic    	destrall

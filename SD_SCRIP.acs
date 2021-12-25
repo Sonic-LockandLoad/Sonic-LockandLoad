@@ -656,3 +656,37 @@ script "JumpHeight" (int Reset)
         }
 	}
 }
+
+script "DoubleJump" enter
+{
+	/*
+	 * Thanks to Agent ME on the ZDoom Forum for this script
+	 * <https://forum.zdoom.org/viewtopic.php?t=21034>
+	 */
+	int maxDblJumps = 1;
+	int dblJumpThrust = 50;
+
+	int lastZ = GetActorZ(0);
+	int olderZ;
+	int counter = 0;
+	while( true )
+	{
+		olderZ = lastZ;
+		lastZ = GetActorZ(0);
+		delay(1);
+
+		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, INPUT_OLDBUTTONS) & BT_JUMP) && (PlayerClass(PlayerNumber()) == 1)) {
+			if ((GetActorZ(0) > lastZ) && (lastZ <= olderZ)) {
+				counter = 0;
+			} else {
+				if (counter < maxDblJumps) {
+					ThrustThingZ(0, dblJumpThrust, 0, 0);
+					PlaySound(1001, "amy/doublejump");
+					counter++;
+				}
+			}
+		} else if ((olderZ == lastZ) && (lastZ == GetActorZ(0))) {
+			counter = 0;
+		}
+	}
+}
