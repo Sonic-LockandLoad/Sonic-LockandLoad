@@ -125,3 +125,32 @@ sprite RETIA0, 710, 619
 	offset 356, 362
 	patch RETIA0, 0, 0
 }
+
+graphic snc_hud, 342, 120
+{
+	xscale 2
+	yscale 2.4
+	offset 0, 0
+	graphic snc_hud, 0, 0
+}
+graphic amy_hud, 342, 120
+{
+	xscale 2
+	yscale 2.4
+	offset 0, 0
+	graphic amy_hud, 0, 0
+}
+graphic csn_hud, 342, 120
+{
+	xscale 2
+	yscale 2.4
+	offset 0, 0
+	graphic csn_hud, 0, 0
+}
+graphic sha_hud, 342, 120
+{
+	xscale 2
+	yscale 2.4
+	offset 0, 0
+	graphic sha_hud, 0, 0
+}

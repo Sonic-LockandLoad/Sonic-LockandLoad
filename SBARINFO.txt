@@ -158,10 +158,16 @@ StatusBar Normal
 				}
 				Else
 				{
-					DrawImage "tre_hud", -58, 108;
+					InInventory SonicCheck, 1	{ DrawImage "snc_hud", -58, 108; }
+					InInventory AmyCheck, 1		{ DrawImage "amy_hud", -58, 108; }
+					InInventory ClassicCheck, 1	{ DrawImage "csn_hud", -58, 108; }
+					InInventory ShadowCheck, 1	{ DrawImage "sha_hud", -58, 108; }
 				}
 			}
-			DrawString BIGFONT, LightBlue, time, 40, 157;
+			InInventory SonicCheck, 1	{ DrawString BIGFONT, Sonic, time, 		40, 148; }
+			InInventory AmyCheck, 1		{ DrawString BIGFONT, Amy, time, 		40, 148; }
+			InInventory ClassicCheck, 1	{ DrawString BIGFONT, Classic, time, 	40, 148; }
+			InInventory ShadowCheck, 1	{ DrawString BIGFONT, Shadow, time, 	40, 148; }
 			InInventory ChaosEmeralds, 1
 			{
 			  DrawImage "em_back", -31, 175;
@@ -177,44 +183,22 @@ StatusBar Normal
 			{
 				InInventory Not PowerHyper, 1
 				{
-					IfHealth 20
-					{
-					  DrawNumber 3, BIGFONT, Gold, Health, fillzeros, 26, 127;
-					}
-					IfHealth Not 20
-					{
-					  DrawNumber 3, BIGFONT, Red, Health, fillzeros, 26, 127;
-					}
+					IfHealth 20 	{ DrawNumber 3, BIGFONT, Gold, Health, fillzeros, 26, 125; }
+					IfHealth Not 20 { DrawNumber 3, BIGFONT, Red, Health, fillzeros,  26, 125; }
 				}
 			}
 			
 			InInventory PowerSuper, 1
 			{
-				InInventory AmyCheck, 1
-				{
-					DrawNumber 3, BIGFONT, Purple, "ChaosEnergy", fillzeros, 28, 128;
-				}
-				Else
-				{
-					DrawNumber 3, BIGFONT, Gold, "ChaosEnergy", fillzeros, 28, 128;
-				}
+				InInventory AmyCheck, 1 { DrawNumber 3, BIGFONT, Purple, "ChaosEnergy", fillzeros, 	28, 125; }
+				Else { DrawNumber 3, BIGFONT, Gold, "ChaosEnergy", fillzeros, 						28, 125; }
 			}
 			Else
 			{
-				InInventory PowerHyper, 1
-				{
-					DrawNumber 3, BIGFONT, White, "ChaosEnergy", fillzeros, 28, 128;
-				}
-				Else
-				{
-					InInventory ChaosEnergy, 1
-					{
-					  DrawNumber 3, BIGFONT, Green, "ChaosEnergy", fillzeros, 83, 127;
-					}
-					InInventory Not ChaosEnergy, 1
-					{
-					  DrawNumber 3, BIGFONT, Red, "ChaosEnergy", fillzeros, 83, 127;
-					}
+				InInventory PowerHyper, 1 { DrawNumber 3, BIGFONT, White, "ChaosEnergy", fillzeros, 28, 125; }
+				Else {
+					InInventory ChaosEnergy, 1		{ DrawNumber 3, BIGFONT, Green, "ChaosEnergy", fillzeros, 83, 125; }
+					InInventory Not ChaosEnergy, 1 	{ DrawNumber 3, BIGFONT, Red, "ChaosEnergy", fillzeros,   83, 125; }
 				}
 			}
 		  }
