@@ -47,13 +47,6 @@ OptionMenu "LLControlsMenu"
 	StaticText ""
 	SubMenu "All Control Bindings", "CustomizeControls"
 }
-OptionMenu "LLCvarMenu"
-{
-	Title "Game Options"
-	StaticText "It is highly recommended to enable these options.", "LightBlue"
-	Option "Always Run", "cl_run", "EnabledOrNot"
-	Option "Freelook", "freelook", "EnabledOrNot"
-}
 ListMenu "PlayerclassMenu"
 {
 	Font "BIGFONT", "ActiveOption"
@@ -86,6 +79,8 @@ OptionMenu "LockandLoadOptions"
 {
 	Title "Mod Options"
 	
+	SubMenu "Configure Music", "SDMusic"
+	
 	Option "HUD Type", "HUDType", "HUDType"
 	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
 	StaticText ""
@@ -107,15 +102,8 @@ OptionMenu "LockandLoadOptions"
 	StaticText "the Rapid Shotty or Dark Assaulter.", "LightBlue"
 	StaticText ""
 	
-	Option "Keep Momentum on Double Jump", "KeepDoubleJumpMomentum", "EnabledOrNot"
+	Option "Double Jump", "DoubleJump", "DoubleJump"
 	StaticText "Sonic/Amy", "Cyan"
-	StaticText "Disabling this option will cause Sonic or Amy", "LightBlue"
-	StaticText "to stop any horizontal momentum when double jumping.", "LightBlue"
-	StaticText ""
-	
-	SubMenu "Configure Music", "SDMusic"
-	StaticText "Configure music tracks for Super forms,", "LightBlue"
-	StaticText "invincibility and death.", "LightBlue"
 	StaticText ""
 }
 OptionMenu "SDMusic"
@@ -165,6 +153,12 @@ OptionValue "EnabledOrNot"
 {
 	0, "Disabled"
 	1, "Enabled"
+}
+OptionValue "DoubleJump"
+{
+	0, "Disabled"
+	1, "No Momentum"
+	2, "Keep Momentum"
 }
 OptionValue "HUDType"
 {

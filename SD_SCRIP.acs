@@ -669,12 +669,12 @@ script "DoubleJump" enter
 		lastZ = GetActorZ(0);
 		delay(1);
 
-		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, INPUT_OLDBUTTONS) & BT_JUMP) && (PlayerClass(PlayerNumber()) == 0 || PlayerClass(PlayerNumber()) == 1)) {
+		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, INPUT_OLDBUTTONS) & BT_JUMP) && (PlayerClass(PlayerNumber()) == 0 || PlayerClass(PlayerNumber()) == 1) && GetCvar("DoubleJump")) {
 			if ((GetActorZ(0) > lastZ) && (lastZ <= olderZ)) {
 				counter = 0;
 			} else {
 				if (counter < maxDblJumps) {
-					if (!GetCvar("KeepDoubleJumpMomentum")) { Thing_Stop(1001); }
+					if (GetCvar("DoubleJump") == 1) { Thing_Stop(1001); }
 					ThrustThingZ(0, dblJumpThrust, 0, 0);
 					if (PlayerClass(PlayerNumber()) == 0) { PlaySound(1001, "sonic/doublejump"); }
 					if (PlayerClass(PlayerNumber()) == 1) { PlaySound(1001, "amy/doublejump"); }
