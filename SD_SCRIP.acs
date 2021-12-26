@@ -673,7 +673,8 @@ script "DoubleJump" enter
 			if ((GetActorZ(0) > lastZ) && (lastZ <= olderZ)) {
 				counter = 0;
 			} else {
-				if (counter < maxDblJumps) { 
+				if (counter < maxDblJumps) {
+					if (!GetCvar("KeepDoubleJumpMomentum")) { Thing_Stop(1001); }
 					ThrustThingZ(0, dblJumpThrust, 0, 0);
 					if (PlayerClass(PlayerNumber()) == 0) { PlaySound(1001, "sonic/doublejump"); }
 					if (PlayerClass(PlayerNumber()) == 1) { PlaySound(1001, "amy/doublejump"); }
