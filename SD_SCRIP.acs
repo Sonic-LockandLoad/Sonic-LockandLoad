@@ -567,7 +567,7 @@ script "Drowning" ENTER
 			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper") && !CheckActorInventory(1001, "PowerInvulnerable")) {
 				drowntimer++;
 			}
-			if (drowntimer > 9)
+			if (drowntimer > 4)
 			{
 				switch(PlayerClass(PlayerNumber())) {
 					case 0:
@@ -586,7 +586,7 @@ script "Drowning" ENTER
 						break;
 				}
 			}
-			if (drowntimer > 21)
+			if (drowntimer > 16)
 			{
 				DamageActor(1001, AAPTR_PLAYER1, 0, 0, 9999, "Drownd");
 				if (!GetCvar("DeathMusic")) { SetMusic("*"); }
