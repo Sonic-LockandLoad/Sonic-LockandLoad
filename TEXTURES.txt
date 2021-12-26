@@ -154,3 +154,24 @@ graphic sha_hud, 342, 120
 	offset 0, 0
 	graphic sha_hud, 0, 0
 }
+graphic sup_hud, 342, 120
+{
+	xscale 2
+	yscale 2.4
+	offset 0, 0
+	graphic sup_hud, 0, 0
+}
+graphic hyp_hud, 342, 120
+{
+	xscale 2
+	yscale 2.4
+	offset 0, 0
+	graphic hyp_hud, 0, 0
+}
+graphic drk_hud, 342, 120
+{
+	xscale 2
+	yscale 2.4
+	offset 0, 0
+	graphic drk_hud, 0, 0
+}

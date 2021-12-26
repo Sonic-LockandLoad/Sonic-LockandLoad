@@ -137,25 +137,16 @@ StatusBar Normal
 	  }
 	  else
 	  {
-		  IfCvarInt HUDType, 0 // Modern
+		  IfCvarInt HUDType, 0 // Unified
 		  {
 			InInventory PowerSuper, 1
 			{
-				InInventory AmyCheck, 1
-				{
-					DrawImage "tre_drk", -58, 108;
-				}
-				Else
-				{
-					DrawImage "tre_sup", -58, 108;
-				}
+				InInventory AmyCheck, 1 { DrawImage "drk_hud", -58, 108; }
+				Else { DrawImage "sup_hud", -58, 108; }
 			}
 			Else
 			{
-				InInventory PowerHyper, 1
-				{
-					DrawImage "tre_hyp", -58, 108;
-				}
+				InInventory PowerHyper, 1 { DrawImage "hyp_hud", -58, 108; }
 				Else
 				{
 					InInventory SonicCheck, 1	{ DrawImage "snc_hud", -58, 108; }
@@ -164,10 +155,21 @@ StatusBar Normal
 					InInventory ShadowCheck, 1	{ DrawImage "sha_hud", -58, 108; }
 				}
 			}
-			InInventory SonicCheck, 1	{ DrawString BIGFONT, Sonic, time, 		40, 148; }
-			InInventory AmyCheck, 1		{ DrawString BIGFONT, Amy, time, 		40, 148; }
-			InInventory ClassicCheck, 1	{ DrawString BIGFONT, Classic, time, 	40, 148; }
-			InInventory ShadowCheck, 1	{ DrawString BIGFONT, Shadow, time, 	40, 148; }
+			
+			InInventory PowerSuper, 1 { 
+				InInventory AmyCheck, 1	{ DrawString BIGFONT, Purple, time, 			40, 148; }
+				Else 					{ DrawString BIGFONT, Gold, time, 				40, 148; }
+			}
+			Else {
+				InInventory PowerHyper, 1 { DrawString BIGFONT, White, time, 			40, 148; }
+				Else {
+					InInventory SonicCheck, 1	{ DrawString BIGFONT, Sonic, time, 		40, 148; }
+					InInventory AmyCheck, 1		{ DrawString BIGFONT, Amy, time, 		40, 148; }
+					InInventory ClassicCheck, 1	{ DrawString BIGFONT, Classic, time, 	40, 148; }
+					InInventory ShadowCheck, 1	{ DrawString BIGFONT, Shadow, time, 	40, 148; }
+				}
+			}
+			
 			InInventory ChaosEmeralds, 1
 			{
 			  DrawImage "em_back", -31, 175;
