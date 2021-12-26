@@ -564,7 +564,7 @@ script "Drowning" ENTER
 	int maxdrown;
 	while (1) {
 		if (GetActorProperty(1001, APROP_Waterlevel) == 3) {
-			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper")) {
+			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper") && !CheckActorInventory(1001, "PowerInvulnerable")) {
 				drowntimer++;
 			}
 			if (drowntimer > 9)
