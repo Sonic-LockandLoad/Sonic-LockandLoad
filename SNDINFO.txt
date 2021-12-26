@@ -231,6 +231,7 @@ $alias intermission/paststats sglobal/nextlevel
 $playersound sonic 	 male 		*death                  sonic/death
 $playeralias sonic 	 male 		*usefail                sonic/cantuse
 $playersound sonic 	 male 		*jump                   S_JUMP
+								sonic/doublejump		S_DBJUMP
 $playersound sonic 	 male 		*grunt                  S_LAND
 $playersound sonic 	 male 		*land                   S_LAND
 $playersound sonic 	 male 		sglobal/supersonic    	nowshow
