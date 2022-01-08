@@ -1,6 +1,15 @@
 class SonicAbilities : Weapon
 {
 	bool BoostCheck;
+	action void HomingAttackDash(int initialspeed)
+	{
+		/* Increases speed if Sonic is on the floor, to compensate for friction */
+		if (A_CheckFloor("Null")) {
+			A_ChangeVelocity(Cos(Pitch) * initialspeed+40, 0, Sin(Pitch) * -10, CVF_Relative);
+		} else {
+			A_ChangeVelocity(Cos(Pitch) * initialspeed, 0, Sin(Pitch) * -10, CVF_Relative);
+		}
+	}
 	Default
 	{
 		Weapon.SelectionOrder 3700;
@@ -39,14 +48,15 @@ class SonicAbilities : Weapon
 			TNT1 A 0 A_PlaySound("sweapons/sdash", 5);
 			TNT1 A 0 A_TakeInventory("PeeloutCheck");
 			TNT1 A 0 A_SetSpeed(4);
-			TNT1 A 0 A_FireBullets(0, 0, 5, random(1,16)*12, "LightAttack", FBF_NORANDOM);
-			TNT1 A 18 {
-				if (A_CheckFloor("Null")) {
-					A_ChangeVelocity(Cos(Pitch) * 100, 0, Sin(Pitch) * -10, CVF_Relative);
-				} else {
-					A_ChangeVelocity(Cos(Pitch) * 60, 0, Sin(Pitch) * -10, CVF_Relative);
+			TNT1 A 0 {
+				if (!CountInv("PowerSuper")) {
+					A_FireBullets(0, 0, 20, random(1,16)*12, "LightAttack", FBF_NORANDOM);
+				}
+				else {
+					A_FireBullets(0, 0, 5, random(1,16)*12, "LightAttack", FBF_NORANDOM);
 				}
 			}
+			TNT1 A 18 HomingAttackDash(60);
 			Goto Ready;
 		Reload:
 			TNT1 A 0 A_GiveInventory("SonicKick");
