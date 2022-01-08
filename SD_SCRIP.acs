@@ -594,7 +594,7 @@ script "Drowning" ENTER
 			}
 		}
 		else {
-			if (drowntimer > 9) {
+			if (drowntimer > 4) {
 				SetMusic("*");
 			}
 			drowntimer = 0;
