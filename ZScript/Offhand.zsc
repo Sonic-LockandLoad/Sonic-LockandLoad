@@ -187,7 +187,7 @@ class SonicDash : CustomInventory
 			
 			if (buttons & BT_FORWARD) {
 				if (debug) { A_Log("Forward"); }
-				A_ChangeVelocity(Cos(Pitch) * dashspeed, 0, Sin(Pitch) * (invdspeed + 8), CVF_Relative);
+				A_ChangeVelocity(Cos(Pitch) * (dashspeed + 14), 0, Sin(Pitch) * (invdspeed + 8), CVF_Relative);
 				input = 1;
 			}
 			
@@ -211,7 +211,7 @@ class SonicDash : CustomInventory
 			
 			if (!input) {
 				if (debug) { A_Log("No keys"); }
-				A_ChangeVelocity(Cos(Pitch) * (dashspeed + 14), 0, Sin(Pitch) * (invdspeed + 8), CVF_Relative);
+				A_ChangeVelocity(Cos(Pitch) * (dashspeed + 20), 0, Sin(Pitch) * (invdspeed + 8), CVF_Relative);
 			}
 		}
 		TNT1 A 5
