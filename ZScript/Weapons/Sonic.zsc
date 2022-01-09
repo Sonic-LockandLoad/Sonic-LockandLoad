@@ -148,7 +148,7 @@ class Caliburn : Weapon
 	action void SwordSwing(bool onright)
 	{
 		A_PlaySound("sweapons/swordswing", 1);
-		A_PlaySound("sonic/grunt", 7);
+		if (random(1, 4) == 4) { A_PlaySound("sonic/grunt", 7); }
 		if (CountInv("PowerSuper")) {
 			A_PlaySound("sweapons/soulsurge", 6, 0.5);
 			if (onright) {
@@ -212,8 +212,24 @@ class Caliburn : Weapon
 					A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 			}
-			CALI E 5;
+			CALI E 3;
 			CALI A 0 A_ReFire();
+			Goto Ready;
+		Hold:
+			TNT1 A 0 SwordSwing(true);
+			CALI FGHI 1
+			{
+				if (!CountInv("PowerSuper")) {
+					A_SetSpeed(2.5);
+					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				}
+				else {
+					A_SetSpeed(5);
+					A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				}
+			}
+			CALI J 3;
+			CALI A 0 A_ReFire("GroundAttack");
 			Goto Ready;
 		AirStart:
 			TNT1 A 0 A_PlaySound("sweapons/sonicfalling", 7);
@@ -242,22 +258,6 @@ class Caliburn : Weapon
 			CALI N 1;
 			TNT1 A 0 A_ReFire("AirHold");
 			TNT1 A 0 A_SetSpeed(2);
-			Goto Ready;
-		Hold:
-			TNT1 A 0 SwordSwing(true);
-			CALI FGHI 1
-			{
-				if (CountInv("PowerSuper")) {
-					A_SetSpeed(2.5);
-					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
-				}
-				else {
-					A_SetSpeed(5);
-					A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
-				}
-			}
-			CALI J 5;
-			CALI A 0 A_ReFire("GroundAttack");
 			Goto Ready;
 		AltFire:
 			TNT1 A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperBoost");

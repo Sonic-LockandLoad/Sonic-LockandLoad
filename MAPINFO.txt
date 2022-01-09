@@ -419,6 +419,7 @@ DoomEdNums
 	4159  = "OmniAttackPoint"
 	31935 = "Continuer"
 	31936 = "WtfIsThis"
+	31937 = "KeyTablet"
 	
 	31601 = "TutorialText"
 	31602 = "SideLevelsText"
@@ -427,6 +428,7 @@ DoomEdNums
 	19925 = "FasterSpiderdemon"
 	19926 = "MechZombie"
 	19927 = "WalkingCapsule"
+	19928 = "FrickingCyberdemon"
 	
 	2023  = "BerserkReplace"
 	8     = "BackpackReplace"

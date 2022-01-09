@@ -200,3 +200,81 @@ class FasterSpiderdemon : SpiderMastermind // 19925
 			Stop;
 	}
 }
+
+class FrickingCyberdemon : Actor
+{
+	Default
+	{
+		Health 16000;
+		Radius 50;
+		Height 160;
+		Mass 4000;
+		Speed 25;
+		Scale 1.5;
+		PainChance 20;
+		PainChance "Eclipse", 255;
+		PainChance "Spear", 255;
+		DamageFactor "SonicKick", 4;
+		DamageFactor "Piko", 4;
+		DamageFactor "ShadowMelee", 2;
+		Monster;
+		MinMissileChance 160;
+		+BOSS 
+		+MISSILEMORE
+		+FLOORCLIP
+		+NORADIUSDMG
+		+DONTMORPH
+		+BOSSDEATH
+		SeeSound "cyber/sight";
+		PainSound "cyber/pain";
+		DeathSound "cyber/death";
+		ActiveSound "cyber/active";
+		Obituary "%o got obliterated by the fricking Cyberdemon.";
+		Tag "Fricking Cyberdemon";
+	}
+	States
+	{
+		Spawn:
+			CYBR AB 10 A_Look;
+			Loop;
+		See:
+			CYBR A 2 A_Hoof;
+			CYBR ABBCC 2 A_Chase;
+			CYBR D 2 A_Metal;
+			CYBR D 2 A_Chase;
+			Loop;
+		Missile:
+			CYBR A 0 A_JumpIfCloser(400, "RocketAttack");
+		Boost:
+			CYBR E 6 A_FaceTarget;
+			CYBR FFFFFFFFFFFFFF 1 {
+				A_StartSound("sweapons/boost", 8);
+				A_Recoil(-15);
+			}
+			Goto See;
+		RocketAttack:
+			CYBR E 6 A_FaceTarget;
+			CYBR F 3 A_CyberAttack;
+			CYBR F 3 A_CyberAttack;
+			CYBR F 3 A_CyberAttack;
+			CYBR F 3 A_CyberAttack;
+			CYBR F 18 A_CyberAttack;
+			Goto See;
+		Pain.Spear:
+			TNT1 A 0 ACS_NamedExecute("ReactionTime");
+			CYBR GGGGGGGG 10 A_Pain;
+			Goto See;
+		Pain:
+			CYBR G 30 A_Pain;
+			Goto See;
+		Death:
+			CYBR H 10;
+			CYBR I 10 A_Scream;
+			CYBR JKL 10;
+			CYBR M 10 A_NoBlocking;
+			CYBR NO 10;
+			CYBR P 30;
+			CYBR P -1 A_BossDeath;
+			Stop;
+	}
+}
