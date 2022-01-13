@@ -65,7 +65,7 @@ DamageType Drowning
 
 episode S_LOBBY
 {
-	name = "Station Square"
+	name = "Tails' Lab"
 }
 
 map SDLvl01 "Green Hill"
@@ -98,7 +98,17 @@ map THEBOSS "Dis Is It"
 	needclustertext
 }
 
-map S_LOBBY "Station Square"
+map S_LOBBY "Lobby"
+{
+	music = L_TUTORS
+	nointermission
+	sky1 = "CITYSKY"
+	author = "That1M8Head"
+	resethealth
+	resetinventory
+}
+
+map S_SQUARE "Station Square"
 {
 	music = L_OUTSID
 	nointermission
