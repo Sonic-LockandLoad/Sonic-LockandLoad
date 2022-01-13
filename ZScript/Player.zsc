@@ -378,31 +378,7 @@ class ClassicSonicPlayer : PlayerPawn
 	}
 }
 
-class SonicCheck : Inventory 
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
-class AmyCheck : Inventory 
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
-class ShadowCheck : Inventory 
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
-class ClassicCheck : Inventory 
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
+class SonicCheck : Inventory 	{ Default { Inventory.MaxAmount 1; } }
+class AmyCheck : Inventory 		{ Default { Inventory.MaxAmount 1; } }
+class ShadowCheck : Inventory 	{ Default { Inventory.MaxAmount 1; } }
+class ClassicCheck : Inventory 	{ Default { Inventory.MaxAmount 1; } }
