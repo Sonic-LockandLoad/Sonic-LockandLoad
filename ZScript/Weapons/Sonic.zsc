@@ -225,7 +225,7 @@ class Caliburn : Weapon
 			TNT1 A 0 A_PlaySound("sweapons/sonicfalling", 7);
 		AirAttack:
 			TNT1 A 0 A_Stop();
-			TNT1 A 0 ThrustThingZ(0, 40, 1, 1);
+			TNT1 A 0 A_ChangeVelocity(0, 0, -500, CVF_Relative|CVF_Replace);
 			CALI JKLMN 1
 			{
 				if (CountInv("PowerSuper")) {
@@ -234,7 +234,7 @@ class Caliburn : Weapon
 				else {
 					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
-				ThrustThingZ(0, 5, 1, 1);
+				A_ChangeVelocity(0, 0, -50, CVF_Relative|CVF_Replace);
 			}
 			CALI B 0 A_CheckFloor("AirDone");
 			Goto AirAttack+6;
