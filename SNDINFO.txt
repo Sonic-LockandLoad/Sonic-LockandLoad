@@ -20,6 +20,7 @@ spickup/boxdestroy        	destroy
 spickup/amy         		a_pickup
 spickup/sonic       		s_pickup
 spickup/goalring			goalring
+spickup/keytablet			keypkup
 
 // Weapons (subject to reorganisation)
 

@@ -560,24 +560,33 @@ class FakeChainsaw : CustomInventory
 
 class WtfIsThis : Inventory
 {
-	Default
-	{
-		Inventory.PickupMessage "";
-	}
+	Default { Inventory.PickupMessage ""; }
 	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay
 			{
-				if (CountInv("ShadowCheck", AAPTR_PLAYER1))
-				{
+				if (CountInv("ShadowCheck", AAPTR_PLAYER1)) {
 					A_SpawnItem("ShadowKnife");
-				}
-				else
-				{
+				} else {
 					A_SpawnItem("RedChaosCapsule");
 				}
 			}
+			Stop;
+	}
+}
+
+class KeyTablet : Inventory
+{
+	Default 
+	{
+		Inventory.PickupMessage "Picked up a Key Tablet.";
+		Inventory.PickupSound   "spickup/keytablet";
+	}
+	States
+	{
+		Spawn:
+			KTBL A -1;
 			Stop;
 	}
 }
