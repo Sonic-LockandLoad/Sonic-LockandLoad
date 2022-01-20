@@ -123,9 +123,9 @@ class ClassicAbilities : Weapon replaces Fist
 		SpinDash:
 			TNT1 AAAAAAAAAAAA 1 {
 				if (invoker.SpinCharges > 16) {
-					A_Recoil(invoker.SpinCharges * -1);
+					A_ChangeVelocity(Cos(Pitch) * invoker.SpinCharges * 4, 0, Vel.Z * 1.1, CVF_Relative|CVF_Replace);
 				} else {
-					A_Recoil(invoker.SpinCharges * -2);
+					A_ChangeVelocity(Cos(Pitch) * invoker.SpinCharges * 8, 0, Vel.Z * 1.05, CVF_Relative|CVF_Replace);
 				}
 				if (CountInv("PowerHyper")) { 
 					invoker.SpinDamageMultiplier = 8; 
