@@ -60,15 +60,16 @@ class SonicPlayer : PlayerPawn
 			TNT1 A 0 {
 				switch (random(0, 2)) {
 					case 1:
-						A_PlaySound("sonic/thanksalotwall");
+						A_PlaySound("sonic/thanksalotwall", 7);
 						break;
 					case 2:
-						A_PlaySound("sonic/thiswallsintheway");
+						A_PlaySound("sonic/thiswallsintheway", 7);
 						break;
 					default:
-						A_PlaySound("sonic/pain");
+						A_PlaySound("sonic/pain", 7);
 						break;
 				}
+				A_PlaySound("sglobal/loserings", 6);
 			}
 			Goto Spawn;
 		Pain:
