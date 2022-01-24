@@ -168,7 +168,7 @@ FAILURE =
 	"\n"
 	"Please shut down the game immediately\n"
 	"\n"
-	"Sonic: Lock and Load is automatically\n"
+	"Sonic: Lock & Load is automatically\n"
 	"designed to shut down when any incompatible\n"
 	"actor class is detected\n"
 	"\n"
@@ -177,10 +177,11 @@ FAILURE =
 QUITMSG1 = "\c[MenuActive] I see your problem... too slow!";
 QUITMSG2 = "\c[MenuActive] What's the matter? Can't keep up?";
 QUITMSG3 = "\c[MenuActive] I've already lapped you three times...";
-QUITMSG4 = "\c[MenuActive] Hey! Wait! What about your memories?!";
+QUITMSG4 = "\c[MenuActive] Wait! What about your memories?!";
 QUITMSG5 = "\c[MenuActive] Talk about low budget mods...";
-QUITMSG6 = "\c[MenuActive] How long is this game gonna go on?";
-QUITMSG7 = "\c[MenuActive] <Insert funny Sonic reference here>";
+QUITMSG6 = "\c[MenuActive] How long is this gonna go on?";
+QUITMSG7 = "\c[MenuActive] You going off to play a better fan game?";
+QUITMSG8 = "\c[MenuActive] <Insert funny Sonic reference here>";
 
 NEWSAVE = "New Save Data";
 SAVEDEAD = "\c[MenuInactive] You're not currently playing.\n\nPress a key to go back.";
