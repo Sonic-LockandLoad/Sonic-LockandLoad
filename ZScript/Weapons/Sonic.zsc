@@ -117,25 +117,25 @@ class SonicAbilities : Weapon
 		SuperBoost:
 			TNT1 A 0
 			{
-				if (!invoker.BoostCheck)
-				{
+				A_SetMugShotState("SuperBoost");
+				A_PlaySound("sweapons/boosttrail", 1, 1.0, true);
+				if (!invoker.BoostCheck) {
 					invoker.BoostCheck = true;
+					invoker.BoostSpeed = 300;
 					A_StartSound("sonic/boost", 6);
 					A_StartSound("sweapons/boost", 7);
 				}
-			}
-			TNT1 A 0 A_SetMugShotState("SuperBoost");
-			TNT1 A 0 A_PlaySound("sweapons/boosttrail", 1, 1.0, true);
-			TNT1 A 0
-			{
 				if (!GetCvar("DkgBruTecFpgA")) {
 					A_ChangeVelocity(Cos(Pitch) * invoker.BoostSpeed, 0, Vel.Z, CVF_Relative|CVF_Replace);
-					if (invoker.BoostSpeed <= 400) { invoker.BoostSpeed+=5; }
+					if ((GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && A_CheckFloor("Null")) {
+						A_ChangeVelocity(0, 0, 20, CVF_Relative);
+					}
+					if (invoker.BoostSpeed <= 400) { invoker.BoostSpeed+=8; }
 				}
 			}
 			TNT1 A 0 A_CheckLOF("BoostEnd", CLOFF_JUMP_ON_MISS|CLOFF_SKIPOBSTACLES|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL, 32);
 			TNT1 A 0 A_Light(2);
-			BOOS A 1 A_FireBullets(120, 120, 500, 999, "InvisibleGibPuff", FBF_NORANDOM, 140);
+			BOOS B 1 A_FireBullets(120, 120, 500, 999, "InvisibleGibPuff", FBF_NORANDOM, 140);
 			TNT1 A 0 A_ReFire();
 			Goto BoostEnd;
 		Spawn:
@@ -310,30 +310,31 @@ class Caliburn : Weapon
 		BoostEnd:
 			TNT1 A 0 {
 				invoker.BoostCheck = false;
-				invoker.BoostSpeed = 200;
+				if (CountInv("PowerSuper")) { invoker.BoostSpeed = 300; } else { invoker.BoostSpeed = 200; }
 				A_StopSound(1);
 				A_Light(0);
 			}
 			Goto Ready;
 		SuperBoost:
 			TNT1 A 0 {
+				A_SetMugShotState("SuperBoost");
+				A_PlaySound("sweapons/boosttrail", 1, 1.0, true);
 				if (!invoker.BoostCheck) {
 					invoker.BoostCheck = true;
+					invoker.BoostSpeed = 300;
 					A_StartSound("sonic/boost", 6);
 					A_StartSound("sweapons/boost", 7);
-					A_SetMugShotState("SuperBoost");
-					A_PlaySound("sweapons/boosttrail", 1, 1.0, true);
 				}
 				if (!GetCvar("DkgBruTecFpgA")) {
 					A_ChangeVelocity(Cos(Pitch) * invoker.BoostSpeed, 0, Vel.Z, CVF_Relative|CVF_Replace);
 					if ((GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && A_CheckFloor("Null")) {
-						A_ChangeVelocity(0, 0, 15, CVF_Relative);
+						A_ChangeVelocity(0, 0, 20, CVF_Relative);
 					}
-					if (invoker.BoostSpeed <= 400) { invoker.BoostSpeed+=5; }
+					if (invoker.BoostSpeed <= 400) { invoker.BoostSpeed+=8; }
 				}
+				A_Light(2);
 			}
 			TNT1 A 0 A_CheckLOF("BoostEnd", CLOFF_JUMP_ON_MISS|CLOFF_SKIPOBSTACLES|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL, 32);
-			TNT1 A 0 A_Light(2);
 			CBOO B 1 A_CustomPunch(999, false, CPF_NOTURN, "GibPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			TNT1 A 0 A_ReFire();
 			Goto Ready;
