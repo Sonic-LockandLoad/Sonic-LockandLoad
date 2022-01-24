@@ -17,19 +17,11 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 		Pickup:
 			TNT1 A 0
 			{
-				if (CountInv("AmyCheck") > 0)
-				{
-					if (CountInv("PowerSuper") > 0)
-					{
-						A_GiveInventory("ChaosEnergy", 1);
-					}
-					else
-					{
-						A_GiveInventory("Health", 1);
-					}
+				if (CountInv("AmyCheck") > 0) {
+					if (CountInv("PowerSuper") > 0) { A_GiveInventory("ChaosEnergy", 1); }
+					else { A_GiveInventory("Health", 1); }
 				}
-				else
-				{
+				else {
 					A_GiveInventory("Health", 1);
 				}
 			}
