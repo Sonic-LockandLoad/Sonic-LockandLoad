@@ -56,6 +56,10 @@ DamageType Drownd
 	Factor = 1
 	Obituary = "%o didn't make it out in time."
 }
+DamageType SonicPunch
+{
+	Factor = 1
+}
 
 DamageType Drowning
 {
@@ -413,13 +417,16 @@ DoomEdNums
 	
 	2013  = "ChaosEmeralds"
 	262   = "GoalRing"
-	4156  = "HomingAttackPoint"
-	4157  = "ChaosSpearPoint"
-	4158  = "PikoPikoPoint"
-	4159  = "OmniAttackPoint"
+	
 	31935 = "Continuer"
 	31936 = "WtfIsThis"
 	31937 = "KeyTablet"
+	
+	4156  = "SonicSwitch"
+	4157  = "ShadowSwitch"
+	4158  = "AmySwitch"
+	4159  = "OmniSwitch"
+	4160  = "ClassicSonicSwitch"
 	
 	31601 = "TutorialText"
 	31602 = "SideLevelsText"

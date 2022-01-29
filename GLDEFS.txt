@@ -1,30 +1,30 @@
-/* Homing Attack Point */
-PointLight HAL1 {
+PointLight SonicSwitch {
 	Color 0 0 1
 	Size 50
 }
-PointLight HAL2 {
-	Color 0 1 0
+
+PointLight AmySwitch {
+	Color 1 0.5 0.7
 	Size 50
 }
 
-/* Chaos Spear Point */
-PointLight CSL1 {
+PointLight ShadowSwitch {
 	Color 1 0 0
 	Size 50
 }
-PointLight CSL2 {
+
+PointLight ClassicSwitch {
+	Color 0 0.3 1
+	Size 50
+}
+
+PointLight OmniSwitch {
 	Color 1 1 1
 	Size 50
 }
 
-/* Piko Piko Point */
-PointLight AML1 {
-	Color 1 0.5 0.7
-	Size 50
-}
-PointLight AML2 {
-	Color 1 0 1
+PointLight ActivatedSwitch {
+	Color 0 1 0
 	Size 50
 }
 
@@ -33,43 +33,49 @@ PointLight SwordGlow {
 	Size 75
 }
 
-Object HomingAttackPoint
+Object SonicSwitch
 {
-	Frame HMIOA0 {
-		Light HAL1
+	Frame SONSA0 {
+		Light SonicSwitch
 	}
-	Frame HMIOB0 {
-		Light HAL2
+	Frame ACTSA0 {
+		Light ActivatedSwitch
 	}
 }
-
-Object ChaosSpearPoint
+Object AmySwitch
 {
-	Frame CSIOA0 {
-		Light CSL1
+	Frame AMYSA0 {
+		Light AmySwitch
 	}
-	Frame CSIOB0 {
-		Light CSL2
+	Frame ACTSA0 {
+		Light ActivatedSwitch
 	}
 }
-
-Object PikoPikoPoint
+Object ShadowSwitch
 {
-	Frame AMIOA0 {
-		Light AML1
+	Frame SHASA0 {
+		Light ShadowSwitch
 	}
-	Frame AMIOB0 {
-		Light AML2
+	Frame ACTSA0 {
+		Light ActivatedSwitch
 	}
 }
-
-Object OmniAttackPoint
+Object ClassicSonicSwitch
 {
-	Frame OMIOA0 {
-		Light CSL2
+	Frame CLSSA0 {
+		Light ClassicSwitch
 	}
-	Frame OMIOB0 {
-		Light AML2
+	Frame ACTSA0 {
+		Light ActivatedSwitch
+	}
+}
+Object OmniSwitch
+{
+	Frame ALLSA0 {
+		Light OmniSwitch
+	}
+	Frame ACTSA0 {
+		Light ActivatedSwitch
 	}
 }
 

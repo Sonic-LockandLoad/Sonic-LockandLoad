@@ -1,7 +1,8 @@
-class HomingAttackPoint : Actor // 4156
+class SonicSwitch : Actor // 4156
 {
 	Default
 	{
+		//$Name Sonic Switch
 		//$Category Lock & Load Objects
 		+SHOOTABLE
 		+NOBLOOD
@@ -11,49 +12,25 @@ class HomingAttackPoint : Actor // 4156
 		Health 1;
 		Mass 100000;
 		DamageFactor "Normal", 0;
-		DamageFactor "HomingAttack", 1;
+		DamageFactor "SonicKick", 1;
+		YScale 0.9;
 	}
 	States
 	{
 		Spawn:
-			HMIO A -1;
+			SONS A -1;
 			Stop;
 		Death:
-			HMIO B -1;
+			ACTS A -1;
 			Stop;
 	}
 }
 
-class ChaosSpearPoint : Actor
+class AmySwitch : Actor
 {
 	Default
 	{
-		//$Category Lock & Load Objects
-		+SHOOTABLE
-		+NOBLOOD
-		+DONTFALL
-		+NOGRAVITY
-		+NOCLIP
-		Health 1;
-		Mass 100000;
-		DamageFactor "Normal", 0;
-		DamageFactor "Spear", 1;
-	}
-	States
-	{
-		Spawn:
-			CSIO A -1;
-			Stop;
-		Death:
-			CSIO B -1;
-			Stop;
-	}
-}
-
-class PikoPikoPoint : Actor
-{
-	Default
-	{
+		//$Name Amy Switch
 		//$Category Lock & Load Objects
 		+SHOOTABLE
 		+NOBLOOD
@@ -64,22 +41,24 @@ class PikoPikoPoint : Actor
 		Mass 100000;
 		DamageFactor "Normal", 0;
 		DamageFactor "Piko", 1;
+		YScale 0.9;
 	}
 	States
 	{
 		Spawn:
-			AMIO A -1;
+			AMYS A -1;
 			Stop;
 		Death:
-			AMIO B -1;
+			ACTS A -1;
 			Stop;
 	}
 }
 
-class OmniAttackPoint : Actor
+class ClassicSonicSwitch : Actor // 4156
 {
 	Default
 	{
+		//$Name Classic Sonic Switch
 		//$Category Lock & Load Objects
 		+SHOOTABLE
 		+NOBLOOD
@@ -89,17 +68,77 @@ class OmniAttackPoint : Actor
 		Health 1;
 		Mass 100000;
 		DamageFactor "Normal", 0;
-		DamageFactor "HomingAttack", 1;
-		DamageFactor "Spear", 1;
-		DamageFactor "Piko", 1;
+		DamageFactor "SonicPunch", 1;
+		YScale 0.9;
 	}
 	States
 	{
 		Spawn:
-			OMIO A -1;
+			CLSS A -1;
 			Stop;
 		Death:
-			OMIO B -1;
+			ACTS A -1;
+			Stop;
+	}
+}
+
+class ShadowSwitch : Actor
+{
+	Default
+	{
+		//$Name Shadow Switch
+		//$Category Lock & Load Objects
+		+SHOOTABLE
+		+NOBLOOD
+		+DONTFALL
+		+NOGRAVITY
+		+NOCLIP
+		Health 1;
+		Mass 100000;
+		DamageFactor "Normal", 0;
+		DamageFactor "Spear", 1;
+		DamageFactor "ShadowMelee", 1;
+		YScale 0.9;
+	}
+	States
+	{
+		Spawn:
+			SHAS A -1;
+			Stop;
+		Death:
+			ACTS A -1;
+			Stop;
+	}
+}
+
+class OmniSwitch : Actor
+{
+	Default
+	{
+		//$Name Omni Switch
+		//$Category Lock & Load Objects
+		+SHOOTABLE
+		+NOBLOOD
+		+DONTFALL
+		+NOGRAVITY
+		+NOCLIP
+		Health 1;
+		Mass 100000;
+		DamageFactor "Normal", 0;
+		DamageFactor "SonicKick", 1;
+		DamageFactor "Piko", 1;
+		DamageFactor "SonicPunch", 1;
+		DamageFactor "Spear", 1;
+		DamageFactor "ShadowMelee", 1;
+		YScale 0.9;
+	}
+	States
+	{
+		Spawn:
+			ALLS A -1;
+			Stop;
+		Death:
+			ACTS A -1;
 			Stop;
 	}
 }

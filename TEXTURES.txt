@@ -22,62 +22,6 @@ sprite DTXTB0, 517, 52 // Side Levels text
 	patch DTXTB0, 0, 0
 }
 
-sprite HMIOA0, 32, 32 // Homing Attack Point
-{
-	yscale 1.2
-	offset 16, 28
-	patch HMIOA0, 0, 0
-}
-
-sprite HMIOB0, 32, 32 // Homing Attack Point (used)
-{
-	yscale 1.2
-	offset 16, 28
-	patch HMIOB0, 0, 0
-}
-
-sprite CSIOA0, 32, 32 // Chaos Spear Point
-{
-	yscale 1.2
-	offset 16, 28
-	patch CSIOA0, 0, 0
-}
-
-sprite CSIOB0, 32, 32 // Chaos Spear Point (used)
-{
-	yscale 1.2
-	offset 16, 28
-	patch CSIOB0, 0, 0
-}
-
-sprite AMIOA0, 32, 32 // Piko Piko Point 
-{
-	yscale 1.2
-	offset 16, 28
-	patch AMIOA0, 0, 0
-}
-
-sprite AMIOB0, 32, 32 // Piko Piko Point (used)
-{
-	yscale 1.2
-	offset 16, 28
-	patch AMIOB0, 0, 0
-}
-
-sprite OMIOA0, 32, 32 // Omni Attack Point 
-{
-	yscale 1.2
-	offset 16, 28
-	patch OMIOA0, 0, 0
-}
-
-sprite OMIOB0, 32, 32 // Omni Attack Point (used)
-{
-	yscale 1.2
-	offset 16, 28
-	patch OMIOB0, 0, 0
-}
-
 sprite DOOXA0, 688, 688
 {
 	xscale 12
