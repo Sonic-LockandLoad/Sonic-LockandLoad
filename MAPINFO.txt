@@ -67,6 +67,12 @@ DamageType Drowning
 	Factor = 0
 }
 
+map TITLEMAP "The Next Level"
+{
+	sky1 = "GHZSKY"
+	music = S_TITLE
+}
+
 episode S_LOBBY
 {
 	name = "Station Square"
