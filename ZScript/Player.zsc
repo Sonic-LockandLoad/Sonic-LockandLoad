@@ -12,7 +12,6 @@ class SonicPlayer : PlayerPawn
 		Player.MaxHealth 999;
 		Player.DisplayName "Sonic";
 		Player.Face "SNF";
-		Player.JumpZ 12.0;
 		Player.SoundClass "sonic";
 		Player.StartItem "SonicAbilities";
 		Player.StartItem "SonicCheck";
@@ -128,7 +127,6 @@ class AmyPlayer : PlayerPawn
 		Player.MaxHealth 999;
 		Player.DisplayName "Amy";
 		Player.Face "AMF";
-		Player.JumpZ 12.0;
 		Player.SoundClass "amy";
 		Player.StartItem "AmyCheck";
 		Player.StartItem "PikoPikoHammer";
@@ -219,7 +217,6 @@ class ShadowPlayer : PlayerPawn
 		Player.MaxHealth 999;
 		Player.DisplayName "Shadow";
 		Player.Face "SHF";
-		Player.JumpZ 15.0;
 		Player.SoundClass "shadow";
 		Player.StartItem "ShadowAbilities";
 		Player.StartItem "ShadowCheck";
@@ -297,7 +294,6 @@ class ClassicSonicPlayer : PlayerPawn
 		Player.MaxHealth 999;
 		Player.DisplayName "C.Sonic";
 		Player.SoundClass "classic";
-		Player.JumpZ 12.0;
 		Player.Face "CLF";
 		Player.StartItem "ClassicAbilities";
 		Player.StartItem "ChaosBlaster";
