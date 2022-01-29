@@ -116,6 +116,30 @@ class InvisiblePuff : Actor
 	}
 }
 
+class SonicPunchPuff : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+RANDOMIZE
+		RenderStyle "None";
+		Alpha 0;
+		VSpeed 1;
+		Mass 5;
+		DamageType "SonicPunch";
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 4 Bright;
+			TNT1 B 4;
+		Melee:
+			TNT1 CD 4;
+			Stop;
+	}
+}
+
 class GibPuff : Actor
 {
 	Default

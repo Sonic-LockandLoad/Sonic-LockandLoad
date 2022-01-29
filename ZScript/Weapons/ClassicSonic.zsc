@@ -32,16 +32,16 @@ class ClassicAbilities : Weapon replaces Fist
 			{
 				if (CountInv("PowerHyper"))
 				{
-					A_CustomPunch(160, false, 0, "InvisiblePuff", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
+					A_CustomPunch(160, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 					A_FireProjectile("ChaosEnergyBallEX", 0, false);
 				}
 				else if (CountInv("PowerSuper"))
 				{
-					A_CustomPunch(40, false, 0, "InvisiblePuff", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
+					A_CustomPunch(40, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 				else
 				{
-					A_CustomPunch(4, false, 0, "InvisiblePuff", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
+					A_CustomPunch(4, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 			}
 			PUNG D 1;
