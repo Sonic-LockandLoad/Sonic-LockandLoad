@@ -118,7 +118,7 @@ class AmyKick : CustomInventory
 	}
 }
 
-class SonicDash : CustomInventory
+class SonicThok : CustomInventory
 {
 	int inuse;
 	States
@@ -129,7 +129,7 @@ class SonicDash : CustomInventory
 		Fail;
 	TimeCheck:
 		TNT1 A 0 A_JumpIf(CountInv("PowerSuper")||CountInv("PowerHyper"), "BoostCheck");
-		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "DashAtk");
+		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "Thok");
 		Stop;
 	BoostCheck:
 		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "Boost");
@@ -153,8 +153,7 @@ class SonicDash : CustomInventory
 		}
 		Stop;
 	HyperBoost:
-		BOOS C 15 Bright
-		{
+		BOOS C 15 Bright {
 			A_Light(10);
 			A_FireBullets(50, 50, 200, 200, "SonicDashPuff", FBF_NOPITCH);
 			A_ChangeVelocity(Cos(Pitch) * 200, 0, Sin(Pitch) * -200, CVF_Relative);
@@ -163,72 +162,41 @@ class SonicDash : CustomInventory
 			A_Light(0);
 		}
 		Stop;
-	DashAtk:
+	Thok:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 		TNT1 A 0 A_AlertMonsters();
 		TNT1 A 0 A_PlaySound("classic/dash", 2);
 		TNT1 A 0 { if (random(0, 1)) { A_PlaySound("classic/homing", 3, 0.75); } }
 		TNT1 A 0
 		{
-			bool debug = false;
-			int dashspeed;
-			int invdspeed;
-			
-			if (A_CheckFloor("DashAtk")) { dashspeed = 42; } else { dashspeed = 32; }
-			invdspeed = dashspeed * -1;
-			
 			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 			int input = 0;
 			
-			if (debug) {
-				A_LogInt(dashspeed);
-				A_LogInt(invdspeed);
-			}
-			
 			if (buttons & BT_FORWARD) {
-				if (debug) { A_Log("Forward"); }
-				A_ChangeVelocity(dashspeed, 0, 0, CVF_Relative);
+				A_ChangeVelocity(80, 0, 0, CVF_Relative);
 				input = 1;
 			}
 			
 			if (buttons & BT_MOVELEFT) {
-				if (debug) { A_Log("Left"); }
-				A_ChangeVelocity(0, dashspeed, 0, CVF_Relative);
+				A_ChangeVelocity(0, 50, 0, CVF_Relative);
 				input = 1;
 			}
 			
 			if (buttons & BT_MOVERIGHT) {
-				if (debug) { A_Log("Right"); }
-				A_ChangeVelocity(0, invdspeed, 0, CVF_Relative);
+				A_ChangeVelocity(0, -50, 0, CVF_Relative);
 				input = 1;
 			}
 			
 			if (buttons & BT_BACK) {
-				if (debug) { A_Log("Back"); }
-				A_ChangeVelocity(invdspeed, 0, 0, CVF_Relative);
+				A_ChangeVelocity(-30, 0, 0, CVF_Relative);
 				input = 1;
 			}
 			
 			if (!input) {
-				if (debug) { A_Log("No keys"); }
-				A_ChangeVelocity(dashspeed+10, 0, 0, CVF_Relative);
+				A_ChangeVelocity(85, 0, 0, CVF_Relative);
 			}
 		}
-		TNT1 A 5
-		{
-			if (CountInv("PowerSuper") < 1 && CountInv("PowerHyper") < 1)
-			{
-				A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			}
-			else if (CountInv("PowerSuper"))
-			{
-				A_CustomPunch(160, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			}
-			else if (CountInv("PowerHyper"))
-			{
-				A_CustomPunch(320, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			}
-		}
+		TNT1 A 5 A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		TNT1 A 1 A_SetInventory("KickCooldown", 10);
 		Stop;
 	}
