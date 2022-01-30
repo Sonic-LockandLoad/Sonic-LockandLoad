@@ -71,9 +71,9 @@ class ClassicAbilities : Weapon replaces Fist
 				A_PlaySound("sweapons/drift", 2);
 				A_Light(2);
 				if (A_CheckFloor("Drift")) {
-					A_Recoil(-12); // on the ground
+					A_ChangeVelocity(10, 0, 0, CVF_Relative);
 				} else {
-					A_Recoil(-6); // in the air
+					A_ChangeVelocity(2, 0, 0, CVF_Relative);
 				}
 			}
 			TNT1 A 0 {
