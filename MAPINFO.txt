@@ -427,5 +427,4 @@ DoomEdNums
 	2045  = "Nintendo64"
 	
 	9069  = "Doox"
-	9068  = "RoadClosed"
 }
