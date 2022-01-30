@@ -70,7 +70,7 @@ StatusBar Normal
 	}
 	IfHealth Not 10
 	{
-		DrawNumber 3, HUDFONT_DOOM, Green, Health, fillzeros, 135, 172;
+		DrawNumber 3, HUDFONT_DOOM, Red, Health, fillzeros, 135, 172;
 	}
 	DrawString SMALLFONT, Gold, "RINGS", 133, 190;
 
