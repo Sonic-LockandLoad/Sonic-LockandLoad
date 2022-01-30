@@ -211,6 +211,54 @@ script "ChaosEmeraldHandler" (void)
 	}
 }
 
+script "SuperTransformPrompt" enter
+{
+	while (1) {
+		Delay(1);
+		int x;
+		int y;
+		switch (GetCvar("HUDType")) {
+			case 0:
+				/* Unified */
+				x = 0.25;
+				y = 0.91;
+				break;
+			default:
+				/* Classic-Style, Legacy */
+				x = 0.5;
+				y = 0.9;
+				break;
+		}
+		if (CheckInventory("ChaosEmeralds")) {
+			switch(PlayerClass(PlayerNumber()))
+			{
+				case 0:
+					/* Sonic */
+					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Super Sonic";
+					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					break;
+				case 1:
+					/* Amy */
+					HudMessage(s:"\c[Purple]", k:"invuse", s:"  \c[Amy]Dark Amy";
+					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					break;
+				case 2:
+					/* Classic Sonic */
+					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Super Sonic";
+					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					break;
+				case 3:
+					/* Shadow */
+					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Shadow]Super Shadow";
+					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					break;
+			}
+		}
+		else { HudMessage(s:""; HUDMSG_PLAIN, 1, CR_UNTRANSLATED, 0, 0, 0, 0); }
+	}
+}
+
+
 script "NoBrutal4U" ENTER
 {
 	if (CheckClass("BrutalWeapon"))
