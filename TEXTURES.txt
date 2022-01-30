@@ -9,22 +9,6 @@ Sprite "CBRNA0", 245, 643
 	Patch "CBRNA0", 0, 0
 }
 
-Sprite "DTXTA0", 401, 52
-{
-	XScale 4.000
-	YScale 4.500
-	Offset 200, 40
-	Patch "DTXTA0", 0, 0
-}
-
-Sprite "DTXTB0", 517, 52
-{
-	XScale 4.000
-	YScale 4.500
-	Offset 258, 40
-	Patch "DTXTB0", 0, 0
-}
-
 Sprite "DOOXA0", 688, 688
 {
 	XScale 12.000
@@ -54,14 +38,6 @@ Graphic "M_PAUSE", 589, 52
 	XScale 4.000
 	YScale 4.200
 	Patch "M_PAUSE", 0, 0
-}
-
-Sprite "RCLSA0", 165, 165
-{
-	XScale 1.600
-	YScale 1.800
-	Offset 81, 161
-	Patch "RCLSA0", 0, 0
 }
 
 Sprite "RETIA0", 710, 619
