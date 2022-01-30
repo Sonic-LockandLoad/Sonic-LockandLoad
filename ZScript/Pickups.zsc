@@ -200,21 +200,19 @@ class ChaosRingGravity : ChaosRing
 	}
 }
 
-class Hint : CustomInventory // 260
+class Hint : Inventory
 {
 	Default
 	{
 		//$Category Lock & Load Pickups
 		Inventory.PickupMessage "";
 		Inventory.PickupSound "spickup/hint";
+		+INVENTORY.ALWAYSPICKUP
 	}
 	States
 	{
 		Spawn:
 			HELP A -1 Bright;
-			Stop;
-		Pickup:
-			TNT1 A 0 A_Print("");
 			Stop;
 	}
 }
