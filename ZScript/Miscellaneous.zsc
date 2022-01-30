@@ -173,51 +173,6 @@ class StabilityCheck : Actor
 	}
 }
 
-class TutorialText : Actor
-{
-	Default
-	{
-		//$Category Lock & Load Text
-		+NOGRAVITY
-	}
-	States
-	{
-		Spawn:
-			DTXT A -1;
-			Stop;
-	}
-}
-
-class SideLevelsText : Actor
-{
-	Default
-	{
-		//$Category Lock & Load Text
-		+NOGRAVITY
-	}
-	States
-	{
-		Spawn:
-			DTXT B -1;
-			Stop;
-	}
-}
-
-class RoadClosed : Actor
-{
-	Default
-	{
-		//$Category Lock & Load Objects
-		+NOGRAVITY
-	}
-	States
-	{
-		Spawn:
-			RCLS A -1;
-			Stop;
-	}
-}
-
 class Doox : Actor
 {
 	Default

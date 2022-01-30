@@ -118,47 +118,6 @@ map S_LOBBY "Station Square"
 	resetinventory
 }
 
-map T_SONIC "Sonic Tutorial"
-{
-	music = S_TUT
-	sky1 = "GHZSKY"
-	next = "S_LOBBY"
-	author = "That1M8Head"
-	partime = 125
-	resethealth
-	resetinventory
-}
-
-map T_CLASSI "Classic Tutorial"
-{
-	music = C_TUT
-	next = "S_LOBBY"
-	author = "That1M8Head"
-	partime = 120
-	resethealth
-	resetinventory
-}
-
-map T_SHADOW "Shadow Tutorial"
-{
-	music = D_TUT
-	next = "S_LOBBY"
-	author = "That1M8Head"
-	partime = 120
-	resethealth
-	resetinventory
-}
-
-map T_AMY "Amy Tutorial"
-{
-	music = A_TUT
-	next = "S_LOBBY"
-	author = "That1M8Head"
-	partime = 120
-	resethealth
-	resetinventory
-}
-
 map LMAONO "You Idiot, You Fricked It Up"
 {
   levelnum = 30
@@ -433,9 +392,6 @@ DoomEdNums
 	4158  = "AmySwitch"
 	4159  = "OmniSwitch"
 	4160  = "ClassicSonicSwitch"
-	
-	31601 = "TutorialText"
-	31602 = "SideLevelsText"
 	
 	19924 = "FastSpiderdemon"
 	19925 = "FasterSpiderdemon"
