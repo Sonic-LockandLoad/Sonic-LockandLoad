@@ -13,6 +13,7 @@ class SonicSwitch : Actor // 4156
 		Mass 100000;
 		DamageFactor "Normal", 0;
 		DamageFactor "SonicKick", 1;
+		DamageFactor "HomingAttack", 1;
 		YScale 0.9;
 	}
 	States
@@ -126,6 +127,7 @@ class OmniSwitch : Actor
 		Mass 100000;
 		DamageFactor "Normal", 0;
 		DamageFactor "SonicKick", 1;
+		DamageFactor "HomingAttack", 1;
 		DamageFactor "Piko", 1;
 		DamageFactor "SonicPunch", 1;
 		DamageFactor "Spear", 1;
