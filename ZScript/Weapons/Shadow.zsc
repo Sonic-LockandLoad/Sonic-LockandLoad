@@ -82,10 +82,10 @@ class HighShovel : Weapon
 			SHOV B 1;
 			SHOV C 10 {
 				if (CountInv("PowerSuper")) {
-					A_CustomPunch(600, 0, 0, "GibPuff", 75, 0, 0, "ArmorBonus", "sweapons/shovelbonk");
+					A_CustomPunch(600, 0, 0, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sweapons/shovelbonk");
 				}
 				else {
-					A_CustomPunch(300, 0, 0, "NoGibPuff", 75, 0, 0, "ArmorBonus", "sweapons/shovelbonk");
+					A_CustomPunch(300, 0, 0, "ShadowMeleeAtk", 75, 0, 0, "ArmorBonus", "sweapons/shovelbonk");
 				}
 			}
 			SHOV B 1;
@@ -247,7 +247,7 @@ class ShadowKnife : Weapon
 			KNIF B 2;
 			KNIF C 2;
 			KNIF D 3;
-			KNIF E 6 A_CustomPunch(6900, true, 0, "NoGibPuff", 64, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
+			KNIF E 6 A_CustomPunch(6900, true, 0, "ShadowMeleeAtk", 64, 0, 0, "ArmorBonus", "sonicdoom/finalhit");
 			KNIF C 2;
 			KNIF B 5 A_ReFire();
 			Goto Ready;
