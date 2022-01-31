@@ -265,7 +265,7 @@ class AmyKickPuff : BulletPuff
 		Alpha 0;
 		VSpeed 1;
 		Mass 5;
-		DamageType "SonicKick";
+		DamageType "Piko";
 		ProjectileKickBack 9999999;
 	}
 	States
@@ -288,7 +288,7 @@ class SonicDashPuff : BulletPuff
 		Alpha 0;
 		VSpeed 1;
 		Mass 5;
-		DamageType "HomingAttack";
+		DamageType "SonicPunch";
 		ProjectileKickBack 1000000;
 	}
 	States
