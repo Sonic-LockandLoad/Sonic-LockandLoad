@@ -58,6 +58,9 @@ class PikoPikoHammer : Weapon
 			{
 				if (invoker.HJumpCheck && !A_CheckFloor("Null")) {
 					A_SetSpeed(4);
+				} else {
+					invoker.HJumpCheck = false;
+					A_SetSpeed(1.2);
 				}
 			}
 			PIKO A 0 A_ReFire();
