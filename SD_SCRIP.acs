@@ -4,8 +4,6 @@
 #define CSF_SOLIDACTORS 2
 #define CSF_ALL (CSF_SOLIDGROUND|CSF_SOLIDACTORS)
 
-//int StopBeingBrutal = 0;
-
 script "Taunt" (void)
 {
 	NoiseAlert(0, 0);
@@ -215,17 +213,15 @@ script "SuperTransformPrompt" enter
 {
 	while (1) {
 		Delay(1);
-		int x;
+		int x = 0.5;
 		int y;
 		switch (GetCvar("HUDType")) {
-			case 0:
-				/* Unified */
-				x = 0.25;
-				y = 0.91;
+			case 3:
+				// Legacy
+				y = 0.8;
 				break;
 			default:
-				/* Classic-Style, Legacy */
-				x = 0.5;
+				// Unified, Classic-Style
 				y = 0.9;
 				break;
 		}
