@@ -227,8 +227,9 @@ $random classic/taunt 		{ classic/taunt1 classic/taunt2 classic/taunt3 classic/t
 $random sglobal/nextlevel { sonic/nextlevel amy/nextlevel classic/nextlevel shadow/nextlevel }
 $alias intermission/paststats sglobal/nextlevel
 	
-sonic/startup				s_strtup
-$alias misc/startupdone		sonic/startup
+		sonic/startup		s_strtup
+$alias  misc/startupdone	sonic/startup
+$volume misc/startupdone	0.5
 
 // Player
 
