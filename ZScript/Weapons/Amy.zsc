@@ -22,78 +22,35 @@ class PikoPikoHammer : Weapon
 			PIKO A 1 A_Raise;
 			Loop;
 		Fire:
-			TNT1 A 0 A_CheckFloor("GroundAtk");
-		AirAtk:
 			PIKO A 0 A_PlaySound("sweapons/hammerswing", 1);
 			PIKO B 1;
 			PIKO C 1
 			{
-				if (random(1,8) == 8)
-				{
+				/* Self-damage */
+				if (CountInv("LegOut") > 0) {
+					A_PlaySound("sweapons/hammerbonk");
+					if (!CountInv("PowerSuper")) { A_DamageSelf(5); }
+				}
+				/* Bonk */
+				if (random(1,8) == 8) {
 					A_CustomPunch(400, 0, CPF_PULLIN, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
-				}
-				else
-				{
-					A_CustomPunch(200, 0, 0, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
-				}
-			}
-			PIKO D 1;
-			PIKO A 0
-			{
-				if (CountInv("LegOut") > 0)
-				{
-					if (CountInv("PowerSuper") < 1)
-					{
-						A_PlaySound("sweapons/hammerbonk");
-						A_DamageSelf(5);
-					}
-				}
-			}
-			PIKO E 4;
-			PIKO A 0 A_ReFire();
-			PIKO D 1;
-			PIKO C 1;
-			PIKO B 1;
-			Goto Ready;
-		GroundAtk:
-			PIKO A 0 A_PlaySound("sweapons/hammerswing", 1);
-			PIKO B 1;
-			PIKO C 1
-			{
-				if (random(1,8) == 8)
-				{
-					A_CustomPunch(400, 0, CPF_PULLIN, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
-				}
-				else
-				{
+				} else {
 					A_CustomPunch(200, 0, 0, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 			}
 			PIKO D 1;
 			PIKO E 4
 			{
-				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-				if (buttons & BT_JUMP) {
-					ThrustThingZ(0, 40, 0, 1);
-				}
-				else if (buttons & BT_CROUCH) {
-					ThrustThingZ(0, 70, 0, 1);
-					A_SetSpeed(4);
-				}
-				
-				if (CountInv("LegOut") > 0)
-				{
-					if (CountInv("PowerSuper") < 1)
-					{
-						A_PlaySound("sweapons/hammerbonk");
-						A_DamageSelf(5);
+				/* Hammer Jump */
+				if (A_CheckFloor("Null")) {
+					int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+					if (buttons & BT_JUMP) {
+						A_ChangeVelocity(Vel.X, Vel.Y, 25, CVF_Replace);
 					}
 				}
 			}
 			PIKO A 0 A_ReFire();
-			PIKO D 1;
-			PIKO C 1;
-			PIKO B 1 A_SetSpeed(1.2);
+			PIKO DCB 1;
 			Goto Ready;
 		Hold:
 			PIKO E 1
@@ -289,8 +246,7 @@ class PrecisionShotgun : Weapon
 			AIMA A 0 A_ZoomFactor(4);
 			AIMA A 0
 			{
-				if (CountInv("ZoomCheck2") < 1) 
-				{
+				if (CountInv("ZoomCheck2") < 1) {
 					A_PlaySound("sweapons/zoom", 1);
 					A_GiveInventory("ZoomCheck2");
 				}
@@ -298,12 +254,10 @@ class PrecisionShotgun : Weapon
 			AIMA A 0 A_GiveInventory("ZoomCheck");
 			AIMA A 0
 			{
-				if (CountInv("PowerSuper") > 0)
-				{
+				if (CountInv("PowerSuper") > 0) {
 					A_GiveInventory("ZoomCharge", 10);
 				}
-				else
-				{
+				else {
 					A_GiveInventory("ZoomCharge", 5);
 				}
 			}
