@@ -164,7 +164,7 @@ class Caliburn : Weapon
 	}
 	action void SwordSlam()
 	{
-		A_PlaySound("sweapons/sonicland", 7);
+		A_PlaySound("sweapons/sonicland", 1);
 		if (CountInv("PowerSuper")) {
 			A_Explode(280, 600, XF_NOTMISSILE);
 			A_PlaySound("sweapons/soulsurge", 6, 0.5);
@@ -235,7 +235,7 @@ class Caliburn : Weapon
 			CALI A 0 A_ReFire("GroundAttack");
 			Goto Ready;
 		AirStart:
-			TNT1 A 0 A_PlaySound("sweapons/sonicfalling", 7);
+			TNT1 A 0 A_PlaySound("sweapons/sonicfalling", 1);
 		AirAttack:
 			TNT1 A 0 A_Stop();
 			TNT1 A 0 A_ChangeVelocity(0, 0, -500, CVF_Relative|CVF_Replace);
@@ -353,7 +353,7 @@ class AcceleratedPistol : Weapon
 {
 	action void AccelFire()
 	{
-		A_PlaySound("sweapons/pistol");
+		A_PlaySound("sweapons/pistol", 1);
 		if (CountInv("PowerSuper")) {
 			A_FireBullets(0, 0, 1, 24, "NoGibPuff");
 		}
@@ -364,7 +364,7 @@ class AcceleratedPistol : Weapon
 	}
 	action void RecoilBurst()
 	{
-		A_PlaySound("weapons/rbeam");
+		A_PlaySound("weapons/rbeam", 1);
 		if (CountInv("PowerSuper") > 0) {
 			A_RailAttack(96, 0, 1, "06 b4 00", "fd ff 00", RGF_FULLBRIGHT, 0, "GibPuff", 0, 0, 0, 25, 1.0, 1.0);
 			A_ChangeVelocity (Cos(Pitch) * -50, 0, Sin(Pitch) * 50, CVF_Relative);
@@ -451,7 +451,7 @@ class RapidShotty : Weapon
 	}
 	action void ForceFire()
 	{
-		A_PlaySound("sweapons/forceshot");
+		A_PlaySound("sweapons/forceshot", 1);
 		A_ChangeVelocity(Cos(Pitch) * -20, 0, Sin(Pitch) * 20, CVF_Relative);
 		A_FireBullets(8, 2, 24, 4, "BulletPuff");
 		A_GunFlash("ForceFlash");
