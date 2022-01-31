@@ -191,4 +191,6 @@ MNU_DELETESG = "Delete the save data ";
 WI_FINISHED			= "STAGE COMPLETE";
 WI_ENTERING			= "NEXT STAGE";
 
-DOSY = "\c[MenuInactive] Thanks for playing Sonic: Lock and Load!\nAre you sure you want to quit?";
+DOSY = "\c[MenuInactive] Thanks for playing Sonic: Lock & Load!\nAre you sure you want to quit?";
+
+STARTUP1 = "\c[Sonic]Welcome to Sonic: Lock & Load!";
