@@ -10,16 +10,26 @@ script "Taunt" (void)
 	switch(PlayerClass(PlayerNumber())) {
 		case 0:
 			PlaySound(1001, "sonic/taunt", 9, 1.0);
+			SetMugshotState("GrinSmol");
             break;
 		case 1:
 			PlaySound(1001, "amy/taunt", 9, 1.0);
+			SetMugshotState("FailSmol");
 			break;
 		case 2:
-			PlaySound(1001, "classic/taunt", 9, 1.0);
+			int SandInEye = random(0, 1);
+			if (SandInEye) {
+				PlaySound(1001, "classic/taunt5", 9, 1.0);
+				SetMugshotState("FailSmol");
+			} else {
+				PlaySound(1001, "classic/taunt", 9, 1.0);
+				SetMugshotState("GrinSmol");
+			}
 			break;
 		case 3:
 			if (random(1, 35) == 35) {
 				PlaySound(1001, "imthe/coolest", 9, 1.0);
+				SetMugshotState("Grin");
 			} else {
 				PlaySound(1001, "shadow/taunt", 9, 1.0);
 			}

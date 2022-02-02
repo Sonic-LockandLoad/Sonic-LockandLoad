@@ -321,3 +321,13 @@ mugshot "Death"
 {
   DEAD0 - 1;
 }
+
+mugshot "GrinSmol"
+{
+	EVL0 60;
+}
+
+mugshot "FailSmol"
+{
+	FAIL 60;
+}

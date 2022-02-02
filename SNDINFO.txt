@@ -222,7 +222,7 @@ $random amy/pain 			{ amy/hurt1 amy/hurt2 amy/hurt3 }
 $random sonic/taunt 		{ sonic/taunt1 sonic/taunt2 sonic/taunt3 }
 		amy/taunt			  a_taunt
 $random shadow/taunt 		{ shadow/taunt1 shadow/taunt2 }
-$random classic/taunt 		{ classic/taunt1 classic/taunt2 classic/taunt3 classic/taunt4 classic/taunt5 }
+$random classic/taunt 		{ classic/taunt1 classic/taunt2 classic/taunt3 classic/taunt4 }
 
 $random sglobal/nextlevel { sonic/nextlevel amy/nextlevel classic/nextlevel shadow/nextlevel }
 $alias intermission/paststats sglobal/nextlevel
