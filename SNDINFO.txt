@@ -252,8 +252,8 @@ $playersound amy	 female 	sglobal/supersonic    	destrall
 $playersound classic male 		*death                	sonicdoom/cdeath
 $playeralias classic male 		*usefail              	classic/cantuse
 $playersound classic male 		*jump                 	cjump
-$playersound classic male 		*grunt                	S_LAND
-$playersound classic male 		*land                 	S_LAND
+$playersound classic male 		*grunt                	C_LAND
+$playersound classic male 		*land                 	C_LAND
 $playersound classic male 		sglobal/supersonic  	csuptrns
 
 $playersound shadow  male 		*death                 	nooooooo
