@@ -264,57 +264,6 @@ script "SuperTransformPrompt" enter
 	}
 }
 
-
-script "NoBrutal4U" ENTER
-{
-	if (CheckClass("BrutalWeapon"))
-	{
-		if (GetLevelInfo(LEVELINFO_CLUSTERNUM) != 412 && GetLevelInfo(LEVELINFO_CLUSTERNUM) != 413)
-		{
-			if (GetCvar("StopBeingBrutal") == 1)
-			{
-				ChangeLevel("LMAONO", 0, CHANGELEVEL_NOINTERMISSION, -1);
-			}
-			else
-			{
-				SetCvar("StopBeingBrutal", 1);
-				ChangeLevel("ERR666", 0, CHANGELEVEL_NOINTERMISSION, -1);
-			}
-		}
-	}
-	else
-	{
-		if (GetLevelInfo(LEVELINFO_CLUSTERNUM) == 412)
-		{
-			switch (Random(1, 6))
-			{
-				case 1:
-					Print(s:"See you next game!");
-					break;
-				case 2:
-					Print(s:"You aren't meant to be here");
-					break;
-				case 3:
-					Print(s:"Sorry, this level is only for heretics");
-					break;
-				case 4:
-					Print(s:"No! This isn't the way you're supposed to play the game!");
-					break;
-				case 5:
-					Print(s:"lol no");
-					break;
-				case 6:
-					Print(s:"Why would you even...?");
-					break;
-				default:
-					Print(s:"Send chicken wings");
-					break;
-			}
-			Exit_Normal(0);
-		}
-	}
-}
-
 script "DeathMusic" (int xdeath)
 {
 	if (GetCvar("DeathMusic")) {
@@ -474,27 +423,6 @@ script "ContinuingSucks" (void)
 {
 	ClearInventory();
 	SetActorProperty(1001, APROP_Health, 1);
-}
-
-script "Sfjbtojbyjo" DEATH
-{
-	if (GetCvar("StopBeingBrutal"))
-	{
-		SetCvar("DkgBruTecFpgA", 1);
-	}
-}
-
-script "SA1AllOverAgain" ENTER
-{
-	if (GetCvar("DkgBruTecFpgA"))
-	{
-		Delay(1);
-		while (true)
-		{
-			SetMusic("thewindy");
-			Delay(5);
-		}
-	}
 }
 
 function void SetMugshotIfNotSuper(str state)
