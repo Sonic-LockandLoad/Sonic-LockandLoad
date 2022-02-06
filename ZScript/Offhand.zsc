@@ -60,6 +60,7 @@ class SonicKick : CustomInventory
 		SEAG E 1;
 		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
+	}
 	override void DoEffect()
 	{
 		Super.DoEffect();
