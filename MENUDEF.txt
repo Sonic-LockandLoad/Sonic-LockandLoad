@@ -93,12 +93,6 @@ OptionMenu "LockandLoadOptions"
 	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
 	StaticText ""
 	
-	Option "Boost Type", "VerticalBoost", "BoostType"
-	StaticText "Sonic only", "Cyan"
-	StaticText "Lock & Load was not designed around Aimable Boost.", "LightBlue"
-	StaticText "Levels may break.", "LightBlue"
-	StaticText ""
-	
 	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
 	StaticText "Classic Sonic only", "Cyan"
 	StaticText ""
