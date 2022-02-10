@@ -158,6 +158,7 @@ classic/okayresult			C_OKAY
 classic/ohno              	cono
 classic/pain       			churt
 classic/go					cgo
+classic/jump				cjump
 
 shadow/grunt1      			dgrunt1
 shadow/grunt2      			dgrunt2

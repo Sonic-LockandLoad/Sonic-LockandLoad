@@ -1,22 +1,24 @@
 #library "snclkld"
 #include "zcommon.acs"
-#define CSF_SOLIDGROUND 1
-#define CSF_SOLIDACTORS 2
-#define CSF_ALL (CSF_SOLIDGROUND|CSF_SOLIDACTORS)
+#define Sonic 0
+#define Amy 1
+#define ClassicSonic 2
+#define Shadow 3
+
 
 script "Taunt" (void)
 {
 	NoiseAlert(0, 0);
 	switch(PlayerClass(PlayerNumber())) {
-		case 0:
+		case Sonic:
 			PlaySound(1001, "sonic/taunt", 9, 1.0);
 			SetMugshotState("GrinSmol");
             break;
-		case 1:
+		case Amy:
 			PlaySound(1001, "amy/taunt", 9, 1.0);
 			SetMugshotState("FailSmol");
 			break;
-		case 2:
+		case ClassicSonic:
 			int SandInEye = random(0, 1);
 			if (SandInEye) {
 				PlaySound(1001, "classic/taunt5", 9, 1.0);
@@ -26,7 +28,7 @@ script "Taunt" (void)
 				SetMugshotState("GrinSmol");
 			}
 			break;
-		case 3:
+		case Shadow:
 			if (random(1, 35) == 35) {
 				PlaySound(1001, "imthe/coolest", 9, 1.0);
 				SetMugshotState("Grin");
@@ -59,7 +61,7 @@ script "TransformSuper" (void)
 	{
 		switch(PlayerClass(PlayerNumber()))
 		{
-            case 0: // Super Sonic
+            case Sonic: // Super Sonic
                  if (GetCvar("SupSonic") == 1) {
 					 SetMusic("S_SUPER", 0);
 				 }
@@ -67,12 +69,12 @@ script "TransformSuper" (void)
 					 SetMusic("S_SUPER2", 0);
 				 }
                  break;
-            case 1: // Dark Amy
+            case Amy: // Dark Amy
                  if (GetCvar("SupAmy")) {
 					SetMusic("A_SUPER", 0);
 				 }
                  break;
-            case 2: // Classic Super Sonic
+            case ClassicSonic: // Classic Super Sonic
                  if (GetCvar("SupClassic") == 1) {
 					 SetMusic("C_SUPER", 0);
 				 }
@@ -80,7 +82,7 @@ script "TransformSuper" (void)
 					 SetMusic("C_SUPER2", 0);
 				 }
                  break;
-            case 3: // Super Shadow
+            case Shadow: // Super Shadow
                  if (GetCvar("SupShadow") == 1) {
 					 SetMusic("D_SUPER", 0);
 				 }
@@ -185,7 +187,7 @@ script "ChaosEmeraldHandler" (void)
 {
 	if (CheckInventory("PowerSuper") || CheckInventory("PowerHyper"))
 	{
-		if (PlayerClass(PlayerNumber()) == 2 && !CheckInventory("PowerHyper") && GetCvar("HyperSonic"))
+		if (PlayerClass(PlayerNumber()) == ClassicSonic && !CheckInventory("PowerHyper") && GetCvar("HyperSonic"))
 		/* If playing as Classic Sonic, you're not already in Hyper form and Hyper form is enabled... */
 		{
             PlaySound(1001, "super/classich", CHAN_BODY, 1.0);
@@ -238,25 +240,23 @@ script "SuperTransformPrompt" enter
 		if (CheckInventory("ChaosEmeralds")) {
 			switch(PlayerClass(PlayerNumber()))
 			{
-				case 0:
-					/* Sonic */
+				case Sonic:
 					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Super Sonic";
 					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
 					break;
-				case 1:
-					/* Amy */
+				case Amy:
 					HudMessage(s:"\c[Purple]", k:"invuse", s:"  \c[Amy]Dark Amy";
 					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
 					break;
-				case 2:
-					/* Classic Sonic */
+				case ClassicSonic:
 					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Super Sonic";
 					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
 					break;
-				case 3:
-					/* Shadow */
+				case Shadow:
 					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Shadow]Super Shadow";
 					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					break;
+				default:
 					break;
 			}
 		}
@@ -269,17 +269,12 @@ script "DeathMusic" (int xdeath)
 	if (GetCvar("DeathMusic")) {
 		if (xdeath) {
 			switch(PlayerClass(PlayerNumber())) {
-				case 0:
-					break;
-				case 1:
-					break;
-				case 2:
+				case ClassicSonic:
 					SetMusic("C_DEADX", 0);
 					break;
-				case 3:
+				case Shadow:
 					SetMusic("D_DEADX", 0);
 					break;
-				case -1:
 				default:
 					break;
 			}
@@ -288,23 +283,22 @@ script "DeathMusic" (int xdeath)
 		else {
 			switch(PlayerClass(PlayerNumber()))
 			{
-				case 0:
+				case Sonic:
 					SetMusic("S_DEADM", 0);
 					break;
-				case 1:
+				case Amy:
 					SetMusic("A_DEADM", 0);
 					break;
-				case 2:
+				case ClassicSonic:
 					SetMusic("C_DEADM", 0);
 					Delay(9*35);
 					SetMusic("*");
 					break;
-				case 3:
+				case Shadow:
 					SetMusic("D_DEADM", 0);
 					Delay(7*35);
 					SetMusic("*");
 					break;
-				case -1:
 				default:
 					break;
 			}
@@ -318,7 +312,7 @@ script "TakeRingsIfSuper" (void)
 	{
 		switch(PlayerClass(PlayerNumber()))
 		{
-			case 1: // Amy
+			case Amy:
 				TakeInventory("ChaosEnergy", 2);
 				break;
 			default:
@@ -445,7 +439,7 @@ script "GoalRing" (void)
 	SetFont("BIGFONT");
 	switch (PlayerClass(PlayerNumber()))
 	{
-		case 0:
+		case Sonic:
 			SetMusic("S_VICTOR");
 			Print(s:"\c[Sonic]Stage Clear");
 			if (LevelTime > DParTime) {
@@ -462,7 +456,7 @@ script "GoalRing" (void)
 			}
 			Delay(35*7);
 			break;
-		case 1:
+		case Amy:
 			SetMusic("A_VICTOR");
 			Print(s:"\c[Amy]Act Clear!");
 			if (CurrentHealth < 40) {
@@ -475,7 +469,7 @@ script "GoalRing" (void)
 			}
 			Delay(35*7);
 			break;
-		case 2:
+		case ClassicSonic:
 			SetMusic("C_VICTOR");
 			if (CheckInventory("PowerHyper")) {
 				Print(s:"\c[Purple]HYPER SONIC \c[White]GOT THROUGH");
@@ -498,7 +492,7 @@ script "GoalRing" (void)
 			}
 			Delay(35*6);
 			break;
-		case 3:
+		case Shadow:
 			SetMusic("D_VICTOR");
 			if (KilledMonsters == TotalMonsters) {
 				Print(s:"\c[Shadow]Mission Cleared");
@@ -583,22 +577,22 @@ script "JumpHeight" (int Reset)
 {
 	if (Reset) {
 		switch(PlayerClass(PlayerNumber())) {
-			case 3: // Shadow
+			case Shadow:
 				SetActorProperty(1001, APROP_JumpZ, 17.0);
 				break;
-			default: // Everyone else
+			default:
 				SetActorProperty(1001, APROP_JumpZ, 15.0);
 				break;
 		}
 	} else {
 		switch(PlayerClass(PlayerNumber())) {
-            case 0: // Super Sonic
+            case Sonic: // Super Sonic
 				SetActorProperty(1001, APROP_JumpZ, 19.0);
                 break;
-            case 1: // Dark Amy
+            case Amy: // Dark Amy
 				SetActorProperty(1001, APROP_JumpZ, 17.0);
                 break;
-            case 2:
+            case ClassicSonic:
 				if (CheckInventory("PowerHyper")) {
 					// Classic Hyper Sonic
 					SetActorProperty(1001, APROP_JumpZ, 20.0);
@@ -607,7 +601,7 @@ script "JumpHeight" (int Reset)
 					SetActorProperty(1001, APROP_JumpZ, 17.0);
 				}
                 break;
-            case 3: // Shadow
+            case Shadow: // Shadow
 				SetActorProperty(1001, APROP_JumpZ, 21.0);
                 break;
             case -1:
@@ -623,6 +617,8 @@ script "DoubleJump" enter
 	 * Thanks to Agent ME on the ZDoom Forum for this script
 	 * <https://forum.zdoom.org/viewtopic.php?t=21034>
 	 */
+	int playerCharacter = PlayerClass(PlayerNumber());
+	
 	int maxDblJumps = 1;
 	int dblJumpThrust = 60;
 
@@ -635,15 +631,26 @@ script "DoubleJump" enter
 		lastZ = GetActorZ(0);
 		delay(1);
 
-		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_JUMP) && (PlayerClass(PlayerNumber()) == 0 || PlayerClass(PlayerNumber()) == 1) && GetCvar("DoubleJump") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
+		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_JUMP) && (playerCharacter == Sonic || playerCharacter == Amy || (playerCharacter == ClassicSonic && CheckInventory("PowerHyper"))) && GetCvar("DoubleJump") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
 			if ((GetActorZ(0) > lastZ) && (lastZ <= olderZ)) {
 				counter = 0;
 			} else {
 				if (counter < maxDblJumps) {
 					if (GetCvar("DoubleJump") == 1) { Thing_Stop(1001); }
 					ThrustThingZ(0, dblJumpThrust, 0, 0);
-					if (PlayerClass(PlayerNumber()) == 0) { PlaySound(1001, "sonic/doublejump"); }
-					if (PlayerClass(PlayerNumber()) == 1) { PlaySound(1001, "amy/doublejump"); }
+					switch (playerCharacter) {
+						case Sonic:
+							PlaySound(1001, "sonic/doublejump", CHAN_BODY);
+							break;
+						case Amy:
+							PlaySound(1001, "amy/doublejump", CHAN_BODY);
+							break;
+						case ClassicSonic:
+							PlaySound(1001, "classic/jump", CHAN_BODY);
+							break;
+						default:
+							break;
+					}
 					counter++;
 				}
 			}
