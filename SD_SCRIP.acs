@@ -116,9 +116,17 @@ script "TransformHyper" (void)
 	{
 		while (CheckInventory("PowerHyper"))
 		{
-			if (GetCvar("HyperMusic"))
-			{
-				SetMusic("C_HYPER", 0);
+			if (GetCvar("HyperMusic")) {
+				switch(PlayerClass(PlayerNumber())) {
+					case Sonic:
+						SetMusic("S_HYPER", 0);
+						break;
+					case ClassicSonic:
+						SetMusic("C_HYPER", 0);
+						break;
+					default:
+						 break;
+				}
 			}
 		    SetMugShotState("Hyper");
 			TakeInventory("PowerSuper", 1);
@@ -187,11 +195,20 @@ script "ChaosEmeraldHandler" (void)
 {
 	if (CheckInventory("PowerSuper") || CheckInventory("PowerHyper"))
 	{
-		if (PlayerClass(PlayerNumber()) == ClassicSonic && !CheckInventory("PowerHyper") && GetCvar("HyperSonic"))
-		/* If playing as Classic Sonic, you're not already in Hyper form and Hyper form is enabled... */
+		if (PlayerClass(PlayerNumber()) == Sonic | ClassicSonic && !CheckInventory("PowerHyper") && GetCvar("HyperSonic"))
 		{
-            PlaySound(1001, "super/classich", CHAN_BODY, 1.0);
-			Log(s:"\c[ClassicBlue]Okay, NO more playing around!!");
+			switch (PlayerClass(PlayerNumber())) {
+				case Sonic:
+					PlaySound(1001, "super/sonich", 6, 1.0);
+					Log(s:"\c[Sonic]Now I'm serious!!");
+					break;
+				case ClassicSonic:
+					PlaySound(1001, "super/classich", 6, 1.0);
+					Log(s:"\c[Classic]Okay, NO more playing around!!");
+					break;
+				default:
+					break;
+			}
 			TakeInventory("PowerSuper", 1);
 			GiveInventory("HyperForm", 1);
 			ACS_NamedExecute("TransformHyper", 0);
@@ -586,8 +603,14 @@ script "JumpHeight" (int Reset)
 		}
 	} else {
 		switch(PlayerClass(PlayerNumber())) {
-            case Sonic: // Super Sonic
-				SetActorProperty(1001, APROP_JumpZ, 19.0);
+            case Sonic:
+				if (CheckInventory("PowerHyper")) {
+					// Hyper Sonic
+					SetActorProperty(1001, APROP_JumpZ, 20.0);
+				} else {
+					// Super Sonic
+					SetActorProperty(1001, APROP_JumpZ, 17.0);
+				}
                 break;
             case Amy: // Dark Amy
 				SetActorProperty(1001, APROP_JumpZ, 17.0);
@@ -630,8 +653,14 @@ script "DoubleJump" enter
 		olderZ = lastZ;
 		lastZ = GetActorZ(0);
 		delay(1);
+		
+		if (playerCharacter == Sonic && CheckInventory("PowerHyper")) {
+			maxDblJumps = 2;
+		} else {
+			maxDblJumps = 1;
+		}
 
-		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_JUMP) && (playerCharacter == Sonic || playerCharacter == Amy || (playerCharacter == ClassicSonic && CheckInventory("PowerHyper"))) && GetCvar("DoubleJump") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
+		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_JUMP) && (playerCharacter == Sonic | Amy || (playerCharacter == ClassicSonic && CheckInventory("PowerHyper"))) && GetCvar("DoubleJump") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
 			if ((GetActorZ(0) > lastZ) && (lastZ <= olderZ)) {
 				counter = 0;
 			} else {

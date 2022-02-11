@@ -5,7 +5,7 @@ class SonicKick : CustomInventory
 	States
 	{
 	Use:
-		TNT1 A 0 A_Overlay(-2, "TimeCheck");
+		TNT1 A 0 A_Overlay(-2, "FloorCheck");
 		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
 		Fail;
 	TimeCheck:
@@ -17,6 +17,7 @@ class SonicKick : CustomInventory
 		TNT1 A 0 { invoker.EXKick = 1; }
 	KickAttack:
 		TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
+		TNT1 A 0 A_JumpIfInventory("PowerHyper", 1, "HyperKickAttack");
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 		TNT1 A 0 A_AlertMonsters();
 		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
@@ -25,14 +26,12 @@ class SonicKick : CustomInventory
 		KICK BC 1;
 		KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		KICK EF 1;
-		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
 	SonicEagle:
 		EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
 		EAGL BC 1;
 		EAGL D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		EAGL E 1;
-		TNT1 A 1 A_SetInventory("KickCooldown", 5);
 		Stop;
 	SuperKickAttack:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
@@ -46,19 +45,41 @@ class SonicKick : CustomInventory
 		}
 		SKIK BC 1;
 		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
-		SKIK EF 1;
-		TNT1 A 1 A_SetInventory("KickCooldown", 5);
+		SKIK E 1;
 		Stop;
 	SuperSonicEagle:
 		SEAG A 1 
 		{
 			A_PlaySound("sweapons/shockwave", 7);
-			A_FireBullets(9, 27, 100, 10, "GibPuff", 0);
+			A_FireBullets(9, 27, 100, 10, "SonicKickPuff", 0);
 		}
 		SEAG BC 1;
 		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		SEAG E 1;
-		TNT1 A 1 A_SetInventory("KickCooldown", 5);
+		Stop;
+	HyperKickAttack:
+		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		TNT1 A 0 A_AlertMonsters();
+		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "HyperSonicEagle");
+		SKIK A 1 
+		{
+			A_PlaySound("sweapons/shockwave", 7);
+			A_FireBullets(50, 50, 500, 999, "SonicKickPuff", 0);
+		}
+		SKIK BC 1;
+		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		SKIK EF 1;
+		Stop;
+	HyperSonicEagle:
+		SEAG A 1 
+		{
+			A_PlaySound("sweapons/shockwave", 7);
+			A_FireBullets(100, 100, 750, 999, "SonicKickPuff", 0);
+		}
+		SEAG BC 1;
+		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		SEAG E 1;
 		Stop;
 	}
 	override void DoEffect()
@@ -68,7 +89,7 @@ class SonicKick : CustomInventory
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
 		{
 			owner.UseInventory(self);
 			inuse = 5;

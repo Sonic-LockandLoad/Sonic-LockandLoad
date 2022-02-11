@@ -356,22 +356,18 @@ class ChaosEmeralds : CustomInventory
 			TNT1 A 0 A_PlaySound("sglobal/supertransform", 4);
 			TNT1 A 0 
 			{
-			if (CountInv("SonicCheck")) 
-			{
-				A_Log("\c[SonicBlue]Now I'll show you!!");
-			}
-			else if (CountInv("AmyCheck")) 
-			{
-				A_Log("\c[AmyPink]I'll destroy all of you!!");
-			}
-			else if (CountInv("ShadowCheck")) 
-			{
-				A_Log("\c[ShadowRedBlack]Witness the might of my power!!");
-			}
-			else if (CountInv("ClassicCheck")) 
-			{
-				A_Log("\c[SonicBlue]Let's blast through with SONIC SPEED!");
-			}
+				if (CountInv("SonicCheck"))  {
+					A_Log("\c[SonicBlue]Now I'll show you!!");
+				}
+				else if (CountInv("AmyCheck")) {
+					A_Log("\c[AmyPink]I'll destroy all of you!!");
+				}
+				else if (CountInv("ShadowCheck")) {
+					A_Log("\c[ShadowRedBlack]Witness the might of my power!!");
+				}
+				else if (CountInv("ClassicCheck")) {
+					A_Log("\c[SonicBlue]Let's blast through with SONIC SPEED!");
+				}
 			}
 			TNT1 A 0 ACS_NamedExecute("TransformSuper");
 			TNT1 A 0 ACS_NamedExecuteAlways("TakeRingsIfSuper");

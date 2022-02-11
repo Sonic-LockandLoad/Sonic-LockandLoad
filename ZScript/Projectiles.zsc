@@ -326,7 +326,7 @@ class Shuriken : Actor
 	States
 	{
 		Spawn:
-			SHUR AB 2;
+			SHUR AB 2 { if (CountInv("PowerHyper", AAPTR_Player1)) { A_SetSpeed(300); } }
 			Loop;
 		Death:
 			SHUR A 30;
