@@ -660,7 +660,7 @@ script "DoubleJump" enter
 			maxDblJumps = 1;
 		}
 
-		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_JUMP) && (playerCharacter == Sonic | Amy || (playerCharacter == ClassicSonic && CheckInventory("PowerHyper"))) && GetCvar("DoubleJump") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
+		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_JUMP) && (playerCharacter == Sonic || playerCharacter == Amy || (playerCharacter == ClassicSonic && CheckInventory("PowerHyper"))) && GetCvar("DoubleJump") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
 			if ((GetActorZ(0) > lastZ) && (lastZ <= olderZ)) {
 				counter = 0;
 			} else {
