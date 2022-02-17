@@ -3,6 +3,8 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 	Default
 	{
 		//$Category Lock & Load Pickups
+		Radius 10;
+		Height 10;
 		Inventory.PickupMessage "Picked up a ring.";
 		Inventory.PickupSound "spickup/ring";
 		+COUNTITEM
@@ -29,74 +31,49 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 	}
 }
 
-class RingBox : CustomInventory replaces Stimpack // 2011
+class DroppedRing : Ring { Default { -NOGRAVITY; +CANPASS; } }
+
+class RingBox : Inventory replaces Stimpack // 2011
 {
 	Default
 	{
 		//$Category Lock & Load Pickups
 		Health 1;
-		Radius 20;
-		Height 30;
+		Radius 10;
+		Height 20;
 		Inventory.PickupMessage "";
-		Inventory.PickupSound "spickup/boxdestroy";
-		DeathSound "spickup/boxdestroy";
 		+COUNTITEM
 		+INVENTORY.ALWAYSPICKUP
 		+SHOOTABLE
 		+NOBLOOD
+		+SPECIAL
+	}
+	override void Touch(Actor toucher)
+	{
+		Super.Touch(toucher);
+		A_Die();
 	}
 	States
 	{
 		Spawn:
 			RBOX A -1 Bright;
 			Stop;
-		Pickup:
 		Death:
-			TNT1 A 0 A_DropItem("BrokenRings");
-			TNT1 A 0 A_Scream;
-			Stop;
-	}
-}
-
-class BrokenRings : CustomInventory
-{
-	Default
-	{
-		Inventory.PickupMessage "Picked up 10 rings.";
-		Inventory.PickupSound "spickup/10rings";
-		+COUNTITEM
-		+INVENTORY.ALWAYSPICKUP
-	}
-	States
-	{
-		Spawn:
-			10RI ABCDEFGH 2 Bright;
-			10RI I -1 Bright;
-			Stop;
-		Pickup:
-			TNT1 A 0
-			{
-				if (CountInv("AmyCheck") > 0)
-				{
-					if (CountInv("PowerSuper") > 0)
-					{
-						A_GiveInventory("ChaosEnergy", 10);
-					}
-					else
-					{
-						A_GiveInventory("Health", 10);
-					}
+			TNT1 A 0 {
+				int ringcount = 10;
+				int maxrange  = 5;
+				for (int x = 1; x <= ringcount; x++) {
+					int x = random(maxrange * -1, maxrange);
+					int y = random(maxrange * -1, maxrange);
+					A_SpawnItemEx("DroppedRing", 0, 0, 1, x, y, 10, 0, SXF_NOCHECKPOSITION);
 				}
-				else
-				{
-					A_GiveInventory("Health", 10);
-				}
+				A_StartSound("spickup/boxdestroy", 2);
 			}
 			Stop;
 	}
 }
 
-class SpecialRing : CustomInventory replaces Medikit // 2012
+class SpecialRing : Ring replaces Medikit // 2012
 {
 	Default
 	{
@@ -151,7 +128,7 @@ class SpecialRing : CustomInventory replaces Medikit // 2012
   }
 }
 
-class ChaosRing : CustomInventory replaces ArmorBonus // 2015
+class ChaosRing : Ring replaces ArmorBonus // 2015
 {
 	Default
 	{
@@ -192,13 +169,7 @@ class ChaosRing : CustomInventory replaces ArmorBonus // 2015
 		} 
 }
 
-class ChaosRingGravity : ChaosRing
-{
-	Default
-	{
-		-NOGRAVITY
-	}
-}
+class ChaosRingGravity : ChaosRing { Default { -NOGRAVITY } }
 
 class Hint : Inventory
 {
@@ -217,7 +188,7 @@ class Hint : Inventory
 	}
 }
 
-class SoulRing : CustomInventory
+class SoulRing : Ring
 {
 	Default
 	{
