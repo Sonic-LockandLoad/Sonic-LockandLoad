@@ -195,7 +195,7 @@ script "ChaosEmeraldHandler" (void)
 	int character = PlayerClass(PlayerNumber());
 	if (CheckInventory("PowerSuper") || CheckInventory("PowerHyper"))
 	{
-		if (character == Sonic || character == ClassicSonic && !CheckInventory("PowerHyper") && GetCvar("HyperSonic"))
+		if ((character == Sonic || character == ClassicSonic) && !CheckInventory("PowerHyper") && GetCvar("HyperSonic"))
 		{
 			switch (PlayerClass(PlayerNumber())) {
 				case Sonic:
