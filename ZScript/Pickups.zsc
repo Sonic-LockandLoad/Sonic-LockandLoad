@@ -41,17 +41,32 @@ class RingBox : Inventory replaces Stimpack // 2011
 		Health 1;
 		Radius 10;
 		Height 20;
-		Inventory.PickupMessage "";
+		Inventory.PickupMessage "Broke open a box of rings.";
 		+COUNTITEM
 		+INVENTORY.ALWAYSPICKUP
 		+SHOOTABLE
 		+NOBLOOD
-		+SPECIAL
 	}
-	override void Touch(Actor toucher)
+	override bool TryPickup(in out Actor toucher)
 	{
-		Super.Touch(toucher);
 		A_Die();
+		return true;
+	}
+	override int DamageMobj(Actor inflictor, Actor source, int damage, name mod, int flags, double angle)
+	{
+		Super.DamageMobj(inflictor, source, damage, mod, flags, angle);
+		A_StartSound("spickup/boxdestroy", 2);
+		int ringcount = 10;
+		int maxrange  = damage / 4;
+		if (maxrange < 5) {
+			maxrange = 5;
+		}
+		for (int x = 1; x <= ringcount; x++) {
+			int x = random(maxrange * -1, maxrange);
+			int y = random(maxrange * -1, maxrange);
+			A_SpawnItemEx("DroppedRing", 0, 0, 1, x, y, 10, 0, SXF_NOCHECKPOSITION);
+		}
+		return damage;
 	}
 	States
 	{
@@ -59,16 +74,7 @@ class RingBox : Inventory replaces Stimpack // 2011
 			RBOX A -1 Bright;
 			Stop;
 		Death:
-			TNT1 A 0 {
-				int ringcount = 10;
-				int maxrange  = 5;
-				for (int x = 1; x <= ringcount; x++) {
-					int x = random(maxrange * -1, maxrange);
-					int y = random(maxrange * -1, maxrange);
-					A_SpawnItemEx("DroppedRing", 0, 0, 1, x, y, 10, 0, SXF_NOCHECKPOSITION);
-				}
-				A_StartSound("spickup/boxdestroy", 2);
-			}
+			TNT1 A 0;
 			Stop;
 	}
 }
