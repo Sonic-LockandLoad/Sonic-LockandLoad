@@ -5,7 +5,6 @@
 #define ClassicSonic 2
 #define Shadow 3
 
-
 script "Taunt" (void)
 {
 	NoiseAlert(0, 0);
@@ -637,55 +636,44 @@ script "JumpHeight" (int Reset)
 
 script "DoubleJump" enter
 {
-	/*
-	 * Thanks to Agent ME on the ZDoom Forum for this script
-	 * <https://forum.zdoom.org/viewtopic.php?t=21034>
-	 */
 	int playerCharacter = PlayerClass(PlayerNumber());
-	
-	int maxDblJumps = 1;
-	int dblJumpThrust = 60;
-
-	int lastZ = GetActorZ(0);
-	int olderZ;
-	int counter = 0;
-	while (true)
+	int jumpCount = 2;
+	int jumpPower = 60;
+	int jumpCounter;
+	while (1)
 	{
-		olderZ = lastZ;
-		lastZ = GetActorZ(0);
-		delay(1);
-		
 		if (playerCharacter == Sonic && CheckInventory("PowerHyper")) {
-			maxDblJumps = 2;
-		} else {
-			maxDblJumps = 1;
+			jumpCount = 3;
 		}
-
-		if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_JUMP) && (playerCharacter == Sonic || playerCharacter == Amy || (playerCharacter == ClassicSonic && CheckInventory("PowerHyper"))) && GetCvar("DoubleJump") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
-			if ((GetActorZ(0) > lastZ) && (lastZ <= olderZ)) {
-				counter = 0;
-			} else {
-				if (counter < maxDblJumps) {
-					if (GetCvar("DoubleJump") == 1) { Thing_Stop(1001); }
-					ThrustThingZ(0, dblJumpThrust, 0, 0);
-					switch (playerCharacter) {
-						case Sonic:
-							PlaySound(1001, "sonic/doublejump", CHAN_BODY);
-							break;
-						case Amy:
-							PlaySound(1001, "amy/doublejump", CHAN_BODY);
-							break;
-						case ClassicSonic:
-							PlaySound(1001, "classic/jump", CHAN_BODY);
-							break;
-						default:
-							break;
+		if ((playerCharacter == Sonic || playerCharacter == Amy || (playerCharacter == ClassicSonic && CheckInventory("PowerHyper")))) {
+			if (GetActorZ(1001) <= (GetActorFloorZ(1001) + 40)) {
+				jumpCounter = 0;
+				Delay(1);
+			}
+			else {
+				Delay(1);
+				if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_JUMP) && GetCvar("DoubleJump") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
+					jumpCounter++;
+					if (jumpCounter < jumpCount) {
+						if (GetCvar("DoubleJump") == 1) { Thing_Stop(1001); }
+						ThrustThingZ(0, jumpPower, 0, 0);
+						switch (playerCharacter) {
+							case Sonic:
+								PlaySound(1001, "sonic/doublejump", CHAN_BODY);
+								break;
+							case Amy:
+								PlaySound(1001, "amy/doublejump", CHAN_BODY);
+								break;
+							case ClassicSonic:
+								PlaySound(1001, "classic/jump", CHAN_BODY);
+								break;
+							default:
+								break;
+						}
 					}
-					counter++;
 				}
 			}
-		} else if ((olderZ == lastZ) && (lastZ == GetActorZ(0))) {
-			counter = 0;
 		}
+		else { Delay(1); }
 	}
 }
