@@ -30,51 +30,11 @@ class LegOut : Inventory
 	}
 }
 
-class ZoomCheck : Inventory 
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
-
-class ZoomCheck2 : Inventory 
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
-
-class SoulReady : Inventory
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
-
-class ZoomCharge : Inventory 
-{
-	Default
-	{
-		Inventory.MaxAmount 100;
-	}
-}
-
 class PeeloutCheck : Inventory
 {
 	Default
 	{
 		Inventory.MaxAmount 1;
-	}
-}
-
-class TeleportCooldown : Inventory
-{
-	Default
-	{
-		Inventory.MaxAmount 50;
 	}
 }
 
