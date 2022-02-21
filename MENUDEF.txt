@@ -94,7 +94,7 @@ OptionMenu "LockandLoadOptions"
 	StaticText ""
 	
 	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
-	StaticText "Classic Sonic only", "Cyan"
+	StaticText "Sonic/Classic", "Cyan"
 	StaticText ""
 	
 	Option "Weapon 3 replaces Weapon 1", "ShotgunReplace2", "EnabledOrNot"
@@ -106,6 +106,10 @@ OptionMenu "LockandLoadOptions"
 	
 	Option "Double Jump", "DoubleJump", "DoubleJump"
 	StaticText "Sonic/Amy", "Cyan"
+	StaticText ""
+	
+	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
+	StaticText "Amy only", "Cyan"
 	StaticText ""
 }
 OptionMenu "SDMusic"

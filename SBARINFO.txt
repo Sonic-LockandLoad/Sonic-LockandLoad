@@ -2,10 +2,6 @@ StatusBar Fullscreen, FullscreenOffsets
 {
 	DrawKeyBar 10, horizontal, auto, -38, -40, 0, 3, auto;
 	DrawString BIGFONT, LightBlue, time, -90, 2;
-    InInventory ZoomCharge, 100
-    {
-	    DrawString BIGFONT, Purple, "Ready", 30 + center, -80;
-    }
 	InInventory PowerSuper, 1
 	{
 		DrawMugShot 1, 5, -35;
@@ -51,10 +47,6 @@ StatusBar Fullscreen, FullscreenOffsets
 
 StatusBar Normal
 {
-  InInventory ZoomCharge, 100
-  {
-	DrawString BIGFONT, Purple, "Ready", 190, 70;
-  }
   IfCvarInt HUDType, 2 // Legacy
   {
 	DrawMugShot 1, 145, 165;

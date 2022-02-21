@@ -677,3 +677,13 @@ script "DoubleJump" enter
 		else { Delay(1); }
 	}
 }
+
+script "HowManyZFireLeft" (int clear)
+{
+	int RemainingShots = CheckInventory("ChaosEnergy") / 120;
+	if (CheckInventory("PowerSuper")) {
+		HudMessage(s:"\c[Purple]Infinite shots remaining"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 0.5, 0.6, 0.3);
+	} else {
+		HudMessage(s:"\c[Amy]", d:RemainingShots, s:"/", d:8, s:" shots remaining"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 0.5, 0.6, 0.3);
+	}
+}
