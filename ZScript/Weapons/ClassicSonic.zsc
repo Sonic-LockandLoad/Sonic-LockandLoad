@@ -57,6 +57,7 @@ class ClassicAbilities : Weapon replaces Fist
 					if (random[HereWeGo](1, 2) == 1) {
 						A_PlaySound("classic/driftline", 7);
 					}
+				    invoker.SpinCharges = 0;
 					return ResolveState("Drift");
 				}
 				return ResolveState(null);
