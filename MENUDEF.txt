@@ -108,6 +108,10 @@ OptionMenu "LockandLoadOptions"
 	StaticText "Sonic/Amy", "Cyan"
 	StaticText ""
 	
+	Option "Wall Crash while Boosting", "WallCrash", "EnabledOrNot"
+	StaticText "Amy only", "Cyan"
+	StaticText ""
+	
 	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
 	StaticText "Amy only", "Cyan"
 	StaticText ""

@@ -6,6 +6,7 @@ user int DoubleJump 				= 2;
 user int AmyZoomFactor				= 4;
 
 user bool ShotgunReplace2 			= false;
+user bool WallCrash 				= true;
 
 /* Invincibility music */
 user int InvSonic 	= 1;
