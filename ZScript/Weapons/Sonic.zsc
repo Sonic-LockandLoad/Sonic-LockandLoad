@@ -356,7 +356,7 @@ class AcceleratedPistol : BoostEnabledWeapon
 			SPIS A 1 AccelFire();
 			SPIS B 1;
 			TNT1 A 0 { if (CountInv("PowerHyper")) { A_ReFire(); } }
-			SPIS CA 1;
+			SPIS C 1;
 			SPIS A 0 A_ReFire();
 			Goto Ready;
 		AltFire:
