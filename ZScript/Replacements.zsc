@@ -193,10 +193,10 @@ class ChaingunReplace : Actor replaces Chaingun // 2002
 			TNT1 A 0 NoDelay
 			{
 				if (CountInv("SonicCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("EclipseBlaster");
+					A_SpawnItem("BlueChaosCapsule");
 				}
 				else if (CountInv("AmyCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("AmyEclipseBlaster");
+					A_SpawnItem("BlueChaosCapsule");
 				}
 				else if (CountInv("ShadowCheck", AAPTR_PLAYER1)) {
 					A_SpawnItem("MacAndCheese");
