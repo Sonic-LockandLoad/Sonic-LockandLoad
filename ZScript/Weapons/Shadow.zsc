@@ -36,13 +36,14 @@ class ShadowAbilities : Weapon
 				A_PlaySound("sweapons/chaosspear", CHAN_WEAPON);
 				if (CountInv("PowerSuper")) {
 					A_FireProjectile("ChaosSpearEX");
+					A_FireProjectile("ChaosSpearEX", -5);
+					A_FireProjectile("ChaosSpearEX", 5);
 				}
 				else {
 					A_FireProjectile("ChaosSpear");
 					A_TakeInventory("ChaosEnergy", 2);
 				}
 			}
-			TNT1 A 0 { if (CountInv("PowerSuper")) { A_ReFire(); } }
 			SARM CBA 1;
 			TNT1 A 5;
 			Goto Ready;
