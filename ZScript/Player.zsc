@@ -16,6 +16,7 @@ class SonicPlayer : PlayerPawn
 		Player.StartItem "AcceleratedPistol";
 		Player.StartItem "Caliburn";
 		Player.StartItem "SonicCheck";
+		Player.StartItem "SonicKick";
 		Player.StartItem "ChaosEnergy", 100;
 		Player.WeaponSlot 1, "Caliburn";
 		Player.WeaponSlot 2, "AcceleratedPistol";
@@ -123,9 +124,10 @@ class AmyPlayer : PlayerPawn
 		Player.DisplayName "Amy";
 		Player.Face "AMF";
 		Player.SoundClass "amy";
-		Player.StartItem "AmyCheck";
 		Player.StartItem "PikoPikoHammer";
 		Player.StartItem "SilentRosePistol";
+		Player.StartItem "AmyCheck";
+		Player.StartItem "AmyKick";
 		Player.StartItem "ChaosEnergy", 50;
 		Player.WeaponSlot 1, "PikoPikoHammer";
 		Player.WeaponSlot 2, "SilentRosePistol";
@@ -294,6 +296,7 @@ class ClassicSonicPlayer : PlayerPawn
 		Player.StartItem "ChaosBlaster";
 		Player.StartItem "ChaosEnergy", 150;
 		Player.StartItem "ClassicCheck";
+		Player.StartItem "SonicThok";
 		Player.WeaponSlot 1, "ClassicAbilities";
 		Player.WeaponSlot 2, "ChaosBlaster";
 		Player.WeaponSlot 3, "SpeedyShotgun";
