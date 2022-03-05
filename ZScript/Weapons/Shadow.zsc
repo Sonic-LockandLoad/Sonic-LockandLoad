@@ -126,6 +126,7 @@ class DarkAssault : Weapon
 			AA12 A 0 { if (CountInv("PowerSuper")) { A_GiveInventory("ChaosEnergy", 20); } }
 			AA12 A 0 A_FireBullets(6, 2, 8, 9, "BulletPuff");
 			AA12 A 0 A_PlaySound("sweapons/darkshotty", CHAN_WEAPON);
+			AA12 A 0 A_ChangeVelocity(Cos(Pitch) * -5, 0, Sin(Pitch) * 1, CVF_Relative);
 			AA12 A 0 {
 				if (CountInv("PowerSuper")) { A_GunFlash("SuperFlash"); } 
 				else { A_GunFlash(); }
@@ -280,12 +281,12 @@ class QuadShotty : Weapon
 			SHT4 A 1 A_Raise;
 			Loop;
 		Fire:
-			SHT4 A 3;
-			SHT4 A 0 
+			SHT4 A 3
 			{
 				A_FireBullets(12, 9, 60, 6, "BulletPuff");
 				A_PlaySound("weapons/sshotf", CHAN_WEAPON);
 				if (CountInv("PowerSuper")) { A_GiveInventory("ChaosEnergy", 40); }
+				 A_ChangeVelocity(Cos(Pitch) * -30, 0, Sin(Pitch) * 5, CVF_Relative);
 			}
 			SHT4 B 8 A_GunFlash();
 			SHT4 B 16 { if (CountInv("PowerSuper")) { A_ReFire(); } }

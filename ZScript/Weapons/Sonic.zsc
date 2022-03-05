@@ -224,7 +224,7 @@ class Caliburn : BoostEnabledWeapon
 	}
 }
 
-class AcceleratedPistol : BoostEnabledWeapon
+class AcceleratedPistol : Weapon
 {
 	action void AccelFire()
 	{
@@ -295,9 +295,6 @@ class AcceleratedPistol : BoostEnabledWeapon
 			SPIS B 1 RecoilBurst();
 			TNT1 A 0 { if (CountInv("PowerHyper")) { A_ReFire(); } }
 			SPIS CCCCCCCCCCCCCCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			Goto Ready;
-		Zoom:
-			TNT1 A 0 A_Overlay(-3, "BoostStart");
 			Goto Ready;
 		Flash:
 			SPIF A 1 Bright A_Light1;
