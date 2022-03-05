@@ -13,11 +13,11 @@ class SonicPlayer : PlayerPawn
 		Player.DisplayName "Sonic";
 		Player.Face "SNF";
 		Player.SoundClass "sonic";
-		Player.StartItem "SonicAbilities";
-		Player.StartItem "SonicCheck";
 		Player.StartItem "AcceleratedPistol";
+		Player.StartItem "Caliburn";
+		Player.StartItem "SonicCheck";
 		Player.StartItem "ChaosEnergy", 100;
-		Player.WeaponSlot 1, "SonicAbilities", "Caliburn";
+		Player.WeaponSlot 1, "Caliburn";
 		Player.WeaponSlot 2, "AcceleratedPistol";
 		Player.WeaponSlot 3, "RapidShotty";
 		Player.WeaponSlot 4, "ShurikenCrossbow";

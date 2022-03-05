@@ -131,7 +131,7 @@ class ChainsawReplace : Actor replaces Chainsaw // 2005
 			TNT1 A 0 NoDelay
 			{
 				if (CountInv("SonicCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("Caliburn");
+					A_SpawnItem("SpecialRing");
 				}
 				else if (CountInv("AmyCheck", AAPTR_PLAYER1)) {
 					A_SpawnItem("SpecialRing");
