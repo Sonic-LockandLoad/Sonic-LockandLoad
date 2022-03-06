@@ -327,12 +327,13 @@ class ChaosEmeralds : CustomInventory
 					A_SetInventory("ChaosEnergy", 100);
 				}
 			}
-			TNT1 A 0 A_GiveInventory("SuperForm", 1);
-			TNT1 A 0 A_GiveInventory("SuperInvincibility", 1);
-			TNT1 A 0 A_PlaySound("sglobal/supersonic", 6);
-			TNT1 A 0 A_PlaySound("sglobal/supertransform", 4);
-			TNT1 A 0 
-			{
+		SuperTransform:
+			TNT1 A 0 A_JumpIf(CountInv("PowerSuper"), "HyperTransform");
+			TNT1 A 0 {
+				A_GiveInventory("SuperForm", 1);
+				A_GiveInventory("SuperInvincibility", 1);
+				A_PlaySound("sglobal/supersonic", 6);
+				A_PlaySound("sglobal/supertransform", 4);
 				if (CountInv("SonicCheck"))  {
 					A_Log("\c[SonicBlue]Now I'll show you!!");
 				}
@@ -348,6 +349,24 @@ class ChaosEmeralds : CustomInventory
 			}
 			TNT1 A 0 ACS_NamedExecute("TransformSuper");
 			TNT1 A 0 ACS_NamedExecuteAlways("TakeRingsIfSuper");
+			Stop;
+		HyperTransform:
+			TNT1 A 0 {
+				A_TakeInventory("PowerSuper", 1);
+				A_GiveInventory("HyperForm", 1);
+				A_PlaySound("sglobal/supersonic", 6);
+				A_PlaySound("sglobal/supertransform", 4);
+				if (CountInv("SonicCheck"))  {
+					A_StartSound("super/sonich", 6);
+					A_Log("\c[Sonic]Now I'm serious!!");
+				}
+				else if (CountInv("ClassicCheck")) {
+					A_StartSound("super/classich", 6);
+					A_Log("\c[Classic]Okay, NO more playing around!!");
+				}
+			}
+			TNT1 A 0 ACS_NamedExecute("TransformHyper", 0);
+			TNT1 A 0 ACS_NamedExecute("TakeRingsIfHyper", 0);
 			Stop;
 		}
 }

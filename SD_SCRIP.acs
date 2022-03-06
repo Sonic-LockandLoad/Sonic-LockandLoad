@@ -119,8 +119,7 @@ script "TransformSuper" (void)
             default:
                  break;
         }
-		while (CheckInventory("PowerSuper"))
-		{
+		while (CheckInventory("PowerSuper")) {
 		    SetMugShotState("Super");
 			Delay(35);
 		}
@@ -129,8 +128,7 @@ script "TransformSuper" (void)
 		}
 		SetMugShotState("Normal");
 	}
-	else
-	{
+	else {
 		SetMusic("*", 0);
 	}
 }
@@ -154,8 +152,6 @@ script "TransformHyper" (void)
 				}
 			}
 		    SetMugShotState("Hyper");
-			TakeInventory("PowerSuper", 1);
-			TakeInventory("ChaosEmeralds", 1);
 			Delay(35); 
 		}
 		if (GetCvar("HyperMusic")) { SetMusic("*", 0); }
@@ -219,29 +215,10 @@ script "InitMusic" ENTER
 script "ChaosEmeraldHandler" (void)
 {
 	int character = PlayerClass(PlayerNumber());
-	if (CheckInventory("PowerSuper") || CheckInventory("PowerHyper"))
-	{
-		if ((character == Sonic || character == ClassicSonic) && !CheckInventory("PowerHyper") && GetCvar("HyperSonic"))
-		{
-			switch (PlayerClass(PlayerNumber())) {
-				case Sonic:
-					PlaySound(1001, "super/sonich", 6, 1.0);
-					Log(s:"\c[Sonic]Now I'm serious!!");
-					break;
-				case ClassicSonic:
-					PlaySound(1001, "super/classich", 6, 1.0);
-					Log(s:"\c[Classic]Okay, NO more playing around!!");
-					break;
-				default:
-					break;
-			}
-			TakeInventory("PowerSuper", 1);
-			GiveInventory("HyperForm", 1);
-			ACS_NamedExecute("TransformHyper", 0);
-			ACS_NamedExecute("TakeRingsIfHyper", 0);
-		}
-		else
-		{
+	if (CheckInventory("PowerSuper") || CheckInventory("PowerHyper")) {
+		if ((character == Sonic || character == ClassicSonic) && !CheckInventory("PowerHyper") && GetCvar("HyperSonic")) {
+			Log(s:"\c[White]Press \cl", k:"invuse", s:" \c[White]to go even further beyond!");
+		} else {
 			Log(s:"Chaos Energy refilled!");
 			TakeInventory("ChaosEmeralds", 1);
 			GiveInventory("ChaosEnergy", 999);
@@ -251,14 +228,14 @@ script "ChaosEmeraldHandler" (void)
 	{
 		switch(PlayerClass(PlayerNumber()))
 		{
-			case 1:
-				Log(s:"\c[Purple]Press \cl", k:"invuse", s:" \c[Purple]to embrace the darkness!"); // Amy
+			case Amy:
+				Log(s:"\c[Purple]Press \cl", k:"invuse", s:" \c[Purple]to embrace the darkness!");
 				break;
-			case 3:
-				Log(s:"\c[Gold]Press \cl", k:"invuse", s:" \c[Gold]to activate Super Shadow!"); // Shadow
+			case Shadow:
+				Log(s:"\c[Gold]Press \cl", k:"invuse", s:" \c[Gold]to activate Super Shadow!");
 				break;
-			default:
-				Log(s:"\c[Gold]Press \cl", k:"invuse", s:" \c[Gold]to activate Super Sonic!"); // Sonic and Classic
+			default: // Sonic and Classic Sonic
+				Log(s:"\c[Gold]Press \cl", k:"invuse", s:" \c[Gold]to activate Super Sonic!");
 				break;
 		}
 	}
@@ -284,16 +261,26 @@ script "SuperTransformPrompt" enter
 			switch(PlayerClass(PlayerNumber()))
 			{
 				case Sonic:
-					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Super Sonic";
-					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					if (CheckInventory("PowerSuper")) {
+						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Hyper Sonic";
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					} else {
+						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Super Sonic";
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					}
 					break;
 				case Amy:
 					HudMessage(s:"\c[Purple]", k:"invuse", s:"  \c[Amy]Dark Amy";
 					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
 					break;
 				case ClassicSonic:
-					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Super Sonic";
-					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					if (CheckInventory("PowerSuper")) {
+						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Hyper Sonic";
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					} else {
+						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Super Sonic";
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					}
 					break;
 				case Shadow:
 					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Shadow]Super Shadow";
@@ -362,7 +349,11 @@ script "TakeRingsIfSuper" (void)
 				TakeInventory("ChaosEnergy", 1);
 				break;
 		}
-		Delay(2);
+		if (CheckInventory("ChaosEmeralds")) {
+			Delay(3);
+		} else {
+			Delay(2);
+		}
 		if (!CheckInventory("ChaosEnergy"))
 		{
 			TakeInventory("PowerSuper", 1);
