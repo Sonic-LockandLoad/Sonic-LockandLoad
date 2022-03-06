@@ -480,21 +480,18 @@ class EclipseBlaster : Weapon
 			TNT1 A 0 A_ReFire();
 			Goto Ready;
 		AltFire:
-			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") > 0, "RingCheck");
-			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "Error");
-		RingCheck:
-			TNT1 A 0 A_JumpIf(Health > 299, "Error");
-			TNT1 A 0 A_JumpIf(Health < 300, "ChaosHeal");
-		Error:
-			TNT1 A 0 A_PlaySound("sonic/error", 4096);
-			Goto Ready;
-		ChaosHeal:
-			ECBL C 0 A_PlaySound("sweapons/healthcharge", 4096);
-			ECBL C 0 A_TakeInventory("ChaosEnergy", 8);
-			ECBL C 1 A_GiveInventory("Health", 4);
-			TNT1 A 0 { if (Health > 300) { A_SetHealth(300); } }
-			TNT1 A 0 A_ReFire();
-			Goto Ready;
+			ECBL C 1 {
+				if ((Health < 300) && CountInv("ChaosEnergy") && !(CountInv("PowerSuper") || CountInv("PowerHyper"))) {
+					A_PlaySound("sweapons/healthcharge", 4096);
+					A_TakeInventory("ChaosEnergy", 4);
+					A_GiveInventory("Health", 8);
+					if (Health > 300) { A_SetHealth(300); }
+				} else {
+					A_PlaySound("sonic/error", 4096);
+					return ResolveState("Ready");
+				}
+				return ResolveState(null);
+			}
 		Spawn:
 			ECLI A -1;
 			Stop;
