@@ -5,6 +5,32 @@
 #define ClassicSonic 2
 #define Shadow 3
 
+/* Following script taken from the ZDoom Forums <https://forum.zdoom.org/viewtopic.php?t=51848#p903998> */
+
+str lastWeapon;
+
+script "LastWeaponHandler" enter
+{
+    int pn            = PlayerNumber();
+    str currentWeapon = GetWeapon();
+    lastWeapon	      = currentWeapon;
+    
+    while (1) {
+        if (StrCmp(currentWeapon, GetWeapon())) {
+            lastWeapon = currentWeapon;
+		}
+        currentWeapon = GetWeapon();
+        Delay(1);
+    }
+}
+
+script "LastWeapon" (void)
+{
+    SetWeapon(lastWeapon);
+}
+
+/* End of borrowed script */
+
 script "Taunt" (void)
 {
 	NoiseAlert(0, 0);

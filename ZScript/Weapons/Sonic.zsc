@@ -575,6 +575,7 @@ class AirStrikeLauncher : Weapon
 			MISG A 1 A_GiveInventory("RemoteDet");
 			MISG B 1 A_ReFire();
 			MISG A 1 A_TakeInventory("RemoteDet");
+			Goto Ready;
 		Spawn:
 			LAUN A -1;
 			Stop;
