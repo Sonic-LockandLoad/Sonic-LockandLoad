@@ -112,8 +112,7 @@ class AmyKick : CustomInventory
 	KickAttack:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 		AKIK A 1 A_PlaySound("sweapons/swordswing", 7);
-		TNT1 A 0 A_GiveInventory("LegOut", 1);
-		AKIK BC 1;
+		AKIK BC 1 A_GiveInventory("LegOut", 1);
 		AKIK D 1 A_CustomPunch(10, false, CPF_NOTURN, "AmyKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		AKIK EFG 1;
 		TNT1 A 0 A_TakeInventory("LegOut", 1);
@@ -130,7 +129,7 @@ class AmyKick : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 6;
+			inuse = 8;
 		}
 	}
 }
