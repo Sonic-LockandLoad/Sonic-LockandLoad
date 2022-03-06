@@ -17,11 +17,11 @@ class ShadowAbilities : Weapon
 			TNT1 A 1 A_WeaponReady();
 			Loop;
 		Deselect:
-			TNT1 AA 0 A_Lower;
-			Goto Select;
+			TNT1 A 1 A_Lower(12);
+			Loop;
 		Select:
-			TNT1 A 1 A_Lower;
-			Goto Deselect;
+			TNT1 A 1 A_Raise(12);
+			Loop;
 		Fire:
 			TNT1 A 0 A_PlaySound("sweapons/swordswing", 1);
 			DPNR ABC 1;
@@ -70,10 +70,10 @@ class HighShovel : Weapon
 			SHOV A 1 A_WeaponReady();
 			Loop;
 		Deselect:
-			SHOV A 1 A_Lower;
+			SHOV A 1 A_Lower(12);
 			Loop;
 		Select:
-			SHOV A 1 A_Raise;
+			SHOV A 1 A_Raise(12);
 			Loop;
 		Fire:
 			SHOV D 1;
@@ -116,10 +116,10 @@ class DarkAssault : Weapon
 			AA12 A 1 A_WeaponReady();
 			Loop;
 		Deselect:
-			AA12 A 1 A_Lower;
+			AA12 A 1 A_Lower(12);
 			Loop;
 		Select:
-			AA12 A 1 A_Raise;
+			AA12 A 1 A_Raise(12);
 			Loop;
 		Fire:
 			AA12 A 2;
@@ -174,11 +174,11 @@ class ChaosEmerald : Weapon
 			}
 			Loop;
 		Deselect:
-			CARM AA 0 A_Lower;
-			Goto Select;
+			CARM A 1 A_Lower(12);
+			Loop;
 		Select:
-			CARM A 1 A_Lower;
-			Goto Deselect;
+			CARM A 1 A_Lower(12);
+			Loop;
 		Fire:
 			TNT1 A 0 A_JumpIf(CountInv("PowerSuper"), "AFire");
 			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 400, "Error");
@@ -239,10 +239,10 @@ class ShadowKnife : Weapon
 			KNIF A 1 A_WeaponReady;
 			Loop;
 		Deselect:
-			KNIF A 1 A_Lower;
+			KNIF A 1 A_Lower(12);
 			Loop;
 		Select:
-			KNIF A 1 A_Raise;
+			KNIF A 1 A_Raise(12);
 			Loop;
 		Fire:
 			KNIF B 2;
@@ -275,10 +275,10 @@ class QuadShotty : Weapon
 			SHT4 A 1 A_WeaponReady();
 			Loop;
 		Deselect:
-			SHT4 A 1 A_Lower;
+			SHT4 A 1 A_Lower(12);
 			Loop;
 		Select:
-			SHT4 A 1 A_Raise;
+			SHT4 A 1 A_Raise(12);
 			Loop;
 		Fire:
 			SHT4 A 3
@@ -321,10 +321,10 @@ Class DualRockets : Weapon
 			DGLG A 1 A_WeaponReady();
 			Loop;
 		Deselect:
-			DGLG A 1 A_Lower();
+			DGLG A 1 A_Lower(12);
 			Loop;
 		Select:
-			DGLG A 1 A_Raise();
+			DGLG A 1 A_Raise(12);
 			Loop;
 		Fire:
 			DGLG A 3;

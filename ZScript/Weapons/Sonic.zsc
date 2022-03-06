@@ -66,11 +66,11 @@ class BoostEnabledWeapon : Weapon
 			TNT1 A 1;
 			Loop;
 		Deselect:
-			TNT1 AA 0 A_Lower;
-			Goto Select;
+			#### A 1 A_Lower(12);
+			Loop;
 		Select:
-			TNT1 A 1 A_Lower;
-			Goto Deselect;
+			#### A 1 A_Raise(20);
+			Loop;
 		Fire:
 			TNT1 A 0;
 		BoostStart:
@@ -145,13 +145,11 @@ class Caliburn : BoostEnabledWeapon
 			TNT1 A 0 A_Gravity;
 			Loop;
 		Deselect:
-			TNT1 AA 0 A_Lower;
-			CALI A 1 A_Lower;
-			Goto Deselect+1;
+			CALI # 1 A_Lower(12);
+			Loop;
 		Select:
-			TNT1 AA 0 A_Raise;
-			CALI A 1 A_Raise;
-			Goto Select+1;
+			CALI A 1 A_Raise(20);
+			Loop;
 		Fire:
 			TNT1 A 0 A_CheckFloor("GroundAttack");
 			Goto AirStart;
@@ -159,7 +157,7 @@ class Caliburn : BoostEnabledWeapon
 			TNT1 A 0 SwordSwing(false);
 			CALI BCDE 1
 			{
-				if (!CountInv("PowerSuper")||CountInv("PowerHyper")) {
+				if (!(CountInv("PowerSuper")||CountInv("PowerHyper"))) {
 					A_SetSpeed(2.5);
 					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
@@ -167,8 +165,9 @@ class Caliburn : BoostEnabledWeapon
 					A_SetSpeed(5);
 					A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
+				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			}
-			CALI E 3;
+			CALI EEE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			CALI A 0 A_ReFire();
 			Goto Ready;
 		Hold:
@@ -183,8 +182,9 @@ class Caliburn : BoostEnabledWeapon
 					A_SetSpeed(5);
 					A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
+				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			}
-			CALI J 3;
+			CALI JJJ 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			CALI A 0 A_ReFire("GroundAttack");
 			Goto Ready;
 		AirStart:
@@ -201,6 +201,7 @@ class Caliburn : BoostEnabledWeapon
 					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 				A_ChangeVelocity(0, 0, -50, CVF_Relative|CVF_Replace);
+				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			}
 			CALI B 0 A_CheckFloor("AirDone");
 			Goto AirAttack+6;
@@ -211,7 +212,7 @@ class Caliburn : BoostEnabledWeapon
 			TNT1 A 0 A_SetSpeed(2);
 			Goto Ready;
 		AirHold:
-			CALI N 1;
+			CALI N 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			TNT1 A 0 A_ReFire("AirHold");
 			TNT1 A 0 A_SetSpeed(2);
 			Goto Ready;
@@ -273,13 +274,11 @@ class AcceleratedPistol : Weapon
 			SPIS A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM);
 			Loop;
 		Deselect:
-			TNT1 AA 0 A_Lower;
-			SPIS A 1 A_Lower;
-			Goto Deselect+1;
+			SPIS # 1 A_Lower(12);
+			Loop;
 		Select:
-			TNT1 AA 0 A_Raise;
-			SPIS A 1 A_Raise;
-			Goto Select+1;
+			SPIS A 1 A_Raise(20);
+			Loop;
 		Fire:
 			TNT1 A 0 { if (CountInv("PowerSuper")||CountInv("PowerHyper")) { A_GiveInventory("ChaosEnergy", 1); } }
 			TNT1 A 0 A_TakeInventory("KickCooldown", 4);
@@ -348,14 +347,14 @@ class RapidShotty : Weapon
 			SCTG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			TNT1 A 0 A_StopSound(6);
-			TNT1 AA 0 A_Lower;
-			SCTG A 1 A_Lower;
-			Goto Deselect+1;
+			SCTG # 1 {
+				A_Lower(12);
+				A_StopSound(6);
+			}
+			Loop;
 		Select:
-			TNT1 AA 0 A_Raise;
-			SCTG A 1 A_Raise;
-			Goto Select+1;
+			SCTG A 1 A_Raise(20);
+			Loop;
 		Fire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 110);
 			TNT1 A 0 A_JumpIf(CountInv("PowerSuper")||CountInv("PowerHyper"), "SuperFire");
@@ -417,13 +416,11 @@ class ShurikenCrossbow : Weapon
 			SHRL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			TNT1 AA 0 A_Lower;
-			SHRL A 1 A_Lower;
-			Goto Deselect+1;
+			SHRL # 1 A_Lower(12);
+			Loop;
 		Select:
-			TNT1 AA 0 A_Raise;
-			SHRL A 1 A_Raise;
-			Goto Select+1;
+			SHRL A 1 A_Raise(20);
+			Loop;
 		Fire:
 			TNT1 A 0 { if (CountInv("PowerSuper")||CountInv("PowerHyper") > 0) { A_GiveInventory("ChaosEnergy", 24); } }
 			SHRL B 1 A_FireProjectile("Shuriken", 0, 1);
@@ -473,13 +470,11 @@ class EclipseBlaster : Weapon
 			ECBL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			TNT1 AA 0 A_Lower;
-			ECBL A 1 A_Lower;
-			Goto Deselect+1;
+			ECBL # 1 A_Lower(12);
+			Loop;
 		Select:
-			TNT1 AA 0 A_Raise;
-			ECBL A 1 A_Raise;
-			Goto Select+1;
+			ECBL A 1 A_Raise(20);
+			Loop;
 		Fire:
 			ECBL B 1 EclipseFire();
 			TNT1 A 0 A_ReFire();
@@ -553,13 +548,11 @@ class AirStrikeLauncher : Weapon
 			MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			TNT1 AA 0 A_Lower;
-			MISG A 1 A_Lower;
-			Goto Deselect+1;
+			MISG # 1 A_Lower(12);
+			Loop;
 		Select:
-			TNT1 AA 0 A_Raise;
-			MISG A 1 A_Raise;
-			Goto Select+1;
+			MISG A 1 A_Raise(20);
+			Loop;
 		Fire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 3);
 			TNT1 A 0 {
