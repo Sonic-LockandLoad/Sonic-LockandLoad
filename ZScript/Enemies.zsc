@@ -1,10 +1,4 @@
-class ActualLostSoul : LostSoul replaces LostSoul 
-{
-	Default
-	{
-		DropItem "SoulRing";
-	}
-}
+class ActualLostSoul : LostSoul replaces LostSoul { Default { DropItem "SoulRing"; } }
 
 class FastSpiderdemon : SpiderMastermind // 19924
 {

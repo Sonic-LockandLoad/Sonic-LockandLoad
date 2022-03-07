@@ -20,28 +20,6 @@ class ShadowMeleeAtk : Actor
 	}
 }
 
-class LightAttack : Actor
-{
-	Default
-	{
-		+NOBLOCKMAP
-		+NOGRAVITY
-		+NOEXTREMEDEATH
-		RenderStyle "None";
-		Alpha 0;
-		VSpeed 0;
-		Mass 0;
-		DamageType "HomingAttack";
-		ProjectileKickBack 0;
-	}
-	States
-	{
-		Spawn:
-			TNT1 A 0;
-			Stop;
-	}
-}
-
 class PikoPuff : Actor
 {
 	Default
@@ -160,28 +138,6 @@ class GibPuff : Actor
 			PUFF B 4;
 		Melee:
 			PUFF CD 4;
-			Stop;
-	}
-}
-
-class SonicReticle : Actor
-{
-	Default
-	{
-		+WALLSPRITE
-		+NOGRAVITY
-		+PUFFONACTORS
-		RenderStyle "Normal";
-		Alpha 1;
-		VSpeed 0;
-		Mass 0;
-	}
-	States
-	{
-		Spawn:
-			RETI A 0;
-		Melee:
-			RETI A 1 Bright;
 			Stop;
 	}
 }

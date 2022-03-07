@@ -147,7 +147,7 @@ class ClassicAbilities : Weapon replaces Fist
 				} else {
 					invoker.SpinDamageMultiplier = 1;
 				}
-				A_CustomPunch(invoker.SpinCharges * invoker.SpinDamageMultiplier, false, 0, "LightAttack", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				A_CustomPunch(invoker.SpinCharges * invoker.SpinDamageMultiplier, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			}
 			TNT1 A 0 { invoker.SpinCharges = 0; }
 			Goto Ready;

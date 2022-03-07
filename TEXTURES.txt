@@ -40,14 +40,6 @@ Graphic "M_PAUSE", 589, 52
 	Patch "M_PAUSE", 0, 0
 }
 
-Sprite "RETIA0", 710, 619
-{
-	XScale 12.000
-	YScale 15.000
-	Offset 356, 555
-	Patch "RETIA0", 0, 0
-}
-
 Graphic "SNC_HUD", 342, 120
 {
 	XScale 2.000

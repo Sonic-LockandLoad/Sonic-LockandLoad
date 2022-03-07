@@ -1,7 +1,1 @@
-class ChaosEnergy : Ammo
-{
-	Default
-	{ 
-		Inventory.MaxAmount 999;
-	}
-}
+class ChaosEnergy : Ammo { Default {  Inventory.MaxAmount 999; } }
