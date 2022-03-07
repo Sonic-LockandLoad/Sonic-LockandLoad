@@ -106,7 +106,7 @@ map THEBOSS "Dis Is It"
 
 map S_LOBBY "Station Square"
 {
-	music = L_OUTSID
+	music = S_LOBBY
 	nointermission
 	sky1 = "NIGHTSKY"
 	author = "That1M8Head"
@@ -114,150 +114,79 @@ map S_LOBBY "Station Square"
 	resetinventory
 }
 
-map LMAONO "You Idiot, You Fricked It Up"
-{
-  levelnum = 30
-  titlepatch = "WILV27"
-  next = endpic, "bossend"
-  sky1 = "SKY3"
-  cluster = 413
-  par = 30
-  nointermission
-  nosoundclipping
-  music = MISTAKE
-  needclustertext
-}
-
-map ERR666 "Mod Incompatible"
-{
-  music = S_ERR666
-  cluster = 412
-  next = endpic, "TITLEPIC"
-  nointermission
-}
-
-map CONTINUE "Continue?"
-{
-  music = CONTINUE
-  levelnum = 469
-  nointermission
-}
-
 clearskills
-
-skill justwhy
-{
-  damagefactor = 0
-  monsterhealth = 0.00001
-  ammofactor = 9999
-  PlayerClassName = "Sonic", "Too easy"
-  PlayerClassName = "Amy", "Without thorns"
-  PlayerClassName = "C.Sonic", "No Way? No Way!"
-  PlayerClassName = "Shadow", "Just another fake"
-  name = "Just why...?"
-  spawnfilter = Hard
-  totalinfighting
-  mustconfirm = "This difficulty is for people that can't play games."
-  SlowMonsters
-  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
-  PlayerClassName = "Normal (Rifle Start)", "ERROR"
-  PlayerClassName = "Normal (Pistol Start)", "ERROR"
-  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
-}
 
 skill easy
 {
-  damagefactor = 0.25
-  PlayerClassName = "Sonic", "Piece of cake"
-  PlayerClassName = "Amy", "A breeze"
-  PlayerClassName = "C.Sonic", "Genesis"
-  PlayerClassName = "Shadow", "Waste of time"
-  name = "Not too fast"
-  spawnfilter = Easy
-  totalinfighting
-  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
-  PlayerClassName = "Normal (Rifle Start)", "ERROR"
-  PlayerClassName = "Normal (Pistol Start)", "ERROR"
-  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
+	PlayerClassName = "Sonic", "Piece of cake!"
+	PlayerClassName = "Amy", "A breeze"
+	PlayerClassName = "C.Sonic", "Genesis"
+	PlayerClassName = "Shadow", "Waste of time"
+	name = "Not too fast"
+	spawnfilter = 2
+	totalinfighting
+	mustconfirm = "The recommended skill for complete beginners."
 }
 
 skill standard
 {
-  PlayerClassName = "Sonic", "Bring it on!"
-  PlayerClassName = "Amy", "Just perfect!"
-  PlayerClassName = "C.Sonic", "Like 1991"
-  PlayerClassName = "Shadow", "Chaos Controller"
-  name = "Steady speed"
-  spawnfilter = Normal
-  defaultskill
-  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
-  PlayerClassName = "Normal (Rifle Start)", "ERROR"
-  PlayerClassName = "Normal (Pistol Start)", "ERROR"
-  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
+	PlayerClassName = "Sonic", "Bring it on!"
+	PlayerClassName = "Amy", "Just perfect!"
+	PlayerClassName = "C.Sonic", "Like 1991"
+	PlayerClassName = "Shadow", "Chaos Controller"
+	name = "Steady speed"
+	spawnfilter = 3
+	defaultskill
+	mustconfirm = "The recommended skill for a casual experience."
 }
 
 skill hard
 {
-  spawnfilter = Hard
-  PlayerClassName = "Sonic", "I can still fly!"
-  PlayerClassName = "Amy", "Never give up!"
-  PlayerClassName = "C.Sonic", "I am SEGA!"
-  PlayerClassName = "Shadow", "Damn 4th Difficulty"
-  name = "Getting faster"
-  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
-  PlayerClassName = "Normal (Rifle Start)", "ERROR"
-  PlayerClassName = "Normal (Pistol Start)", "ERROR"
-  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
+	spawnfilter = 4
+	PlayerClassName = "Sonic", "I can still fly!"
+	PlayerClassName = "Amy", "Never give up!"
+	PlayerClassName = "C.Sonic", "I am SEGA!"
+	PlayerClassName = "Shadow", "Damn 4th Difficulty"
+	name = "Getting faster"
+	mustconfirm = "The true Sonic: Lock & Load experience."
 }
 
 skill harder
 {
-  damagefactor = 2
-  PlayerClassName = "Sonic", "Now I'll show you!"
-  PlayerClassName = "Amy", "True Passion"
-  PlayerClassName = "C.Sonic", "Strange, isn't it?"
-  PlayerClassName = "Shadow", "Ultimate Life Form"
-  name = "Speed fastest"
-  spawnfilter = Hard
-  FastMonsters
-  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
-  PlayerClassName = "Normal (Rifle Start)", "ERROR"
-  PlayerClassName = "Normal (Pistol Start)", "ERROR"
-  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
+	PlayerClassName = "Sonic", "Now I'll show you!"
+	PlayerClassName = "Amy", "True Passion"
+	PlayerClassName = "C.Sonic", "Strange, isn't it?"
+	PlayerClassName = "Shadow", "Ultimate Life Form"
+	name = "Speed fastest"
+	spawnfilter = 4
+	FastMonsters
+	mustconfirm = "Enemies are faster. Recommended for experienced players."
 }
 
 skill wtf
 {
-  monsterhealth = 2
-  damagefactor = 4
-  spawnfilter = Nightmare
-  FastMonsters
-  PlayerClassName = "Sonic", "Blue Streak"
-  PlayerClassName = "Amy", "Thorned Rose"
-  PlayerClassName = "C.Sonic", "Fun is Infinite"
-  PlayerClassName = "Shadow", "All Fail Shadow"
-  name = "Out of control"
-  mustconfirm = "This'll force you to bring out your best. You sure you're up for it?"
-  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
-  PlayerClassName = "Normal (Rifle Start)", "ERROR"
-  PlayerClassName = "Normal (Pistol Start)", "ERROR"
-  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
+	monsterhealth = 2
+	damagefactor = 2
+	spawnfilter = 5
+	FastMonsters
+	PlayerClassName = "Sonic", "Blue Streak"
+	PlayerClassName = "Amy", "Thorned Rose"
+	PlayerClassName = "C.Sonic", "Fun is infinite"
+	PlayerClassName = "Shadow", "All Fail Shadow"
+	name = "Out of control"
+	mustconfirm = "This'll force you to bring out your best."
 }
 
 skill ohno
 {
-  monsterhealth = 0.001
-  damagefactor = 1000000
-  spawnfilter = Nightmare
-  FastMonsters
-  picname = "ohno"
-  mustconfirm = "The recommended difficulty for memelords and masochists."
-  replaceactor = "ExplosiveBarrel", "BaronOfHell"
-  replaceactor = "ChaosEmeralds", "Cyberdemon"
-  PlayerClassName = "Purist (Oldschool mode)", "ERROR"
-  PlayerClassName = "Normal (Rifle Start)", "ERROR"
-  PlayerClassName = "Normal (Pistol Start)", "ERROR"
-  PlayerClassName = "Tactical (Sprints, Recoil)", "ERROR"
+	monsterhealth = 0.001
+	damagefactor = 1000000
+	spawnfilter = 5
+	FastMonsters
+	picname = "ohno"
+	mustconfirm = "Everything including you dies in one hit. The recommended difficulty for memelords and masochists."
+	replaceactor = "ExplosiveBarrel", "BaronOfHell"
+	replaceactor = "ChaosEmeralds", "Cyberdemon"
 }
 
 // Ultimate Doom episode clusters
