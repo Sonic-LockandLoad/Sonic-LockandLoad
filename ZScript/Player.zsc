@@ -10,7 +10,7 @@ class SonicPlayer : PlayerPawn
 		PainChance 250;
 		Mass 100;
 		Player.MaxHealth 999;
-		Player.DisplayName "Sonic";
+		Player.DisplayName "$sonic";
 		Player.Face "SNF";
 		Player.SoundClass "sonic";
 		Player.StartItem "AcceleratedPistol";
@@ -121,7 +121,7 @@ class AmyPlayer : PlayerPawn
 		PainChance 256;
 		Mass 100;
 		Player.MaxHealth 999;
-		Player.DisplayName "Amy";
+		Player.DisplayName "$amy";
 		Player.Face "AMF";
 		Player.SoundClass "amy";
 		Player.StartItem "PikoPikoHammer";
@@ -212,7 +212,7 @@ class ShadowPlayer : PlayerPawn
 		PainChance 225;
 		Mass 100;
 		Player.MaxHealth 999;
-		Player.DisplayName "Shadow";
+		Player.DisplayName "$shadow";
 		Player.Face "SHF";
 		Player.SoundClass "shadow";
 		Player.StartItem "ShadowAbilities";
@@ -289,7 +289,7 @@ class ClassicSonicPlayer : PlayerPawn
 		Mass 100;
 		DamageFactor "RocketStream", 0.2;
 		Player.MaxHealth 999;
-		Player.DisplayName "C.Sonic";
+		Player.DisplayName "$classic";
 		Player.SoundClass "classic";
 		Player.Face "CLF";
 		Player.StartItem "ClassicAbilities";

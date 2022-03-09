@@ -140,40 +140,6 @@ BOSSEND =
 	"stone wall, waiting for the player to\n"
 	"start a new game...";
 	
-INCOMPAT =
-	"An irregularity has been detected.\n"
-	"\n"
-	"An actor class from an incompatible mod\n"
-	"was loaded or is present.\n"
-	"\n"
-	"This mod will not work with Sonic: Lock & Load.\n"
-	"\n"
-	"Relaunch the game without the mod, and remove\n"
-	"the mod from your autoload folder if present.\n"
-	"\n"
-	"Please check your GZDoom installation for more\n"
-	"information.\n"
-	"\n"
-	"Sonic: Lock and Load will no longer function\n"
-	"until the incompatibility is corrected.";
-	
-FAILURE =
-	"0x0000029A Critical system failure\n"
-	"\n"
-	"Forcing play despite incompatibility errors\n"
-	"\n"
-	"This may leave the game in an unusable state\n"
-	"\n"
-	"It is ill-advised to continue playing\n"
-	"\n"
-	"Please shut down the game immediately\n"
-	"\n"
-	"Sonic: Lock & Load is automatically\n"
-	"designed to shut down when any incompatible\n"
-	"actor class is detected\n"
-	"\n"
-	"Blacklisted actor class: 'BrutalWeapon'";
-	
 QUITMSG1 = "\c[MenuActive] I see your problem... too slow!";
 QUITMSG2 = "\c[MenuActive] What's the matter? Can't keep up?";
 QUITMSG3 = "\c[MenuActive] I've already lapped you three times...";
@@ -194,3 +160,41 @@ WI_ENTERING			= "NEXT STAGE";
 DOSY = "\c[MenuInactive] Thanks for playing Sonic: Lock & Load!\nAre you sure you want to quit?";
 
 STARTUP1 = "\c[Sonic]Welcome to Sonic: Lock & Load!";
+
+skill_text1 = "\c[Green]Not many enemies at all.\n\nRecommended for complete beginners.";
+skill_text2 = "\c[Yellow]There are less enemies around.\n\nThe recommended skill for a casual experience.";
+skill_text3 = "\c[MenuInactive]A good amount of enemies everywhere.\n\nThe true Sonic: Lock & Load experience.";
+skill_text4 = "\c[MenuInactive]Enemies are faster than usual.\n\nRecommended for experienced players.";
+skill_text5 = "\c[Red]Enemies have more health, and you take more damage.\n\nThis'll force you to bring out your best.";
+skill_text6 = "\c[Red]You die in one hit, and so do the enemies.\n\nRecommended for memelords and masochists.";
+
+sonic		= "\c[MenuInactive]Sonic";
+amy			= "\c[Amy]Amy";
+classic		= "\c[Classic]C.Sonic";
+shadow		= "\c[Red]Shadow";
+
+
+skill1_sonic	= "\c[Green]Piece of cake!";
+skill1_amy		= "\c[Green]A breeze";
+skill1_classic	= "\c[Green]Genesis";
+skill1_shadow	= "\c[Green]Waste of time";
+
+skill2_sonic	= "\c[Yellow]Bring it on!";
+skill2_amy		= "\c[Yellow]Just perfect!";
+skill2_classic	= "\c[Yellow]Like 1991";
+skill2_shadow	= "\c[Yellow]Chaos Controller";
+
+skill3_sonic	= "\c[MenuInactive]I can still fly!";
+skill3_amy		= "\c[MenuInactive]Never give up!";
+skill3_classic	= "\c[MenuInactive]I am SEGA!";
+skill3_shadow	= "\c[MenuInactive]Another mission";
+
+skill4_sonic	= "\c[MenuInactive]Now I'll show you!";
+skill4_amy		= "\c[MenuInactive]True passion";
+skill4_classic	= "\c[MenuInactive]Strange, isn't it?";
+skill4_shadow	= "\c[MenuInactive]Ultimate life form";
+
+skill5_sonic	= "\c[Sonic]Blue Streak";
+skill5_amy		= "\c[Amy]Thorned Rose";
+skill5_classic	= "\c[Classic]Fun is infinite";
+skill5_shadow	= "\c[Red]All Fail Shadow";

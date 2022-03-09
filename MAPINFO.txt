@@ -118,49 +118,49 @@ clearskills
 
 skill easy
 {
-	PlayerClassName = "Sonic", "Piece of cake!"
-	PlayerClassName = "Amy", "A breeze"
-	PlayerClassName = "C.Sonic", "Genesis"
-	PlayerClassName = "Shadow", "Waste of time"
+	PlayerClassName = "$sonic", "$skill1_sonic"
+	PlayerClassName = "$amy", "$skill1_amy"
+	PlayerClassName = "$classic", "$skill1_classic"
+	PlayerClassName = "$shadow", "$skill1_shadow"
 	name = "Not too fast"
 	spawnfilter = 2
 	totalinfighting
-	mustconfirm = "The recommended skill for complete beginners."
+	mustconfirm = "$skill_text1"
 }
 
 skill standard
 {
-	PlayerClassName = "Sonic", "Bring it on!"
-	PlayerClassName = "Amy", "Just perfect!"
-	PlayerClassName = "C.Sonic", "Like 1991"
-	PlayerClassName = "Shadow", "Chaos Controller"
+	PlayerClassName = "$sonic", "$skill2_sonic"
+	PlayerClassName = "$amy", "$skill2_amy"
+	PlayerClassName = "$classic", "$skill2_classic"
+	PlayerClassName = "$shadow", "$skill2_shadow"
 	name = "Steady speed"
 	spawnfilter = 3
 	defaultskill
-	mustconfirm = "The recommended skill for a casual experience."
+	mustconfirm = "$skill_text2"
 }
 
 skill hard
 {
 	spawnfilter = 4
-	PlayerClassName = "Sonic", "I can still fly!"
-	PlayerClassName = "Amy", "Never give up!"
-	PlayerClassName = "C.Sonic", "I am SEGA!"
-	PlayerClassName = "Shadow", "Damn 4th Difficulty"
+	PlayerClassName = "$sonic", "$skill3_sonic"
+	PlayerClassName = "$amy", "$skill3_amy"
+	PlayerClassName = "$classic", "$skill3_classic"
+	PlayerClassName = "$shadow", "$skill3_shadow"
 	name = "Getting faster"
-	mustconfirm = "The true Sonic: Lock & Load experience."
+	mustconfirm = "$skill_text3"
 }
 
 skill harder
 {
-	PlayerClassName = "Sonic", "Now I'll show you!"
-	PlayerClassName = "Amy", "True Passion"
-	PlayerClassName = "C.Sonic", "Strange, isn't it?"
-	PlayerClassName = "Shadow", "Ultimate Life Form"
+	PlayerClassName = "$sonic", "$skill4_sonic"
+	PlayerClassName = "$amy", "$skill4_amy"
+	PlayerClassName = "$classic", "$skill4_classic"
+	PlayerClassName = "$shadow", "$skill4_shadow"
 	name = "Speed fastest"
 	spawnfilter = 4
 	FastMonsters
-	mustconfirm = "Enemies are faster. Recommended for experienced players."
+	mustconfirm = "$skill_text4"
 }
 
 skill wtf
@@ -169,12 +169,12 @@ skill wtf
 	damagefactor = 2
 	spawnfilter = 5
 	FastMonsters
-	PlayerClassName = "Sonic", "Blue Streak"
-	PlayerClassName = "Amy", "Thorned Rose"
-	PlayerClassName = "C.Sonic", "Fun is infinite"
-	PlayerClassName = "Shadow", "All Fail Shadow"
+	PlayerClassName = "$sonic", "$skill5_sonic"
+	PlayerClassName = "$amy", "$skill5_amy"
+	PlayerClassName = "$classic", "$skill5_classic"
+	PlayerClassName = "$shadow", "$skill5_shadow"
 	name = "Out of control"
-	mustconfirm = "This'll force you to bring out your best."
+	mustconfirm = "$skill_text5"
 }
 
 skill ohno
@@ -184,7 +184,7 @@ skill ohno
 	spawnfilter = 5
 	FastMonsters
 	picname = "ohno"
-	mustconfirm = "Everything including you dies in one hit. The recommended difficulty for memelords and masochists."
+	mustconfirm = "$skill_text6"
 	replaceactor = "ExplosiveBarrel", "BaronOfHell"
 	replaceactor = "ChaosEmeralds", "Cyberdemon"
 }
