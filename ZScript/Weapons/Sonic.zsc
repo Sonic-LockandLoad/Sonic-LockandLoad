@@ -496,6 +496,7 @@ class EclipseBlaster : Weapon
 				}
 				return ResolveState(null);
 			}
+			Goto Ready;
 		Spawn:
 			ECLI A -1;
 			Stop;
