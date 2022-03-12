@@ -64,7 +64,11 @@ class BoostEnabledWeapon : Weapon
 		A_StopSound(1);
 		invoker.BoostCheck = false;
 		int CrashSpeed = ((invoker.BoostSpeed/10)+20)*-1;
-		A_ChangeVelocity(CrashSpeed, 0, 0, CVF_Relative|CVF_Replace);
+		int VerticalCrashSpeed = 0;
+		if (Vel.Z >= 1) {
+			VerticalCrashSpeed = Vel.Z;
+		}
+		A_ChangeVelocity(CrashSpeed, 0, VerticalCrashSpeed, CVF_Relative|CVF_Replace);
 		A_StartSound("sweapons/finalhit", 8);
 		DamageThing(invoker.BoostSpeed / 10, 17);
 	}
