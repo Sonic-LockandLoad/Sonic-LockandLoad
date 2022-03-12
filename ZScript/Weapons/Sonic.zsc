@@ -1,3 +1,11 @@
+enum ECheckSolidFootingFlags
+{
+    CSF_SOLIDGROUND = 1,
+    CSF_SOLIDACTORS = 2,
+    
+    CSF_ALL = CSF_SOLIDGROUND|CSF_SOLIDACTORS,
+}
+
 class BoostEnabledWeapon : Weapon
 {
 	int BoostSpeed;
@@ -104,6 +112,34 @@ class BoostEnabledWeapon : Weapon
 
 class Caliburn : BoostEnabledWeapon 
 {
+	double oldVelZ;
+	override void Tick()
+	{
+		oldVelZ = vel.z;
+		super.Tick();
+	}
+	action state A_CheckSolidFooting(StateLabel label, int flags = CSF_ALL)
+	{
+		if (invoker.oldVelZ != vel.z) {
+			return null;
+		}
+		if (abs(pos.z - GetZAt()) <= 1) {
+			if (flags & CSF_SOLIDGROUND) {
+				return ResolveState(label);
+			}
+		}
+		bool ok; Actor below;
+		[ok, below] = TestMobjZ(true);
+		if (below) {
+			if (flags & CSF_SOLIDACTORS) {
+				return ResolveState(label);
+			}
+		}
+		if (vel.z == invoker.oldVelZ && (flags & CSF_SOLIDGROUND)) {
+			return ResolveState(label);
+		}
+		return null;
+	}
 	action void SwordSwing(bool onright)
 	{
 		A_PlaySound("sweapons/swordswing", 1);
@@ -151,7 +187,7 @@ class Caliburn : BoostEnabledWeapon
 			CALI A 1 A_Raise(20);
 			Loop;
 		Fire:
-			TNT1 A 0 A_CheckFloor("GroundAttack");
+			TNT1 A 0 A_CheckSolidFooting("GroundAttack");
 			Goto AirStart;
 		GroundAttack:
 			TNT1 A 0 SwordSwing(false);
@@ -203,10 +239,10 @@ class Caliburn : BoostEnabledWeapon
 				A_ChangeVelocity(0, 0, -50, CVF_Relative|CVF_Replace);
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			}
-			CALI B 0 A_CheckFloor("AirDone");
+			CALI B 0 A_CheckSolidFooting("AirDone");
 			Goto AirAttack+6;
 		AirDone:
-			TNT1 A 0 A_SetSpeed(0);
+			TNT1 A 0 A_SetSpeed(0);	
 			TNT1 A 0 SwordSlam();
 			CALI N 10 A_ReFire("AirHold");
 			TNT1 A 0 A_SetSpeed(2);
