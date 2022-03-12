@@ -108,7 +108,7 @@ class DarkAssault : Weapon
 		Weapon.AmmoType "ChaosEnergy";
 		AttackSound "weapons/shotgf";
 		Tag "Dark Assaulter";
-		Inventory.PickupMessage "\c[ShadowRedBlack]Looks like this shotgun still works.";
+		Inventory.PickupMessage "Dark Assaulter";
 	}
 	States
 	{
@@ -153,7 +153,7 @@ class ChaosEmerald : Weapon
 		Weapon.SelectionOrder 3700;
 		Weapon.AmmoType "ChaosEnergy";
 		Weapon.AmmoUse 400;
-		Inventory.PickupMessage "\c[ShadowRedBlack]That damn 4th Chaos Emerald!";
+		Inventory.PickupMessage "Chaos Emerald";
 		Tag "Chaos Emerald";
 		+WEAPON.AMMO_OPTIONAL
 	}
@@ -166,6 +166,7 @@ class ChaosEmerald : Weapon
 				if (!CountInv("Damn4thChaos")) {
 					A_GiveInventory("Damn4thChaos");
 					ACS_NamedExecute("Damn4thChaosEmerald");
+					A_Log("\c[Shadow]That damn FOURTH Chaos Emerald!");
 				}
 				if (!CountInv("PowerSuper") && !CountInv("Charging") && CountInv("ChaosEnergy") < 401) {
 					A_GiveInventory("ChaosEnergy", 1);
@@ -229,7 +230,7 @@ class ShadowKnife : Weapon
 		Weapon.SelectionOrder 3800;
 		Weapon.KickBack 0;
 		Inventory.PickupSound "theycant/trollyouif";
-		Inventory.PickupMessage "\c[ShadowRedBlack]They cant troll you if there dead!";
+		Inventory.PickupMessage "\c[ShadowRedBlack]they cant troll you if there dead!";
 		Tag "Troll Slaiying Knife";
 		+WEAPON.MELEEWEAPON
 	}
@@ -266,7 +267,7 @@ class QuadShotty : Weapon
 		Weapon.AmmoUse 40;
 		Weapon.AmmoGive 160;
 		Weapon.AmmoType "ChaosEnergy";
-		Inventory.PickupMessage "\c[ShadowRedBlack]Too heavy? No problem.";
+		Inventory.PickupMessage "Quarternary Decimator";
 		Tag "Quarternary Decimator";
 	}
 	States
@@ -310,7 +311,7 @@ Class DualRockets : Weapon
 		Weapon.AmmoType "ChaosEnergy";
 		Weapon.AmmoUse 32;
 		Weapon.AmmoGive 128;
-		Inventory.PickupMessage "\c[Shadow]Prepare to be assimilated!";
+		Inventory.PickupMessage "Dual Assimilator";
 		Tag "Dual Assimilator";
 		+Weapon.Explosive
 		+Weapon.NoAutoFire

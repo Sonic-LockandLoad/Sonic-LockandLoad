@@ -301,7 +301,7 @@ class AcceleratedPistol : Weapon
 		Weapon.AmmoUse2 4;
 		Weapon.AmmoGive 60;
 		Weapon.BobSpeed 1.5;
-		Inventory.PickupMessage "Picked up a pistol.";
+		Inventory.PickupMessage "Accelerated Pistol";
 		Tag "Accelerated Pistol";
 		+FORCEPAIN
 		+PUFFONACTORS
@@ -376,7 +376,7 @@ class RapidShotty : Weapon
 		Weapon.AmmoGive 64;
 		Weapon.Kickback 1000;
 		Weapon.BobSpeed 1.5;
-		Inventory.PickupMessage "\c[SonicBlue]I'm runnin' circles around ya!";
+		Inventory.PickupMessage "Rapid Shotty";
 		Tag "Rapid Shotty";
 		+PUFFONACTORS
 		+ALWAYSPUFF
@@ -450,7 +450,7 @@ class ShurikenCrossbow : Weapon
 		Weapon.Kickback 1;
 		Weapon.BobSpeed 1.5;
 		Weapon.AmmoType "ChaosEnergy";
-		Inventory.PickupMessage "\c[SonicBlue]Is that a crossbow that fires shurikens?! Awesome!!";
+		Inventory.PickupMessage "Shuriken Crossbow";
 		Tag "Shuriken Crossbow";
 		+WEAPON.NOAUTOFIRE
 	}
@@ -505,7 +505,7 @@ class EclipseBlaster : Weapon
 		Weapon.BobSpeed 1.5;
 		+EXTREMEDEATH
 		+WEAPON.NOAUTOFIRE
-		Inventory.PickupMessage "\c[SonicBlue]The Eclipse Blaster Mk. V, the ultimate in plasma weaponry!";
+		Inventory.PickupMessage "Eclipse Blaster Mk. V";
 		Tag "Eclipse Blaster Mk. V";
 	}
 	States
@@ -552,7 +552,7 @@ class AirStrikeLauncher : Weapon
 		Weapon.AmmoUse 40;
 		Weapon.AmmoGive 200;
 		Weapon.AmmoType "ChaosEnergy";
-		Inventory.PickupMessage "\c[SonicBlue]Time for some sick air strikes!";
+		Inventory.PickupMessage "Rocket Rioter";
 		Tag "Rocket Rioter";
 		Weapon.BobSpeed 1.5;
 		Weapon.Kickback 1000;

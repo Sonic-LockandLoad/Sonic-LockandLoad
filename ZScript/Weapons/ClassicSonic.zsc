@@ -175,7 +175,7 @@ class ChaosBlaster : Weapon
 		Weapon.BobRangeX 0.5;
 		Weapon.AmmoType "ChaosEnergy";
 		Tag "Chaos Blaster";
-		Inventory.PickupMessage "Picked up the Chaos energy blaster!";
+		Inventory.PickupMessage "You got the Chaos Blaster!";
 	}
 	States
 	{
@@ -226,7 +226,7 @@ class SpeedyShotgun : Weapon
 		Tag "Speedy Shotgun";
 		Weapon.BobSpeed 1.5;
 		Weapon.BobRangeX 0.5;
-		Inventory.PickupMessage "Picked up the speedy shotgun!";
+		Inventory.PickupMessage "You got the Speedy Shotgun!";
 	}
 	States
 	{
@@ -399,7 +399,7 @@ class ClassicRocketStream : Weapon
 		Tag "Rocket Stream";
 		Weapon.BobSpeed 1.5;
 		Weapon.BobRangeX 0.5;
-		Inventory.PickupMessage "Picked up the rocket stream launcher!";
+		Inventory.PickupMessage "You got the Rocket Stream!";
 	}
 	States
 	{
@@ -448,7 +448,7 @@ class ChaosRain : Weapon
 		Tag "Chaos Rain";
 		Weapon.BobSpeed 1.5;
 		Weapon.BobRangeX 0.5;
-		Inventory.PickupMessage "Picked up the Chaos Rain cannon!";
+		Inventory.PickupMessage "You got the Chaos Rain!";
 	}
 	States
 	{

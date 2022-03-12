@@ -119,7 +119,7 @@ class SilentRosePistol : Weapon
 		Weapon.AmmoUse 5;
 		Weapon.AmmoGive 90;
 		AttackSound "sweapons/apistol";
-		Inventory.PickupMessage "\c[AmyPink]The Silent Rose, both pretty AND deadly!";
+		Inventory.PickupMessage "Silent Rose";
 		Inventory.PickupSound "spickup/amy";
 		Tag "Silent Rose";
 		+WEAPON.NOALERT
@@ -167,7 +167,7 @@ class PrecisionShotgun : Weapon
 		Weapon.AmmoUse1 15;
 		Weapon.AmmoGive 30;
 		Weapon.KickBack 160;
-		Inventory.PickupMessage "\c[AmyPink]Check me out -- I'm a sniper!";
+		Inventory.PickupMessage "Precision Shotgun";
 		Tag "Precision Shotgun";
 		+WEAPON.NOAUTOFIRE
 		+WEAPON.NOALERT
@@ -277,7 +277,7 @@ class AmyEclipseBlaster : Weapon
 		Weapon.KickBack 100000000;
 		+EXTREMEDEATH
 		+WEAPON.NOALERT
-		Inventory.PickupMessage "\c[AmyPink]The Eclipse Blaster Mk. IV! Awesome!";
+		Inventory.PickupMessage "Eclipse Blaster Mk. IV";
 		Tag "Eclipse Blaster Mk. IV";
 	}
 	States
@@ -339,7 +339,7 @@ class RapidMissiles : Weapon
 		Weapon.AmmoGive 40;
 		Weapon.AmmoType1 "ChaosEnergy";
 		Weapon.AmmoType2 "ChaosEnergy";
-		Inventory.PickupMessage "\c[AmyPink]Guess who just got a missile launcher!";
+		Inventory.PickupMessage "Rapid Missile Cannon";
 		Tag "Rapid Missile Cannon";
 		+WEAPON.NOAUTOAIM
 	}
