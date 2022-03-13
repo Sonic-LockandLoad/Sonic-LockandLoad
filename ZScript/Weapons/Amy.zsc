@@ -304,11 +304,7 @@ class AmyEclipseBlaster : Weapon
 			Goto Ready;
 		AltFire:
 			ECBL C 1 {
-				if (CountInv("PowerSuper")) {
-					A_Print("\c[Purple]Waste of time.");
-					A_PlaySound("amy/error", 4096);
-					return ResolveState("Ready");
-				} else if ((Health < 300) && CountInv("ChaosEnergy")) {
+				if ((Health < 300 && CountInv("ChaosEnergy") && !CountInv("PowerSuper"))) {
 					A_TakeInventory("ChaosEnergy", 2);
 					A_PlaySound("sweapons/healthcharge", 4096);
 					A_GiveInventory("Health", 4);

@@ -71,3 +71,8 @@ MenuInactive
 {
 	#001a9c  #0078FF
 }
+
+Hyper
+{
+	#c344c1  #f2bdf1
+}

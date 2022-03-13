@@ -34,35 +34,121 @@ script "LastWeapon" (void)
 script "Taunt" (void)
 {
 	NoiseAlert(0, 0);
+	int tauntchance;
 	switch(PlayerClass(PlayerNumber())) {
 		case Sonic:
-			PlaySound(1001, "sonic/taunt", 9, 1.0);
-			SetMugshotState("GrinSmol");
-            break;
+			tauntchance = random(1, 3);
+			switch (tauntchance) {
+				case 1:
+					PlaySound(1001, "sonic/taunt1", 9, 1.0);
+					SetMugshotState("GrinSmol");
+					if (GetCvar("Subtitles")) {
+						HudMessage(s:"\c[Sonic] Sonic: \c[White] You're too slow!";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 1.5, 1.0);
+					}
+					break;
+				case 2:
+					PlaySound(1001, "sonic/taunt2", 9, 1.0);
+					SetMugshotState("GrinSmol");
+					if (GetCvar("Subtitles")) {
+						HudMessage(s:"\c[Sonic] Sonic: \c[White] Come on, step it up!";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+				case 3:
+					PlaySound(1001, "sonic/taunt3", 9, 1.0);
+					SetMugshotState("GrinSmol");
+					if (GetCvar("Subtitles")) {
+						HudMessage(s:"\c[Sonic] Sonic: \c[White] I'm Sonic the kidnapper!";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+			}
+			break;
 		case Amy:
 			PlaySound(1001, "amy/taunt", 9, 1.0);
 			SetMugshotState("FailSmol");
+			if (GetCvar("Subtitles")) {
+				HudMessage(s:"\c[Amy] Amy: \c[White] Are we gonna rest much longer...?";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+			}
 			break;
 		case ClassicSonic:
-			int SandInEye = random(0, 1);
-			if (SandInEye) {
-				PlaySound(1001, "classic/taunt5", 9, 1.0);
-				SetMugshotState("FailSmol");
-			} else {
-				PlaySound(1001, "classic/taunt", 9, 1.0);
-				SetMugshotState("GrinSmol");
+			tauntchance = random(1, 5);
+			switch (tauntchance) {
+				case 1:
+					PlaySound(1001, "classic/taunt1", 9, 1.0);
+					SetMugshotState("GrinSmol");
+					if (GetCvar("Subtitles")) {
+						HudMessage(s:"\c[Classic] Sonic: \c[White] Yo, have you guys been good?";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+				case 2:
+					PlaySound(1001, "classic/taunt2", 9, 1.0);
+					SetMugshotState("GrinSmol");
+					if (GetCvar("Subtitles")) {
+						HudMessage(s:"\c[Classic] Sonic: \c[White] Hey, I'll play with you some other time!";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+				case 3:
+					PlaySound(1001, "classic/taunt3", 9, 1.0);
+					SetMugshotState("GrinSmol");
+					if (GetCvar("Subtitles")) {
+						HudMessage(s:"\c[Classic] Sonic: \c[White] Sound test! You get to listen to cool sounds!";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 4.0, 1.0);
+					}
+					break;
+				case 4:
+					PlaySound(1001, "classic/taunt4", 9, 1.0);
+					SetMugshotState("GrinSmol");
+					if (GetCvar("Subtitles")) {
+						HudMessage(s:"\c[Classic] Sonic: \c[White] Alright, put 'em up!";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+				case 5:
+					PlaySound(1001, "classic/taunt5", 9, 1.0);
+					SetMugshotState("FailSmol");
+					if (GetCvar("Subtitles")) {
+						HudMessage(s:"\c[Classic] Sonic: \c[White] Shoot, I got sand in my eye!";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
 			}
 			break;
 		case Shadow:
+			tauntchance = random(1, 2);
+			log(d:tauntchance);
 			if (random(1, 35) == 35) {
 				PlaySound(1001, "imthe/coolest", 9, 1.0);
 				SetMugshotState("Grin");
+				if (GetActorProperty(1001, APROP_Health) < 145) {
+					SetActorProperty(1001, APROP_Health, 145);
+				}
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Shadow] Shadow: \c[Gold] I'm the coolest!";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
 			} else {
-				PlaySound(1001, "shadow/taunt", 9, 1.0);
+				switch (tauntchance) {
+					case 1:
+						PlaySound(1001, "shadow/taunt1", 9, 1.0);
+						if (GetCvar("Subtitles")) {
+							HudMessage(s:"\c[Shadow] Shadow: \c[White] Hmph. Not even a challenge.";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+						}
+						break;
+					case 2:
+						PlaySound(1001, "shadow/taunt2", 9, 1.0);
+						if (GetCvar("Subtitles")) {
+							HudMessage(s:"\c[Shadow] Shadow: \c[White] You're going straight to hell!";
+									   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+						}
+						break;
+				}
 			}
-			break;
-		case -1:
-			default:
 			break;
 	}
 }
@@ -476,30 +562,52 @@ script "GoalRing" (void)
 		case Sonic:
 			SetMusic("S_VICTOR");
 			Print(s:"\c[Sonic]Stage Clear");
+			SetFont("SMALLFONT");
 			if (LevelTime > DParTime) {
 				PlaySound(1001, "sonic/badresult");
 				SetMugshotIfNotSuper("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Sonic] Sonic: \c[White] Aw, I gotta try that again!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
 			}
 			else if (LevelTime > ParTime) {
 				PlaySound(1001, "sonic/okayresult");
 				SetMugshotIfNotSuper("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Sonic] Sonic: \c[White] Not my best run...";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
 			}
 			else {
 				PlaySound(1001, "sonic/goodresult");
 				SetMugshotIfNotSuper("Grin");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Sonic] Sonic: \c[White] How's that?";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
 			}
 			Delay(35*7);
 			break;
 		case Amy:
 			SetMusic("A_VICTOR");
 			Print(s:"\c[Amy]Act Clear!");
+			SetFont("SMALLFONT");
 			if (CurrentHealth < 40) {
 				PlaySound(1001, "amy/badresult");
 				SetMugshotIfNotSuper("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Amy] Amy: \c[White] ...";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
 			}
 			else {
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
 				SetMugshotIfNotSuper("Grin");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Amy] Amy: \c[White] Yay!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
 			}
 			Delay(35*7);
 			break;
@@ -512,17 +620,33 @@ script "GoalRing" (void)
 			} else {
 				Print(s:"\c[Classic]SONIC \c[White]GOT THROUGH");
 			}
+			SetFont("SMALLFONT");
 			if (CurrentHealth < 21) {
 				PlaySound(1001, "classic/badresult");
 				SetMugshotIfNotSuper("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Classic] Sonic: \c[White] Barely made it...";
+							HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+				break;
 			}
 			else if (LevelTime > ParTime) {
 				PlaySound(1001, "classic/okayresult");
 				SetMugshotIfNotSuper("OK");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Classic] Sonic: \c[White] Huh... no problem.";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+				break;
 			}
 			else {
 				PlaySound(1001, "classic/goodresult");
 				SetMugshotIfNotSuper("Grin");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Classic] Sonic: \c[White] *whistle* That was cool!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+				break;
 			}
 			Delay(35*6);
 			break;
@@ -530,13 +654,24 @@ script "GoalRing" (void)
 			SetMusic("D_VICTOR");
 			if (KilledMonsters == TotalMonsters) {
 				Print(s:"\c[Shadow]Mission Cleared");
+				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/goodresult");
 				SetMugshotIfNotSuper("OK");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Shadow] Shadow: \c[White] Yes!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+				break;
 			}
 			else {
 				Print(s:"\c[Shadow]Mission Incomplete");
+				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/badresult");
 				SetMugshotIfNotSuper("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Shadow] Shadow: \c[White] Need to stay focused.";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
 			}
 			Delay(35*7);
 			break;
@@ -690,7 +825,7 @@ script "DoubleJump" enter
 					}
 				}
 			}
-		}
+		}	
 		else { Delay(1); }
 	}
 }
@@ -702,5 +837,53 @@ script "HowManyZFireLeft" (int clear)
 		HudMessage(s:"\c[Purple]Infinite shots remaining"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 0.5, 0.6, 0.3);
 	} else {
 		HudMessage(s:"\c[Amy]", d:RemainingShots, s:"/", d:8, s:" shots remaining"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 0.5, 0.6, 0.3);
+	}
+}
+
+script "Subtitles" (int subtitle)
+{
+	if (GetCvar("Subtitles")) {
+		switch (subtitle) {
+			case 1:
+				HudMessage(s:"\c[Sonic] Sonic: \c[White] Well. That was lame.";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 2:
+				HudMessage(s:"\c[Red] Knuckles: \c[White] Oh no.";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 3:
+				HudMessage(s:"\c[Sonic] Sonic: \c[White] Ugh, thanks a lot, wall!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 4:
+				HudMessage(s:"\c[Sonic] Sonic: \c[White] Ugh, this wall's in the way!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 5:
+				HudMessage(s:"\c[Gold] Super Sonic: \c[White] Now I'll show you!!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 6:
+				HudMessage(s:"\c[Purple] Dark Amy: \c[White] I'll destroy all of you!!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 7:
+				HudMessage(s:"\c[Gold] Super Shadow: \c[White] Witness the might of my power!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 8:
+				HudMessage(s:"\c[Gold] Super Sonic: \c[White] Let's blast through with sonic speed!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 9:
+				HudMessage(s:"\c[Hyper] Hyper Sonic: \c[White] Now I'm serious!!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 10:
+				HudMessage(s:"\c[Hyper] Hyper Sonic: \c[White] Okay, no more playing around!!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+		}
 	}
 }

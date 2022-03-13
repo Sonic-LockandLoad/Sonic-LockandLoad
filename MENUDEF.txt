@@ -116,6 +116,10 @@ OptionMenu "LockandLoadOptions"
 	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
 	StaticText "Amy only", "Cyan"
 	StaticText ""
+	
+	Option "Subtitles", "Subtitles", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
+	StaticText ""
 }
 OptionMenu "SDMusic"
 {
