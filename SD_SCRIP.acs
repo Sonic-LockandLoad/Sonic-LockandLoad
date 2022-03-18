@@ -7,17 +7,17 @@
 
 /* Following script taken from the ZDoom Forums <https://forum.zdoom.org/viewtopic.php?t=51848#p903998> */
 
-str lastWeapon;
-
 script "LastWeaponHandler" enter
 {
     int pn            = PlayerNumber();
     str currentWeapon = GetWeapon();
-    lastWeapon	      = currentWeapon;
+    if (GetCvar("LastWeapon") == "") {
+		SetCvar("lastWeapon", currentWeapon);
+	}
     
     while (1) {
         if (StrCmp(currentWeapon, GetWeapon())) {
-            lastWeapon = currentWeapon;
+			SetCvar("lastWeapon", currentWeapon);
 		}
         currentWeapon = GetWeapon();
         Delay(1);
@@ -26,7 +26,7 @@ script "LastWeaponHandler" enter
 
 script "LastWeapon" (void)
 {
-    SetWeapon(lastWeapon);
+    SetWeapon(GetCvar("lastWeapon"));
 }
 
 /* End of borrowed script */

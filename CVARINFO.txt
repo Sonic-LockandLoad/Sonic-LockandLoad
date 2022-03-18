@@ -9,6 +9,8 @@ user bool ShotgunReplace2 			= false;
 user bool WallCrash 				= true;
 user bool Subtitles 				= true;
 
+user noarchive string LastWeapon	= "";
+
 /* Invincibility music */
 user int InvSonic 	= 1;
 user int InvAmy 	= 1;
