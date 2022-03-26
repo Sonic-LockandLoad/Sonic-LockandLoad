@@ -55,7 +55,22 @@ class ClassicAbilities : Weapon replaces Fist
 				else
 				{
 					if (random[HereWeGo](1, 2) == 1) {
-						A_PlaySound("classic/driftline", 7);
+						int driftline = random(1, 4);
+						ACS_NamedExecute("Subtitles", 0, 11 + driftline);
+						switch (driftline) {
+							case 1:
+								A_PlaySound("classic/ifyoucan", 7);
+								break;
+							case 2:
+								A_PlaySound("classic/herego", 7);
+								break;
+							case 3:
+								A_PlaySound("classic/underestimate", 7);
+								break;
+							case 4:
+								A_PlaySound("classic/teria", 7);
+								break;
+						}
 					}
 				    invoker.SpinCharges = 0;
 					return ResolveState("Drift");
@@ -183,7 +198,7 @@ class ChaosBlaster : Weapon
 			PLSG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			PLSG A 1 A_Lower(10);
+			#### # 1 A_Lower(10);
 			Loop;
 		Select:
 			PLSG A 1 A_Raise(10);
@@ -234,91 +249,82 @@ class SpeedyShotgun : Weapon
 			SHTG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			SHTG A 1 A_Lower(10);
+			#### # 1 A_Lower(10);
 			Loop;
 		Select:
 			SHTG A 1 A_Raise(10);
 			Loop;
 		Fire:
-			SHTG A 2;
-			SHTG A 0
+			SHTG A 5
 			{
 				if (CountInv("PowerSuper") > 0 || CountInv("PowerHyper") > 0) {
 					A_GiveInventory("ChaosEnergy", 16);
 				}
-			}
-			SHTG A 0 A_FireBullets(5.6, 0, 7, 3, "BulletPuff");
-			SHTG A 0 A_PlaySound("weapons/shotgf", 1);
-			SHTG A 0
-			{
+				A_FireBullets(5.6, 0, 7, 3, "BulletPuff");
+				A_PlaySound("weapons/shotgf", 1);
 				if (CountInv("PowerHyper") > 0) {
 					A_GunFlash("HyperFlash");
 				} else {
 					A_GunFlash();
 				}
+				if (CountInv("PowerHyper") > 0) { A_ReFire(); }
 			}
-			SHTG A 1 { if (CountInv("PowerHyper") > 0) { A_ReFire(); } }
-			SHTG A 2;
 			Goto Ready;
 		AltFire:
 			TNT1 A 0 A_JumpIf(CountInv("PowerHyper"), "HyperFire");
-			SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
-			SHTG A 0 A_FireBullets(8, 3, 10, 4, "BulletPuff");
-			SHTG A 0
+			SHTG AA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SHTG A 1
 			{
+				A_GunFlash("QuickFlash");
+				A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
+				A_FireBullets(8, 3, 10, 4, "BulletPuff");
 				if (CountInv("PowerSuper") > 0) {
 					A_GiveInventory("ChaosEnergy", 8);
 				}
 			}
-			SHTG A 3 A_GunFlash("QuickFlash");
-			SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
-			SHTG A 0 A_FireBullets (5, 2, 10, 5, "BulletPuff");
-			SHTG A 0
+			SHTG AA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SHTG A 1
 			{
+				A_GunFlash("QuickFlash");
+				A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
+				A_FireBullets (5, 2, 10, 5, "BulletPuff");
 				if (CountInv("PowerSuper") > 0 || CountInv("PowerHyper") > 0) {
 					A_GiveInventory("ChaosEnergy", 8);
 				}
 			}
-			SHTG A 3 A_GunFlash("QuickFlash");
-			SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
-			SHTG A 0 A_FireBullets (3, 1, 10, 6, "BulletPuff");
-			SHTG A 0
+			SHTG AA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SHTG A 1
 			{
+				A_GunFlash("QuickFlash");
+				A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
+				A_FireBullets (3, 1, 10, 6, "BulletPuff");
 				if (CountInv("PowerSuper") > 0 || CountInv("PowerHyper") > 0) {
 					A_GiveInventory("ChaosEnergy", 8);
 				}
 			}
-			SHTG A 3 A_GunFlash("QuickFlash");
-			SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
-			SHTG A 0 A_FireBullets (1, 0, 10, 7, "BulletPuff");
-			SHTG A 0
+			SHTG AA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SHTG A 1
 			{
+				A_GunFlash("QuickFlash");
+				A_ChangeVelocity(Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
+				A_FireBullets (1, 0, 10, 7, "BulletPuff");
 				if (CountInv("PowerSuper") > 0 || CountInv("PowerHyper") > 0) {
 					A_GiveInventory("ChaosEnergy", 8);
 				}
 			}
-			SHTG A 3 A_GunFlash("QuickFlash");
-			SHTG A 0 A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
-			SHTG A 0 A_FireBullets (0, 0, 10, 8, "BulletPuff");
-			SHTG A 0
+			SHTG AA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SHTG A 1
 			{
+				A_GunFlash("QuickFlash");
+				A_ChangeVelocity (Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
+				A_FireBullets (0, 0, 10, 8, "BulletPuff");
 				if (CountInv("PowerSuper") > 0 || CountInv("PowerHyper") > 0) {
 					A_GiveInventory("ChaosEnergy", 8);
 				}
 			}
-			SHTG A 0
-			{
-				if (CountInv("PowerSuper") > 0 || CountInv("PowerHyper") > 0) {
-					A_GunFlash();
-					A_ReFire();
-				}
-			}
-			SHTG A 7 A_GunFlash();
-			SHTG BC 5;
-			SHTG D 4;
-			SHTG CB 5;
-			SHTG A 3;
-			SHTG A 7 A_ReFire();
+			SHTG A 1 A_GunFlash();
+			SHTG AAAAAABBBBBCCCCCDDDDCCCCCBBBBBAAAAAAAAAA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			TNT1 A 0 A_ReFire();
 			Goto Ready;
 		HyperFire:
 			SHTG A 1
@@ -407,7 +413,7 @@ class ClassicRocketStream : Weapon
 			MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			MISG A 1 A_Lower(10);
+			#### # 1 A_Lower(10);
 			Loop;
 		Select:
 			MISG A 1 A_Raise(10);
@@ -456,7 +462,7 @@ class ChaosRain : Weapon
 			CHGG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			CHGG A 1 A_Lower(10);
+			#### # 1 A_Lower(10);
 			Loop;
 		Select:
 			CHGG A 1 A_Raise(10);

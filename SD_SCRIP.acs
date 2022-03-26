@@ -884,6 +884,26 @@ script "Subtitles" (int subtitle)
 				HudMessage(s:"\c[Hyper] Hyper Sonic: \c[White] Okay, no more playing around!!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				break;
+			case 11:
+				HudMessage(s:"\c[Classic] Sonic: \c[White] You don't have enough memory in the memory card.";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 12:
+				HudMessage(s:"\c[Classic] Sonic: \c[White] Catch me if you can!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 1.5, 1.0);
+				break;
+			case 13:
+				HudMessage(s:"\c[Classic] Sonic: \c[White] Here we go!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 0.5, 1.0);
+				break;
+			case 14:
+				HudMessage(s:"\c[Classic] Sonic: \c[White] Never underestimate Sonic Speed!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 15:
+				HudMessage(s:"\c[Classic] Sonic: \c[White] TERIAAAAAAAA!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
 		}
 	}
 }
