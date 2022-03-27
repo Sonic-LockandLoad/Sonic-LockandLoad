@@ -181,6 +181,7 @@ theycant/trollyouif			thereded
 shadow/goodresult			D_GOOD
 shadow/badresult			D_BAD
 imthe/coolest				coolest
+shadow/teleport				nothpers
 
 super/sonich				shyptrns
 super/classich				chyptrns
