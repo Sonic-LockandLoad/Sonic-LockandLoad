@@ -145,15 +145,16 @@ class AmyPlayer : PlayerPawn
 		See:
 			TNT1 A 0
 			{
-				if (CountInv("PowerSuper") > 0) {
+				if (CountInv("PowerSuper")) {
 					A_SetSpeed(2);
 					ACS_NamedExecute("JumpHeight");
-				} else {
-					A_SetSpeed(1.2);
+				} 
+				else {
+					A_SetSpeed(1.5);
 					ACS_NamedExecute("JumpHeight", 0, 1);
 				}
 			}
-			PLAY ABCD 4 ;
+			PLAY ABCD 4;
 			Loop;
 		Missile:
 			PLAY E 12;
@@ -219,6 +220,7 @@ class ShadowPlayer : PlayerPawn
 		Player.SoundClass "shadow";
 		Player.StartItem "ShadowAbilities";
 		Player.StartItem "ShadowCheck";
+		Player.StartItem "ChaosSnap";
 		Player.StartItem "ChaosEnergy", 120;
 		Player.WeaponSlot 1, "ShadowAbilities", "HighShovel", "ShadowKnife";
 		Player.WeaponSlot 2, "DarkAssault";
