@@ -120,7 +120,6 @@ script "Taunt" (void)
 			break;
 		case Shadow:
 			tauntchance = random(1, 2);
-			log(d:tauntchance);
 			if (random(1, 35) == 35) {
 				PlaySound(1001, "imthe/coolest", 9, 1.0);
 				SetMugshotState("Grin");
