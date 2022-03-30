@@ -1,9 +1,7 @@
-class SonicSwitch : Actor // 4156
+class LLSwitch : Actor
 {
 	Default
 	{
-		//$Name Sonic Switch
-		//$Category Lock & Load Objects
 		+SHOOTABLE
 		+NOBLOOD
 		+DONTFALL
@@ -11,164 +9,100 @@ class SonicSwitch : Actor // 4156
 		+NOCLIP
 		Health 1;
 		Mass 100000;
-		DamageFactor "Normal", 0;
-		DamageFactor "SonicKick", 1;
 		YScale 0.9;
+		Height 30;
+		DamageFactor "Normal", 0;
+		DeathSound "switches/normbutn";
+	}
+	States
+	{
+		Death:
+			ACTS A -1 A_Scream();
+			Stop;
+	}
+}
+
+class SonicSwitch : LLSwitch // 4156
+{
+	Default
+	{
+		//$Name Sonic Switch
+		//$Category Lock & Load Objects
+		DamageFactor "SonicKick", 1;
 	}
 	States
 	{
 		Spawn:
 			SONS A -1;
 			Stop;
-		Death:
-			ACTS A -1;
-			Stop;
 	}
 }
 
-class AmySwitch : Actor
+class AmySwitch : LLSwitch
 {
 	Default
 	{
 		//$Name Amy Switch
 		//$Category Lock & Load Objects
-		+SHOOTABLE
-		+NOBLOOD
-		+DONTFALL
-		+NOGRAVITY
-		+NOCLIP
-		Health 1;
-		Mass 100000;
-		DamageFactor "Normal", 0;
 		DamageFactor "Piko", 1;
-		YScale 0.9;
 	}
 	States
 	{
 		Spawn:
 			AMYS A -1;
 			Stop;
-		Death:
-			ACTS A -1;
-			Stop;
 	}
 }
 
-class ClassicSonicSwitch : Actor // 4156
+class ClassicSonicSwitch : LLSwitch // 4156
 {
 	Default
 	{
 		//$Name Classic Sonic Switch
 		//$Category Lock & Load Objects
-		+SHOOTABLE
-		+NOBLOOD
-		+DONTFALL
-		+NOGRAVITY
-		+NOCLIP
-		Health 1;
-		Mass 100000;
-		DamageFactor "Normal", 0;
 		DamageFactor "SonicPunch", 1;
-		YScale 0.9;
 	}
 	States
 	{
 		Spawn:
 			CLSS A -1;
 			Stop;
-		Death:
-			ACTS A -1;
-			Stop;
 	}
 }
 
-class ShadowSwitch : Actor
+class ShadowSwitch : LLSwitch
 {
 	Default
 	{
 		//$Name Shadow Switch
 		//$Category Lock & Load Objects
-		+SHOOTABLE
-		+NOBLOOD
-		+DONTFALL
-		+NOGRAVITY
-		+NOCLIP
-		Health 1;
-		Mass 100000;
-		DamageFactor "Normal", 0;
 		DamageFactor "Spear", 1;
 		DamageFactor "ShadowMelee", 1;
-		YScale 0.9;
 	}
 	States
 	{
 		Spawn:
 			SHAS A -1;
 			Stop;
-		Death:
-			ACTS A -1;
-			Stop;
 	}
 }
 
-class OmniSwitch : Actor
+class OmniSwitch : LLSwitch
 {
 	Default
 	{
 		//$Name Omni Switch
 		//$Category Lock & Load Objects
-		+SHOOTABLE
-		+NOBLOOD
-		+DONTFALL
-		+NOGRAVITY
-		+NOCLIP
-		Health 1;
-		Mass 100000;
-		DamageFactor "Normal", 0;
 		DamageFactor "SonicKick", 1;
 		DamageFactor "Piko", 1;
 		DamageFactor "SonicPunch", 1;
 		DamageFactor "Spear", 1;
 		DamageFactor "ShadowMelee", 1;
-		YScale 0.9;
 	}
 	States
 	{
 		Spawn:
 			ALLS A -1;
-			Stop;
-		Death:
-			ACTS A -1;
-			Stop;
-	}
-}
-
-
-class Continuer : Actor // 31935
-{
-	Default
-	{
-		//$Category Lock & Load Objects
-	}
-	States
-	{
-		Spawn:
-			TNT1 A 0 NoDelay ACS_NamedExecute("ContinuingSucks");
-			Stop;
-	}
-}
-
-class StabilityCheck : Actor
-{
-	void FatalExceptionVMAbort()
-	{
-		A_Log("\c[gold]Hey, I'll play with you some other time!");
-		ThrowAbortException("unstable game state");
-	}
-	States
-	{
-		Spawn:
-			TNT1 A 0 NoDelay FatalExceptionVMAbort();
 			Stop;
 	}
 }

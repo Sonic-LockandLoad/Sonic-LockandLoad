@@ -308,7 +308,6 @@ DoomEdNums
 	2013  = "ChaosEmeralds"
 	262   = "GoalRing"
 	
-	31935 = "Continuer"
 	31936 = "WtfIsThis"
 	31937 = "KeyTablet"
 	
