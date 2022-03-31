@@ -137,25 +137,82 @@ class AmyKick : CustomInventory
 class SonicThok : CustomInventory
 {
 	int inuse;
+	int counter;
+	override void Tick()
+	{
+		if (owner.A_CheckFloor("Null")) {
+			counter = 0;
+		}
+		Super.Tick();
+	}
 	States
 	{
 	Use:
-		TNT1 A 0 A_Overlay(-2, "TimeCheck");
+		TNT1 A 0 A_Overlay(-2, "CountCheck");
 		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
 		Fail;
-	TimeCheck:
-		TNT1 A 0 A_JumpIf(CountInv("PowerSuper")||CountInv("PowerHyper"), "BoostCheck");
-		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "Thok");
+	CountCheck:
+		TNT1 A 0 {
+			invoker.counter++;
+			return A_JumpIf(invoker.counter <= 1 || CountInv("PowerSuper") || CountInv("PowerHyper"), "Thok");
+		}
 		Stop;
-	BoostCheck:
-		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "Boost");
+	Thok:
+		TNT1 A 5
+		{
+			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+			int input = 0;
+			
+			A_StartSound("classic/dash", 6);
+			A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			
+			if (buttons & BT_FORWARD) {
+				if (!A_CheckFloor("Null")) {
+					A_ChangeVelocity(80, 0, 0, CVF_Relative);
+				}
+				else {
+					A_ChangeVelocity(50, 0, 0, CVF_Relative);
+				}
+				input = 1;
+			}
+			
+			if (buttons & BT_MOVELEFT) {
+				A_ChangeVelocity(0, 50, 0, CVF_Relative);
+				A_StartSound("classic/homing", 7, 0, 0.75);
+				input = 1;
+			}
+			
+			if (buttons & BT_MOVERIGHT) {
+				A_ChangeVelocity(0, -50, 0, CVF_Relative);
+				A_StartSound("classic/homing", 7, 0, 0.75);
+				input = 1;
+			}
+			
+			if (buttons & BT_BACK) {
+				A_ChangeVelocity(-50, 0, 0, CVF_Relative);
+				A_StartSound("classic/homing", 7, 0, 0.75);
+				input = 1;
+			}
+			
+			if (!input) {
+				if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
+					return ResolveState("Boost");
+				}
+				if (!A_CheckFloor("Null")) {
+					A_ChangeVelocity(80, 0, 0, CVF_Relative);
+				}
+				else {
+					A_ChangeVelocity(50, 0, 0, CVF_Relative);
+				}
+			}
+			return ResolveState(null);
+		}
 		Stop;
 	Boost:
 		TNT1 A 0 {
-			A_GiveInventory("KickCooldown", 25);
 			A_AlertMonsters();
+			A_StartSound("sweapons/boost", 6);
 			A_StartSound("classic/go", 8);
-			A_StartSound("sweapons/boost");
 		}
 		TNT1 A 0 A_JumpIf(CountInv("PowerHyper"), "HyperBoost");
 		BOOS B 15 Bright {
@@ -164,9 +221,7 @@ class SonicThok : CustomInventory
 			A_TakeInventory("ChaosEnergy", 25);
 			A_ChangeVelocity(200, 0, 0, CVF_Relative|CVF_Replace);
 		}
-		BOOS B 0 {
-			A_Light(0);
-		}
+		TNT1 A 0 { A_Light(0); }
 		Stop;
 	HyperBoost:
 		BOOS C 15 Bright {
@@ -174,46 +229,7 @@ class SonicThok : CustomInventory
 			A_FireBullets(50, 50, 200, 200, "SonicDashPuff", FBF_NOPITCH);
 			A_ChangeVelocity(400, 0, 0, CVF_Relative|CVF_Replace);
 		}
-		BOOS B 0 {
-			A_Light(0);
-		}
-		Stop;
-	Thok:
-		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
-		TNT1 A 0 A_AlertMonsters();
-		TNT1 A 0 A_PlaySound("classic/dash", 6);
-		TNT1 A 0 { if (random(0, 1)) { A_PlaySound("classic/homing", 7, 0.75); } }
-		TNT1 A 0
-		{
-			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-			int input = 0;
-			
-			if (buttons & BT_FORWARD) {
-				A_ChangeVelocity(80, 0, 0, CVF_Relative);
-				input = 1;
-			}
-			
-			if (buttons & BT_MOVELEFT) {
-				A_ChangeVelocity(0, 50, 0, CVF_Relative);
-				input = 1;
-			}
-			
-			if (buttons & BT_MOVERIGHT) {
-				A_ChangeVelocity(0, -50, 0, CVF_Relative);
-				input = 1;
-			}
-			
-			if (buttons & BT_BACK) {
-				A_ChangeVelocity(-30, 0, 0, CVF_Relative);
-				input = 1;
-			}
-			
-			if (!input) {
-				A_ChangeVelocity(85, 0, 0, CVF_Relative);
-			}
-		}
-		TNT1 A 5 A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicDashPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
-		TNT1 A 1 A_SetInventory("KickCooldown", 10);
+		TNT1 A 0 { A_Light(0); }
 		Stop;
 	}
 	override void DoEffect()
@@ -223,7 +239,7 @@ class SonicThok : CustomInventory
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
 		{
 			owner.UseInventory(self);
 			if (owner.FindInventory("PowerSuper") || owner.FindInventory("PowerHyper")) {
