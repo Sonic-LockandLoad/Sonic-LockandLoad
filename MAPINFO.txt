@@ -299,7 +299,6 @@ DoomEdNums
 	2012  = "SpecialRing"
 	2015  = "ChaosRing"
 	263   = "SoulRing"
-	260   = "Hint"
 	
 	6021  = "ChaosCapsule"
 	6022  = "BlueChaosCapsule"

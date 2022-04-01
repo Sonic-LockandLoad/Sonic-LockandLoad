@@ -177,23 +177,6 @@ class ChaosRing : Ring replaces ArmorBonus // 2015
 
 class ChaosRingGravity : ChaosRing { Default { -NOGRAVITY } }
 
-class Hint : Inventory
-{
-	Default
-	{
-		//$Category Lock & Load Pickups
-		Inventory.PickupMessage "";
-		Inventory.PickupSound "spickup/hint";
-		+INVENTORY.ALWAYSPICKUP
-	}
-	States
-	{
-		Spawn:
-			HELP A -1 Bright;
-			Stop;
-	}
-}
-
 class SoulRing : Ring
 {
 	Default
