@@ -22,4 +22,3 @@ user int SupSonic 	= 1;
 user int SupAmy 	= 1;
 user int SupShadow 	= 1;
 user int SupClassic = 1;
-user int HyperMusic = 1;
