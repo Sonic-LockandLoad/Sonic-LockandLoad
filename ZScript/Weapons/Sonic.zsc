@@ -200,18 +200,17 @@ class Caliburn : BoostEnabledWeapon
 			}
 		GroundAttack:
 			TNT1 A 0 SwordSwing(false);
-			CALI BCDE 1
+			CALI BCD 1
 			{
 				if (!(CountInv("PowerSuper")||CountInv("PowerHyper"))) {
 					A_SetSpeed(2.5);
-					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 				else {
 					A_SetSpeed(5);
-					A_CustomPunch(140, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
-				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			}
+				A_CustomPunch(20, CPF_NOTURN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			}	
+			CALI E 1 A_CustomPunch(300, CPF_NOTURN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			CALI EEE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			CALI A 0 A_ReFire();
 			Goto Ready;
