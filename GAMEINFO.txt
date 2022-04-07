@@ -1,2 +1,2 @@
-StartupTitle = "Sonic: Lock & Load"
+StartupTitle = "Sonic: Lock & Load - v1.3-edge"
 StartupColors = "001bff", "00e6ff"
