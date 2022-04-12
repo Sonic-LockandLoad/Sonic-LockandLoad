@@ -4,7 +4,7 @@ LISTMENU "MainMenu"
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 	TextItem "1P Play", "n", "PlayerClassMenu"
 	TextItem "About", "r", "ReadThisMenu"
-	TextItem "Options","o", "OptionsBranching"
+	TextItem "Options","o", "LockandLoadOptions"
 	TextItem "Load Data", "l", "LoadGameMenu"
 	TextItem "Save Data", "s", "SaveGameMenu"
 	TextItem "I'm Outta Here!", "q", "QuitMenu"
@@ -14,15 +14,47 @@ LISTMENU "MainMenu"
 		StaticText 78, 40, "Unsupported game"
 	}
 }
-OptionMenu "OptionsBranching"
+OptionMenu "LockandLoadOptions"
 {
 	Title "Options"
 	
-	SubMenu "Configure Mod Options", "LockandLoadOptions"
 	SubMenu "Configure Controls", "LLControlsMenu"
-	StaticText ""
-	SubMenu "GZDoom Options", "OptionsMenu"
+	SubMenu "Configure Music", "SDMusic"
 	SubMenu "Option Search", "os_menu"
+	StaticText ""
+	
+	Option "HUD Type", "HUDType", "HUDType"
+	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
+	StaticText ""
+	
+	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
+	StaticText "Sonic/Classic", "Cyan"
+	StaticText ""
+	
+	Option "Weapon 3 replaces Weapon 1", "ShotgunReplace2", "EnabledOrNot"
+	StaticText "Sonic/Shadow", "Cyan"
+	StaticText "If you don't have the Shuriken Crossbow", "LightBlue"
+	StaticText "or Quad Shotty, they will spawn instead of", "LightBlue"
+	StaticText "the Rapid Shotty or Dark Assaulter.", "LightBlue"
+	StaticText ""
+	
+	Option "Double Jump", "DoubleJump", "DoubleJump"
+	StaticText "Sonic/Amy", "Cyan"
+	StaticText ""
+	
+	Option "Wall Crash", "WallCrash", "EnabledOrNot"
+	StaticText "Sonic only", "Cyan"
+	StaticText ""
+	
+	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
+	StaticText "Amy only", "Cyan"
+	StaticText ""
+	
+	Option "Subtitles", "Subtitles", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
+	StaticText ""
+	
+	SubMenu "Advanced Options", "OptionsMenu"
 }
 OptionMenu "LLControlsMenu"
 {
@@ -56,6 +88,33 @@ OptionMenu "LLControlsMenu"
 	StaticText ""
 	SubMenu "All Control Bindings", "CustomizeControls"
 }
+OptionMenu "SDMusic"
+{
+	Title "Music Options"
+	
+	StaticText "Invincibility", "MenuActive"
+	Option "Sonic", "InvSonic", "SonicI"
+	Option "Amy", "InvAmy", "AmyI"
+	Option "Classic", "InvClassic", "ClassicI"
+	Option "Shadow", "InvShadow", "ShadowI"
+	StaticText ""
+	
+	StaticText "Super/Dark Form", "MenuActive"
+	StaticText "Also affects Hyper form music.", "White"
+	Option "Sonic", "SupSonic", "SonicS"
+	Option "Amy", "SupAmy", "AmyS"
+	Option "Classic", "SupClassic", "ClassicS"
+	Option "Shadow", "SupShadow", "ShadowS"
+	StaticText ""
+	
+	StaticText "Other", "MenuActive"
+	Option "Death Music", "DeathMusic", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
+	StaticText ""
+	
+	StaticText "Looking for music replacements for Doom 1 and 2?", "White"
+	StaticText "Make sure llbgm.wad is loaded.", "White"
+}
 ListMenu "PlayerclassMenu"
 {
 	Font "BIGFONT", "ActiveOption"
@@ -84,73 +143,9 @@ ListMenu "SkillMenu"
 	Position 58, 63
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
-OptionMenu "LockandLoadOptions"
-{
-	Title "Mod Options"
-	
-	SubMenu "Configure Music", "SDMusic"
-	
-	Option "HUD Type", "HUDType", "HUDType"
-	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
-	StaticText ""
-	
-	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
-	StaticText "Sonic/Classic", "Cyan"
-	StaticText ""
-	
-	Option "Weapon 3 replaces Weapon 1", "ShotgunReplace2", "EnabledOrNot"
-	StaticText "Sonic/Shadow", "Cyan"
-	StaticText "If you don't have the Shuriken Crossbow", "LightBlue"
-	StaticText "or Quad Shotty, they will spawn instead of", "LightBlue"
-	StaticText "the Rapid Shotty or Dark Assaulter.", "LightBlue"
-	StaticText ""
-	
-	Option "Double Jump", "DoubleJump", "DoubleJump"
-	StaticText "Sonic/Amy", "Cyan"
-	StaticText ""
-	
-	Option "Wall Crash", "WallCrash", "EnabledOrNot"
-	StaticText "Sonic only", "Cyan"
-	StaticText ""
-	
-	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
-	StaticText "Amy only", "Cyan"
-	StaticText ""
-	
-	Option "Subtitles", "Subtitles", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
-	StaticText ""
-}
-OptionMenu "SDMusic"
-{
-	Title "Music Options"
-	
-	StaticText "Invincibility", "MenuActive"
-	Option "Sonic", "InvSonic", "SonicI"
-	Option "Amy", "InvAmy", "AmyI"
-	Option "Classic", "InvClassic", "ClassicI"
-	Option "Shadow", "InvShadow", "ShadowI"
-	StaticText ""
-	
-	StaticText "Super/Dark Form", "MenuActive"
-	StaticText "Also affects Hyper form music.", "White"
-	Option "Sonic", "SupSonic", "SonicS"
-	Option "Amy", "SupAmy", "AmyS"
-	Option "Classic", "SupClassic", "ClassicS"
-	Option "Shadow", "SupShadow", "ShadowS"
-	StaticText ""
-	
-	StaticText "Other", "MenuActive"
-	Option "Death Music", "DeathMusic", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
-	StaticText ""
-	
-	StaticText "Looking for music replacements for Doom 1 and 2?", "White"
-	StaticText "Make sure llbgm.wad is loaded.", "White"
-}
 AddOptionMenu "OptionsMenu"
 {
-	Title "GZDoom Options"
+	Title "Advanced Options"
 }
 
 OptionValue "BoostType"
