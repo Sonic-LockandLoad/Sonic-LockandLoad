@@ -548,6 +548,9 @@ function void SetMugshotIfNotSuper(str state)
 script "GoalRing" (void)
 {
 	Thing_Stop(1001);
+	ACS_NamedTerminate("TransformSuper", 0);
+	ACS_NamedTerminate("TransformHyper", 0);
+	Delay(5);
 	GiveInventory("Invincibility", 1);
 	int LevelTime = Timer() / 35;
 	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
