@@ -393,8 +393,7 @@ script "DeathMusic" (int xdeath)
 				default:
 					break;
 			}
-		} 
-		
+		}
 		else {
 			switch(PlayerClass(PlayerNumber()))
 			{
@@ -520,22 +519,6 @@ script "ResetMusic" (void)
 script "ReticleSound" (void)
 {
 	AmbientSound("sweapons/reticle", 127);
-}
-
-/*
-script "YouGotExe-cuted" DEATH
-{
-	if (ThingCount(T_BRAINS, 0))
-	{
-		ChangeLevel("CONTINUE", 0, CHANGELEVEL_NOINTERMISSION, -1);
-	}
-}
-*/
-
-script "ContinuingSucks" (void)
-{
-	ClearInventory();
-	SetActorProperty(1001, APROP_Health, 1);
 }
 
 script "GoalRing" (void)
@@ -677,6 +660,7 @@ script "Drowning" ENTER
 {
 	int drowntimer;
 	int maxdrown;
+	maxdrown = 15;
 	while (1) {
 		if (GetActorProperty(1001, APROP_Waterlevel) == 3) {
 			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper") && !CheckActorInventory(1001, "PowerInvulnerable")) {
@@ -685,26 +669,27 @@ script "Drowning" ENTER
 			if (drowntimer > 4)
 			{
 				switch(PlayerClass(PlayerNumber())) {
-					case 0:
+					case Sonic:
 						SetMusic("S_DROWN", 0);
 						break;
-					case 1:
+					case Amy:
 						SetMusic("A_DROWN", 0);
 						break;
-					case 2:
+					case ClassicSonic:
 						SetMusic("C_DROWN", 0);
+						maxdrown = 16;
 						break;
-					case 3:
+					case Shadow:
 						SetMusic("D_DROWN", 0);
 						break;
 					default:
 						break;
 				}
 			}
-			if (drowntimer > 16)
+			if (drowntimer > maxdrown)
 			{
 				DamageActor(1001, AAPTR_PLAYER1, 0, 0, 9999, "Drownd");
-				if (!GetCvar("DeathMusic")) { SetMusic("*"); }
+				SetMusic("", 0);
 				break;
 			}
 		}
