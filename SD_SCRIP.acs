@@ -538,13 +538,6 @@ script "ContinuingSucks" (void)
 	SetActorProperty(1001, APROP_Health, 1);
 }
 
-function void SetMugshotIfNotSuper(str state)
-{
-	if (!CheckInventory("PowerSuper") && !CheckInventory("PowerHyper")) {
-		SetMugShotState(state);
-	}
-}
-
 script "GoalRing" (void)
 {
 	Thing_Stop(1001);
@@ -567,7 +560,7 @@ script "GoalRing" (void)
 			SetFont("SMALLFONT");
 			if (LevelTime > DParTime) {
 				PlaySound(1001, "sonic/badresult");
-				SetMugshotIfNotSuper("Failure");
+				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Sonic] Sonic: \c[White] Aw, I gotta try that again!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
@@ -575,7 +568,7 @@ script "GoalRing" (void)
 			}
 			else if (LevelTime > ParTime) {
 				PlaySound(1001, "sonic/okayresult");
-				SetMugshotIfNotSuper("Failure");
+				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Sonic] Sonic: \c[White] Not my best run...";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
@@ -583,7 +576,7 @@ script "GoalRing" (void)
 			}
 			else {
 				PlaySound(1001, "sonic/goodresult");
-				SetMugshotIfNotSuper("Grin");
+				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Sonic] Sonic: \c[White] How's that?";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
@@ -597,7 +590,7 @@ script "GoalRing" (void)
 			SetFont("SMALLFONT");
 			if (CurrentHealth < 40) {
 				PlaySound(1001, "amy/badresult");
-				SetMugshotIfNotSuper("Failure");
+				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Amy] Amy: \c[White] ...";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
@@ -605,7 +598,7 @@ script "GoalRing" (void)
 			}
 			else {
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
-				SetMugshotIfNotSuper("Grin");
+				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Amy] Amy: \c[White] Yay!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
@@ -615,40 +608,31 @@ script "GoalRing" (void)
 			break;
 		case ClassicSonic:
 			SetMusic("C_VICTOR");
-			if (CheckInventory("PowerHyper")) {
-				Print(s:"\c[Purple]HYPER SONIC \c[White]GOT THROUGH");
-			} else if (CheckInventory("PowerSuper")) {
-				Print(s:"\c[Gold]SUPER SONIC \c[White]GOT THROUGH");
-			} else {
-				Print(s:"\c[Classic]SONIC \c[White]GOT THROUGH");
-			}
+			Print(s:"\c[Classic]SONIC \c[White]GOT THROUGH");
 			SetFont("SMALLFONT");
 			if (CurrentHealth < 21) {
 				PlaySound(1001, "classic/badresult");
-				SetMugshotIfNotSuper("Failure");
+				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Classic] Sonic: \c[White] Barely made it...";
-							HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
-				break;
 			}
 			else if (LevelTime > ParTime) {
 				PlaySound(1001, "classic/okayresult");
-				SetMugshotIfNotSuper("OK");
+				SetMugshotState("Normal");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Classic] Sonic: \c[White] Huh... no problem.";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
-				break;
 			}
 			else {
 				PlaySound(1001, "classic/goodresult");
-				SetMugshotIfNotSuper("Grin");
+				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Classic] Sonic: \c[White] *whistle* That was cool!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
-				break;
 			}
 			Delay(35*6);
 			break;
@@ -658,7 +642,7 @@ script "GoalRing" (void)
 				Print(s:"\c[Shadow]Mission Cleared");
 				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/goodresult");
-				SetMugshotIfNotSuper("OK");
+				SetMugshotState("OK");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Shadow] Shadow: \c[White] Yes!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
@@ -669,7 +653,7 @@ script "GoalRing" (void)
 				Print(s:"\c[Shadow]Mission Incomplete");
 				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/badresult");
-				SetMugshotIfNotSuper("Failure");
+				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Shadow] Shadow: \c[White] Need to stay focused.";
 							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
