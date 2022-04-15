@@ -1,14 +1,9 @@
-bind Mouse1		+attack
-bind Mouse2 	+altattack
-bind W 			+reload
 bind Y 			invuse
 bind T 			"pukename Taunt"
 bind Q 			"pukename LastWeapon"
 
-bind E			+forward
-bind S			+moveleft
-bind D			+back
-bind F			+moveright
-bind R			+use
 bind Space 		+jump
-bind A 		    +crouch
+bind Shift 		+crouch
+bind Mouse1		+attack
+bind Mouse2		+altattack
+bind F			+reload
