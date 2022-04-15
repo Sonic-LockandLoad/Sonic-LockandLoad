@@ -2,3 +2,4 @@ bind Y 			invuse
 bind T 			"pukename Taunt"
 bind F 			"pukename LastWeapon"
 bind Q			+reload
+bind C			+crouch
