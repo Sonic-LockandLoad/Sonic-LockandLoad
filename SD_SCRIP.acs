@@ -875,6 +875,14 @@ script "Subtitles" (int subtitle)
 				HudMessage(s:"\c[Classic] Sonic: \c[White] TERIAAAAAAAA!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				break;
+			case 16:
+				HudMessage(s:"\c[Shadow] Shadow: \c[White] they cant troll you if there dead!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case 17:
+				HudMessage(s:"\c[Shadow] Shadow: \c[White] That damn FOURTH Chaos Emerald!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.5, 1.0);
+				break;
 		}
 	}
 }

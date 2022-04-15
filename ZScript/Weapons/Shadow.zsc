@@ -164,7 +164,7 @@ class ChaosEmerald : Weapon
 				if (!CountInv("Damn4thChaos")) {
 					A_GiveInventory("Damn4thChaos");
 					ACS_NamedExecute("Damn4thChaosEmerald");
-					A_Log("\c[Shadow]That damn FOURTH Chaos Emerald!");
+					ACS_NamedExecute("Subtitles", 0, 17);
 				}
 				if (!CountInv("PowerSuper") && !CountInv("Charging") && CountInv("ChaosEnergy") < 401) {
 					A_GiveInventory("ChaosEnergy", 1);
@@ -221,18 +221,26 @@ class ChaosEmerald : Weapon
 
 class ShadowKnife : Weapon
 {
+	int hasKnife;
 	Default
 	{
 		Weapon.SelectionOrder 3800;
 		Weapon.KickBack 0;
-		Inventory.PickupSound "theycant/trollyouif";
-		Inventory.PickupMessage "\c[ShadowRedBlack]they cant troll you if there dead!";
+		Inventory.PickupMessage "Troll Slaiying Knife";
 		Tag "Troll Slaiying Knife";
 		+WEAPON.MELEEWEAPON
 	}
 	States
 	{
 		Ready:
+			TNT1 A 0
+			{
+				if (invoker.hasKnife != 1) {
+					invoker.hasKnife = 1;
+					A_StartSound("theycant/trollyouif", 9);
+					ACS_NamedExecute("Subtitles", 0, 16);
+				}
+			}
 			KNIF A 1 A_WeaponReady;
 			Loop;
 		Deselect:
