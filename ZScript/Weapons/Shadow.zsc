@@ -229,6 +229,7 @@ class ShadowKnife : Weapon
 		Inventory.PickupMessage "Troll Slaiying Knife";
 		Tag "Troll Slaiying Knife";
 		+WEAPON.MELEEWEAPON
+		+WEAPON.NOALERT
 	}
 	States
 	{
