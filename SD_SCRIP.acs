@@ -630,7 +630,6 @@ script "GoalRing" (void)
 					HudMessage(s:"\c[Shadow] Shadow: \c[White] Yes!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
-				break;
 			}
 			else {
 				Print(s:"\c[Shadow]Mission Incomplete");
