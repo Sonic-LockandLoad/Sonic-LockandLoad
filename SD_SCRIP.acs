@@ -603,7 +603,7 @@ script "GoalRing" (void)
 			}
 			else if (LevelTime > ParTime) {
 				PlaySound(1001, "classic/okayresult");
-				SetMugshotState("Normal");
+				SetMugshotState("OK");
 				if (GetCvar("Subtitles")) {
 					HudMessage(s:"\c[Classic] Sonic: \c[White] Huh... no problem.";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
