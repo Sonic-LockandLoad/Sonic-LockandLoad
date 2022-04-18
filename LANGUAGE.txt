@@ -165,7 +165,7 @@ skill_text1 = "\c[Green]Not many enemies at all.\n\nRecommended for complete beg
 skill_text2 = "\c[Yellow]There are less enemies around.\n\nThe recommended skill for a casual experience.";
 skill_text3 = "\c[MenuInactive]A good amount of enemies everywhere.\n\nThe true Sonic: Lock & Load experience.";
 skill_text4 = "\c[MenuInactive]Enemies are faster than usual.\n\nRecommended for experienced players.";
-skill_text5 = "\c[Red]Enemies have more health, and you take more damage.\n\nThis'll force you to bring out your best.";
+skill_text5 = "\c[Red]Enemies are fast and you take double damage.\n\nYou'd better bring your best.";
 skill_text6 = "\c[Red]You die in one hit, and so do the enemies.\n\nRecommended for memelords and masochists.";
 
 sonic		= "\c[MenuInactive]Sonic";

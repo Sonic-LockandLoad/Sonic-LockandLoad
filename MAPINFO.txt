@@ -165,7 +165,6 @@ skill harder
 
 skill wtf
 {
-	monsterhealth = 2
 	damagefactor = 2
 	spawnfilter = 5
 	FastMonsters
