@@ -320,7 +320,7 @@ class Shuriken : Actor
 		RenderStyle "Normal";
 		Alpha 1;
 		SeeSound "sweapons/shurikenfire";
-		AttackSound "sweapons/hit";
+		RipSound "sweapons/slice";
 		DeathSound "sweapons/shurikenhit";
 	}
 	States
