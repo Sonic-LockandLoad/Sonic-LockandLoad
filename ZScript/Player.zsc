@@ -42,8 +42,11 @@ class SonicPlayer : PlayerPawn
 					A_SetSpeed(2);
 					ACS_NamedExecute("JumpHeight", 0, 1);
 				}
+				if (A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32) && (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && !A_CheckFloor("Null")) {
+					ACS_NamedExecute("WallJump");
+				}
 			}
-			PLAY ABCD 4;
+			PLAY A 1;
 			Loop;
 		Missile:
 			PLAY E 12;

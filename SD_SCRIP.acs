@@ -800,6 +800,16 @@ script "DoubleJump" enter
 	}
 }
 
+script "WallJump" (void)
+{
+	ACS_NamedTerminate("DoubleJump", 0);
+	Delay(1);
+	PlaySound(1001, "sonic/walljump", CHAN_BODY);
+	ThrustThing(GetActorAngle(0) >> 8, -40, 0, 0);
+	ThrustThingZ(0, 100, 0, 0);
+	ACS_NamedExecute("DoubleJump", 0);
+}
+
 script "HowManyZFireLeft" (int clear)
 {
 	int RemainingShots = CheckInventory("ChaosEnergy") / 120;
