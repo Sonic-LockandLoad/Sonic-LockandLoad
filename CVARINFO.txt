@@ -6,7 +6,6 @@ user int DoubleJump 				= 2;
 user int WallJump	 				= 2;
 user int AmyZoomFactor				= 4;
 
-user bool ShotgunReplace2 			= false;
 user bool WallCrash 				= true;
 user bool Subtitles 				= true;
 
