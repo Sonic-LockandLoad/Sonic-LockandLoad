@@ -23,19 +23,11 @@ OptionMenu "LockandLoadOptions"
 	SubMenu "Option Search", "os_menu"
 	StaticText ""
 	
-	Option "HUD Type", "HUDType", "HUDType"
-	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
+	StaticText "Abilities"
 	StaticText ""
 	
-	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
-	StaticText "Sonic/Classic", "Cyan"
-	StaticText ""
-	
-	Option "Weapon 3 replaces Weapon 1", "ShotgunReplace2", "EnabledOrNot"
-	StaticText "Sonic/Shadow", "Cyan"
-	StaticText "If you don't have the Shuriken Crossbow", "LightBlue"
-	StaticText "or Quad Shotty, they will spawn instead of", "LightBlue"
-	StaticText "the Rapid Shotty or Dark Assaulter.", "LightBlue"
+	Option "Wall Jump", "WallJump", "WallJump"
+	StaticText "Sonic only", "Cyan"
 	StaticText ""
 	
 	Option "Double Jump", "DoubleJump", "DoubleJump"
@@ -50,8 +42,26 @@ OptionMenu "LockandLoadOptions"
 	StaticText "Amy only", "Cyan"
 	StaticText ""
 	
+	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
+	StaticText "Sonic/Classic", "Cyan"
+	StaticText ""
+	
+	StaticText "Miscellaneous"
+	StaticText ""
+	
 	Option "Subtitles", "Subtitles", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
+	StaticText ""
+	
+	Option "HUD Type", "HUDType", "HUDType"
+	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
+	StaticText ""
+	
+	Option "Weapon 3 replaces Weapon 1", "ShotgunReplace2", "EnabledOrNot"
+	StaticText "Sonic/Shadow", "Cyan"
+	StaticText "If you don't have the Shuriken Crossbow", "LightBlue"
+	StaticText "or Quad Shotty, they will spawn instead of", "LightBlue"
+	StaticText "the Rapid Shotty or Dark Assaulter.", "LightBlue"
 	StaticText ""
 	
 	SubMenu "Advanced Options", "OptionsMenu"
@@ -164,6 +174,12 @@ OptionValue "DoubleJump"
 	0, "Disabled"
 	1, "No Momentum"
 	2, "Keep Momentum"
+}
+OptionValue "WallJump"
+{
+	0, "Disabled"
+	1, "Face same direction"
+	2, "Face jump direction"
 }
 OptionValue "HUDType"
 {

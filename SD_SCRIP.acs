@@ -802,12 +802,17 @@ script "DoubleJump" enter
 
 script "WallJump" (int height, int distance)
 {
-	ACS_NamedTerminate("DoubleJump", 0);
-	Delay(1);
-	PlaySound(1001, "sonic/walljump", CHAN_BODY);
-	ThrustThing(GetActorAngle(0) >> 8, distance * -1, 0, 0);
-	ThrustThingZ(0, height, 0, 0);
-	ACS_NamedExecute("DoubleJump", 0);
+	if (GetCvar("WallJump")) {
+		ACS_NamedTerminate("DoubleJump", 0);
+		Delay(1);
+		PlaySound(0, "sonic/walljump", CHAN_BODY);
+		ThrustThing(GetActorAngle(0) >> 8, distance * -1, 0, 0);
+		ThrustThingZ(0, height, 0, 0);
+		if (GetCvar("WallJump") == 2) {
+			SetActorAngle(0, GetActorAngle(0) + 0.5);
+		}
+		ACS_NamedExecute("DoubleJump", 0);
+	}
 }
 
 script "HowManyZFireLeft" (int clear)
