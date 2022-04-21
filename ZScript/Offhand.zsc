@@ -281,25 +281,27 @@ class ChaosSnap : CustomInventory
 		TNT1 A 0 A_StartSound("shadow/teleport", 7);
 		TNT1 A 0
 		{
+			int forward = GetPlayerInput(MODINPUT_FORWARDMOVE);
+			int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
 			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 			int input = 0;
 			
-			if (buttons & BT_FORWARD) {
+			if (forward > 0) {
 				A_ChangeVelocity(200, 0, 0, CVF_Relative);
 				input = 1;
 			}
 			
-			if (buttons & BT_MOVELEFT) {
+			if (sidem < 0) {
 				A_ChangeVelocity(0, 200, 0, CVF_Relative);
 				input = 1;
 			}
 			
-			if (buttons & BT_MOVERIGHT) {
+			if (sidem > 0) {
 				A_ChangeVelocity(0, -200, 0, CVF_Relative);
 				input = 1;
 			}
 			
-			if (buttons & BT_BACK) {
+			if (forward < 0) {
 				A_ChangeVelocity(-200, 0, 0, CVF_Relative);
 				input = 1;
 			}
