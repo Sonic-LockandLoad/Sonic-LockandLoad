@@ -800,13 +800,13 @@ script "DoubleJump" enter
 	}
 }
 
-script "WallJump" (void)
+script "WallJump" (int height, int distance)
 {
 	ACS_NamedTerminate("DoubleJump", 0);
 	Delay(1);
 	PlaySound(1001, "sonic/walljump", CHAN_BODY);
-	ThrustThing(GetActorAngle(0) >> 8, -40, 0, 0);
-	ThrustThingZ(0, 100, 0, 0);
+	ThrustThing(GetActorAngle(0) >> 8, distance * -1, 0, 0);
+	ThrustThingZ(0, height, 0, 0);
 	ACS_NamedExecute("DoubleJump", 0);
 }
 
