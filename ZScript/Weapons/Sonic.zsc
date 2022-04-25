@@ -476,7 +476,7 @@ class ShurikenCrossbow : Weapon
 			TNT1 A 0 { if (CountInv("PowerSuper")||CountInv("PowerHyper") > 0) { A_GiveInventory("ChaosEnergy", 24); } }
 			SHRL B 1 A_FireProjectile("Shuriken", 0, 1);
 			TNT1 A 0 { if (CountInv("PowerSuper")||CountInv("PowerHyper")) { A_ReFire(); } }
-			SHRL BBBBBBBBBBCDEFG 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SHRL BBBBBBBBBBBBBBBBBBBBBBBCDEFG 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			TNT1 A 0 A_ReFire();
 			Goto Ready;
 		Spawn:

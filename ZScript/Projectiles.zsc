@@ -312,8 +312,8 @@ class Shuriken : Actor
 	{
 		Radius 8;
 		Height 2;
-		Speed 80;
-		Damage 15;
+		Speed 100;
+		Damage 60;
 		Projectile;
 		+RIPPER
 		+NOEXTREMEDEATH
