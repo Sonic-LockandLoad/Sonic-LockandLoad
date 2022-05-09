@@ -4,7 +4,7 @@
 
 ### *Sonic: Lock and Load* is a first-person shooter built on the GZDoom source port about everyone's favourite speed fastest blue hedgehog.
 
-**Have any suggestions for or problems with the mod?** Open a [GitHub issue](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/issues), it'll probably be resolved soon if possible.
+**Have any suggestions for or problems with the mod?** Open a [GitHub issue](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/issues/new/choose), it'll probably be resolved soon if possible.
 
 To play an unstable version of Lock & Load, use `git clone` or [`gh-get`](https://github.com/That1M8Head/gh-get) to clone it to your computer, and open the cloned repo with GZDoom, like you would with a WAD or PK3. You can update with `git pull`. **Unstable versions contain unfinished stuff, the latest release is recommended.**
 
