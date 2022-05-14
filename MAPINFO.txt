@@ -303,7 +303,7 @@ DoomEdNums
 	6022  = "BlueChaosCapsule"
 	6023  = "RedChaosCapsule"
 	
-	2013  = "ChaosEmeralds"
+	2006  = "ChaosEmeralds"
 	262   = "GoalRing"
 	
 	31936 = "WtfIsThis"
@@ -321,20 +321,6 @@ DoomEdNums
 	19927 = "WalkingCapsule"
 	19928 = "FrickingCyberdemon"
 	
-	2023  = "BerserkReplace"
-	8     = "BackpackReplace"
-	2007  = "ClipReplace"
-	2048  = "ClipBoxReplace"
-	2008  = "ShellReplace"
-	2049  = "ShellBoxReplace"
-	2010  = "RocketAmmoReplace"
-	2046  = "RocketBoxReplace"
-	2047  = "CellReplace"
-	17    = "CellPackReplace"
-	2018  = "ArmorReplace"
-	2019  = "BlueArmorReplace"
-	83    = "MegasphereReplace"
-	
 	5010  = "PistolReplace"
 	2005  = "ChainsawReplace"
 	2001  = "ShotgunReplace"
@@ -342,7 +328,6 @@ DoomEdNums
 	82    = "SSGReplace"
 	2003  = "RocketReplace"
 	2004  = "PlasmaRifleReplace"
-	2006  = "BFGReplace"
 	
 	2022  = "InvulReplace"
 	2025  = "RadSuitReplace"
