@@ -153,20 +153,13 @@ class ChaosRing : Ring replaces ArmorBonus // 2015
 		Pickup:
 			TNT1 A 5
 			{
-				if (CountInv("AmyCheck") > 0)
-				{
-					if (CountInv("PowerSuper") > 0)
-					{
-						A_GiveInventory("ChaosEnergy", 6);
-					}
-					else
-					{
-						A_GiveInventory("Health", 5);
-						A_GiveInventory("ChaosEnergy", 1);
-					}
+				if (CountInv("PowerHyper") || (CountInv("PowerSuper") && CountInv("AmyCheck"))) {
+					A_GiveInventory("ChaosEnergy", 4);
 				}
-				else
-				{
+				else if (CountInv("PowerSuper")) {
+					A_GiveInventory("ChaosEnergy", 2);
+				}
+				else {
 					A_GiveInventory("Health", 5);
 					A_GiveInventory("ChaosEnergy", 1);
 				}
@@ -361,6 +354,7 @@ class ChaosCapsule : ChaosEnergy // 6021
 		//$Category Lock & Load Pickups
 		Inventory.PickupMessage "Picked up a Chaos Energy capsule.";
 		Inventory.Amount 20;
+		ChaosEnergy.ReducedAmount 15;
 	}
 	States
 	{
@@ -376,6 +370,7 @@ class BlueChaosCapsule : ChaosEnergy // 6022
 		//$Category Lock & Load Pickups
 		Inventory.PickupMessage "Picked up a blue Chaos Energy capsule.";
 		Inventory.Amount 100;
+		ChaosEnergy.ReducedAmount 50;
 	}
 	States
 	{
@@ -391,6 +386,7 @@ class RedChaosCapsule : ChaosEnergy // 6023
 		//$Category Lock & Load Pickups
 		Inventory.PickupMessage "Picked up a red Chaos Energy capsule.";
 		Inventory.Amount 400;
+		ChaosEnergy.ReducedAmount 250;
 	}
 	States
 	{

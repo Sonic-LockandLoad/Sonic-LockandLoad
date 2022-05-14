@@ -1,1 +1,22 @@
-class ChaosEnergy : Ammo { Default {  Inventory.MaxAmount 999; } }
+class ChaosEnergy : Ammo
+{
+	int ReducedAmount;
+	property ReducedAmount: ReducedAmount;
+	Default
+	{
+		Inventory.MaxAmount 999;
+	}
+	override bool TryPickup(in out Actor toucher)
+	{
+		if ((CountInv("PowerSuper", AAPTR_Player1) || CountInv("PowerHyper", AAPTR_Player1)) && ReducedAmount > 0) {
+			Amount = ReducedAmount;
+		}
+		super.TryPickup(toucher);
+		if (CountInv("ChaosEnergy", AAPTR_Player1) >= MaxAmount) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+}
