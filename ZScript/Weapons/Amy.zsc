@@ -271,7 +271,7 @@ class AmyEclipseBlaster : Weapon
 		Weapon.AmmoType2 "ChaosEnergy";
 		Weapon.AmmoUse 15;
 		Weapon.AmmoGive 70;
-		Weapon.KickBack 100000000;
+		Weapon.KickBack 50;
 		+EXTREMEDEATH
 		+WEAPON.NOALERT
 		Inventory.PickupMessage "Eclipse Blaster Mk. IV";

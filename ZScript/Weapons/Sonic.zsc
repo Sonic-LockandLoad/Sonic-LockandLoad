@@ -508,7 +508,7 @@ class EclipseBlaster : Weapon
 		Weapon.AmmoType2 "ChaosEnergy";
 		Weapon.AmmoUse 4;
 		Weapon.AmmoGive 25;
-		Weapon.KickBack 100000000;
+		Weapon.KickBack 1000;
 		Weapon.BobSpeed 1.5;
 		+EXTREMEDEATH
 		+WEAPON.NOAUTOFIRE
