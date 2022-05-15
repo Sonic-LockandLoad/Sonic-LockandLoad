@@ -13,6 +13,7 @@ This ZScript file doesn't have anything in it except includes.
 #include "zscript/powerups.zsc"
 #include "zscript/puffs.zsc"
 #include "zscript/replacements.zsc"
+#include "zscript/weapons/llwbase.zsc"
 #include "zscript/weapons/sonic.zsc"
 #include "zscript/weapons/amy.zsc"
 #include "zscript/weapons/shadow.zsc"

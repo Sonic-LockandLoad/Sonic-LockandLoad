@@ -1,0 +1,16 @@
+class LockLoadWeapon : Weapon
+{
+	override bool DepleteAmmo(bool altFire, bool checkEnough, int ammouse)
+	{
+		if ((CountInv("PowerSuper", AAPTR_Player1) || CountInv("PowerHyper", AAPTR_Player1))) {
+			if (!altfire) {
+				A_GiveInventory("ChaosEnergy", AmmoUse1, AAPTR_Player1);
+			}
+			else {
+				A_GiveInventory("ChaosEnergy", AmmoUse2, AAPTR_Player1);
+			}
+		}
+		super.DepleteAmmo(altFire, checkEnough, ammouse);
+		return true;
+	}
+}
