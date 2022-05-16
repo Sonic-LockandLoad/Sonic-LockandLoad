@@ -153,7 +153,7 @@ class ChaosRing : Ring replaces ArmorBonus // 2015
 		Pickup:
 			TNT1 A 5
 			{
-				if (CountInv("PowerHyper") || (CountInv("PowerSuper") && CountInv("AmyCheck"))) {
+				if ((CountInv("PowerHyper") || (CountInv("PowerSuper")) && (CountInv("AmyCheck")))) {
 					A_GiveInventory("ChaosEnergy", 4);
 				}
 				else if (CountInv("PowerSuper")) {
