@@ -74,6 +74,15 @@ episode S_LOBBY
 	name = "Station Square"
 }
 
+map S_LOBBY "Station Square"
+{
+	music = S_LOBBY
+	nointermission
+	sky1 = "NIGHTSKY"
+	author = "That1M8Head"
+	cluster = 400
+}
+
 map SDLvl01 "Green Hill"
 {
 	music = S_LVL01
@@ -81,13 +90,8 @@ map SDLvl01 "Green Hill"
 	next = "S_LOBBY"
 	author = "That1M8Head"
 	partime = 240
-	cluster = 401
-}
-
-map GrnTitle "Green Hill (Title)"
-{
-	music = S_TITLE
-	sky1 = "GHZSKY"
+	cluster = 400
+	ForgetState
 }
 
 map THEBOSS "Dis Is It"
@@ -102,16 +106,6 @@ map THEBOSS "Dis Is It"
 	nosoundclipping
 	music = B_SCRT
 	needclustertext
-}
-
-map S_LOBBY "Station Square"
-{
-	music = S_LOBBY
-	nointermission
-	sky1 = "NIGHTSKY"
-	author = "That1M8Head"
-	resethealth
-	resetinventory
 }
 
 clearskills
@@ -262,13 +256,13 @@ cluster 10
 	entertext = lookup, "C6TEXT"
 }
 
-// Side Levels
+// S:L&L
 
-cluster 401
+cluster 400
 {
-	music = "S_TITLE"
+	hub
+	allowintermission
 }
-
 cluster 404
 {
 	pic = "S_INTER"
@@ -276,20 +270,6 @@ cluster 404
 	music = "S_ENDING"
 }
 
-// Brutal Doom detection clusters
-cluster 412
-{
-	pic = "INFINFUN"
-	entertext = lookup, "INCOMPAT"
-	music = "S_GMOVR6"
-}
-
-cluster 413
-{
-	pic = "BLACK"
-	entertext = lookup, "FAILURE"
-	music = "Y0uD1dNt"
-}
 
 DoomEdNums
 {
