@@ -11,11 +11,12 @@ class ChaosEnergy : Ammo
 		if ((CountInv("PowerSuper", AAPTR_Player1) || CountInv("PowerHyper", AAPTR_Player1)) && ReducedAmount > 0) {
 			Amount = ReducedAmount;
 		}
-		super.TryPickup(toucher);
 		if (CountInv("ChaosEnergy", AAPTR_Player1) >= MaxAmount) {
+			super.TryPickup(toucher);
 			return false;
 		}
 		else {
+			super.TryPickup(toucher);
 			return true;
 		}
 	}
