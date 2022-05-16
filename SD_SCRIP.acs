@@ -447,7 +447,7 @@ script "TakeRingsIfHyper" (void)
 	while (CheckInventory("PowerHyper"))
 	{
 		Delay(1);
-		TakeInventory("ChaosEnergy", 2);
+		TakeInventory("ChaosEnergy", 1);
 		if (!CheckInventory("ChaosEnergy"))
 		{
 			TakeInventory("PowerHyper", 1);
