@@ -1,6 +1,6 @@
 class ClassicAbilities : LockLoadWeapon replaces Fist
 {
-	bool PeeloutCheck;
+	bool isSpinDashing;
 	int SpinCharges;
 	int SpinDamageMultiplier;
 	int ShweeDelay;
@@ -47,12 +47,17 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			Goto Ready;
 		AltFire:
 			TNT1 A 0 {
+				invoker.SpinCharges = 0;
 				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 				if (buttons & BT_CROUCH && A_CheckFloor("Null")) {
 					invoker.ShweeDelay = 10;
 					return ResolveState("SpinCharge");
 				}
-				else
+                if (!A_CheckFloor("Null") && waterlevel < 1) {
+                    invoker.ShweeDelay = 10;
+                    return ResolveState("DropCharge");
+                }
+				else if (!invoker.IsSpinDashing && !buttons & BT_CROUCH)
 				{
 					if (random[HereWeGo](1, 2) == 1) {
 						int driftline = random(1, 4);
@@ -72,7 +77,6 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 								break;
 						}
 					}
-				    invoker.SpinCharges = 0;
 					return ResolveState("Drift");
 				}
 				return ResolveState(null);
@@ -82,7 +86,6 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			TNT1 A 0 {
 				A_ClearOverlays(0, 0);
 				A_PlaySound("sWeapons/drift", 5);
-				A_Light(2);
 				if (A_CheckFloor("Drift")) {
 					A_ChangeVelocity(10, 0, 0, CVF_Relative);
 				} else {
@@ -123,48 +126,97 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			Goto Drift+5;
 		SpinCharge:
 			TNT1 A 1 {
+				A_Light(3);
 				A_OverlayFlags(9, PSPF_ADDWeapon, true);
 				if (CountInv("PowerHyper")) {
 					A_Overlay(9, "HyperSpinAnim", true);
-				} else if (CountInv("PowerSuper")) {
+				}
+                else if (CountInv("PowerSuper")) {
 					A_Overlay(9, "SuperSpinAnim", true);
-				} else {
+				}
+                else {
 					A_Overlay(9, "SpinAnim", true);
 				}
-				invoker.PeeloutCheck = true;
 				if (invoker.SpinCharges > 30) { invoker.ShweeDelay = 3; }
 				if (invoker.SpinCharges < 1 || invoker.SpinCharges % invoker.ShweeDelay == 0) {
 					A_PlaySound("sWeapons/peelout", 5);
 				}
 				invoker.SpinCharges++;
-				A_Light(3);
 			}
 			TNT1 A 0 A_SetSpeed(0.1);
-			TNT1 A 1 A_ReFire;
+			TNT1 A 1 A_ReFire("SpinCharge");
 			TNT1 A 0 A_ClearOverlays(0, 0);
 			TNT1 A 0 {
 				A_Light(0);
 				A_SetSpeed(4);
 				A_PlaySound("sWeapons/peeloutrelease", 5);
-				invoker.PeeloutCheck = false;
 			}
+            Goto SpinDash;
+		DropCharge:
+			TNT1 A 1 {
+				A_OverlayFlags(9, PSPF_ADDWeapon, true);
+				if (invoker.SpinCharges >= 10) {
+					A_Light(3);
+					if (CountInv("PowerHyper")) {
+						A_Overlay(9, "HyperSpinAnim", true);
+					}
+					else if (CountInv("PowerSuper")) {
+						A_Overlay(9, "SuperSpinAnim", true);
+					}
+					else {
+						A_Overlay(9, "SpinAnim", true);
+					}
+				}
+				if (invoker.SpinCharges > 30) { invoker.SpinCharges = 30; }
+				if (invoker.SpinCharges == 10) {
+					A_PlaySound("sWeapons/dropdash", 5);
+				}
+				invoker.SpinCharges++;
+                if (A_CheckFloor("Null") || waterlevel > 1) {
+                    A_ClearOverlays(0, 0);
+                    A_Light(0);
+                    if (invoker.SpinCharges >= 10) {
+						A_SetSpeed(4);
+						A_PlaySound("sWeapons/peeloutrelease", 5);
+						return ResolveState("SpinDash");
+					}
+					else {
+						return ResolveState("Ready");
+					}
+                }
+                return ResolveState(null);
+			}
+			TNT1 A 0 A_SetSpeed(0.1);
+			TNT1 A 1 A_ReFire("DropCharge");
+			TNT1 A 0 {
+                A_ClearOverlays(0, 0);
+				A_Light(0);
+                invoker.SpinCharges = 0;
+			}
+            Goto Ready;
 		SpinDash:
 			TNT1 AAAAAAAAAAAA 1 {
+                invoker.isSpinDashing = true;
 				if (invoker.SpinCharges > 16) {
 					A_ChangeVelocity(Cos(Pitch) * invoker.SpinCharges * 4, 0, Vel.Z * 1.1, CVF_Relative|CVF_Replace);
-				} else {
+				}
+                else {
 					A_ChangeVelocity(Cos(Pitch) * invoker.SpinCharges * 8, 0, Vel.Z * 1.05, CVF_Relative|CVF_Replace);
 				}
 				if (CountInv("PowerHyper")) { 
 					invoker.SpinDamageMultiplier = 8; 
-				} else if (CountInv("PowerSuper")) {
+				}
+                else if (CountInv("PowerSuper")) {
 					invoker.SpinDamageMultiplier = 2;
-				} else {
+				}
+                else {
 					invoker.SpinDamageMultiplier = 1;
 				}
 				A_CustomPunch(invoker.SpinCharges * invoker.SpinDamageMultiplier, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sWeapons/finalhit");
 			}
 			TNT1 A 0 { invoker.SpinCharges = 0; }
+            TNT1 A 0 A_ReFire();
+			TNT1 A 0 { invoker.isSpinDashing = true; }
 			Goto Ready;
 		SpinAnim:
 			SPIN ABCDEFEDCB 1;

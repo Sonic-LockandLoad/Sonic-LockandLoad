@@ -78,6 +78,7 @@ sweapons/reticle			SoniReti
 sweapons/sonicfalling		sonifall
 sweapons/sonicland			soniland
 sweapons/slice				shuslice
+sweapons/dropdash          	DropDash
 
 // Character
 
