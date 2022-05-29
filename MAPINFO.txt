@@ -80,7 +80,6 @@ map S_LOBBY "Station Square"
 	nointermission
 	sky1 = "NIGHTSKY"
 	author = "That1M8Head"
-	cluster = 400
 }
 
 map SDLvl01 "Green Hill"
@@ -90,8 +89,6 @@ map SDLvl01 "Green Hill"
 	next = "S_LOBBY"
 	author = "That1M8Head"
 	partime = 240
-	cluster = 400
-	ForgetState
 }
 
 map THEBOSS "Dis Is It"
@@ -258,11 +255,6 @@ cluster 10
 
 // S:L&L
 
-cluster 400
-{
-	hub
-	allowintermission
-}
 cluster 404
 {
 	pic = "S_INTER"
