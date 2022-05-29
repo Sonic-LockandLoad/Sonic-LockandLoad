@@ -126,6 +126,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			Goto Drift+5;
 		SpinCharge:
 			TNT1 A 1 {
+				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 				A_Light(3);
 				A_OverlayFlags(9, PSPF_ADDWeapon, true);
 				if (CountInv("PowerHyper")) {
@@ -142,11 +143,17 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 					A_PlaySound("sWeapons/peelout", 5);
 				}
 				invoker.SpinCharges++;
+				if (!(buttons & BT_CROUCH) || !A_CheckFloor("Null")) {
+					A_ClearOverlays(0, 0);
+					A_Light(0);
+					return ResolveState("Ready");
+				}
+				return ResolveState(null);
 			}
 			TNT1 A 0 A_SetSpeed(0.1);
 			TNT1 A 1 A_ReFire("SpinCharge");
-			TNT1 A 0 A_ClearOverlays(0, 0);
 			TNT1 A 0 {
+				A_ClearOverlays(0, 0);
 				A_Light(0);
 				A_SetSpeed(4);
 				A_PlaySound("sWeapons/peeloutrelease", 5);
@@ -177,7 +184,13 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
                     A_Light(0);
                     if (invoker.SpinCharges >= 10) {
 						A_SetSpeed(4);
-						A_PlaySound("sWeapons/peeloutrelease", 5);
+						if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+							A_PlaySound("sWeapons/superdropdash", 5);
+							A_QuakeEx(3, 3, 3, 30, 800, 100, "", QF_SCALEDOWN);
+						}
+						else {
+							A_PlaySound("sWeapons/peeloutrelease", 5);
+						}
 						return ResolveState("SpinDash");
 					}
 					else {
