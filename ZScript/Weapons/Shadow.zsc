@@ -287,6 +287,8 @@ class QuadShotty : LockLoadWeapon
 			SHT4 A 3
 			{
 				A_FireBullets(12, 9, 60, 6, "BulletPuff");
+				A_FireBullets(6, 3, 30, 4, "BulletPuff");
+				A_FireBullets(3, 1, 15, 2, "BulletPuff");
 				A_PlaySound("weapons/sshotf", CHAN_WEAPON);
 				A_ChangeVelocity(Cos(Pitch) * -30, 0, Sin(Pitch) * 5, CVF_Relative);
 			}
