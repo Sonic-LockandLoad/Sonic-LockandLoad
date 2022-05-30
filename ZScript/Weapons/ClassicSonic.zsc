@@ -23,29 +23,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 		Select:
 			TNT1 A 1 A_Raise(100);
 			Loop;
-		Reload:
-			TNT1 A 0 A_GiveInventory("SonicThok");
-			Goto Ready;
 		Fire:
-			PUNG B 1;
-			PUNG C 1
-			{
-				if (CountInv("PowerHyper")) {
-					A_CustomPunch(160, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sWeapons/finalhit");
-					A_FireProjectile("ChaosEnergyBallEX", 0, false);
-				}
-				else if (CountInv("PowerSuper")) {
-					A_CustomPunch(40, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sWeapons/finalhit");
-				}
-				else {
-					A_CustomPunch(4, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sWeapons/finalhit");
-				}
-			}
-			PUNG D 1;
-			PUNG C 1;
-			PUNG B 1 A_ReFire();
-			Goto Ready;
-		AltFire:
 			TNT1 A 0 {
 				invoker.SpinCharges = 0;
 				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
@@ -57,8 +35,43 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
                     invoker.ShweeDelay = 10;
                     return ResolveState("DropCharge");
                 }
-				else if (!invoker.IsSpinDashing && !buttons & BT_CROUCH)
-				{
+				return ResolveState(null);
+			}
+			Goto SpinAttack;
+		SpinAttack:
+			TNT1 A 0 {
+				A_ClearOverlays(0, 0);
+				A_StartSound("sweapons/spin", 8);
+				A_Light(3);
+				A_OverlayFlags(9, PSPF_ADDWeapon, true);
+				if (CountInv("PowerHyper")) {
+					A_Overlay(9, "HyperSpinAnim", true);
+				}
+                else if (CountInv("PowerSuper")) {
+					A_Overlay(9, "SuperSpinAnim", true);
+				}
+                else {
+					A_Overlay(9, "SpinAnim", true);
+				}
+			}
+			TNT1 A 1 {
+				int forward = GetPlayerInput(MODINPUT_FORWARDMOVE);
+				int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
+				A_Light(0);
+				if (forward > 0 || sidem > 0 || forward < 0 || sidem < 0) {
+					A_ChangeVelocity(Cos(Pitch) * forward / 200, sidem / -200, 0, CVF_Relative|CVF_Replace);
+				}
+				else {
+					A_ChangeVelocity(Cos(Pitch) * 30, 0, 0, CVF_Relative|CVF_Replace);
+				}
+			}
+			TNT1 A 15 A_CustomPunch(40, CPF_PULLIN | CPF_NOTURN, 0, "SonicPunchPuff", 100, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			TNT1 A 20 A_ClearOverlays(0, 0);
+			Goto Ready;
+		AltFire:
+			TNT1 A 0 {
+				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+				if (!invoker.IsSpinDashing && !(buttons & BT_CROUCH) && A_CheckFloor("Null")) {
 					if (random[HereWeGo](1, 2) == 1) {
 						int driftline = random(1, 4);
 						ACS_NamedExecute("Subtitles", 0, 11 + driftline);
@@ -81,7 +94,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				}
 				return ResolveState(null);
 			}
-			// intentional passthrough
+			Goto Ready;
 		Drift:
 			TNT1 A 0 {
 				A_ClearOverlays(0, 0);
@@ -93,7 +106,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				}
 			}
 			TNT1 A 0 {
-				if (CountInv("PowerSuper") < 1 && CountInv("PowerHyper") < 1) {
+				if (!CountInv("PowerSuper") && !CountInv("PowerHyper") && A_CheckFloor("Null")) {
 					A_GiveInventory("ChaosEnergy");
 				}
 			}
@@ -227,9 +240,10 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				}
 				A_CustomPunch(invoker.SpinCharges * invoker.SpinDamageMultiplier, false, 0, "SonicPunchPuff", 86, 0, 0, "ArmorBonus", "sWeapons/finalhit");
 			}
-			TNT1 A 0 { invoker.SpinCharges = 0; }
-            TNT1 A 0 A_ReFire();
-			TNT1 A 0 { invoker.isSpinDashing = true; }
+			TNT1 A 0 { 
+				invoker.SpinCharges = 0;
+				invoker.isSpinDashing = false;
+			}
 			Goto Ready;
 		SpinAnim:
 			SPIN ABCDEFEDCB 1;
