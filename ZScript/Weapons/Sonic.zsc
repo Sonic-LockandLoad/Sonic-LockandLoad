@@ -363,7 +363,7 @@ class RapidShotty : LockLoadWeapon
 	}
 	action void ForceFire(int intensity)
 	{
-        if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
+        if (!CountInv("PowerSuper") && !CountInv("PowerHyper")) {
 			for (int x=1; x<intensity; x++) {
 				A_TakeInventory("ChaosEnergy", 24, AAPTR_Player1);
 			}
