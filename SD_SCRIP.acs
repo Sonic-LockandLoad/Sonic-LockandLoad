@@ -802,7 +802,7 @@ script "WallJump" (int height, int distance)
 		ACS_NamedTerminate("DoubleJump", 0);
 		Delay(1);
 		PlaySound(0, "sonic/walljump", CHAN_BODY);
-		ThrustThing(GetActorAngle(0) >> 8, distance * -1, 0, 0);
+		ThrustThing(GetActorAngle(0) >> 8, distance * -1, 1, 0);
 		ThrustThingZ(0, height, 0, 0);
 		if (GetCvar("WallJump") == 2) {
 			SetActorAngle(0, GetActorAngle(0) + 0.5);
