@@ -363,8 +363,10 @@ class RapidShotty : LockLoadWeapon
 	}
 	action void ForceFire(int intensity)
 	{
-        for (int x=1; x<intensity; x++) {
-            A_TakeInventory("ChaosEnergy", 24, AAPTR_Player1);
+        if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
+			for (int x=1; x<intensity; x++) {
+				A_TakeInventory("ChaosEnergy", 24, AAPTR_Player1);
+			}
         }
 		A_PlaySound("sweapons/forceshot", 1);
 		A_ChangeVelocity(Cos(Pitch) * -10, 0, Sin(Pitch) * 10, CVF_Relative);
