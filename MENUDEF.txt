@@ -112,10 +112,6 @@ OptionMenu "SDMusic"
 	StaticText "Other", "MenuActive"
 	Option "Death Music", "DeathMusic", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
-	StaticText ""
-	
-	StaticText "Looking for music replacements for Doom 1 and 2?", "White"
-	StaticText "Make sure llbgm.wad is loaded.", "White"
 }
 ListMenu "PlayerclassMenu"
 {
