@@ -39,7 +39,7 @@ class SonicPlayer : PlayerPawn
 	}
 	override void Tick()
 	{
-		CheckWallJump(100, 50);
+		CheckWallJump(50, 25);
 		if (CountInv("PowerHyper")) {
 			A_SetSpeed(8);
 			ACS_NamedExecute("JumpHeight");
