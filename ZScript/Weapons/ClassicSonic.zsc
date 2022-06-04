@@ -303,7 +303,7 @@ class SpeedyShotgun : LockLoadWeapon
 	Default
 	{
 		Weapon.SelectionOrder 1300;
-		Weapon.AmmoUse1 16;
+		Weapon.AmmoUse1 12;
 		Weapon.AmmoUse2 8;
 		Weapon.AmmoGive 32;
 		Weapon.KickBack 500;
@@ -329,7 +329,7 @@ class SpeedyShotgun : LockLoadWeapon
 		Fire:
 			SHTG A 5
 			{
-				A_FireBullets(5.6, 0, 7, 3, "BulletPuff");
+				A_FireBullets(5.6, 0, 7, 5, "BulletPuff");
 				A_PlaySound("Weapons/shotgf", 1);
 				if (CountInv("PowerHyper") > 0) {
 					A_GunFlash("HyperFlash");
