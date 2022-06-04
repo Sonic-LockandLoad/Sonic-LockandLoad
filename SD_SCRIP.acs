@@ -456,9 +456,21 @@ script "TakeRingsIfHyper" (void)
 	}
 }
 
-script "SetAirControl" ENTER
+script "SetFriction" ENTER
 {
-	SetAirControl(0.35);
+	while (true) {
+		int forward = GetPlayerInput(-1, MODINPUT_FORWARDMOVE);
+		int sidem = GetPlayerInput(-1, MODINPUT_SIDEMOVE);
+		if (forward > 0 || sidem > 0 || forward < 0 || sidem < 0) {
+			SetActorProperty(0, APROP_Friction, 1.0);
+			SetAirControl(0.4);
+		}
+		else {
+			SetActorProperty(0, APROP_Friction, 0.9);
+			SetAirControl(0.3);
+		}
+		Delay(1);
+	}
 }
 
 script "KickCooldown" ENTER
