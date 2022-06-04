@@ -182,44 +182,44 @@ OptionValue "HUDType"
 OptionValue "SonicI"
 {
 	0, "None"
-	1, "Sonic the Hedgehog (2006)"
+	1, "$SonicI"
 }
 OptionValue "AmyI"
 {
 	0, "None"
-	1, "Sonic Heroes"
+	1, "$AmyI"
 }
 OptionValue "ClassicI"
 {
 	0, "None"
-	1, "Sonic 3D Blast (Saturn)"
+	1, "$ClassicI"
 }
 OptionValue "ShadowI"
 {
 	0, "None"
-	1, "Don't Touch It"
+	1, "$ShadowI"
 }
 
 OptionValue "SonicS"
 {
 	0, "None"
-	1, "His World -Zebrahead ver.-"
-	2, "Endless Possibility -30th Anniversary-"
+	1, "$SonicS1"
+	2, "$SonicS2"
 }
 OptionValue "AmyS"
 {
 	0, "None"
-	1, "End of the World -Full Mashup-"
+	1, "$AmyS"
 }
 OptionValue "ClassicS"
 {
 	0, "None"
-	1, "You Can Do Anything"
-	2, "Glimmering Gift"
+	1, "$ClassicS1"
+	2, "$ClassicS2"
 }
 OptionValue "ShadowS"
 {
 	0, "None"
-	1, "Live and Learn -30th Anniversary-"
-	2, "I Am -Devil Doom ver.-"
+	1, "$ShadowS1"
+	2, "$ShadowS2"
 }

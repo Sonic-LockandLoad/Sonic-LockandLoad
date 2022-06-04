@@ -173,7 +173,6 @@ amy			= "\c[Amy]Amy";
 classic		= "\c[Classic]C.Sonic";
 shadow		= "\c[Red]Shadow";
 
-
 skill1_sonic	= "\c[Green]Piece of cake!";
 skill1_amy		= "\c[Green]A breeze";
 skill1_classic	= "\c[Green]Genesis";
@@ -198,3 +197,16 @@ skill5_sonic	= "\c[Sonic]Blue Streak";
 skill5_amy		= "\c[Amy]Thorned Rose";
 skill5_classic	= "\c[Classic]Fun is infinite";
 skill5_shadow	= "\c[Red]All Fail Shadow";
+
+SonicI 			= "Sonic the Hedgehog (2006)";
+AmyI 			= "Sonic Heroes";
+ClassicI 		= "Sonic 3D Blast (Saturn)";
+ShadowI 		= "Don't Touch It";
+
+SonicS1 		= "His World -Zebrahead ver.-";
+SonicS2 		= "Endless Possibility -30th Anniversary-";
+AmyS 			= "End of the World -Full Mashup-";
+ClassicS1 		= "You Can Do Anything";
+ClassicS2 		= "Glimmering Gift";
+ShadowS1 		= "Live and Learn -30th Anniversary-";
+ShadowS2 		= "I Am -Devil Doom ver.-";
