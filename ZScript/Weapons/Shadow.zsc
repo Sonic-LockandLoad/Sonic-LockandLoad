@@ -201,7 +201,7 @@ class ChaosEmerald : LockLoadWeapon
 			Goto Ready;
 		Error:
 			TNT1 A 0 A_TakeInventory("Charging");
-			TNT1 A 0 A_PlaySound("shadow/error", 4096);
+			TNT1 A 0 A_PlaySound("sglobal/error", 4096);
 			Goto Ready;
 		ChaosCharge:
 			TNT1 A 0 A_GiveInventory("Charging");

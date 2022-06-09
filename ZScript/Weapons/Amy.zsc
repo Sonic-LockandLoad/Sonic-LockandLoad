@@ -247,7 +247,7 @@ class PrecisionShotgun : LockLoadWeapon
 			AMSG A 0 A_ReFire();
 			Goto Ready;
 		NoShot:
-			AMSG A 0 A_PlaySound("amy/error");
+			AMSG A 0 A_PlaySound("sglobal/error");
 			Goto Ready;
 		Reload:
 			TNT1 A 0 A_GiveInventory("AmyKick");
@@ -304,7 +304,7 @@ class AmyEclipseBlaster : LockLoadWeapon
 					A_GiveInventory("Health", 4);
 					if (Health > 300) { A_SetHealth(300); }
 				} else {
-					A_PlaySound("amy/error", 4096);
+					A_PlaySound("sglobal/error", 4096);
 					return ResolveState("Ready");
 				}
 				return ResolveState(null);
