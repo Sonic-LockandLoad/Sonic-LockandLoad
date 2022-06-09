@@ -8,6 +8,7 @@ sglobal/spring		     	spring
 sglobal/nextlevel	 		letsgo
 sglobal/drown				S_DROWN
 sglobal/reaction			REACTION
+sglobal/error				error
 
 // Pickups
 
@@ -92,7 +93,6 @@ sonic/boostv2           	boostl2
 sonic/boostv3           	boostl3
 sonic/boostv4           	boostl4
 $random sonic/boost 		{ sonic/boostv1 sonic/boostv2 sonic/boostv3 sonic/boostv4 }
-sonic/error             	error
 sonic/ohno              	ohno
 sonic/grunt1            	SonicGr1
 sonic/grunt2            	SonicGr2
@@ -116,7 +116,6 @@ sonic/okayresult			S_OKAY
 sonic/nintendo64			snc_n64
 sonic/bossvictory			yoreover
 
-amy/error          			a_error
 amy/grunt1         			agrunt1
 amy/grunt2         			agrunt2
 amy/scream         			amscrem
@@ -175,7 +174,6 @@ shadow/scream      			nooooooo
 shadow/no                	no
 shadow/huh               	huh
 shadow/focused           	focused
-shadow/error       			d_error
 shadow/taunt1      			dtaunt1
 shadow/taunt2      			dtaunt2
 shadow/nextlevel			moving
