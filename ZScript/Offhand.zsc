@@ -24,13 +24,13 @@ class SonicKick : CustomInventory
 		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
 		KICK A 1 A_PlaySound("sweapons/swordswing", 7);
 		KICK BC 1;
-		KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		KICK EF 1;
 		Stop;
 	SonicEagle:
 		EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
 		EAGL BC 1;
-		EAGL D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		EAGL D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		EAGL E 1;
 		Stop;
 	SuperKickAttack:
@@ -44,7 +44,7 @@ class SonicKick : CustomInventory
 			A_FireBullets(27, 9, 100, 5, "GibPuff", 0);
 		}
 		SKIK BC 1;
-		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		SKIK E 1;
 		Stop;
 	SuperSonicEagle:
@@ -54,7 +54,7 @@ class SonicKick : CustomInventory
 			A_FireBullets(3, 3, 150, 5, "GibPuff", 0);
 		}
 		SEAG BC 1;
-		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		SEAG E 1;
 		Stop;
 	HyperKickAttack:
@@ -68,7 +68,7 @@ class SonicKick : CustomInventory
 			A_FireBullets(29, 11, 100, 10, "GibPuff", 0);
 		}
 		HKIK BC 1;
-		HKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		HKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		HKIK EF 1;
 		Stop;
 	HyperSonicEagle:
@@ -78,7 +78,7 @@ class SonicKick : CustomInventory
 			A_FireBullets(5, 5, 150, 10, "GibPuff", 0);
 		}
 		HEAG BC 1;
-		HEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		HEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		HEAG E 1;
 		Stop;
 	}
