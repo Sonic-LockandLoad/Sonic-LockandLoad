@@ -35,7 +35,8 @@ class PikoPikoHammer : LockLoadWeapon
 				if (random(1,8) == 8) {
 					/* Bonk */
 					A_CustomPunch(500, 0, CPF_PULLIN, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
-				} else {
+				}
+				else {
 					/* Standard attack */
 					A_CustomPunch(250, 0, 0, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
@@ -60,7 +61,7 @@ class PikoPikoHammer : LockLoadWeapon
 					A_SetSpeed(4);
 				} else {
 					invoker.HJumpCheck = false;
-					A_SetSpeed(1.2);
+					A_SetSpeed(1.5);
 				}
 			}
 			PIKO A 0 A_ReFire();
@@ -69,36 +70,12 @@ class PikoPikoHammer : LockLoadWeapon
 			PIKO DCB 1 { invoker.HJumpCheck = false; }
 			Goto Ready;
 		AltFire:
-			PIKO A 0 A_GiveInventory("HammerBlock");
-			PIKO A 0 A_PlaySound("sweapons/blockready", 6);
-			TNT1 A 0
-			{
-				if (CountInv("PowerSuper") < 1)
-				{
-					A_SetMugshotState("Shield");
-				}
-			}
-			PIKO BD 1;
-			PIKO B 1 A_ReFire;
-		AltHold:
-			TNT1 A 0
-			{
+			TNT1 A 0 {
 				A_GiveInventory("HammerBlock");
-				A_SetSpeed(0.2);
-				if (CountInv("PowerSuper") < 1)
-				{
-					A_SetMugshotState("Shield");
-				}
-				if (!invoker.GuardCheck)
-				{
-					invoker.GuardCheck = true;
-				}
+				A_PlaySound("sweapons/swordswing", 1);
+				A_PlaySound("sweapons/blockready", 6);
 			}
-			PIKO E 1;
-			PIKO A 0 A_ReFire();
-			PIKO DCB 1 A_SetSpeed(1.2);
-			PIKO A 0 A_SetMugshotState("Normal");
-			PIKO A 0 { invoker.GuardCheck = false; }
+			PIKO JIHGFEDCBA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		Reload:
 			TNT1 A 0 A_GiveInventory("AmyKick");

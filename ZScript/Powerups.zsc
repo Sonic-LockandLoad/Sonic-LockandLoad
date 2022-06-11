@@ -110,29 +110,11 @@ class HammerBlock : PowerupGiver
 		Powerup.Color "FF FF FF", 0;
 		Inventory.MaxAmount 0;
 		Powerup.Type "PowerBlocking";
-		Powerup.Duration -1;
-		+INVENTORY.AUTOACTIVATE
-	}
-}
-class SpindashBlock : PowerupGiver
-{
-	Default
-	{
-		Powerup.Color "00 CC FF", 0.1;
-		Inventory.MaxAmount 0;
-		Powerup.Type "PowerBlocks";
-		Powerup.Duration -1;
+		Powerup.Duration 20;
 		+INVENTORY.AUTOACTIVATE
 	}
 }
 class PowerBlocking : PowerProtection
-{
-	Default
-	{
-		DamageFactor "Normal", 0.125;
-	}
-}
-class PowerBlocks : PowerProtection
 {
 	Default
 	{

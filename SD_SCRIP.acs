@@ -908,3 +908,16 @@ script "Subtitles" (int subtitle)
 		}
 	}
 }
+
+script "AmyBlockTint" enter
+{
+	while (true) {
+		if (CheckInventory("PowerBlocking")) {
+			FadeTo(192, 23, 112, 0.2, 0.0);
+		}
+		else {
+			FadeTo(0, 0, 0, 0, 0.0);
+		}
+		Delay(1);
+	}
+}
