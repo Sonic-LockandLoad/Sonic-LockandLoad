@@ -27,13 +27,14 @@ class SonicPlayer : PlayerPawn
 	}
 	action void CheckWallJump(int heightoffset, int distance)
 	{
+		bool isTouchingWall = A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
 		if (Vel.Z >= 1) {
 			height = Vel.Z + heightoffset;
 		}
 		else {
 			height = heightoffset;
 		}
-		if (A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32) && (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && Pos.Z - GetZAt() > 60) {
+		if (isTouchingWall && (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && Pos.Z - GetZAt() > 60) {
 			ACS_NamedExecute("WallJump", 0, height, distance);
 		}
 	}
