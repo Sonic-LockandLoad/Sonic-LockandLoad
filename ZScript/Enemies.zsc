@@ -208,8 +208,8 @@ class FrickingCyberdemon : Actor
 		PainChance 20;
 		PainChance "Eclipse", 255;
 		PainChance "Spear", 255;
-		DamageFactor "SonicKick", 4;
-		DamageFactor "Piko", 8;
+		DamageFactor "SonicKick", 2;
+		DamageFactor "Piko", 2;
 		DamageFactor "ShadowMelee", 2;
 		Monster;
 		MinMissileChance 160;
@@ -296,7 +296,7 @@ class FrickingCyberdemon : Actor
 				for (int x = 0; x < 2; x++) {
 					int x = random(-10, 10);
 					int y = random(-10, 10);
-					A_SpawnItemEx("ChaosCapsule", 0, 0, 1, x, y, 10, 0, SXF_NOCHECKPOSITION);
+					A_SpawnItemEx("FadingChaosCapsule", 0, 0, 1, x, y, 10, 0, SXF_NOCHECKPOSITION);
 				}
 			}
 			Goto See;

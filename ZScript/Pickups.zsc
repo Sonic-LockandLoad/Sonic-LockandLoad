@@ -395,6 +395,39 @@ class RedChaosCapsule : ChaosEnergy // 6023
 			Stop;
 	}
 }
+class FadingChaosCapsule : ChaosCapsule // 6021
+{
+	States
+	{
+		Spawn:
+			CHSC A 30 Bright;
+			Goto Fade;
+		Fade:
+			CHSC A 9 Bright;
+			TNT1 A 9 Bright;
+			CHSC A 7 Bright;
+			TNT1 A 7 Bright;
+			CHSC A 7 Bright;
+			TNT1 A 5 Bright;
+			CHSC A 5 Bright;
+			TNT1 A 5 Bright;
+			CHSC A 5 Bright;
+			TNT1 A 5 Bright;
+			CHSC A 3 Bright;
+			TNT1 A 3 Bright;
+			CHSC A 3 Bright;
+			TNT1 A 3 Bright;
+			CHSC A 3 Bright;
+			TNT1 A 3 Bright;
+			CHSC A 3 Bright;
+			TNT1 A 1 Bright;
+			CHSC A 1 Bright;
+			TNT1 A 1 Bright;
+			CHSC A 1 Bright;
+			TNT1 A 1 Bright;
+			Stop;
+	}
+}
 
 class MacAndCheese : CustomInventory
 {
