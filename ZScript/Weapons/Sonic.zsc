@@ -353,11 +353,11 @@ class RapidShotty : LockLoadWeapon
 	{
 		A_PlaySound("sweapons/shardshot", 1);
 		if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
-			A_FireBullets(18, 10, 20, 4, "BulletPuff");
+			A_FireBullets(18, 10, 20, 6, "BulletPuff");
 			A_GunFlash("SuperFlash");
 		}
 		else {
-			A_FireBullets(18, 10, 20, 4, "BulletPuff");
+			A_FireBullets(18, 10, 20, 6, "BulletPuff");
 			A_GunFlash();
 		}
 	}
@@ -370,7 +370,7 @@ class RapidShotty : LockLoadWeapon
         }
 		A_PlaySound("sweapons/forceshot", 1);
 		A_ChangeVelocity(Cos(Pitch) * -10, 0, Sin(Pitch) * 10, CVF_Relative);
-		A_FireBullets(8, 2, 20, 2 * intensity, "BulletPuff");
+		A_FireBullets(4, 2, 25, 2 * intensity, "BulletPuff");
 		A_GunFlash("ForceFlash");
 	}
 	Default
