@@ -1,3 +1,109 @@
+class SonicPlayer : LockLoadPlayer 
+{
+	Default
+	{
+		Health 125;
+		Player.DisplayName "$sonic";
+		Player.Face "SNF";
+		Player.SoundClass "sonic";
+		Player.StartItem "AcceleratedPistol";
+		Player.StartItem "Caliburn";
+		Player.StartItem "SonicCheck";
+		Player.StartItem "SonicKick";
+		Player.StartItem "ChaosEnergy", 100;
+		Player.WeaponSlot 1, "Caliburn";
+		Player.WeaponSlot 2, "AcceleratedPistol";
+		Player.WeaponSlot 3, "RapidShotty";
+		Player.WeaponSlot 4, "ShurikenCrossbow";
+		Player.WeaponSlot 5, "EclipseBlaster";
+		Player.WeaponSlot 6, "AirStrikeLauncher";
+	}
+	action void CheckWallJump(int heightoffset, int distance)
+	{
+		bool isTouchingWall = A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
+		if (Vel.Z >= 1) {
+			height = Vel.Z + heightoffset;
+		}
+		else {
+			height = heightoffset;
+		}
+		if (isTouchingWall && (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && Pos.Z - GetZAt() > 60) {
+			ACS_NamedExecute("WallJump", 0, height, distance);
+		}
+	}
+	override void Tick()
+	{
+		CheckWallJump(50, 25);
+		if (CountInv("PowerHyper")) {
+			A_SetSpeed(8);
+			ACS_NamedExecute("JumpHeight");
+		} 
+		else if (CountInv("PowerSuper")) {
+			A_SetSpeed(4);
+			ACS_NamedExecute("JumpHeight");
+		} 
+		else {
+			A_SetSpeed(2);
+			ACS_NamedExecute("JumpHeight", 0, 1);
+		}
+		Super.Tick();
+	}
+	States
+	{
+		Pain.Falling:
+			TNT1 A 0 {
+				switch (random(0, 2)) {
+					case 1:
+						A_PlaySound("sonic/thanksalotwall", 7);
+						ACS_NamedExecute("Subtitles", 0, 3);
+						break;
+					case 2:
+						A_PlaySound("sonic/thiswallsintheway", 7);
+						ACS_NamedExecute("Subtitles", 0, 4);
+						break;
+					default:
+						A_PlaySound("sonic/pain", 7);
+						break;
+				}
+				A_PlaySound("sglobal/loserings", 6);
+			}
+			Goto Spawn;
+		Pain:
+			PLAY G 4;
+			PLAY G 0 A_PlaySound("sglobal/loserings", 6);
+			PLAY G 4 A_PlaySound("sonic/pain", 7);
+			Goto Spawn;
+		Death:
+			TNT1 A 0
+			{
+				if (random(1, 4) == 4) {
+					A_PlaySound("sonic/thatwaslame");
+					ACS_NamedExecute("Subtitles", 0, 1);
+				}
+				else {
+					A_PlaySound("sonic/scream");
+				}
+			}
+			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
+			PLAY H 10;
+			PLAY I 10;
+			PLAY J 10 A_NoBlocking;
+			PLAY KLM 10;
+			PLAY N -1;
+			Stop;
+		XDeath:
+			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
+			TNT1 A 0 A_PlaySound("sonic/ohno");
+			TNT1 A 0 ACS_NamedExecute("Subtitles", 0, 2);
+			PLAY O 5;
+			PLAY P 5;
+			PLAY Q 5 A_NoBlocking;
+			PLAY RSTUV 5;
+			PLAY W -1;
+			Stop;
+	}
+}
+
 enum ECheckSolidFootingFlags
 {
     CSF_SOLIDGROUND = 1,
@@ -657,5 +763,104 @@ class AirStrikeLauncher : LockLoadWeapon
 		Spawn:
 			LAUN A -1;
 			Stop;
+	}
+}
+
+class SonicKick : CustomInventory
+{
+	int inuse;
+	int EXKick;
+	States
+	{
+	Use:
+		TNT1 A 0 A_Overlay(-2, "FloorCheck");
+		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		Fail;
+	TimeCheck:
+		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "FloorCheck");
+		Stop;
+	FloorCheck:
+		TNT1 A 0 { invoker.EXKick = 0; }
+	    TNT1 A 0 A_CheckFloor("KickAttack");
+		TNT1 A 0 { invoker.EXKick = 1; }
+	KickAttack:
+		TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
+		TNT1 A 0 A_JumpIfInventory("PowerHyper", 1, "HyperKickAttack");
+		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		TNT1 A 0 A_AlertMonsters();
+		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
+		KICK A 1 A_PlaySound("sweapons/swordswing", 7);
+		KICK BC 1;
+		KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		KICK EF 1;
+		Stop;
+	SonicEagle:
+		EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
+		EAGL BC 1;
+		EAGL D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		EAGL E 1;
+		Stop;
+	SuperKickAttack:
+		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		TNT1 A 0 A_AlertMonsters();
+		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
+		SKIK A 1 
+		{
+			A_PlaySound("sweapons/shockwave", 7);
+			A_FireBullets(27, 9, 100, 5, "GibPuff", 0);
+		}
+		SKIK BC 1;
+		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		SKIK E 1;
+		Stop;
+	SuperSonicEagle:
+		SEAG A 1 
+		{
+			A_PlaySound("sweapons/shockwave", 7);
+			A_FireBullets(3, 3, 150, 5, "GibPuff", 0);
+		}
+		SEAG BC 1;
+		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		SEAG E 1;
+		Stop;
+	HyperKickAttack:
+		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+		TNT1 A 0 A_AlertMonsters();
+		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "HyperSonicEagle");
+		HKIK A 1 
+		{
+			A_PlaySound("sweapons/shockwave", 7);
+			A_FireBullets(29, 11, 100, 10, "GibPuff", 0);
+		}
+		HKIK BC 1;
+		HKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		HKIK EF 1;
+		Stop;
+	HyperSonicEagle:
+		HEAG A 1 
+		{
+			A_PlaySound("sweapons/shockwave", 7);
+			A_FireBullets(5, 5, 150, 10, "GibPuff", 0);
+		}
+		HEAG BC 1;
+		HEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		HEAG E 1;
+		Stop;
+	}
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (inuse > 0)
+		{
+			inuse--;
+		}
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
+		{
+			owner.UseInventory(self);
+			inuse = 5;
+		}
 	}
 }

@@ -1,27 +1,3 @@
-class LLSwitch : Actor
-{
-	Default
-	{
-		+SHOOTABLE
-		+NOBLOOD
-		+DONTFALL
-		+NOGRAVITY
-		+NOCLIP
-		Health 1;
-		Mass 100000;
-		YScale 0.9;
-		Height 30;
-		DamageFactor "Normal", 0;
-		DeathSound "switches/normbutn";
-	}
-	States
-	{
-		Death:
-			ACTS A -1 A_Scream();
-			Stop;
-	}
-}
-
 class SonicSwitch : LLSwitch // 4156
 {
 	Default

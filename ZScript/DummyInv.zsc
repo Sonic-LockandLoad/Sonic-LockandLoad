@@ -1,3 +1,7 @@
+class SonicCheck : Inventory 	{ Default { Inventory.MaxAmount 1; } }
+class AmyCheck : Inventory 		{ Default { Inventory.MaxAmount 1; } }
+class ShadowCheck : Inventory 	{ Default { Inventory.MaxAmount 1; } }
+class ClassicCheck : Inventory 	{ Default { Inventory.MaxAmount 1; } }
 class SpearCheck : Inventory { Default { Inventory.MaxAmount 1; } }
 class LegOut : Inventory { Default { Inventory.MaxAmount 1; } }
 class RemoteDet : Inventory { Default { Inventory.MaxAmount 1; } }
