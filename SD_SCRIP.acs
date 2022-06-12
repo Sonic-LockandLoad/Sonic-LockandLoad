@@ -925,7 +925,7 @@ script "AmyBlockTint" enter
 script "LowHealthSound" enter
 {
 	while (true) {
-		if (GetActorProperty(1001, APROP_Health) < 20 && GetCvar("LowHealthSound") && (ClassifyActor(1001) & ACTOR_ALIVE)) {
+		if (GetActorProperty(1001, APROP_Health) < 20 && GetCvar("LowHealthSound") && (ClassifyActor(1001) & ACTOR_ALIVE) && !(CheckInventory("PowerSuper")||CheckInventory("PowerHyper")||CheckInventory("PowerInvulnerable"))) {
 			AmbientSound("sglobal/lowhealth", 127);
 		}
 		Delay(12);
