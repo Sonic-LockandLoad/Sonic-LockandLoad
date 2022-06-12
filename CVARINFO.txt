@@ -8,6 +8,7 @@ user int AmyZoomFactor				= 4;
 
 user bool WallCrash 				= true;
 user bool Subtitles 				= true;
+user bool LowHealthSound			= true;
 
 user noarchive string LastWeapon	= "";
 

@@ -9,6 +9,7 @@ sglobal/nextlevel	 		letsgo
 sglobal/drown				S_DROWN
 sglobal/reaction			REACTION
 sglobal/error				error
+sglobal/lowhealth			lohealth
 
 // Pickups
 

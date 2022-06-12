@@ -47,12 +47,16 @@ OptionMenu "LockandLoadOptions"
 	
 	StaticText "Miscellaneous"
 	
+	Option "HUD Type", "HUDType", "HUDType"
+	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
+	StaticText ""
+	
 	Option "Subtitles", "Subtitles", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
 	StaticText ""
 	
-	Option "HUD Type", "HUDType", "HUDType"
-	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
+	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
 	StaticText ""
 	
 	SubMenu "Advanced Options", "OptionsMenu"
