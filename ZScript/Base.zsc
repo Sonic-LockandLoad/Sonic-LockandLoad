@@ -1,5 +1,6 @@
 class LockLoadPlayer : PlayerPawn 
 {
+	int dJumpCounter;
 	Default
 	{
 		Speed 2;
@@ -53,6 +54,64 @@ class LockLoadPlayer : PlayerPawn
 			PLAY RSTUV 5;
 			PLAY W -1;
 			Stop;
+	}
+	override void CheckJump()
+	{
+		let player = self.player;
+		double wJumpHeight;
+		double wJumpHeightOffset = 50;
+		double wJumpDistance = 25;
+		bool isTouchingWall = A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
+		int dJumpCount = 1; // You get an extra jump
+		if (CountInv("SonicCheck") && CountInv("PowerHyper")) {
+			dJumpCount = 2; // Two extra jumps if you're Hyper Sonic
+		}
+		
+		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
+			if (player.crouchoffset != 0) {
+				player.crouching = 1;
+			}
+			else if (bNoGravity) {
+				Vel.Z = 3.;
+			}
+			else if (level.IsJumpingAllowed() && player.onground) {
+				// Usual jump stuff
+				double jumpvelz = JumpZ * 35 / TICRATE;
+				double jumpfac = 0;
+				dJumpCounter = 0;
+
+				if (jumpfac > 0) {
+					jumpvelz *= jumpfac;
+				}
+
+				Vel.Z = jumpvelz;
+				bOnMobj = false;
+				player.jumpTics = 0;
+				if (!(player.cheats & CF_PREDICTING)) {
+					A_StartSound("*jump", CHAN_BODY);
+				}
+			}
+			else if (CountInv("SonicCheck") && isTouchingWall && Pos.Z - GetZAt() > 60 && GetCvar("WallJump")) {
+				dJumpCounter = 0; // You get a free double jump after a wall jump
+				if (Vel.Z >= 1) {
+					wJumpHeight = Vel.Z + wJumpHeightOffset;
+				}
+				else {
+					wJumpHeight = wJumpHeightOffset;
+				}
+				ACS_NamedExecute("WallJump", 0, wJumpHeight, wJumpDistance);
+			}
+			else if (level.IsJumpingAllowed() && (CountInv("SonicCheck") || CountInv("AmyCheck") || (CountInv("ClassicCheck") && CountInv("PowerHyper"))) && GetCvar("DoubleJump")) {
+				// Double jump stuff
+				int jumpPower = 60;
+				if (dJumpCounter < dJumpCount) {
+					dJumpCounter++;
+					if (GetCvar("DoubleJump") == 1) { Thing_Stop(1001); }
+					ThrustThingZ(0, jumpPower, 0, 0);
+					A_StartSound("*doublejump", CHAN_BODY);
+				}
+			}
+		}
 	}
 }
 

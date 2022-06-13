@@ -242,6 +242,7 @@ $volume misc/startupdone	0.5
 $playersound sonic 	 male 		*death                  sonic/death
 $playeralias sonic 	 male 		*usefail                sonic/cantuse
 $playersound sonic 	 male 		*jump                   S_JUMP
+$playersound sonic 	 male 		*doublejump				S_DBJUMP
 								sonic/doublejump		S_DBJUMP
 								sonic/walljump			S_WAJUMP
 $playersound sonic 	 male 		*grunt                  S_LAND
@@ -251,6 +252,7 @@ $playersound sonic 	 male 		sglobal/supersonic    	nowshow
 $playersound amy	 female 	*death                  adeath
 $playeralias amy	 female 	*usefail                amy/cantuse
 $playersound amy	 female 	*jump                   A_JUMP
+$playersound amy 	 female		*doublejump				A_DBJUMP
 								amy/doublejump			A_DBJUMP
 $playersound amy	 female 	*grunt                  A_LAND
 $playersound amy	 female 	*land                   A_LAND
@@ -261,6 +263,7 @@ $playeralias classic male 		*usefail              	classic/cantuse
 $playersound classic male 		*jump                 	cjump
 $playersound classic male 		*grunt                	C_LAND
 $playersound classic male 		*land                 	C_LAND
+$playersound classic male 		*doublejump				cjump
 $playersound classic male 		sglobal/supersonic  	csuptrns
 
 $playersound shadow  male 		*death                 	nooooooo
