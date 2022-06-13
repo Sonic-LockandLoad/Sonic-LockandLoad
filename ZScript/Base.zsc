@@ -66,6 +66,9 @@ class LockLoadPlayer : PlayerPawn
 		if (CountInv("SonicCheck") && CountInv("PowerHyper")) {
 			dJumpCount = 2; // Two extra jumps if you're Hyper Sonic
 		}
+		if (player.onground) {
+			dJumpCounter = 0; // Reset the double jump counter once you touch the ground
+		}
 		
 		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
 			if (bNoGravity) {
@@ -75,7 +78,6 @@ class LockLoadPlayer : PlayerPawn
 				// Usual jump stuff
 				double jumpvelz = JumpZ * 35 / TICRATE;
 				double jumpfac = 0;
-				dJumpCounter = 0;
 
 				if (jumpfac > 0) {
 					jumpvelz *= jumpfac;
