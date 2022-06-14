@@ -458,16 +458,26 @@ script "TakeRingsIfHyper" (void)
 
 script "SetFriction" ENTER
 {
+	int x, y, z, speed;
 	while (true) {
+		x = GetActorVelX(0);
+		y = GetActorVelY(0);
+		speed = FixedSqrt(FixedMul(x, x) + FixedMul(y, y));
 		int forward = GetPlayerInput(-1, MODINPUT_FORWARDMOVE);
 		int sidem = GetPlayerInput(-1, MODINPUT_SIDEMOVE);
-		if (forward > 0 || sidem > 0 || forward < 0 || sidem < 0) {
+		int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+		bool isMoving = forward > 0 || sidem > 0 || forward < 0 || sidem < 0;
+		if (speed > 60.0 && !isMoving) {
+			SetActorProperty(0, APROP_Friction, 1.0);
+			SetAirControl(0.0);
+		}
+		else if (isMoving) {
 			SetActorProperty(0, APROP_Friction, 1.0);
 			SetAirControl(0.4);
 		}
 		else {
 			SetActorProperty(0, APROP_Friction, 0.9);
-			SetAirControl(0.3);
+			SetAirControl(0.1);
 		}
 		Delay(1);
 	}

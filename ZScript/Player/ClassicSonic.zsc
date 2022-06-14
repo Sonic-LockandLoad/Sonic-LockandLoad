@@ -230,6 +230,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			TNT1 A 1 {
 				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 				A_Light(3);
+				A_Stop();
 				A_OverlayFlags(9, PSPF_ADDWeapon, true);
 				if (CountInv("PowerHyper")) {
 					A_Overlay(9, "HyperSpinAnim", true);
@@ -312,6 +313,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 		SpinDash:
 			TNT1 AAAAAAAAAAAA 1 {
                 invoker.isSpinDashing = true;
+				player.crouching = 1;
 				if (invoker.SpinCharges > 16) {
 					A_ChangeVelocity(Cos(Pitch) * invoker.SpinCharges * 4, 0, Vel.Z * 1.1, CVF_Relative|CVF_Replace);
 				}
