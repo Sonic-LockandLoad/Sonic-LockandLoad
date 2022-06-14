@@ -131,6 +131,10 @@ amy/deadend2          		deadend2
 amy/nextlevel				alright
 amy/goodresult				A_GOOD
 amy/badresult				A_BAD
+amy/slide1					slide1
+amy/slide2					slide2
+amy/slide3					slide3
+$random amy/slide			{ amy/slide1 amy/slide2 amy/slide3 }
 
 classic/dash              	homatk
 classic/taunt1              yo

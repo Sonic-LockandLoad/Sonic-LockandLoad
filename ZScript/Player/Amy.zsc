@@ -13,6 +13,7 @@ class AmyPlayer : LockLoadPlayer
 		Player.StartItem "SilentRosePistol";
 		Player.StartItem "AmyCheck";
 		Player.StartItem "AmyKick";
+		Player.StartItem "AmySlide";
 		Player.StartItem "ChaosEnergy", 50;
 		Player.WeaponSlot 1, "PikoPikoHammer";
 		Player.WeaponSlot 2, "SilentRosePistol";
@@ -442,12 +443,9 @@ class AmyKick : CustomInventory
 	States
 	{
 	Use:
-		TNT1 A 0 A_Overlay(-2, "TimeCheck");
+		TNT1 A 0 A_Overlay(-2, "KickAttack");
 		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
 		Fail;
-	TimeCheck:
-		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "KickAttack");
-		Stop;
 	KickAttack:
 		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 		AKIK A 1 A_PlaySound("sweapons/swordswing", 7);
@@ -465,10 +463,55 @@ class AmyKick : CustomInventory
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && inuse == 0)
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 8;
+			inuse = 12;
 		}
 	}
 }
+
+class AmySlide : CustomInventory
+{
+	int inuse;
+	States
+	{
+	Use:
+		TNT1 A 0 A_Overlay(-2, "Slide");
+		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		Fail;
+	Slide:
+		TNT1 A 0 {
+			A_ChangeVelocity(70, 0, 0, CVF_Relative|CVF_Replace);
+			A_StartSound("amy/slide", 7);
+		}
+		SLID ABCD 1;
+		SLID EEEEEEEEE 1 {
+			if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
+				A_ChangeVelocity(20, 0, 5, CVF_Relative);
+				return ResolveState("EndSlide");
+			}
+			else {
+				A_ChangeVelocity(Vel.X, Vel.Y, 0, CVF_Replace);
+			}
+			return ResolveState(null);
+		}
+	EndSlide:
+		SLID DBCA 1;
+		Stop;
+	}
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (inuse > 0)
+		{
+			inuse--;
+		}
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_ZOOM && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_ZOOM) && inuse == 0 && owner.A_CheckFloor("Null"))
+		{
+			owner.UseInventory(self);
+			inuse = 17;
+		}
+	}
+}
+
