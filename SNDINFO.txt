@@ -82,6 +82,7 @@ sweapons/sonicland			soniland
 sweapons/slice				shuslice
 sweapons/dropdash          	DropDash
 sweapons/superdropdash      DropSupe
+sweapons/instashield		InShield
 
 // Character
 

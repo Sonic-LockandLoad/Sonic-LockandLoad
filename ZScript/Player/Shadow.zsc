@@ -9,6 +9,7 @@ class ShadowPlayer : LockLoadPlayer
 		Player.StartItem "ShadowAbilities";
 		Player.StartItem "ShadowCheck";
 		Player.StartItem "ChaosSnap";
+		Player.StartItem "ChaosSpearAtk";
 		Player.StartItem "ChaosEnergy", 120;
 		Player.WeaponSlot 1, "ShadowAbilities", "HighShovel", "ShadowKnife";
 		Player.WeaponSlot 2, "DarkAssault";
@@ -83,24 +84,6 @@ class ShadowAbilities : LockLoadWeapon
 			DPNR D 2 A_CustomPunch(random(1,64)*15, true, CPF_NOTURN, "ShadowMeleeAtk", 95, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			DPNR CBA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			TNT1 AA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			Goto Ready;
-		AltFire:
-			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 2, "Ready");
-			SARM ABC 1;
-			SARM D 1 {
-				A_PlaySound("sweapons/chaosspear", CHAN_WEAPON);
-				if (CountInv("PowerSuper")) {
-					A_FireProjectile("ChaosSpearEX");
-					A_FireProjectile("ChaosSpearEX", -5);
-					A_FireProjectile("ChaosSpearEX", 5);
-				}
-				else {
-					A_FireProjectile("ChaosSpear");
-					A_TakeInventory("ChaosEnergy", 2);
-				}
-			}
-			SARM DDDDCBA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			TNT1 A 5;
 			Goto Ready;
 		Spawn:
 			SHAD A -1;
@@ -411,6 +394,52 @@ Class DualRockets : LockLoadWeapon
 	}
 }
 
+class ChaosSpearAtk : CustomInventory
+{
+	int inuse;
+	States
+	{
+	Use:
+		TNT1 A 0 A_Overlay(-2, "Spear");
+		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		Fail;
+	Spear:
+		TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 2, "Null");
+		SARM ABC 1;
+		SARM D 1 {
+			int spearoffset = -25;
+			int spearpitch = -2;
+			int spearangle = 10;
+			A_PlaySound("sweapons/chaosspear", CHAN_WEAPON);
+			if (CountInv("PowerSuper")) {
+				A_FireProjectile("ChaosSpearEX", spearangle, false, spearoffset, 0, 0, spearpitch);
+				A_FireProjectile("ChaosSpearEX", spearangle - 10, false, spearoffset, 0, 0, spearpitch);
+				A_FireProjectile("ChaosSpearEX", spearangle - 20, false, spearoffset, 0, 0, spearpitch);
+			}
+			else {
+				A_FireProjectile("ChaosSpear", 0, true, spearoffset, 0, 0, spearpitch);
+				A_TakeInventory("ChaosEnergy", 2);
+			}
+		}
+		SARM D 4;
+		SARM CBA 1;
+		Stop;
+	}
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (inuse > 0)
+		{
+			inuse--;
+		}
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
+		{
+			owner.UseInventory(self);
+			inuse = 15;
+		}
+	}
+}
+
 class ChaosSnap : CustomInventory
 {
 	int inuse;
@@ -486,10 +515,11 @@ class ChaosSnap : CustomInventory
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_ZOOM && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_ZOOM) && inuse == 0)
 		{
 			owner.UseInventory(self);
 			inuse = 10;
 		}
 	}
 }
+

@@ -20,6 +20,13 @@ class Invincibility : PowerupGiver
 		Loop;
 	}
 }
+class InstaShield : Invincibility
+{
+	Default
+	{
+		Powerup.Duration 10;
+	}
+}
 class ClassicInvincibility : Invincibility
 {
 	Default
