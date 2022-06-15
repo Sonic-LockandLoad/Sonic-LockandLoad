@@ -482,8 +482,10 @@ class AmySlide : CustomInventory
 		Fail;
 	Slide:
 		TNT1 A 0 {
+			cvar.FindCvar("Sliding").SetBool(true);
 			A_ChangeVelocity(70, 0, 0, CVF_Relative|CVF_Replace);
 			A_StartSound("amy/slide", 7);
+			
 		}
 		SLID ABCD 1;
 		SLID EEEEEEEEE 1 {
@@ -497,7 +499,7 @@ class AmySlide : CustomInventory
 			return ResolveState(null);
 		}
 	EndSlide:
-		SLID DBCA 1;
+		SLID DBCA 1 { cvar.FindCvar("Sliding").SetBool(false); }
 		Stop;
 	}
 	override void DoEffect()
