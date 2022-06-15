@@ -871,6 +871,10 @@ script "Subtitles" (int subtitle)
 				HudMessage(s:"\c[Shadow] Shadow: \c[White] That damn FOURTH Chaos Emerald!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.5, 1.0);
 				break;
+			case 18:
+				HudMessage(s:"\c[Sonic] Sonic: \c[White] You're over!";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.5, 1.0);
+				break;
 		}
 	}
 }

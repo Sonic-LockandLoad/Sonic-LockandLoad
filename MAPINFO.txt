@@ -95,9 +95,8 @@ map THEBOSS "Dis Is It"
 {
 	levelnum = 30
 	titlepatch = "WILV27"
-	next = endpic, "bossend"
+	next = "S_LOBBY"
 	sky1 = "SKY3"
-	cluster = 404
 	par = 60
 	nointermission
 	nosoundclipping
@@ -253,16 +252,6 @@ cluster 10
 	entertext = lookup, "C6TEXT"
 }
 
-// S:L&L
-
-cluster 404
-{
-	pic = "S_INTER"
-	exittext = lookup, "BOSSEND"
-	music = "S_ENDING"
-}
-
-
 DoomEdNums
 {
 	2014  = "Ring"
@@ -288,7 +277,6 @@ DoomEdNums
 	4160  = "ClassicSonicSwitch"
 	
 	19924 = "FastSpiderdemon"
-	19925 = "FasterSpiderdemon"
 	19926 = "MechZombie"
 	19927 = "WalkingCapsule"
 	19928 = "FrickingCyberdemon"
