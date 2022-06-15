@@ -485,7 +485,8 @@ class AmySlide : CustomInventory
 			cvar.FindCvar("Sliding").SetBool(true);
 			A_ChangeVelocity(70, 0, 0, CVF_Relative|CVF_Replace);
 			A_StartSound("amy/slide", 7);
-			
+			A_SetSize(-1, 18);
+			Player.ViewHeight = 18;
 		}
 		SLID ABCD 1;
 		SLID EEEEEEEEE 1 {
@@ -499,7 +500,11 @@ class AmySlide : CustomInventory
 			return ResolveState(null);
 		}
 	EndSlide:
-		SLID DBCA 1 { cvar.FindCvar("Sliding").SetBool(false); }
+		SLID DBCA 1 { 
+			cvar.FindCvar("Sliding").SetBool(false);
+			A_SetSize(-1, 42);
+			Player.ViewHeight = 42;
+		}
 		Stop;
 	}
 	override void DoEffect()
