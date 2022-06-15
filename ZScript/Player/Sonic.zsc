@@ -10,7 +10,7 @@ class SonicPlayer : LockLoadPlayer
 		Player.StartItem "Caliburn";
 		Player.StartItem "SonicCheck";
 		Player.StartItem "SonicKick";
-		Player.StartItem "QuickStep";
+		Player.StartItem "HomingSnapQuickStep";
 		Player.StartItem "ChaosEnergy", 100;
 		Player.WeaponSlot 1, "Caliburn";
 		Player.WeaponSlot 2, "AcceleratedPistol";
@@ -829,23 +829,24 @@ class SonicKick : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 7;
+			inuse = 5;
 		}
 	}
 }
 
-class QuickStep : CustomInventory
+class HomingSnapQuickStep : CustomInventory
 {
 	int inuse;
+	int counter;
 	States
 	{
 	Use:
-		TNT1 A 0 A_Overlay(-2, "QuickStep");
-		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		TNT1 A 0 A_Overlay(10, "Startup");
+		TNT1 A 0 A_OverlayOffset(10, 0, 32);
 		Fail;
-	QuickStep:
+	Startup:
 		TNT1 A 1 {
-		int QuickStepSpeed;
+			int QuickStepSpeed;
 			if (A_CheckFloor("Null")) {
 				/* Ground quick step speed */
 				QuickStepSpeed = 80;
@@ -854,21 +855,60 @@ class QuickStep : CustomInventory
 				QuickStepSpeed = 100;
 			}
 			if (GetPlayerInput(MODINPUT_BUTTONS) & BT_MOVELEFT) {
+				/* Quick Step Left */
 				A_StartSound("sonic/quickstep", 9);
 				A_ChangeVelocity(0, QuickStepSpeed, 0, CVF_Relative|CVF_Replace);
 			} 
 			else if (GetPlayerInput(MODINPUT_BUTTONS) & BT_MOVERIGHT) {
+				/* Quick Step Right */
 				A_StartSound("sonic/quickstep", 9);
 				A_ChangeVelocity(0, QuickStepSpeed * -1, 0, CVF_Relative|CVF_Replace);
 			}
 			else {
-				return ResolveState("Null");
+				/* Homing Snap */
+				FTranslatedLineTarget ltinfo;
+				bool ltattack = LineAttack(angle, 2048, pitch, 0, 'None', "BulletPuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
+				let ltarget = ltinfo.linetarget;
+				if (ltarget) {
+					double ltdistance = Distance2D(ltarget);
+					int z_diff = ltarget.Pos.Z - Pos.Z;
+					A_StartSound("sweapons/sdash", 9);
+					A_ChangeVelocity(ltdistance - 60, 0, z_diff + ltarget.height / 2 - 20, CVF_Relative|CVF_Replace);
+					A_SetPitch(10);
+					A_SetAngle(ltinfo.angleFromSource);
+				}
+				else {
+					return ResolveState("Null");
+				}
+				return ResolveState("DashEnd");
 			}
 			return ResolveState(null);
 		}
 		TNT1 A 4;
 		TNT1 A 0 A_Stop();
+		TNT1 A 5;
 		Stop;
+	DashEnd:
+		TNT1 A 1 { invoker.counter = 0; }
+		/* passthrough */
+	HomingFloat:
+		TNT1 A 1 {
+			A_Stop();
+			if (!CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE)) {
+				return ResolveState("Null");
+			}
+			invoker.counter++;
+			if (invoker.counter > 70 || !CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE)) {
+				return ResolveState("Null");
+			}
+			if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) {
+				A_ChangeVelocity(0, 0, 15, CVF_Replace);
+				A_StartSound("*doublejump", CHAN_BODY);
+				return ResolveState("Null");
+			}
+			return ResolveState(null);
+		}
+		Loop;
 	}
 	override void DoEffect()
 	{
@@ -880,7 +920,7 @@ class QuickStep : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_ZOOM && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_ZOOM) && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 5;
+			inuse = 10;
 		}
 	}
 }
