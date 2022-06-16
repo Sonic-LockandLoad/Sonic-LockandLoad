@@ -3,7 +3,9 @@ class LockLoadPlayer : PlayerPawn
 	int dJumpCounter;
 	Default
 	{
-		Speed 2;
+		Speed 4;
+		Player.ForwardMove 1, 0.5;
+		Player.SideMove 1, 0.5;
 		Health 125;
 		Radius 15;
 		Height 42;

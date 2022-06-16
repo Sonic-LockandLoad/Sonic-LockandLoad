@@ -23,15 +23,15 @@ class SonicPlayer : LockLoadPlayer
 	override void Tick()
 	{
 		if (CountInv("PowerHyper")) {
-			A_SetSpeed(8);
+			A_SetSpeed(16);
 			ACS_NamedExecute("JumpHeight");
 		} 
 		else if (CountInv("PowerSuper")) {
-			A_SetSpeed(4);
+			A_SetSpeed(8);
 			ACS_NamedExecute("JumpHeight");
 		} 
 		else {
-			A_SetSpeed(2);
+			A_SetSpeed(4);
 			ACS_NamedExecute("JumpHeight", 0, 1);
 		}
 		if (GetCvar("HomingSnapReticle") && (GetCvar("HomingSnapReticle") == 1 && !A_CheckFloor("Null"))) {
