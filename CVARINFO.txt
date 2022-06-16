@@ -5,11 +5,11 @@ user int RingType 					= 1;
 user int DoubleJump 				= 2;
 user int WallJump	 				= 2;
 user int AmyZoomFactor				= 4;
+user int HomingSnapReticle			= 1;
 
 user bool WallCrash 				= true;
 user bool Subtitles 				= true;
 user bool LowHealthSound			= true;
-user bool HomingSnapReticle			= true;
 
 user noarchive string LastWeapon	= "";
 user noarchive bool	  Sliding		= false;

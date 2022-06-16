@@ -34,7 +34,7 @@ class SonicPlayer : LockLoadPlayer
 			A_SetSpeed(2);
 			ACS_NamedExecute("JumpHeight", 0, 1);
 		}
-		if (GetCvar("HomingSnapReticle")) {
+		if (GetCvar("HomingSnapReticle") && (GetCvar("HomingSnapReticle") == 1 && !A_CheckFloor("Null"))) {
 			FTranslatedLineTarget ltinfo;
 			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
 			let ltarget = ltinfo.linetarget;
@@ -885,7 +885,7 @@ class HomingSnapQuickStep : CustomInventory
 				FTranslatedLineTarget ltinfo;
 				bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "BulletPuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
 				let ltarget = ltinfo.linetarget;
-				if (ltarget) {
+				if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
 					double ltdistance = Distance2D(ltarget);
 					int z_diff = ltarget.Pos.Z - Pos.Z;
 					A_StartSound("sweapons/sdash", 9);
@@ -914,7 +914,7 @@ class HomingSnapQuickStep : CustomInventory
 				return ResolveState("Null");
 			}
 			invoker.counter++;
-			if (invoker.counter > 70 || !CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE)) {
+			if (invoker.counter > 70 || !CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128)) {
 				return ResolveState("Null");
 			}
 			if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) {

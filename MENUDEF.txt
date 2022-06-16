@@ -45,7 +45,7 @@ OptionMenu "LockandLoadOptions"
 	StaticText "Sonic/Classic", "Cyan"
 	StaticText ""
 	
-	Option "Homing Snap Reticle", "HomingSnapReticle", "EnabledOrNot"
+	Option "Homing Snap Reticle", "HomingSnapReticle", "HomingSnapReticle"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
 	
@@ -176,6 +176,12 @@ OptionValue "WallJump"
 	0, "Disabled"
 	1, "Face same direction"
 	2, "Face jump direction"
+}
+OptionValue "HomingSnapReticle"
+{
+	0, "Disabled"
+	1, "Only mid-air"
+	2, "Always"
 }
 OptionValue "HUDType"
 {
