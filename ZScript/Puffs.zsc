@@ -46,6 +46,28 @@ class PikoPuff : Actor
 	}
 }
 
+class SonicReticle : Actor
+{
+	Default
+	{
+		+WALLSPRITE
+		+NOGRAVITY
+		+PUFFONACTORS
+		RenderStyle "Normal";
+		Alpha 1;
+		VSpeed 0;
+		Mass 0;
+	}
+	States
+	{
+		Spawn:
+			RETI A 0;
+		Melee:
+			RETI A 1 Bright;
+			Stop;
+	}
+}
+
 class NoGibPuff : Actor
 {
 	Default

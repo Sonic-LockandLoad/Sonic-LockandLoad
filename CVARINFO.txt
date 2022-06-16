@@ -9,6 +9,7 @@ user int AmyZoomFactor				= 4;
 user bool WallCrash 				= true;
 user bool Subtitles 				= true;
 user bool LowHealthSound			= true;
+user bool HomingSnapReticle			= true;
 
 user noarchive string LastWeapon	= "";
 user noarchive bool	  Sliding		= false;

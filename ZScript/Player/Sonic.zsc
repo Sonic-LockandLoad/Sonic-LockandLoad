@@ -1,5 +1,6 @@
 class SonicPlayer : LockLoadPlayer 
 {
+	bool reticleActive;
 	Default
 	{
 		Health 125;
@@ -32,6 +33,21 @@ class SonicPlayer : LockLoadPlayer
 		else {
 			A_SetSpeed(2);
 			ACS_NamedExecute("JumpHeight", 0, 1);
+		}
+		if (GetCvar("HomingSnapReticle")) {
+			FTranslatedLineTarget ltinfo;
+			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
+			let ltarget = ltinfo.linetarget;
+			if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+				if (!reticleActive) {
+					A_StartSound("sweapons/reticle", 11);
+					reticleActive = true;
+				}
+				LineAttack(angle, 800, pitch, 0, 'None', 'SonicReticle', LAF_NORANDOMPUFFZ, null, 10);
+			}
+			else {
+				reticleActive = false;
+			}
 		}
 		Super.Tick();
 	}
@@ -867,7 +883,7 @@ class HomingSnapQuickStep : CustomInventory
 			else {
 				/* Homing Snap */
 				FTranslatedLineTarget ltinfo;
-				bool ltattack = LineAttack(angle, 2048, pitch, 0, 'None', "BulletPuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
+				bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "BulletPuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
 				let ltarget = ltinfo.linetarget;
 				if (ltarget) {
 					double ltdistance = Distance2D(ltarget);

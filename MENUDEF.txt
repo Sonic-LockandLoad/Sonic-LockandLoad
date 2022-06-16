@@ -45,6 +45,10 @@ OptionMenu "LockandLoadOptions"
 	StaticText "Sonic/Classic", "Cyan"
 	StaticText ""
 	
+	Option "Homing Snap Reticle", "HomingSnapReticle", "EnabledOrNot"
+	StaticText "Sonic only", "Cyan"
+	StaticText ""
+	
 	StaticText "Miscellaneous"
 	
 	Option "HUD Type", "HUDType", "HUDType"

@@ -17,6 +17,14 @@ Sprite "DOOXA0", 688, 688
 	Patch "DOOXA0", 0, 0
 }
 
+Sprite "RETIA0", 710, 619
+{
+	XScale 6
+	YScale 7.5
+	Offset 356, 362
+	Patch "RETIA0", 0, 0
+}
+
 Graphic "M_SKULL1", 32, 389
 {
 	XScale 2.000
