@@ -928,7 +928,6 @@ class HomingSnapQuickStep : CustomInventory
 					A_SetPitch(10);
 					A_SetAngle(ltinfo.angleFromSource);
 					/* Why does ZScript not have a way to check your current weapon? */
-					A_LogInt(ACS_NamedExecuteWithResult("CheckIfCaliburn"));
 					if (ACS_NamedExecuteWithResult("CheckIfCaliburn") && CountInv("ChaosEnergy") >= 400) {
 						A_StartSound("sweapons/soulcharge", 8);
 						cvar.FindCvar("SoulSurgeReady").SetBool(true);
