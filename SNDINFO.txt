@@ -36,10 +36,7 @@ sweapons/finalhit          	hit2
 sweapons/swing1            	swing1
 sweapons/swing2            	swing2
 sweapons/swing3            	swing3
-sweapons/soulsurge         	surge
-sweapons/swing1            	swing1
-sweapons/swing2            	swing2
-sweapons/swing3            	swing3
+sweapons/soulcharge        	soulchrg
 sweapons/soulsurge         	surge
 sweapons/hammerswing       	pikoswng
 sweapons/apistol        	pistshot
@@ -47,7 +44,6 @@ sweapons/preciseshot       	precshot
 sweapons/zoom              	zoom
 sweapons/zoomend           	zend
 sweapons/zoomfire          	zshot
-sweapons/soulcharge        	schg
 sweapons/shurikenhit       	shurhit
 sweapons/shurikenfire1     	shuri1
 sweapons/shurikenfire2     	shuri2

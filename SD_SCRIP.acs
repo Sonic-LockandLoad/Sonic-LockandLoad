@@ -901,3 +901,10 @@ script "LowHealthSound" enter
 		Delay(12);
 	}
 }
+
+script "CheckIfCaliburn" (void)
+{
+	SetResultValue(!stricmp(GetWeapon(), "Caliburn"));
+}
+
+

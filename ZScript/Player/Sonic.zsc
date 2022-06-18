@@ -258,20 +258,6 @@ class Caliburn : BoostEnabledWeapon
 		}
 		return null;
 	}
-	action void SwordSwing(bool onright)
-	{
-		A_PlaySound("sweapons/swordswing", 1);
-		if (random(1, 4) == 4) { A_PlaySound("sonic/grunt", 7); }
-		if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
-			A_PlaySound("sweapons/soulsurge", 6, 0.5);
-			if (onright) {
-				A_FireProjectile("EnergyBladeRight");
-			}
-			else {
-				A_FireProjectile("EnergyBladeLeft");
-			}
-		}
-	}
 	action void SwordSlam()
 	{
 		A_PlaySound("sweapons/sonicland", 1);
@@ -295,9 +281,45 @@ class Caliburn : BoostEnabledWeapon
 	States
 	{
 		Ready:
-			CALI A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM);
-			TNT1 A 0 A_Gravity;
+			CALI A 1 {
+				A_WeaponReady();
+				if (GetCvar("SoulSurgeReady")) {
+					return ResolveState("SoulCharge");
+				}
+				return ResolveState(null);
+			}
 			Loop;
+		SoulCharge:
+			SOUS ABCDEF 3 {
+				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK) {
+					cvar.FindCvar("SoulSurgeReady").SetBool(false);
+					return ResolveState("SoulChargeFailed");
+				}
+				return ResolveState(null);
+			}
+			Goto SoulCharged;
+		SoulCharged:
+			TNT1 A 0 A_JumpIf(!GetCvar("SoulSurgeReady"), "SoulChargeFailed");
+			SOUS GGGHHHHHHHHHHHHHGGG 1 {
+				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK) {
+					return ResolveState("SoulSurge");
+				}
+				cvar.FindCvar("SoulSurgeReady").SetBool(false);
+				return ResolveState(null);
+			}
+			Goto SoulChargeFailed;
+		SoulSurge:
+			CALI E 15 {
+				A_CustomPunch(4000, CPF_NOTURN, 0, "InvisiblePuff", 128, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				A_TakeInventory("ChaosEnergy", 400);
+				A_StartSound("sweapons/soulsurge", 8);
+				cvar.FindCvar("SoulSurgeReady").SetBool(false);
+			}
+			CALI DCBA 1;
+			Goto Ready;
+		SoulChargeFailed:
+			SOUS GFEDCBA 3;
+			Goto Ready;
 		Deselect:
 			CALI # 1 A_Lower(12);
 			Loop;
@@ -311,8 +333,15 @@ class Caliburn : BoostEnabledWeapon
 				}
 				return ResolveState(null);
 			}
-		GroundAttack:
-			TNT1 A 0 SwordSwing(false);
+		RapidSlash1:
+			TNT1 A 0 {
+				A_PlaySound("sweapons/swordswing", 1);
+				if (random(1, 4) == 4) { A_PlaySound("sonic/grunt", 7); }
+				if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+					A_PlaySound("sweapons/soulsurge", 6, 0.5);
+					A_FireProjectile("EnergyBladeLeft");
+				}
+			}
 			CALI BCD 1
 			{
 				if (!(CountInv("PowerSuper")||CountInv("PowerHyper"))) {
@@ -325,10 +354,17 @@ class Caliburn : BoostEnabledWeapon
 			}	
 			CALI E 1 A_CustomPunch(300, CPF_NOTURN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			CALI EEE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			CALI A 0 A_ReFire("GroundAttack2");
+			CALI A 0 A_ReFire("RapidSlash2");
 			Goto Ready;
-		GroundAttack2:
-			TNT1 A 0 SwordSwing(true);
+		RapidSlash2:
+			TNT1 A 0 {
+				A_PlaySound("sweapons/swordswing", 1);
+				if (random(1, 4) == 4) { A_PlaySound("sonic/grunt", 7); }
+				if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+					A_PlaySound("sweapons/soulsurge", 6, 0.5);
+					A_FireProjectile("EnergyBladeRight");
+				}
+			}
 			CALI FGHI 1
 			{
 				if (!CountInv("PowerSuper")||CountInv("PowerHyper")) {
@@ -888,10 +924,18 @@ class HomingSnapQuickStep : CustomInventory
 				if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
 					double ltdistance = Distance2D(ltarget);
 					int z_diff = ltarget.Pos.Z - Pos.Z;
-					A_StartSound("sweapons/sdash", 9);
 					A_ChangeVelocity(ltdistance - 60, 0, z_diff + ltarget.height / 2 - 20, CVF_Relative|CVF_Replace);
 					A_SetPitch(10);
 					A_SetAngle(ltinfo.angleFromSource);
+					/* Why does ZScript not have a way to check your current weapon? */
+					A_LogInt(ACS_NamedExecuteWithResult("CheckIfCaliburn"));
+					if (ACS_NamedExecuteWithResult("CheckIfCaliburn") && CountInv("ChaosEnergy") >= 400) {
+						A_StartSound("sweapons/soulcharge", 8);
+						cvar.FindCvar("SoulSurgeReady").SetBool(true);
+					}
+					else {
+						A_StartSound("sweapons/sdash", 8);
+					}
 				}
 				else {
 					return ResolveState("Null");
@@ -905,26 +949,33 @@ class HomingSnapQuickStep : CustomInventory
 		TNT1 A 5;
 		Stop;
 	DashEnd:
-		TNT1 A 1 { invoker.counter = 0; }
+		TNT1 A 1 { 
+			invoker.counter = 0;
+		}
 		/* passthrough */
 	HomingFloat:
 		TNT1 A 1 {
 			A_Stop();
 			if (!CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE)) {
-				return ResolveState("Null");
+				return ResolveState("HomingEnd");
 			}
 			invoker.counter++;
 			if (invoker.counter > 70 || !CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128)) {
-				return ResolveState("Null");
+				return ResolveState("HomingEnd");
 			}
 			if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) {
 				A_ChangeVelocity(0, 0, 15, CVF_Replace);
 				A_StartSound("*doublejump", CHAN_BODY);
-				return ResolveState("Null");
+				return ResolveState("HomingEnd");
 			}
 			return ResolveState(null);
 		}
 		Loop;
+	HomingEnd:
+		TNT1 A 0 {
+			cvar.FindCvar("SoulSurgeReady").SetBool(false);
+		}
+		Stop;
 	}
 	override void DoEffect()
 	{

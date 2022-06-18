@@ -11,8 +11,10 @@ user bool WallCrash 				= true;
 user bool Subtitles 				= true;
 user bool LowHealthSound			= true;
 
-user noarchive string LastWeapon	= "";
-user noarchive bool	  Sliding		= false;
+/* Temporary CVARs */
+user noarchive string LastWeapon		= "";
+user noarchive bool	  Sliding			= false;
+user noarchive bool   SoulSurgeReady	= false;
 
 /* Invincibility music */
 user int InvSonic 	= 1;
