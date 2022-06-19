@@ -114,6 +114,7 @@ sonic/okayresult			S_OKAY
 sonic/nintendo64			snc_n64
 sonic/bossvictory			yoreover
 sonic/quickstep				quikstep
+sonic/soulcharge			soulgrnt
 
 amy/grunt1         			agrunt1
 amy/grunt2         			agrunt2

@@ -290,7 +290,7 @@ class Caliburn : BoostEnabledWeapon
 			}
 			Loop;
 		SoulCharge:
-			SOUS ABCDEF 3 {
+			SOUS AAABBBCCCDDDEEEFFFGGG 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK) {
 					cvar.FindCvar("SoulSurgeReady").SetBool(false);
 					return ResolveState("SoulChargeFailed");
@@ -300,7 +300,7 @@ class Caliburn : BoostEnabledWeapon
 			Goto SoulCharged;
 		SoulCharged:
 			TNT1 A 0 A_JumpIf(!GetCvar("SoulSurgeReady"), "SoulChargeFailed");
-			SOUS GGGHHHHHHHHHHHHHGGG 1 {
+			SOUS HHHHHHHHHHH 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK) {
 					return ResolveState("SoulSurge");
 				}
@@ -311,7 +311,9 @@ class Caliburn : BoostEnabledWeapon
 		SoulSurge:
 			CALI E 15 {
 				A_CustomPunch(4000, CPF_NOTURN, 0, "InvisiblePuff", 128, 0, 0, "ArmorBonus", "sweapons/finalhit");
-				A_TakeInventory("ChaosEnergy", 400);
+				if (!(CountInv("PowerSuper") || CountInv("PowerHyper"))) {
+					A_TakeInventory("ChaosEnergy", 400);
+				}
 				A_StartSound("sweapons/soulsurge", 8);
 				cvar.FindCvar("SoulSurgeReady").SetBool(false);
 			}
@@ -928,8 +930,9 @@ class HomingSnapQuickStep : CustomInventory
 					A_SetPitch(10);
 					A_SetAngle(ltinfo.angleFromSource);
 					/* Why does ZScript not have a way to check your current weapon? */
-					if (ACS_NamedExecuteWithResult("CheckIfCaliburn") && CountInv("ChaosEnergy") >= 400) {
+					if (ACS_NamedExecuteWithResult("CheckIfCaliburn") && (CountInv("ChaosEnergy") >= 400 || CountInv("PowerSuper") || CountInv("PowerHyper"))) {
 						A_StartSound("sweapons/soulcharge", 8);
+						A_StartSound("sonic/soulcharge", CHAN_BODY);
 						cvar.FindCvar("SoulSurgeReady").SetBool(true);
 					}
 					else {
