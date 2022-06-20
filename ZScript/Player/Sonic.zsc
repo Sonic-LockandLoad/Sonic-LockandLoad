@@ -452,7 +452,7 @@ class AcceleratedPistol : LockLoadWeapon
 		Weapon.Kickback 1;
 		Weapon.AmmoType1 "ChaosEnergy";
 		Weapon.AmmoType2 "ChaosEnergy";
-		Weapon.AmmoUse1 1;
+		Weapon.AmmoUse1 2;
 		Weapon.AmmoUse2 8;
 		Weapon.AmmoGive 60;
 		Weapon.BobSpeed 1.5;
