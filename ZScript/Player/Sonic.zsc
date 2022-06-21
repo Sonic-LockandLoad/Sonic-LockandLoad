@@ -311,6 +311,7 @@ class Caliburn : BoostEnabledWeapon
 		SoulSurge:
 			CALI E 15 {
 				A_CustomPunch(4000, CPF_NOTURN, 0, "InvisiblePuff", 128, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				A_Explode(500, 256, XF_NOTMISSILE|XF_THRUSTZ);
 				if (!(CountInv("PowerSuper") || CountInv("PowerHyper"))) {
 					A_TakeInventory("ChaosEnergy", 400);
 				}
