@@ -1,36 +1,79 @@
 LISTMENU "MainMenu"
 {
-	Position 80, 54
+	Position 110, 54
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
-	TextItem "1P Play", "n", "PlayerClassMenu"
+	TextItem "New Game", "n", "PlayerClassMenu"
 	TextItem "About", "r", "ReadThisMenu"
 	TextItem "Options","o", "LockandLoadOptions"
-	TextItem "Load Data", "l", "LoadGameMenu"
-	TextItem "Save Data", "s", "SaveGameMenu"
-	TextItem "I'm Outta Here!", "q", "QuitMenu"
+	TextItem "Load Game", "l", "LoadGameMenu"
+	TextItem "Save Game", "s", "SaveGameMenu"
+	TextItem "Exit Game", "q", "QuitMenu"
 	IfGame(Heretic, Hexen, Strife, Chex)
 	{
 		Font "SMALLFONT"
 		StaticText 78, 40, "Unsupported game"
 	}
 }
+ListMenu "PlayerClassMenu"
+{
+	Position 120, 64
+	Font "BIGFONT", "ActiveOption"
+	StaticText 68, 38, "Character Select"
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
+}
+ListMenu "EpisodeMenu"
+{
+	Position 68, 64
+	Font "BIGFONT", "ActiveOption"
+	StaticText 74, 38, "Episode Select"
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
+}
+ListMenu "SkillMenu"
+{
+	Position 58, 74
+	Font "BIGFONT", "ActiveOption"
+	StaticText 80, 58, "Skill Select"
+	Font "BIGFONT", "InactiveOption", "ActiveOption"
+}
 OptionMenu "LockandLoadOptions"
 {
 	Title "Options"
 	
-	SubMenu "Configure Controls", "LLControlsMenu"
-	SubMenu "Configure Music", "SDMusic"
-	SubMenu "Option Search", "os_menu"
+	StaticText "Configure Sonic: Lock & Load.", "White"
+	StaticText "Change your controls, the choices of music tracks,", "White"
+	StaticText "the characters' abilities, or access the GZDoom", "White"
+	StaticText "options.", "White"
 	StaticText ""
 	
-	StaticText "Abilities"
+	StaticText "General", "MenuActive"
+	SubMenu "Configure Controls", "LLControlsMenu"
+	SubMenu "Music Choices", "SDMusic"
+	StaticText ""
+	
+	StaticText "Gameplay", "MenuActive"
+	SubMenu "Abilities", "LLAbilitiesMenu"
+	SubMenu "Miscellaneous", "LLMiscOptMenu"
+	StaticText ""
+	
+	SubMenu "Advanced Options", "OptionsMenu"
+	SubMenu "Option Search", "os_menu"
+}
+OptionMenu "LLAbilitiesMenu"
+{
+	Title "Abilities"
+	
+	StaticText "Configure character abilties.", "White"
+	StaticText "Toggle things like double jumping and Hyper forms,", "White"
+	StaticText "and change things like how far the Precision Shotgun", "White"
+	StaticText "zooms in or when the Homing Snap reticle appears.", "White"
+	StaticText ""
 	
 	Option "Wall Jump", "WallJump", "WallJump"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
 	
 	Option "Double Jump", "DoubleJump", "DoubleJump"
-	StaticText "Sonic/Amy", "Cyan"
+	StaticText "Sonic or Amy", "Cyan"
 	StaticText ""
 	
 	Option "Wall Crash", "WallCrash", "EnabledOrNot"
@@ -42,14 +85,22 @@ OptionMenu "LockandLoadOptions"
 	StaticText ""
 	
 	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
-	StaticText "Sonic/Classic", "Cyan"
+	StaticText "Sonic or Classic", "Cyan"
 	StaticText ""
 	
 	Option "Homing Snap Reticle", "HomingSnapReticle", "HomingSnapReticle"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
+}
+OptionMenu "LLMiscOptMenu"
+{
+	Title "Misc. Options"
 	
-	StaticText "Miscellaneous"
+	StaticText "Configure character abilties.", "White"
+	StaticText "Toggle things like double jumping and Hyper forms,", "White"
+	StaticText "and change things like how far the Precision Shotgun", "White"
+	StaticText "zooms in or when the Homing Snap reticle appears.", "White"
+	StaticText ""
 	
 	Option "HUD Type", "HUDType", "HUDType"
 	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
@@ -62,12 +113,17 @@ OptionMenu "LockandLoadOptions"
 	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
 	StaticText ""
-	
-	SubMenu "Advanced Options", "OptionsMenu"
 }
 OptionMenu "LLControlsMenu"
 {
 	Title "Controls"
+	
+	StaticText "Configure controls.", "White"
+	StaticText "This is not an extensive list of controls, but", "White"
+	StaticText "it contains every key needed for Sonic: Lock ", "White"
+	StaticText "& Load.", "White"
+	StaticText ""
+	
 	StaticText "Movement", "MenuActive"
 	Control "Move Forward", "+forward"
 	Control "Move Back", "+back"
@@ -102,6 +158,11 @@ OptionMenu "SDMusic"
 {
 	Title "Music Options"
 	
+	StaticText "Configure music choices.", "White"
+	StaticText "Change music tracks for invincibility, Super or ", "White"
+	StaticText "Dark form, and toggle music being played upon death.", "White"
+	StaticText ""
+	
 	StaticText "Invincibility", "MenuActive"
 	Option "Sonic", "InvSonic", "SonicI"
 	Option "Amy", "InvAmy", "AmyI"
@@ -120,34 +181,6 @@ OptionMenu "SDMusic"
 	StaticText "Other", "MenuActive"
 	Option "Death Music", "DeathMusic", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
-}
-ListMenu "PlayerclassMenu"
-{
-	Font "BIGFONT", "ActiveOption"
-	Position 42, 63
-	StaticText 38, 38, "Select your character!"
-	Font "BIGFONT", "InactiveOption", "ActiveOption"
-	Position 97, 75
-	StaticPatch 200, 60, "sonic"
-	StaticPatch 200, 85, "amy"
-	StaticPatch 200, 110, "classic"
-	StaticPatch 200, 135, "shadow"
-}
-ListMenu "EpisodeMenu"
-{
-	Font "BIGFONT", "ActiveOption"
-	Position 42, 63
-	StaticText 46, 38, "Where are you headed?"
-	Position 68, 63
-	Font "BIGFONT", "InactiveOption", "ActiveOption"
-}
-ListMenu "SkillMenu"
-{
-	Position 42, 63
-	Font "BIGFONT", "ActiveOption"
-	StaticText 40, 38, "Select your skill!"
-	Position 58, 63
-	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
 AddOptionMenu "OptionsMenu"
 {
