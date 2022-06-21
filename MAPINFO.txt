@@ -65,7 +65,7 @@ DamageType Drowning
 
 map TITLEMAP "The Next Level"
 {
-	sky1 = "GHZSKY"
+	sky1 = "NIGHTSKY"
 	music = S_TITLE
 }
 
