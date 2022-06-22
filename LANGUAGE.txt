@@ -26,7 +26,7 @@ E2TEXT =
 	"\n"
 	"Shadow looks over the edge of the floating rock.\n"
 	"'I'd advise you don't. Look down there.'\n"
-	"\n" 
+	"\n"
 	"Sonic jumps back. 'What the-- What IS that?!'\n"
 	"\n"
 	"Amy looks scared. 'I don't know, but I don't\n"
@@ -128,7 +128,7 @@ C6TEXT =
 	"\n"
 	"Shadow looks indifferent. 'He'll tire out\n"
 	"eventually.'";
-	
+
 BOSSEND =
 	"After defeating the E-SP567 robot,\n"
 	"Sonic comes to a standstill.\n"
@@ -139,7 +139,7 @@ BOSSEND =
 	"He proceeds to keep staring at the blank\n"
 	"stone wall, waiting for the player to\n"
 	"start a new game...";
-	
+
 QUITMSG1 = "\c[MenuActive] I see your problem... too slow!";
 QUITMSG2 = "\c[MenuActive] What's the matter? Can't keep up?";
 QUITMSG3 = "\c[MenuActive] I've already lapped you three times...";
@@ -161,10 +161,10 @@ DOSY = "\c[MenuInactive] Thanks for playing Sonic: Lock & Load!\nAre you sure yo
 
 STARTUP1 = "\c[Sonic]Welcome to Sonic: Lock & Load!";
 
-skill_text1 = "\c[Green]Not many enemies at all.\n\nRecommended for complete beginners.";
+skill_text1 = "\c[Green]Not many enemies at all, and they're pretty slow.\n\nRecommended for complete beginners.";
 skill_text2 = "\c[Yellow]There are less enemies around.\n\nThe recommended skill for a casual experience.";
-skill_text3 = "\c[MenuInactive]A good amount of enemies everywhere.\n\nThe true Sonic: Lock & Load experience.";
-skill_text4 = "\c[MenuInactive]Enemies are faster than usual.\n\nRecommended for experienced players.";
+skill_text3 = "\c[MenuInactive]A good amount of enemies everywhere.\n\nThe recommended Sonic: Lock & Load experience.";
+skill_text4 = "\c[MenuInactive]Enemies are twice as fast.\n\nRecommended for experienced players.";
 skill_text5 = "\c[Red]Enemies are fast and you take double damage.\n\nYou'd better bring your best.";
 skill_text6 = "\c[Red]You die in one hit, and so do the enemies.\n\nRecommended for memelords and masochists.";
 
@@ -173,26 +173,31 @@ amy			= "\c[Amy]Amy";
 classic		= "\c[Classic]C.Sonic";
 shadow		= "\c[Red]Shadow";
 
+skill1 			= "\c[Green]Effortless";
 skill1_sonic	= "\c[Green]Piece of cake!";
 skill1_amy		= "\c[Green]A breeze";
 skill1_classic	= "\c[Green]Genesis";
 skill1_shadow	= "\c[Green]Waste of time";
 
+skill2 			= "\c[Yellow]Simple";
 skill2_sonic	= "\c[Yellow]Bring it on!";
 skill2_amy		= "\c[Yellow]Just perfect!";
 skill2_classic	= "\c[Yellow]Like 1991";
 skill2_shadow	= "\c[Yellow]Chaos Controller";
 
+skill3 			= "\c[MenuInactive]Standard";
 skill3_sonic	= "\c[MenuInactive]I can still fly!";
 skill3_amy		= "\c[MenuInactive]Never give up!";
 skill3_classic	= "\c[MenuInactive]I am SEGA!";
 skill3_shadow	= "\c[MenuInactive]Another mission";
 
+skill4 			= "\c[MenuInactive]Tough";
 skill4_sonic	= "\c[MenuInactive]Now I'll show you!";
 skill4_amy		= "\c[MenuInactive]True passion";
 skill4_classic	= "\c[MenuInactive]Strange, isn't it?";
 skill4_shadow	= "\c[MenuInactive]Ultimate life form";
 
+skill5 			= "\c[Red]Too fast";
 skill5_sonic	= "\c[Sonic]Blue Streak";
 skill5_amy		= "\c[Amy]Thorned Rose";
 skill5_classic	= "\c[Classic]Fun is infinite";

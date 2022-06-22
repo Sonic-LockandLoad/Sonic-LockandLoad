@@ -10,7 +10,7 @@ gameinfo
    FinaleMusic = "S_RECAP"
    menufontcolor_title = "ActiveOption"
    menufontcolor_label = "MenuInactive"
-   menufontcolor_value = "White"   
+   menufontcolor_value = "White"
    menufontcolor_action = "White"
    menufontcolor_header = "MenuInactive"
    menufontcolor_highlight = "MenuInactive"
@@ -112,9 +112,10 @@ skill easy
 	PlayerClassName = "$amy", "$skill1_amy"
 	PlayerClassName = "$classic", "$skill1_classic"
 	PlayerClassName = "$shadow", "$skill1_shadow"
-	name = "Not too fast"
+	name = "$skill1"
 	spawnfilter = 2
 	totalinfighting
+	slowmonsters
 	mustconfirm = "$skill_text1"
 }
 
@@ -124,7 +125,7 @@ skill standard
 	PlayerClassName = "$amy", "$skill2_amy"
 	PlayerClassName = "$classic", "$skill2_classic"
 	PlayerClassName = "$shadow", "$skill2_shadow"
-	name = "Steady speed"
+	name = "$skill2"
 	spawnfilter = 3
 	defaultskill
 	mustconfirm = "$skill_text2"
@@ -137,7 +138,7 @@ skill hard
 	PlayerClassName = "$amy", "$skill3_amy"
 	PlayerClassName = "$classic", "$skill3_classic"
 	PlayerClassName = "$shadow", "$skill3_shadow"
-	name = "Getting faster"
+	name = "$skill3"
 	mustconfirm = "$skill_text3"
 }
 
@@ -147,7 +148,7 @@ skill harder
 	PlayerClassName = "$amy", "$skill4_amy"
 	PlayerClassName = "$classic", "$skill4_classic"
 	PlayerClassName = "$shadow", "$skill4_shadow"
-	name = "Speed fastest"
+	name = "$skill4"
 	spawnfilter = 4
 	FastMonsters
 	mustconfirm = "$skill_text4"
@@ -162,7 +163,7 @@ skill wtf
 	PlayerClassName = "$amy", "$skill5_amy"
 	PlayerClassName = "$classic", "$skill5_classic"
 	PlayerClassName = "$shadow", "$skill5_shadow"
-	name = "Out of control"
+	name = "$skill5"
 	mustconfirm = "$skill_text5"
 }
 
@@ -259,28 +260,28 @@ DoomEdNums
 	2012  = "SpecialRing"
 	2015  = "ChaosRing"
 	263   = "SoulRing"
-	
+
 	6021  = "ChaosCapsule"
 	6022  = "BlueChaosCapsule"
 	6023  = "RedChaosCapsule"
-	
+
 	2006  = "ChaosEmeralds"
 	262   = "GoalRing"
-	
+
 	31936 = "WtfIsThis"
 	31937 = "KeyTablet"
-	
+
 	4156  = "SonicSwitch"
 	4157  = "ShadowSwitch"
 	4158  = "AmySwitch"
 	4159  = "OmniSwitch"
 	4160  = "ClassicSonicSwitch"
-	
+
 	19924 = "FastSpiderdemon"
 	19926 = "MechZombie"
 	19927 = "WalkingCapsule"
 	19928 = "FrickingCyberdemon"
-	
+
 	5010  = "PistolReplace"
 	2005  = "ChainsawReplace"
 	2001  = "ShotgunReplace"
@@ -288,10 +289,10 @@ DoomEdNums
 	82    = "SSGReplace"
 	2003  = "RocketReplace"
 	2004  = "PlasmaRifleReplace"
-	
+
 	2022  = "InvulReplace"
 	2025  = "RadSuitReplace"
 	2045  = "Nintendo64"
-	
+
 	9069  = "Doox"
 }
