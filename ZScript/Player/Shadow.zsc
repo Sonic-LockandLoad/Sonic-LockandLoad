@@ -203,9 +203,8 @@ class ChaosEmerald : LockLoadWeapon
 					ACS_NamedExecute("Damn4thChaosEmerald");
 					ACS_NamedExecute("Subtitles", 0, 17);
 				}
-				if (!CountInv("PowerSuper") && !CountInv("Charging") && CountInv("ChaosEnergy") < 401) {
+				if (!CountInv("PowerSuper") && !CountInv("Charging") && CountInv("ChaosEnergy") < 400) {
 					A_GiveInventory("ChaosEnergy", 1);
-					if (CountInv("ChaosEnergy") > 400) { A_SetInventory("ChaosEnergy", 400); }
 				}
 			}
 			Loop;
@@ -417,7 +416,7 @@ class ChaosSpearAtk : CustomInventory
 				A_FireProjectile("ChaosSpearEX", spearangle - 20, false, spearoffset, 0, 0, spearpitch);
 			}
 			else {
-				A_FireProjectile("ChaosSpear", 0, true, spearoffset, 0, 0, spearpitch);
+				A_FireProjectile("ChaosSpear", 0, false, spearoffset, 0, 0, spearpitch);
 				A_TakeInventory("ChaosEnergy", 2);
 			}
 		}
