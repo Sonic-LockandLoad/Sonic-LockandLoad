@@ -104,6 +104,16 @@ map THEBOSS "Dis Is It"
 	needclustertext
 }
 
+map S_HIRE "Hire This Zone"
+{
+	music = S_FRONT
+	sky1 = "GHZSKY"
+	next = "S_LOBBY"
+	author = "That1M8Head"
+	partime = 0
+}
+
+
 clearskills
 
 skill easy
