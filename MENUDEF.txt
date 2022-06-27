@@ -96,10 +96,10 @@ OptionMenu "LLMiscOptMenu"
 {
 	Title "Misc. Options"
 	
-	StaticText "Configure character abilties.", "White"
-	StaticText "Toggle things like double jumping and Hyper forms,", "White"
-	StaticText "and change things like how far the Precision Shotgun", "White"
-	StaticText "zooms in or when the Homing Snap reticle appears.", "White"
+	StaticText "Configure miscellaneous options.", "White"
+	StaticText "Options that don't belong in any other category are put", "White"
+	StaticText "here, like your HUD style or whether or not you have", "White"
+	StaticText "subtitles for voiced lines.", "White"
 	StaticText ""
 	
 	Option "HUD Type", "HUDType", "HUDType"
@@ -163,39 +163,32 @@ OptionMenu "SDMusic"
 	StaticText "Dark form, and toggle music being played upon death.", "White"
 	StaticText ""
 	
-	StaticText "Invincibility", "MenuActive"
-	Option "Sonic", "InvSonic", "SonicI"
-	Option "Amy", "InvAmy", "AmyI"
-	Option "Classic", "InvClassic", "ClassicI"
-	Option "Shadow", "InvShadow", "ShadowI"
-	StaticText ""
-	
-	StaticText "Super/Dark Form", "MenuActive"
-	StaticText "Also affects Hyper form music.", "White"
-	Option "Sonic", "SupSonic", "SonicS"
-	Option "Amy", "SupAmy", "AmyS"
-	Option "Classic", "SupClassic", "ClassicS"
-	Option "Shadow", "SupShadow", "ShadowS"
-	StaticText ""
-	
-	StaticText "Other", "MenuActive"
-	Option "Death Music", "DeathMusic", "EnabledOrNot"
+	Option "Invincibility", "InvincMusic", "EnabledOrNotMus"
 	StaticText "All characters", "Cyan"
+	StaticText ""
+	
+	Option "Super/Dark/Hyper Form", "SuperMusic", "EnabledOrNotMus"
+	StaticText "All characters", "Cyan"
+	StaticText ""
+	
+	Option "Death Music", "DeathMusic", "EnabledOrNotMus"
+	StaticText "All characters", "Cyan"
+	StaticText ""
 }
 AddOptionMenu "OptionsMenu"
 {
 	Title "Advanced Options"
 }
 
-OptionValue "BoostType"
-{
-	0, "Anti-gravity"
-	1, "Aimable"
-}
 OptionValue "EnabledOrNot"
 {
 	0, "Disabled"
 	1, "Enabled"
+}
+OptionValue "EnabledOrNotMus"
+{
+	0, "Don't change music"
+	1, "Change music"
 }
 OptionValue "DoubleJump"
 {
@@ -220,49 +213,4 @@ OptionValue "HUDType"
 	0, "Unified" // Chaos Update HUD
 	1, "Classic-Style" // Pre-Chaos Update HUD
 	2, "Legacy" // Minimal HUD, ripped from STHiD Legacy Edition
-}
-
-OptionValue "SonicI"
-{
-	0, "None"
-	1, "$SonicI"
-}
-OptionValue "AmyI"
-{
-	0, "None"
-	1, "$AmyI"
-}
-OptionValue "ClassicI"
-{
-	0, "None"
-	1, "$ClassicI"
-}
-OptionValue "ShadowI"
-{
-	0, "None"
-	1, "$ShadowI"
-}
-
-OptionValue "SonicS"
-{
-	0, "None"
-	1, "$SonicS1"
-	2, "$SonicS2"
-}
-OptionValue "AmyS"
-{
-	0, "None"
-	1, "$AmyS"
-}
-OptionValue "ClassicS"
-{
-	0, "None"
-	1, "$ClassicS1"
-	2, "$ClassicS2"
-}
-OptionValue "ShadowS"
-{
-	0, "None"
-	1, "$ShadowS1"
-	2, "$ShadowS2"
 }

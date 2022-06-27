@@ -6,6 +6,8 @@ user int DoubleJump 				= 2;
 user int WallJump	 				= 2;
 user int AmyZoomFactor				= 4;
 user int HomingSnapReticle			= 1;
+user int InvincMusic 				= 1;
+user int SuperMusic 				= 1;
 
 user bool WallCrash 				= true;
 user bool Subtitles 				= true;
@@ -15,15 +17,3 @@ user bool LowHealthSound			= true;
 user noarchive string LastWeapon		= "";
 user noarchive bool	  Sliding			= false;
 user noarchive bool   SoulSurgeReady	= false;
-
-/* Invincibility music */
-user int InvSonic 	= 1;
-user int InvAmy 	= 1;
-user int InvShadow 	= 1;
-user int InvClassic = 1;
-
-/* Super form music */
-user int SupSonic 	= 1;
-user int SupAmy 	= 1;
-user int SupShadow 	= 1;
-user int SupClassic = 1;
