@@ -108,7 +108,7 @@ class LockLoadPlayer : PlayerPawn
 			}
 			else if (level.IsJumpingAllowed() && (CountInv("SonicCheck") || CountInv("AmyCheck") || (CountInv("ClassicCheck") && CountInv("PowerHyper"))) && GetCvar("DoubleJump")) {
 				// Double jump stuff
-				int jumpPower = 60;
+				int jumpPower = 50;
 				if (GetCvar("Sliding")) {
 					ThrustThingZ(0, jumpPower, 0, 0);
 					A_StartSound("*jump", CHAN_BODY);
