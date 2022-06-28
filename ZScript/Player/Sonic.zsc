@@ -487,7 +487,7 @@ class AcceleratedPistol : LockLoadWeapon
 			SPIS B 1 RecoilBurst();
 			SPIS BBBCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			TNT1 A 0 { if (CountInv("PowerHyper")) { A_ReFire(); } }
-			SPIS CCCCCCCCCCCCCCCCCCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SPIS CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		Flash:
 			SPIF A 1 Bright A_Light1;
