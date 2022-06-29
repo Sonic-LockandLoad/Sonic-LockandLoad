@@ -460,7 +460,10 @@ script "SetFriction" ENTER
 		int sidem = GetPlayerInput(-1, MODINPUT_SIDEMOVE);
 		int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
 		bool isMoving = forward > 0 || sidem > 0 || forward < 0 || sidem < 0;
-		if (speed > 60.0 && !isMoving) {
+		if (GetCvar("IsSpinDashing")) {
+			SetActorProperty(0, APROP_Friction, 1.5);
+		}
+		else if (speed > 60.0 && !isMoving) {
 			SetActorProperty(0, APROP_Friction, 1.0);
 			SetAirControl(0.0);
 		}
