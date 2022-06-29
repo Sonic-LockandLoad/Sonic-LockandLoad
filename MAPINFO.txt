@@ -82,10 +82,10 @@ map S_LOBBY "Station Square"
 	author = "That1M8Head"
 }
 
-map SDLvl01 "Green Hill"
+map SDLvl01 "Sunset Gardens"
 {
 	music = S_LVL01
-	sky1 = "GHZSKY"
+	sky1 = "SUNSTSKY"
 	next = "S_LOBBY"
 	author = "That1M8Head"
 	partime = 240
