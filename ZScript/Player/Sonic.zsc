@@ -389,9 +389,10 @@ class Caliburn : BoostEnabledWeapon
 			Goto Ready;
 		SlamStart:
 			TNT1 A 0 A_PlaySound("sweapons/sonicfalling", 1);
+			/* passthrough */
 		SlamAttack:
 			TNT1 A 0 A_Stop();
-			TNT1 A 0 A_ChangeVelocity(0, 0, -500, CVF_Relative|CVF_Replace);
+			TNT1 A 0 A_ChangeVelocity(0, 0, -500, CVF_Replace);
 			CALI JKLMN 1
 			{
 				if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
@@ -402,12 +403,19 @@ class Caliburn : BoostEnabledWeapon
 				}
 				A_ChangeVelocity(0, 0, -50, CVF_Relative|CVF_Replace);
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+				if (Pos.Z - GetZAt() <= 16) return ResolveState("ExtendSlam");
+				if (A_CheckSolidFooting("Null")) return ResolveState("SlamDone");
+				return ResolveState(null);
 			}
-			CALI B 0 A_CheckSolidFooting("SlamDone");
 			Goto SlamAttack+6;
+		ExtendSlam:
+			TNT1 A 0 A_ChangeVelocity(0, 0, -500, CVF_Replace);
+			/* passthrough */
 		SlamDone:
-			TNT1 A 0 A_SetSpeed(0);
-			TNT1 A 0 SwordSlam();
+			TNT1 A 0 {
+				A_SetSpeed(0);
+				SwordSlam();
+			}
 			CALI N 10 A_ReFire("AirHold");
 			TNT1 A 0 A_SetSpeed(2);
 			Goto Ready;
