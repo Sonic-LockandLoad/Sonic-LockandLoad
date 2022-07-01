@@ -605,17 +605,17 @@ class ChaosRain : LockLoadWeapon
 				if (CountInv("PowerSuper") > 0) {
 					A_PlaySound("Weapons/shotgf", 1);
 					A_GunFlash();
-					A_FireBullets(4, 2, 5, 10, "BulletPuff");
+					A_FireBullets(14, 12, 5, 10, "BulletPuff");
 				}
 				else if (CountInv("PowerHyper") > 0) {
 					A_PlaySound("Weapons/shotgf", 1);
 					A_GunFlash();
-					A_FireBullets(6, 4, 15, 30, "BulletPuff");
+					A_FireBullets(16, 14, 15, 10, "BulletPuff");
 				}
 				else {
 					A_PlaySound("Weapons/chngun", 1);
 					A_GunFlash();
-					A_FireBullets(2, 0, 1, 5, "BulletPuff");
+					A_FireBullets(12, 10, 1, 10, "BulletPuff");
 				}
 			}
 			CHGG B 1 
@@ -623,18 +623,18 @@ class ChaosRain : LockLoadWeapon
 				if (CountInv("PowerSuper") > 0) {
 					A_PlaySound("Weapons/shotgf", CHAN_Weapon);
 					A_GunFlash();
-					A_FireBullets(4, 2, 5, 10, "BulletPuff");
+					A_FireBullets(14, 12, 5, 10, "BulletPuff");
 				}
 				else if (CountInv("PowerHyper") > 0) {
 					A_PlaySound("Weapons/shotgf", CHAN_Weapon);
 					A_GunFlash();
-					A_FireBullets(6, 4, 15, 30, "BulletPuff");
+					A_FireBullets(16, 14, 15, 10, "BulletPuff");
 				}
 				
 				else {
 					A_PlaySound("Weapons/chngun", CHAN_Weapon);
 					A_GunFlash();
-					A_FireBullets(2, 0, 1, 5, "BulletPuff");
+					A_FireBullets(12, 10, 1, 10, "BulletPuff");
 				}
 			}
 			CHGG B 0 A_ReFire();
