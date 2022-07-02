@@ -344,7 +344,7 @@ class ChaosSpear : Actor
 	{
 		Radius 5;
 		Height 4;
-		Speed 60;
+		Speed 120;
 		Damage 20;
 		Projectile;
 		+SEEKERMISSILE
@@ -356,8 +356,7 @@ class ChaosSpear : Actor
 	States
 	{
 		Spawn:
-			CSPE A 10 Bright;
-			CSPE A 1 Bright A_SeekerMissile(0, 20, SMF_LOOK | SMF_PRECISE, 256);
+			CSPE A 1 Bright;
 			Loop;
 		Death:
 			TNT1 A 0 A_PlaySound("sweapons/spearimpact");
