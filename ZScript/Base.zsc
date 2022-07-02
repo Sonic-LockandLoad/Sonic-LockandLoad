@@ -114,7 +114,7 @@ class LockLoadPlayer : PlayerPawn
 					A_StartSound("*jump", CHAN_BODY);
 				}
 				else {
-					if (dJumpCounter < dJumpCount) {
+					if (dJumpCounter < dJumpCount || waterlevel > 1 && CountInv("SonicCheck")) {
 						dJumpCounter++;
 						if (GetCvar("DoubleJump") == 1) { Thing_Stop(1001); }
 						ThrustThingZ(0, jumpPower, 0, 0);
