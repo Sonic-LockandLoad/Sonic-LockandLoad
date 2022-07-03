@@ -110,13 +110,14 @@ class LockLoadPlayer : PlayerPawn
 				// Double jump stuff
 				int jumpPower = 50;
 				if (GetCvar("Sliding")) {
-					ThrustThingZ(0, jumpPower, 0, 0);
+					A_ChangeVelocity(Vel.X, Vel.Y, JumpZ - 2, CVF_Replace);
 					A_StartSound("*jump", CHAN_BODY);
 				}
 				else {
 					if (dJumpCounter < dJumpCount || waterlevel > 1 && CountInv("SonicCheck")) {
 						dJumpCounter++;
 						if (GetCvar("DoubleJump") == 1) { Thing_Stop(1001); }
+						A_ChangeVelocity(Vel.X, Vel.Y, JumpZ - 2, CVF_Replace);
 						ThrustThingZ(0, jumpPower, 0, 0);
 						A_StartSound("*doublejump", CHAN_BODY);
 					}
