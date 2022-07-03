@@ -903,4 +903,9 @@ script "CheckIfCaliburn" (void)
 	SetResultValue(!stricmp(GetWeapon(), "Caliburn"));
 }
 
+script "CheckIfEmerald" (void)
+{
+	SetResultValue(!stricmp(GetWeapon(), "ChaosEmerald"));
+}
+
 

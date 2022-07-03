@@ -459,7 +459,14 @@ class ChaosSnap : CustomInventory
 	CountCheck:
 		TNT1 A 0 {
 			invoker.counter++;
-			return A_JumpIf(invoker.counter <= 2 || CountInv("PowerSuper"), "Snap");
+			int maxCount;
+			if (ACS_NamedExecuteWithResult("CheckIfEmerald")) {
+				maxCount = 3;
+			}
+			else {
+				maxCount = 2;
+			}
+			return A_JumpIf(invoker.counter <= maxCount || CountInv("PowerSuper"), "Snap");
 		}
 		Stop;
 	Snap:
