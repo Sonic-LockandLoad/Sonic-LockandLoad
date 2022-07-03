@@ -730,57 +730,59 @@ script "BossMusic2" (void)
 	SetMusic("B_SCRT2");
 }
 
-script "JumpHeight" (int Reset)
+script "JumpHeight" ENTER
 {
-	if (Reset) {
-		switch(PlayerClass(PlayerNumber())) {
-			case Shadow:
-				if (GetCvar("ReservedMode")) {
+	while (1) {
+		switch (PlayerClass(PlayerNumber())) {
+			case Sonic:
+				if (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) {
+					SetActorProperty(1001, APROP_JumpZ, 17.0);
+				}
+				else if (!GetCvar("ReservedMode")) {
 					SetActorProperty(1001, APROP_JumpZ, 15.0);
 				}
 				else {
-					SetActorProperty(1001, APROP_JumpZ, 17.0);
-				}
-				break;
-			default:
-				if (GetCvar("ReservedMode")) {
 					SetActorProperty(1001, APROP_JumpZ, 12.0);
 				}
+				break;
+			case Amy: 
+				if (CheckInventory("PowerSuper")) {
+					SetActorProperty(1001, APROP_JumpZ, 17.0);
+				}
+				else if (!GetCvar("ReservedMode")) {
+					SetActorProperty(1001, APROP_JumpZ, 15.0);
+				}
+				else {
+					SetActorProperty(1001, APROP_JumpZ, 12.0);
+				}
+				break;
+			case ClassicSonic:
+				if (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) {
+					SetActorProperty(1001, APROP_JumpZ, 17.0);
+				}
+				else if (!GetCvar("ReservedMode")) {
+					SetActorProperty(1001, APROP_JumpZ, 15.0);
+				}
+				else {
+					SetActorProperty(1001, APROP_JumpZ, 12.0);
+				}
+				break;
+			case Shadow: // Shadow
+				if (CheckInventory("PowerSuper")) {
+					SetActorProperty(1001, APROP_JumpZ, 21.0);
+				}
+				else if (!GetCvar("ReservedMode")) {
+					SetActorProperty(1001, APROP_JumpZ, 17.0);
+				}
 				else {
 					SetActorProperty(1001, APROP_JumpZ, 15.0);
 				}
 				break;
+			case -1:
+			default:
+				 break;
 		}
-	} else {
-		switch (PlayerClass(PlayerNumber())) {
-            case Sonic:
-				if (CheckInventory("PowerHyper")) {
-					// Hyper Sonic
-					SetActorProperty(1001, APROP_JumpZ, 20.0);
-				} else {
-					// Super Sonic
-					SetActorProperty(1001, APROP_JumpZ, 17.0);
-				}
-                break;
-            case Amy: // Dark Amy
-				SetActorProperty(1001, APROP_JumpZ, 17.0);
-                break;
-            case ClassicSonic:
-				if (CheckInventory("PowerHyper")) {
-					// Classic Hyper Sonic
-					SetActorProperty(1001, APROP_JumpZ, 20.0);
-				} else {
-					// Classic Super Sonic
-					SetActorProperty(1001, APROP_JumpZ, 17.0);
-				}
-                break;
-            case Shadow: // Shadow
-				SetActorProperty(1001, APROP_JumpZ, 21.0);
-                break;
-            case -1:
-            default:
-                 break;
-        }
+		Delay(1);
 	}
 }
 
