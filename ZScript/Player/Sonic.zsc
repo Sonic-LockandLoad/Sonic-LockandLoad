@@ -201,20 +201,12 @@ class BoostEnabledWeapon : LockLoadWeapon
 		SuperBoost:
 			BOOS B 1 Boost(1, 100, 200);
 			TNT1 A 0 A_CheckLOF("BoostEnd", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
-			TNT1 A 0 {
-				if (Pos.Z - GetZAt() < 60) {
-					A_ReFire();
-				}
-			}
+			TNT1 A 0 A_ReFire();
 			Goto BoostEnd;
 		HyperBoost:
 			BOOS C 1 Boost(2, 100, 300);
 			TNT1 A 0 A_CheckLOF("BoostEnd", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
-			TNT1 A 0 {
-				if (Pos.Z - GetZAt() < 60) {
-					A_ReFire();
-				}
-			}
+			TNT1 A 0 A_ReFire();
 			Goto BoostEnd;
 		WallCrash:
 			TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable")||!GetCvar("WallCrash"), "BoostEnd");
