@@ -19,10 +19,16 @@ class ShadowPlayer : LockLoadPlayer
 	}
 	override void Tick()
 	{
-		if (CountInv("PowerSuper") > 0) {
+		if (GetCvar("ReservedMode")) {
+			A_SetSpeed(2.5);
+			ACS_NamedExecute("JumpHeight", 0, 1);
+		}
+		else if (CountInv("PowerSuper")) {
+			A_SetSpeed(6);
 			ACS_NamedExecute("JumpHeight");
 		}
 		else {
+			A_SetSpeed(4);
 			ACS_NamedExecute("JumpHeight", 0, 1);
 		}
 		Super.Tick();

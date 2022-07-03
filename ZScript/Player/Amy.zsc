@@ -28,7 +28,11 @@ class AmyPlayer : LockLoadPlayer
 		}
 		int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 		if (!(buttons & BT_ATTACK)) {
-			if (CountInv("PowerSuper")) {
+			if (GetCvar("ReservedMode")) {
+				A_SetSpeed(2);
+				ACS_NamedExecute("JumpHeight", 0, 1);
+			}
+			else if (CountInv("PowerSuper")) {
 				A_SetSpeed(4);
 				ACS_NamedExecute("JumpHeight");
 			}

@@ -463,6 +463,10 @@ script "SetFriction" ENTER
 		if (GetCvar("IsSpinDashing")) {
 			SetActorProperty(0, APROP_Friction, 1.5);
 		}
+		else if (GetCvar("ReservedMode")) {
+			SetActorProperty(0, APROP_Friction, 1.0);
+			SetAirControl(0.4);
+		}
 		else if (speed > 60.0 && !isMoving) {
 			SetActorProperty(0, APROP_Friction, 1.0);
 			SetAirControl(0.0);
@@ -731,14 +735,24 @@ script "JumpHeight" (int Reset)
 	if (Reset) {
 		switch(PlayerClass(PlayerNumber())) {
 			case Shadow:
-				SetActorProperty(1001, APROP_JumpZ, 17.0);
+				if (GetCvar("ReservedMode")) {
+					SetActorProperty(1001, APROP_JumpZ, 15.0);
+				}
+				else {
+					SetActorProperty(1001, APROP_JumpZ, 17.0);
+				}
 				break;
 			default:
-				SetActorProperty(1001, APROP_JumpZ, 15.0);
+				if (GetCvar("ReservedMode")) {
+					SetActorProperty(1001, APROP_JumpZ, 12.0);
+				}
+				else {
+					SetActorProperty(1001, APROP_JumpZ, 15.0);
+				}
 				break;
 		}
 	} else {
-		switch(PlayerClass(PlayerNumber())) {
+		switch (PlayerClass(PlayerNumber())) {
             case Sonic:
 				if (CheckInventory("PowerHyper")) {
 					// Hyper Sonic

@@ -113,6 +113,12 @@ OptionMenu "LLMiscOptMenu"
 	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
 	StaticText ""
+	
+	Option "Reserved Mode", "ReservedMode", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
+	StaticText "Tones down movement speed and jump height, intended", "White"
+	StaticText "for use with standard DOOM levels.", "White"
+	StaticText ""
 }
 OptionMenu "LLControlsMenu"
 {

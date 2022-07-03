@@ -12,6 +12,7 @@ user int SuperMusic 				= 1;
 user bool WallCrash 				= true;
 user bool Subtitles 				= true;
 user bool LowHealthSound			= true;
+user bool ReservedMode				= false;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
