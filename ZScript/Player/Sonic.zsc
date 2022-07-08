@@ -811,13 +811,13 @@ class SonicKick : CustomInventory
 		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
 		KICK A 1 A_PlaySound("sweapons/swordswing", 7);
 		KICK BC 1;
-		KICK D 1 A_CustomPunch(random(1,16)*24, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		KICK D 1 A_CustomPunch(random(1, 4) * 48, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		KICK EF 1;
 		Stop;
 	SonicEagle:
 		EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
 		EAGL BC 1;
-		EAGL D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		EAGL D 1 A_CustomPunch(random(1, 4) * 96, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		EAGL E 1;
 		Stop;
 	SuperKickAttack:

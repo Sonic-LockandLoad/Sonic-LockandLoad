@@ -541,33 +541,42 @@ script "ReticleSound" (void)
 
 script "GoalRing" (void)
 {
+	int score, targetscore;
+	int LevelTime = Timer() / 35;
+	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
+	int CurrentHealth = GetActorProperty(1001, APROP_Health);
+	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	if (LevelTime > ParTime) score += (ParTime - LevelTime) * 100;
+	score += KilledMonsters * 100;
+	score += CurrentHealth * 10;
+	score += CheckActorInventory(1001, "ChaosEnergy") * 10;
 	Thing_Stop(1001);
 	ACS_NamedTerminate("TransformSuper", 0);
 	ACS_NamedTerminate("TransformHyper", 0);
 	Delay(5);
 	GiveInventory("Invincibility", 1);
-	int LevelTime = Timer() / 35;
-	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
-	int DParTime = ParTime * 2;
-	int CurrentHealth = GetActorProperty(1001, APROP_Health);
-	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
-	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	targetscore += ParTime * 30;
+	targetscore += TotalMonsters * 50;
+	HudMessage(s:"Score: ", d:score, s:"\n",
+			   s:"Target Score: ", d:targetscore, s:"\n"; 
+			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
 	SetFont("BIGFONT");
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case Sonic:
 			SetMusic("S_VICTOR");
-			Print(s:"\c[Sonic]Stage Clear");
+			HudMessage(s:"\c[Sonic]Stage Clear"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			SetFont("SMALLFONT");
-			if (LevelTime > DParTime) {
-				PlaySound(1001, "sonic/badresult");
-				SetMugshotState("Failure");
+			if (score > targetscore) {
+				PlaySound(1001, "sonic/goodresult");
+				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Sonic] Sonic: \c[White] Aw, I gotta try that again!";
+					HudMessage(s:"\c[Sonic] Sonic: \c[White] How's that?";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			else if (LevelTime > ParTime) {
+			else if (score > (targetscore / 2)) {
 				PlaySound(1001, "sonic/okayresult");
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
@@ -576,10 +585,10 @@ script "GoalRing" (void)
 				}
 			}
 			else {
-				PlaySound(1001, "sonic/goodresult");
-				SetMugshotState("Grin");
+				PlaySound(1001, "sonic/badresult");
+				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Sonic] Sonic: \c[White] How's that?";
+					HudMessage(s:"\c[Sonic] Sonic: \c[White] Aw, I gotta try that again!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -587,17 +596,9 @@ script "GoalRing" (void)
 			break;
 		case Amy:
 			SetMusic("A_VICTOR");
-			Print(s:"\c[Amy]Act Clear!");
+			HudMessage(s:"\c[Amy]Act Clear!"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			SetFont("SMALLFONT");
-			if (CurrentHealth < 40) {
-				PlaySound(1001, "amy/badresult");
-				SetMugshotState("Failure");
-				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Amy] Amy: \c[White] ...";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				}
-			}
-			else {
+			if (score > (targetscore / 2)) {
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
@@ -605,21 +606,29 @@ script "GoalRing" (void)
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
+			else {
+				PlaySound(1001, "amy/badresult");
+				SetMugshotState("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(s:"\c[Amy] Amy: \c[White] ...";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
 			Delay(35*7);
 			break;
 		case ClassicSonic:
 			SetMusic("C_VICTOR");
-			Print(s:"\c[Classic]SONIC \c[White]GOT THROUGH");
+			HudMessage(s:"\c[Classic]SONIC \c[White]GOT THROUGH\n\c[White]", s:strParam(n:PRINTNAME_LEVELNAME); HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			SetFont("SMALLFONT");
-			if (CurrentHealth < 21) {
-				PlaySound(1001, "classic/badresult");
-				SetMugshotState("Failure");
+			if (score > targetscore) {
+				PlaySound(1001, "classic/goodresult");
+				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Classic] Sonic: \c[White] Barely made it...";
+					HudMessage(s:"\c[Classic] Sonic: \c[White] *whistle* That was cool!";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			else if (LevelTime > ParTime) {
+			else if (score > (targetscore / 2)) {
 				PlaySound(1001, "classic/okayresult");
 				SetMugshotState("OK");
 				if (GetCvar("Subtitles")) {
@@ -628,10 +637,10 @@ script "GoalRing" (void)
 				}
 			}
 			else {
-				PlaySound(1001, "classic/goodresult");
-				SetMugshotState("Grin");
+				PlaySound(1001, "classic/badresult");
+				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Classic] Sonic: \c[White] *whistle* That was cool!";
+					HudMessage(s:"\c[Classic] Sonic: \c[White] Barely made it...";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -639,8 +648,8 @@ script "GoalRing" (void)
 			break;
 		case Shadow:
 			SetMusic("D_VICTOR");
-			if (KilledMonsters == TotalMonsters) {
-				Print(s:"\c[Shadow]Mission Cleared");
+			HudMessage(s:"\c[Shadow]Mission Cleared"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
+			if (score > targetscore) {
 				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/goodresult");
 				SetMugshotState("OK");
@@ -650,7 +659,6 @@ script "GoalRing" (void)
 				}
 			}
 			else {
-				Print(s:"\c[Shadow]Mission Incomplete");
 				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/badresult");
 				SetMugshotState("Failure");
