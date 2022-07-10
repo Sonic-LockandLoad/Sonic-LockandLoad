@@ -18,7 +18,7 @@ class LockLoadPlayer : PlayerPawn
 	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod)
 	{
 		Super.DamageMobj(inflictor, source, damage, mod);
-		if (damage > 0 && damage < 999) {
+		if (damage > 0 && damage < 999 && !(CountInv("PowerInvulnerable")) && !(player.cheats & CF_GODMODE)) {
 			int ringcount = damage - (damage / 3);
 			int maxrange  = damage / 4;
 			if (ringcount < 10) ringcount = 10;
