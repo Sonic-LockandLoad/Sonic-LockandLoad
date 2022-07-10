@@ -31,7 +31,39 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 	}
 }
 
-class DroppedRing : Ring { Default { -NOGRAVITY; +CANPASS; } }
+class DroppedRing : Ring 
+{ 
+	int fadeCounter;
+	int isVisible;
+	Default 
+	{
+		-NOGRAVITY;
+		+CANPASS;
+	   +BOUNCEONWALLS
+	   +BOUNCEONFLOORS
+	   +BOUNCEONCEILINGS
+	}
+	override void Tick()
+	{
+		Super.Tick();
+		fadeCounter++;
+		if (fadeCounter > 50) {
+			if (fadeCounter % 3 == 0) {
+				if (!isVisible) {
+					isVisible = true;
+					A_SetTranslucent(1, 0);
+				}
+				else if (isVisible) {
+					isVisible = false;
+					A_SetTranslucent(0, 0);
+				}
+			}
+		}
+		if (fadeCounter > 150) {
+			Thing_Remove(0);
+		}
+	}
+}
 
 class RingBox : Inventory replaces Stimpack // 2011
 {
