@@ -18,15 +18,17 @@ class LockLoadPlayer : PlayerPawn
 	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod)
 	{
 		Super.DamageMobj(inflictor, source, damage, mod);
-		int ringcount = damage - (damage / 3);
-		int maxrange  = damage / 4;
-		if (ringcount < 10) ringcount = 10;
-		if (maxrange < 10) maxrange = 10;
-		if (maxrange > 20) maxrange = 20;
-		for (int x = 1; x <= ringcount; x++) {
-			int x = random(maxrange * -1, maxrange);
-			int y = random(maxrange * -1, maxrange);
-			A_SpawnItemEx("DroppedRing", x * 2, y * 2, 1, x, y, 15, 0, SXF_NOCHECKPOSITION);
+		if (damage > 0 && damage < 999) {
+			int ringcount = damage - (damage / 3);
+			int maxrange  = damage / 4;
+			if (ringcount < 10) ringcount = 10;
+			if (maxrange < 10) maxrange = 10;
+			if (maxrange > 20) maxrange = 20;
+			for (int x = 1; x <= ringcount; x++) {
+				int x = random(maxrange * -1, maxrange);
+				int y = random(maxrange * -1, maxrange);
+				A_SpawnItemEx("DroppedRing", x * 2, y * 2, 1, x, y, 15, 0, SXF_NOCHECKPOSITION);
+			}
 		}
 		return damage;
 	}
