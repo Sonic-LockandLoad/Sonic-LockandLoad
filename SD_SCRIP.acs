@@ -547,7 +547,7 @@ script "GoalRing" (void)
 	int CurrentHealth = GetActorProperty(1001, APROP_Health);
 	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
 	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
-	if (LevelTime > ParTime) score += (ParTime - LevelTime) * 100;
+	if (LevelTime < ParTime) score += (ParTime - LevelTime) * 100;
 	score += KilledMonsters * 100;
 	score += CurrentHealth * 10;
 	score += CheckActorInventory(1001, "ChaosEnergy") * 10;
@@ -556,7 +556,7 @@ script "GoalRing" (void)
 	ACS_NamedTerminate("TransformHyper", 0);
 	Delay(5);
 	GiveInventory("Invincibility", 1);
-	targetscore += ParTime * 30;
+	targetscore += ParTime * 50;
 	targetscore += TotalMonsters * 50;
 	HudMessage(s:"Score: ", d:score, s:"\n",
 			   s:"Target Score: ", d:targetscore, s:"\n"; 
