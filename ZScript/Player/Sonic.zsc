@@ -129,14 +129,18 @@ class BoostEnabledWeapon : LockLoadWeapon
 			default:
 				/* Sonic */
 				A_SetMugShotState("Boost");
+				A_FireBullets(60, 60, 200, 1, "InvisibleGibPuff", FBF_NORANDOM, 125);
+				A_TakeInventory("ChaosEnergy", 2);
 				break;
 			case 1:
 				/* Super Sonic */
 				A_SetMugShotState("SuperBoost");
+				A_FireBullets(120, 120, 500, 999, "InvisibleGibPuff", FBF_NORANDOM, 140);
 				break;
 			case 2:
 				/* Hyper Sonic */
 				A_SetMugShotState("HyperBoost");
+				A_FireBullets(120, 120, 500, 999, "InvisibleGibPuff", FBF_NORANDOM, 140);
 				break;
 		}
 		A_PlaySound("sweapons/boosttrail", 1, 1.0, true);
@@ -144,18 +148,8 @@ class BoostEnabledWeapon : LockLoadWeapon
 		if ((GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && A_CheckFloor("Null")) {
 			A_ChangeVelocity(0, 0, invoker.BoostSpeed / 10, CVF_Relative);
 		}
-		if (invoker.BoostSpeed <= MaxBoostSpeed) { invoker.BoostSpeed+=5; }
+		if (invoker.BoostSpeed <= MaxBoostSpeed) invoker.BoostSpeed += 5;
 		A_Light(2);
-		if (!form) { A_TakeInventory("ChaosEnergy", 2); }
-		switch (form) {
-			default:
-				A_FireBullets(60, 60, 200, 1, "InvisibleGibPuff", FBF_NORANDOM, 125);
-				break;
-			case 1:
-			case 2:
-				A_FireBullets(120, 120, 500, 999, "InvisibleGibPuff", FBF_NORANDOM, 140);
-				break;
-		}
 	}
 	action void WallCrash()
 	{
