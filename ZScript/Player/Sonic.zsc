@@ -322,7 +322,7 @@ class Caliburn : BoostEnabledWeapon
 					return ResolveState("SlamStart");
 				}
 				return ResolveState(null);
-			}
+			}	
 		RapidSlash1:
 			TNT1 A 0 {
 				A_PlaySound("sweapons/swordswing", 1);
@@ -948,14 +948,13 @@ class HomingSnapQuickStep : CustomInventory
 	HomingFloat:
 		TNT1 A 1 {
 			A_Stop();
-			if (!CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE)) {
-				return ResolveState("HomingEnd");
-			}
+			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+			bool enemyVisible = CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128);
 			invoker.counter++;
-			if (invoker.counter > 70 || !CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128)) {
+			if (invoker.counter > 30 || !enemyVisible || buttons & (BT_CROUCH|BT_ATTACK|BT_ALTATTACK|BT_RELOAD)) {
 				return ResolveState("HomingEnd");
 			}
-			if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) {
+			if (buttons & BT_JUMP) {
 				A_ChangeVelocity(0, 0, 15, CVF_Replace);
 				A_StartSound("*doublejump", CHAN_BODY);
 				return ResolveState("HomingEnd");
