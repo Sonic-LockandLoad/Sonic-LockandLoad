@@ -673,7 +673,7 @@ class SpinAttack : CustomInventory
 		}
 		else {
 			A_CustomPunch(80, false, CPF_NOTURN, "SonicPunchPuff", 196, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			A_ChangeVelocity(0, 0, 5);
+			if (Vel.Z > 0) A_ChangeVelocity(0, 0, 5);
 		}
 	}
 	States
