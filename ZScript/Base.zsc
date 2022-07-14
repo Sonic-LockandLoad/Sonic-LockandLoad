@@ -18,11 +18,12 @@ class LockLoadPlayer : PlayerPawn
 	override int TakeSpecialDamage(Actor inflictor, Actor source, int damage, Name damagetype)
 	{
 		Super.TakeSpecialDamage(inflictor, source, damage, damagetype);
-		if (damage > 0 && damage < 999 && !(player.cheats & CF_GODMODE)) {
+		if (damage > 0 && damage < 999 && !(player.cheats & CF_GODMODE) && !CountInv("PowerInvulnerable")) {
 			int ringcount = damage;
 			int maxrange  = damage / 4;
-			if (maxrange < 10) maxrange = 10;
-			if (maxrange > 20) maxrange = 20;
+			if (maxrange < 5) maxrange = 5;
+			if (maxrange > 15) maxrange = 15;
+			if (ringcount > 150) ringcount = 150;
 			for (int x = 1; x <= ringcount; x++) {
 				int x = random(maxrange * -1, maxrange);
 				int y = random(maxrange * -1, maxrange);
