@@ -39,9 +39,9 @@ class DroppedRing : Ring
 	{
 		-NOGRAVITY;
 		+CANPASS;
-	   +BOUNCEONWALLS
-	   +BOUNCEONFLOORS
-	   +BOUNCEONCEILINGS
+		+BOUNCEONWALLS
+		+BOUNCEONFLOORS
+		+BOUNCEONCEILINGS
 	}
 	override void Tick()
 	{
@@ -62,6 +62,23 @@ class DroppedRing : Ring
 		if (fadeCounter > 150) {
 			Thing_Remove(0);
 		}
+	}
+}
+
+class DroppedRingPlayer : DroppedRing 
+{
+	Default 
+	{
+		Inventory.PickupMessage "Regained a lost ring.";
+	}
+	override bool CanPickup(Actor toucher)
+	{
+		if (fadeCounter < 20) {
+			bAlwaysPickup = false;
+			return false;
+		}
+		bAlwaysPickup = true;
+		return super.CanPickup(toucher);
 	}
 }
 

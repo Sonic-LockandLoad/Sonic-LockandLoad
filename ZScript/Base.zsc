@@ -15,19 +15,18 @@ class LockLoadPlayer : PlayerPawn
 		Player.MaxHealth 999;
 		Player.JumpZ 15.0;
 	}
-	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod)
+	override int TakeSpecialDamage(Actor inflictor, Actor source, int damage, Name damagetype)
 	{
-		Super.DamageMobj(inflictor, source, damage, mod);
-		if (damage > 0 && damage < 999 && !(CountInv("PowerInvulnerable")) && !(player.cheats & CF_GODMODE) && mod != 'FALLING') {
-			int ringcount = damage - (damage / 3);
+		Super.TakeSpecialDamage(inflictor, source, damage, damagetype);
+		if (damage > 0 && damage < 999 && !(player.cheats & CF_GODMODE)) {
+			int ringcount = damage;
 			int maxrange  = damage / 4;
-			if (ringcount < 10) ringcount = 10;
 			if (maxrange < 10) maxrange = 10;
 			if (maxrange > 20) maxrange = 20;
 			for (int x = 1; x <= ringcount; x++) {
 				int x = random(maxrange * -1, maxrange);
 				int y = random(maxrange * -1, maxrange);
-				A_SpawnItemEx("DroppedRing", x * 2, y * 2, 1, x, y, 15);
+				A_SpawnItemEx("DroppedRingPlayer", 0, 0, 1, x, y, 15);
 			}
 		}
 		return damage;
