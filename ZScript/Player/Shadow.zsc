@@ -6,16 +6,18 @@ class ShadowPlayer : LockLoadPlayer
 		Player.DisplayName "$shadow";
 		Player.Face "SHF";
 		Player.SoundClass "shadow";
+		Player.StartItem "ShadowMP5";
 		Player.StartItem "ShadowAbilities";
 		Player.StartItem "ShadowCheck";
 		Player.StartItem "ChaosSnap";
 		Player.StartItem "ChaosSpearAtk";
 		Player.StartItem "ChaosEnergy", 120;
 		Player.WeaponSlot 1, "ShadowAbilities", "HighShovel", "ShadowKnife";
-		Player.WeaponSlot 2, "DarkAssault";
-		Player.WeaponSlot 3, "QuadShotty";
-		Player.WeaponSlot 4, "ChaosEmerald";
-		Player.WeaponSlot 5, "DualRockets";
+		Player.WeaponSlot 2, "ShadowMP5";
+		Player.WeaponSlot 3, "DarkAssault";
+		Player.WeaponSlot 4, "QuadShotty";
+		Player.WeaponSlot 5, "ChaosEmerald";
+		Player.WeaponSlot 6, "DualRockets";
 	}
 	override void Tick()
 	{
@@ -133,6 +135,46 @@ class HighShovel : LockLoadWeapon
 			Goto Ready;
 		Spawn:
 			SHVL A -1;
+			Stop;
+	}
+}
+
+class ShadowMP5 : LockLoadWeapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 1000;
+		Weapon.AmmoUse 2;
+		Weapon.AmmoGive 20;
+		Weapon.KickBack 15;
+		Weapon.AmmoType "ChaosEnergy";
+		Tag "Sub-Machine Gun";
+		Inventory.PickupMessage "Sub-Machine Gun";
+	}
+	States
+	{
+		Ready:
+			MP51 A 1 A_WeaponReady();
+			Loop;
+		Deselect:
+			#### # 1 A_Lower(12);
+			Loop;
+		Select:
+			MP51 A 1 A_Raise(12);
+			Loop;
+		Fire:
+			MP51 A 1 {
+				A_FireBullets(3, 5, -1, 20, "BulletPuff");
+				A_PlaySound("sweapons/shadowmp5", CHAN_WEAPON);
+				A_GunFlash();
+			}
+			MP51 A 2;
+			Goto Ready;
+		Flash:
+			MP5F A 1 Bright A_Light1;
+			Goto LightDone;
+		Spawn:
+			SMG1 A -1;
 			Stop;
 	}
 }

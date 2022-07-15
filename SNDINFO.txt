@@ -62,6 +62,7 @@ sweapons/swordspin         	swing4
 sweapons/shovelbonk			shovbonk
 sweapons/hammerbonk			HamBonk
 sweapons/darkshotty			assashot
+sweapons/shadowmp5			mp5shot
 sweapons/amyreload1			ashtrld1
 sweapons/amyreload2			ashtrld2
 sweapons/drift            	drift
