@@ -482,29 +482,31 @@ class ChaosSnap : CustomInventory
 			int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
 			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 			int input = 0;
+			int SnapSpeed = 200;
 			DamageFactor = 0;
+			if (player.onground) SnapSpeed = 100;
 			
 			if (forward > 0) {
-				A_ChangeVelocity(200, 0, 0, CVF_Relative);
+				A_ChangeVelocity(SnapSpeed, 0, 0, CVF_Relative);
 				input = 1;
 			}
 			
 			if (sidem < 0) {
-				A_ChangeVelocity(0, 200, 0, CVF_Relative);
+				A_ChangeVelocity(0, SnapSpeed, 0, CVF_Relative);
 				input = 1;
 			}
 			
 			if (sidem > 0) {
-				A_ChangeVelocity(0, -200, 0, CVF_Relative);
+				A_ChangeVelocity(0, SnapSpeed * -1, 0, CVF_Relative);
 				input = 1;
 			}
 			
 			if (forward < 0) {
-				A_ChangeVelocity(-200, 0, 0, CVF_Relative);
+				A_ChangeVelocity(SnapSpeed * -1, 0, 0, CVF_Relative);
 				input = 1;
 			}
 			
-			if (buttons & BT_CROUCH) {
+			if (buttons & BT_CROUCH && !player.onground) {
 				ThrustThingZ(0, -200, 0, 0);
 				input = 1;
 			}
