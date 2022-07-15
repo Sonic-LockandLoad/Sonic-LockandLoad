@@ -47,13 +47,15 @@ class AmyPlayer : LockLoadPlayer
 		if (CountInv("PowerBlocking")) {
 			A_PlaySound("sweapons/blockattackx", 7);
 			A_Explode(damage * 2, 300, XF_NOTMISSILE);
-			if (inflictor != NULL && inflictor.bMissile) {
-				Actor reflected = SpawnPlayerMissile(inflictor.GetClass());
-				reflected.SetDamage(reflected.damage * 6);
-				reflected.Height = self.Height;
-			}
-			else {
-				source.A_DamageSelf(damage * 2);
+			if (inflictor != NULL) {
+				if (inflictor.bMissile) {
+					Actor reflected = SpawnPlayerMissile(inflictor.GetClass());
+					reflected.SetDamage(reflected.damage * 6);
+					reflected.Height = self.Height;
+				}
+				else {
+					source.A_DamageSelf(damage * 2);
+				}
 			}
 			if (qdamage) A_TakeInventory("ChaosEnergy", qdamage);
 		}
