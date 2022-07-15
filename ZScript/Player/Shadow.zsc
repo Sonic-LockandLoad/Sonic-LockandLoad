@@ -213,6 +213,7 @@ class DarkAssault : LockLoadWeapon
 			}
 			AA12 A 3 { if (CountInv("PowerSuper")) { A_ReFire(); } }
 			AA12 B 2;
+			AA12 B 21 A_ReFire();
 			Goto Ready;
 		Flash:
 			AAFL A 2 Bright A_Light1;
