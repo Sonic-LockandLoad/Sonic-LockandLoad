@@ -46,9 +46,16 @@ class AmyPlayer : LockLoadPlayer
 		int qdamage = damage / 4;
 		if (CountInv("PowerBlocking")) {
 			A_PlaySound("sweapons/blockattackx", 7);
-			if (qdamage) {
-				A_TakeInventory("ChaosEnergy", qdamage);
+			A_Explode(damage * 2, 300, XF_NOTMISSILE);
+			if (inflictor != NULL && inflictor.bMissile) {
+				Actor reflected = SpawnPlayerMissile(inflictor.GetClass());
+				reflected.SetDamage(reflected.damage * 6);
+				reflected.Height = self.Height;
 			}
+			else {
+				source.A_DamageSelf(damage * 2);
+			}
+			if (qdamage) A_TakeInventory("ChaosEnergy", qdamage);
 		}
 		return damage;
 	}
@@ -99,6 +106,15 @@ class PikoPikoHammer : LockLoadWeapon
 		+WEAPON.NOALERT
 		+WEAPON.NOAUTOFIRE
 	}
+	action bool DoHammerJump(int thrust)
+	{
+		if (player.onground && (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) || (GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
+			A_ChangeVelocity(Vel.X, Vel.Y, thrust, CVF_Replace);
+			invoker.HJumpCheck = true;
+			return true;
+		}
+		return false;
+	}
 	States
 	{
 		Ready:
@@ -111,49 +127,41 @@ class PikoPikoHammer : LockLoadWeapon
 			PIKO A 1 A_Raise(10);
 			Loop;
 		Fire:
-			PIKO A 0 A_PlaySound("sweapons/hammerswing", 1);
-			PIKO B 1;
-			PIKO C 1
-			{
+			TNT1 A 0 A_JumpIf(Pos.Z - GetZAt() > 64, "HammerAerial");
+			PIKO AIHHHH 1;
+			/* passthrough */
+		HammerAttack:
+			PIKO H 1;
+			TNT1 A 0 A_ReFire("HammerAttack");
+			PIKO IB 1;
+			PIKO C 1 {
+				A_PlaySound("sweapons/hammerswing", 1);
 				/* Self-damage */
-				if (CountInv("LegOut") > 0) {
+				if (CountInv("LegOut")) {
 					A_PlaySound("sweapons/hammerbonk");
-					if (!CountInv("PowerSuper")) { A_DamageSelf(5); }
+					if (!CountInv("PowerSuper")) A_DamageSelf(5);
 				}
 				if (random(1,8) == 8) {
 					/* Bonk */
-					A_CustomPunch(500, 0, CPF_PULLIN, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
+					A_CustomPunch(500, 0, CPF_PULLIN, "PikoPuff", 95, 0, 0, "ArmorBonus", "sweapons/hammerbonk");
 				}
 				else {
 					/* Standard attack */
-					A_CustomPunch(250, 0, 0, "PikoPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+					A_CustomPunch(250, 0, 0, "PikoPuff", 95, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 			}
-			PIKO DEEEE 1
-			{
-				/* Hammer Jump */
-				if (A_CheckFloor("Null")) {
-					int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-					if (buttons & BT_JUMP) {
-						A_ChangeVelocity(Vel.X, Vel.Y, 25, CVF_Replace);
-						invoker.HJumpCheck = true;
-					}
-				}
+			PIKO D 1 {
+				if (DoHammerJump(30)) return ResolveState("HammerJumpSpin");
+				return ResolveState(null);
 			}
-			PIKO A 0 A_ReFire();
+			PIKO E 8;
 			Goto EndAnim;
-		Hold:
-			PIKO E 1
-			{
-				if (invoker.HJumpCheck && !A_CheckFloor("Null")) {
-					A_SetSpeed(8);
-				} else {
-					invoker.HJumpCheck = false;
-					A_SetSpeed(3);
-				}
-			}
-			PIKO A 0 A_ReFire();
-			Goto EndAnim;
+		HammerAerial:
+			PIKO AB 1;
+			TNT1 A 0 A_PlaySound("sweapons/hammerswing", 1);
+			PIKO CDE 1 A_CustomPunch(80, 0, 0, "PikoPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			PIKO FZZZGHIJ 1;
+			Goto Ready;
 		EndAnim:
 			PIKO DCB 1 { invoker.HJumpCheck = false; }
 			Goto Ready;
@@ -166,6 +174,10 @@ class PikoPikoHammer : LockLoadWeapon
 				A_PlaySound("sweapons/swordswing", 1);
 			}
 			PIKO JIHGFEDCBA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			PIKO A 10;
+			Goto Ready;
+		HammerJumpSpin:
+			PIKO DEFZZZGHIJABCDEFZZZGHIJ 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		Reload:
 			TNT1 A 0 A_GiveInventory("AmyKick");
