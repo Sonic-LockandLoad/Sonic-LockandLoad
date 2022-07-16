@@ -278,6 +278,7 @@ class Caliburn : BoostEnabledWeapon
 			Loop;
 		SoulCharge:
 			SOUS AAABBBCCCDDDEEEFFFGGG 1 {
+				DamageFactor = 0;
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK) {
 					cvar.FindCvar("SoulSurgeReady").SetBool(false);
 					return ResolveState("SoulChargeFailed");
@@ -291,6 +292,7 @@ class Caliburn : BoostEnabledWeapon
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK) {
 					return ResolveState("SoulSurge");
 				}
+				A_SetMugshotState("Rampage");
 				cvar.FindCvar("SoulSurgeReady").SetBool(false);
 				return ResolveState(null);
 			}
@@ -303,12 +305,16 @@ class Caliburn : BoostEnabledWeapon
 					A_TakeInventory("ChaosEnergy", 400);
 				}
 				A_StartSound("sweapons/soulsurge", 8);
+				A_ChangeVelocity(128, 0, 0, CVF_Relative|CVF_Replace);
 				cvar.FindCvar("SoulSurgeReady").SetBool(false);
 			}
-			CALI DCBA 1;
+			CALI DCBA 1 {
+				DamageFactor = 1;
+			}
 			Goto Ready;
 		SoulChargeFailed:
 			SOUS GFEDCBA 3;
+			TNT1 A 0 { DamageFactor = 1; }
 			Goto Ready;
 		Deselect:
 			CALI # 1 A_Lower(12);
