@@ -69,6 +69,8 @@ map TITLEMAP "The Next Level"
 	music = S_TITLE
 }
 
+clearepisodes
+
 episode S_LOBBY
 {
 	name = "Station Square"
@@ -112,7 +114,6 @@ map S_HIRE "Hire This Zone"
 	author = "That1M8Head"
 	partime = 0
 }
-
 
 clearskills
 
