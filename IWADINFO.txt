@@ -9,4 +9,5 @@ iwad
 	Config = "Doom"
 	IWADName = "Sonic-LockandLoad"
 	BannerColors = "4f1cf2", "41c90a"
+	DiscordAppID = "805108809219571742"
 }
