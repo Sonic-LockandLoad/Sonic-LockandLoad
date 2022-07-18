@@ -50,7 +50,7 @@ class AmyPlayer : LockLoadPlayer
 			if (inflictor != NULL) {
 				if (inflictor.bMissile) {
 					Actor reflected = SpawnPlayerMissile(inflictor.GetClass());
-					reflected.SetDamage(reflected.damage * 6);
+					reflected.SetDamage(reflected.damage * 8);
 					reflected.Height = self.Height;
 				}
 				else {
