@@ -306,6 +306,7 @@ class Caliburn : BoostEnabledWeapon
 				}
 				A_StartSound("sweapons/soulsurge", 8);
 				A_ChangeVelocity(128, 0, 0, CVF_Relative|CVF_Replace);
+				A_GiveInventory("Health", 100);
 				cvar.FindCvar("SoulSurgeReady").SetBool(false);
 			}
 			CALI DCBA 1 {
