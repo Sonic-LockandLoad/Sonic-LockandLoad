@@ -164,7 +164,7 @@ class ShadowMP5 : LockLoadWeapon
 			Loop;
 		Fire:
 			MP51 A 1 {
-				A_FireBullets(3, 5, -1, 20, "BulletPuff");
+				A_FireBullets(3, 5, -1, 10, "BulletPuff");
 				A_PlaySound("sweapons/shadowmp5", CHAN_WEAPON);
 				A_GunFlash();
 			}
