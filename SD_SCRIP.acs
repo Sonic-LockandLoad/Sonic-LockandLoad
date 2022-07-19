@@ -419,13 +419,13 @@ script "TakeRingsIfSuper" (void)
 	{
 		TakeInventory("ChaosEnergy", 1);
 		if (CheckInventory("ChaosEmeralds")) {
-			Delay(3);
+			Delay(4);
 		}
 		else if (PlayerClass(PlayerNumber()) == Amy) {
-			Delay(1);
+			Delay(2);
 		}
 		else {
-			Delay(2);
+			Delay(3);
 		}
 		if (!CheckInventory("ChaosEnergy"))
 		{
@@ -439,7 +439,7 @@ script "TakeRingsIfHyper" (void)
 {
 	while (CheckInventory("PowerHyper"))
 	{
-		Delay(1);
+		Delay(2);
 		TakeInventory("ChaosEnergy", 1);
 		if (!CheckInventory("ChaosEnergy"))
 		{
