@@ -435,7 +435,7 @@ class AcceleratedPistol : LockLoadWeapon
 	action void RecoilBurst()
 	{
 		A_PlaySound("weapons/rbeam", 1);
-		if (CountInv("PowerSuper")||CountInv("PowerHyper") > 0) {
+		if (CountInv("PowerHyper")) {
 			A_RailAttack(380, 0, 1, "06 b4 00", "fd ff 00", RGF_FULLBRIGHT, 0, "GibPuff", 0, 0, 0, 25, 1.0, 1.0);
 			A_ChangeVelocity (Cos(Pitch) * -25, 0, Sin(Pitch) * 25, CVF_Relative);
 		}
@@ -553,7 +553,7 @@ class RapidShotty : LockLoadWeapon
 			Loop;
 		Fire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 110);
-			TNT1 A 0 A_JumpIf(CountInv("PowerSuper")||CountInv("PowerHyper"), "SuperFire");
+			TNT1 A 0 A_JumpIf(CountInv("PowerHyper"), "SuperFire");
 			SCTG B 1 RapidFire();
 			SCTG BBBBBCCCCCCCCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			SCTG A 0 A_ReFire();
@@ -569,7 +569,7 @@ class RapidShotty : LockLoadWeapon
                 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
                 return ResolveState(null);
             }
-			TNT1 A 0 { if (CountInv("PowerSuper")) { A_ReFire(); } }
+			TNT1 A 0 { if (CountInv("PowerHyper")) A_ReFire(); }
 			SCTG CDE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
             Goto ForceReload;
 		AltFireAgain:
@@ -584,7 +584,6 @@ class RapidShotty : LockLoadWeapon
 		SuperFire:
 			SCTG B 3 RapidFire();
 			SCTG C 2;
-			TNT1 A 0 { if (CountInv("PowerHyper")) { A_ReFire(); } }
 			SCTG C 3;
 			SCTG A 0 A_ReFire();
 			Goto Ready;
@@ -630,7 +629,7 @@ class ShurikenCrossbow : LockLoadWeapon
 			Loop;
 		Fire:
 			SHRL B 1 A_FireProjectile("Shuriken", 0, 1);
-			TNT1 A 0 { if (CountInv("PowerSuper")||CountInv("PowerHyper")) { A_ReFire(); } }
+			TNT1 A 0 { if (CountInv("PowerHyper")) { A_ReFire(); } }
 			SHRL BBBBBBBBBBBBBBBBBBBBBBBCDEFG 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			TNT1 A 0 A_ReFire();
 			Goto Ready;
@@ -646,14 +645,9 @@ class EclipseBlaster : LockLoadWeapon
 	action void EclipseFire()
 	{
 		if (CountInv("PowerHyper")) {
-			A_FireProjectile("ChaosEnergyBallEX", 0, 0, 10, 10);
-			A_FireProjectile("ChaosEnergyBallEX", 0, 0, -10, 10);
 			A_FireProjectile("ChaosEnergyBallEX", 0, 0);
-			A_FireProjectile("ChaosEnergyBallEX", 0, 0, 10, -10);
-			A_FireProjectile("ChaosEnergyBallEX", 0, 0, -10, -10);
-		} else if (CountInv("PowerSuper")) {
-			A_FireProjectile("ChaosEnergyBallEX", 0, 0);
-		} else {
+		}
+		else {
 			A_FireProjectile("ChaosEnergyBall", 0, 1);
 		}
 	}
@@ -730,7 +724,7 @@ class AirStrikeLauncher : LockLoadWeapon
 	}
 	action void FireRocket(int Amount)
 	{
-		if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+		if (CountInv("PowerHyper")) {
 			int SpreadX, SpreadY, Iterator;
 			for (Iterator = 1; Iterator <= Amount; Iterator++) {
 				if (A_CheckFloor("Null")) {
@@ -766,13 +760,7 @@ class AirStrikeLauncher : LockLoadWeapon
 			Loop;
 		Fire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 3);
-			TNT1 A 0 {
-				if (CountInv("PowerHyper")) {
-					FireRocket(10);
-				} else {
-					FireRocket(5);
-				}
-			}
+			TNT1 A 0 FireRocket(7);
 			MISG ABB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		AltFire:
