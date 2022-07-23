@@ -47,7 +47,7 @@ class DroppedRing : Ring
 	{
 		Super.Tick();
 		fadeCounter++;
-		if (fadeCounter > 50) {
+		if (fadeCounter > 30) {
 			if (fadeCounter % 3 == 0) {
 				if (!isVisible) {
 					isVisible = true;
@@ -59,7 +59,7 @@ class DroppedRing : Ring
 				}
 			}
 		}
-		if (fadeCounter > 150) {
+		if (fadeCounter > 100) {
 			Thing_Remove(0);
 		}
 	}
