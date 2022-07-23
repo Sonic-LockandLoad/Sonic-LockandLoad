@@ -324,9 +324,10 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				A_ChangeVelocity(Vel.X, Vel.Y, 0, CVF_Replace);
 				A_SetGravity(0);
 				invoker.HoverCounter++;
-				if (invoker.HoverCounter > 75) {
+				if (invoker.HoverCounter > 75 && CountInv("PowerSuper")) {
 					return A_Jump(256, "HoverEnd");
 				}
+				A_Gravity();
 				return ResolveState(null);
 			}
 			TNT1 A 0 A_ReFire("Hover");
@@ -740,6 +741,7 @@ class SonicThok : CustomInventory
 {
 	int inuse;
 	int counter;
+	bool didJump;
 	override void Tick()
 	{
 		if (owner.A_CheckFloor("Null")) {
@@ -765,34 +767,13 @@ class SonicThok : CustomInventory
 			int forward = GetPlayerInput(MODINPUT_FORWARDMOVE);
 			int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
 			int input = 0;
+			int speed = sqrt(Vel.X * Vel.X + Vel.Y * Vel.Y);
+			int thokSpeed = speed / 2 + 60;
 			
 			A_StartSound("classic/dash", 6);
 			
-			if (forward > 0) {
-				if (!A_CheckFloor("Null")) {
-					A_ChangeVelocity(80, 0, 0, CVF_Relative);
-				}
-				else {
-					A_ChangeVelocity(50, 0, 0, CVF_Relative);
-				}
-				input = 1;
-			}
-			
-			if (sidem < 0) {
-				A_ChangeVelocity(0, 50, 0, CVF_Relative);
-				A_StartSound("classic/homing", 7, 0, 0.75);
-				input = 1;
-			}
-			
-			if (sidem > 0) {
-				A_ChangeVelocity(0, -50, 0, CVF_Relative);
-				A_StartSound("classic/homing", 7, 0, 0.75);
-				input = 1;
-			}
-			
-			if (forward < 0) {
-				A_ChangeVelocity(-50, 0, 0, CVF_Relative);
-				A_StartSound("classic/homing", 7, 0, 0.75);
+			if (forward) {
+				A_ChangeVelocity(thokSpeed, 0, 0, CVF_Relative);
 				input = 1;
 			}
 			
@@ -800,7 +781,7 @@ class SonicThok : CustomInventory
 				if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
 					return ResolveState("Boost");
 				}
-				A_ChangeVelocity(50, 0, 0, CVF_Relative);
+				A_ChangeVelocity(thokSpeed - 20, 0, 0, CVF_Relative);
 			}
 			return ResolveState(null);
 		}
@@ -832,14 +813,21 @@ class SonicThok : CustomInventory
 	override void DoEffect()
 	{
 		Super.DoEffect();
+		int buttons = owner.GetPlayerInput(MODINPUT_BUTTONS);
+		int obuttons = owner.GetPlayerInput(MODINPUT_OLDBUTTONS);
 		if (inuse > 0)
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_ZOOM && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_ZOOM) && inuse == 0)
-		{
+		if (owner is "PlayerPawn" && buttons & BT_ZOOM && !(obuttons & BT_ZOOM) && inuse == 0) {
 			owner.UseInventory(self);
+			didJump = false;
 			inuse = 30;
+		}
+		else if (owner is "PlayerPawn" && buttons & BT_JUMP && !(obuttons & BT_JUMP) && owner.Pos.Z - owner.GetZAt() > 16 && inuse == 0 && !CountInv("PowerHyper")) {
+			owner.UseInventory(self);
+			didJump = true;
+			inuse = 5;
 		}
 	}
 }
