@@ -211,8 +211,7 @@ OptionValue "WallJump"
 OptionValue "HomingSnapReticle"
 {
 	0, "Disabled"
-	1, "Only mid-air"
-	2, "Always"
+	1, "Enabled"
 }
 OptionValue "HUDType"
 {
