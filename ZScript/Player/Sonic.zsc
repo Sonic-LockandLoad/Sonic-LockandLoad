@@ -486,12 +486,11 @@ class RapidShotty : LockLoadWeapon
 	action void RapidFire()
 	{
 		A_PlaySound("sweapons/shardshot", 1);
+		A_FireBullets(18, 10, 10, 7, "BulletPuff");
 		if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
-			A_FireBullets(18, 10, 20, 6, "BulletPuff");
 			A_GunFlash("SuperFlash");
 		}
 		else {
-			A_FireBullets(18, 10, 20, 6, "BulletPuff");
 			A_GunFlash();
 		}
 	}
@@ -512,7 +511,7 @@ class RapidShotty : LockLoadWeapon
 		Weapon.SelectionOrder 1300;
 		Weapon.AmmoType1 "ChaosEnergy";
 		Weapon.AmmoType2 "ChaosEnergy";
-		Weapon.AmmoUse1 16;
+		Weapon.AmmoUse1 12;
 		Weapon.AmmoUse2 24;
 		Weapon.AmmoGive 64;
 		Weapon.Kickback 1000;
