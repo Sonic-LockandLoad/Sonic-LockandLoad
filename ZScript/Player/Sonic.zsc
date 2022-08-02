@@ -512,7 +512,7 @@ class RapidShotty : LockLoadWeapon
 		Weapon.AmmoType1 "ChaosEnergy";
 		Weapon.AmmoType2 "ChaosEnergy";
 		Weapon.AmmoUse1 12;
-		Weapon.AmmoUse2 24;
+		Weapon.AmmoUse2 20;
 		Weapon.AmmoGive 64;
 		Weapon.Kickback 1000;
 		Weapon.BobSpeed 1.5;
