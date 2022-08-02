@@ -537,7 +537,6 @@ class RapidShotty : LockLoadWeapon
 			SCTG A 1 A_Raise(20);
 			Loop;
 		Fire:
-			TNT1 A 0 A_TakeInventory("KickCooldown", 110);
 			TNT1 A 0 A_JumpIf(CountInv("PowerHyper"), "SuperFire");
 			SCTG B 1 RapidFire();
 			SCTG BBBBBCCCCCCCCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
@@ -623,7 +622,6 @@ class ShurikenCrossbow : LockLoadWeapon
 			Stop;
 	}
 }
-
 
 class EclipseBlaster : LockLoadWeapon
 {

@@ -159,7 +159,7 @@ class ChaosEnergyBall : Actor
 		Radius 13;
 		Height 8;
 		Speed 100;
-		Damage 10;
+		Damage 15;
 		DamageType "Eclipse";
 		Projectile;
 		+RANDOMIZE
