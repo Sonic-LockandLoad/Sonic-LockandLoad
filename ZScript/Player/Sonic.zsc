@@ -170,10 +170,10 @@ class BoostEnabledWeapon : LockLoadWeapon
 			TNT1 A 1;
 			Loop;
 		Deselect:
-			#### A 1 A_Lower(12);
+			#### A 1 A_Lower();
 			Loop;
 		Select:
-			#### A 1 A_Raise(20);
+			#### A 1 A_Raise();
 			Loop;
 		Fire:
 			TNT1 A 0;
@@ -280,7 +280,7 @@ class Caliburn : BoostEnabledWeapon
 			}
 			Loop;
 		Deselect:
-			CALI # 1 A_Lower(12);
+			CALI # 1 A_Lower(20);
 			Loop;
 		Select:
 			CALI A 1 A_Raise(20);
@@ -451,14 +451,17 @@ class AcceleratedPistol : LockLoadWeapon
 			SPIS A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM);
 			Loop;
 		Deselect:
-			SPIS # 1 A_Lower(12);
+			SPIS # 1 A_Lower(20);
 			Loop;
 		Select:
 			SPIS A 1 A_Raise(20);
 			Loop;
 		Fire:
-			SPIS AAA 2 AccelFire();
-			SPIS BC 1;
+			SPIS AAA 2 {
+				AccelFire();
+				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			}
+			SPIS BC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		AltFire:
 			SPIS B 1 RecoilBurst();
@@ -527,7 +530,7 @@ class RapidShotty : LockLoadWeapon
 			Loop;
 		Deselect:
 			SCTG # 1 {
-				A_Lower(12);
+				A_Lower(20);
 				A_StopSound(6);
 			}
 			Loop;
@@ -605,7 +608,7 @@ class ShurikenCrossbow : LockLoadWeapon
 			SHRL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			SHRL # 1 A_Lower(12);
+			SHRL # 1 A_Lower(20);
 			Loop;
 		Select:
 			SHRL A 1 A_Raise(20);
@@ -654,7 +657,7 @@ class EclipseBlaster : LockLoadWeapon
 			ECBL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			ECBL # 1 A_Lower(12);
+			ECBL # 1 A_Lower(20);
 			Loop;
 		Select:
 			ECBL A 1 A_Raise(20);
@@ -736,7 +739,7 @@ class AirStrikeLauncher : LockLoadWeapon
 			MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			MISG # 1 A_Lower(12);
+			MISG # 1 A_Lower(20);
 			Loop;
 		Select:
 			MISG A 1 A_Raise(20);
@@ -763,83 +766,83 @@ class SonicKick : CustomInventory
 	int EXKick;
 	States
 	{
-	Use:
-		TNT1 A 0 A_Overlay(-2, "FloorCheck");
-		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
-		Fail;
-	TimeCheck:
-		TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "FloorCheck");
-		Stop;
-	FloorCheck:
-		TNT1 A 0 { invoker.EXKick = 0; }
-	    TNT1 A 0 A_CheckFloor("KickAttack");
-		TNT1 A 0 { invoker.EXKick = 1; }
-	KickAttack:
-		TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
-		TNT1 A 0 A_JumpIfInventory("PowerHyper", 1, "HyperKickAttack");
-		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
-		TNT1 A 0 A_AlertMonsters();
-		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
-		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
-		KICK A 1 A_PlaySound("sweapons/swordswing", 7);
-		KICK BC 1;
-		KICK D 1 A_CustomPunch(random(1, 4) * 48, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
-		KICK EF 1;
-		Stop;
-	SonicEagle:
-		EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
-		EAGL BC 1;
-		EAGL D 1 A_CustomPunch(random(1, 4) * 96, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
-		EAGL E 1;
-		Stop;
-	SuperKickAttack:
-		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
-		TNT1 A 0 A_AlertMonsters();
-		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
-		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
-		SKIK A 1
-		{
-			A_PlaySound("sweapons/shockwave", 7);
-			A_FireBullets(27, 9, 100, 5, "GibPuff", 0);
-		}
-		SKIK BC 1;
-		SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
-		SKIK E 1;
-		Stop;
-	SuperSonicEagle:
-		SEAG A 1
-		{
-			A_PlaySound("sweapons/shockwave", 7);
-			A_FireBullets(3, 3, 150, 5, "GibPuff", 0);
-		}
-		SEAG BC 1;
-		SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
-		SEAG E 1;
-		Stop;
-	HyperKickAttack:
-		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
-		TNT1 A 0 A_AlertMonsters();
-		TNT1 A 0 A_PlaySound("sonic/grunt", 8);
-		TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "HyperSonicEagle");
-		HKIK A 1
-		{
-			A_PlaySound("sweapons/shockwave", 7);
-			A_FireBullets(29, 11, 100, 10, "GibPuff", 0);
-		}
-		HKIK BC 1;
-		HKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
-		HKIK EF 1;
-		Stop;
-	HyperSonicEagle:
-		HEAG A 1
-		{
-			A_PlaySound("sweapons/shockwave", 7);
-			A_FireBullets(5, 5, 150, 10, "GibPuff", 0);
-		}
-		HEAG BC 1;
-		HEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
-		HEAG E 1;
-		Stop;
+		Use:
+			TNT1 A 0 A_Overlay(-2, "FloorCheck");
+			TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+			Fail;
+		TimeCheck:
+			TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "FloorCheck");
+			Stop;
+		FloorCheck:
+			TNT1 A 0 { invoker.EXKick = 0; }
+			TNT1 A 0 A_CheckFloor("KickAttack");
+			TNT1 A 0 { invoker.EXKick = 1; }
+		KickAttack:
+			TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
+			TNT1 A 0 A_JumpIfInventory("PowerHyper", 1, "HyperKickAttack");
+			TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+			TNT1 A 0 A_AlertMonsters();
+			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
+			KICK A 1 A_PlaySound("sweapons/swordswing", 7);
+			KICK BC 1;
+			KICK D 1 A_CustomPunch(random(1, 4) * 48, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			KICK EF 1;
+			Stop;
+		SonicEagle:
+			EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
+			EAGL BC 1;
+			EAGL D 1 A_CustomPunch(random(1, 4) * 96, true, CPF_NOTURN, "SonicKickPuff", 90, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			EAGL E 1;
+			Stop;
+		SuperKickAttack:
+			TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+			TNT1 A 0 A_AlertMonsters();
+			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
+			SKIK A 1
+			{
+				A_PlaySound("sweapons/shockwave", 7);
+				A_FireBullets(27, 9, 100, 5, "GibPuff", 0);
+			}
+			SKIK BC 1;
+			SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			SKIK E 1;
+			Stop;
+		SuperSonicEagle:
+			SEAG A 1
+			{
+				A_PlaySound("sweapons/shockwave", 7);
+				A_FireBullets(3, 3, 150, 5, "GibPuff", 0);
+			}
+			SEAG BC 1;
+			SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			SEAG E 1;
+			Stop;
+		HyperKickAttack:
+			TNT1 A 0 A_GiveInventory("KickCooldown", 25);
+			TNT1 A 0 A_AlertMonsters();
+			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "HyperSonicEagle");
+			HKIK A 1
+			{
+				A_PlaySound("sweapons/shockwave", 7);
+				A_FireBullets(29, 11, 100, 10, "GibPuff", 0);
+			}
+			HKIK BC 1;
+			HKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			HKIK EF 1;
+			Stop;
+		HyperSonicEagle:
+			HEAG A 1
+			{
+				A_PlaySound("sweapons/shockwave", 7);
+				A_FireBullets(5, 5, 150, 10, "GibPuff", 0);
+			}
+			HEAG BC 1;
+			HEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 110, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			HEAG E 1;
+			Stop;
 	}
 	override void DoEffect()
 	{
@@ -851,7 +854,7 @@ class SonicKick : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 5;
+			inuse = 6;
 		}
 	}
 }
@@ -862,92 +865,92 @@ class HomingSnapQuickStep : CustomInventory
 	int counter;
 	States
 	{
-	Use:
-		TNT1 A 0 A_Overlay(10, "Startup");
-		TNT1 A 0 A_OverlayOffset(10, 0, 32);
-		Fail;
-	Startup:
-		TNT1 A 1 {
-			if (player.onground) {
-				/* Quick Step */
-				int input = 0;
-				int QuickStepSpeed = 35;
-				A_StartSound("sonic/quickstep", 10);
-				DamageFactor = 0;
-				int forward = GetPlayerInput(INPUT_FORWARDMOVE);
-				int sidem = GetPlayerInput(INPUT_SIDEMOVE);
-				if (forward > 0) A_ChangeVelocity(QuickStepSpeed, 0, 0, CVF_Relative);
-				if (sidem < 0) A_ChangeVelocity(0, QuickStepSpeed, 0, CVF_Relative);
-				if (sidem > 0) A_ChangeVelocity(0, QuickStepSpeed * -1, 0, CVF_Relative);
-				if (forward < 0 || (forward == 0 && sidem == 0)) {
-					A_ChangeVelocity(QuickStepSpeed * -1, 0, 0, CVF_Relative);
-				}
-				return ResolveState("QuickStepEnd");
-			}
-			else {
-				/* Homing Snap */
-				FTranslatedLineTarget ltinfo;
-				bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "BulletPuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
-				let ltarget = ltinfo.linetarget;
-				if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
-					double ltdistance = Distance2D(ltarget);
-					int z_diff = ltarget.Pos.Z - Pos.Z;
-					A_ChangeVelocity(ltdistance - 60, 0, z_diff + ltarget.height / 2 - 20, CVF_Relative|CVF_Replace);
-					A_SetPitch(10);
-					A_SetAngle(ltinfo.angleFromSource);
-					/* Why does ZScript not have a way to check your current weapon? */
-					if (ACS_NamedExecuteWithResult("CheckIfCaliburn") && (CountInv("ChaosEnergy") >= 400 || CountInv("PowerSuper") || CountInv("PowerHyper"))) {
-						A_StartSound("sweapons/soulcharge", 8);
-						A_StartSound("sonic/soulcharge", CHAN_BODY);
-						cvar.FindCvar("SoulSurgeReady").SetBool(true);
+		Use:
+			TNT1 A 0 A_Overlay(10, "Startup");
+			TNT1 A 0 A_OverlayOffset(10, 0, 32);
+			Fail;
+		Startup:
+			TNT1 A 1 {
+				if (player.onground) {
+					/* Quick Step */
+					int input = 0;
+					int QuickStepSpeed = 35;
+					A_StartSound("sonic/quickstep", 10);
+					DamageFactor = 0;
+					int forward = GetPlayerInput(INPUT_FORWARDMOVE);
+					int sidem = GetPlayerInput(INPUT_SIDEMOVE);
+					if (forward > 0) A_ChangeVelocity(QuickStepSpeed, 0, 0, CVF_Relative);
+					if (sidem < 0) A_ChangeVelocity(0, QuickStepSpeed, 0, CVF_Relative);
+					if (sidem > 0) A_ChangeVelocity(0, QuickStepSpeed * -1, 0, CVF_Relative);
+					if (forward < 0 || (forward == 0 && sidem == 0)) {
+						A_ChangeVelocity(QuickStepSpeed * -1, 0, 0, CVF_Relative);
 					}
-					else {
-						A_StartSound("sweapons/sdash", 8);
-					}
+					return ResolveState("QuickStepEnd");
 				}
 				else {
-					return ResolveState("Null");
+					/* Homing Snap */
+					FTranslatedLineTarget ltinfo;
+					bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "BulletPuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
+					let ltarget = ltinfo.linetarget;
+					if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+						double ltdistance = Distance2D(ltarget);
+						int z_diff = ltarget.Pos.Z - Pos.Z;
+						A_ChangeVelocity(ltdistance - 60, 0, z_diff + ltarget.height / 2 - 20, CVF_Relative|CVF_Replace);
+						A_SetPitch(10);
+						A_SetAngle(ltinfo.angleFromSource);
+						/* Why does ZScript not have a way to check your current weapon? */
+						if (ACS_NamedExecuteWithResult("CheckIfCaliburn") && (CountInv("ChaosEnergy") >= 400 || CountInv("PowerSuper") || CountInv("PowerHyper"))) {
+							A_StartSound("sweapons/soulcharge", 8);
+							A_StartSound("sonic/soulcharge", CHAN_BODY);
+							cvar.FindCvar("SoulSurgeReady").SetBool(true);
+						}
+						else {
+							A_StartSound("sweapons/sdash", 8);
+						}
+					}
+					else {
+						return ResolveState("Null");
+					}
+					return ResolveState("DashEnd");
 				}
-				return ResolveState("DashEnd");
+				return ResolveState(null);
 			}
-			return ResolveState(null);
-		}
-		TNT1 A 4;
-		TNT1 A 0 A_Stop();
-		TNT1 A 5;
-		Stop;
-	DashEnd:
-		TNT1 A 1 {
-			invoker.counter = 0;
-		}
-		/* passthrough */
-	HomingFloat:
-		TNT1 A 1 {
-			A_Stop();
-			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-			bool enemyVisible = CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128);
-			invoker.counter++;
-			if (invoker.counter > 30 || !enemyVisible || buttons & (BT_CROUCH|BT_ATTACK|BT_ALTATTACK|BT_RELOAD)) {
-				return ResolveState("HomingEnd");
+			TNT1 A 4;
+			TNT1 A 0 A_Stop();
+			TNT1 A 5;
+			Stop;
+		DashEnd:
+			TNT1 A 1 {
+				invoker.counter = 0;
 			}
-			if (buttons & BT_JUMP) {
-				A_ChangeVelocity(0, 0, 15, CVF_Replace);
-				A_StartSound("*doublejump", CHAN_BODY);
-				return ResolveState("HomingEnd");
+			/* passthrough */
+		HomingFloat:
+			TNT1 A 1 {
+				A_Stop();
+				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+				bool enemyVisible = CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128);
+				invoker.counter++;
+				if (invoker.counter > 30 || !enemyVisible || buttons & (BT_CROUCH|BT_ATTACK|BT_ALTATTACK|BT_RELOAD)) {
+					return ResolveState("HomingEnd");
+				}
+				if (buttons & BT_JUMP) {
+					A_ChangeVelocity(0, 0, 15, CVF_Replace);
+					A_StartSound("*doublejump", CHAN_BODY);
+					return ResolveState("HomingEnd");
+				}
+				return ResolveState(null);
 			}
-			return ResolveState(null);
-		}
-		Loop;
-	HomingEnd:
-		TNT1 A 0 {
-			cvar.FindCvar("SoulSurgeReady").SetBool(false);
-		}
-		Stop;
-	QuickStepEnd:
-		TNT1 A 5;
-		TNT1 A 5 A_Stop();
-		TNT1 A 0 { DamageFactor = 1; }
-		Stop;
+			Loop;
+		HomingEnd:
+			TNT1 A 0 {
+				cvar.FindCvar("SoulSurgeReady").SetBool(false);
+			}
+			Stop;
+		QuickStepEnd:
+			TNT1 A 5;
+			TNT1 A 5 A_Stop();
+			TNT1 A 0 { DamageFactor = 1; }
+			Stop;
 	}
 	override void DoEffect()
 	{
