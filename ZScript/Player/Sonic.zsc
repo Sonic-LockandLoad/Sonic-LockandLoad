@@ -744,7 +744,7 @@ class AirStrikeLauncher : LockLoadWeapon
 		Fire:
 			TNT1 A 0 A_TakeInventory("KickCooldown", 3);
 			TNT1 A 0 FireRocket(7);
-			MISG ABB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			MISG ABBBBB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		AltFire:
 			MISG A 1 A_GiveInventory("RemoteDet");

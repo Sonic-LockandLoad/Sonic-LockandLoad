@@ -91,7 +91,7 @@ class DuellingRocket : Actor
 	}
 }
 
-class ChaosMissile : Actor
+class ChaosMissile : FastProjectile
 {
 	Default
 	{
@@ -152,7 +152,7 @@ class StreamRocket : Actor
 	}
 }
 
-class ChaosEnergyBall : Actor
+class ChaosEnergyBall : FastProjectile
 {
 	Default
 	{
@@ -181,7 +181,7 @@ class ChaosEnergyBall : Actor
 	}
 }
 
-class ChaosEnergyBallEX : Actor
+class ChaosEnergyBallEX : FastProjectile
 {
 	Default
 	{
@@ -211,7 +211,7 @@ class ChaosEnergyBallEX : Actor
 	}
 }
 
-class MinorChaosEnergyBall : Actor
+class MinorChaosEnergyBall : FastProjectile
 {
 	Default
 	{
@@ -240,7 +240,7 @@ class MinorChaosEnergyBall : Actor
 	}
 }
 
-class SuperChaosEnergyBall : Actor
+class SuperChaosEnergyBall : FastProjectile
 {
 	Default
 	{
@@ -307,7 +307,7 @@ class ChaosEnergyBallAmy : Actor
 	}
 }
 
-class Shuriken : Actor
+class Shuriken : FastProjectile
 {
 	Default
 	{
@@ -338,7 +338,7 @@ class Shuriken : Actor
 	}
 }
 
-class ChaosSpear : Actor
+class ChaosSpear : FastProjectile
 {
 	Default
 	{
@@ -368,7 +368,7 @@ class ChaosSpear : Actor
 
 class ChaosSpearEX : ChaosSpear { Default { Damage 80; } }
 
-class EnergyBladeLeft : Actor
+class EnergyBladeLeft : FastProjectile
 {
 	Default
 	{
