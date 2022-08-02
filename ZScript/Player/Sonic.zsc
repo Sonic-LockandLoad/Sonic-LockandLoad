@@ -461,7 +461,7 @@ class AcceleratedPistol : LockLoadWeapon
 				AccelFire();
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			}
-			SPIS BC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SPIS BC 1 A_WeaponReady(WRF_NOBOB);
 			Goto Ready;
 		AltFire:
 			SPIS B 1 RecoilBurst();
