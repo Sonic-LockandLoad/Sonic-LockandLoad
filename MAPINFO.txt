@@ -92,7 +92,7 @@ map SDLvl01 "Sunset Gardens"
 	partime = 240
 }
 
-map SDLvl02 "I don't know yet"
+map SDLvl02 "Marble Madness"
 {
 	music = S_LVL02
 	sky1 = "SUNSTSKY"
