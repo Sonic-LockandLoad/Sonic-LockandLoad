@@ -88,8 +88,15 @@ map SDLvl01 "Sunset Gardens"
 {
 	music = S_LVL01
 	sky1 = "SUNSTSKY"
+	next = "SDLvl02"
+	partime = 240
+}
+
+map SDLvl02 "I don't know yet"
+{
+	music = S_LVL02
+	sky1 = "SUNSTSKY"
 	next = "S_LOBBY"
-	author = "That1M8Head"
 	partime = 240
 }
 
