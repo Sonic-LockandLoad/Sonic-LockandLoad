@@ -400,3 +400,55 @@ class EnergyBladeRight : EnergyBladeLeft
 			Loop;
 	}
 }
+
+class ProjectileBullet : FastProjectile
+{
+    Default
+    {
+        Radius 4;
+        Height 4;
+        Speed 50;
+        Damage 5;
+        Projectile;
+        SeeSound "grunt/attack";
+    }
+    States
+    {
+        Spawn:
+            PUFF A 1 Bright;
+            Loop;
+        Death:
+            TNT1 A 1;
+            Stop;
+    }
+}
+
+class ProjectilePellet : Actor
+{
+    Default
+    {
+        Radius 4;
+        Height 4;
+        Speed 40;
+        Damage 1;
+        Projectile;
+        SeeSound "shotguy/attack";
+    }
+    States
+    {
+        Spawn:
+            PUFF A 1 Bright;
+            Loop;
+        Death:
+            TNT1 A 1;
+            Stop;
+    }
+}
+
+class WeakProjectileBullet : ProjectileBullet
+{
+    Default
+    {
+        Damage 1;
+    }
+}

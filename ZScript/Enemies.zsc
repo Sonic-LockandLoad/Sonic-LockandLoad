@@ -135,6 +135,46 @@ class MechZombie : Actor
 	}
 }
 
+class ProjectileZombieMan : ZombieMan replaces ZombieMan
+{
+ 	States
+	{
+		Missile:
+			POSS E 10 A_FaceTarget;
+			POSS F 8 Bright A_SpawnProjectile("ProjectileBullet");
+			POSS E 8;
+			Goto See;
+	}
+}
+
+class ProjectileShotgunner : ShotgunGuy replaces ShotgunGuy
+{
+    States
+    {
+        Missile:
+            SPOS E 10 A_FaceTarget;
+            SPOS F 10 Bright {
+                for (int x = 0; x < 10; x++) {
+                    A_SpawnProjectile("ProjectilePellet", random(24, 42), 0, random(-2, 2));
+                }
+            }
+            SPOS E 10;
+            Goto See;
+    }
+}
+
+class ProjectileChaingunner : ChaingunGuy replaces ChaingunGuy
+{
+    States
+    {
+        Missile:
+            CPOS E 10 A_FaceTarget;
+            CPOS FE 3 Bright A_SpawnProjectile("WeakProjectileBullet");
+            CPOS F 1 A_CPosRefire;
+            Goto Missile+1;
+    }
+}
+
 class WalkingCapsule : Demon
 {
 	Default
