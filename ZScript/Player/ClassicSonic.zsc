@@ -824,7 +824,7 @@ class SonicThok : CustomInventory
 			didJump = false;
 			inuse = 30;
 		}
-		else if (owner is "PlayerPawn" && buttons & BT_JUMP && !(obuttons & BT_JUMP) && owner.Pos.Z - owner.GetZAt() > 16 && inuse == 0 && !CountInv("PowerHyper")) {
+		else if (owner is "PlayerPawn" && buttons & BT_JUMP && !(obuttons & BT_JUMP) && owner.Pos.Z - owner.GetZAt() > 38 && inuse == 0 && !CountInv("PowerHyper")) {
 			owner.UseInventory(self);
 			didJump = true;
 			inuse = 5;
