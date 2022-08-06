@@ -129,18 +129,18 @@ class BoostEnabledWeapon : LockLoadWeapon
 			default:
 				/* Sonic */
 				A_SetMugShotState("Boost");
-				A_FireBullets(60, 60, 200, 1, "InvisibleGibPuff", FBF_NORANDOM, 125);
+				A_FireBullets(60, 60, 150, 1, "BoostPuff", FBF_NORANDOM, 125);
 				A_TakeInventory("ChaosEnergy", 2);
 				break;
 			case 1:
 				/* Super Sonic */
 				A_SetMugShotState("SuperBoost");
-				A_FireBullets(120, 120, 500, 999, "InvisibleGibPuff", FBF_NORANDOM, 140);
+				A_FireBullets(120, 120, 150, 999, "BoostPuff", FBF_NORANDOM, 140);
 				break;
 			case 2:
 				/* Hyper Sonic */
 				A_SetMugShotState("HyperBoost");
-				A_FireBullets(120, 120, 500, 999, "InvisibleGibPuff", FBF_NORANDOM, 140);
+				A_FireBullets(120, 120, 150, 999, "BoostPuff", FBF_NORANDOM, 140);
 				break;
 		}
 		A_PlaySound("sweapons/boosttrail", 1, 1.0, true);

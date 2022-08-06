@@ -188,6 +188,14 @@ class InvisibleGibPuff : Actor
 	}
 }
 
+class BoostPuff : InvisibleGibPuff
+{
+    Default
+    {
+        ProjectileKickBack 100000;
+    }
+}
+
 class SwordPuff : Actor
 {
 	Default
