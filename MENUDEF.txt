@@ -91,6 +91,11 @@ OptionMenu "LLAbilitiesMenu"
 	Option "Homing Snap Reticle", "HomingSnapReticle", "HomingSnapReticle"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
+
+    Option "Sonic Thok Input", "JumpThok", "JumpThok"
+	StaticText "Classic Sonic only", "Cyan"
+	StaticText ""
+	
 }
 OptionMenu "LLMiscOptMenu"
 {
@@ -218,4 +223,9 @@ OptionValue "HUDType"
 	0, "Unified" // Chaos Update HUD
 	1, "Classic-Style" // Pre-Chaos Update HUD
 	2, "Legacy" // Minimal HUD, ripped from STHiD Legacy Edition
+}
+OptionValue "JumpThok"
+{
+	0, "Offhand Ability only"
+	1, "Off. Ability or Jump mid-air"
 }

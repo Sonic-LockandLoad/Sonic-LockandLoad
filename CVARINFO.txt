@@ -13,6 +13,7 @@ user bool WallCrash 				= true;
 user bool Subtitles 				= true;
 user bool LowHealthSound			= true;
 user bool ReservedMode				= false;
+user bool JumpThok                  = true;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
