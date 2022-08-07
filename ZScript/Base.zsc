@@ -19,6 +19,7 @@ class LockLoadPlayer : PlayerPawn
 	{
 		Super.TakeSpecialDamage(inflictor, source, damage, damagetype);
 		if (damage > 0 && damage < 999 && !(player.cheats & CF_GODMODE) && !CountInv("PowerInvulnerable")) {
+            A_StartSound("sglobal/loserings", 6);
 			int ringcount = damage;
 			int maxrange  = damage / 4;
 			if (maxrange < 5) maxrange = 5;
@@ -48,7 +49,7 @@ class LockLoadPlayer : PlayerPawn
 			Goto Missile;
 		Pain:
 			PLAY G 4;
-			PLAY G 0 A_PlaySound("sglobal/loserings", 6);
+			PLAY G 0; 
 			PLAY G 4;
 			Goto Spawn;
 		Death.Drownd:
