@@ -314,7 +314,7 @@ class Shuriken : FastProjectile
 		Radius 8;
 		Height 2;
 		Speed 100;
-		Damage 60;
+		Damage 25;
 		Projectile;
 		+RIPPER
 		+NOEXTREMEDEATH
