@@ -289,7 +289,7 @@ class Caliburn : BoostEnabledWeapon
 			/* passthrough */
 		Slash1:
 			TNT1 A 0 {
-				if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+				if (CountInv("PowerHyper")) {
 					A_PlaySound("sweapons/soulsurge", 6, 0.5);
 					A_FireProjectile("EnergyBladeLeft");
 				}
@@ -308,7 +308,7 @@ class Caliburn : BoostEnabledWeapon
 			Goto Ready;
 		Slash2:
 			TNT1 A 0 {
-				if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+				if (CountInv("PowerHyper")) {
 					A_PlaySound("sweapons/soulsurge", 6, 0.5);
 					A_FireProjectile("EnergyBladeRight");
 				}
@@ -797,21 +797,13 @@ class SonicKick : CustomInventory
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
-			SKIK A 1
-			{
-				A_PlaySound("sweapons/shockwave", 7);
-				A_FireBullets(27, 9, 100, 5, "GibPuff", 0);
-			}
+			SKIK A 1;
 			SKIK BC 1;
 			SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			SKIK E 1;
 			Stop;
 		SuperSonicEagle:
-			SEAG A 1
-			{
-				A_PlaySound("sweapons/shockwave", 7);
-				A_FireBullets(3, 3, 150, 5, "GibPuff", 0);
-			}
+			SEAG A 1;
 			SEAG BC 1;
 			SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 160, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			SEAG E 1;
@@ -824,7 +816,7 @@ class SonicKick : CustomInventory
 			HKIK A 1
 			{
 				A_PlaySound("sweapons/shockwave", 7);
-				A_FireBullets(29, 11, 100, 10, "GibPuff", 0);
+				A_FireBullets(25, 10, 75, 5, "GibPuff", 0);
 			}
 			HKIK BC 1;
 			HKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
@@ -834,7 +826,7 @@ class SonicKick : CustomInventory
 			HEAG A 1
 			{
 				A_PlaySound("sweapons/shockwave", 7);
-				A_FireBullets(5, 5, 150, 10, "GibPuff", 0);
+				A_FireBullets(5, 5, 100, 10, "GibPuff", 0);
 			}
 			HEAG BC 1;
 			HEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 160, 0, 0, "ArmorBonus", "sweapons/finalhit");
