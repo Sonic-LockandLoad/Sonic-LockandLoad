@@ -14,6 +14,7 @@ user bool Subtitles 				= true;
 user bool LowHealthSound			= true;
 user bool ReservedMode				= false;
 user bool JumpThok                  = true;
+user bool RecoilBurstRelease        = true;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";

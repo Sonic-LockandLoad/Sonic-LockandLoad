@@ -95,6 +95,10 @@ OptionMenu "LLAbilitiesMenu"
     Option "Sonic Thok Input", "JumpThok", "JumpThok"
 	StaticText "Classic Sonic only", "Cyan"
 	StaticText ""
+
+    Option "Recoil Burst Activation", "RecoilBurstRelease", "RecoilBurstRelease"
+	StaticText "Sonic only", "Cyan"
+	StaticText ""
 	
 }
 OptionMenu "LLMiscOptMenu"
@@ -228,4 +232,9 @@ OptionValue "JumpThok"
 {
 	0, "Offhand Ability only"
 	1, "Off. Ability or Jump mid-air"
+}
+OptionValue "RecoilBurstRelease"
+{
+	0, "Press Fire while holding Alt-Fire"
+	1, "Release Alt-Fire"
 }
