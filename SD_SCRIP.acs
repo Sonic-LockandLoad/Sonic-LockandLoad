@@ -409,11 +409,32 @@ script "DeathMusic" (int xdeath)
 					break;
 			}
 		}
-		while (ClassifyActor(0) & ACTOR_DEAD) {
-			Delay(1);
-		}
-		if (ClassifyActor(0) & ACTOR_ALIVE) {
-			SetMusic("*");
+	}
+}
+
+script "DidResurrect" RESPAWN
+{
+	SetMusic("*");
+	if (GetCvar("Subtitles")) {
+		switch (PlayerClass(PlayerNumber())) {
+			case Sonic:
+				HudMessage(s:"\c[Sonic] Sonic: \c[Grey] (Never happened.)";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case Amy:
+				HudMessage(s:"\c[Amy] Amy: \c[Grey] (Huh? I'm still alive?)";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case ClassicSonic:
+				HudMessage(s:"\c[Classic] Sonic: \c[Grey] (Cutting it too close...)";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case Shadow:
+				HudMessage(s:"\c[Shadow] Shadow: \c[Grey] (Time to stop being so careless...)";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			default:
+				break;
 		}
 	}
 }
