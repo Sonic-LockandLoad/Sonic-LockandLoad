@@ -80,6 +80,7 @@ sweapons/slice				shuslice
 sweapons/dropdash          	DropDash
 sweapons/superdropdash      DropSupe
 sweapons/instashield		InShield
+sweapons/recoilcharge		fshtchrg
 
 // Character
 
