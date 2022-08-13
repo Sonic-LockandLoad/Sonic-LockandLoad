@@ -376,7 +376,7 @@ script "DeathMusic" (int xdeath)
 {
 	if (GetCvar("DeathMusic")) {
 		if (xdeath) {
-			switch(PlayerClass(PlayerNumber())) {
+			switch (PlayerClass(PlayerNumber())) {
 				case ClassicSonic:
 					SetMusic("C_DEADX", 0);
 					break;
@@ -388,8 +388,7 @@ script "DeathMusic" (int xdeath)
 			}
 		}
 		else {
-			switch(PlayerClass(PlayerNumber()))
-			{
+			switch (PlayerClass(PlayerNumber())) {
 				case Sonic:
 					SetMusic("S_DEADM", 0);
 					break;
@@ -399,16 +398,22 @@ script "DeathMusic" (int xdeath)
 				case ClassicSonic:
 					SetMusic("C_DEADM", 0);
 					Delay(9*35);
-					SetMusic("*");
+					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic("*"); }
 					break;
 				case Shadow:
 					SetMusic("D_DEADM", 0);
 					Delay(7*35);
-					SetMusic("*");
+					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic("*"); }
 					break;
 				default:
 					break;
 			}
+		}
+		while (ClassifyActor(0) & ACTOR_DEAD) {
+			Delay(1);
+		}
+		if (ClassifyActor(0) & ACTOR_ALIVE) {
+			SetMusic("*");
 		}
 	}
 }
