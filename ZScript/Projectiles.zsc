@@ -91,6 +91,16 @@ class DuellingRocket : Actor
 	}
 }
 
+class DuellingRocketUnguided : DuellingRocket
+{
+	States
+	{
+		Spawn:
+			MISL A 1 Bright;
+			Loop;
+	}
+}
+
 class ChaosMissile : FastProjectile
 {
 	Default
