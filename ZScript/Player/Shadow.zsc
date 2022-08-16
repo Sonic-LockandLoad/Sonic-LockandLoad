@@ -41,7 +41,7 @@ class ShadowPlayer : LockLoadPlayer
 					A_StartSound("sweapons/reticle", 11);
 					reticleActive = true;
 				}
-				LineAttack(angle, 800, pitch, 0, 'None', 'SonicReticle', LAF_NORANDOMPUFFZ, null, 10);
+				LineAttack(angle, 800, pitch, 0, 'None', 'ShadowReticle', LAF_NORANDOMPUFFZ, null, 10);
 			}
 			else {
 				reticleActive = false;
@@ -586,7 +586,7 @@ class ChaosSnap : CustomInventory
 	{
 	Use:
 		TNT1 A 0 A_Overlay(-3, "CountCheck");
-		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		TNT1 A 0 A_OverlayOffset(-3, 0, 32);
 		Fail;
 	CountCheck:
 		TNT1 A 0 {
@@ -672,13 +672,15 @@ class HomingAttack : CustomInventory
 	States
 	{
 	Use:
-		TNT1 A 0 A_Overlay(-2, "HomingCheck");
-		TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+		TNT1 A 0 A_Overlay(-4, "HomingCheck");
+		TNT1 A 0 A_OverlayOffset(-4, 0, 32);
 		Fail;
 	HomingCheck:
 		TNT1 A 0 {
-			bool enemyVisible = CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 160);
-			if (enemyVisible) return ResolveState("HomingAttack");
+			FTranslatedLineTarget ltinfo;
+			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
+			let ltarget = ltinfo.linetarget;
+			if (ltarget) return ResolveState("HomingAttack");
 			return ResolveState(null);
 		}
 		Stop;
