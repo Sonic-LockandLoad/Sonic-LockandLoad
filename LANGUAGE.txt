@@ -161,12 +161,12 @@ DOSY = "\c[MenuInactive] Thanks for playing Sonic: Lock & Load!\nAre you sure yo
 
 STARTUP1 = "\c[Sonic]Welcome to Sonic: Lock & Load!";
 
-skill_text1 = "\c[Green]Not many enemies at all, and they're pretty slow.\n\nRecommended for complete beginners.";
-skill_text2 = "\c[Yellow]There are less enemies around.\n\nThe recommended skill for a casual experience.";
-skill_text3 = "\c[MenuInactive]A good amount of enemies everywhere.\n\nThe recommended Sonic: Lock & Load experience.";
-skill_text4 = "\c[MenuInactive]Enemies are twice as fast.\n\nRecommended for experienced players.";
-skill_text5 = "\c[Red]Enemies are fast and you take double damage.\n\nYou'd better bring your best.";
-skill_text6 = "\c[Red]You die in one hit, and so do the enemies.\n\nRecommended for memelords and masochists.";
+skill_text1 = "\c[Green]There's basically no enemy opposition.\n\nRecommended for complete beginners.";
+skill_text2 = "\c[Yellow]Reduced enemy count.\n\nGood for when you're finding your footing.";
+skill_text3 = "\c[MenuInactive]Standard difficulty.\n\nThe recommended Sonic: Lock & Load experience.";
+skill_text4 = "\c[MenuInactive]Enemies are twice as fast.\n\nA decent challenge for veterans.";
+skill_text5 = "\c[Red]Enemies are fast and you take double damage.\n\nYou'd best bring your best.";
+skill_text6 = "\c[Red]You die in one hit, and so do the enemies.\n\nThis isn't even remotely fair!";
 
 sonic		= "\c[MenuInactive]Sonic";
 amy			= "\c[Amy]Amy";
