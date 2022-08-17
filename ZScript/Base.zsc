@@ -91,6 +91,8 @@ class LockLoadPlayer : PlayerPawn
 		}
 		
 		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
+			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+			bool IsHovering = buttons & BT_ALTATTACK && (CountInv("PowerSuper")||CountInv("PowerHyper")) && !player.onground;
 			if (bNoGravity) {
 				Vel.Z = 3.;
 			}
@@ -124,7 +126,7 @@ class LockLoadPlayer : PlayerPawn
 				}
 				ACS_NamedExecute("WallJump", 0, wJumpHeight, wJumpDistance);
 			}
-			else if (level.IsJumpingAllowed() && (CountInv("SonicCheck") || CountInv("AmyCheck") || (CountInv("ClassicCheck") && CountInv("PowerHyper"))) && GetCvar("DoubleJump")) {
+			else if (level.IsJumpingAllowed() && (CountInv("SonicCheck") || CountInv("AmyCheck") || (CountInv("ClassicCheck") && CountInv("PowerHyper") && !IsHovering)) && GetCvar("DoubleJump")) {
 				// Double jump stuff
 				int jumpPower = 50;
 				if (GetCvar("Sliding")) {

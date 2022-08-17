@@ -321,7 +321,10 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			Goto Ready;
 		Hover:
 			TNT1 A 1 {
-				A_ChangeVelocity(Vel.X, Vel.Y, 0, CVF_Replace);
+				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+				if (buttons & BT_JUMP) A_ChangeVelocity(Vel.X, Vel.Y, 15, CVF_Replace);
+				else if (buttons & BT_CROUCH) A_ChangeVelocity(Vel.X, Vel.Y, -15, CVF_Replace);
+				else A_ChangeVelocity(Vel.X, Vel.Y, 0, CVF_Replace);
 				A_SetGravity(0);
 				invoker.HoverCounter++;
 				if (invoker.HoverCounter > 75 && CountInv("PowerSuper")) {
@@ -661,7 +664,7 @@ class SpinAttack : CustomInventory
 		int forward = GetPlayerInput(MODINPUT_FORWARDMOVE);
 		int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
 		A_Light(0);
-		if (A_CheckFloor("Null")) {
+		if (player.onground) {
 			if (forward > 0 || sidem > 0 || forward < 0 || sidem < 0) {
 				A_CustomPunch(80, false, CPF_NOTURN, "SonicPunchPuff", 256, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				SetHeight(21);
@@ -673,8 +676,7 @@ class SpinAttack : CustomInventory
 			}
 		}
 		else {
-			A_CustomPunch(80, false, CPF_NOTURN, "SonicPunchPuff", 196, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			if (Vel.Z > 0) A_ChangeVelocity(0, 0, 5);
+			A_CustomPunch(80, false, CPF_NOTURN, "SonicPunchPuff", 256, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		}
 	}
 	States
@@ -685,7 +687,7 @@ class SpinAttack : CustomInventory
 			Fail;
 		StartAttack:
 			TNT1 A 0 {
-				if (A_CheckFloor("Null")) {
+				if (player.onground) {
 					A_StartSound("sweapons/spin", 8);
 				}
 				else {
@@ -815,16 +817,20 @@ class SonicThok : CustomInventory
 		Super.DoEffect();
 		int buttons = owner.GetPlayerInput(MODINPUT_BUTTONS);
 		int obuttons = owner.GetPlayerInput(MODINPUT_OLDBUTTONS);
+		bool JumpPress = buttons & BT_JUMP && !(obuttons & BT_JUMP) && !owner.CountInv("PowerHyper");
+		bool OffAbilityPress = buttons & BT_ZOOM && !(obuttons & BT_ZOOM);
+		bool AboveGround = !owner.player.onground && owner.Pos.Z - owner.GetZAt() > 38;
+		bool IsHovering = buttons & BT_ALTATTACK && (owner.CountInv("PowerSuper")||owner.CountInv("PowerHyper")) && !owner.player.onground;
 		if (inuse > 0)
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && buttons & BT_ZOOM && !(obuttons & BT_ZOOM) && inuse == 0) {
+		if (owner is "PlayerPawn" && OffAbilityPress && inuse == 0) {
 			owner.UseInventory(self);
 			didJump = false;
 			inuse = 30;
 		}
-		else if (owner.GetCvar("JumpThok") && owner is "PlayerPawn" && buttons & BT_JUMP && !(obuttons & BT_JUMP) && (!owner.player.onground && owner.Pos.Z - owner.GetZAt() > 38) && inuse == 0 && !CountInv("PowerHyper")) {
+		else if (owner.GetCvar("JumpThok") && owner is "PlayerPawn" && JumpPress && AboveGround && !IsHovering && inuse == 0) {
 			owner.UseInventory(self);
 			didJump = true;
 			inuse = 5;
