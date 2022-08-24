@@ -14,7 +14,7 @@ class AmyPlayer : LockLoadPlayer
 		Player.StartItem "AmyCheck";
 		Player.StartItem "AmyKick";
 		Player.StartItem "AmySlide";
-		Player.StartItem "ChaosEnergy", 50;
+		Player.StartItem "ChaosEnergy", 150;
 		Player.WeaponSlot 1, "PikoPikoHammer";
 		Player.WeaponSlot 2, "SilentRosePistol";
 		Player.WeaponSlot 3, "PrecisionShotgun";

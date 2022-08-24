@@ -13,7 +13,7 @@ class ShadowPlayer : LockLoadPlayer
 		Player.StartItem "ChaosSnap";
 		Player.StartItem "ChaosSpearAtk";
 		Player.StartItem "HomingAttack";
-		Player.StartItem "ChaosEnergy", 120;
+		Player.StartItem "ChaosEnergy", 200;
 		Player.WeaponSlot 1, "HighShovel", "ShadowKnife";
 		Player.WeaponSlot 2, "ShadowMP5";
 		Player.WeaponSlot 3, "DarkAssault";

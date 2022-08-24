@@ -9,7 +9,7 @@ class ClassicSonicPlayer : LockLoadPlayer
 		Player.Face "CLF";
 		Player.StartItem "ClassicAbilities";
 		Player.StartItem "ChaosBlaster";
-		Player.StartItem "ChaosEnergy", 150;
+		Player.StartItem "ChaosEnergy", 100;
 		Player.StartItem "ClassicCheck";
 		Player.StartItem "SonicThok";
 		Player.StartItem "SpinAttack";
