@@ -764,27 +764,18 @@ class SonicThok : CustomInventory
 		}
 		Stop;
 	Thok:
-		TNT1 A 5
+		TNT1 A 1
 		{
 			int forward = GetPlayerInput(MODINPUT_FORWARDMOVE);
 			int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
 			int input = 0;
 			int speed = sqrt(Vel.X * Vel.X + Vel.Y * Vel.Y);
-			int thokSpeed = speed / 2 + 60;
-			
+			int thokSpeed = speed / 2 + 50;
 			A_StartSound("classic/dash", 6);
-			
-			if (forward) {
-				A_ChangeVelocity(thokSpeed, 0, 0, CVF_Relative);
-				input = 1;
+			if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
+				return ResolveState("Boost");
 			}
-			
-			if (!input) {
-				if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
-					return ResolveState("Boost");
-				}
-				A_ChangeVelocity(thokSpeed - 20, 0, 0, CVF_Relative);
-			}
+			A_ChangeVelocity(thokSpeed, 0, 0, CVF_Relative);
 			return ResolveState(null);
 		}
 		Stop;
