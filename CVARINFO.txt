@@ -21,3 +21,4 @@ user noarchive string LastWeapon		= "";
 user noarchive bool	  Sliding			= false;
 user noarchive bool   SoulSurgeReady	= false;
 user noarchive bool	  IsSpinDashing		= false;
+user noarchive bool	  DidJump			= false;

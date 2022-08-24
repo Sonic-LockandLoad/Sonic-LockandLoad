@@ -88,8 +88,8 @@ class LockLoadPlayer : PlayerPawn
 		}
 		if (player.onground) {
 			dJumpCounter = 0; // Reset the double jump counter once you touch the ground
+			cvar.FindCvar("DidJump").SetBool(false); // Reset the DidJump CVAR as well
 		}
-		
 		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
 			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 			bool IsHovering = buttons & BT_ALTATTACK && (CountInv("PowerSuper")||CountInv("PowerHyper")) && !player.onground;
@@ -98,6 +98,7 @@ class LockLoadPlayer : PlayerPawn
 			}
 			else if (level.IsJumpingAllowed() && player.onground) {
 				// Usual jump stuff
+				cvar.FindCvar("DidJump").SetBool(true);
 				double jumpvelz = JumpZ * 35 / TICRATE;
 				double jumpfac = 0;
 

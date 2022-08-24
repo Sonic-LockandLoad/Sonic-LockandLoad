@@ -830,7 +830,7 @@ class SonicThok : CustomInventory
 			didJump = false;
 			inuse = 30;
 		}
-		else if (owner.GetCvar("JumpThok") && owner is "PlayerPawn" && JumpPress && AboveGround && !IsHovering && inuse == 0) {
+		else if (owner.GetCvar("JumpThok") && owner is "PlayerPawn" && JumpPress && AboveGround && owner.GetCvar("DidJump") && !IsHovering && inuse == 0) {
 			owner.UseInventory(self);
 			didJump = true;
 			inuse = 5;
