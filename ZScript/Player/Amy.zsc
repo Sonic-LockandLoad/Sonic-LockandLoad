@@ -498,11 +498,34 @@ class AmySlide : CustomInventory
 		Slide:
 			TNT1 A 0 {
 				cvar.FindCvar("Sliding").SetBool(true);
-				A_ChangeVelocity(70, 0, 0, CVF_Relative|CVF_Replace);
+				int forward = GetPlayerInput(MODINPUT_FORWARDMOVE) / 12800;
+				int sidem = GetPlayerInput(MODINPUT_SIDEMOVE) / 10240;
+				A_LogInt(forward);
 				A_StartSound("amy/slide", 7);
 				A_SetSize(-1, 18);
 				Player.ViewHeight = 18;
+				if (sidem > 0 || forward < 0 || sidem < 0) {
+					A_ChangeVelocity(forward * 70, sidem * -50, 0, CVF_Relative|CVF_Replace);
+				}
+				else {
+					A_ChangeVelocity(70, 0, 0, CVF_Relative|CVF_Replace);
+					return ResolveState("Animation");
+				}
+				return ResolveState(null);
 			}
+			TNT1 A 4;
+			TNT1 AAAAAAAAA 1 {
+				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
+					A_ChangeVelocity(0, 0, 5, CVF_Relative);
+					return ResolveState("EndSlide");
+				}
+				else {
+					A_ChangeVelocity(Vel.X, Vel.Y, 0, CVF_Replace);
+				}
+				return ResolveState(null);
+			}
+			Goto EndSlide;
+		Animation:
 			SLID ABCD 1;
 			SLID EEEEEEEEE 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
@@ -514,8 +537,9 @@ class AmySlide : CustomInventory
 				}
 				return ResolveState(null);
 			}
+			Goto EndSlide;
 		EndSlide:
-			SLID DBCA 1 { 
+			#### DBCA 1 {
 				cvar.FindCvar("Sliding").SetBool(false);
 				A_SetSize(-1, 42);
 				Player.ViewHeight = 42;
