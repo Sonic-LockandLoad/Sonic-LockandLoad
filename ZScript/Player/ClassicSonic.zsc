@@ -331,6 +331,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				A_ClearOverlays(0, 0);
 				A_Light(0);
 				A_SetSpeed(4);
+				if (invoker.SpinCharges < 20) invoker.SpinCharges = 20;
 				A_PlaySound("sWeapons/peeloutrelease", 5);
 			}
             Goto WallDash;
