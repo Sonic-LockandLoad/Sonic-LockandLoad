@@ -818,7 +818,7 @@ class SonicThok : CustomInventory
 			int speed = sqrt(Vel.X * Vel.X + Vel.Y * Vel.Y);
 			int thokSpeed = speed / 2 + 50;
 			A_StartSound("classic/dash", 6);
-			if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
+			if ((CountInv("PowerSuper") || CountInv("PowerHyper")) && !forward && !invoker.didJump) {
 				return ResolveState("Boost");
 			}
 			A_ChangeVelocity(thokSpeed, 0, 0, CVF_Relative);
