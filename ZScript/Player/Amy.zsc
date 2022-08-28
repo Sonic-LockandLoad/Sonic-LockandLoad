@@ -508,7 +508,6 @@ class AmySlide : CustomInventory
 				cvar.FindCvar("Sliding").SetBool(true);
 				int forward = GetPlayerInput(MODINPUT_FORWARDMOVE) / 12800;
 				int sidem = GetPlayerInput(MODINPUT_SIDEMOVE) / 10240;
-				A_LogInt(forward);
 				A_StartSound("amy/slide", 7);
 				A_SetSize(-1, 18);
 				Player.ViewHeight = 18;
