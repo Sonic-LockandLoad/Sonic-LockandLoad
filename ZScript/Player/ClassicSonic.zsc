@@ -722,7 +722,14 @@ class SpinAttack : CustomInventory
 			}
 		}
 		else {
-			A_FireBullets(15, 15, 80, 8, "SonicPunchPuff", 0, 256);
+			for (int x = 0; x <= 80; x++) {
+				FTranslatedLineTarget t;
+				int rx = random(-15, 15);
+				int ry = random(-15, 15);
+				double pitch = AimLineAttack(angle + rx, 256, null, 0., ALF_CHECK3D);
+				LineAttack(angle + rx, 256, pitch + ry, 8 * random(1, 8), 'Melee', "SonicPunchPuff", LAF_ISMELEEATTACK, t);
+				if (t.linetarget) A_StartSound("sweapons/finalhit", CHAN_WEAPON);
+			}
 		}
 	}
 	States
