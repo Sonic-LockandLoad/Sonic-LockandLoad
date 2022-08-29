@@ -506,8 +506,14 @@ class AmySlide : CustomInventory
 		Slide:
 			TNT1 A 0 {
 				cvar.FindCvar("Sliding").SetBool(true);
-				int forward = GetPlayerInput(MODINPUT_FORWARDMOVE) / 12800;
-				int sidem = GetPlayerInput(MODINPUT_SIDEMOVE) / 10240;
+				int forwardmax = 12800;
+				int sidemax = 10240;
+				if (!(GetPlayerInput(MODINPUT_BUTTONS) & BT_RUN)) {
+					forwardmax /= 2;
+					sidemax /= 2;
+				}
+				int forward = GetPlayerInput(MODINPUT_FORWARDMOVE) / forwardmax;
+				int sidem = GetPlayerInput(MODINPUT_SIDEMOVE) / sidemax;
 				A_StartSound("amy/slide", 7);
 				A_SetSize(-1, 18);
 				Player.ViewHeight = 18;
