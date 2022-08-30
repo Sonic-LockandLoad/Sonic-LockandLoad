@@ -401,8 +401,7 @@ class ChaosBlaster : LockLoadWeapon
 	Default
 	{
 		Weapon.SelectionOrder 100;
-		Weapon.AmmoUse 2;
-		Weapon.AmmoGive 25;
+		Weapon.AmmoUse 1;
 		Weapon.KickBack 100;
 		Weapon.BobSpeed 1.5;
 		Weapon.BobRangeX 0.5;
@@ -437,6 +436,7 @@ class ChaosBlaster : LockLoadWeapon
 			Stop;
 	}
 }
+
 class SpeedyShotgun : LockLoadWeapon
 {
 	Default

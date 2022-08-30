@@ -228,7 +228,7 @@ class MinorChaosEnergyBall : FastProjectile
 		Radius 13;
 		Height 8;
 		Speed 100;
-		Damage 10;
+		Damage 5;
 		Projectile;
 		+RANDOMIZE
 		+EXTREMEDEATH
