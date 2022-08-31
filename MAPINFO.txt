@@ -73,7 +73,7 @@ clearepisodes
 
 episode S_LOBBY
 {
-	name = "Station Square"
+	name = "S:L&L Campaign"
 }
 
 map S_LOBBY "Station Square"
