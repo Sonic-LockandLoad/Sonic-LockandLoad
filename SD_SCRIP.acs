@@ -567,26 +567,42 @@ script "ReticleSound" (void)
 
 script "GoalRing" (void)
 {
+	// Variables
 	int score, targetscore;
 	int LevelTime = Timer() / 35;
 	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
 	int CurrentHealth = GetActorProperty(1001, APROP_Health);
+	int CurrentEnergy = CheckActorInventory(1001, "ChaosEnergy");
 	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
 	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
-	if (LevelTime < ParTime) score += (ParTime - LevelTime) * 100;
-	score += KilledMonsters * 100;
-	score += CurrentHealth * 10;
-	score += CheckActorInventory(1001, "ChaosEnergy") * 10;
+	
+	// Your score
+	if (LevelTime < ParTime) score += (ParTime - LevelTime) * 75;
+	else if (LevelTime == ParTime) score += 2000;
+	else if (LevelTime > ParTime) score -= (LevelTime - ParTime) * 25;
+	if (CurrentHealth > 300) score += CurrentHealth * 50;
+	else score += CurrentHealth * 10;
+	Log(d:ParTime-LevelTime);
+	score += KilledMonsters * 75;
+	score += CurrentEnergy * 20;
+	if (score < 0) score = 0;
+	
+	// Stop the player and take their Super/Hyper form away
 	Thing_Stop(1001);
 	ACS_NamedTerminate("TransformSuper", 0);
 	ACS_NamedTerminate("TransformHyper", 0);
 	Delay(5);
 	GiveInventory("Invincibility", 1);
-	targetscore += ParTime * 50;
-	targetscore += TotalMonsters * 50;
+	
+	// Your target score
+	targetscore += ParTime * 100;
+	targetscore += TotalMonsters * 100;
+	if (GameSkill() == 5) targetscore *= 1.5;
 	HudMessage(s:"Score: ", d:score, s:"\n",
 			   s:"Target Score: ", d:targetscore, s:"\n"; 
 			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
+			   
+	// Victory message
 	SetFont("BIGFONT");
 	switch (PlayerClass(PlayerNumber()))
 	{
