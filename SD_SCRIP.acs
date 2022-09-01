@@ -43,7 +43,7 @@ script "Taunt" (void)
 					PlaySound(1001, "sonic/taunt1", 9, 1.0);
 					SetMugshotState("GrinSmol");
 					if (GetCvar("Subtitles")) {
-						HudMessage(s:"\c[Sonic] Sonic: \c[White] You're too slow!";
+						HudMessage(l:"staunt1";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 1.5, 1.0);
 					}
 					break;
@@ -51,7 +51,7 @@ script "Taunt" (void)
 					PlaySound(1001, "sonic/taunt2", 9, 1.0);
 					SetMugshotState("GrinSmol");
 					if (GetCvar("Subtitles")) {
-						HudMessage(s:"\c[Sonic] Sonic: \c[White] Come on, step it up!";
+						HudMessage(l:"staunt2";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 					}
 					break;
@@ -59,7 +59,7 @@ script "Taunt" (void)
 					PlaySound(1001, "sonic/taunt3", 9, 1.0);
 					SetMugshotState("GrinSmol");
 					if (GetCvar("Subtitles")) {
-						HudMessage(s:"\c[Sonic] Sonic: \c[White] I'm Sonic the kidnapper!";
+						HudMessage(l:"staunt3";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 					}
 					break;
@@ -69,7 +69,7 @@ script "Taunt" (void)
 			PlaySound(1001, "amy/taunt", 9, 1.0);
 			SetMugshotState("FailSmol");
 			if (GetCvar("Subtitles")) {
-				HudMessage(s:"\c[Amy] Amy: \c[White] Are we gonna rest much longer...?";
+				HudMessage(l:"ataunt1";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 			}
 			break;
@@ -80,7 +80,7 @@ script "Taunt" (void)
 					PlaySound(1001, "classic/taunt1", 9, 1.0);
 					SetMugshotState("GrinSmol");
 					if (GetCvar("Subtitles")) {
-						HudMessage(s:"\c[Classic] Sonic: \c[White] Yo, have you guys been good?";
+						HudMessage(l:"ctaunt1";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 					}
 					break;
@@ -88,7 +88,7 @@ script "Taunt" (void)
 					PlaySound(1001, "classic/taunt2", 9, 1.0);
 					SetMugshotState("GrinSmol");
 					if (GetCvar("Subtitles")) {
-						HudMessage(s:"\c[Classic] Sonic: \c[White] Hey, I'll play with you some other time!";
+						HudMessage(l:"ctaunt2";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 					}
 					break;
@@ -96,7 +96,7 @@ script "Taunt" (void)
 					PlaySound(1001, "classic/taunt3", 9, 1.0);
 					SetMugshotState("GrinSmol");
 					if (GetCvar("Subtitles")) {
-						HudMessage(s:"\c[Classic] Sonic: \c[White] Sound test! You get to listen to cool sounds!";
+						HudMessage(l:"ctaunt3";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 4.0, 1.0);
 					}
 					break;
@@ -104,7 +104,7 @@ script "Taunt" (void)
 					PlaySound(1001, "classic/taunt4", 9, 1.0);
 					SetMugshotState("GrinSmol");
 					if (GetCvar("Subtitles")) {
-						HudMessage(s:"\c[Classic] Sonic: \c[White] Alright, put 'em up!";
+						HudMessage(l:"ctaunt4";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 					}
 					break;
@@ -112,7 +112,7 @@ script "Taunt" (void)
 					PlaySound(1001, "classic/taunt5", 9, 1.0);
 					SetMugshotState("FailSmol");
 					if (GetCvar("Subtitles")) {
-						HudMessage(s:"\c[Classic] Sonic: \c[White] Shoot, I got sand in my eye!";
+						HudMessage(l:"ctaunt5";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 					}
 					break;
@@ -127,7 +127,7 @@ script "Taunt" (void)
 					SetActorProperty(1001, APROP_Health, 145);
 				}
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Shadow] Shadow: \c[Gold] I'm the coolest!";
+					HudMessage(l:"dtaunt3";
 							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			} else {
@@ -135,14 +135,14 @@ script "Taunt" (void)
 					case 1:
 						PlaySound(1001, "shadow/taunt1", 9, 1.0);
 						if (GetCvar("Subtitles")) {
-							HudMessage(s:"\c[Shadow] Shadow: \c[White] Hmph. Not even a challenge.";
+							HudMessage(l:"dtaunt1";
 								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 						}
 						break;
 					case 2:
 						PlaySound(1001, "shadow/taunt2", 9, 1.0);
 						if (GetCvar("Subtitles")) {
-							HudMessage(s:"\c[Shadow] Shadow: \c[White] You're going straight to hell!";
+							HudMessage(l:"dtaunt2";
 									   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 						}
 						break;
@@ -614,7 +614,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "sonic/goodresult");
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Sonic] Sonic: \c[White] How's that?";
+					HudMessage(l:"sresult1";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -622,7 +622,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "sonic/okayresult");
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Sonic] Sonic: \c[White] Not my best run...";
+					HudMessage(l:"sresult2";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -630,7 +630,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "sonic/badresult");
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Sonic] Sonic: \c[White] Aw, I gotta try that again!";
+					HudMessage(l:"sresult3";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -644,7 +644,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Amy] Amy: \c[White] Yay!";
+					HudMessage(l:"aresult1";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -652,7 +652,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "amy/badresult");
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Amy] Amy: \c[White] ...";
+					HudMessage(l:"aresult2";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -666,7 +666,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "classic/goodresult");
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Classic] Sonic: \c[White] *whistle* That was cool!";
+					HudMessage(l:"cresult1";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -674,7 +674,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "classic/okayresult");
 				SetMugshotState("OK");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Classic] Sonic: \c[White] Huh... no problem.";
+					HudMessage(l:"cresult2";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -682,7 +682,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "classic/badresult");
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Classic] Sonic: \c[White] Barely made it...";
+					HudMessage(l:"cresult3";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -696,7 +696,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "shadow/goodresult");
 				SetMugshotState("OK");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Shadow] Shadow: \c[White] Yes!";
+					HudMessage(l:"dresult1";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -705,7 +705,7 @@ script "GoalRing" (void)
 				PlaySound(1001, "shadow/badresult");
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(s:"\c[Shadow] Shadow: \c[White] Need to stay focused.";
+					HudMessage(l:"dresult2";
 							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -864,80 +864,8 @@ script "HowManyZFireLeft" (int clear)
 script "Subtitles" (int subtitle)
 {
 	if (GetCvar("Subtitles")) {
-		switch (subtitle) {
-			case 1:
-				HudMessage(s:"\c[Sonic] Sonic: \c[White] Well. That was lame.";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 2:
-				HudMessage(s:"\c[Red] Knuckles: \c[White] Oh no.";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 3:
-				HudMessage(s:"\c[Sonic] Sonic: \c[White] Ugh, thanks a lot, wall!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 4:
-				HudMessage(s:"\c[Sonic] Sonic: \c[White] Ugh, this wall's in the way!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 5:
-				HudMessage(s:"\c[Gold] Super Sonic: \c[White] Now I'll show you!!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 6:
-				HudMessage(s:"\c[Purple] Dark Amy: \c[White] I'll destroy all of you!!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 7:
-				HudMessage(s:"\c[Gold] Super Shadow: \c[White] Witness the might of my power!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 8:
-				HudMessage(s:"\c[Gold] Super Sonic: \c[White] Let's blast through with sonic speed!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 9:
-				HudMessage(s:"\c[Hyper] Hyper Sonic: \c[White] Now I'm serious!!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 10:
-				HudMessage(s:"\c[Hyper] Hyper Sonic: \c[White] Okay, no more playing around!!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 11:
-				HudMessage(s:"\c[Classic] Sonic: \c[White] You don't have enough memory in the memory card.";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 12:
-				HudMessage(s:"\c[Classic] Sonic: \c[White] Catch me if you can!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 1.5, 1.0);
-				break;
-			case 13:
-				HudMessage(s:"\c[Classic] Sonic: \c[White] Here we go!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 0.5, 1.0);
-				break;
-			case 14:
-				HudMessage(s:"\c[Classic] Sonic: \c[White] Never underestimate Sonic Speed!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 15:
-				HudMessage(s:"\c[Classic] Sonic: \c[White] TERIAAAAAAAA!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 16:
-				HudMessage(s:"\c[Shadow] Shadow: \c[White] they cant troll you if there dead!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				break;
-			case 17:
-				HudMessage(s:"\c[Shadow] Shadow: \c[White] That damn FOURTH Chaos Emerald!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.5, 1.0);
-				break;
-			case 18:
-				HudMessage(s:"\c[Sonic] Sonic: \c[White] You're over!";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.5, 1.0);
-				break;
-		}
+		int subtitleref = strparam(s:"gsubtitle", d:subtitle);
+		HudMessage(l:subtitleref; HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 	}
 }
 
