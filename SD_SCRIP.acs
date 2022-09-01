@@ -582,7 +582,6 @@ script "GoalRing" (void)
 	else if (LevelTime > ParTime) score -= (LevelTime - ParTime) * 25;
 	if (CurrentHealth > 300) score += CurrentHealth * 50;
 	else score += CurrentHealth * 10;
-	Log(d:ParTime-LevelTime);
 	score += KilledMonsters * 75;
 	score += CurrentEnergy * 20;
 	if (score < 0) score = 0;
