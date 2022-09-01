@@ -128,6 +128,9 @@ OptionMenu "LLMiscOptMenu"
 	StaticText "Tones down movement speed and jump height, intended", "White"
 	StaticText "for use with standard DOOM levels.", "White"
 	StaticText ""
+	
+	Option "HIRE THIS MAN", "HireThisMan", "EnabledOrNot"
+	StaticText ""
 }
 OptionMenu "LLControlsMenu"
 {

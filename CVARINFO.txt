@@ -15,6 +15,7 @@ user bool LowHealthSound			= true;
 user bool ReservedMode				= false;
 user bool JumpThok                  = true;
 user bool RecoilBurstRelease        = true;
+user bool HireThisMan				= true;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
