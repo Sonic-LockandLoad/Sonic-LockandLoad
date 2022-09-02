@@ -119,11 +119,17 @@ class BoostEnabledWeapon : LockLoadWeapon
 	action void Boost(int form, int InitialBoostSpeed, int MaxBoostSpeed)
 	{
 		if (!invoker.BoostCheck) {
+			int speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
 			invoker.BoostCheck = true;
-			invoker.BoostSpeed = InitialBoostSpeed;
+			if (speed > InitialBoostSpeed) {
+				invoker.BoostSpeed = speed;
+			}
+			else {
+				invoker.BoostSpeed = InitialBoostSpeed;
+			}
 			A_StartSound("sonic/boost", 6);
 			A_StartSound("sweapons/boost", 7);
-			A_TakeInventory("ChaosEnergy", 5);
+			if (!form) A_TakeInventory("ChaosEnergy", 5);
 		}
 		switch (form) {
 			default:
@@ -194,16 +200,16 @@ class BoostEnabledWeapon : LockLoadWeapon
 			Goto BoostEnd;
 		SuperBoost:
 			BOOS B 1 Boost(1, 100, 200);
-			TNT1 A 0 A_CheckLOF("BoostEnd", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
+			TNT1 A 0 A_CheckLOF("WallCrash", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
 			TNT1 A 0 A_ReFire();
 			Goto BoostEnd;
 		HyperBoost:
-			BOOS C 1 Boost(2, 100, 300);
-			TNT1 A 0 A_CheckLOF("BoostEnd", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
+			BOOS C 1 Boost(2, 100, 999);
+			TNT1 A 0 A_CheckLOF("WallCrash", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
 			TNT1 A 0 A_ReFire();
 			Goto BoostEnd;
 		WallCrash:
-			TNT1 A 0 A_JumpIf(CountInv("PowerInvulnerable")||!GetCvar("WallCrash"), "BoostEnd");
+			TNT1 A 0 A_JumpIf(!GetCvar("WallCrash"), "BoostEnd");
 			TNT1 A 0 WallCrash();
 		BoostEnd:
 			TNT1 A 0 {
