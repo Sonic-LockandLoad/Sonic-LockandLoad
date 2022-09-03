@@ -10,6 +10,7 @@ class LockLoadPlayer : PlayerPawn
 		Radius 15;
 		Height 42;
 		Player.ViewHeight 42.0;
+		Player.AttackZOffset 16.5;
 		PainChance 250;
 		Mass 100;
 		Player.MaxHealth 999;
