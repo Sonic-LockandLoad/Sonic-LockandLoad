@@ -34,14 +34,14 @@ class ShadowPlayer : LockLoadPlayer
 		}
 		if (GetCvar("HomingSnapReticle") && !player.onground) {
 			FTranslatedLineTarget ltinfo;
-			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
+			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
 			if (ltarget && Distance3D(ltarget) > 160 && health > 0) {
 				if (!reticleActive) {
 					A_StartSound("sweapons/reticle", 11);
 					reticleActive = true;
 				}
-				LineAttack(angle, 800, pitch, 0, 'None', 'ShadowReticle', LAF_NORANDOMPUFFZ, null, 10);
+				LineAttack(angle, 800, pitch, 0, 'None', 'ShadowReticle', LAF_NORANDOMPUFFZ, null, 0);
 			}
 			else {
 				reticleActive = false;
