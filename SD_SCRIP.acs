@@ -875,7 +875,7 @@ script "AmyBlockTint" enter
 			FadeTo(192, 23, 112, 0.2, 0.0);
 		}
 		else {
-			FadeTo(0, 0, 0, 0, 0.0);
+			FadeTo(0, 0, 0, 0, 0.0); 
 		}
 		Delay(1);
 	}
@@ -886,8 +886,31 @@ script "LowHealthSound" enter
 	while (true) {
 		if (GetActorProperty(1001, APROP_Health) < 20 && GetCvar("LowHealthSound") && (ClassifyActor(1001) & ACTOR_ALIVE) && !(CheckInventory("PowerSuper")||CheckInventory("PowerHyper")||CheckInventory("PowerInvulnerable"))) {
 			AmbientSound("sglobal/lowhealth", 127);
+			Delay(12);
 		}
-		Delay(12);
+		else {
+			Delay(1);
+		}
+	}
+}
+
+script "LowEnergySound" enter
+{
+	int EnergyThreshold;
+	while (true) {
+		if (CheckInventory("PowerHyper")||PlayerClass(PlayerNumber()) == Amy) {
+			EnergyThreshold = 200;
+		}
+		else {
+			EnergyThreshold = 150;
+		}
+		if (CheckInventory("ChaosEnergy") < EnergyThreshold && (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) && GetCvar("LowEnergySound")) {
+			AmbientSound("sglobal/lowenergy", 127);
+			Delay(50);
+		}
+		else {
+			Delay(1);
+		}
 	}
 }
 

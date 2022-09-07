@@ -123,6 +123,12 @@ OptionMenu "LLMiscOptMenu"
 	StaticText "All characters", "Cyan"
 	StaticText ""
 	
+	Option "Low Energy Warning", "LowEnergySound", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
+	StaticText "Will play when energy is low in", "White"
+	StaticText "Super, Dark or Hyper form.", "White"
+	StaticText ""
+	
 	Option "Reserved Mode", "ReservedMode", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
 	StaticText "Tones down movement speed and jump height, intended", "White"
