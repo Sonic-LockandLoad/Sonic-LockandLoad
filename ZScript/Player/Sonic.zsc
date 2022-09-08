@@ -142,6 +142,7 @@ class BoostEnabledWeapon : LockLoadWeapon
 				/* Super Sonic */
 				A_SetMugShotState("SuperBoost");
 				A_FireBullets(120, 120, 150, 999, "BoostPuff", FBF_NORANDOM, 140);
+				A_TakeInventory("ChaosEnergy", 1);
 				break;
 			case 2:
 				/* Hyper Sonic */
