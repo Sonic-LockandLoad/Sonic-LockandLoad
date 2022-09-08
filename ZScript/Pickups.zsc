@@ -403,7 +403,7 @@ class ChaosCapsule : ChaosEnergy // 6021
 		//$Category Lock & Load Pickups
 		Inventory.PickupMessage "Picked up a Chaos Energy capsule.";
 		Inventory.Amount 20;
-		ChaosEnergy.ReducedAmount 15;
+		ChaosEnergy.ReducedAmount 20;
 	}
 	States
 	{
