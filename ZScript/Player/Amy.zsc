@@ -46,8 +46,7 @@ class AmyPlayer : LockLoadPlayer
 		int qdamage = damage / 4;
 		if (CountInv("PowerBlocking")) {
 			A_PlaySound("sweapons/blockattackx", 7);
-			A_Explode(damage * 2, 300, XF_NOTMISSILE);
-			if (inflictor != NULL) {
+			if (inflictor is "Actor") {
 				if (inflictor.bMissile) {
 					Actor reflected = SpawnPlayerMissile(inflictor.GetClass());
 					reflected.SetDamage(reflected.damage * 8);
