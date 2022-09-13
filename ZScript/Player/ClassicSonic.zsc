@@ -85,6 +85,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 	int SpinCharges;
 	int ShweeDelay;
 	int HoverCounter;
+	bool DidWallDash;
 	Default
 	{
 		Weapon.SelectionOrder 3700;
@@ -97,6 +98,11 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 	{
 		A_SetSize(-1, height);
 		Player.ViewHeight = height;
+	}
+	override void Tick()
+	{
+		Super.Tick();
+		if (owner.player.onground) DidWallDash = false;
 	}
 	States
 	{
@@ -116,7 +122,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				bool isTouchingWall = A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
 				invoker.ShweeDelay = 10;
 				if (A_CheckFloor("Null")) return ResolveState("SpinCharge");
-				else if (isTouchingWall && GetCvar("DidJump")) return ResolveState("WallCharge");
+				else if (isTouchingWall && !invoker.DidWallDash) return ResolveState("WallCharge");
                 else if (!A_CheckFloor("Null") && waterlevel < 1) return ResolveState("DropCharge");
 				return ResolveState(null);
 			}
@@ -294,7 +300,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 				int obuttons = GetPlayerInput(MODINPUT_OLDBUTTONS);
 				bool isTouchingWall = A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
-				cvar.FindCvar("DidJump").SetBool(false);
+				invoker.DidWallDash = true;
 				int maxSpinCharges = 50;
 				player.crouching = 1;
 				A_Light(3);
@@ -317,6 +323,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				if (!(buttons & BT_ATTACK) || !isTouchingWall || (buttons & BT_JUMP && !(obuttons & BT_JUMP))) {
 					if (buttons & BT_JUMP) {
 						A_StartSound("*jump");
+						invoker.DidWallDash = false;
 						A_ChangeVelocity(-10, 0, 15, CVF_Relative);
 					}
 					A_ClearOverlays(0, 0);
