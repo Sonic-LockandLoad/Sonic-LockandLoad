@@ -503,7 +503,7 @@ script "SetFriction" ENTER
 		}
 		else {
 			SetActorProperty(0, APROP_Friction, 0.9);
-			SetAirControl(0.1);
+			SetAirControl(0.0);
 		}
 		Delay(1);
 	}
