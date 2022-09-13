@@ -34,6 +34,11 @@ class LockLoadPlayer : PlayerPawn
 		}
 		return damage;
 	}
+	override void FallAndSink(double grav, double oldfloorz)
+	{
+		if (waterlevel >= 2 && pos.z > oldfloorz && Vel.Z <= 5) Vel.Z -= Gravity;
+		Super.FallAndSink(grav, oldfloorz);
+	}
 	States
 	{
 		Spawn:
