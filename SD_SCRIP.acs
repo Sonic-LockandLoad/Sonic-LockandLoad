@@ -903,12 +903,10 @@ script "LowEnergySound" enter
 {
 	int EnergyThreshold;
 	while (true) {
-		if (CheckInventory("PowerHyper")||PlayerClass(PlayerNumber()) == Amy) {
-			EnergyThreshold = 200;
-		}
-		else {
-			EnergyThreshold = 150;
-		}
+		if (PlayerClass(PlayerNumber()) == Amy) EnergyThreshold = 250;
+		else if (CheckInventory("PowerHyper"))  EnergyThreshold = 200;
+		else 									EnergyThreshold = 150;
+		
 		if (CheckInventory("ChaosEnergy") < EnergyThreshold && (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) && GetCvar("LowEnergySound")) {
 			AmbientSound("sglobal/lowenergy", 127);
 			Delay(50);
