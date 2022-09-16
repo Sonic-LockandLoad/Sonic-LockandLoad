@@ -250,6 +250,15 @@ class MinorChaosEnergyBall : FastProjectile
 	}
 }
 
+class NerfedChaosEnergyBall : MinorChaosEnergyBall
+{
+	Default
+	{
+		Damage 2;
+		Speed 50;
+	}
+}
+
 class SuperChaosEnergyBall : FastProjectile
 {
 	Default
