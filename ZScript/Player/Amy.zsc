@@ -541,7 +541,7 @@ class AmySlide : CustomInventory
 		Animation:
 			SLID ABCD 1;
 			SLID EEEEEEEEE 1 {
-				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
+				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_SPEED)) {
 					A_ChangeVelocity(0, 0, 5, CVF_Relative);
 					return ResolveState("EndSlide");
 				}
@@ -566,7 +566,7 @@ class AmySlide : CustomInventory
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_ZOOM && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_ZOOM) && inuse == 0 && owner.A_CheckFloor("Null"))
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&(BT_ZOOM|BT_SPEED) && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&(BT_ZOOM|BT_SPEED)) && inuse == 0 && owner.A_CheckFloor("Null"))
 		{
 			owner.UseInventory(self);
 			inuse = 18;

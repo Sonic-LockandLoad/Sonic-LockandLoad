@@ -785,7 +785,7 @@ class SonicThok : CustomInventory
 		int buttons = owner.GetPlayerInput(MODINPUT_BUTTONS);
 		int obuttons = owner.GetPlayerInput(MODINPUT_OLDBUTTONS);
 		bool JumpPress = buttons & BT_JUMP && !(obuttons & BT_JUMP) && !owner.CountInv("PowerHyper");
-		bool OffAbilityPress = buttons & BT_ZOOM && !(obuttons & BT_ZOOM);
+		bool OffAbilityPress = buttons & (BT_ZOOM|BT_SPEED) && !(obuttons & (BT_ZOOM|BT_SPEED));
 		bool AboveGround = !owner.player.onground && owner.Pos.Z - owner.GetZAt() > 38;
 		bool IsHovering = buttons & BT_ALTATTACK && (owner.CountInv("PowerSuper")||owner.CountInv("PowerHyper")) && !owner.player.onground;
 		if (inuse > 0)

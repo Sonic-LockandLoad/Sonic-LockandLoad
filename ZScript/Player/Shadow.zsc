@@ -658,7 +658,7 @@ class ChaosSnap : CustomInventory
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_ZOOM && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_ZOOM) && inuse == 0)
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&(BT_ZOOM|BT_SPEED) && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&(BT_ZOOM|BT_SPEED)) && inuse == 0)
 		{
 			owner.UseInventory(self);
 			inuse = 10;
