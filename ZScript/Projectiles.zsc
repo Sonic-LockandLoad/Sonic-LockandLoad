@@ -442,7 +442,7 @@ class ProjectileBullet : FastProjectile
     }
 }
 
-class ProjectilePellet : Actor
+class ProjectilePellet : ProjectileBullet
 {
     Default
     {

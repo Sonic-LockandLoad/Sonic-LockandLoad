@@ -43,20 +43,18 @@ class AmyPlayer : LockLoadPlayer
 	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod)
 	{
 		Super.DamageMobj(inflictor, source, damage, mod);
-		int qdamage = damage / 4;
 		if (CountInv("PowerBlocking")) {
 			A_PlaySound("sweapons/blockattackx", 7);
-			if (inflictor is "Actor") {
-				if (inflictor.bMissile) {
+			if (inflictor is "Actor" && inflictor != null) {
+				if (inflictor.bMissile && !(inflictor is "ProjectileBullet")) {
 					Actor reflected = SpawnPlayerMissile(inflictor.GetClass());
-					reflected.SetDamage(reflected.damage * 8);
 					reflected.Height = self.Height;
+					if (Health < 100 && damage / 2) A_GiveInventory("Health", damage / 2);
 				}
-				else {
-					source.A_DamageSelf(damage * 2);
-				}
+				source.A_DamageSelf(damage * 2);
+				A_GiveInventory("HammerBlock");
 			}
-			if (qdamage) A_TakeInventory("ChaosEnergy", qdamage);
+			if (damage / 4) A_TakeInventory("ChaosEnergy", damage / 4);
 		}
 		return damage;
 	}
