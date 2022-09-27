@@ -88,6 +88,9 @@ class Doox : Actor
 	Default
 	{
 		//$Category Lock & Load Objects
+		+SOLID
+		+PUSHABLE
+		Height 50;
 	}
 	States
 	{
