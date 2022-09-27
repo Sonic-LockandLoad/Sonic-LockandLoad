@@ -83,19 +83,28 @@ class OmniSwitch : LLSwitch
 	}
 }
 
-class Doox : Actor
+class Doox : SwitchingDecoration
 {
 	Default
 	{
 		//$Category Lock & Load Objects
 		+SOLID
 		+PUSHABLE
+		+USESPECIAL
+		+SHOOTABLE
+		+NOBLOOD
+		Health 1000000;
 		Height 50;
+		Activation THINGSPEC_Switch;
 	}
 	States
 	{
 		Spawn:
-			DOOX A -1;
-			Stop;
+			DOOX A 1 A_GiveInventory("Health");
+			Loop;
+		Active:
+			DOOX A 1 A_StartSound("doox/nyeh");
+			DOOX A 0 Thing_Deactivate(0);
+			Goto Spawn;
 	}
 }
