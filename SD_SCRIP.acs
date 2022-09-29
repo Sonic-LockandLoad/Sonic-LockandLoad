@@ -335,7 +335,7 @@ script "SuperTransformPrompt" enter
 				y = 0.9;
 				break;
 		}
-		if (CheckInventory("ChaosEmeralds")) {
+		if (CheckInventory("ChaosEmeralds") && !GetCvar("ControlHints")) {
 			switch(PlayerClass(PlayerNumber()))
 			{
 				case Sonic:
@@ -929,10 +929,11 @@ script "CheckIfEmerald" (void)
 
 script "ControlHints" enter
 {
-	str PrimaryFire, SecondaryFire, Jump, Crouch, OffhandAttack, OffhandAbility;
+	str PrimaryFire, SecondaryFire, Jump, Crouch, OffhandAttack, OffhandAbility, SuperForm;
 	int Character = PlayerClass(PlayerNumber());
-	while (GetCvar("ControlHints") && GameType() == GAME_SINGLE_PLAYER) {
+	while (GameType() == GAME_SINGLE_PLAYER) {
 		bool Midair = GetActorZ(0) > GetActorFloorZ(0);
+		int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
 		
 		// Jump and crouch
 		Jump = "Jump";
@@ -969,15 +970,15 @@ script "ControlHints" enter
 			if (Midair) {
 				if (CheckInventory("PowerHyper")) Jump = "Double Jump";
 				OffhandAttack = "Insta-Shield";
+				if (GetCvar("JumpThok") && GetCvar("DidJump")) Jump = "Sonic Thok";
 			}
-			if (Midair && GetCvar("JumpThok")) Jump = "Sonic Thok";
 		}
 		else if (Character == Shadow) {
 			if (GetCvar("CanHoming")) Jump = "Homing Attack";
 			OffhandAttack = "Chaos Spear";
 			if (GetCvar("CloseToEnemy")) OffhandAttack = "Punch";
 			OffhandAbility = "Chaos Snap";
-			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_CROUCH && Midair) {
+			if (buttons & BT_CROUCH && Midair) {
 				OffhandAbility = "Chaos Snap Down";
 			}
 		}
@@ -987,11 +988,12 @@ script "ControlHints" enter
 			PrimaryFire = "Sword Swing";
 			SecondaryFire = "Boost";
 			if (Midair) Crouch = "Slam";
+			if (!Midair && (buttons & BT_ALTATTACK)) Jump = "Boost Jump";
 		}
 		if (CheckWeapon("AcceleratedPistol")) {
 			PrimaryFire = "Burst Fire";
 			SecondaryFire = "Recoil Charge"; 
-			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_ALTATTACK) PrimaryFire = "Recoil Burst";
+			if (buttons & BT_ALTATTACK) PrimaryFire = "Recoil Burst";
 		}
 		if (CheckWeapon("RapidShotty")) { PrimaryFire = "Rapid Shot"; SecondaryFire = "Force Shot"; }
 		if (CheckWeapon("ShurikenCrossbow")) { PrimaryFire = "Shuriken Launch"; SecondaryFire = "\c[DarkGray]None"; }
@@ -1002,7 +1004,7 @@ script "ControlHints" enter
 		if (CheckWeapon("PikoPikoHammer")) { PrimaryFire = "Piko Strike"; SecondaryFire = "Parry"; }
 		if (CheckWeapon("SilentRosePistol")) { PrimaryFire = "Silenced Shot"; SecondaryFire = "Zoom"; }
 		if (CheckWeapon("PrecisionShotgun")) { 
-			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_ALTATTACK) PrimaryFire = "Precise Shot"; 
+			if (buttons & BT_ALTATTACK) PrimaryFire = "Precise Shot"; 
 			else PrimaryFire = "Shotgun Blast";
 			SecondaryFire = "Precision Scope"; 
 		}
@@ -1027,6 +1029,7 @@ script "ControlHints" enter
 		if (CheckWeapon("HighShovel")) {
 			PrimaryFire = "Shovel Smash";
 			SecondaryFire = "Boost";
+			if (!Midair && (buttons & BT_ALTATTACK)) Jump = "Boost Jump";
 		}
 		if (CheckWeapon("ShadowKnife")) { PrimaryFire = "Ultimate Stab"; SecondaryFire = "\c[DarkGray]None"; }
 		if (CheckWeapon("ShadowMP5")) { PrimaryFire = "Rapid Fire"; SecondaryFire = "\c[DarkGray]None"; }
@@ -1035,14 +1038,51 @@ script "ControlHints" enter
 		if (CheckWeapon("ChaosEmerald")) { PrimaryFire = "Chaos Blast"; SecondaryFire = "Chaos Restore"; }
 		if (CheckWeapon("DualRockets")) { PrimaryFire = "Targeted Launch"; SecondaryFire = "Untargeted Launch"; }
 		
-		HudMessage(k:"+attack", s:"\c[White]: ", s:PrimaryFire, s:"\n",
-				   k:"+altattack", s:"\c[White]: ", s:SecondaryFire, s:"\n",
-				   k:"+jump", s:"\c[White]: ", s:Jump, s:"\n",
-				   k:"+crouch", s:"\c[White]: ", s:Crouch, s:"\n",
-				   k:"+reload", s:"\c[White]: ", s:OffhandAttack, s:"\n",
-				   k:"+zoom", s:"\c[White]: ", s:OffhandAbility, s:"\n",
-				   k:"pukename LastWeapon", s:"\c[White]: Last Used Weapon";
-					HUDMSG_PLAIN, 4, CR_GOLD, -0.02, -0.4, 1.0, 1.0);
+		// Super/Dark/Hyper
+		if (CheckInventory("ChaosEmeralds")) {
+			switch (Character) {
+				case Sonic:
+				case ClassicSonic:
+					if (CheckInventory("PowerSuper")) SuperForm = "Hyper Sonic";
+					else SuperForm = "Super Sonic";
+					break;
+				case Amy:
+					SuperForm = "Dark Amy";
+					break;
+				case Shadow:
+					SuperForm = "Super Shadow";
+					break;
+			}
+		}
+		else SuperForm = "";
+		
+		if (GetCvar("ControlHints")) {
+			if (ClassifyActor(0) & ACTOR_DEAD) {
+				HudMessage(k:"+use", s:"\c[White]: Try Again\n";
+						   HUDMSG_PLAIN, 7, CR_GOLD, -0.02, -0.48, 1.0, 1.0);
+			}
+			else if (stricmp(SuperForm, "")) {
+				HudMessage(k:"+attack", s:"\c[White]: ", s:PrimaryFire, s:"\n",
+						   k:"+altattack", s:"\c[White]: ", s:SecondaryFire, s:"\n",
+						   k:"+jump", s:"\c[White]: ", s:Jump, s:"\n",
+						   k:"+crouch", s:"\c[White]: ", s:Crouch, s:"\n",
+						   k:"+reload", s:"\c[White]: ", s:OffhandAttack, s:"\n",
+						   k:"+zoom", s:"\c[White]: ", s:OffhandAbility, s:"\n",
+						   k:"pukename LastWeapon", s:"\c[White]: Last Used Weapon\n",
+						   k:"invuse", s:"\c[White]: ", s:SuperForm;
+						   HUDMSG_PLAIN, 7, CR_GOLD, -0.02, -0.4, 1.0, 1.0);
+			}
+			else {
+				HudMessage(k:"+attack", s:"\c[White]: ", s:PrimaryFire, s:"\n",
+						   k:"+altattack", s:"\c[White]: ", s:SecondaryFire, s:"\n",
+						   k:"+jump", s:"\c[White]: ", s:Jump, s:"\n",
+						   k:"+crouch", s:"\c[White]: ", s:Crouch, s:"\n",
+						   k:"+reload", s:"\c[White]: ", s:OffhandAttack, s:"\n",
+						   k:"+zoom", s:"\c[White]: ", s:OffhandAbility, s:"\n",
+						   k:"pukename LastWeapon", s:"\c[White]: Last Used Weapon\n";
+						   HUDMSG_PLAIN, 7, CR_GOLD, -0.02, -0.41, 0.1, 1.0);
+			}
+		}
 		Delay(1);
 	}
 }
