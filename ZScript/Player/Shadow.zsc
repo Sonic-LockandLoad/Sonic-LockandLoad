@@ -46,6 +46,7 @@ class ShadowPlayer : LockLoadPlayer
 			else {
 				reticleActive = false;
 			}
+			cvar.FindCvar("CanHoming").SetBool(reticleActive);
 		}
 		Super.Tick();
 	}

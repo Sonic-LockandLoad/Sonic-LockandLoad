@@ -919,12 +919,131 @@ script "LowEnergySound" enter
 
 script "CheckIfCaliburn" (void)
 {
-	SetResultValue(!stricmp(GetWeapon(), "Caliburn"));
+	SetResultValue(CheckWeapon("Caliburn"));
 }
 
 script "CheckIfEmerald" (void)
 {
-	SetResultValue(!stricmp(GetWeapon(), "ChaosEmerald"));
+	SetResultValue(CheckWeapon("ChaosEmerald"));
 }
 
+script "ControlHints" enter
+{
+	str PrimaryFire, SecondaryFire, Jump, Crouch, OffhandAttack, OffhandAbility;
+	int Character = PlayerClass(PlayerNumber());
+	while (GetCvar("ControlHints") && GameType() == GAME_SINGLE_PLAYER) {
+		bool Midair = GetActorZ(0) > GetActorFloorZ(0);
+		
+		// Jump and crouch
+		Jump = "Jump";
+		Crouch = "Crouch";
+		if (Midair) Crouch = "\c[DarkGray]None";
+		
+		if (Character == Sonic) {
+			if (CheckInventory("PowerHyper")) OffhandAttack = "Shockwave Kick";
+			else OffhandAttack = "Kick";
+			if (Midair) {
+				Jump = "Double Jump";
+				OffhandAbility = "\c[DarkGray]None";
+				if (CheckInventory("PowerHyper")) Jump = "Triple Jump";
+				if (GetCvar("CanHoming")) OffhandAbility = "Homing Snap";
+			}
+			else OffhandAbility = "Quick Step";
+			if (GetCvar("CanWallJump") && Midair) {
+				Jump = "Wall Jump";
+			}
+		}
+		else if (Character == Amy) {
+			OffhandAttack = "Kick";
+			OffhandAbility = "Slide";
+			if (Midair) {
+				Jump = "Double Jump";
+				OffhandAbility = "\c[DarkGray]None";
+			}
+			if (GetCvar("Sliding")) Jump = "Slide Jump";
+			if (GetCvar("CanHammerJump")) Jump = "Hammer Jump";
+		}
+		else if (Character == ClassicSonic) {
+			OffhandAttack = "Spin Attack";
+			OffhandAbility = "Sonic Thok";
+			if (Midair) {
+				if (CheckInventory("PowerHyper")) Jump = "Double Jump";
+				OffhandAttack = "Insta-Shield";
+			}
+			if (Midair && GetCvar("JumpThok")) Jump = "Sonic Thok";
+		}
+		else if (Character == Shadow) {
+			if (GetCvar("CanHoming")) Jump = "Homing Attack";
+			OffhandAttack = "Chaos Spear";
+			if (GetCvar("CloseToEnemy")) OffhandAttack = "Punch";
+			OffhandAbility = "Chaos Snap";
+			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_CROUCH && Midair) {
+				OffhandAbility = "Chaos Snap Down";
+			}
+		}
+		
+		// Sonic's weapons
+		if (CheckWeapon("Caliburn")) {
+			PrimaryFire = "Sword Swing";
+			SecondaryFire = "Boost";
+			if (Midair) Crouch = "Slam";
+		}
+		if (CheckWeapon("AcceleratedPistol")) {
+			PrimaryFire = "Burst Fire";
+			SecondaryFire = "Recoil Charge"; 
+			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_ALTATTACK) PrimaryFire = "Recoil Burst";
+		}
+		if (CheckWeapon("RapidShotty")) { PrimaryFire = "Rapid Shot"; SecondaryFire = "Force Shot"; }
+		if (CheckWeapon("ShurikenCrossbow")) { PrimaryFire = "Shuriken Launch"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("EclipseBlaster")) { PrimaryFire = "Eclipse Shot"; SecondaryFire = "Chaos Restore"; }
+		if (CheckWeapon("RocketRioter")) { PrimaryFire = "Rocket Launch"; SecondaryFire = "Remote Detonate"; }
+		
+		// Amy's weapons
+		if (CheckWeapon("PikoPikoHammer")) { PrimaryFire = "Piko Strike"; SecondaryFire = "Parry"; }
+		if (CheckWeapon("SilentRosePistol")) { PrimaryFire = "Silenced Shot"; SecondaryFire = "Zoom"; }
+		if (CheckWeapon("PrecisionShotgun")) { 
+			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_ALTATTACK) PrimaryFire = "Precise Shot"; 
+			else PrimaryFire = "Shotgun Blast";
+			SecondaryFire = "Precision Scope"; 
+		}
+		if (CheckWeapon("AmyEclipseBlaster")) { PrimaryFire = "Eclipse Shot"; SecondaryFire = "Chaos Restore"; }
+		if (CheckWeapon("RapidMissiles")) { PrimaryFire = "Rapid Launch"; SecondaryFire = "Triple Launch"; }
+		
+		// Classic Sonic's weapons
+		if (CheckWeapon("ClassicAbilities")) {
+			if (Midair) {
+				PrimaryFire = "Drop Dash";
+				if (GetCvar("CanWallJump")) PrimaryFire = "Wall Dash";
+			}
+			else PrimaryFire = "Spin Dash";
+			SecondaryFire = "Drift";
+		}
+		if (CheckWeapon("ChaosBlaster")) { PrimaryFire = "Plasma Stream"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("SpeedyShotgun")) { PrimaryFire = "Speedy Shot"; SecondaryFire = "Burst Shot"; }
+		if (CheckWeapon("ChaosRain")) { PrimaryFire = "Bullet Rain"; SecondaryFire = "\[DarkGray]None"; }
+		if (CheckWeapon("RocketStream")) { PrimaryFire = "Stream Launch"; SecondaryFire = "\[Gray]None"; }
+		
+		// Shadow's weapons
+		if (CheckWeapon("HighShovel")) {
+			PrimaryFire = "Shovel Smash";
+			SecondaryFire = "Boost";
+		}
+		if (CheckWeapon("ShadowKnife")) { PrimaryFire = "Ultimate Stab"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("ShadowMP5")) { PrimaryFire = "Rapid Fire"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("DarkAssault")) { PrimaryFire = "Assault Shot"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("QuadShotty")) { PrimaryFire = "Decimation Blast"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("ChaosEmerald")) { PrimaryFire = "Chaos Blast"; SecondaryFire = "Chaos Restore"; }
+		if (CheckWeapon("DualRockets")) { PrimaryFire = "Targeted Launch"; SecondaryFire = "Untargeted Launch"; }
+		
+		HudMessage(k:"+attack", s:"\c[White]: ", s:PrimaryFire, s:"\n",
+				   k:"+altattack", s:"\c[White]: ", s:SecondaryFire, s:"\n",
+				   k:"+jump", s:"\c[White]: ", s:Jump, s:"\n",
+				   k:"+crouch", s:"\c[White]: ", s:Crouch, s:"\n",
+				   k:"+reload", s:"\c[White]: ", s:OffhandAttack, s:"\n",
+				   k:"+zoom", s:"\c[White]: ", s:OffhandAbility, s:"\n",
+				   k:"pukename LastWeapon", s:"\c[White]: Last Used Weapon";
+					HUDMSG_PLAIN, 4, CR_GOLD, -0.02, -0.4, 1.0, 1.0);
+		Delay(1);
+	}
+}
 

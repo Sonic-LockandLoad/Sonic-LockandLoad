@@ -119,6 +119,10 @@ OptionMenu "LLMiscOptMenu"
 	StaticText "All characters", "Cyan"
 	StaticText ""
 	
+	Option "Control Hints", "ControlHints", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
+	StaticText ""
+	
 	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
 	StaticText ""

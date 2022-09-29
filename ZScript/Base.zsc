@@ -81,13 +81,19 @@ class LockLoadPlayer : PlayerPawn
 			PLAY W -1;
 			Stop;
 	}
+	override void Tick()
+	{
+		cvar.FindCvar("CanWallJump").SetBool(CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32));
+		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128));
+		Super.Tick();
+	}
 	override void CheckJump()
 	{
 		let player = self.player;
 		double wJumpHeight;
 		double wJumpHeightOffset = 50;
 		double wJumpDistance = 25;
-		bool isTouchingWall = A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
+		bool isTouchingWall = GetCvar("CanWallJump");
 		int dJumpCount = 1; // You get an extra jump
 		if (CountInv("SonicCheck") && CountInv("PowerHyper")) {
 			dJumpCount = 2; // Two extra jumps if you're Hyper Sonic

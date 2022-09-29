@@ -17,6 +17,7 @@ user bool ReservedMode				= false;
 user bool JumpThok                  = true;
 user bool RecoilBurstRelease        = true;
 user bool HireThisMan				= true;
+user bool ControlHints				= true;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
@@ -24,3 +25,7 @@ user noarchive bool	  Sliding			= false;
 user noarchive bool   SoulSurgeReady	= false;
 user noarchive bool	  IsSpinDashing		= false;
 user noarchive bool	  DidJump			= false;
+user noarchive bool	  CloseToEnemy		= false;
+user noarchive bool	  CanWallJump		= false;
+user noarchive bool	  CanHoming			= false;
+user noarchive bool	  CanHammerJump		= false;
