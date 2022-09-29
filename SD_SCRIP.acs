@@ -998,7 +998,7 @@ script "ControlHints" enter
 		if (CheckWeapon("RapidShotty")) { PrimaryFire = "Rapid Shot"; SecondaryFire = "Force Shot"; }
 		if (CheckWeapon("ShurikenCrossbow")) { PrimaryFire = "Shuriken Launch"; SecondaryFire = "\c[DarkGray]None"; }
 		if (CheckWeapon("EclipseBlaster")) { PrimaryFire = "Eclipse Shot"; SecondaryFire = "Chaos Restore"; }
-		if (CheckWeapon("RocketRioter")) { PrimaryFire = "Rocket Launch"; SecondaryFire = "Remote Detonate"; }
+		if (CheckWeapon("AirStrikeLauncher")) { PrimaryFire = "Rocket Launch"; SecondaryFire = "Remote Detonate"; }
 		
 		// Amy's weapons
 		if (CheckWeapon("PikoPikoHammer")) { PrimaryFire = "Piko Strike"; SecondaryFire = "Parry"; }
@@ -1022,8 +1022,8 @@ script "ControlHints" enter
 		}
 		if (CheckWeapon("ChaosBlaster")) { PrimaryFire = "Plasma Stream"; SecondaryFire = "\c[DarkGray]None"; }
 		if (CheckWeapon("SpeedyShotgun")) { PrimaryFire = "Speedy Shot"; SecondaryFire = "Burst Shot"; }
-		if (CheckWeapon("ChaosRain")) { PrimaryFire = "Bullet Rain"; SecondaryFire = "\[DarkGray]None"; }
-		if (CheckWeapon("RocketStream")) { PrimaryFire = "Stream Launch"; SecondaryFire = "\[Gray]None"; }
+		if (CheckWeapon("ChaosRain")) { PrimaryFire = "Bullet Rain"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("ClassicRocketStream")) { PrimaryFire = "Stream Launch"; SecondaryFire = "\c[DarkGray]None"; }
 		
 		// Shadow's weapons
 		if (CheckWeapon("HighShovel")) {
