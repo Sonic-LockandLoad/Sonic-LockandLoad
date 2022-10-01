@@ -2,8 +2,6 @@ user int HUDType 					= 0;
 user int HyperSonic 				= 1;
 user int DeathMusic 				= 1;
 user int RingType 					= 1;
-user int DoubleJump 				= 2;
-user int WallJump	 				= 2;
 user int AmyZoomFactor				= 4;
 user int HomingSnapReticle			= 1;
 user int InvincMusic 				= 1;
@@ -14,10 +12,10 @@ user bool Subtitles 				= true;
 user bool LowHealthSound			= true;
 user bool LowEnergySound			= true;
 user bool ReservedMode				= false;
-user bool JumpThok                  = true;
 user bool RecoilBurstRelease        = true;
 user bool HireThisMan				= true;
 user bool ControlHints				= true;
+user bool Tutorials					= true;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";

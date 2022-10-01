@@ -843,17 +843,12 @@ script "JumpHeight" ENTER
 
 script "WallJump" (int height, int distance)
 {
-	if (GetCvar("WallJump")) {
-		Delay(1);
-		PlaySound(0, "sonic/walljump", CHAN_BODY);
-		ThrustThing(GetActorAngle(0) >> 8, distance * -1, 1, 0);
-		ThrustThingZ(0, height, 0, 0);
-		if (GetCvar("WallJump") == 2) {
-			SetActorAngle(0, GetActorAngle(0) + 0.5);
-		}
-	}
+	Delay(1);
+	PlaySound(0, "sonic/walljump", CHAN_BODY);
+	ThrustThing(GetActorAngle(0) >> 8, distance * -1, 1, 0);
+	ThrustThingZ(0, height, 0, 0);
+	SetActorAngle(0, GetActorAngle(0) + 0.5);
 }
-
 
 script "HowManyZFireLeft" (int clear)
 {
@@ -970,7 +965,7 @@ script "ControlHints" enter
 			if (Midair) {
 				if (CheckInventory("PowerHyper")) Jump = "Double Jump";
 				OffhandAttack = "Insta-Shield";
-				if (GetCvar("JumpThok") && GetCvar("DidJump")) Jump = "Sonic Thok";
+				if (GetCvar("DidJump")) Jump = "Sonic Thok";
 			}
 		}
 		else if (Character == Shadow) {
@@ -1087,3 +1082,8 @@ script "ControlHints" enter
 	}
 }
 
+script 69 (void)
+{
+	if (PlayerClass(PlayerNumber()) == Sonic)
+		HudMessage(s:"\c[Sonic] Sonic: \c[White] Consider this your bad Lock & Load!"; HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+}

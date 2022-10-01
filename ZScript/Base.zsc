@@ -129,7 +129,7 @@ class LockLoadPlayer : PlayerPawn
 					A_StartSound("*jump", CHAN_BODY);
 				}
 			}
-			else if (CountInv("SonicCheck") && isTouchingWall && Pos.Z - GetZAt() > 60 && GetCvar("WallJump")) {
+			else if (CountInv("SonicCheck") && isTouchingWall && Pos.Z - GetZAt() > 60) {
 				dJumpCounter = 0; // You get a free double jump after a wall jump
 				if (Vel.Z >= 1) {
 					wJumpHeight = Vel.Z + wJumpHeightOffset;
@@ -139,7 +139,7 @@ class LockLoadPlayer : PlayerPawn
 				}
 				ACS_NamedExecute("WallJump", 0, wJumpHeight, wJumpDistance);
 			}
-			else if (level.IsJumpingAllowed() && (CountInv("SonicCheck") || CountInv("AmyCheck") || (CountInv("ClassicCheck") && CountInv("PowerHyper") && !IsHovering)) && GetCvar("DoubleJump")) {
+			else if (level.IsJumpingAllowed() && (CountInv("SonicCheck") || CountInv("AmyCheck") || (CountInv("ClassicCheck") && CountInv("PowerHyper") && !IsHovering))) {
 				// Double jump stuff
 				if (GetCvar("Sliding")) {
 					A_ChangeVelocity(Vel.X, Vel.Y, JumpZ - 2, CVF_Replace);
@@ -148,7 +148,6 @@ class LockLoadPlayer : PlayerPawn
 				else {
 					if (dJumpCounter < dJumpCount || waterlevel > 1 && CountInv("SonicCheck")) {
 						dJumpCounter++;
-						if (GetCvar("DoubleJump") == 1) { Thing_Stop(1001); }
 						A_ChangeVelocity(Vel.X, Vel.Y, JumpZ - 2, CVF_Replace);
 						A_StartSound("*doublejump", CHAN_BODY);
 					}

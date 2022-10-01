@@ -63,20 +63,18 @@ OptionMenu "LLAbilitiesMenu"
 	Title "Abilities"
 	
 	StaticText "Configure character abilties.", "White"
-	StaticText "Toggle things like double jumping and Hyper forms,", "White"
+	StaticText "Toggle things like crashing into walls and Hyper forms,", "White"
 	StaticText "and change things like how far the Precision Shotgun", "White"
 	StaticText "zooms in or when the Homing Snap reticle appears.", "White"
 	StaticText ""
 	
-	Option "Wall Jump", "WallJump", "WallJump"
-	StaticText "Sonic only", "Cyan"
+	Option "Reserved Mode", "ReservedMode", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
+	StaticText "Tones down movement speed and jump height, intended", "White"
+	StaticText "for use with standard DOOM levels.", "White"
 	StaticText ""
 	
-	Option "Double Jump", "DoubleJump", "DoubleJump"
-	StaticText "Sonic or Amy", "Cyan"
-	StaticText ""
-	
-	Option "Wall Crash", "WallCrash", "EnabledOrNot"
+	Option "Crash into walls when Boosting", "WallCrash", "EnabledOrNot"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
 	
@@ -90,10 +88,6 @@ OptionMenu "LLAbilitiesMenu"
 	
 	Option "Homing Snap Reticle", "HomingSnapReticle", "HomingSnapReticle"
 	StaticText "Sonic only", "Cyan"
-	StaticText ""
-
-    Option "Sonic Thok Input", "JumpThok", "JumpThok"
-	StaticText "Classic Sonic only", "Cyan"
 	StaticText ""
 
     Option "Recoil Burst Activation", "RecoilBurstRelease", "RecoilBurstRelease"
@@ -119,6 +113,10 @@ OptionMenu "LLMiscOptMenu"
 	StaticText "All characters", "Cyan"
 	StaticText ""
 	
+	Option "Tutorials", "Tutorials", "EnabledOrNot"
+	StaticText "All characters", "Cyan"
+	StaticText ""
+	
 	Option "Control Hints", "ControlHints", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
 	StaticText ""
@@ -131,12 +129,6 @@ OptionMenu "LLMiscOptMenu"
 	StaticText "All characters", "Cyan"
 	StaticText "Will play when energy is low in", "White"
 	StaticText "Super, Dark or Hyper form.", "White"
-	StaticText ""
-	
-	Option "Reserved Mode", "ReservedMode", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
-	StaticText "Tones down movement speed and jump height, intended", "White"
-	StaticText "for use with standard DOOM levels.", "White"
 	StaticText ""
 	
 	Option "HIRE THIS MAN", "HireThisMan", "EnabledOrNot"
