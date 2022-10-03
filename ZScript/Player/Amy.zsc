@@ -389,17 +389,23 @@ class AmyEclipseBlaster : LockLoadWeapon
 			Goto Ready;
 		AltFire:
 			ECBL C 1 {
-				if ((Health < 300 && CountInv("ChaosEnergy") && !CountInv("PowerSuper"))) {
-					A_TakeInventory("ChaosEnergy", 2);
+				int ringLimit = 300;
+				if ((Health < ringLimit) && CountInv("ChaosEnergy") && !(CountInv("PowerSuper") || CountInv("PowerHyper"))) {
 					A_PlaySound("sweapons/healthcharge", 4096);
+					A_TakeInventory("ChaosEnergy", 2);
 					A_GiveInventory("Health", 4);
-					if (Health > 300) { A_SetHealth(300); }
-				} else {
+					if (Health > ringLimit) { A_SetHealth(ringLimit); }
+				}
+				else {
 					A_PlaySound("sglobal/error", 4096);
-					return ResolveState("Ready");
+					return ResolveState("EndHeal");
 				}
 				return ResolveState(null);
 			}
+			TNT1 A 0 A_ReFire();
+			/* passthrough */
+		EndHeal:
+			ECBL BBBBBBB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		Reload:
 			TNT1 A 0 A_GiveInventory("AmyKick");

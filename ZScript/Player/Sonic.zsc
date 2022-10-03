@@ -715,11 +715,12 @@ class EclipseBlaster : LockLoadWeapon
 			Goto Ready;
 		AltFire:
 			ECBL C 1 {
-				if ((Health < 300) && CountInv("ChaosEnergy") && !(CountInv("PowerSuper") || CountInv("PowerHyper"))) {
+				int ringLimit = 300;
+				if ((Health < ringLimit) && CountInv("ChaosEnergy") && !(CountInv("PowerSuper") || CountInv("PowerHyper"))) {
 					A_PlaySound("sweapons/healthcharge", 4096);
-					A_TakeInventory("ChaosEnergy", 4);
-					A_GiveInventory("Health", 8);
-					if (Health > 300) { A_SetHealth(300); }
+					A_TakeInventory("ChaosEnergy", 16);
+					A_GiveInventory("Health", 6);
+					if (Health > ringLimit) { A_SetHealth(ringLimit); }
 				}
 				else {
 					A_PlaySound("sglobal/error", 4096);
