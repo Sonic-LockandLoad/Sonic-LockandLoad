@@ -1013,7 +1013,13 @@ script "ControlHints" enter
 				if (GetCvar("CanWallJump")) PrimaryFire = "Wall Dash";
 			}
 			else PrimaryFire = "Spin Dash";
-			SecondaryFire = "Drift";
+			bool CanFly = (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) && Midair;
+			if (CanFly) SecondaryFire = "Hover";
+			else SecondaryFire = "Drift";
+			if (CanFly && (buttons & BT_ALTATTACK)) {
+				Jump = "Fly Up";
+				Crouch = "Fly Down";
+			}
 		}
 		if (CheckWeapon("ChaosBlaster")) { PrimaryFire = "Plasma Stream"; SecondaryFire = "\c[DarkGray]None"; }
 		if (CheckWeapon("SpeedyShotgun")) { PrimaryFire = "Speedy Shot"; SecondaryFire = "Burst Shot"; }
