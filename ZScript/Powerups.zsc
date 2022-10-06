@@ -66,7 +66,7 @@ class SuperForm : PowerupGiver
 		+INVENTORY.BIGPOWERUP
 		Inventory.MaxAmount 1;
 		Powerup.Type "PowerSuper";
-		Powerup.Color "F0 BC 18", 0.1;
+		Powerup.Color "000000", 0.0;
 		Inventory.PickupMessage "$GOTINVUL";
 	}
 	States
@@ -86,7 +86,7 @@ class HyperForm : PowerupGiver
 		+INVENTORY.BIGPOWERUP
 		Inventory.MaxAmount 1;
 		Powerup.Type "PowerHyper";
-		Powerup.Color "F0 BC 18", 0.1;
+		Powerup.Color "000000", 0.0;
 		Inventory.PickupMessage "$GOTINVUL";
 	}
 	States
