@@ -156,6 +156,8 @@ class BoostEnabledWeapon : LockLoadWeapon
 		if ((GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && A_CheckFloor("Null")) {
 			A_ChangeVelocity(0, 0, invoker.BoostSpeed / 10, CVF_Relative);
 		}
+		if (form == 2 && GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP)   A_ChangeVelocity(0, 0,  3);
+		if (form == 2 && GetPlayerInput(MODINPUT_BUTTONS) & BT_CROUCH) A_ChangeVelocity(0, 0, -3);
 		if (invoker.BoostSpeed <= MaxBoostSpeed) invoker.BoostSpeed += 5;
 		A_Light(2);
 	}
@@ -281,7 +283,7 @@ class Caliburn : BoostEnabledWeapon
 				if (GetCvar("SoulSurgeReady")) {
 					return ResolveState("SoulCharge");
 				}
-				if (!player.onground && GetPlayerInput(MODINPUT_BUTTONS) & BT_CROUCH && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_CROUCH)) {
+				if (!player.onground && GetPlayerInput(MODINPUT_BUTTONS) & BT_CROUCH && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_CROUCH) && !(GetPlayerInput(MODINPUT_BUTTONS) & BT_ALTATTACK)) {
 					return ResolveState("SlamStart");
 				}
 				return ResolveState(null);
