@@ -736,7 +736,8 @@ class SonicThok : CustomInventory
 	CountCheck:
 		TNT1 A 0 {
 			invoker.counter++;
-			return A_JumpIf(invoker.counter <= 1 || CountInv("PowerSuper") || CountInv("PowerHyper"), "Thok");
+			bool isTouchingWall = A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
+			return A_JumpIf((invoker.counter <= 1 || CountInv("PowerSuper") || CountInv("PowerHyper")) && !isTouchingWall, "Thok");
 		}
 		Stop;
 	Thok:

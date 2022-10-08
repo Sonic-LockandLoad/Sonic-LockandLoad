@@ -94,6 +94,7 @@ class LockLoadPlayer : PlayerPawn
 		double wJumpHeightOffset = 50;
 		double wJumpDistance = 25;
 		bool isTouchingWall = GetCvar("CanWallJump");
+		int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 		int dJumpCount = 1; // You get an extra jump
 		if (CountInv("SonicCheck") && CountInv("PowerHyper")) {
 			dJumpCount = 2; // Two extra jumps if you're Hyper Sonic
@@ -102,7 +103,8 @@ class LockLoadPlayer : PlayerPawn
 			dJumpCounter = 0; // Reset the double jump counter once you touch the ground
 			cvar.FindCvar("DidJump").SetBool(false); // Reset the DidJump CVAR as well
 		}
-		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
+		bool IsBoostingMidAir = (CountInv("SonicCheck") && ACS_NamedExecuteWithResult("CheckIfCaliburn") && (CountInv("PowerSuper") || CountInv("PowerHyper")) && (buttons & BT_ALTATTACK) && !player.onground);
+		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && !IsBoostingMidAir) {
 			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 			bool IsHovering = buttons & BT_ALTATTACK && (CountInv("PowerSuper")||CountInv("PowerHyper")) && !player.onground;
 			if (bNoGravity) {
