@@ -85,26 +85,46 @@ class OmniSwitch : LLSwitch
 
 class Doox : SwitchingDecoration
 {
+	int speed;
 	Default
 	{
 		//$Category Lock & Load Objects
+		Monster;
 		+SOLID
 		+PUSHABLE
 		+USESPECIAL
 		+SHOOTABLE
 		+NOBLOOD
+		+DROPOFF
+		+SLIDESONWALLS
+		-ISMONSTER
+		+PICKUP
+		BounceType "Doom";
 		Health 1000000;
 		Height 50;
+		Damage 69420;
 		Activation THINGSPEC_Switch;
+		Obituary "%o underestimated the power of Doox.";
 	}
 	States
 	{
 		Spawn:
-			DOOX A 1 A_GiveInventory("Health");
+			DOOX A 1 {
+				A_GiveInventory("Health");
+				invoker.speed = sqrt((vel.x * vel.x) + (vel.y * vel.y));
+				if (invoker.speed > 15.0) {
+					bMISSILE = true;
+					A_ScaleVelocity(0.95);
+				}
+				else bMISSILE = false;
+			}
 			Loop;
 		Active:
 			DOOX A 1 A_StartSound("doox/nyeh");
-			DOOX A 0 Thing_Deactivate(0);
+			TNT1 A 0 Thing_Deactivate(0);
 			Goto Spawn;
+		Death:
+			DOOX A 1 A_SpawnItem("Doox");
+			Stop;
 	}
 }
