@@ -575,6 +575,7 @@ script "GoalRing" (void)
 	int CurrentEnergy = CheckActorInventory(1001, "ChaosEnergy");
 	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
 	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	str Rank;
 	
 	// Your score
 	if (LevelTime < ParTime) score += (ParTime - LevelTime) * 75;
@@ -601,8 +602,23 @@ script "GoalRing" (void)
 			   s:"Target Score: ", d:targetscore, s:"\n"; 
 			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
 			   
-	// Victory message
+	// Victory message and rank
 	SetFont("BIGFONT");
+	switch (PlayerClass(PlayerNumber()))
+	{
+		case Sonic:
+			SetMusic("S_VICTOR");
+	if 		(score > (targetscore * 2)) Rank = "\c[Gold]S";
+	else if (score > targetscore) 		Rank = "\c[Green]A";
+	else if (score > (targetscore / 2)) Rank = "\c[Yellow]B";
+	else								Rank = "\c[Brick]C";
+	if (PlayerClass(PlayerNumber()) == Amy) Delay(35*5);
+	else Delay(35*6);
+	AmbientSound("sglobal/rankget", 127);
+	HudMessage(s:Rank;
+			   HUDMSG_PLAIN, 8, CR_WHITE, 1.5, 0.6, 0, 1.0);
+	SetMusic("");
+	Delay(14);
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case Sonic:
@@ -633,7 +649,6 @@ script "GoalRing" (void)
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			Delay(35*7);
 			break;
 		case Amy:
 			SetMusic("A_VICTOR");
@@ -655,7 +670,6 @@ script "GoalRing" (void)
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			Delay(35*7);
 			break;
 		case ClassicSonic:
 			SetMusic("C_VICTOR");
@@ -685,7 +699,6 @@ script "GoalRing" (void)
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			Delay(35*6);
 			break;
 		case Shadow:
 			SetMusic("D_VICTOR");
@@ -708,12 +721,12 @@ script "GoalRing" (void)
 							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			Delay(35*7);
 			break;
 		case -1:
 		default:
 			break;
 	}
+	Delay(35*3);
 	Exit_Normal(0);
 }
 
