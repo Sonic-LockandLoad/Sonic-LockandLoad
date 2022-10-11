@@ -592,7 +592,7 @@ script "GoalRing" (void)
 	ACS_NamedTerminate("TransformSuper", 0);
 	ACS_NamedTerminate("TransformHyper", 0);
 	Delay(5);
-	GiveInventory("Invincibility", 1);
+	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 	
 	// Your target score
 	targetscore += ParTime * 100;
@@ -608,6 +608,23 @@ script "GoalRing" (void)
 	{
 		case Sonic:
 			SetMusic("S_VICTOR");
+			HudMessage(s:"\c[Sonic]Stage Clear"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
+			break;
+		case Amy:
+			SetMusic("A_VICTOR");
+			HudMessage(s:"\c[Amy]Act Clear!"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
+			break;
+		case ClassicSonic:
+			SetMusic("C_VICTOR");
+			HudMessage(s:"\c[Classic]SONIC \c[White]GOT THROUGH\n\c[White]", s:strParam(n:PRINTNAME_LEVELNAME); HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
+			break;
+		case Shadow:
+			SetMusic("D_VICTOR");
+			HudMessage(s:"\c[Shadow]Mission Cleared"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
+			break;
+		default:
+			break;
+	}
 	if 		(score > (targetscore * 2)) Rank = "\c[Gold]S";
 	else if (score > targetscore) 		Rank = "\c[Green]A";
 	else if (score > (targetscore / 2)) Rank = "\c[Yellow]B";
@@ -622,8 +639,6 @@ script "GoalRing" (void)
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case Sonic:
-			SetMusic("S_VICTOR");
-			HudMessage(s:"\c[Sonic]Stage Clear"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			SetFont("SMALLFONT");
 			if (score > targetscore) {
 				PlaySound(1001, "sonic/goodresult");
@@ -651,8 +666,6 @@ script "GoalRing" (void)
 			}
 			break;
 		case Amy:
-			SetMusic("A_VICTOR");
-			HudMessage(s:"\c[Amy]Act Clear!"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			SetFont("SMALLFONT");
 			if (score > (targetscore / 2)) {
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
@@ -672,8 +685,6 @@ script "GoalRing" (void)
 			}
 			break;
 		case ClassicSonic:
-			SetMusic("C_VICTOR");
-			HudMessage(s:"\c[Classic]SONIC \c[White]GOT THROUGH\n\c[White]", s:strParam(n:PRINTNAME_LEVELNAME); HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			SetFont("SMALLFONT");
 			if (score > targetscore) {
 				PlaySound(1001, "classic/goodresult");
@@ -701,8 +712,6 @@ script "GoalRing" (void)
 			}
 			break;
 		case Shadow:
-			SetMusic("D_VICTOR");
-			HudMessage(s:"\c[Shadow]Mission Cleared"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			if (score > targetscore) {
 				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/goodresult");
@@ -726,7 +735,8 @@ script "GoalRing" (void)
 		default:
 			break;
 	}
-	Delay(35*3);
+	Delay(35*2);
+	SetActorProperty(1001, APROP_DamageFactor, 1.0);
 	Exit_Normal(0);
 }
 
