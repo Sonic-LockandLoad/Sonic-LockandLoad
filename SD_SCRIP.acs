@@ -587,10 +587,15 @@ script "GoalRing" (void)
 	score += CurrentEnergy * 20;
 	if (score < 0) score = 0;
 	
-	// Stop the player and take their Super/Hyper form away
+	// Stop the player and remove their form and invincibility
 	Thing_Stop(1001);
+	TakeInventory("PowerInvulnerable", 1);
+	TakeInventory("PowerSuper", 1);
+	TakeInventory("PowerHyper", 1);
 	ACS_NamedTerminate("TransformSuper", 0);
 	ACS_NamedTerminate("TransformHyper", 0);
+	SetMugShotState("Normal");
+	
 	Delay(5);
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 	
