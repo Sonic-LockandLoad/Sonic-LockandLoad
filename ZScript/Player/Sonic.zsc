@@ -122,7 +122,10 @@ class BoostEnabledWeapon : LockLoadWeapon
 		if (!invoker.BoostCheck) {
 			int speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
 			invoker.BoostCheck = true;
-			if (speed > InitialBoostSpeed) {
+			if (GetPlayerInput(MODINPUT_BUTTONS) & BT_FORWARD && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_FORWARD)) {
+				invoker.BoostSpeed = MaxBoostSpeed;
+			}
+			else if (speed > InitialBoostSpeed) {
 				invoker.BoostSpeed = speed;
 			}
 			else {
