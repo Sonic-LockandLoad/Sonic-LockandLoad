@@ -94,7 +94,9 @@ sonic/boostv1           	boostl1
 sonic/boostv2           	boostl2
 sonic/boostv3           	boostl3
 sonic/boostv4           	boostl4
-$random sonic/boost 		{ sonic/boostv1 sonic/boostv2 sonic/boostv3 sonic/boostv4 }
+sonic/boostv5           	boostl5
+sonic/boostv6           	boostl6
+$random sonic/boost 		{ sonic/boostv1 sonic/boostv2 sonic/boostv3 sonic/boostv4 sonic/boostv5 sonic/boostv6 }
 sonic/ohno              	ohno
 sonic/grunt1            	SonicGr1
 sonic/grunt2            	SonicGr2
