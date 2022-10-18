@@ -578,13 +578,14 @@ script "GoalRing" (void)
 	str Rank;
 	
 	// Your score
-	if (LevelTime < ParTime) score += (ParTime - LevelTime) * 75;
+	if (LevelTime < ParTime) score += (ParTime - LevelTime) * 55;
 	else if (LevelTime == ParTime) score += 2000;
-	else if (LevelTime > ParTime) score -= (LevelTime - ParTime) * 25;
-	if (CurrentHealth > 300) score += CurrentHealth * 50;
+	else if (LevelTime > ParTime) score -= (LevelTime - ParTime) * 30;
+	if (CurrentHealth > 300) score += CurrentHealth * 25;
 	else score += CurrentHealth * 10;
-	score += KilledMonsters * 75;
-	score += CurrentEnergy * 20;
+	score += KilledMonsters * 70;
+	score += CurrentEnergy * 10;
+	if (KilledMonsters == TotalMonsters) score += 2000;
 	if (score < 0) score = 0;
 	
 	// Stop the player and remove their form and invincibility
@@ -600,8 +601,8 @@ script "GoalRing" (void)
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 	
 	// Your target score
-	targetscore += ParTime * 100;
-	targetscore += TotalMonsters * 100;
+	targetscore += ParTime * 40;
+	targetscore += TotalMonsters * 120;
 	if (GameSkill() == 5) targetscore *= 1.5;
 	HudMessage(s:"Score: ", d:score, s:"\n",
 			   s:"Target Score: ", d:targetscore, s:"\n"; 
