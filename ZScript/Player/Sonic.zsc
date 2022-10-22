@@ -938,12 +938,11 @@ class HomingSnapQuickStep : CustomInventory
 					let ltarget = ltinfo.linetarget;
 					if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
 						double ltdistance = Distance2D(ltarget);
-						int z_diff = ltarget.Pos.Z - Pos.Z;
-						A_ChangeVelocity(ltdistance - 60, 0, z_diff + ltarget.height / 2 - 20, CVF_Relative|CVF_Replace);
+						SetOrigin(ltarget.pos, false);
+						A_ChangeVelocity(-128, 0, 0, CVF_Relative|CVF_Replace);
 						A_SetPitch(10);
 						A_SetAngle(ltinfo.angleFromSource);
-						/* Why does ZScript not have a way to check your current weapon? */
-						if (ACS_NamedExecuteWithResult("CheckIfCaliburn") && (CountInv("ChaosEnergy") >= 400 || CountInv("PowerSuper") || CountInv("PowerHyper"))) {
+						if (player.ReadyWeapon.GetClassName() == "Caliburn" && ltarget.bIsMonster && (CountInv("ChaosEnergy") >= 400 || CountInv("PowerSuper") || CountInv("PowerHyper"))) {
 							A_StartSound("sweapons/soulcharge", 8);
 							A_StartSound("sonic/soulcharge", CHAN_BODY);
 							cvar.FindCvar("SoulSurgeReady").SetBool(true);

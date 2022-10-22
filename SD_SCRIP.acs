@@ -941,16 +941,6 @@ script "LowEnergySound" enter
 	}
 }
 
-script "CheckIfCaliburn" (void)
-{
-	SetResultValue(CheckWeapon("Caliburn"));
-}
-
-script "CheckIfEmerald" (void)
-{
-	SetResultValue(CheckWeapon("ChaosEmerald"));
-}
-
 script "ControlHints" enter
 {
 	str PrimaryFire, SecondaryFire, Jump, Crouch, OffhandAttack, OffhandAbility, SuperForm;

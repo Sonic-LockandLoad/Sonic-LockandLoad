@@ -36,7 +36,7 @@ class ShadowPlayer : LockLoadPlayer
 			FTranslatedLineTarget ltinfo;
 			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
-			if (ltarget && Distance3D(ltarget) > 160 && health > 0) {
+			if (ltarget && Distance3D(ltarget) > 160 && health > 0 && ltarget.bIsMonster) {
 				if (!reticleActive) {
 					A_StartSound("sweapons/reticle", 11);
 					reticleActive = true;
@@ -593,7 +593,7 @@ class ChaosSnap : CustomInventory
 		TNT1 A 0 {
 			invoker.counter++;
 			int maxCount;
-			if (ACS_NamedExecuteWithResult("CheckIfEmerald")) {
+			if (player.ReadyWeapon.GetClassName() == "ChaosEmerald") {
 				maxCount = 3;
 			}
 			else {
@@ -681,7 +681,7 @@ class HomingAttack : CustomInventory
 			FTranslatedLineTarget ltinfo;
 			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
 			let ltarget = ltinfo.linetarget;
-			if (ltarget) return ResolveState("HomingAttack");
+			if (ltarget && ltarget.bIsMonster) return ResolveState("HomingAttack");
 			return ResolveState(null);
 		}
 		Stop;
@@ -691,9 +691,9 @@ class HomingAttack : CustomInventory
 			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
 			let ltarget = ltinfo.linetarget;
 			double ltdistance = Distance2D(ltarget);
-			int z_diff = ltarget.Pos.Z - Pos.Z;
 			A_StartSound("sweapons/sdash", 8);
-			A_ChangeVelocity(ltdistance - 60, 0, z_diff + ltarget.height / 2 - 20, CVF_Relative|CVF_Replace);
+			SetOrigin(ltarget.Vec3Offset(0, 0, ltarget.height), false);
+			A_SetPitch(15);
 			A_SetAngle(ltinfo.angleFromSource);
 			ltarget.A_DamageSelf(150 * random(1, 5));
 		}
