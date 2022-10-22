@@ -122,6 +122,13 @@ map S_HIRE "Hire This Zone"
 	partime = 0
 }
 
+map S_SNDBOX "The Sandbox"
+{
+	music = S_SNDBOX
+	author = "That1M8Head"
+	partime = 0
+}
+
 clearskills
 
 skill easy
