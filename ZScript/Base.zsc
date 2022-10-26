@@ -1,6 +1,7 @@
 class LockLoadPlayer : PlayerPawn 
 {
 	int dJumpCounter;
+	double oldz;
 	Default
 	{
 		Speed 4;
@@ -88,6 +89,7 @@ class LockLoadPlayer : PlayerPawn
 	{
 		cvar.FindCvar("CanWallJump").SetBool(CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32));
 		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128));
+		oldz = Pos.Z;
 		Super.Tick();
 	}
 	override void CheckJump()
@@ -127,7 +129,11 @@ class LockLoadPlayer : PlayerPawn
 					player.crouching = 1;
 				}
 
-				Vel.Z = jumpvelz;
+				double speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
+				double slopebonus = (Pos.Z - oldz) * (speed / 57);
+				if (slopebonus < -5) slopebonus = -5;
+				if (slopebonus > 15) slopebonus = 15;
+				Vel.Z = jumpvelz + slopebonus;
 				bOnMobj = false;
 				player.jumpTics = 0;
 				if (!(player.cheats & CF_PREDICTING)) {
