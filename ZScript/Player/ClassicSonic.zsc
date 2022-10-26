@@ -348,7 +348,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
                 cvar.FindCvar("IsSpinDashing").SetBool(true);
 				A_ChangeVelocity(invoker.SpinCharges * 2, 0, Vel.Z, CVF_Relative|CVF_Replace);
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && A_CheckFloor("Null")) {
-					A_ChangeVelocity(0, 0, invoker.SpinCharges / 5);
+					A_ChangeVelocity(0, 0, invoker.SpinCharges / 7);
 				}
 				A_CustomPunch(invoker.SpinCharges * 2, false, CPF_NOTURN, "SonicPunchPuff", 128, 0, 0, "ArmorBonus", "sWeapons/finalhit");
 			}
