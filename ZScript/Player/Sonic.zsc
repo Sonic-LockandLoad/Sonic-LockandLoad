@@ -934,13 +934,13 @@ class HomingSnapQuickStep : CustomInventory
 				else {
 					/* Homing Snap */
 					FTranslatedLineTarget ltinfo;
-					bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "BulletPuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+					bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 					let ltarget = ltinfo.linetarget;
 					if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
 						double ltdistance = Distance2D(ltarget);
-						SetOrigin(ltarget.pos, false);
-						A_ChangeVelocity(-128, 0, 0, CVF_Relative|CVF_Replace);
-						A_SetPitch(10);
+						SetOrigin(ltarget.Vec3Offset(0, 0, 1.2), false);
+						A_ChangeVelocity(-120, 0, 0, CVF_Relative|CVF_Replace);
+						A_SetPitch(12);
 						A_SetAngle(ltinfo.angleFromSource);
 						if (player.ReadyWeapon.GetClassName() == "Caliburn" && ltarget.bIsMonster && (CountInv("ChaosEnergy") >= 400 || CountInv("PowerSuper") || CountInv("PowerHyper"))) {
 							A_StartSound("sweapons/soulcharge", 8);
