@@ -1016,7 +1016,7 @@ script "ControlHints" enter
 		
 		// Amy's weapons
 		if (CheckWeapon("PikoPikoHammer")) { PrimaryFire = "Piko Strike"; SecondaryFire = "Parry"; }
-		if (CheckWeapon("SilentRosePistol")) { PrimaryFire = "Silenced Shot"; SecondaryFire = "Zoom"; }
+		if (CheckWeapon("SilentRosePistol")) { PrimaryFire = "Silenced Shot"; SecondaryFire = "Reload"; }
 		if (CheckWeapon("PrecisionShotgun")) { 
 			if (buttons & BT_ALTATTACK) PrimaryFire = "Precise Shot"; 
 			else PrimaryFire = "Shotgun Blast";

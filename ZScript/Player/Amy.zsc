@@ -196,6 +196,7 @@ class PikoPikoHammer : LockLoadWeapon
 
 class SilentRosePistol : LockLoadWeapon
 {
+	int ShotsFired;
 	Default
 	{
 		Weapon.SelectionOrder 100;
@@ -208,20 +209,12 @@ class SilentRosePistol : LockLoadWeapon
 		Inventory.PickupSound "spickup/amy";
 		Tag "Silent Rose";
 		+WEAPON.NOALERT
+		+WEAPON.NOAUTOFIRE
 	}
 	States
 	{
 		Ready:
-			RSFP A 1 {
-				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ALTATTACK) {
-					A_WeaponReady(WRF_DISABLESWITCH);
-					A_ZoomFactor(1.6);
-				}
-				else {
-					A_WeaponReady();
-					A_ZoomFactor(1);
-				}
-			}
+			RSFP A 1 A_WeaponReady();
 			Loop;
 		Deselect:
 			#### # 1 A_Lower(10);
@@ -230,18 +223,19 @@ class SilentRosePistol : LockLoadWeapon
 			RSFP A 1 A_Raise(10);
 			Loop;
 		Fire:
-			RSFP A 0 A_JumpIf(CountInv("PowerSuper") > 0, "SuperShot");
-			RSFP A 0 A_FireBullets(0, 0, 1, 90, "NoGibPuff", FBF_USEAMMO|FBF_NORANDOM);
-			RSFP ABCBADEFGHIHGFED 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			RSFP A 0 { invoker.ShotsFired++; }
+			RSFP B 1 A_FireBullets(0, 0, 1, 60, "NoGibPuff", FBF_USEAMMO|FBF_NORANDOM);
+			RSFP CBA 1;
+			RSFP A 0 A_JumpIf(invoker.ShotsFired >= 12, "Reloading");
 			Goto Ready;
-		SuperShot:
-			RSFP A 0 A_FireBullets(0, 0, 1, 110, "NoGibPuff", FBF_NORANDOM);
-			RSFP ABCBA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			RSFP A 0 A_ReFire();
-			RSFP DEFGHIHGFED 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+		Reloading:
+			RSFP A 0 A_StartSound("sweapons/areload", CHAN_WEAPON);
+			RSFP DEFGH 1;
+			RSFP I 24 { invoker.ShotsFired = 0; }
+			RSFP HGFED 1;
 			Goto Ready;
-		Reload:
-			TNT1 A 0 A_GiveInventory("AmyKick");
+		AltFire:
+			RSFP A 0 A_JumpIf(invoker.ShotsFired >= 1, "Reloading");
 			Goto Ready;
 		Spawn:
 			ROSP A -1;

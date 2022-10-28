@@ -42,6 +42,7 @@ sweapons/soulcharge        	soulchrg
 sweapons/soulsurge         	surge
 sweapons/hammerswing       	pikoswng
 sweapons/apistol        	pistshot
+sweapons/areload        	pistrlod
 sweapons/preciseshot       	precshot
 sweapons/zoom              	zoom
 sweapons/zoomend           	zend
