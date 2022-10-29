@@ -131,7 +131,7 @@ class LockLoadPlayer : PlayerPawn
 
 				double speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
 				double slopebonus = (Pos.Z - oldz) * (speed / 57);
-				if (slopebonus < -5) slopebonus = -5;
+				if (slopebonus < 0)  slopebonus = 0;
 				if (slopebonus > 15) slopebonus = 15;
 				Vel.Z = jumpvelz + slopebonus;
 				bOnMobj = false;
