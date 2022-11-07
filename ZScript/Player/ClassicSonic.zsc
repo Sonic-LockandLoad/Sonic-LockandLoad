@@ -13,6 +13,7 @@ class ClassicSonicPlayer : LockLoadPlayer
 		Player.StartItem "ClassicCheck";
 		Player.StartItem "SonicThok";
 		Player.StartItem "SpinAttack";
+		Player.StartItem "SlamAtkObject";
 		Player.WeaponSlot 1, "ClassicAbilities";
 		Player.WeaponSlot 2, "ChaosBlaster";
 		Player.WeaponSlot 3, "SpeedyShotgun";

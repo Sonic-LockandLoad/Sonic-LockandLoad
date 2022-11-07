@@ -953,7 +953,7 @@ script "ControlHints" enter
 		// Jump and crouch
 		Jump = "Jump";
 		Crouch = "Crouch";
-		if (Midair) Crouch = "\c[DarkGray]None";
+		if (Midair) Crouch = "Slam Attack";
 		
 		if (Character == Sonic) {
 			if (CheckInventory("PowerHyper")) OffhandAttack = "Shockwave Kick";
@@ -985,6 +985,7 @@ script "ControlHints" enter
 			if (Midair) {
 				if (CheckInventory("PowerHyper")) Jump = "Double Jump";
 				OffhandAttack = "Insta-Shield";
+				Crouch = "Bound Attack";
 				if (GetCvar("DidJump")) Jump = "Sonic Thok";
 			}
 		}
@@ -993,16 +994,12 @@ script "ControlHints" enter
 			OffhandAttack = "Chaos Spear";
 			if (GetCvar("CloseToEnemy")) OffhandAttack = "Punch";
 			OffhandAbility = "Chaos Snap";
-			if (buttons & BT_CROUCH && Midair) {
-				OffhandAbility = "Chaos Snap Down";
-			}
 		}
 		
 		// Sonic's weapons
 		if (CheckWeapon("Caliburn")) {
 			PrimaryFire = "Sword Swing";
 			SecondaryFire = "Boost";
-			if (Midair) Crouch = "Slam";
 			if (!Midair && (buttons & BT_ALTATTACK)) Jump = "Boost Jump";
 		}
 		if (CheckWeapon("AcceleratedPistol")) {

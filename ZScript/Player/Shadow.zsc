@@ -13,6 +13,7 @@ class ShadowPlayer : LockLoadPlayer
 		Player.StartItem "ChaosSnap";
 		Player.StartItem "ChaosSpearAtk";
 		Player.StartItem "HomingAttack";
+		Player.StartItem "SlamAtkObject";
 		Player.StartItem "ChaosEnergy", 200;
 		Player.WeaponSlot 1, "HighShovel", "ShadowKnife";
 		Player.WeaponSlot 2, "ShadowMP5";
@@ -633,12 +634,6 @@ class ChaosSnap : CustomInventory
 			
 			if (forward < 0) {
 				A_ChangeVelocity(SnapSpeed * -1, 0, 0, CVF_Relative);
-				input = 1;
-			}
-			
-			if (buttons & BT_CROUCH && !player.onground) {
-				A_Stop();
-				ThrustThingZ(0, GetZAt() - Pos.Z, 0, 0);
 				input = 1;
 			}
 			
