@@ -190,6 +190,10 @@ skill wtf
 	PlayerClassName = "$shadow", "$skill5_shadow"
 	name = "$skill5"
 	mustconfirm = "$skill_text5"
+	replaceactor = "ChaosRing", "Ring"
+	replaceactor = "ChaosRingGravity", "DroppedRing"
+	replaceactor = "RingBox", "ChaosCapsule"
+	replaceactor = "SpecialRing", "BlueChaosCapsule"
 }
 
 skill ohno

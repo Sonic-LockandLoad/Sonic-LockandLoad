@@ -165,7 +165,7 @@ skill_text1 = "\c[Green]There's basically no enemy opposition.\n\nRecommended fo
 skill_text2 = "\c[Yellow]Reduced enemy count.\n\nGood for when you're finding your footing.";
 skill_text3 = "\c[MenuInactive]Standard difficulty.\n\nThe recommended Sonic: Lock & Load experience.";
 skill_text4 = "\c[MenuInactive]Enemies are twice as fast.\n\nA decent challenge for veterans.";
-skill_text5 = "\c[Red]Enemies are fast and you take double damage.\n\nYou'd best bring your best.";
+skill_text5 = "\c[Red]Enemies are fast, you take double damage and large Ring pickups are gone.\n\nYou'd best bring your best.";
 skill_text6 = "\c[Red]You die in one hit, and so do the enemies.\n\nThis isn't even remotely fair!";
 
 sonic		= "\c[MenuInactive]Sonic";
