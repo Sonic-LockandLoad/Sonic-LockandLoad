@@ -1035,7 +1035,15 @@ script "ControlHints" enter
 			else PrimaryFire = "Spin Dash";
 			bool CanFly = (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) && Midair;
 			if (CanFly) SecondaryFire = "Hover";
-			else SecondaryFire = "Drift";
+			else if (!Midair) {
+				if (buttons & BT_CROUCH) {
+					SecondaryFire = "Healing";
+				}
+				else {
+					SecondaryFire = "Drift";
+				}
+			}
+			else SecondaryFire = "\c[DarkGray]None";
 			if (CanFly && (buttons & BT_ALTATTACK)) {
 				Jump = "Fly Up";
 				Crouch = "Fly Down";
