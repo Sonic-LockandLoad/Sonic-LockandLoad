@@ -85,6 +85,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 	int SpinCharges;
 	int ShweeDelay;
 	int HoverCounter;
+	int HealingCounter;
 	bool DidWallDash;
 	Default
 	{
@@ -130,6 +131,9 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 		AltFire:
 			TNT1 A 0 {
 				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
+				if (!(CountInv("PowerSuper") || CountInv("PowerHyper")) && A_CheckFloor("Null") && (buttons & BT_CROUCH)) {
+					return ResolveState("Restoration");
+				}
 				if ((CountInv("PowerSuper") || CountInv("PowerHyper")) && !A_CheckFloor("Null") && (buttons & BT_ALTATTACK)) {
 					invoker.HoverCounter = 1;
 					return ResolveState("Hover");
@@ -390,6 +394,34 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			Goto Ready;
 		HoverEnd:
 			TNT1 A 0 A_SetGravity(1);
+			Goto Ready;
+		Restoration:
+			TNT1 A 1 {
+				int ringLimit = 150;
+				int delay = 14;
+				invoker.HealingCounter++;
+				DamageFactor = 2;
+				A_SetMugshotState("Healing");
+				A_Stop();
+				if (invoker.HealingCounter < delay) {
+					 invoker.HealingCounter = delay;
+				}
+				if (invoker.HealingCounter % delay == 0) {
+					 A_PlaySound("classic/healing", 13);
+				}
+				if ((Health < ringLimit) && invoker.HealingCounter % 2 == 0) {
+					A_GiveInventory("Health", 1);
+					if (Health > ringLimit) { A_SetHealth(ringLimit); }
+				}
+				return ResolveState(null);
+			}
+			TNT1 A 0 A_ReFire();
+			/* passthrough */
+		EndHeal:
+			TNT1 A 0 {
+				invoker.HealingCounter = 0;
+				DamageFactor = 1;
+			}
 			Goto Ready;
 		SpinAnim:
 			SPIN ABCDEFEDCB 1;

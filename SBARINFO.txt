@@ -297,21 +297,27 @@ mugshot "Pain", directional
 
 mugshot "Ouch"
 {
-  OUCH0 5;
+	OUCH0 5;
 }
 
 mugshot "Grin"
 {
-  EVL0 245;
+	EVL0 245;
 }
 
 mugshot "God"
 {
-  GOD0 - 1;
+	GOD0 - 1;
 }
+
 mugshot "Death"
 {
-  DEAD0 - 1;
+	DEAD0 - 1;
+}
+
+mugshot "Healing"
+{
+	HEAL 35;
 }
 
 mugshot "GrinSmol"

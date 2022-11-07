@@ -172,6 +172,7 @@ classic/ohno              	cono
 classic/pain       			churt
 classic/go					cgo
 classic/jump				cjump
+classic/healing				heal
 
 shadow/grunt1      			dgrunt1
 shadow/grunt2      			dgrunt2
