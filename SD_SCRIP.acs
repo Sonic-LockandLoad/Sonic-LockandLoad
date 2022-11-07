@@ -634,7 +634,8 @@ script "GoalRing" (void)
 	if 		(score > (targetscore * 2)) Rank = "\c[Gold]S";
 	else if (score > targetscore) 		Rank = "\c[Green]A";
 	else if (score > (targetscore / 2)) Rank = "\c[Yellow]B";
-	else								Rank = "\c[Brick]C";
+	else if (score > (targetscore / 3)) Rank = "\c[Brick]C";
+	else								Rank = "\c[Black]D";
 	if (PlayerClass(PlayerNumber()) == Amy) Delay(35*5);
 	else Delay(35*6);
 	AmbientSound("sglobal/rankget", 127);
