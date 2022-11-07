@@ -237,11 +237,9 @@ class SlamAtkObject : CustomInventory
 	action void BoundAttack()
 	{
 		A_PlaySound("*slam", 2);
-		A_LogInt(invoker.zdiff);
 		int bounce = invoker.zdiff / 12 + 8;
 		if (bounce > 40) bounce = 40;
 		if (bounce < 15) bounce = 15;
-		A_LogInt(bounce);
 		A_ChangeVelocity(0, 0, bounce);
 		cvar.FindCvar("DidJump").SetBool(true);
 		bool ok;
