@@ -32,7 +32,7 @@ class SonicPlayer : LockLoadPlayer
 		else {
 			A_SetSpeed(4);
 		}
-		if (GetCvar("HomingSnapReticle") && !player.onground) {
+		if (GetCvar("HomingSnapReticle")) {
 			FTranslatedLineTarget ltinfo;
 			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
@@ -102,6 +102,9 @@ class SonicPlayer : LockLoadPlayer
 			PLAY Q 5 A_NoBlocking;
 			PLAY RSTUV 5;
 			PLAY W -1;
+			Stop;
+		Reticle:
+			RETI B 1;
 			Stop;
 	}
 }
@@ -775,23 +778,50 @@ class SonicKick : CustomInventory
 {
 	int inuse;
 	int EXKick;
+	bool DidTarget;
+	action void HomeInOnTarget()
+	{
+		invoker.DidTarget = false;
+		FTranslatedLineTarget ltinfo;
+		bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+		let ltarget = ltinfo.linetarget;
+		if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+			invoker.DidTarget = true;
+			A_Stop();
+			double ltdistance = Distance2D(ltarget);
+			double zoffset;
+			if (pitch <= -55) {
+				A_SetPitch(-55);
+				zoffset = -65;
+			}
+			else if (pitch < 0) zoffset = pitch - 10;
+			else if (pitch < 7.0) zoffset = -10;
+			else if (pitch >= 40) {
+				A_SetPitch(40);
+				zoffset = 30;
+			}
+			else zoffset = 1.2;
+			A_SetAngle(ltinfo.angleFromSource);
+			double oriX = (-40 - ltarget.radius) * cos(angle) - 0 * sin(angle);
+			double oriY = (-40 - ltarget.radius) * sin(angle) + 0 * cos(angle);
+			SetOrigin(ltarget.Vec3Offset(oriX, oriY, zoffset), false);
+			A_StartSound("sweapons/sdash", 8);
+		}
+	}
 	States
 	{
 		Use:
 			TNT1 A 0 A_Overlay(-2, "FloorCheck");
 			TNT1 A 0 A_OverlayOffset(-2, 0, 32);
 			Fail;
-		TimeCheck:
-			TNT1 A 0 A_JumpIf(CountInv("KickCooldown")<1, "FloorCheck");
-			Stop;
 		FloorCheck:
 			TNT1 A 0 { invoker.EXKick = 0; }
 			TNT1 A 0 A_CheckFloor("KickAttack");
 			TNT1 A 0 { invoker.EXKick = 1; }
 		KickAttack:
+			TNT1 A 0 HomeInOnTarget();
 			TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
 			TNT1 A 0 A_JumpIfInventory("PowerHyper", 1, "HyperKickAttack");
-			TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
@@ -802,7 +832,7 @@ class SonicKick : CustomInventory
 			Stop;
 		SonicEagle:
 			EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
-			EAGL BC 1;
+			EAGL BC 1 { if (invoker.DidTarget) A_Stop(); }
 			EAGL D 1 A_CustomPunch(random(1, 4) * 96, true, CPF_NOTURN, "SonicKickPuff", 160, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			EAGL E 1;
 			Stop;
@@ -818,17 +848,15 @@ class SonicKick : CustomInventory
 			Stop;
 		SuperSonicEagle:
 			SEAG A 1 A_PlaySound("sweapons/swordswing", 7);
-			SEAG BC 1;
+			SEAG BC 1 { if (invoker.DidTarget) A_Stop(); }
 			SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 160, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			SEAG E 1;
 			Stop;
 		HyperKickAttack:
-			TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "HyperSonicEagle");
-			HKIK A 1
-			{
+			HKIK A 1 {
 				A_PlaySound("sweapons/shockwave", 7);
 				A_FireBullets(25, 10, 75, 5, "GibPuff", 0);
 			}
@@ -837,12 +865,11 @@ class SonicKick : CustomInventory
 			HKIK EF 1;
 			Stop;
 		HyperSonicEagle:
-			HEAG A 1
-			{
+			HEAG A 1 {
 				A_PlaySound("sweapons/shockwave", 7);
 				A_FireBullets(5, 5, 100, 10, "GibPuff", 0);
 			}
-			HEAG BC 1;
+			HEAG BC 1 { if (invoker.DidTarget) A_Stop(); }
 			HEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 160, 0, 0, "ArmorBonus", "sweapons/finalhit");
 			HEAG E 1;
 			Stop;
@@ -850,6 +877,9 @@ class SonicKick : CustomInventory
 	override void DoEffect()
 	{
 		Super.DoEffect();
+		if (owner.Pos.Z < owner.GetZAt()) {
+			owner.SetOrigin((owner.Pos.X, owner.Pos.Y, owner.GetZAt()), false);
+		}
 		if (inuse > 0)
 		{
 			inuse--;
@@ -897,8 +927,9 @@ class HomingSnapQuickStep : CustomInventory
 					let ltarget = ltinfo.linetarget;
 					if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
 						double ltdistance = Distance2D(ltarget);
-						SetOrigin(ltarget.Vec3Offset(0, 0, 1.2), false);
-						A_ChangeVelocity(-120, 0, 0, CVF_Relative|CVF_Replace);
+						double oriX = -120 * cos(angle) - 0 * sin(angle);
+						double oriY = -120 * sin(angle) + 0 * cos(angle);
+						SetOrigin(ltarget.Vec3Offset(oriX, oriY, 1.2), false);
 						A_SetPitch(12);
 						A_SetAngle(ltinfo.angleFromSource);
 						if (player.ReadyWeapon.GetClassName() == "Caliburn" && ltarget.bIsMonster && (CountInv("ChaosEnergy") >= 400 || CountInv("PowerSuper") || CountInv("PowerHyper"))) {

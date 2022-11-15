@@ -958,6 +958,7 @@ script "ControlHints" enter
 		if (Character == Sonic) {
 			if (CheckInventory("PowerHyper")) OffhandAttack = "Shockwave Kick";
 			else OffhandAttack = "Kick";
+			if (GetCvar("CanHoming")) OffhandAttack = "Homing Attack";
 			if (Midair) {
 				Jump = "Double Jump";
 				OffhandAbility = "\c[DarkGray]None";
