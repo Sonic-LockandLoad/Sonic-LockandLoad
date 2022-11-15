@@ -249,6 +249,12 @@ class SlamAtkObject : CustomInventory
 			below.A_DamageSelf(random(1, 16) * 256);
 		}
 	}
+	override void Tick()
+	{
+		Super.Tick();
+		if (owner.player.onground) 
+			midfall = false;
+	}
 	States
 	{
 		Use:
