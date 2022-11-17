@@ -1179,3 +1179,16 @@ script "FormTint" enter
 		Delay(1);
 	}
 }
+
+script "HomingReticle" (void)
+{
+	switch (PlayerClass(PlayerNumber())) {
+		case Sonic:
+			SetFont("RETIB0");
+			break;
+		case Shadow:
+			SetFont("RETIA0");
+			break;
+	}
+	HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD, 12, 0, 0.5, 0.5, 0.1, 1.0);
+}

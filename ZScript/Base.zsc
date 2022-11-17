@@ -2,6 +2,7 @@ class LockLoadPlayer : PlayerPawn
 {
 	int dJumpCounter;
 	double oldz;
+	bool reticleActive;
 	Default
 	{
 		Speed 4;
@@ -90,6 +91,24 @@ class LockLoadPlayer : PlayerPawn
 		cvar.FindCvar("CanWallJump").SetBool(CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32));
 		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128));
 		oldz = Pos.Z;
+		FTranslatedLineTarget ltinfo;
+		if (GetCvar("HomingSnapReticle") && CountInv("SonicCheck") || (CountInv("ShadowCheck") && !player.onground)) {
+			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+			let ltarget = ltinfo.linetarget;
+			if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+				if (CountInv("SonicCheck") || (CountInv("ShadowCheck") && ltarget.bIsMonster)) {
+					if (!reticleActive) {
+						A_StartSound("sweapons/reticle", 11);
+						reticleActive = true;
+					}
+					ACS_NamedExecute("HomingReticle");
+				}
+			}
+			else {
+				reticleActive = false;
+			}
+			cvar.FindCvar("CanHoming").SetBool(reticleActive);
+		}
 		Super.Tick();
 	}
 	override void CheckJump()

@@ -1,6 +1,5 @@
 class ShadowPlayer : LockLoadPlayer 
 {
-	bool reticleActive;
 	Default
 	{
 		Health 145;
@@ -32,22 +31,6 @@ class ShadowPlayer : LockLoadPlayer
 		}
 		else {
 			A_SetSpeed(4);
-		}
-		if (GetCvar("HomingSnapReticle") && !player.onground) {
-			FTranslatedLineTarget ltinfo;
-			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
-			let ltarget = ltinfo.linetarget;
-			if (ltarget && Distance3D(ltarget) > 160 && health > 0 && ltarget.bIsMonster) {
-				if (!reticleActive) {
-					A_StartSound("sweapons/reticle", 11);
-					reticleActive = true;
-				}
-				LineAttack(angle, 800, pitch, 0, 'None', 'ShadowReticle', LAF_NORANDOMPUFFZ, null, 0);
-			}
-			else {
-				reticleActive = false;
-			}
-			cvar.FindCvar("CanHoming").SetBool(reticleActive);
 		}
 		Super.Tick();
 	}

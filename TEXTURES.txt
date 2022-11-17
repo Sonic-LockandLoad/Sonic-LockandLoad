@@ -17,19 +17,19 @@ Sprite "DOOXA0", 688, 688
 	Patch "DOOXA0", 0, 0
 }
 
-Sprite "RETIA0", 710, 619
+Graphic "RETIA0", 710, 619
 {
-	XScale 6.000
-	YScale 7.500
-	Offset 356, 364
+	XScale 18.000
+	YScale 18.000
+	Offset 0, 55
 	Patch "RETIA0", 0, 0
 }
 
-Sprite "RETIB0", 710, 619
+Graphic "RETIB0", 710, 619
 {
-	XScale 6.000
-	YScale 7.500
-	Offset 356, 364
+	XScale 18.000
+	YScale 18.000
+	Offset 0, 55
 	Patch "RETIB0", 0, 0
 }
 
