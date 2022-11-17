@@ -766,7 +766,7 @@ class SonicKick : CustomInventory
 	{
 		invoker.DidTarget = false;
 		FTranslatedLineTarget ltinfo;
-		bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+		bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 		let ltarget = ltinfo.linetarget;
 		if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
 			invoker.DidTarget = true;
@@ -906,7 +906,7 @@ class HomingSnapQuickStep : CustomInventory
 				else {
 					/* Homing Snap */
 					FTranslatedLineTarget ltinfo;
-					bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+					bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 					let ltarget = ltinfo.linetarget;
 					if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
 						double ltdistance = Distance2D(ltarget);

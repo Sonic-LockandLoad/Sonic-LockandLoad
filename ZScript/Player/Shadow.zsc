@@ -657,7 +657,7 @@ class HomingAttack : CustomInventory
 	HomingCheck:
 		TNT1 A 0 {
 			FTranslatedLineTarget ltinfo;
-			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
+			bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
 			let ltarget = ltinfo.linetarget;
 			if (ltarget && ltarget.bIsMonster) return ResolveState("HomingAttack");
 			return ResolveState(null);
@@ -666,7 +666,7 @@ class HomingAttack : CustomInventory
 	HomingAttack:
 		TNT1 A 1 {
 			FTranslatedLineTarget ltinfo;
-			bool ltattack = LineAttack(angle, 800, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
+			bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 10);
 			let ltarget = ltinfo.linetarget;
 			double ltdistance = Distance2D(ltarget);
 			A_StartSound("sweapons/sdash", 8);
