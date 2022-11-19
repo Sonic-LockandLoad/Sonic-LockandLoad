@@ -578,14 +578,11 @@ script "GoalRing" (void)
 	str Rank;
 	
 	// Your score
-	if (LevelTime < ParTime) score += (ParTime - LevelTime) * 55;
-	else if (LevelTime == ParTime) score += 2000;
-	else if (LevelTime > ParTime) score -= (LevelTime - ParTime) * 30;
-	if (CurrentHealth > 300) score += CurrentHealth * 25;
-	else score += CurrentHealth * 10;
-	score += KilledMonsters * 70;
+	if (LevelTime <= ParTime) score += (ParTime - LevelTime) * 95;
+	else score -= (LevelTime - ParTime) * 30;
+	score += CurrentHealth * 15;
+	score += KilledMonsters * 95;
 	score += CurrentEnergy * 10;
-	if (KilledMonsters == TotalMonsters) score += 2000;
 	if (score < 0) score = 0;
 	
 	// Stop the player and remove their form and invincibility
@@ -601,8 +598,8 @@ script "GoalRing" (void)
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 	
 	// Your target score
-	targetscore += ParTime * 40;
-	targetscore += TotalMonsters * 120;
+	targetscore += ParTime * 78;
+	targetscore += TotalMonsters * 85;
 	if (GameSkill() == 5) targetscore *= 1.5;
 	HudMessage(s:"Score: ", d:score, s:"\n",
 			   s:"Target Score: ", d:targetscore, s:"\n"; 
@@ -631,10 +628,10 @@ script "GoalRing" (void)
 		default:
 			break;
 	}
-	if 		(score > (targetscore * 2)) Rank = "\c[Gold]S";
-	else if (score > targetscore) 		Rank = "\c[Green]A";
-	else if (score > (targetscore / 2)) Rank = "\c[Yellow]B";
-	else if (score > (targetscore / 3)) Rank = "\c[Brick]C";
+	if 		(score > targetscore)		Rank = "\c[Gold]S";
+	else if (score > targetscore / 1.5)	Rank = "\c[Green]A";
+	else if (score > targetscore / 2)	Rank = "\c[Yellow]B";
+	else if (score > targetscore / 3) 	Rank = "\c[Brick]C";
 	else								Rank = "\c[Black]D";
 	if (PlayerClass(PlayerNumber()) == Amy) Delay(35*5);
 	else Delay(35*6);
@@ -643,20 +640,23 @@ script "GoalRing" (void)
 			   HUDMSG_PLAIN, 8, CR_WHITE, 1.5, 0.6, 0, 1.0);
 	SetMusic("");
 	Delay(14);
+	int speechdelay;
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case Sonic:
 			SetFont("SMALLFONT");
-			if (score > targetscore) {
-				PlaySound(1001, "sonic/goodresult");
+			if (score > targetscore / 1.5) {
+				PlaySound(1001, "sonic/goodresult"); // "How's that?"
+				speechdelay = 40;
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"sresult1";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			else if (score > (targetscore / 2)) {
-				PlaySound(1001, "sonic/okayresult");
+			else if (score > targetscore / 2) {
+				PlaySound(1001, "sonic/okayresult"); // "Not my best run..."
+				speechdelay = 50;
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"sresult2";
@@ -664,7 +664,8 @@ script "GoalRing" (void)
 				}
 			}
 			else {
-				PlaySound(1001, "sonic/badresult");
+				PlaySound(1001, "sonic/badresult"); // "Aw, I gotta try that again!"
+				speechdelay = 60;
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"sresult3";
@@ -674,8 +675,9 @@ script "GoalRing" (void)
 			break;
 		case Amy:
 			SetFont("SMALLFONT");
-			if (score > (targetscore / 2)) {
-				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7);
+			if (score > targetscore / 1.5) {
+				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7); // "Yay!"
+				speechdelay = 30;
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"aresult1";
@@ -683,7 +685,8 @@ script "GoalRing" (void)
 				}
 			}
 			else {
-				PlaySound(1001, "amy/badresult");
+				PlaySound(1001, "amy/badresult"); // Brief moment of silence
+				speechdelay = 105;
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"aresult2";
@@ -693,16 +696,18 @@ script "GoalRing" (void)
 			break;
 		case ClassicSonic:
 			SetFont("SMALLFONT");
-			if (score > targetscore) {
-				PlaySound(1001, "classic/goodresult");
+			if (score > targetscore / 1.5) {
+				PlaySound(1001, "classic/goodresult"); // Classic whistles and says "That was cool!"
+				speechdelay = 45;
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"cresult1";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			else if (score > (targetscore / 2)) {
-				PlaySound(1001, "classic/okayresult");
+			else if (score > targetscore / 2) {
+				PlaySound(1001, "classic/okayresult"); // "Huh... no problem."
+				speechdelay = 35;
 				SetMugshotState("OK");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"cresult2";
@@ -710,7 +715,8 @@ script "GoalRing" (void)
 				}
 			}
 			else {
-				PlaySound(1001, "classic/badresult");
+				PlaySound(1001, "classic/badresult"); // "Barely made it..."
+				speechdelay = 30;
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"cresult3";
@@ -721,7 +727,8 @@ script "GoalRing" (void)
 		case Shadow:
 			if (score > targetscore) {
 				SetFont("SMALLFONT");
-				PlaySound(1001, "shadow/goodresult");
+				PlaySound(1001, "shadow/goodresult"); // "Yes!"
+				speechdelay = 30;
 				SetMugshotState("OK");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"dresult1";
@@ -730,7 +737,8 @@ script "GoalRing" (void)
 			}
 			else {
 				SetFont("SMALLFONT");
-				PlaySound(1001, "shadow/badresult");
+				PlaySound(1001, "shadow/badresult"); // "Need to stay focused."
+				speechdelay = 50;
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"dresult2";
@@ -742,7 +750,7 @@ script "GoalRing" (void)
 		default:
 			break;
 	}
-	Delay(35*2);
+	Delay(speechdelay);
 	SetActorProperty(1001, APROP_DamageFactor, 1.0);
 	Exit_Normal(0);
 }
