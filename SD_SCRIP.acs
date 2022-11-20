@@ -621,11 +621,15 @@ script "GoalRing" (void)
 		default:
 			break;
 	}
-	if 		(score > targetscore)		Rank = "\c[Gold]S";
-	else if (score > targetscore / 1.5)	Rank = "\c[Green]A";
-	else if (score > targetscore / 2)	Rank = "\c[Yellow]B";
-	else if (score > targetscore / 3) 	Rank = "\c[Brick]C";
-	else								Rank = "\c[Black]D";
+	bool s_rank = score > targetscore;
+	bool a_rank = score > targetscore - (targetscore / 3);
+	bool b_rank = score > targetscore / 2;
+	bool c_rank = score > targetscore / 3;
+	if 		(s_rank)	Rank = "\c[Gold]S";
+	else if (a_rank)	Rank = "\c[Green]A";
+	else if (b_rank)	Rank = "\c[Yellow]B";
+	else if (c_rank)	Rank = "\c[Brick]C";
+	else				Rank = "\c[Black]D";
 	if (PlayerClass(PlayerNumber()) == Amy) Delay(35*5);
 	else Delay(35*6);
 	AmbientSound("sglobal/rankget", 127);
@@ -638,7 +642,7 @@ script "GoalRing" (void)
 	{
 		case Sonic:
 			SetFont("SMALLFONT");
-			if (score > targetscore / 1.5) {
+			if (a_rank) {
 				PlaySound(1001, "sonic/goodresult"); // "How's that?"
 				speechdelay = 40;
 				SetMugshotState("Grin");
@@ -647,7 +651,7 @@ script "GoalRing" (void)
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			else if (score > targetscore / 2) {
+			else if (b_rank) {
 				PlaySound(1001, "sonic/okayresult"); // "Not my best run..."
 				speechdelay = 50;
 				SetMugshotState("Failure");
@@ -668,7 +672,7 @@ script "GoalRing" (void)
 			break;
 		case Amy:
 			SetFont("SMALLFONT");
-			if (score > targetscore / 1.5) {
+			if (a_rank) {
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7); // "Yay!"
 				speechdelay = 30;
 				SetMugshotState("Grin");
@@ -689,7 +693,7 @@ script "GoalRing" (void)
 			break;
 		case ClassicSonic:
 			SetFont("SMALLFONT");
-			if (score > targetscore / 1.5) {
+			if (a_rank) {
 				PlaySound(1001, "classic/goodresult"); // Classic whistles and says "That was cool!"
 				speechdelay = 45;
 				SetMugshotState("Grin");
@@ -698,7 +702,7 @@ script "GoalRing" (void)
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			else if (score > targetscore / 2) {
+			else if (b_rank) {
 				PlaySound(1001, "classic/okayresult"); // "Huh... no problem."
 				speechdelay = 35;
 				SetMugshotState("OK");
@@ -718,7 +722,7 @@ script "GoalRing" (void)
 			}
 			break;
 		case Shadow:
-			if (score > targetscore) {
+			if (s_rank) {
 				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/goodresult"); // "Yes!"
 				speechdelay = 30;
