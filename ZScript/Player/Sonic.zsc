@@ -77,7 +77,7 @@ class SonicPlayer : LockLoadPlayer
 			PLAY N -1;
 			Stop;
 		XDeath:
-			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 0);
+			TNT1 A 0 ACS_NamedExecute("DeathMusic", 0, 1);
 			TNT1 A 0 A_PlaySound("sonic/ohno");
 			TNT1 A 0 ACS_NamedExecute("Subtitles", 0, 2);
 			PLAY O 5;

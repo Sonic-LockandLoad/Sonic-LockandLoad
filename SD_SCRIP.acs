@@ -375,39 +375,32 @@ script "SuperTransformPrompt" enter
 script "DeathMusic" (int xdeath)
 {
 	if (GetCvar("DeathMusic")) {
-		if (xdeath) {
-			switch (PlayerClass(PlayerNumber())) {
-				case ClassicSonic:
-					SetMusic("C_DEADX", 0);
-					break;
-				case Shadow:
-					SetMusic("D_DEADX", 0);
-					break;
-				default:
-					break;
-			}
-		}
-		else {
-			switch (PlayerClass(PlayerNumber())) {
-				case Sonic:
-					SetMusic("S_DEADM", 0);
-					break;
-				case Amy:
-					SetMusic("A_DEADM", 0);
-					break;
-				case ClassicSonic:
+		switch (PlayerClass(PlayerNumber())) {
+			case Sonic:
+				if (xdeath) SetMusic("S_DEADX", 0);
+				else 		SetMusic("S_DEADM", 0);
+				break;
+			case Amy:
+				SetMusic("A_DEADM", 0);
+				break;
+			case ClassicSonic:
+				if (xdeath) SetMusic("C_DEADX", 0);
+				else {
 					SetMusic("C_DEADM", 0);
 					Delay(9*35);
 					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic("*"); }
-					break;
-				case Shadow:
+				}
+				break;
+			case Shadow:
+				if (xdeath) SetMusic("D_DEADX", 0);
+				else {
 					SetMusic("D_DEADM", 0);
 					Delay(7*35);
 					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic("*"); }
-					break;
-				default:
-					break;
-			}
+				}
+				break;
+			default:
+				break;
 		}
 	}
 }
