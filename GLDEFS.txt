@@ -29,8 +29,13 @@ PointLight ActivatedSwitch {
 }
 
 PointLight SwordGlow {
-	Color 1 0 0
+	Color 0 0.4 1
 	Size 75
+}
+
+PointLight HSwordGlow {
+	Color 1 0 0
+	Size 80
 }
 
 Object SonicSwitch
@@ -87,7 +92,20 @@ Object EnergyBladeLeft
 }
 Object EnergyBladeRight
 {
-	Frame ENSL {
+	Frame ENSR {
 		Light SwordGlow
+	}
+}
+
+Object HyperEnergyBladeLeft
+{
+	Frame ENSL {
+		Light HSwordGlow
+	}
+}
+Object HyperEnergyBladeRight
+{
+	Frame ENSR {
+		Light HSwordGlow
 	}
 }
