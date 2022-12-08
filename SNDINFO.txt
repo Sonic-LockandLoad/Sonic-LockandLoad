@@ -210,6 +210,10 @@ menu/clear         			ExitMenu	// Close top menu
 menu/quit1         			ImOut
 menu/quit2         			ImOut
 
+// Enemy
+
+enemy/cyberjump				cyjump
+
 // Mostly random but also not but idk I feel like this should be its own category
 
 $random sonic/cantuse 		{ sonic/thanksalotwall sonic/thiswallsintheway sonic/notmyday }
