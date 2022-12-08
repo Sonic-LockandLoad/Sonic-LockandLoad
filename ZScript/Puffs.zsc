@@ -166,11 +166,20 @@ class InvisibleGibPuff : Actor
 	}
 }
 
+class CyberShottyPuff : BulletPuff
+{
+    Default
+    {
+        ProjectileKickBack 10000;
+    }
+}
+
 class BoostPuff : InvisibleGibPuff
 {
     Default
     {
         ProjectileKickBack 100000;
+		DamageType "Boost";
     }
 }
 

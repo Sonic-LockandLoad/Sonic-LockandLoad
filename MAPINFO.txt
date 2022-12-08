@@ -56,6 +56,14 @@ DamageType SonicPunch
 {
 	Factor = 1
 }
+DamageType Boost
+{
+	Factor = 1
+}
+DamageType Parry
+{
+	Factor = 1
+}
 
 DamageType Drowning
 {

@@ -52,7 +52,7 @@ class AmyPlayer : LockLoadPlayer
 					reflected.Height = self.Height;
 					if (Health < 100 && damage / 2) A_GiveInventory("Health", damage / 2);
 				}
-				source.A_DamageSelf(damage * 2);
+				source.A_DamageSelf(damage * 2, "Parry");
 				A_GiveInventory("HammerBlock");
 			}
 			if (damage / 4) A_TakeInventory("ChaosEnergy", damage / 4);
