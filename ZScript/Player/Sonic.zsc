@@ -972,7 +972,7 @@ class HomingSnapQuickStep : CustomInventory
 			Stop;
 		QuickStepEnd:
 			TNT1 A 5;
-			TNT1 A 5 A_Stop();
+			TNT1 A 5 { if (!GetCvar("DidJump")) A_Stop(); }
 			TNT1 A 0 { DamageFactor = 1; }
 			Stop;
 	}
