@@ -3,7 +3,7 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 	Default
 	{
 		//$Category Lock & Load Pickups
-		Radius 10;
+		Radius 25;
 		Height 10;
 		Inventory.PickupMessage "Picked up a ring.";
 		Inventory.PickupSound "spickup/ring";
@@ -31,7 +31,7 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 	}
 }
 
-class DroppedRing : Ring 
+class DroppedRing : Ring
 { 
 	int fadeCounter;
 	int isVisible;
@@ -88,7 +88,7 @@ class RingBox : Inventory replaces Stimpack // 2011
 	{
 		//$Category Lock & Load Pickups
 		Health 1;
-		Radius 10;
+		Radius 30;
 		Height 20;
 		Inventory.PickupMessage "Broke open a box of rings.";
 		+COUNTITEM
@@ -444,7 +444,7 @@ class RedChaosCapsule : ChaosEnergy // 6023
 			Stop;
 	}
 }
-class FadingChaosCapsule : ChaosCapsule // 6021
+class FadingChaosCapsule : ChaosCapsule
 {
 	States
 	{
@@ -474,6 +474,40 @@ class FadingChaosCapsule : ChaosCapsule // 6021
 			TNT1 A 1 Bright;
 			CHSC A 1 Bright;
 			TNT1 A 1 Bright;
+			Stop;
+	}
+}
+
+class FadingBlueChaosCapsule : BlueChaosCapsule
+{
+	States
+	{
+		Spawn:
+			CHSC B 10 Bright;
+			Goto Fade;
+		Fade:
+			CHSC B 9 Bright;
+			TNT1 B 9 Bright;
+			CHSC B 7 Bright;
+			TNT1 B 7 Bright;
+			CHSC B 7 Bright;
+			TNT1 B 5 Bright;
+			CHSC B 5 Bright;
+			TNT1 B 5 Bright;
+			CHSC B 5 Bright;
+			TNT1 B 5 Bright;
+			CHSC B 3 Bright;
+			TNT1 B 3 Bright;
+			CHSC B 3 Bright;
+			TNT1 B 3 Bright;
+			CHSC B 3 Bright;
+			TNT1 B 3 Bright;
+			CHSC B 3 Bright;
+			TNT1 B 1 Bright;
+			CHSC B 1 Bright;
+			TNT1 B 1 Bright;
+			CHSC B 1 Bright;
+			TNT1 B 1 Bright;
 			Stop;
 	}
 }
