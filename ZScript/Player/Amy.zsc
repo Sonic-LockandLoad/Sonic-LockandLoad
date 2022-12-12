@@ -45,7 +45,7 @@ class AmyPlayer : LockLoadPlayer
 	{
 		Super.DamageMobj(inflictor, source, damage, mod);
 		if (CountInv("PowerBlocking")) {
-			A_PlaySound("sweapons/blockattackx", 7);
+			ACS_NamedExecute("ParryEffect");
 			if (inflictor is "Actor" && inflictor != null) {
 				if (inflictor.bMissile && !(inflictor is "ProjectileBullet")) {
 					Actor reflected = SpawnPlayerMissile(inflictor.GetClass());

@@ -1190,3 +1190,15 @@ script "HomingReticle" (void)
 	SetFont("reticle");
 	HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD|HUDMSG_FADEOUT, 12, 0, 0.5, 0.5, 0.1, 0.1);
 }
+
+script "ParryEffect" (void)
+{
+	SetActivator(1001);
+	AmbientSound("sweapons/blockattackx", 127);
+	FadeTo(102, 88, 221, 0.8, 0.1);
+	Delay(1);
+	for (int x = 0; x < 6; x++) {
+		FadeTo(102, 88, 221, 0.2, 0.1);
+		Delay(1);
+	}
+}
