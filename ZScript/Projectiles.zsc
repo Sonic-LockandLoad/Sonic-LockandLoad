@@ -395,7 +395,7 @@ class EnergyBladeLeft : FastProjectile
 		Scale 0.5;
 		Height 2;
 		Speed 80;
-		Damage 15;
+		Damage 8;
 		Projectile;
 		+RIPPER
 		+EXTREMEDEATH
@@ -426,7 +426,7 @@ class HyperEnergyBladeLeft : EnergyBladeLeft
 	Default
 	{
 		Scale 0.6;
-		Damage 25;
+		Damage 16;
 	}
 	States {
 		Spawn:
