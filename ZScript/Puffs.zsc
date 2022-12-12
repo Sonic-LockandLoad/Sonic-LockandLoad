@@ -190,6 +190,7 @@ class SwordPuff : Actor
 		+NOBLOCKMAP
 		+NOGRAVITY
 		RenderStyle "Normal";
+		DamageType "Caliburn";
 		Alpha 0.5;
 		VSpeed 1;
 		Mass 5;

@@ -64,6 +64,10 @@ DamageType Parry
 {
 	Factor = 1
 }
+DamageType Caliburn
+{
+	Factor = 1
+}
 
 DamageType Drowning
 {
