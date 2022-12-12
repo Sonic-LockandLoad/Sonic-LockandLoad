@@ -137,6 +137,10 @@ class MechZombie : Actor
 
 class ProjectileZombieMan : ZombieMan replaces ZombieMan
 {
+	Default
+	{
+		DropItem "FadingChaosCapsule";
+	}
  	States
 	{
 		Missile:
@@ -179,7 +183,7 @@ class WalkingCapsule : Demon
 {
 	Default
 	{
-		DropItem "BlueChaosCapsule";
+		DropItem "FadingBlueChaosCapsule";
 		//$Category Lock & Load Enemies
 	}
 	States
@@ -204,9 +208,7 @@ class FrickingCyberdemon : Actor
 		PainChance 20;
 		PainChance "Spear", 255;
 		PainChance "Parry", 255;
-		DamageFactor "SonicKick", 2;
-		DamageFactor "Piko", 2;
-		DamageFactor "ShadowMelee", 2;
+		PainChance "Caliburn", 0;
 		DamageFactor "SonicPunch", 0.5;
 		DamageFactor "Boost", 0;
 		Monster;
@@ -217,6 +219,7 @@ class FrickingCyberdemon : Actor
 		+NORADIUSDMG
 		+DONTMORPH
 		+BOSSDEATH
+		+NOINFIGHTING
 		SeeSound "cyber/sight";
 		PainSound "cyber/pain";
 		DeathSound "cyber/death";
@@ -269,8 +272,10 @@ class FrickingCyberdemon : Actor
 				A_FaceTarget();
 			}
 			CYBR F 12 Bright {
+				int sgheight = -25;
+				if (Distance2D(target) >= 80) sgheight = 32;
 				A_StartSound("weapons/sshotf", CHAN_WEAPON, CHANF_OVERLAP);
-				A_CustomBulletAttack(15, 15, 15, 1, "CyberShottyPuff", 0, 0, AAPTR_TARGET, null, -25);
+				A_CustomBulletAttack(15, 15, 15, 1, "CyberShottyPuff", 0, 0, AAPTR_TARGET, null, sgheight);
 			}
 			CYBR B 4 A_StartSound("weapons/sshoto", CHAN_WEAPON, CHANF_OVERLAP);
 			CYBR B 2 A_StartSound("weapons/sshotl", CHAN_WEAPON, CHANF_OVERLAP);
