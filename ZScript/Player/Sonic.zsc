@@ -733,7 +733,7 @@ class AirStrikeLauncher : LockLoadWeapon
 			if (A_CheckFloor("Null")) {
 				A_FireProjectile("ChaosRocket", 0, 1);
 			} else {
-				A_FireProjectile("AirstrikeRocket", 0, 1);
+				A_FireProjectile("AirstrikeRocket", 0, 1, 0, Vel.Z * 2);
 				A_ChangeVelocity(Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
 			}
 		}
