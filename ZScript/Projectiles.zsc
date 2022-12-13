@@ -21,11 +21,8 @@ class ChaosRocket : Actor
 	States
 	{
 		Spawn:
-			MISL A 10;
-		Fly:
 			MISL A 1 Bright {
 				A_JumpIf(CountInv("RemoteDet", AAPTR_PLAYER1) > 0, "Detonate");
-				invoker.bShootable = false;
 				if (invoker.wasKicked)
 					A_SeekerMissile(30, 45, SMF_LOOK, 255);
 			}
