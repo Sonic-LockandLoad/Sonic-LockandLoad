@@ -777,6 +777,7 @@ class SonicKick : CustomInventory
 		bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 		let ltarget = ltinfo.linetarget;
 		if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+			target = ltarget;
 			invoker.DidTarget = true;
 			A_Stop();
 			double ltdistance = Distance2D(ltarget);
@@ -799,6 +800,17 @@ class SonicKick : CustomInventory
 			A_StartSound("sweapons/sdash", 8);
 		}
 	}
+	action void SonicKickAttack(int damage, int randfactor, int range)
+	{
+		if (invoker.DidTarget) {
+			ProjectileKickBack = 1000;
+			target.DamageMobj(self, null, damage * random(1, randfactor), "SonicKick");
+			A_StartSound("sweapons/finalhit", 10);
+		}
+		else {
+			A_CustomPunch(random(1, randfactor) * damage, true, CPF_NOTURN, "SonicKickPuff", range, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		}
+	}
 	States
 	{
 		Use:
@@ -818,13 +830,13 @@ class SonicKick : CustomInventory
 			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
 			KICK A 1 A_PlaySound("sweapons/swordswing", 7);
 			KICK BC 1;
-			KICK D 1 A_CustomPunch(random(1, 4) * 48, true, CPF_NOTURN, "SonicKickPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			KICK D 1 SonicKickAttack(48, 4, 120);
 			KICK EF 1;
 			Stop;
 		SonicEagle:
 			EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
 			EAGL BC 1 { if (invoker.DidTarget) A_Stop(); }
-			EAGL D 1 A_CustomPunch(random(1, 4) * 96, true, CPF_NOTURN, "SonicKickPuff", 160, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			EAGL D 1 SonicKickAttack(96, 4, 160);
 			EAGL E 1;
 			Stop;
 		SuperKickAttack:
@@ -834,13 +846,13 @@ class SonicKick : CustomInventory
 			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
 			SKIK A 1 A_PlaySound("sweapons/swordswing", 7);
 			SKIK BC 1;
-			SKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			SKIK D 1 SonicKickAttack(48, 16, 120);
 			SKIK E 1;
 			Stop;
 		SuperSonicEagle:
 			SEAG A 1 A_PlaySound("sweapons/swordswing", 7);
 			SEAG BC 1 { if (invoker.DidTarget) A_Stop(); }
-			SEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 160, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			SEAG D 1 SonicKickAttack(96, 16, 160);
 			SEAG E 1;
 			Stop;
 		HyperKickAttack:
@@ -852,7 +864,7 @@ class SonicKick : CustomInventory
 				A_FireBullets(25, 10, 75, 5, "GibPuff", 0);
 			}
 			HKIK BC 1;
-			HKIK D 1 A_CustomPunch(random(1,16)*48, true, CPF_NOTURN, "SonicKickPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			HKIK D 1 SonicKickAttack(48, 16, 120);
 			HKIK EF 1;
 			Stop;
 		HyperSonicEagle:
@@ -861,7 +873,7 @@ class SonicKick : CustomInventory
 				A_FireBullets(5, 5, 100, 10, "GibPuff", 0);
 			}
 			HEAG BC 1 { if (invoker.DidTarget) A_Stop(); }
-			HEAG D 1 A_CustomPunch(random(1,16)*96, true, CPF_NOTURN, "SonicKickPuff", 160, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			HEAG D 1 SonicKickAttack(96, 16, 160);
 			HEAG E 1;
 			Stop;
 	}
