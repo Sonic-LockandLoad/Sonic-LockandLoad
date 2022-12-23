@@ -4,7 +4,6 @@ class ShadowCheck : Inventory 	{ Default { Inventory.MaxAmount 1; } }
 class ClassicCheck : Inventory 	{ Default { Inventory.MaxAmount 1; } }
 class SpearCheck : Inventory { Default { Inventory.MaxAmount 1; } }
 class LegOut : Inventory { Default { Inventory.MaxAmount 1; } }
-class RemoteDet : Inventory { Default { Inventory.MaxAmount 1; } }
 class Damn4thChaos : Inventory { Default { Inventory.MaxAmount 1; } }
 class Charging : Inventory { Default { Inventory.MaxAmount 1; } }
 class KickCooldown : Inventory { Default { Inventory.MaxAmount 25; } }
