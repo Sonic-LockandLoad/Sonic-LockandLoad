@@ -512,6 +512,44 @@ class FadingBlueChaosCapsule : BlueChaosCapsule
 	}
 }
 
+class FadingRedChaosCapsule : RedChaosCapsule
+{
+	States
+	{
+		Spawn:
+			CHSC C 20 Bright;
+			Goto Fade;
+		Fade:
+			CHSC C 12 Bright;
+			TNT1 C 12 Bright;
+			CHSC C 10 Bright;
+			TNT1 C 10 Bright;
+			CHSC C 10 Bright;
+			TNT1 C 10 Bright;
+			CHSC C 7 Bright;
+			TNT1 C 7 Bright;
+			CHSC C 7 Bright;
+			TNT1 C 5 Bright;
+			CHSC C 5 Bright;
+			TNT1 C 5 Bright;
+			CHSC C 5 Bright;
+			TNT1 C 5 Bright;
+			CHSC C 3 Bright;
+			TNT1 C 3 Bright;
+			CHSC C 3 Bright;
+			TNT1 C 3 Bright;
+			CHSC C 3 Bright;
+			TNT1 C 3 Bright;
+			CHSC C 3 Bright;
+			TNT1 C 1 Bright;
+			CHSC C 1 Bright;
+			TNT1 C 1 Bright;
+			CHSC C 1 Bright;
+			TNT1 C 1 Bright;
+			Stop;
+	}
+}
+
 class MacAndCheese : CustomInventory
 {
 	Default

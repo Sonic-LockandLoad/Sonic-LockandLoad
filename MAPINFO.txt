@@ -131,7 +131,7 @@ map S_HIRE "Hire This Zone"
 	sky1 = "GHZSKY"
 	next = "S_LOBBY"
 	author = "That1M8Head"
-	partime = 0
+	partime = 220
 }
 
 map S_SNDBOX "The Sandbox"
@@ -322,6 +322,7 @@ DoomEdNums
 	19926 = "MechZombie"
 	19927 = "WalkingCapsule"
 	19928 = "FrickingCyberdemon"
+	19929 = "GigantoCyberdemon"
 
 	5010  = "PistolReplace"
 	2005  = "ChainsawReplace"
