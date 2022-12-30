@@ -277,9 +277,9 @@ $playersound amy	 female 	sglobal/supersonic    	destrall
 $playersound classic male 		*death                	sonicdoom/cdeath
 $playeralias classic male 		*usefail              	classic/cantuse
 $playersound classic male 		*jump                 	cjump
+$playersound classic male 		*doublejump				cjump
 $playersound classic male 		*grunt                	C_LAND
 $playersound classic male 		*land                 	C_LAND
-$playersound classic male 		*doublejump				cjump
 $playersound classic male 		*fall	                bfall
 $playersound classic male 		*slam                   bound
 $playersound classic male 		sglobal/supersonic  	csuptrns
@@ -287,6 +287,7 @@ $playersound classic male 		sglobal/supersonic  	csuptrns
 $playersound shadow  male 		*death                 	nooooooo
 $playeralias shadow  male 		*usefail               	shadow/cantuse
 $playersound shadow  male 		*jump                  	D_JUMP
+$playersound shadow  male 		*doublejump				A_DBJUMP
 $playersound shadow  male 		*grunt                 	S_LAND
 $playersound shadow  male 		*land                  	S_LAND
 $playersound shadow	 male 		*fall	                sonifall

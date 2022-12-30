@@ -90,7 +90,11 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
 
-    Option "Recoil Burst Activation", "RecoilBurstRelease", "RecoilBurstRelease"
+    Option "Recoil Burst Activation", "RecoilBurstRelease", "EnabledOrNot"
+	StaticText "Sonic only", "Cyan"
+	StaticText ""
+
+    Option "Wall Jump Prerequisite", "WallJumpPrerequisite", "WallJumpPrerequisite"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
 	
@@ -223,10 +227,11 @@ OptionValue "WallJump"
 	1, "Face same direction"
 	2, "Face jump direction"
 }
-OptionValue "HomingSnapReticle"
+OptionValue "WallJumpPrerequisite"
 {
-	0, "Disabled"
-	1, "Enabled"
+	0, "At any time"
+	1, "When holding Forward"
+	2, "When not holding Forward"
 }
 OptionValue "HUDType"
 {

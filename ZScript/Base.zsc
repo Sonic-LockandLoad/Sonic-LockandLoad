@@ -88,7 +88,21 @@ class LockLoadPlayer : PlayerPawn
 	}
 	override void Tick()
 	{
-		cvar.FindCvar("CanWallJump").SetBool(CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32));
+		bool WJumpPrerequisite = false;
+		switch (GetCvar("WallJumpPrerequisite")) {
+			case 0: // Wall jump at any time
+				WJumpPrerequisite = true;
+				break;
+			case 1: // Wall jump only if holding forward
+				if (GetPlayerInput(MODINPUT_FORWARDMOVE) >= 6400)
+					WJumpPrerequisite = true;
+				break;
+			case 2: // Wall jump only if not holding forward
+				if (GetPlayerInput(MODINPUT_FORWARDMOVE) < 6400)
+					WJumpPrerequisite = true;
+				break;
+		}
+		cvar.FindCvar("CanWallJump").SetBool(CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32) && WJumpPrerequisite);
 		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128));
 		oldz = Pos.Z;
 		FTranslatedLineTarget ltinfo;
@@ -169,7 +183,7 @@ class LockLoadPlayer : PlayerPawn
 				}
 				ACS_NamedExecute("WallJump", 0, wJumpHeight, wJumpDistance);
 			}
-			else if (level.IsJumpingAllowed() && (CountInv("SonicCheck") || CountInv("AmyCheck") || (CountInv("ClassicCheck") && CountInv("PowerHyper") && !IsHovering))) {
+			else if (level.IsJumpingAllowed() && (!CountInv("ClassicCheck") || CountInv("PowerHyper")) && !IsHovering) {
 				// Double jump stuff
 				if (GetCvar("Sliding")) {
 					A_ChangeVelocity(Vel.X, Vel.Y, JumpZ - 2, CVF_Replace);

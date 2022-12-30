@@ -842,59 +842,18 @@ script "BossMusic2" (void)
 script "JumpHeight" ENTER
 {
 	while (1) {
-		switch (PlayerClass(PlayerNumber())) {
-			case Sonic:
-				if (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) {
-					SetActorProperty(1001, APROP_JumpZ, 17.0);
-				}
-				else if (!GetCvar("ReservedMode")) {
-					SetActorProperty(1001, APROP_JumpZ, 15.0);
-				}
-				else {
-					SetActorProperty(1001, APROP_JumpZ, 12.0);
-				}
-				break;
-			case Amy: 
-				if (CheckInventory("PowerSuper")) {
-					SetActorProperty(1001, APROP_JumpZ, 17.0);
-				}
-				else if (!GetCvar("ReservedMode")) {
-					SetActorProperty(1001, APROP_JumpZ, 15.0);
-				}
-				else {
-					SetActorProperty(1001, APROP_JumpZ, 12.0);
-				}
-				break;
-			case ClassicSonic:
-				if (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) {
-					SetActorProperty(1001, APROP_JumpZ, 17.0);
-				}
-				else if (!GetCvar("ReservedMode")) {
-					SetActorProperty(1001, APROP_JumpZ, 15.0);
-				}
-				else {
-					SetActorProperty(1001, APROP_JumpZ, 12.0);
-				}
-				break;
-			case Shadow: // Shadow
-				if (CheckInventory("PowerSuper")) {
-					SetActorProperty(1001, APROP_JumpZ, 21.0);
-				}
-				else if (!GetCvar("ReservedMode")) {
-					SetActorProperty(1001, APROP_JumpZ, 17.0);
-				}
-				else {
-					SetActorProperty(1001, APROP_JumpZ, 15.0);
-				}
-				break;
-			case -1:
-			default:
-				 break;
+		if (CheckInventory("PowerSuper") || CheckInventory("PowerHyper")) {
+			SetActorProperty(1001, APROP_JumpZ, 17.0);
+		}
+		else if (!GetCvar("ReservedMode")) {
+			SetActorProperty(1001, APROP_JumpZ, 15.0);
+		}
+		else {
+			SetActorProperty(1001, APROP_JumpZ, 12.0);
 		}
 		Delay(1);
 	}
 }
-
 
 script "WallJump" (int height, int distance)
 {
