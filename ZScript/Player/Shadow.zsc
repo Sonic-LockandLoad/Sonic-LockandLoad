@@ -523,17 +523,16 @@ class ChaosSpearAtk : CustomInventory
 		Spear:
 			SARM ABC 1;
 			SARM D 1 {
-				int spearoffset = -20;
-				int spearpitch = -1;
-				int spearangle = 20;
 				A_PlaySound("sweapons/chaosspear", CHAN_WEAPON);
 				if (CountInv("PowerSuper")) {
-					A_FireProjectile("ChaosSpearEX", spearangle, false, spearoffset, 0, 0, spearpitch);
-					A_FireProjectile("ChaosSpearEX", spearangle - 10, false, spearoffset, 0, 0, spearpitch);
-					A_FireProjectile("ChaosSpearEX", spearangle - 20, false, spearoffset, 0, 0, spearpitch);
+					A_FireProjectile("ChaosSpearEX", -10);
+					A_FireProjectile("ChaosSpearEX", -5);
+					A_FireProjectile("ChaosSpearEX");
+					A_FireProjectile("ChaosSpearEX", 5);
+					A_FireProjectile("ChaosSpearEX", 10);
 				}
 				else {
-					A_FireProjectile("ChaosSpear", 0, false, spearoffset, 0, 0, spearpitch);
+					A_FireProjectile("ChaosSpear");
 					A_TakeInventory("ChaosEnergy", 2);
 				}
 			}
