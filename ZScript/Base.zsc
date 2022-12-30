@@ -110,13 +110,11 @@ class LockLoadPlayer : PlayerPawn
 			bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
 			if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
-				if (CountInv("SonicCheck") || (CountInv("ShadowCheck") && ltarget.bIsMonster)) {
-					if (!reticleActive) {
-						A_StartSound("sweapons/reticle", 11);
-						reticleActive = true;
-					}
-					ACS_NamedExecute("HomingReticle");
+				if (!reticleActive) {
+					A_StartSound("sweapons/reticle", 11);
+					reticleActive = true;
 				}
+				ACS_NamedExecute("HomingReticle");
 			}
 			else {
 				reticleActive = false;
@@ -187,7 +185,7 @@ class LockLoadPlayer : PlayerPawn
 				}
 				ACS_NamedExecute("WallJump", 0, wJumpHeight, wJumpDistance);
 			}
-			else if (level.IsJumpingAllowed() && !IsHovering) {
+			else if (level.IsJumpingAllowed() && !IsHovering && !(CountInv("ShadowCheck") && GetCvar("CanHoming"))) {
 				// Double jump stuff
 				if (GetCvar("Sliding")) {
 					A_ChangeVelocity(Vel.X, Vel.Y, JumpZ - 2, CVF_Replace);
