@@ -28,3 +28,4 @@ user noarchive bool	  CloseToEnemy		= false;
 user noarchive bool	  CanWallJump		= false;
 user noarchive bool	  CanHoming			= false;
 user noarchive bool	  CanHammerJump		= false;
+user noarchive bool	  CanJump			= false;

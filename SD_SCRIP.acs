@@ -935,21 +935,22 @@ script "ControlHints" enter
 		int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
 		
 		// Jump and crouch
-		Jump = "Jump";
+		if (GetCvar("CanJump")) {
+			if (Midair) Jump = "Aerial Jump";
+			else Jump = "Jump";
+		}
+		else Jump = "\c[DarkGray]None";
 		Crouch = "Crouch";
 		if (Midair) Crouch = "Slam Attack";
 		
 		if (Character == Sonic) {
 			if (CheckInventory("PowerHyper")) OffhandAttack = "Shockwave Kick";
 			else OffhandAttack = "Kick";
+			OffhandAbility = "Quick Step";
 			if (GetCvar("CanHoming")) OffhandAttack = "Homing Attack";
 			if (Midair) {
-				Jump = "Double Jump";
-				OffhandAbility = "\c[DarkGray]None";
-				if (CheckInventory("PowerHyper")) Jump = "Triple Jump";
 				if (GetCvar("CanHoming")) OffhandAbility = "Homing Snap";
 			}
-			else OffhandAbility = "Quick Step";
 			if (GetCvar("CanWallJump") && Midair) {
 				Jump = "Wall Jump";
 			}
@@ -958,7 +959,6 @@ script "ControlHints" enter
 			OffhandAttack = "Kick";
 			OffhandAbility = "Slide";
 			if (Midair) {
-				Jump = "Double Jump";
 				OffhandAbility = "\c[DarkGray]None";
 			}
 			if (GetCvar("Sliding")) Jump = "Slide Jump";
@@ -968,10 +968,11 @@ script "ControlHints" enter
 			OffhandAttack = "Spin Attack";
 			OffhandAbility = "Sonic Thok";
 			if (Midair) {
-				if (CheckInventory("PowerHyper")) Jump = "Double Jump";
 				OffhandAttack = "D. Spin Attack";
 				Crouch = "Bounce Attack";
-				if (GetCvar("DidJump")) Jump = "Sonic Thok";
+				if (GetCvar("DidJump") && !CheckInventory("PowerHyper")) {
+					Jump = "Sonic Thok";
+				}
 			}
 		}
 		else if (Character == Shadow) {
