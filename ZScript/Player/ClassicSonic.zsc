@@ -121,10 +121,9 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			TNT1 A 0 {
 				invoker.SpinCharges = 0;
 				int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-				bool isTouchingWall = A_CheckLOF("Null", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
 				invoker.ShweeDelay = 10;
 				if (A_CheckFloor("Null")) return ResolveState("SpinCharge");
-				else if (isTouchingWall && !invoker.DidWallDash) return ResolveState("WallCharge");
+				else if (GetCvar("CanWallJump") && !invoker.DidWallDash) return ResolveState("WallCharge");
                 else if (!A_CheckFloor("Null") && waterlevel < 1) return ResolveState("DropCharge");
 				return ResolveState(null);
 			}

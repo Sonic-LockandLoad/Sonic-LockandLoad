@@ -65,7 +65,7 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText "Configure character abilties.", "White"
 	StaticText "Toggle things like crashing into walls and Hyper forms,", "White"
 	StaticText "and change things like how far the Precision Shotgun", "White"
-	StaticText "zooms in or when the Homing Snap reticle appears.", "White"
+	StaticText "zooms in or when the Homing Reticle appears.", "White"
 	StaticText ""
 	
 	Option "Reserved Mode", "ReservedMode", "EnabledOrNot"
@@ -86,7 +86,7 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText "Sonic or Classic", "Cyan"
 	StaticText ""
 	
-	Option "Homing Snap Reticle", "HomingSnapReticle", "HomingSnapReticle"
+	Option "Homing Reticle", "HomingSnapReticle", "EnabledOrNot"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
 
@@ -94,8 +94,8 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
 
-    Option "Wall Jump Prerequisite", "WallJumpPrerequisite", "WallJumpPrerequisite"
-	StaticText "Sonic only", "Cyan"
+    Option "Wall Jump/Dash Prerequisite", "WallJumpPrerequisite", "WallJumpPrerequisite"
+	StaticText "Sonic or Classic", "Cyan"
 	StaticText ""
 	
 }
