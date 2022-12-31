@@ -370,7 +370,7 @@ class ChaosSpear : FastProjectile
 		Radius 5;
 		Height 4;
 		Speed 120;
-		Damage 20;
+		Damage 40;
 		Projectile;
 		+SEEKERMISSILE
 		RenderStyle "Add";
@@ -381,7 +381,7 @@ class ChaosSpear : FastProjectile
 	States
 	{
 		Spawn:
-			CSPE A 1 Bright;
+			CSPE A 1 Bright A_SpawnItem("ChaosSpearTrail");
 			Loop;
 		Death:
 			TNT1 A 0 A_PlaySound("sweapons/spearimpact");
@@ -392,6 +392,22 @@ class ChaosSpear : FastProjectile
 }
 
 class ChaosSpearEX : ChaosSpear { Default { Damage 80; } }
+
+class ChaosSpearTrail : Actor
+{
+	Default
+	{
+		Radius 5;
+		Height 4;
+		+NOGRAVITY;
+	}
+	States
+	{
+		Spawn:
+			CSPE A 1 Bright A_FadeOut(0.1, 0);
+			Loop;
+	}
+}
 
 class EnergyBladeLeft : FastProjectile
 {
