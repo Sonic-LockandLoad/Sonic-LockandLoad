@@ -936,7 +936,8 @@ script "ControlHints" enter
 		
 		// Jump and crouch
 		if (GetCvar("CanJump")) {
-			if (Midair) Jump = "Aerial Jump";
+			bool IsClassicAndHyper = Character == ClassicSonic && CheckInventory("PowerHyper");
+			if (Midair && (!Character == ClassicSonic || IsClassicAndHyper)) Jump = "Aerial Jump";
 			else Jump = "Jump";
 		}
 		else Jump = "\c[DarkGray]None";
