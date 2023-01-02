@@ -1022,6 +1022,7 @@ script "ControlHints" enter
 			else PrimaryFire = "Shotgun Blast";
 			SecondaryFire = "Precision Scope"; 
 		}
+		if (CheckWeapon("RailshotCannon")) { PrimaryFire = "Railshot Burst"; SecondaryFire = "Zoom"; }
 		if (CheckWeapon("AmyEclipseBlaster")) { PrimaryFire = "Eclipse Shot"; SecondaryFire = "Chaos Restore"; }
 		if (CheckWeapon("RapidMissiles")) { PrimaryFire = "Rapid Launch"; SecondaryFire = "Triple Launch"; }
 		

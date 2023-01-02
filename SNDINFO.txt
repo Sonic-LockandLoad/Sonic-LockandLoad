@@ -82,6 +82,8 @@ sweapons/dropdash          	DropDash
 sweapons/superdropdash      DropSupe
 sweapons/instashield		InShield
 sweapons/recoilcharge		fshtchrg
+sweapons/amyrailgunfire		STNRFIRE
+sweapons/amyrailgunreload	crosrlod
 
 // Character
 

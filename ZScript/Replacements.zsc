@@ -224,7 +224,7 @@ class SSGReplace : Actor replaces SuperShotgun // 82
 					A_SpawnItem("ShurikenCrossbow");
 				}
 				else if (CountInv("AmyCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("PrecisionShotgun");
+					A_SpawnItem("RailshotCannon");
 				}
 				else if (CountInv("ShadowCheck", AAPTR_PLAYER1)) {
 					A_SpawnItem("QuadShotty");
