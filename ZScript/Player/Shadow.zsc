@@ -506,8 +506,9 @@ class ChaosSpearAtk : CustomInventory
 			DPNL ABC 1;
 			DPNL D 2 {
 				if (CountInv("PowerSuper")) {
-					A_CustomPunch(99999, true, CPF_NOTURN, "ExplosionPuff", 128, 0, 0, "ArmorBonus", "weapons/rocklx");
+					A_CustomPunch(99999, true, CPF_NOTURN, "ExplosionPuff", 128, 0, 0, "ArmorBonus", "weapons/sshotf");
 					A_Explode(200, 200, 0, true, 200, 0, 10, "ExplosionPuff", "ShadowMelee");
+					A_StartSound("weapons/rocklx", 17);
 					A_Quake(4, 20, 15, 15);
 				}
 				else {
