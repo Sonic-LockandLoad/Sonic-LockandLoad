@@ -2,10 +2,7 @@ class AmyPlayer : LockLoadPlayer
 {
 	Default
 	{
-		Speed 3;
 		Health 100;
-		DamageFactor 1.3;
-		PainChance 256;
 		Player.DisplayName "$amy";
 		Player.Face "AMF";
 		Player.SoundClass "amy";
@@ -26,18 +23,6 @@ class AmyPlayer : LockLoadPlayer
 	{
 		if (!CountInv("PowerSuper") && CountInv("PowerBlocking")) {
 			A_SetMugshotState("Shield");
-		}
-		int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-		if (!(buttons & BT_ATTACK)) {
-			if (GetCvar("ReservedMode")) {
-				A_SetSpeed(2);
-			}
-			else if (CountInv("PowerSuper")) {
-				A_SetSpeed(4);
-			}
-			else {
-				A_SetSpeed(3);
-			}
 		}
 		Super.Tick();
 	}

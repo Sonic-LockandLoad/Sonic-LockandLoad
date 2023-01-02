@@ -20,19 +20,6 @@ class SonicPlayer : LockLoadPlayer
 		Player.WeaponSlot 5, "EclipseBlaster";
 		Player.WeaponSlot 6, "AirStrikeLauncher";
 	}
-	override void Tick()
-	{
-		if (GetCvar("ReservedMode")) {
-			A_SetSpeed(2.5);
-		}
-		else if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
-			A_SetSpeed(8);
-		}
-		else {
-			A_SetSpeed(4);
-		}
-		Super.Tick();
-	}
 	States
 	{
 		Pain.Falling:

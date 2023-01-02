@@ -121,6 +121,15 @@ class LockLoadPlayer : PlayerPawn
 			}
 			cvar.FindCvar("CanHoming").SetBool(reticleActive);
 		}
+		if (GetCvar("ReservedMode")) {
+			A_SetSpeed(2.5);
+		}
+		else if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+			A_SetSpeed(8);
+		}
+		else {
+			A_SetSpeed(4);
+		}
 		Super.Tick();
 	}
 	override void CheckJump()
@@ -220,7 +229,7 @@ class LockLoadPlayer : PlayerPawn
 		if (cmd.buttons & BT_JUMP) {
 			cmd.buttons &= ~BT_CROUCH;
 		}
-		if (CanCrouch() && player.health > 0 && level.IsCrouchingAllowed()) {
+		if (CanCrouch() && player.health > 0 && level.IsCrouchingAllowed() && !GetCvar("Sliding")) {
 			if (!totallyfrozen && cmd.buttons & BT_CROUCH) {
 				cvar.FindCvar("IsCrouching").SetBool(true);
 				A_SetSize(-1, 24);

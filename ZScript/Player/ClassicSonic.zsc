@@ -20,19 +20,6 @@ class ClassicSonicPlayer : LockLoadPlayer
 		Player.WeaponSlot 4, "ChaosRain";
 		Player.WeaponSlot 5, "ClassicRocketStream";
 	}
-	override void Tick()
-	{
-		if (GetCvar("ReservedMode")) {
-			A_SetSpeed(2.5);
-		}
-		else if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
-			A_SetSpeed(8);
-		}
-		else {
-			A_SetSpeed(4);
-		}
-		Super.Tick();
-	}
 	States
 	{
 		Pain:

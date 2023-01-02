@@ -21,19 +21,6 @@ class ShadowPlayer : LockLoadPlayer
 		Player.WeaponSlot 5, "ChaosEmerald";
 		Player.WeaponSlot 6, "DualRockets";
 	}
-	override void Tick()
-	{
-		if (GetCvar("ReservedMode")) {
-			A_SetSpeed(2.5);
-		}
-		else if (CountInv("PowerSuper")) {
-			A_SetSpeed(6);
-		}
-		else {
-			A_SetSpeed(4);
-		}
-		Super.Tick();
-	}
 	States
 	{
 		Pain:
