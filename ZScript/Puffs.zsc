@@ -142,6 +142,22 @@ class GibPuff : Actor
 	}
 }
 
+class ExplosionPuff : GibPuff
+{
+	Default
+	{
+		+PUFFONACTORS
+	}
+	States
+	{
+		Spawn:
+			MISL B 4 Bright;
+		Melee:
+			MISL CD 4;
+			Stop;
+	}
+}
+
 class InvisibleGibPuff : Actor
 {
 	Default
