@@ -86,8 +86,8 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText "Sonic or Classic", "Cyan"
 	StaticText ""
 	
-	Option "Homing Reticle", "HomingSnapReticle", "EnabledOrNot"
-	StaticText "Sonic only", "Cyan"
+	Option "Homing Reticle", "HomingReticle", "HomingReticle"
+	StaticText "Sonic or Shadow", "Cyan"
 	StaticText ""
 
     Option "Recoil Burst Activation", "RecoilBurstRelease", "EnabledOrNot"
@@ -248,4 +248,10 @@ OptionValue "RecoilBurstRelease"
 {
 	0, "Press Fire while holding Alt-Fire"
 	1, "Release Alt-Fire"
+}
+OptionValue "HomingReticle"
+{
+	0, "Disabled"
+	1, "Minimal"
+	2, "Enabled"
 }

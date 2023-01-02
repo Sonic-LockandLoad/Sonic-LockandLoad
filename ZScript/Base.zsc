@@ -106,7 +106,7 @@ class LockLoadPlayer : PlayerPawn
 		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128));
 		oldz = Pos.Z;
 		FTranslatedLineTarget ltinfo;
-		if (GetCvar("HomingSnapReticle") && CountInv("SonicCheck") || (CountInv("ShadowCheck") && !player.onground)) {
+		if (GetCvar("HomingReticle") && CountInv("SonicCheck") || (CountInv("ShadowCheck") && !player.onground)) {
 			bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
 			if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
@@ -234,6 +234,7 @@ class LockLoadPlayer : PlayerPawn
 				A_StopSound(12);
 			}
 		}
+		else A_StopSound(12);
 	}
 }
 
