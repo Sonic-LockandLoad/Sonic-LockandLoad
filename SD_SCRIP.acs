@@ -502,6 +502,9 @@ script "SetFriction" ENTER
 		if (GetCvar("IsSpinDashing")) {
 			SetActorProperty(0, APROP_Friction, 1.5);
 		}
+		else if (GetCvar("IsCrouching") && !isMoving && speed >= 5.0) {
+			SetActorProperty(0, APROP_Friction, 1.1);
+		}
 		else if (GetCvar("ReservedMode")) {
 			SetActorProperty(0, APROP_Friction, 1.0);
 			SetAirControl(0.4);

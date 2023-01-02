@@ -211,6 +211,30 @@ class LockLoadPlayer : PlayerPawn
 		Super.CanCrouch();
 		return true;
 	}
+	override void CheckCrouch(bool totallyfrozen)
+	{
+		let player = self.player;
+		UserCmd cmd = player.cmd;
+		double speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
+
+		if (cmd.buttons & BT_JUMP) {
+			cmd.buttons &= ~BT_CROUCH;
+		}
+		if (CanCrouch() && player.health > 0 && level.IsCrouchingAllowed()) {
+			if (!totallyfrozen && cmd.buttons & BT_CROUCH) {
+				cvar.FindCvar("IsCrouching").SetBool(true);
+				A_SetSize(-1, 24);
+				Player.ViewHeight = 24;
+				if (speed > 5.0) A_StartSound("*crouchslide", 12, CHANF_NOSTOP);
+			}
+			else {
+				cvar.FindCvar("IsCrouching").SetBool(false);
+				A_SetSize(-1, 42);
+				Player.ViewHeight = 42;
+				A_StopSound(12);
+			}
+		}
+	}
 }
 
 class LLSwitch : Actor

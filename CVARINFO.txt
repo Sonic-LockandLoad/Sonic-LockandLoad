@@ -25,6 +25,7 @@ user noarchive bool   SoulSurgeReady	= false;
 user noarchive bool	  IsSpinDashing		= false;
 user noarchive bool	  DidJump			= false;
 user noarchive bool	  CloseToEnemy		= false;
+user noarchive bool	  IsCrouching		= false;
 user noarchive bool	  CanWallJump		= false;
 user noarchive bool	  CanHoming			= false;
 user noarchive bool	  CanHammerJump		= false;

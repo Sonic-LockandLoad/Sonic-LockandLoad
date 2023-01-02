@@ -261,6 +261,7 @@ $playersound sonic 	 male 		*grunt                  S_LAND
 $playersound sonic 	 male 		*land                   S_LAND
 $playersound sonic 	 male 		*fall	                sonifall
 $playersound sonic 	 male 		*slam                   soniland
+$playersound sonic 	 male 		*crouchslide            cslide
 $playersound sonic 	 male 		sglobal/supersonic    	nowshow
 
 $playersound amy	 female 	*death                  adeath
@@ -272,6 +273,7 @@ $playersound amy	 female 	*grunt                  A_LAND
 $playersound amy	 female 	*land                   A_LAND
 $playersound amy 	 female		*fall	                sonifall
 $playersound amy 	 female		*slam                   soniland
+$playersound amy     female 	*crouchslide            cslide
 $playersound amy	 female 	sglobal/supersonic    	destrall
 
 $playersound classic male 		*death                	sonicdoom/cdeath
@@ -282,6 +284,7 @@ $playersound classic male 		*grunt                	C_LAND
 $playersound classic male 		*land                 	C_LAND
 $playersound classic male 		*fall	                bfall
 $playersound classic male 		*slam                   bound
+$playersound classic male 		*crouchslide            Roll
 $playersound classic male 		sglobal/supersonic  	csuptrns
 
 $playersound shadow  male 		*death                 	nooooooo
@@ -292,6 +295,7 @@ $playersound shadow  male 		*grunt                 	S_LAND
 $playersound shadow  male 		*land                  	S_LAND
 $playersound shadow	 male 		*fall	                sonifall
 $playersound shadow	 male 		*slam                   soniland
+$playersound shadow  male 		*crouchslide            cslide
 $playersound shadow  male 		sglobal/supersonic   	ultimate
 
 // DOOM replacements
