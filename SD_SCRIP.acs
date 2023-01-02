@@ -488,10 +488,20 @@ script "TakeRingsIfHyper" (void)
 	}
 }
 
+int oldz;
+
+function void ScaleVelocity(int TID, int scale)
+{
+	// credit: https://forum.zdoom.org/viewtopic.php?p=674662&sid=8584f1daa6b46cfa8b01858ef17fded2#p674662
+	SetActorVelocity(TID,FixedMul(scale,GetActorVelX(TID)),FixedMul(scale,GetActorVelY(TID)),FixedMul(scale,GetActorVelZ(TID)),false,true);
+}
+
 script "SetFriction" ENTER
 {
 	int x, y, z, speed;
 	while (true) {
+		oldz = GetActorZ(0);
+		Delay(1);
 		x = GetActorVelX(0);
 		y = GetActorVelY(0);
 		speed = FixedSqrt(FixedMul(x, x) + FixedMul(y, y));
@@ -504,6 +514,9 @@ script "SetFriction" ENTER
 		}
 		else if (GetCvar("IsCrouching") && !isMoving && speed >= 5.0) {
 			SetActorProperty(0, APROP_Friction, 1.1);
+			if (speed < 100.0) {
+				ScaleVelocity(0, 1.0 + (oldz - GetActorZ(0)) / 120);
+			}
 		}
 		else if (GetCvar("ReservedMode")) {
 			SetActorProperty(0, APROP_Friction, 1.0);
@@ -521,7 +534,6 @@ script "SetFriction" ENTER
 			SetActorProperty(0, APROP_Friction, 0.9);
 			SetAirControl(0.0);
 		}
-		Delay(1);
 	}
 }
 
