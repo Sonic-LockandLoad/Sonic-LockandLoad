@@ -655,12 +655,13 @@ class SpinAttack : CustomInventory
 		if (player.onground) {
 			if (forward > 0 || sidem > 0 || forward < 0 || sidem < 0) {
 				A_CustomPunch(80, false, CPF_NOTURN, "SonicPunchPuff", 256, 0, 0, "ArmorBonus", "sweapons/finalhit");
+				int speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
 				SetHeight(21);
-				A_ChangeVelocity(Cos(Pitch) * forward / 200, sidem / -200, 0, CVF_Relative|CVF_Replace);
+				A_ChangeVelocity(forward / 200 * speed / 16, sidem / -200 * speed / 16, 0, CVF_Relative|CVF_Replace);
 			}
 			else {
 				A_CustomPunch(80, false, CPF_NOTURN, "SonicPunchPuff", 128, 0, 0, "ArmorBonus", "sweapons/finalhit");
-				A_ChangeVelocity(Cos(Pitch) * 30, 0, 0, CVF_Relative|CVF_Replace);
+				A_ChangeVelocity(30, 0, 0, CVF_Relative|CVF_Replace);
 			}
 		}
 		else {
