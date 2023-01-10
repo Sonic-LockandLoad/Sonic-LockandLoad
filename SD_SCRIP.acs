@@ -870,15 +870,6 @@ script "JumpHeight" ENTER
 	}
 }
 
-script "WallJump" (int height, int distance)
-{
-	Delay(1);
-	PlaySound(0, "sonic/walljump", CHAN_BODY);
-	ThrustThing(GetActorAngle(0) >> 8, distance * -1, 1, 0);
-	ThrustThingZ(0, height, 0, 0);
-	SetActorAngle(0, GetActorAngle(0) + 0.5);
-}
-
 script "HowManyZFireLeft" (int clear)
 {
 	int RemainingShots = CheckInventory("ChaosEnergy") / 120;

@@ -3,6 +3,7 @@ class LockLoadPlayer : PlayerPawn
 	int dJumpCounter;
 	double oldz;
 	bool reticleActive;
+	int WallJumpAngle;
 	Default
 	{
 		Speed 4;
@@ -102,7 +103,20 @@ class LockLoadPlayer : PlayerPawn
 					WJumpPrerequisite = true;
 				break;
 		}
-		cvar.FindCvar("CanWallJump").SetBool(CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32) && WJumpPrerequisite);
+		bool TouchingWall;
+		for (int a = 0; a <= 360; a++) {
+			if (CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPOBSTACLES|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM, 32, 0, a)) {
+				TouchingWall = true;
+				WallJumpAngle = a + 180;
+				// This is supposed to allow Sonic to wall jump
+				// even if he's touching the wall and not looking
+				// at it. It doesn't work for some reason :DDDD
+			}
+			else {
+				TouchingWall = false;
+			}
+		}
+		cvar.FindCvar("CanWallJump").SetBool(TouchingWall && WJumpPrerequisite);
 		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128));
 		oldz = Pos.Z;
 		FTranslatedLineTarget ltinfo;
@@ -193,7 +207,9 @@ class LockLoadPlayer : PlayerPawn
 				else {
 					wJumpHeight = wJumpHeightOffset;
 				}
-				ACS_NamedExecute("WallJump", 0, wJumpHeight, wJumpDistance);
+				A_StartSound("sonic/walljump", CHAN_BODY);
+				A_ChangeVelocity(cos(WallJumpAngle) * WJumpDistance, 0, 0, CVF_Relative);
+				ThrustThingZ(0, wJumpHeight, 0, 0);
 			}
 			else if (level.IsJumpingAllowed() && !IsHovering && !(CountInv("ShadowCheck") && GetCvar("CanHoming"))) {
 				// Double jump stuff
