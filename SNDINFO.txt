@@ -115,9 +115,11 @@ sonic/notmyday				notmyday
 sonic/painx1       			SonicOw1
 sonic/painx2       			SonicOw2
 sonic/nextlevel				letsgo
+sonic/perfectresult			S_PRFECT
 sonic/goodresult			S_GOOD
-sonic/badresult				S_BAD
 sonic/okayresult			S_OKAY
+sonic/badresult				S_BAD
+sonic/terribleresult		S_USUCK
 sonic/nintendo64			snc_n64
 sonic/bossvictory			yoreover
 sonic/quickstep				quikstep

@@ -235,9 +235,11 @@ dtaunt1			= "\c[Shadow] Shadow: \c[White] Hmph. Not even a challenge.";
 dtaunt2			= "\c[Shadow] Shadow: \c[White] You're going straight to hell!";
 dtaunt3			= "\c[Shadow] Shadow: \c[Gold] I'm the coolest!";
 
-sresult1		= "\c[Sonic] Sonic: \c[White] How's that?";
-sresult2		= "\c[Sonic] Sonic: \c[White] Not my best run...";
-sresult3		= "\c[Sonic] Sonic: \c[White] Aw, I gotta try that again!";
+sresult1		= "\c[Sonic] Sonic: \c[White] That was incredible!";
+sresult2		= "\c[Sonic] Sonic: \c[White] No problem!";
+sresult3		= "\c[Sonic] Sonic: \c[White] Not my best run...";
+sresult4		= "\c[Sonic] Sonic: \c[White] Aw, I gotta try that again!";
+sresult5		= "\c[Sonic] Sonic: \c[White] Nooo!!";
 aresult1		= "\c[Amy] Amy: \c[White] Yay!";
 aresult2		= "\c[Amy] Amy: \c[White] ...";
 cresult1		= "\c[Classic] Sonic: \c[White] *whistle* That was cool!";

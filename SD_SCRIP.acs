@@ -673,16 +673,25 @@ script "GoalRing" (void)
 	SetMusic("");
 	Delay(14);
 	int speechdelay;
+	SetFont("SMALLFONT");
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case Sonic:
-			SetFont("SMALLFONT");
-			if (a_rank) {
-				PlaySound(1001, "sonic/goodresult"); // "How's that?"
-				speechdelay = 40;
+			if (s_rank)  {
+				PlaySound(1001, "sonic/perfectresult"); // "That was incredible!"
+				speechdelay = 60;
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
 					HudMessage(l:"sresult1";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else if (a_rank) {
+				PlaySound(1001, "sonic/goodresult"); // "No problem!"
+				speechdelay = 40;
+				SetMugshotState("Grin");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"sresult2";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
@@ -691,22 +700,30 @@ script "GoalRing" (void)
 				speechdelay = 50;
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(l:"sresult2";
+					HudMessage(l:"sresult3";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
-			else {
+			else if (c_rank) {
 				PlaySound(1001, "sonic/badresult"); // "Aw, I gotta try that again!"
 				speechdelay = 60;
 				SetMugshotState("Failure");
 				if (GetCvar("Subtitles")) {
-					HudMessage(l:"sresult3";
+					HudMessage(l:"sresult4";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else {
+				PlaySound(1001, "sonic/terribleresult"); // "Nooo!!"
+				speechdelay = 40;
+				SetMugshotState("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"sresult5";
 						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 				}
 			}
 			break;
 		case Amy:
-			SetFont("SMALLFONT");
 			if (a_rank) {
 				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7); // "Yay!"
 				speechdelay = 30;
@@ -727,7 +744,6 @@ script "GoalRing" (void)
 			}
 			break;
 		case ClassicSonic:
-			SetFont("SMALLFONT");
 			if (a_rank) {
 				PlaySound(1001, "classic/goodresult"); // Classic whistles and says "That was cool!"
 				speechdelay = 45;
@@ -758,7 +774,6 @@ script "GoalRing" (void)
 			break;
 		case Shadow:
 			if (s_rank) {
-				SetFont("SMALLFONT");
 				PlaySound(1001, "shadow/goodresult"); // "Yes!"
 				speechdelay = 30;
 				SetMugshotState("OK");
