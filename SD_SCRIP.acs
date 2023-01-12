@@ -678,12 +678,22 @@ script "GoalRing" (void)
 	{
 		case Sonic:
 			if (s_rank)  {
-				PlaySound(1001, "sonic/perfectresult"); // "That was incredible!"
+				bool thatwasright = (random(0, 5) == 5);
+				if (thatwasright)
+					PlaySound(1001, "sonic/thatwasright"); // "THAT WAS RIGHT!"
+				else
+					PlaySound(1001, "sonic/perfectresult"); // "That was incredible!"
 				speechdelay = 60;
 				SetMugshotState("Grin");
 				if (GetCvar("Subtitles")) {
-					HudMessage(l:"sresult1";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					if (thatwasright) {
+						HudMessage(l:"sresult0";
+								HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					else {
+						HudMessage(l:"sresult1";
+								HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
 				}
 			}
 			else if (a_rank) {

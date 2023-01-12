@@ -235,6 +235,7 @@ dtaunt1			= "\c[Shadow] Shadow: \c[White] Hmph. Not even a challenge.";
 dtaunt2			= "\c[Shadow] Shadow: \c[White] You're going straight to hell!";
 dtaunt3			= "\c[Shadow] Shadow: \c[Gold] I'm the coolest!";
 
+sresult0		= "\c[Sonic] Sonic: \c[White] THAT WAS RIGHT!";
 sresult1		= "\c[Sonic] Sonic: \c[White] That was incredible!";
 sresult2		= "\c[Sonic] Sonic: \c[White] No problem!";
 sresult3		= "\c[Sonic] Sonic: \c[White] Not my best run...";
