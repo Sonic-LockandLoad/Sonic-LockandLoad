@@ -342,10 +342,14 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 					A_ChangeVelocity(0, 0, invoker.SpinCharges / 7);
 				}
 				A_CustomPunch(invoker.SpinCharges * 2, false, CPF_NOTURN, "SonicPunchPuff", 128, 0, 0, "ArmorBonus", "sWeapons/finalhit");
+				return ResolveState(null);
 			}
 			TNT1 A 0 { 
 				SetHeight(42);
                 cvar.FindCvar("IsSpinDashing").SetBool(false);
+				if (GetPlayerInput(INPUT_BUTTONS) & BT_CROUCH) {
+					return ResolveState(null);
+				}
 				int speed = sqrt(Vel.X ** 2 + Vel.Y ** 2);
 				if (invoker.SpinCharges / 2 && A_CheckFloor("Null") && speed > 20) {
 					if (GetPlayerInput(MODINPUT_FORWARDMOVE) < 0) {
