@@ -200,6 +200,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				SetHeight(22);
 				A_Light(3);
 				A_Stop();
+                cvar.FindCvar("IsSpinDashing").SetBool(true);
 				A_OverlayFlags(9, PSPF_ADDWeapon, true);
 				if (CountInv("PowerHyper")) {
 					A_Overlay(9, "HyperSpinAnim", true);
@@ -253,6 +254,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				if (invoker.SpinCharges > 30) { invoker.SpinCharges = 30; }
 				if (invoker.SpinCharges == 10) {
 					A_PlaySound("sWeapons/dropdash", 5);
+					cvar.FindCvar("IsSpinDashing").SetBool(true);
 				}
 				invoker.SpinCharges++;
                 if (A_CheckFloor("Null") || waterlevel > 1) {
@@ -273,6 +275,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 					}
 					else {
 						return ResolveState("Ready");
+						cvar.FindCvar("IsSpinDashing").SetBool(false);
 					}
                 }
                 return ResolveState(null);

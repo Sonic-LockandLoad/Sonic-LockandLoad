@@ -229,7 +229,7 @@ class LockLoadPlayer : PlayerPawn
 		if (cmd.buttons & BT_JUMP) {
 			cmd.buttons &= ~BT_CROUCH;
 		}
-		if (CanCrouch() && player.health > 0 && level.IsCrouchingAllowed() && !GetCvar("Sliding")) {
+		if (CanCrouch() && player.health > 0 && level.IsCrouchingAllowed() && !GetCvar("Sliding") && !GetCvar("IsSpinDashing")) {
 			if (!totallyfrozen && cmd.buttons & BT_CROUCH) {
 				cvar.FindCvar("IsCrouching").SetBool(true);
 				A_SetSize(-1, 24);
