@@ -130,6 +130,10 @@ class LockLoadPlayer : PlayerPawn
 		else {
 			A_SetSpeed(4);
 		}
+		// workaround: if underwater even slightly, set the player to a crouching state
+		// for some reason this provides better underwater control
+		if (waterlevel >= 1) player.crouching = 0;
+		else player.crouching = 1;
 		Super.Tick();
 	}
 	override void CheckJump()
@@ -229,8 +233,8 @@ class LockLoadPlayer : PlayerPawn
 		if (cmd.buttons & BT_JUMP) {
 			cmd.buttons &= ~BT_CROUCH;
 		}
-		if (CanCrouch() && player.health > 0 && level.IsCrouchingAllowed() && !GetCvar("Sliding") && !GetCvar("IsSpinDashing")) {
-			if (!totallyfrozen && cmd.buttons & BT_CROUCH) {
+		if (player.health > 0 && level.IsCrouchingAllowed() && !GetCvar("Sliding") && !GetCvar("IsSpinDashing")) {
+			if (CanCrouch() && !totallyfrozen && cmd.buttons & BT_CROUCH) {
 				cvar.FindCvar("IsCrouching").SetBool(true);
 				A_SetSize(-1, 24);
 				Player.ViewHeight = 24;
