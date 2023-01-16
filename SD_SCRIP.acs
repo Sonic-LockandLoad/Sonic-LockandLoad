@@ -493,7 +493,7 @@ int oldz;
 function void ScaleVelocity(int TID, int scale)
 {
 	// credit: https://forum.zdoom.org/viewtopic.php?p=674662&sid=8584f1daa6b46cfa8b01858ef17fded2#p674662
-	SetActorVelocity(TID,FixedMul(scale,GetActorVelX(TID)),FixedMul(scale,GetActorVelY(TID)),FixedMul(scale,GetActorVelZ(TID)),false,true);
+	SetActorVelocity(TID, FixedMul(scale,GetActorVelX(TID)), FixedMul(scale,GetActorVelY(TID)), FixedMul(scale,GetActorVelZ(TID)), false, false);
 }
 
 script "SetFriction" ENTER
@@ -512,7 +512,7 @@ script "SetFriction" ENTER
 		if (GetCvar("IsSpinDashing")) {
 			SetActorProperty(0, APROP_Friction, 1.5);
 		}
-		else if (GetCvar("IsCrouching") && speed >= 5.0) {
+		else if (GetCvar("IsCrouching") && speed >= 1.0) {
 			SetActorProperty(0, APROP_Friction, 1.1);
 			if (speed < 100.0) {
 				ScaleVelocity(0, 1.0 + (oldz - GetActorZ(0)) / 128);
