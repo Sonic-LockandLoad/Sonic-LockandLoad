@@ -107,7 +107,7 @@ class LockLoadPlayer : PlayerPawn
 		oldz = Pos.Z;
 		FTranslatedLineTarget ltinfo;
 		if (GetCvar("HomingReticle") && CountInv("SonicCheck") || (CountInv("ShadowCheck") && !player.onground)) {
-			bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+			bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ|LAF_NOINTERACT, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
 			if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
 				if (!reticleActive) {
