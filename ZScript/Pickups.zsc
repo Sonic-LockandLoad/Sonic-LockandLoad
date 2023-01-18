@@ -342,11 +342,14 @@ class ChaosEmeralds : CustomInventory
 			TNT1 A 0 A_TakeInventory("ChaosEmeralds", 1);
 			TNT1 A 0
 			{
+				if (Health > CountInv("ChaosEnergy")) {
+					A_SetInventory("ChaosEnergy", Health);
+				}
 				if (CountInv("AmyCheck") > 0) {
 					A_SetHealth(1);
 				}
 				else {
-					A_SetInventory("Health", 999);
+					A_SetHealth(999);
 				}
 				if (CountInv("ChaosEnergy") < 100) {
 					A_SetInventory("ChaosEnergy", 100);
