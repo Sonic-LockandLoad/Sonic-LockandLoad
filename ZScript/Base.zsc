@@ -334,11 +334,12 @@ class SlamAtkObject : CustomInventory
 	{
 		Use:
 			TNT1 A 0 A_Overlay(-4, "SlamCheck");
-			TNT1 A 0 A_OverlayOffset(-2, 0, 32);
+			TNT1 A 0 A_OverlayOffset(-4, 0, 32);
 			Fail;
 		SlamCheck:
 			TNT1 A 0 {
-				if (!(GetPlayerInput(MODINPUT_BUTTONS) & BT_ALTATTACK) && !invoker.midfall) {
+				bool IsHyperAndRClicking = (player.ReadyWeapon.GetClassName() == "Caliburn" || player.ReadyWeapon.GetClassName() == "ClassicAbilities") && GetPlayerInput(MODINPUT_BUTTONS) & BT_ALTATTACK && CountInv("PowerHyper");
+				if (!IsHyperAndRClicking && !invoker.midfall) {
 					invoker.midfall = true;
 					invoker.zdiff = Pos.Z - GetZAt();
 					return ResolveState("SlamStart");
@@ -376,8 +377,7 @@ class SlamAtkObject : CustomInventory
 			}
 			TNT1 AAAAA 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
-					int bounce = invoker.zdiff / 12 + 5;
-					if (bounce > 30) bounce = 30;
+					int bounce = invoker.zdiff / 16;
 					A_ChangeVelocity(0, 0, bounce);
 					return ResolveState(null);
 				}
@@ -397,9 +397,9 @@ class SlamAtkObject : CustomInventory
 		}
 		int CrouchPressed = owner.GetPlayerInput(INPUT_BUTTONS) & BT_CROUCH && !(owner.GetPlayerInput(INPUT_OLDBUTTONS) & BT_CROUCH);
 		if (owner is "PlayerPawn" && !owner.player.onground && CrouchPressed && inuse == 0) {
-			owner.UseInventory(self);
-			if (owner.CountInv("ClassicCheck")) inuse = 5;
-			else inuse = 14;
+			owner.UseInventory(self);	
+			if (owner.CountInv("ClassicCheck")) inuse = 2;
+			else inuse = 6;
 		}
 	}
 }
