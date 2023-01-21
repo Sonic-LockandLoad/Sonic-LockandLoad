@@ -66,6 +66,17 @@ class AirstrikeRocket : ChaosRocket
 	}
 }
 
+class RapidGrenade : ChaosRocket
+{
+	Default
+	{
+		-NOGRAVITY;
+		Speed 40;
+		Damage 145;
+		ExplosionDamage 75;
+	}
+}
+
 class DuellingRocket : Actor
 {
 	Default

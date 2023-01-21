@@ -17,6 +17,7 @@ user bool RecoilBurstRelease        = true;
 user bool HireThisMan				= true;
 user bool ControlHints				= true;
 user bool Tutorials					= true;
+user bool AltShotgun				= false;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
