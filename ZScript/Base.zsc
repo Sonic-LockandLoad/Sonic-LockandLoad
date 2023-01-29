@@ -377,7 +377,7 @@ class SlamAtkObject : CustomInventory
 			}
 			TNT1 AAAAA 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
-					int bounce = invoker.zdiff / 16;
+					int bounce = invoker.zdiff / 24;
 					A_ChangeVelocity(0, 0, bounce);
 					return ResolveState(null);
 				}
