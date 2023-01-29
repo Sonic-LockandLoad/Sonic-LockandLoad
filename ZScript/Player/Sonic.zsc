@@ -492,8 +492,8 @@ class KineticShotty : LockLoadWeapon
 		Weapon.AmmoGive 76;
 		Weapon.Kickback 1000;
 		Weapon.BobSpeed 1.5;
-		Inventory.PickupMessage "Rapid Shotty";
-		Tag "Rapid Shotty";
+		Inventory.PickupMessage "Kinetic Shotty";
+		Tag "Kinetic Shotty";
 		+PUFFONACTORS
 		+ALWAYSPUFF
 		+WEAPON.NOAUTOFIRE
