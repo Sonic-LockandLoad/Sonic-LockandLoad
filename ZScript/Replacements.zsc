@@ -160,7 +160,7 @@ class ShotgunReplace : Actor replaces Shotgun // 2001
 			TNT1 A 0 NoDelay
 			{
 				if (CountInv("SonicCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("RapidShotty");
+					A_SpawnItem("KineticShotty");
 				}
 				else if (CountInv("AmyCheck", AAPTR_PLAYER1)) {
 					A_SpawnItem("PrecisionShotgun");

@@ -15,7 +15,7 @@ class SonicPlayer : LockLoadPlayer
 		Player.StartItem "ChaosEnergy", 100;
 		Player.WeaponSlot 1, "Caliburn";
 		Player.WeaponSlot 2, "AcceleratedPistol";
-		Player.WeaponSlot 3, "RapidShotty";
+		Player.WeaponSlot 3, "KineticShotty";
 		Player.WeaponSlot 4, "ShurikenCrossbow";
 		Player.WeaponSlot 5, "EclipseBlaster";
 		Player.WeaponSlot 6, "AirStrikeLauncher";
@@ -473,37 +473,14 @@ class AcceleratedPistol : LockLoadWeapon
 	}
 }
 
-class RapidShotty : LockLoadWeapon
+class KineticShotty : LockLoadWeapon
 {
 	action void RapidFire()
 	{
-		A_PlaySound("sweapons/shardshot", 1);
-		A_FireBullets(18, 10, 10, 7, "BulletPuff");
-		if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
-			A_GunFlash("SuperFlash");
-		}
-		else {
-			A_GunFlash();
-		}
-	}
-	action void RapiderFire()
-	{
-		A_PlaySound("sweapons/shardshot", 1);
-		A_FireBullets(20, 14, 36, 5, "BulletPuff");
-		A_FireBullets(2, 2, 8, 3, "BulletPuff", 0);
-		A_GunFlash("FlashAlt");
-	}
-	action void ForceFire(int intensity)
-	{
-        if (!CountInv("PowerSuper") && !CountInv("PowerHyper")) {
-			for (int x=1; x<intensity; x++) {
-				A_TakeInventory("ChaosEnergy", 24, AAPTR_Player1);
-			}
-        }
-		A_PlaySound("sweapons/forceshot", 1);
-		A_ChangeVelocity(Cos(Pitch) * -10, 0, Sin(Pitch) * 10, CVF_Relative);
-		A_FireBullets(4, 2, 25, 2 * intensity, "BulletPuff");
-		A_GunFlash("ForceFlash");
+		A_PlaySound("sweapons/nspeedyshot", 1);
+		A_FireBullets(20, 14, 36, 7, "BulletPuff");
+		A_FireBullets(2, 2, 8, 5, "BulletPuff", 0);
+		A_GunFlash();
 	}
 	Default
 	{
@@ -536,37 +513,12 @@ class RapidShotty : LockLoadWeapon
 			SCTG A 1 A_Raise(20);
 			Loop;
 		Fire:
-			TNT1 A 0 A_JumpIf(GetCvar("AltShotgun"), "FireAlt");
-			TNT1 A 0 A_JumpIf(CountInv("PowerHyper"), "SuperFire");
 			SCTG B 1 RapidFire();
-			SCTG BBBBB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			SCTG CCC 1 A_WeaponReady(WRF_NOBOB);
-			SCTG CCCCCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			SCTG A 0 A_ReFire();
-			Goto Ready;
-		FireAlt:
-			SCTG B 1 RapiderFire();
-			SCTG BBB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			SCTG CCCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SCTG BBBBBBCCCCCCCC 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			SCTG A 0 A_ReFire();
 			SCTG CDE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto ForceReload;
 		AltFire:
-			TNT1 A 0 A_JumpIf(GetCvar("AltShotgun"), "AltFireAlt");
-			SCTG B 1 ForceFire(2);
-			SCTG BBBBB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			TNT1 A 0 { if (CountInv("PowerHyper")) { A_ReFire(); } }
-			SCTG BBBBB 1 {
-                if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ALTATTACK && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_ALTATTACK)) {
-                    return ResolveState("AltFireAgain");
-                }
-                A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-                return ResolveState(null);
-            }
-			TNT1 A 0 { if (CountInv("PowerHyper")) A_ReFire(); }
-			SCTG CDE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-            Goto ForceReload;
-		AltFireAlt:
 			SCTG B 1 {
 				Actor rpg = A_FireProjectile("RapidGrenade", 0, true, 0, 0, 0, 0); // Vel.Z * -1.5
 				if (rpg) {
@@ -575,32 +527,13 @@ class RapidShotty : LockLoadWeapon
 			}
 			SCTG BBBBBCDEFFFFFFFFFFFFFEDCB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
-		AltFireAgain:
-			SCTG B 1 ForceFire(1);
-			SCTG BBBBBBBBBBCDE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-            Goto ForceReload;
         ForceReload:
 			SCTG F 1 A_PlaySound("sweapons/forcereload", 6);
 			SCTG FFFFFFFFFFFFFFFFFFFFFFFFFFFEDCAAAAAAAAAAAAAA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			SCTG A 0 A_ReFire();
 			Goto Ready;
-		SuperFire:
-			SCTG B 3 RapidFire();
-			SCTG C 2;
-			SCTG C 3;
-			SCTG A 0 A_ReFire();
-			Goto Ready;
 		Flash:
 			SCTF A 4 Bright;
-			Stop;
-		FlashAlt:
-			SCTF A 3 Bright;
-			Stop;
-		SuperFlash:
-			SCTF A 2 Bright;
-			Stop;
-		ForceFlash:
-			SCTF B 4 Bright;
 			Stop;
 		Spawn:
 			SCAT A -1;

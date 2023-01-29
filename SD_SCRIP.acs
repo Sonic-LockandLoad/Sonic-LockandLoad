@@ -1034,10 +1034,7 @@ script "ControlHints" enter
 			SecondaryFire = "Recoil Charge"; 
 			if (buttons & BT_ALTATTACK) PrimaryFire = "Recoil Burst";
 		}
-		if (CheckWeapon("RapidShotty")) { 
-			if (GetCvar("AltShotgun")) { PrimaryFire = "Rapid Shot"; SecondaryFire = "Motion Grenade"; }
-			else { PrimaryFire = "Rapid Shot"; SecondaryFire = "Force Shot"; }
-		}
+		if (CheckWeapon("KineticShotty")) { PrimaryFire = "Shotty Burst"; SecondaryFire = "Kinetic Grenade"; }
 		if (CheckWeapon("ShurikenCrossbow")) { PrimaryFire = "Shuriken Launch"; SecondaryFire = "\c[DarkGray]None"; }
 		if (CheckWeapon("EclipseBlaster")) { PrimaryFire = "Eclipse Shot"; SecondaryFire = "Chaos Restore"; }
 		if (CheckWeapon("AirStrikeLauncher")) { PrimaryFire = "Rocket Launch"; SecondaryFire = "Remote Detonate"; }

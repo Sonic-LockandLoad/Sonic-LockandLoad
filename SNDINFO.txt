@@ -31,6 +31,7 @@ spickup/keytablet			keypkup
 sweapons/boost				boosts
 sweapons/speedyshot        	SpSGShot
 sweapons/speedyblast       	SpSGBlst
+sweapons/nspeedyshot		dsshott
 sweapons/speedyreload      	SpSGRlod
 sweapons/missilefire       	MislFire
 sweapons/hit               	hit1
@@ -57,8 +58,6 @@ sweapons/blockattack       	block1
 sweapons/blockattackx      	block2
 sweapons/blockready        	blkready
 sweapons/shockwave         	shock
-sweapons/shardshot         	sharshot
-sweapons/forceshot         	sha2shot
 sweapons/forcereload       	forcrlod
 sweapons/pistol       		fpistol
 sweapons/swordspin         	swing4
