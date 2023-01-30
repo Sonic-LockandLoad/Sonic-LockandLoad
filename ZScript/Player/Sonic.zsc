@@ -872,11 +872,11 @@ class HomingSnapQuickStep : CustomInventory
 					DamageFactor = 0;
 					int forward = GetPlayerInput(INPUT_FORWARDMOVE);
 					int sidem = GetPlayerInput(INPUT_SIDEMOVE);
-					if (forward > 0) A_ChangeVelocity(QuickStepSpeed, 0, 0, CVF_Relative);
+					if (forward < 0) A_ChangeVelocity(QuickStepSpeed * -1, 0, 0, CVF_Relative);
 					if (sidem < 0) A_ChangeVelocity(0, QuickStepSpeed, 0, CVF_Relative);
 					if (sidem > 0) A_ChangeVelocity(0, QuickStepSpeed * -1, 0, CVF_Relative);
-					if (forward < 0 || (forward == 0 && sidem == 0)) {
-						A_ChangeVelocity(QuickStepSpeed * -1, 0, 0, CVF_Relative);
+					if (forward > 0 || (forward == 0 && sidem == 0)) {
+						A_ChangeVelocity(QuickStepSpeed, 0, 0, CVF_Relative);
 					}
 					return ResolveState("QuickStepEnd");
 				}
