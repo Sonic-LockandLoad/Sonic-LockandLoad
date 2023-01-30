@@ -361,7 +361,7 @@ class SlamAtkObject : CustomInventory
 					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 				if (player.onground) return ResolveState("SlamDone");
-				A_ChangeVelocity(0, 0, -50, CVF_Relative|CVF_Replace);
+				A_ChangeVelocity(0, 0, -75, CVF_Relative|CVF_Replace);
 				return ResolveState(null);
 			}
 			Goto SlamAttack+1;
