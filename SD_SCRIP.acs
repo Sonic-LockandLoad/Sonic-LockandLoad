@@ -990,7 +990,7 @@ script "ControlHints" enter
 			OffhandAbility = "Quick Step";
 			if (GetCvar("CanHoming")) OffhandAttack = "Homing Attack";
 			if (Midair) {
-				if (GetCvar("CanHoming")) OffhandAbility = "Homing Snap";
+				if (GetCvar("CanHoming") && GetCvar("HomingSnap")) OffhandAbility = "Homing Snap";
 			}
 			if (GetCvar("CanWallJump") && Midair) {
 				Jump = "Wall Jump";

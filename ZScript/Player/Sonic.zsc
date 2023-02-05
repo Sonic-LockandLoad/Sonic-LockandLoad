@@ -868,7 +868,7 @@ class HomingSnapQuickStep : CustomInventory
 				FTranslatedLineTarget ltinfo;
 				bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 				let ltarget = ltinfo.linetarget;
-				if ((player.onground || !ltarget) && !GetCvar("IsCrouching")) {
+				if ((player.onground || !ltarget || !GetCvar("HomingSnap")) && !GetCvar("IsCrouching")) {
 					/* Quick Step */
 					int input = 0;
 					int speed = sqrt(Vel.X ** 2 + Vel.Y ** 2);
