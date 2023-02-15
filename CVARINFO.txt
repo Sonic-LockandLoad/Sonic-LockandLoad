@@ -4,7 +4,6 @@ user int DeathMusic 				= 1;
 user int RingType 					= 1;
 user int AmyZoomFactor				= 4;
 user int HomingReticle				= 2;
-user int WallJumpPrerequisite		= 1;
 user int InvincMusic 				= 1;
 user int SuperMusic 				= 1;
 

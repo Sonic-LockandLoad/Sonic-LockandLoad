@@ -93,10 +93,6 @@ OptionMenu "LLAbilitiesMenu"
     Option "Recoil Burst Activation", "RecoilBurstRelease", "EnabledOrNot"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
-
-    Option "Wall Jump/Dash Prerequisite", "WallJumpPrerequisite", "WallJumpPrerequisite"
-	StaticText "Sonic or Classic", "Cyan"
-	StaticText ""
 	
 }
 OptionMenu "LLMiscOptMenu"
