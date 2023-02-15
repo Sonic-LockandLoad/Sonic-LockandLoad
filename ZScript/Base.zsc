@@ -3,6 +3,7 @@ class LockLoadPlayer : PlayerPawn
 	int dJumpCounter;
 	double oldz;
 	bool reticleActive;
+	int jumpAngle;
 	Default
 	{
 		Speed 4;
@@ -88,21 +89,16 @@ class LockLoadPlayer : PlayerPawn
 	}
 	override void Tick()
 	{
-		bool WJumpPrerequisite = false;
-		switch (GetCvar("WallJumpPrerequisite")) {
-			case 0: // Wall jump at any time
-				WJumpPrerequisite = true;
+		bool TouchingWall;
+		for (int x = 0; x <= 360; x += 90) {
+			TouchingWall = CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32, 0, x);
+			if (TouchingWall) {
+				jumpAngle = x;
+				cvar.FindCvar("CanWallJump").SetBool(TouchingWall);
 				break;
-			case 1: // Wall jump only if holding forward
-				if (GetPlayerInput(MODINPUT_FORWARDMOVE) >= 6400)
-					WJumpPrerequisite = true;
-				break;
-			case 2: // Wall jump only if not holding forward
-				if (GetPlayerInput(MODINPUT_FORWARDMOVE) < 6400)
-					WJumpPrerequisite = true;
-				break;
+			}
+			else cvar.FindCvar("CanWallJump").SetBool(false);
 		}
-		cvar.FindCvar("CanWallJump").SetBool(CheckLOF(CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32) && WJumpPrerequisite);
 		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY|CLOFF_SKIPOBJECT|CLOFF_MUSTBESHOOTABLE|CLOFF_JUMPNONHOSTILE, 128));
 		oldz = Pos.Z;
 		FTranslatedLineTarget ltinfo;
@@ -197,7 +193,7 @@ class LockLoadPlayer : PlayerPawn
 				else {
 					wJumpHeight = wJumpHeightOffset;
 				}
-				ACS_NamedExecute("WallJump", 0, wJumpHeight, wJumpDistance);
+				ACS_NamedExecute("WallJump", 0, wJumpHeight, wJumpDistance, jumpAngle);
 			}
 			else if (level.IsJumpingAllowed() && !IsHovering && !(CountInv("ShadowCheck") && GetCvar("CanHoming"))) {
 				// Double jump stuff
