@@ -2,37 +2,37 @@ LISTMENU "MainMenu"
 {
 	Position 110, 54
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
-	TextItem "New Game", "n", "PlayerClassMenu"
-	TextItem "About", "r", "ReadThisMenu"
-	TextItem "Options","o", "LockandLoadOptions"
-	TextItem "Load Game", "l", "LoadGameMenu"
-	TextItem "Save Game", "s", "SaveGameMenu"
-	TextItem "Exit Game", "q", "QuitMenu"
+	TextItem "$MENU_NEWGAME", "n", "PlayerClassMenu"
+	TextItem "$MENU_ABOUT", "r", "ReadThisMenu"
+	TextItem "$MENU_OPTIONS","o", "LockandLoadOptions"
+	TextItem "$MENU_LOAD", "l", "LoadGameMenu"
+	TextItem "$MENU_SAVE", "s", "SaveGameMenu"
+	TextItem "$MENU_QUIT", "q", "QuitMenu"
 	IfGame(Heretic, Hexen, Strife, Chex)
 	{
 		Font "SMALLFONT"
-		StaticText 78, 40, "Unsupported game"
+		StaticText 78, 40, "$MENU_UNSUPPORTED"
 	}
 }
 ListMenu "PlayerClassMenu"
 {
 	Position 120, 64
 	Font "BIGFONT", "ActiveOption"
-	StaticText 68, 38, "Character Select"
+	StaticText 68, 38, "$MENU_CHSELECT"
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
 ListMenu "EpisodeMenu"
 {
 	Position 68, 64
 	Font "BIGFONT", "ActiveOption"
-	StaticText 74, 38, "Episode Select"
+	StaticText 74, 38, "$MENU_EPSELECT"
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
 ListMenu "SkillMenu"
 {
 	Position 58, 74
 	Font "BIGFONT", "ActiveOption"
-	StaticText 80, 58, "Skill Select"
+	StaticText 80, 58, "$MENU_SKSELECT"
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
 OptionMenu "LockandLoadOptions"
