@@ -47,11 +47,6 @@ DamageType RocketStream
 {
 	Factor = 1
 }
-DamageType Drownd
-{
-	Factor = 1
-	Obituary = "%o didn't make it out in time."
-}
 DamageType SonicPunch
 {
 	Factor = 1
@@ -73,6 +68,11 @@ DamageType Drowning
 {
 	ReplaceFactor
 	Factor = 0
+}
+DamageType Drowned
+{
+	Factor = 1
+	Obituary = "$OB_WATER"
 }
 
 map TITLEMAP "The Next Level"
@@ -109,7 +109,7 @@ map SDLvl02 "Marble Madness"
 	music = S_LVL02
 	sky1 = "SUNSTSKY"
 	next = "S_LOBBY"
-	partime = 240
+	partime = 360
 }
 
 map THEBOSS "Dis Is It"

@@ -854,7 +854,7 @@ script "Drowning" ENTER
 			}
 			if (drowntimer > maxdrown)
 			{
-				DamageActor(1001, AAPTR_PLAYER1, 0, 0, 9999, "Drownd");
+				DamageActor(1001, AAPTR_PLAYER1, 0, AAPTR_NULL, 9999, "Drowned");
 				SetMusic("", 0);
 				break;
 			}

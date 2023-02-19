@@ -64,7 +64,7 @@ class LockLoadPlayer : PlayerPawn
 			PLAY G 0; 
 			PLAY G 4;
 			Goto Spawn;
-		Death.Drownd:
+		Death.Drowned:
 			TNT1 A 0 A_PlaySound("sglobal/drown");
 			Goto Death+2;
 		Death:
