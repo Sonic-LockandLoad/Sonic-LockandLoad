@@ -408,7 +408,7 @@ script "DeathMusic" (int xdeath)
 				else {
 					SetMusic("C_DEADM", 0);
 					Delay(9*35);
-					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic("*"); }
+					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic(""); }
 				}
 				break;
 			case Shadow:
@@ -416,7 +416,7 @@ script "DeathMusic" (int xdeath)
 				else {
 					SetMusic("D_DEADM", 0);
 					Delay(7*35);
-					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic("*"); }
+					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic(""); }
 				}
 				break;
 			default:
@@ -425,9 +425,102 @@ script "DeathMusic" (int xdeath)
 	}
 }
 
+script "DeathScreen" DEATH
+{
+    FadeTo(0, 0, 0, 1.0, 2.0);
+    Delay(30);
+	str message;
+	switch (random(1, 15)) {
+		case 1:
+			message = "death_msg1";
+			break;
+		case 2:
+			message = "death_msg2";
+			break;
+		case 3:
+			message = "death_msg3";
+			break;
+		case 4:
+			message = "death_msg4";
+			break;
+		case 5:
+			message = "death_msg5";
+			break;
+		case 6:
+			message = "death_msg6";
+			break;
+		case 7:
+			message = "death_msg7";
+			break;
+		case 8:
+			switch (PlayerClass(PlayerNumber())) {
+				case Sonic:
+					message = "death_msg8s";
+					break;
+				case Amy:
+					message = "death_msg8a";
+					break;
+				case ClassicSonic:
+					message = "death_msg8c";
+					break;
+				case Shadow:
+					message = "death_msg8d";
+					break;
+			}
+			break;
+		case 9:
+			message = "death_msg9";
+			break;
+		case 10:
+			if (GetActorProperty(0, APROP_Waterlevel) > 2) {
+				message = "death_msg10";
+				break;
+			}
+		case 11:
+			message = "death_msg11";
+			break;
+		case 12:
+			if (Timer() < 70) {
+				message = "death_msg12";
+				break;
+			}
+		case 13:
+			if (GameSkill() < 2) {
+				message = "death_msg13a";
+				break;
+			}
+			else if (GameSkill() == 4) {
+				message = "death_msg13b";
+				break;
+			}
+			else if (GameSkill() == 5) {
+				message = "death_msg13c";
+				break;
+			}
+		case 14:
+			if (GameSkill() > 1) {
+				message = "death_msg14";
+				break;
+			}
+		case 15:
+			if (CheckWeapon("DualRockets")) {
+				message = "death_msg15";
+				break;
+			}
+		default:
+			message = "death_msg16";
+			break;
+	}
+	HudMessage(l:message; 0, 9, CR_UNTRANSLATED, 0.5, 0.45, 0.0, 1.0);
+	HudMessage(s:"Press \c[Gold]", k:"+use", s:"\c[White] to try again"; 0, 10, CR_UNTRANSLATED, 0.5, 0.55, 0.0, 1.0);
+}
+
 script "DidResurrect" RESPAWN
 {
 	SetMusic("*");
+	HudMessage(s:""; 0, 9, CR_UNTRANSLATED, 0.0, 0.0, 0.0, 0.0);
+	HudMessage(s:""; 0, 10, CR_UNTRANSLATED, 0.0, 0.0, 0.0, 0.0);
+    FadeTo(0.0, 0.0, 0.0, 0.0, 0);
 	if (GetCvar("Subtitles")) {
 		switch (PlayerClass(PlayerNumber())) {
 			case Sonic:
@@ -942,7 +1035,7 @@ script "Subtitles" (int subtitle)
 
 script "AmyBlockTint" enter
 {
-	while (true) {
+	while (PlayerClass(PlayerNumber()) == Amy && ClassifyActor(0) & ACTOR_ALIVE) {
 		if (CheckInventory("PowerBlocking")) {
 			FadeTo(192, 23, 112, 0.2, 0.0);
 		}
@@ -1175,51 +1268,53 @@ script "FormTint" enter
 		if (counter % cdelay == 0) {
 			redFlash = !redFlash;
 		}
-		switch (PlayerClass(PlayerNumber())) {
-			case Sonic:
-				if (CheckInventory("PowerHyper")) {
-					if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
-						FadeTo(255, 0, 0, 0.2, 0.1);
+		if (ClassifyActor(0) & ACTOR_ALIVE) {
+			switch (PlayerClass(PlayerNumber())) {
+				case Sonic:
+					if (CheckInventory("PowerHyper")) {
+						if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
+							FadeTo(255, 0, 0, 0.2, 0.1);
+						}
+						else FadeTo(255, 255, 255, 0.1, 0.1);
 					}
-					else FadeTo(255, 255, 255, 0.1, 0.1);
-				}
-				else if (CheckInventory("PowerSuper")) {
-					if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
-						FadeTo(255, 0, 0, 0.2, 0.1);
+					else if (CheckInventory("PowerSuper")) {
+						if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
+							FadeTo(255, 0, 0, 0.2, 0.1);
+						}
+						else FadeTo(240, 188, 24, 0.2, 0.1);
 					}
-					else FadeTo(240, 188, 24, 0.2, 0.1);
-				}
-				break;
-			case Amy:
-				if (CheckInventory("PowerSuper")) {
-					if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
-						FadeTo(255, 0, 0, 0.3, 0.1);
+					break;
+				case Amy:
+					if (CheckInventory("PowerSuper")) {
+						if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
+							FadeTo(255, 0, 0, 0.3, 0.1);
+						}
+						else FadeTo(123, 13, 102, 0.3, 0.1);
 					}
-					else FadeTo(123, 13, 102, 0.3, 0.1);
-				}
-				break;
-			case ClassicSonic:
-				if (CheckInventory("PowerHyper")) {
-					if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
-						FadeTo(255, 0, 0, 0.2, 0.1);
+					break;
+				case ClassicSonic:
+					if (CheckInventory("PowerHyper")) {
+						if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
+							FadeTo(255, 0, 0, 0.2, 0.1);
+						}
+						else FadeTo(255, 255, 255, 0.1, 0.1);
 					}
-					else FadeTo(255, 255, 255, 0.1, 0.1);
-				}
-				else if (CheckInventory("PowerSuper")) {
-					if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
-						FadeTo(255, 0, 0, 0.2, 0.1);
+					else if (CheckInventory("PowerSuper")) {
+						if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
+							FadeTo(255, 0, 0, 0.2, 0.1);
+						}
+						else FadeTo(240, 188, 24, 0.2, 0.1);
 					}
-					else FadeTo(240, 188, 24, 0.2, 0.1);
-				}
-				break;
-			case Shadow:
-				if (CheckInventory("PowerSuper")) {
-					if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
-						FadeTo(255, 0, 0, 0.2, 0.1);
+					break;
+				case Shadow:
+					if (CheckInventory("PowerSuper")) {
+						if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
+							FadeTo(255, 0, 0, 0.2, 0.1);
+						}
+						else FadeTo(234, 205, 114, 0.1, 0.1);
 					}
-					else FadeTo(234, 205, 114, 0.1, 0.1);
-				}
-				break;
+					break;
+			}
 		}
 		Delay(1);
 	}
