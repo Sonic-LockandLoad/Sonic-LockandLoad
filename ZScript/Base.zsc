@@ -26,7 +26,7 @@ class LockLoadPlayer : PlayerPawn
 			if (health >= 20 && damage > health) {
 				damage = health - 1;
 			}
-            A_StartSound("sglobal/loserings", 6);
+			A_StartSound("sglobal/loserings", 6);
 			int ringcount = damage;
 			int maxrange  = damage / 4;
 			if (maxrange < 5) maxrange = 5;
@@ -126,10 +126,6 @@ class LockLoadPlayer : PlayerPawn
 		else {
 			A_SetSpeed(4);
 		}
-		// workaround: if underwater even slightly, set the player to a crouching state
-		// for some reason this provides better underwater control
-		if (waterlevel >= 1) player.crouching = 0;
-		else player.crouching = 1;
 		Super.Tick();
 	}
 	override void CheckJump()

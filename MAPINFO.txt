@@ -112,6 +112,14 @@ map SDLvl02 "Marble Madness"
 	partime = 360
 }
 
+map SDLvl03 "Unnamed Third Level"
+{
+	music = S_LVL03
+	sky1 = "SUNSTSKY"
+	next = "S_LOBBY"
+	partime = 360
+}
+
 map THEBOSS "Dis Is It"
 {
 	levelnum = 30
