@@ -142,11 +142,17 @@ map S_HIRE "Hire This Zone"
 	partime = 220
 }
 
-map S_SNDBOX "The Sandbox"
+map S_CYBRSP "Cyber Space Arena"
 {
-	music = S_SNDBOX
+	music = C_LOBBY
 	author = "That1M8Head"
 	partime = 0
+	levelnum = 69
+	sky1 = "cybrback"
+	useplayerstartz
+	resethealth
+	resetinventory
+	nointermission
 }
 
 clearskills

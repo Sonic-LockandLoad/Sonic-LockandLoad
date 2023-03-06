@@ -394,7 +394,7 @@ script "SuperTransformPrompt" enter
 
 script "DeathMusic" (int xdeath)
 {
-	if (GetCvar("DeathMusic")) {
+	if (GetCvar("DeathMusic") && GetLevelInfo(LEVELINFO_LEVELNUM) != 69) {
 		switch (PlayerClass(PlayerNumber())) {
 			case Sonic:
 				if (xdeath) SetMusic("S_DEADX", 0);
@@ -427,6 +427,7 @@ script "DeathMusic" (int xdeath)
 
 script "DeathScreen" DEATH
 {
+	if (GetLevelInfo(LEVELINFO_LEVELNUM) == 69) terminate;
     FadeTo(0, 0, 0, 1.0, 1.0);
     Delay(30);
 	str message;
