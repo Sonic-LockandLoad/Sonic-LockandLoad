@@ -487,13 +487,13 @@ class KineticShotty : LockLoadWeapon
 	action void ShottyFire()
 	{
 		A_PlaySound("sweapons/nspeedyshot", 1);
-		double overall_vel = sqrt(Vel.X ** 2 + Vel.Y ** 2);
-		if (overall_vel < 8.0) overall_vel = 8.0;
+		double overall_vel	= sqrt(Vel.X ** 2 + Vel.Y ** 2);
+		int	num_bullets		= 18 + overall_vel / 3;
 		if (player.onground) {
-			A_FireBullets(20, 14, 18 * (overall_vel / 8), 7, "BulletPuff");
+			A_FireBullets(20, 14, num_bullets, 7, "BulletPuff");
 		}
 		else {
-			A_FireBullets(15, 10, 18 * (overall_vel / 8), 7, "BulletPuff");
+			A_FireBullets(15, 10, num_bullets, 7, "BulletPuff");
 		}
 		A_FireBullets(2, 2, 8, 5, "BulletPuff", 0);
 		A_GunFlash();
