@@ -221,6 +221,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 					SetHeight(42);
 					A_ClearOverlays(0, 0);
 					A_Light(0);
+					cvar.FindCvar("IsSpinDashing").SetBool(false);
 					return ResolveState("Ready");
 				}
 				return ResolveState(null);
@@ -285,6 +286,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			TNT1 A 0 {
                 A_ClearOverlays(0, 0);
 				A_Light(0);
+				cvar.FindCvar("IsSpinDashing").SetBool(false);
                 invoker.SpinCharges = 0;
 				return ResolveState(null);
 			}
