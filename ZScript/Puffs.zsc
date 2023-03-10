@@ -251,6 +251,7 @@ class AmyKickPuff : BulletPuff
 	{
 		+NOBLOCKMAP;
 		+NOGRAVITY;
+		+FORCEPAIN;
 		RenderStyle "None";
 		Alpha 0;
 		VSpeed 1;
