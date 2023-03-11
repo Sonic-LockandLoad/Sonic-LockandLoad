@@ -39,6 +39,10 @@ class AmyPlayer : LockLoadPlayer
 					if (Health < 100 && damage / 2) A_GiveInventory("Health", damage / 2);
 				}
 				source.A_DamageSelf(damage * 2, "Parry");
+				let oldangle = source.angle;
+				source.A_SetAngle(angle);
+				source.A_Recoil(-damage * 2);
+				source.A_SetAngle(oldangle);
 				A_GiveInventory("HammerBlock");
 			}
 			if (damage / 4) A_TakeInventory("ChaosEnergy", damage / 4);
