@@ -111,10 +111,10 @@ class PikoPikoHammer : LockLoadWeapon
 			PIKO A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(10);
+			#### # 1 A_Lower(15);
 			Loop;
 		Select:
-			PIKO A 1 A_Raise(10);
+			PIKO A 1 A_Raise(45);
 			Loop;
 		Fire:
 			TNT1 A 0 A_JumpIf(Pos.Z - GetZAt() > 64, "HammerAerial");
