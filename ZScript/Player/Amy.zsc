@@ -27,17 +27,23 @@ class AmyPlayer : LockLoadPlayer
 		}
 		Super.Tick();
 	}
+	action void FireParryProjectile(double velocity, double angle, double pitch)
+	{
+		Actor projectile = SpawnPlayerMissile("ParryProjectile", angle);
+		projectile.Height = self.Height;
+		projectile.Pitch = pitch;
+		projectile.A_ScaleVelocity(velocity);
+	}
 	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod)
 	{
 		Super.DamageMobj(inflictor, source, damage, mod);
 		if (CountInv("PowerBlocking")) {
 			ACS_NamedExecute("ParryEffect");
 			if (inflictor is "Actor" && inflictor != null) {
-				if (inflictor.bMissile && !(inflictor is "ProjectileBullet")) {
-					Actor reflected = SpawnPlayerMissile(inflictor.GetClass());
-					reflected.Height = self.Height;
-					if (Health < 100 && damage / 2) A_GiveInventory("Health", damage / 2);
+				if (inflictor.bMissile) {
+					FireParryProjectile(inflictor.speed + damage, angle + random(-2, 2), pitch + random(-2, 2));
 				}
+				if (Health < 100 && damage / 2) A_GiveInventory("Health", damage / 2);
 				source.A_DamageSelf(damage * 2, "Parry");
 				let oldangle = source.angle;
 				source.A_SetAngle(angle);
