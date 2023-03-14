@@ -15,6 +15,7 @@ class FastSpiderdemon : SpiderMastermind // 19924
 		DamageFactor "Eclipse", 0.01;
 		DamageFactor "HomingAttack", 0;
 		DamageFactor "SonicKick", 2;
+		PainChance "Caliburn", 0;
 	}
 	States
 	{
@@ -79,6 +80,7 @@ class MechZombie : Actor
 		PainChance 150;
 		PainChance "Spear", 256;
 		DamageFactor "Spear", 0.1;
+		PainChance "Caliburn", 0;
 		Monster;
 		+FLOORCLIP;
 		SeeSound "grunt/sight";
@@ -139,6 +141,10 @@ class ProjectileZombieMan : ZombieMan replaces ZombieMan
 {
 	Default
 	{
+		PainChance "Caliburn", 0;
+	}
+	Default
+	{
 		DropItem "FadingChaosCapsule";
 	}
  	States
@@ -153,6 +159,10 @@ class ProjectileZombieMan : ZombieMan replaces ZombieMan
 
 class ProjectileShotgunner : ShotgunGuy replaces ShotgunGuy
 {
+	Default
+	{
+		PainChance "Caliburn", 0;
+	}
     States
     {
         Missile:
@@ -169,6 +179,10 @@ class ProjectileShotgunner : ShotgunGuy replaces ShotgunGuy
 
 class ProjectileChaingunner : ChaingunGuy replaces ChaingunGuy
 {
+	Default
+	{
+		PainChance "Caliburn", 0;
+	}
     States
     {
         Missile:
@@ -426,3 +440,127 @@ class GigantoCyberdemon : FrickingCyberdemon
 			Stop;
 	}
 }
+
+// Monster replacements, for pain chance, because I can't do it any other way :/
+class SLL_Arachnotron : Arachnotron replaces Arachnotron
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_Archvile : Archvile replaces Archvile
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_BaronOfHell : BaronOfHell replaces BaronOfHell
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_Cacodemon : Cacodemon replaces Cacodemon
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_Cyberdemon : Cyberdemon replaces Cyberdemon
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_Demon : Demon replaces Demon
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_DoomImp : DoomImp replaces DoomImp
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_Fatso : Fatso replaces Fatso
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_HellKnight : HellKnight replaces HellKnight
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_PainElemental : PainElemental replaces PainElemental
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_Revenant : Revenant replaces Revenant
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_Spectre : Spectre replaces Spectre
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_SpiderMastermind : SpiderMastermind replaces SpiderMastermind
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_WolfensteinSS : WolfensteinSS replaces WolfensteinSS
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+class SLL_ZombieMan : ZombieMan replaces ZombieMan
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+	}
+}
+// Enemies.zsc is now as big as Base.zsc. I hate this so much. WHY CAN'T IT BE
+// EASIERRRRRRRRRRR

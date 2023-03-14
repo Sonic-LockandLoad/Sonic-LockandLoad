@@ -214,10 +214,10 @@ class SwordPuff : Actor
 	States
 	{
 		Spawn:
-			SPUF A 4 Bright;
-			SPUF B 4;
+			PUFF A 4 Bright;
+			PUFF B 4;
 		Melee:
-			SPUF CDEFG 4;
+			PUFF CD 4;
 			Stop;
 	}
 }
