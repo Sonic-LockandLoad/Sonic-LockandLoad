@@ -285,10 +285,10 @@ class Caliburn : BoostEnabledWeapon
 			CALI A 1 A_Raise(20);
 			Loop;
 		Fire:
+			TNT1 A 0 A_GiveInventory("SwordParry");
 			/* passthrough */
 		Slash1:
 			TNT1 A 0 {
-				A_GiveInventory("SwordParry");
 				if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
 					A_PlaySound("sweapons/soulsurge", 6, 0.5);
 					if (CountInv("PowerHyper")) A_FireProjectile("HyperEnergyBladeLeft", 0, 0);
