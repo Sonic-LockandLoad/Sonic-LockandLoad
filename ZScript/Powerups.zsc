@@ -134,7 +134,7 @@ class SwordParry : PowerupGiver
 	Default
 	{
 		Powerup.Type "PowerSwordParry";
-		Powerup.Duration 13;
+		Powerup.Duration 6;
 		+INVENTORY.AUTOACTIVATE;
 		+NOPAIN;
 	}
