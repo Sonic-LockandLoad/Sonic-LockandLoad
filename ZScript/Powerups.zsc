@@ -141,6 +141,18 @@ class SwordParry : PowerupGiver
 }
 class PowerSwordParry : PowerProtection {}
 
+class AccelPrerequisite : PowerupGiver
+{
+	Default
+	{
+		Powerup.Type "PowerAccel";
+		Powerup.Duration 4;
+		+INVENTORY.AUTOACTIVATE;
+		+NOPAIN;
+	}
+}
+class PowerAccel : Powerup {}
+
 class Unseen : PowerupGiver
 {
 	Default
