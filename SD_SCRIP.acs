@@ -614,9 +614,9 @@ script "SetFriction" ENTER
 			SetActorProperty(0, APROP_Friction, 1.5);
 		}
 		else if (GetCvar("IsCrouching") && speed >= 1.0) {
-			SetActorProperty(0, APROP_Friction, 1.1);
+			SetActorProperty(0, APROP_Friction, 1.088);
 			if (speed < 100.0) {
-				ScaleVelocity(0, 1.0 + (oldz - GetActorZ(0)) / 128);
+				ScaleVelocity(0, 1.0 + (oldz - GetActorZ(0)) / 98);
 			}
 		}
 		else if (GetCvar("ReservedMode")) {
