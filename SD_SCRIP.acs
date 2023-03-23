@@ -694,6 +694,14 @@ script "ReticleSound" (void)
 	AmbientSound("sweapons/reticle", 127);
 }
 
+function str DoubleDigitSeconds(int seconds)
+{
+	if (seconds % 60 == 0) {
+		return "00";
+	}
+	return StrParam(d:seconds % 60);
+}
+
 script "GoalRing" (void)
 {
 	// Variables
@@ -707,11 +715,9 @@ script "GoalRing" (void)
 	str Rank;
 	
 	// Your score
-	if (LevelTime <= ParTime) score += (ParTime - LevelTime) * 95;
-	else score -= (LevelTime - ParTime) * 30;
-	score += CurrentHealth * 15;
-	score += KilledMonsters * 95;
+	score += CurrentHealth * 10;
 	score += CurrentEnergy * 10;
+	score += KilledMonsters * 95;
 	if (score < 0) score = 0;
 	
 	// Stop the player and remove their form and invincibility
@@ -727,10 +733,12 @@ script "GoalRing" (void)
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 	
 	// Your target score
-	targetscore += ParTime * 78;
-	targetscore += TotalMonsters * 85;
+	targetscore += TotalMonsters * 95;
 	if (GameSkill() == 5) targetscore *= 1.5;
-	HudMessage(s:"Score: ", d:score, s:"\n",
+	
+	HudMessage(s:"Time: ", d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime), s:"\n",
+			   s:"Score: ", d:score, s:"\n\n",
+			   s:"Target Time: ", d:ParTime / 60, s:":", s:DoubleDigitSeconds(ParTime), s:"\n", 
 			   s:"Target Score: ", d:targetscore, s:"\n"; 
 			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
 			   
@@ -757,10 +765,10 @@ script "GoalRing" (void)
 		default:
 			break;
 	}
-	bool s_rank = score > targetscore;
-	bool a_rank = score > targetscore - (targetscore / 3);
-	bool b_rank = score > targetscore / 2;
-	bool c_rank = score > targetscore / 3;
+	bool s_rank = score > targetscore && LevelTime <= ParTime;
+	bool a_rank = score > targetscore || score > targetscore / 2 && LevelTime <= ParTime;
+	bool b_rank = score > targetscore / 2 || score > targetscore / 3 && LevelTime <= ParTime;
+	bool c_rank = score > targetscore / 3 || LevelTime <= ParTime;
 	if 		(s_rank)	SetFont("s_rank");
 	else if (a_rank)	SetFont("a_rank");
 	else if (b_rank)	SetFont("b_rank");
@@ -770,7 +778,7 @@ script "GoalRing" (void)
 	else Delay(35*6);
 	AmbientSound("sglobal/rankget", 127);
 	HudMessage(s:"A";
-			   HUDMSG_PLAIN, 8, CR_WHITE, 1.5, 0.6, 0, 1.0);
+			   HUDMSG_PLAIN, 8, CR_WHITE, 1.5, 0.65, 0, 1.0);
 	SetMusic("");
 	Delay(14);
 	int speechdelay;
