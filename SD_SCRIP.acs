@@ -696,8 +696,8 @@ script "ReticleSound" (void)
 
 function str DoubleDigitSeconds(int seconds)
 {
-	if (seconds % 60 == 0) {
-		return "00";
+	if (StrLen(StrParam(d:seconds % 60)) < 2) {
+		return StrParam(s:"0", d:seconds % 60);
 	}
 	return StrParam(d:seconds % 60);
 }
@@ -715,8 +715,8 @@ script "GoalRing" (void)
 	str Rank;
 	
 	// Your score
-	score += CurrentHealth * 10;
-	score += CurrentEnergy * 10;
+	score += CurrentHealth * 5;
+	score += CurrentEnergy * 12;
 	score += KilledMonsters * 95;
 	if (score < 0) score = 0;
 	
