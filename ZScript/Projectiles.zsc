@@ -186,7 +186,7 @@ class ChaosEnergyBall : FastProjectile
 		Radius 13;
 		Height 8;
 		Speed 100;
-		Damage 15;
+		Damage 7;
 		DamageType "Eclipse";
 		Projectile;
 		+RANDOMIZE
@@ -214,9 +214,8 @@ class ChaosEnergyBallEX : FastProjectile
 	{
 		Radius 13;
 		Height 8;
-		Scale 2;
 		Speed 100;
-		Damage 32;
+		Damage 16;
 		DamageType "Eclipse";
 		Projectile;
 		+RANDOMIZE

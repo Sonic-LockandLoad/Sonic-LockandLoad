@@ -16,7 +16,6 @@ user bool RecoilBurstRelease        = true;
 user bool HireThisMan				= true;
 user bool ControlHints				= true;
 user bool Tutorials					= true;
-user bool HomingSnap				= false;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
@@ -30,3 +29,4 @@ user noarchive bool	  CanWallJump		= false;
 user noarchive bool	  CanHoming			= false;
 user noarchive bool	  CanHammerJump		= false;
 user noarchive bool	  CanJump			= false;
+user noarchive int 	  EclipseLimiter	= 0;

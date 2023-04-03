@@ -41,6 +41,12 @@ class SonicPlayer : LockLoadPlayer
 		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_FORWARD && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_FORWARD)) {
 			A_GiveInventory("AccelPrerequisite");
 		}
+		if (player.ReadyWeapon != null && !(player.ReadyWeapon.GetClassName() == "EclipseBlaster" && GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK)) {
+			// One of these days I need to stop relying on CVARs
+			if (GetCvar("EclipseLimiter") > 0) {
+				cvar.FindCvar("EclipseLimiter").SetInt(GetCvar("EclipseLimiter") - 1);
+			}
+		}
 	}
 	States
 	{
@@ -641,8 +647,12 @@ class EclipseBlaster : LockLoadWeapon
 	States
 	{
 		Ready:
+			TNT1 A 0 A_JumpIf(GetCvar("EclipseLimiter") > 1, "Recharging");
 			ECBL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
+		Recharging:
+			ECBL E 1 A_WeaponReady(WRF_ALLOWRELOAD);
+			Goto Ready;
 		Deselect:
 			ECBL # 1 A_Lower(20);
 			Loop;
@@ -650,9 +660,19 @@ class EclipseBlaster : LockLoadWeapon
 			ECBL A 1 A_Raise(20);
 			Loop;
 		Fire:
-			ECBL BBBBBBB 1 EclipseFire();
-			ECBL DDDDDDDDDDDDDDDDDDDDDDD 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			ECBL B 1 {
+				if (GetCvar("EclipseLimiter") < 100) {
+					EclipseFire();
+					cvar.FindCvar("EclipseLimiter").SetInt(GetCvar("EclipseLimiter") + 2);
+				}
+				else {
+					A_PlaySound("sglobal/error", 4096);
+					return ResolveState("EndHeal");
+				}
+				return ResolveState(null);
+			}
 			TNT1 A 0 A_ReFire();
+			ECBL DDDDDDDDDDDDDDDDDDDDDDD 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		AltFire:
 			ECBL C 1 {
