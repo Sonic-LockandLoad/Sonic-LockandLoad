@@ -2,7 +2,7 @@
 <p align=center><a href="https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/releases">Downloads</a> | <a href="https://sonic-lockandload.github.io">Website</a> | <a href="https://forum.zdoom.org/viewtopic.php?f=19&t=72593">ZDoom Forum page</a> | <a href="https://sonicfangameshq.com/forums/showcase/sonic-lock-load.1199">SFGHQ Showcase page</a></p>
 <p align=center><img src="https://raw.githubusercontent.com/Sonic-LockandLoad/Sonic-LockandLoad/edge/Graphics/LOGO.png" width=400px /></p>
 
-### *Sonic: Lock & Load* is a hyper-fast, action packed first-person shooter based on the Sonic the Hedgehog series of games and built on GZDoom..
+### *Sonic: Lock & Load* is a hyper-fast, action packed first-person shooter based on the Sonic the Hedgehog series of games and built on GZDoom.
 
 It draws inspiration from Sonic games, as well as titles like Sonic Robo Blast 2, ULTRAKILL and DOOM Eternal. It also features elements from other GZDoom mods and retro FPS games.
 
