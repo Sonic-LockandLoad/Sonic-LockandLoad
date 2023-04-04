@@ -635,7 +635,7 @@ class EclipseBlaster : LockLoadWeapon
 		Weapon.SelectionOrder 1400;
 		Weapon.AmmoType1 "ChaosEnergy";
 		Weapon.AmmoType2 "ChaosEnergy";
-		Weapon.AmmoUse 5;
+		Weapon.AmmoUse 3;
 		Weapon.AmmoGive 35;
 		Weapon.KickBack 1000;
 		Weapon.BobSpeed 1.5;
