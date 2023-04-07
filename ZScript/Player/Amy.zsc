@@ -597,6 +597,9 @@ class AmySlide : CustomInventory
 					A_ChangeVelocity(0, 0, 5, CVF_Relative);
 					return ResolveState("EndSlide");
 				}
+				else if (GetPlayerInput(MODINPUT_BUTTONS) & BT_CROUCH && player.onground) {
+					return ResolveState("EndSlide");
+				}
 				else {
 					A_ChangeVelocity(Vel.X, Vel.Y, 0, CVF_Replace);
 				}
@@ -608,6 +611,9 @@ class AmySlide : CustomInventory
 			SLID EEEEEEEEE 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_SPEED)) {
 					A_ChangeVelocity(0, 0, 5, CVF_Relative);
+					return ResolveState("EndSlide");
+				}
+				else if (GetPlayerInput(MODINPUT_BUTTONS) & BT_CROUCH && player.onground) {
 					return ResolveState("EndSlide");
 				}
 				else {

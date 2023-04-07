@@ -75,7 +75,7 @@ class ShadowBoostEnabledWeapon : LockLoadWeapon
 				break;
 		}
 		A_PlaySound("sweapons/boosttrail", 1, 1.0, true);
-		A_ChangeVelocity(Cos(Pitch) * invoker.BoostSpeed, 0, Vel.Z, CVF_Relative|CVF_Replace);
+		A_ChangeVelocity(invoker.BoostSpeed, 0, Vel.Z, CVF_Relative|CVF_Replace);
 		if ((GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && A_CheckFloor("Null")) {
 			A_ChangeVelocity(0, 0, invoker.BoostSpeed / 10, CVF_Relative);
 		}
