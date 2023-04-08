@@ -399,17 +399,6 @@ class Caliburn : BoostEnabledWeapon
 class AcceleratedPistol : LockLoadWeapon
 {
 	int charge;
-	action void AccelFire()
-	{
-		A_PlaySound("sweapons/pistol", 1);
-		if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
-			A_FireBullets(0, 0, 1, 30, "NoGibPuff");
-		}
-		else {
-			A_FireBullets(2, 2, -1, 15, "NoGibPuff");
-		}
-		A_GunFlash();
-	}
 	action void RecoilBurst()
 	{
 		int strengthbonus, recoilbonus, ammopenalty;
@@ -467,7 +456,10 @@ class AcceleratedPistol : LockLoadWeapon
 			Loop;
 		Fire:
 			SPIS AAA 2 {
-				AccelFire();
+				A_PlaySound("sweapons/pistol", 1);
+				if (!player.onground) A_FireBullets(0, 0, 1, 30, "NoGibPuff");
+				else A_FireBullets(0, 0, 1, 15, "NoGibPuff");
+				A_GunFlash();
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			}
 			SPIS BC 1 A_WeaponReady(WRF_NOBOB);
@@ -499,8 +491,12 @@ class AcceleratedPistol : LockLoadWeapon
 		RecoilBurst:
 			TNT1 A 0 A_ZoomFactor(1);
 			SPIS B 1 RecoilBurst();
-			SPIS BBBBBBCDE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			SPIS EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEDCB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			SPIS BBBBBBCDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEDCB 1 {
+				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+				if (GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK && !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_ATTACK))
+					return ResolveState("Fire");
+				return ResolveState(null);
+			}
 			Goto Ready;
 		Flash:
 			SPIF A 1 Bright A_Light1;
