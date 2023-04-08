@@ -128,3 +128,37 @@ class Doox : SwitchingDecoration
 			Stop;
 	}
 }
+
+class DeathInfo : Object {
+    Actor actor;
+    int tick;
+}
+
+class RemoveCyberSpaceArenaCorpses : EventHandler
+{
+	Array<DeathInfo> dead_monsters;
+	int current_tick;
+	int delay;
+	
+	override void WorldThingDied(WorldEvent e)
+    {
+        if (e.thing && e.thing.bIsMonster && level.mapname == "S_CYBRSP") {
+			DeathInfo info = new("DeathInfo");
+            info.actor = e.thing;
+            info.tick = current_tick;
+            dead_monsters.Push(info);
+		}
+    }
+
+    override void WorldTick () {
+        current_tick++;
+		delay = 60;
+		for (int i = 0; i < dead_monsters.Size(); i++) {
+            if (current_tick - dead_monsters[i].tick >= delay) {
+                dead_monsters[i].actor.Destroy();
+                dead_monsters.Delete(i);
+                i--;
+            }
+        }
+    }
+}
