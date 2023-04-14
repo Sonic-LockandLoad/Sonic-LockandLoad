@@ -14,7 +14,7 @@ user bool LowEnergySound			= true;
 user bool ReservedMode				= false;
 user bool RecoilBurstRelease        = true;
 user bool HireThisMan				= true;
-user bool ControlHints				= true;
+user bool ControlHints				= false;
 user bool Tutorials					= true;
 
 /* Temporary CVARs */
