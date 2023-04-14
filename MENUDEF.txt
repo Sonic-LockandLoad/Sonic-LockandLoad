@@ -90,7 +90,7 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText "Sonic or Shadow", "Cyan"
 	StaticText ""
 
-    Option "Recoil Burst Activation", "RecoilBurstRelease", "EnabledOrNot"
+    Option "Recoil Burst Activation", "RecoilBurstRelease", "RecoilBurstRelease"
 	StaticText "Sonic only", "Cyan"
 	StaticText ""
 	
@@ -132,6 +132,9 @@ OptionMenu "LLMiscOptMenu"
 	StaticText ""
 	
 	Option "HIRE THIS MAN", "HireThisMan", "EnabledOrNot"
+	StaticText "If this is turned on, there's a random chance", "White"
+	StaticText "'NINTENDO, HIRE THIS MAN!' by Chris Voiceman will", "White"
+	StaticText "replace the title screen music.", "White"
 	StaticText ""
 }
 OptionMenu "LLControlsMenu"
@@ -216,18 +219,6 @@ OptionValue "DoubleJump"
 	0, "Disabled"
 	1, "No Momentum"
 	2, "Keep Momentum"
-}
-OptionValue "WallJump"
-{
-	0, "Disabled"
-	1, "Face same direction"
-	2, "Face jump direction"
-}
-OptionValue "WallJumpPrerequisite"
-{
-	0, "At any time"
-	1, "When holding Forward"
-	2, "When not holding Forward"
 }
 OptionValue "HUDType"
 {
