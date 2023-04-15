@@ -54,7 +54,7 @@ E3TEXT =
 	"Amy looks at him, confused.";
 E4TEXT =
 	"Amy looks uneasy. 'Come on! What are the chances\n"
-	"there's ANOTHER one of those weird spider robots?\n"
+	"there's ANOTHER one of those weird spider robots?'\n"
 	"\n"
 	"Sonic stares at her, his eye twitching.\n"
 	"\n"
@@ -86,7 +86,7 @@ C3TEXT =
 	"Shadow, not turning around, explains.\n"
 	"'This is where those creatures are coming from.'\n"
 	"\n"
-	"Sonic is confused. 'How did you even...?\n"
+	"Sonic is confused. 'How did you even...?'\n"
 	"\n"
 	"Shadow looks back at them. 'If we go through\n"
 	"this portal, we'll be taken to their world.'"
