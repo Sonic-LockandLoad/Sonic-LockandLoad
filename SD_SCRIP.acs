@@ -345,6 +345,7 @@ script "SuperTransformPrompt" enter
 		Delay(1);
 		int x = 0.5;
 		int y;
+		int holdTime = 0.1;
 		switch (GetCvar("HUDType")) {
 			case 3:
 				// Legacy
@@ -361,34 +362,33 @@ script "SuperTransformPrompt" enter
 				case Sonic:
 					if (CheckInventory("PowerSuper")) {
 						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Hyper Sonic";
-						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
 					} else {
 						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Super Sonic";
-						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
 					}
 					break;
 				case Amy:
 					HudMessage(s:"\c[Purple]", k:"invuse", s:"  \c[Amy]Dark Amy";
-					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
 					break;
 				case ClassicSonic:
 					if (CheckInventory("PowerSuper")) {
 						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Hyper Sonic";
-						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
 					} else {
 						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Super Sonic";
-						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
 					}
 					break;
 				case Shadow:
 					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Shadow]Super Shadow";
-					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, 0);
+					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
 					break;
 				default:
 					break;
 			}
 		}
-		else { HudMessage(s:""; HUDMSG_PLAIN, 1, CR_UNTRANSLATED, 0, 0, 0, 0); }
 	}
 }
 
