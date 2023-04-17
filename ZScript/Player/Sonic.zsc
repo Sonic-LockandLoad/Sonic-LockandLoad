@@ -419,7 +419,7 @@ class AcceleratedPistol : LockLoadWeapon
 			A_ChangeVelocity (Cos(Pitch) * (-10 - recoilbonus), 0, Sin(Pitch) * (10 + recoilbonus), CVF_Relative);
 		}
 		else {
-			A_RailAttack(80 + strengthbonus, 0, 1, "c5feff", "c5c6ff", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
+			A_RailAttack(60 + strengthbonus, 0, 1, "c5feff", "c5c6ff", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
 			A_ChangeVelocity (Cos(Pitch) * (-7 - recoilbonus), 0, Sin(Pitch) * (7 + recoilbonus), CVF_Relative);
 		}
 		A_GunFlash("BurstFlash");
@@ -457,8 +457,8 @@ class AcceleratedPistol : LockLoadWeapon
 		Fire:
 			SPIS AAA 2 {
 				A_PlaySound("sweapons/pistol", 1);
-				if (!player.onground) A_FireBullets(0, 0, 1, 30, "NoGibPuff");
-				else A_FireBullets(0, 0, 1, 15, "NoGibPuff");
+				if (!player.onground) A_FireBullets(0, 0, 1, 30, "BulletPuff");
+				else A_FireBullets(0, 0, 1, 15, "BulletPuff");
 				A_GunFlash();
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			}
@@ -933,7 +933,7 @@ class HomingSnapQuickStep : CustomInventory
 				}
 				else {
 					/* Homing Snap */
-					if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+					if (ltarget && Distance3D(ltarget) > 128 && health > 0 && GetCvar("HomingSnap")) {
 						double ltdistance = Distance2D(ltarget);
 						double oriX = -120 * cos(angle) - 0 * sin(angle);
 						double oriY = -120 * sin(angle) + 0 * cos(angle);
