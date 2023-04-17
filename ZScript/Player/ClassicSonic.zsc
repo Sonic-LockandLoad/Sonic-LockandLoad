@@ -342,7 +342,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			TNT1 A 1 {
 				SetHeight(22);
                 cvar.FindCvar("IsSpinDashing").SetBool(true);
-				A_ChangeVelocity(invoker.SpinCharges * 2, 0, Vel.Z, CVF_Relative|CVF_Replace);
+				A_ChangeVelocity(invoker.SpinCharges * 2.2, 0, Vel.Z, CVF_Relative|CVF_Replace);
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && A_CheckFloor("Null")) {
 					A_ChangeVelocity(0, 0, invoker.SpinCharges / 7);
 				}
