@@ -110,7 +110,7 @@ map SDLvl02 "Marble Madness"
 	music = S_LVL02
 	sky1 = "SUNSTSKY"
 	next = "S_LOBBY"
-	partime = 360
+	partime = 450
 }
 
 map SDLvl03 "Unnamed Third Level"
