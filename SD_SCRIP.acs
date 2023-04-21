@@ -708,15 +708,18 @@ script "GoalRing" (void)
 	int score, targetscore;
 	int LevelTime = Timer() / 35;
 	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
-	int CurrentHealth = GetActorProperty(1001, APROP_Health);
-	int CurrentEnergy = CheckActorInventory(1001, "ChaosEnergy");
+	int CurrentRings = GetActorProperty(1001, APROP_Health);
 	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
 	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
 	str Rank;
 	
 	// Your score
-	score += CurrentHealth * 5;
-	score += CurrentEnergy * 12;
+	if (CurrentRings > 300) {
+		score += 600 + (CurrentRings - 300);
+	}
+	else {
+		score += CurrentRings * 2;
+	}
 	score += KilledMonsters * 95;
 	if (score < 0) score = 0;
 	
@@ -733,7 +736,7 @@ script "GoalRing" (void)
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 	
 	// Your target score
-	targetscore += TotalMonsters * 125;
+	targetscore += TotalMonsters * 115;
 	if (GameSkill() == 5) targetscore *= 1.5;
 	
 	HudMessage(s:"Time: ", d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime), s:"\n",
