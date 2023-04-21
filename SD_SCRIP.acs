@@ -736,7 +736,7 @@ script "GoalRing" (void)
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 	
 	// Your target score
-	targetscore += TotalMonsters * 115;
+	targetscore += TotalMonsters * 90;
 	if (GameSkill() == 5) targetscore *= 1.5;
 	
 	HudMessage(s:"Time: ", d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime), s:"\n",
