@@ -221,6 +221,10 @@ gsubtitle15		= "\c[Classic] Sonic: \c[White] TERIAAAAAAAA!";
 gsubtitle16		= "\c[Shadow] Shadow: \c[White] they cant troll you if there dead!";
 gsubtitle17		= "\c[Shadow] Shadow: \c[White] That damn FOURTH Chaos Emerald!";
 gsubtitle18		= "\c[Sonic] Sonic: \c[White] You're over!";
+gsubtitle19		= "\c[Sonic] Sonic: \c[Grey] (Just an empty backpack.)";
+gsubtitle20		= "\c[Amy] Amy: \c[Grey] (What a pretty backpack!)";
+gsubtitle21		= "\c[Classic] Sonic: \c[Grey] (Oh, well, at least it looks cool.)";
+gsubtitle22		= "\c[Classic] Sonic: \c[Grey] (Chainsaw, huh? I can't use this...)";
 
 staunt1			= "\c[Sonic] Sonic: \c[White] You're too slow!";
 staunt2			= "\c[Sonic] Sonic: \c[White] Come on, step it up!";
@@ -291,6 +295,28 @@ OB_BARREL = "%o went boom.";
 OB_R_SPLASH = "%o failed the rocket jump.";
 OB_ROCKET = "%o failed the rocket jump.";
 OB_KILLEDSELF = "Here lies %o, %g ran fast and died a coward.";
+
+p_ring = "Picked up a ring.";
+p_ringbox = "Broke open a box of rings.";
+p_lostring = "Picked up a lost ring.";
+p_chaosring = "Picked up a Chaos Ring.";
+p_specialring = "Picked up a Special Ring.";
+p_soulring = "Picked up a Soul Ring.";
+p_soulrecharge = "Picked up a Soul Recharge.";
+p_emeraldrecharge = "Picked up an Emerald Recharge.";
+p_invincibility = "Invincibility!";
+p_shadowfever = "Shadow Fever!";
+p_chaoscapsule1 = "Picked up a Chaos Energy capsule.";
+p_chaoscapsule2 = "Picked up a blue Chaos Energy capsule.";
+p_chaoscapsule3 = "Picked up a red Chaos Energy capsule.";
+p_backpack = "Picked up a backpack with nothing in it.";
+p_keytablet = "Picked up a Key Tablet.";
+
+p_macandcheese = "Picked up a box of mac and cheese.";
+shadow_macandcheese = "\c[Shadow]I'm making mac and cheese,\n\c[Shadow]and nobody can stop me!";
+
+p_nintendo64 = "You got the Nintendo 64!";
+sonic_nintendo64 = "\c[Sonic]Hey, guys! It's me, Sonic!\n\c[Sonic]On the Nintendo 64!\n\c[Sonic]WOOOOOO!";
 
 AMSTR_FOLLOWON = "Follow mode enabled";
 AMSTR_FOLLOWOFF = "Follow mode disabled";
