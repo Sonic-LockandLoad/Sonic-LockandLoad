@@ -146,7 +146,7 @@ class AccelPrerequisite : PowerupGiver
 	Default
 	{
 		Powerup.Type "PowerAccel";
-		Powerup.Duration 4;
+		Powerup.Duration 2;
 		+INVENTORY.AUTOACTIVATE;
 		+NOPAIN;
 	}

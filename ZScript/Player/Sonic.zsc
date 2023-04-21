@@ -124,7 +124,8 @@ class BoostEnabledWeapon : LockLoadWeapon
 		if (!invoker.BoostCheck) {
 			int speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
 			invoker.BoostCheck = true;
-			if (CountInv("PowerAccel")) {
+			bool PressedForward = GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(INPUT_OLDBUTTONS) & BT_ATTACK));
+			if (CountInv("PowerAccel") || PressedForward) {
 				invoker.BoostSpeed = MaxBoostSpeed;
 				A_PlaySound("sweapons/shockwave", 5);
 			}
