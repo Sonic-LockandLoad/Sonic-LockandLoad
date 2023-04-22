@@ -352,8 +352,8 @@ class RailshotCannon : LockLoadWeapon
 	{
 		Weapon.SelectionOrder 1800;
 		Weapon.AmmoType "ChaosEnergy";
-		Weapon.AmmoUse1 69;
-		Weapon.AmmoGive 420;
+		Weapon.AmmoUse1 250;
+		Weapon.AmmoGive 500;
 		Weapon.KickBack 0;
 		Inventory.PickupMessage "Railshot Cannon";
 		Tag "Railshot Cannon";
@@ -377,7 +377,7 @@ class RailshotCannon : LockLoadWeapon
 		Fire:
 			STPO F 0 Bright A_GunFlash();
 			STPO F 3 Bright {
-				A_RailAttack(850, 0, 1, "E903FF", "5400A6", RGF_FULLBRIGHT, 0, "GibPuff", 0, 0, 0, 40, 1.0, 0.7);
+				A_RailAttack(900, 0, 1, "E903FF", "FF0771", RGF_FULLBRIGHT, 0, "GibPuff", 0, 0, 0, 60, 0.5, 2.0);
 				A_ChangeVelocity(Cos(Pitch) * -20, 0, Sin(Pitch) * 20, CVF_Relative);
 			}
 			TNT1 A 0 {
