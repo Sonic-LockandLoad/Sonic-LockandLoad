@@ -6,6 +6,7 @@ This ZScript file doesn't have anything in it except includes.
 #include "zscript/base.zsc"
 #include "zscript/dummyinv.zsc"
 #include "zscript/enemies.zsc"
+#include "zscript/eventhandlers.zsc"
 #include "zscript/miscellaneous.zsc"
 #include "zscript/pickups.zsc"
 #include "zscript/powerups.zsc"

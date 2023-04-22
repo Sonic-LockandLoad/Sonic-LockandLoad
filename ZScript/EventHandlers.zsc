@@ -1,0 +1,87 @@
+class DeathInfo : Object {
+    Actor actor;
+    int tick;
+}
+
+class RemoveCyberSpaceArenaCorpses : EventHandler
+{
+	Array<DeathInfo> dead_monsters;
+	int current_tick;
+	int delay;
+	
+	override void WorldThingDied(WorldEvent e)
+    {
+        if (e.thing && e.thing.bIsMonster && level.mapname == "S_CYBRSP") {
+			DeathInfo info = new("DeathInfo");
+            info.actor = e.thing;
+            info.tick = current_tick;
+            dead_monsters.Push(info);
+		}
+    }
+
+    override void WorldTick () {
+        current_tick++;
+		delay = 60;
+		for (int i = 0; i < dead_monsters.Size(); i++) {
+            if (current_tick - dead_monsters[i].tick >= delay) {
+                dead_monsters[i].actor.Destroy();
+                dead_monsters.Delete(i);
+                i--;
+            }
+        }
+    }
+}
+
+class GiveEnergyOnDamage : EventHandler
+{
+	void GiveEnergy(Actor recipient, int energy, int maxenergy) {
+		if (recipient && recipient.CountInv("ChaosEnergy") < maxenergy) {
+			if (recipient.CountInv("ChaosEnergy") + energy > maxenergy) {
+				energy = maxenergy - recipient.CountInv("ChaosEnergy");
+			}
+			recipient.A_GiveInventory("ChaosEnergy", energy);
+		}
+	}
+	
+	override void WorldThingDamaged(WorldEvent e)
+    {
+        if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("EnemiesBleedRings").GetBool()) {
+			int energy_to_give, min_energy, max_energy;
+			if (e.damage > e.thing.health) {
+				energy_to_give = e.damage / 16;
+				min_energy = 1;
+				max_energy = 300;
+			}
+			else {
+				energy_to_give = e.damage / 8;
+				min_energy = 15;
+				max_energy = 500;
+			}
+			if (e.damage < min_energy) {
+				energy_to_give = min_energy;
+			}
+			GiveEnergy(e.damagesource, energy_to_give, max_energy);
+		}
+    }
+}
+
+class EnemiesBleedRings : EventHandler
+{
+	override void WorldThingDamaged(WorldEvent e)
+    {
+        if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("EnemiesBleedRings").GetBool()) {
+			int ringcount = e.damage / 64;
+			if (ringcount < 1) ringcount = 1;
+			int maxrange  = e.damage / 48;
+			if (maxrange < 2) {
+				maxrange = 2;
+			}
+			if (e.damage > e.thing.health) ringcount = e.damage / 16;
+			for (int x = 1; x <= ringcount; x++) {
+				int x = random(maxrange * -1, maxrange);
+				int y = random(maxrange * -1, maxrange);
+				e.thing.A_SpawnItemEx("DroppedRingEnemy", 0, 0, 1, x, y, 12, 0, SXF_NOCHECKPOSITION);
+			}
+		}
+    }
+}

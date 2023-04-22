@@ -34,6 +34,12 @@ class Ring : CustomInventory replaces HealthBonus // 2014
 class DroppedRing : Ring
 { 
 	int fadeCounter;
+	int flashingThreshold;
+	int maxFade;
+	int pickupThreshold;
+	property flashingThreshold: FlashingThreshold;
+	property maxFade: MaxFade;
+	property pickupThreshold: PickupThreshold;
 	int isVisible;
 	Default 
 	{
@@ -42,12 +48,23 @@ class DroppedRing : Ring
 		+BOUNCEONWALLS
 		+BOUNCEONFLOORS
 		+BOUNCEONCEILINGS
+		DroppedRing.FlashingThreshold 30;
+		DroppedRing.MaxFade 100;
+	}
+	override bool CanPickup(Actor toucher)
+	{
+		if (fadeCounter < pickupThreshold) {
+			bAlwaysPickup = false;
+			return false;
+		}
+		bAlwaysPickup = true;
+		return super.CanPickup(toucher);
 	}
 	override void Tick()
 	{
 		Super.Tick();
 		fadeCounter++;
-		if (fadeCounter > 30) {
+		if (fadeCounter > flashingThreshold) {
 			if (fadeCounter % 3 == 0) {
 				if (!isVisible) {
 					isVisible = true;
@@ -59,7 +76,7 @@ class DroppedRing : Ring
 				}
 			}
 		}
-		if (fadeCounter > 100) {
+		if (fadeCounter > maxFade) {
 			Thing_Remove(0);
 		}
 	}
@@ -70,15 +87,18 @@ class DroppedRingPlayer : DroppedRing
 	Default 
 	{
 		Inventory.PickupMessage "$p_lostring";
+		DroppedRing.PickupThreshold 30;
 	}
-	override bool CanPickup(Actor toucher)
+}
+
+class DroppedRingEnemy : DroppedRing
+{
+	Default
 	{
-		if (fadeCounter < 20) {
-			bAlwaysPickup = false;
-			return false;
-		}
-		bAlwaysPickup = true;
-		return super.CanPickup(toucher);
+		Inventory.PickupMessage "$p_ring";
+		DroppedRing.FlashingThreshold 10;
+		DroppedRing.PickupThreshold 15;
+		DroppedRing.MaxFade 30;
 	}
 }
 

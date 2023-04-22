@@ -52,6 +52,7 @@ OptionMenu "LockandLoadOptions"
 	
 	StaticText "Gameplay", "MenuActive"
 	SubMenu "Abilities", "LLAbilitiesMenu"
+	SubMenu "Modifiers", "LLModsMenu"
 	SubMenu "Miscellaneous", "LLMiscOptMenu"
 	StaticText ""
 	
@@ -135,6 +136,26 @@ OptionMenu "LLMiscOptMenu"
 	StaticText "If this is turned on, there's a random chance", "White"
 	StaticText "'NINTENDO, HIRE THIS MAN!' by Chris Voiceman will", "White"
 	StaticText "replace the title screen music.", "White"
+	StaticText ""
+}
+OptionMenu "LLModsMenu"
+{
+	Title "Modifiers"
+	
+	StaticText "Configure gameplay modifiers.", "White"
+	StaticText "These options add or change mechanics entirely, and are", "White"
+	StaticText "intended for people who want something a little different.", "White"
+	StaticText ""
+	
+	Option "Give Energy on damage", "GiveEnergyOnDamage", "EnabledOrNot"
+	StaticText "Dealing damage to or killing monsters will net you some", "White"
+	StaticText "Chaos Energy, which is capped at either 300 or 500 Energy", "White"
+	StaticText "depending on if the monster was only damaged or was killed.", "White"
+	StaticText ""
+	
+	Option "Enemies bleed Rings", "EnemiesBleedRings", "EnabledOrNot"
+	StaticText "Upon taking damage, enemies will drop Rings that don't last", "White"
+	StaticText "very long, similar to the blood mechanic in ULTRAKILL.", "White"
 	StaticText ""
 }
 OptionMenu "LLControlsMenu"

@@ -17,6 +17,9 @@ user bool HireThisMan				= true;
 user bool ControlHints				= false;
 user bool Tutorials					= true;
 
+user bool GiveEnergyOnDamage		= false;
+user bool EnemiesBleedRings			= false;
+
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
 user noarchive bool	  Sliding			= false;
