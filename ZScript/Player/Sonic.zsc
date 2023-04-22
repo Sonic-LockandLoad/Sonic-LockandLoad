@@ -23,7 +23,7 @@ class SonicPlayer : LockLoadPlayer
 	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod)
 	{
 		if (CountInv("PowerSwordParry")) {
-			if (inflictor is "Actor" && inflictor != null && (!inflictor.bMissile || Distance2D(source) < 100)) {
+			if (inflictor != null && inflictor is "Actor" && (!inflictor.bMissile || Distance2D(source) < 100)) {
 				ACS_NamedExecute("ParryEffect");
 				let oldangle = source.angle;
 				source.A_DamageSelf(source.health / 3 + damage / 2, "Parry");
