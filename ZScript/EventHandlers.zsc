@@ -80,7 +80,12 @@ class EnemiesBleedRings : EventHandler
 			for (int x = 1; x <= ringcount; x++) {
 				int x = random(maxrange * -1, maxrange);
 				int y = random(maxrange * -1, maxrange);
-				e.thing.A_SpawnItemEx("DroppedRingEnemy", 0, 0, 1, x, y, 12, 0, SXF_NOCHECKPOSITION);
+				bool ring_exists;
+				Actor spawned_ring;
+				[ring_exists, spawned_ring] = e.thing.A_SpawnItemEx("DroppedRingEnemy", 0, 0, 1, x, y, 12, 0, SXF_NOCHECKPOSITION);
+				if (ring_exists) {
+					spawned_ring.Vel += e.thing.Vel;
+				}
 			}
 		}
     }

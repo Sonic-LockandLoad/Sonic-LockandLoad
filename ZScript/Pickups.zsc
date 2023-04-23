@@ -98,7 +98,7 @@ class DroppedRingEnemy : DroppedRing
 		Inventory.PickupMessage "$p_ring";
 		DroppedRing.FlashingThreshold 10;
 		DroppedRing.PickupThreshold 15;
-		DroppedRing.MaxFade 30;
+		DroppedRing.MaxFade 35;
 	}
 }
 
