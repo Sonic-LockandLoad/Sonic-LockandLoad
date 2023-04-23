@@ -88,6 +88,7 @@ class DroppedRingPlayer : DroppedRing
 	{
 		Inventory.PickupMessage "$p_lostring";
 		DroppedRing.PickupThreshold 30;
+		DroppedRing.MaxFade 50;
 	}
 }
 
