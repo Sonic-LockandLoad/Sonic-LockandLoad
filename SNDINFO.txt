@@ -12,6 +12,7 @@ sglobal/error				error
 sglobal/lowhealth			lohealth
 sglobal/lowenergy			loenergy
 sglobal/rankget				Rank
+sglobal/booster				booster
 
 // Pickups
 
