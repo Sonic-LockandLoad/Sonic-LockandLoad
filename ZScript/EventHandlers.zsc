@@ -151,7 +151,7 @@ class StyleSystem : EventHandler
 		else if (score >= 40000) cvar.FindCvar("StyleRank").SetInt(4);
 		else if (score >= 20000) cvar.FindCvar("StyleRank").SetInt(3);
 		else if (score >= 10000) cvar.FindCvar("StyleRank").SetInt(2);
-		else if (score >= 3000)	 cvar.FindCvar("StyleRank").SetInt(1);
+		else if (score >= 2000)	 cvar.FindCvar("StyleRank").SetInt(1);
 		else 					 cvar.FindCvar("StyleRank").SetInt(0);
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		
