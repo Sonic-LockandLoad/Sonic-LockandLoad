@@ -1370,6 +1370,7 @@ script "StyleRank" ENTER
 {
 	int oldrank;
 	str callout;
+	int oldcalloutrank;
 	SetCvar("StyleRank", 0);
 	Delay(1);
 	while (GetCvar("StyleSystem")) {
@@ -1381,13 +1382,17 @@ script "StyleRank" ENTER
 		else if (stylerank == 1)	SetFont("d_rank");
 		if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
 			HudMessage(s:"A"; HUDMSG_PLAIN, 42, CR_UNTRANSLATED, 1.5, 0.3, 0.1, 1.0);
-			if (stylerank > oldrank) {
+			if (stylerank > oldrank && stylerank > oldcalloutrank) {
 				if 		(stylerank == 5) callout = "sstyle/amazing";
 				else if (stylerank == 4) callout = "sstyle/outstanding";
 				else if (stylerank == 3) callout = "sstyle/awesome";
 				else if (stylerank == 2) callout = "sstyle/great";
 				else if (stylerank == 1) callout = "sstyle/good";
+				oldcalloutrank = stylerank;
 				PlaySound(0, callout, 4096, 1.0, false, ATTN_NONE, false);
+			}
+			if (stylerank < oldcalloutrank - 1 || stylerank <= 0) {
+				oldcalloutrank = 0;
 			}
 		}
 		oldrank = GetCvar("StyleRank");
