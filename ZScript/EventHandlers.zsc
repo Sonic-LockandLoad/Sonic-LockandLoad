@@ -115,13 +115,13 @@ class StyleSystem : EventHandler
 			if (staleness > e.damage) staleness = e.damage;
 			
 			if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
-				score += 1500;
+				score += 2500;
 			}
 			
 			int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
-			score += total_vel / 2;
+			score += total_vel / 5;
 			
-			if (!player.player.onground) score += 3000;
+			if (!player.player.onground) score += 1000;
 			
 			score += e.damage * 2 - staleness;
 			
@@ -147,18 +147,37 @@ class StyleSystem : EventHandler
 		
 		current_tick++;
 		
-		int stylerank = cvar.FindCvar("StyleRank").GetInt();
-		int deprecation = stylerank * 256;
-		if (current_tick > 2) {
-			current_tick = 0;
-			score -= deprecation;
-		}
-		
 		if 		(score >= 75000) cvar.FindCvar("StyleRank").SetInt(5);
 		else if (score >= 40000) cvar.FindCvar("StyleRank").SetInt(4);
 		else if (score >= 20000) cvar.FindCvar("StyleRank").SetInt(3);
 		else if (score >= 10000) cvar.FindCvar("StyleRank").SetInt(2);
 		else if (score >= 3000)	 cvar.FindCvar("StyleRank").SetInt(1);
 		else 					 cvar.FindCvar("StyleRank").SetInt(0);
+		int stylerank = cvar.FindCvar("StyleRank").GetInt();
+		
+		int deprecation;
+		switch (stylerank) {
+			case 0:
+			case 1:
+				deprecation = 64;
+				break;
+			case 2:
+				deprecation = 128;
+				break;
+			case 3:
+				deprecation = 512;
+				break;
+			case 4:
+				deprecation = 1024;
+				break;
+			case 5:
+				deprecation = 2048;
+				break;
+		}
+		
+		if (current_tick > 2) {
+			current_tick = 0;
+			score -= deprecation;
+		}
 	}
 }
