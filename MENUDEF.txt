@@ -157,6 +157,12 @@ OptionMenu "LLModsMenu"
 	StaticText "Upon taking damage, enemies will drop Rings that don't last", "White"
 	StaticText "very long, similar to the blood mechanic in ULTRAKILL.", "White"
 	StaticText ""
+	
+	Option "Style System", "StyleSystem", "EnabledOrNot"
+	StaticText "Continuously attack enemies to rack up style points and", "White"
+	StaticText "get a high style rank! Getting hit or just waiting will", "White"
+	StaticText "make your style go down. We're just going full ULTRAKILL here!", "White"
+	StaticText ""
 }
 OptionMenu "LLControlsMenu"
 {

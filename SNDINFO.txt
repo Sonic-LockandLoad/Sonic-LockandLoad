@@ -14,6 +14,13 @@ sglobal/lowenergy			loenergy
 sglobal/rankget				Rank
 sglobal/booster				booster
 
+// Style system callouts
+sstyle/good					GOOD
+sstyle/great				GREAT
+sstyle/awesome				AWESOME
+sstyle/outstanding			OUTSTAND
+sstyle/amazing				AMAZING
+
 // Pickups
 
 spickup/ring				PickRing

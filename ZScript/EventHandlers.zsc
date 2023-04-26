@@ -90,3 +90,58 @@ class EnemiesBleedRings : EventHandler
 		}
     }
 }
+
+class StyleSystem : EventHandler
+{
+	int score;
+	int current_tick;
+    string current_weapon;
+    int consecutive_uses;
+	
+	override void WorldThingDamaged(WorldEvent e)
+    {
+		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
+		PlayerPawn player = players[consoleplayer].mo;
+		if (e.thing && e.thing is "PlayerPawn") {
+			console.printf("player took %d damage", e.damage);
+			score -= e.damage * 8;
+		}
+        else if (e.thing && e.thing.bIsMonster && (e.damagesource is "PlayerPawn"||e.inflictor is "PlayerPawn")) {
+			if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon) {
+				consecutive_uses++;
+			}
+			int staleness = 1000 * consecutive_uses;
+			if (staleness < 0) staleness = 0;
+			if (staleness > e.damage) staleness = e.damage;
+			score += e.damage - staleness;
+			if (e.damage > e.thing.Health) {
+				score += 2000;
+			}
+			if (score > 100000) score = 100000;
+		}
+    }
+	
+	override void WorldTick()
+	{
+		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
+		PlayerPawn player = players[consoleplayer].mo;
+		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() != current_weapon) {
+			consecutive_uses = 0;
+			current_weapon = player.player.ReadyWeapon.GetClassName();
+		}
+		if (score < 0 || player.health <= 0) score = 0;
+		current_tick++;
+		int stylerank = cvar.FindCvar("StyleRank").GetInt();
+		int deprecation = 14 * (stylerank * 8 + 1);
+		if (current_tick >= 2) {
+			current_tick = 0;
+			score -= deprecation;
+		}
+		if 		(score >= 75000) cvar.FindCvar("StyleRank").SetInt(5);
+		else if (score >= 40000) cvar.FindCvar("StyleRank").SetInt(4);
+		else if (score >= 20000) cvar.FindCvar("StyleRank").SetInt(3);
+		else if (score >= 10000) cvar.FindCvar("StyleRank").SetInt(2);
+		else if (score >= 3000)	 cvar.FindCvar("StyleRank").SetInt(1);
+		else 					 cvar.FindCvar("StyleRank").SetInt(0);
+	}
+}

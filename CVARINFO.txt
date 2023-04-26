@@ -19,6 +19,7 @@ user bool Tutorials					= true;
 
 user bool GiveEnergyOnDamage		= false;
 user bool EnemiesBleedRings			= false;
+user bool StyleSystem				= false;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
@@ -33,3 +34,4 @@ user noarchive bool	  CanHoming			= false;
 user noarchive bool	  CanHammerJump		= false;
 user noarchive bool	  CanJump			= false;
 user noarchive int 	  EclipseLimiter	= 0;
+user noarchive int	  StyleRank			= 0;
