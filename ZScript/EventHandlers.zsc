@@ -103,7 +103,6 @@ class StyleSystem : EventHandler
 		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
 		PlayerPawn player = players[consoleplayer].mo;
 		if (e.thing && e.thing is "PlayerPawn") {
-			console.printf("player took %d damage", e.damage);
 			score -= e.damage * 8;
 		}
         else if (e.thing && e.thing.bIsMonster && (e.damagesource is "PlayerPawn"||e.inflictor is "PlayerPawn")) {
@@ -124,6 +123,7 @@ class StyleSystem : EventHandler
 	override void WorldTick()
 	{
 		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
+		cvar.FindCvar("StyleScore").SetInt(score);
 		PlayerPawn player = players[consoleplayer].mo;
 		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() != current_weapon) {
 			consecutive_uses = 0;
@@ -132,7 +132,7 @@ class StyleSystem : EventHandler
 		if (score < 0 || player.health <= 0) score = 0;
 		current_tick++;
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
-		int deprecation = 14 * (stylerank * 8 + 1);
+		int deprecation = 8 * (stylerank * 6 + 1);
 		if (current_tick >= 2) {
 			current_tick = 0;
 			score -= deprecation;

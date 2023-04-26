@@ -1370,6 +1370,8 @@ script "StyleRank" ENTER
 {
 	int oldrank;
 	str callout;
+	SetCvar("StyleRank", 0);
+	Delay(1);
 	while (GetCvar("StyleSystem")) {
 		int stylerank = GetCvar("StyleRank");
 		if 		(stylerank == 5)	SetFont("s_rank");
@@ -1389,6 +1391,10 @@ script "StyleRank" ENTER
 			}
 		}
 		oldrank = GetCvar("StyleRank");
+		if (stylerank >= 1) {
+			SetFont("SMALLFONT");
+			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, 1.5, 0.38, 0.1, 1.0);
+		}
 		Delay(1);
 	}
 }

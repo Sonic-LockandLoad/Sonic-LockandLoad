@@ -35,3 +35,4 @@ user noarchive bool	  CanHammerJump		= false;
 user noarchive bool	  CanJump			= false;
 user noarchive int 	  EclipseLimiter	= 0;
 user noarchive int	  StyleRank			= 0;
+user noarchive int	  StyleScore		= 0;
