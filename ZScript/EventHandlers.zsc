@@ -106,13 +106,25 @@ class StyleSystem : EventHandler
 			score -= e.damage * 8;
 		}
         else if (e.thing && e.thing.bIsMonster && (e.damagesource is "PlayerPawn"||e.inflictor is "PlayerPawn")) {
-			if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon) {
+			if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon && !(player.player.WeaponState & WF_WEAPONSWITCHOK)) {
 				consecutive_uses++;
 			}
+			
 			int staleness = 1000 * consecutive_uses;
 			if (staleness < 0) staleness = 0;
 			if (staleness > e.damage) staleness = e.damage;
-			score += e.damage - staleness;
+			
+			if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
+				score += 1500;
+			}
+			
+			int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
+			score += total_vel / 2;
+			
+			if (!player.player.onground) score += 3000;
+			
+			score += e.damage * 2 - staleness;
+			
 			if (e.damage > e.thing.Health) {
 				score += 2000;
 			}
@@ -124,19 +136,24 @@ class StyleSystem : EventHandler
 	{
 		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
 		cvar.FindCvar("StyleScore").SetInt(score);
+		
 		PlayerPawn player = players[consoleplayer].mo;
 		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() != current_weapon) {
 			consecutive_uses = 0;
 			current_weapon = player.player.ReadyWeapon.GetClassName();
 		}
+		
 		if (score < 0 || player.health <= 0) score = 0;
+		
 		current_tick++;
+		
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
-		int deprecation = 8 * (stylerank * 6 + 1);
-		if (current_tick >= 2) {
+		int deprecation = stylerank * 256;
+		if (current_tick > 2) {
 			current_tick = 0;
 			score -= deprecation;
 		}
+		
 		if 		(score >= 75000) cvar.FindCvar("StyleRank").SetInt(5);
 		else if (score >= 40000) cvar.FindCvar("StyleRank").SetInt(4);
 		else if (score >= 20000) cvar.FindCvar("StyleRank").SetInt(3);

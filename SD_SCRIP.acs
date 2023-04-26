@@ -1387,7 +1387,7 @@ script "StyleRank" ENTER
 				else if (stylerank == 3) callout = "sstyle/awesome";
 				else if (stylerank == 2) callout = "sstyle/great";
 				else if (stylerank == 1) callout = "sstyle/good";
-				AmbientSound(callout, 127);
+				PlaySound(0, callout, 4096, 1.0, false, ATTN_NONE, false);
 			}
 		}
 		oldrank = GetCvar("StyleRank");
