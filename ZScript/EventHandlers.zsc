@@ -111,13 +111,13 @@ class StyleSystem : EventHandler
 					penalty = 0;
 					break;
 				case 1:
-					penalty = 128;
+					penalty = 64;
 					break;
 				case 2:
-					penalty = 512;
+					penalty = 256;
 					break;
 				case 3:
-					penalty = 1024;
+					penalty = 512;
 					break;
 				case 4:
 					penalty = 2048;
@@ -159,9 +159,6 @@ class StyleSystem : EventHandler
 			/*
 			It isn't here, but you can also gain Style Points
 			by parrying.
-			
-			Sonic gets damage dealt multiplied by 50 in points,
-			and Amy gets damage dealt multiplied by 35.
 			
 			Go and see Sonic.zsc and Amy.zsc for that code.
 			*/

@@ -31,7 +31,7 @@ class SonicPlayer : LockLoadPlayer
 				source.A_Recoil(-damage * 2);
 				source.A_SetAngle(oldangle);
 				let style = StyleSystem(EventHandler.Find("StyleSystem"));
-				if (style) style.score += (damage * 50) * GetCvar("StyleRank") + 1;
+				if (style) style.score += (damage * 80) * GetCvar("StyleRank") + 1;
 				damage = 0;
 			}
 		}
