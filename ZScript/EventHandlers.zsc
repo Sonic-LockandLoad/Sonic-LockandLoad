@@ -103,12 +103,38 @@ class StyleSystem : EventHandler
 		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
 		PlayerPawn player = players[consoleplayer].mo;
 		if (e.thing && e.thing is "PlayerPawn") {
-			score -= e.damage * 8;
+			int penalty;
+			int stylerank = cvar.FindCvar("StyleRank").GetInt();
+			
+			switch (stylerank) {
+				case 0:
+					penalty = 0;
+					break;
+				case 1:
+					penalty = 128;
+					break;
+				case 2:
+					penalty = 512;
+					break;
+				case 3:
+					penalty = 1024;
+					break;
+				case 4:
+					penalty = 2048;
+					break;
+				case 5:
+					penalty = 4096;
+					break;
+			}
+			
+			score -= e.damage * penalty;
 		}
         else if (e.thing && e.thing.bIsMonster && (e.damagesource is "PlayerPawn"||e.inflictor is "PlayerPawn")) {
 			if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon && !(player.player.WeaponState & WF_WEAPONSWITCHOK)) {
 				consecutive_uses++;
 			}
+			
+			int stylerank = cvar.FindCvar("StyleRank").GetInt();
 			
 			int staleness = 1000 * consecutive_uses;
 			if (staleness < 0) staleness = 0;
@@ -119,16 +145,26 @@ class StyleSystem : EventHandler
 			}
 			
 			int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
-			score += total_vel / 5;
+			score += total_vel / 14;
 			
 			if (!player.player.onground) score += 1000;
 			
-			score += e.damage * 2 - staleness;
+			score += e.damage * 4 - staleness;
 			
 			if (e.damage > e.thing.Health) {
 				score += 2000;
 			}
 			if (score > 100000) score = 100000;
+			
+			/*
+			It isn't here, but you can also gain Style Points
+			by parrying.
+			
+			Sonic gets damage dealt multiplied by 50 in points,
+			and Amy gets damage dealt multiplied by 50.
+			
+			Go and see Sonic.zsc and Amy.zsc for that code.
+			*/
 		}
     }
 	
