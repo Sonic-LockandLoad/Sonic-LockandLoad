@@ -161,7 +161,7 @@ class StyleSystem : EventHandler
 			by parrying.
 			
 			Sonic gets damage dealt multiplied by 50 in points,
-			and Amy gets damage dealt multiplied by 50.
+			and Amy gets damage dealt multiplied by 35.
 			
 			Go and see Sonic.zsc and Amy.zsc for that code.
 			*/
