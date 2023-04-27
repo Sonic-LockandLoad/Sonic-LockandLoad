@@ -114,16 +114,16 @@ class StyleSystem : EventHandler
 					penalty = 64;
 					break;
 				case 2:
-					penalty = 256;
+					penalty = 128;
 					break;
 				case 3:
-					penalty = 512;
+					penalty = 256;
 					break;
 				case 4:
-					penalty = 2048;
+					penalty = 1048;
 					break;
 				case 5:
-					penalty = 4096;
+					penalty = 2096;
 					break;
 			}
 			
@@ -206,6 +206,18 @@ class StyleSystem : EventHandler
 			case 5:
 				deprecation = 2048;
 				break;
+		}
+		
+		int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
+		
+		if (total_vel >= 100.0) {
+			deprecation /= 8;
+		}
+		else if (total_vel >= 50.0) {
+			deprecation /= 4;
+		}
+		else if (total_vel >= 33.0) {
+			deprecation /= 2;
 		}
 		
 		if (current_tick > 2) {
