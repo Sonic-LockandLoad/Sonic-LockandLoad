@@ -113,7 +113,7 @@ map SDLvl02 "Marble Madness"
 	partime = 450
 }
 
-map SDLvl03 "Unnamed Third Level"
+map SDLvl03 "Oceanic Fortress"
 {
 	music = S_LVL03
 	sky1 = "SUNSTSKY"
