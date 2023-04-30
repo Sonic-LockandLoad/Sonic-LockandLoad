@@ -141,6 +141,7 @@ map S_HIRE "Hire This Zone"
 	next = "S_LOBBY"
 	author = "That1M8Head"
 	partime = 220
+	levelnum = 43
 }
 
 map S_CYBRSP "Cyber Space Arena"

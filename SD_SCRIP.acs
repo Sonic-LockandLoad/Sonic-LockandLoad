@@ -1,9 +1,18 @@
 #library "snclkld"
 #include "zcommon.acs"
+
+// Character definitions
 #define Sonic 0
 #define Amy 1
 #define ClassicSonic 2
 #define Shadow 3
+
+// Style Rank definitions
+#define D 1
+#define C 2
+#define B 3
+#define A 4
+#define S 5
 
 /* Following script taken from the ZDoom Forums <https://forum.zdoom.org/viewtopic.php?t=51848#p903998> */
 
@@ -193,22 +202,27 @@ script "TransformSuper" (void)
 		{
             case Sonic: // Super Sonic
                  if (GetCvar("SuperMusic")) {
-					 SetMusic("S_SUPER", 0);
+					if (GetLevelInfo(LEVELINFO_LEVELNUM) == 43) { // 43 is Hire This Zone
+						SetMusic("S_SUPER2", 0); // Undefeatable, Sonic Frontiers
+					}
+					else {
+						SetMusic("S_SUPER", 0); // His World Zebrahead ver., Sonic '06
+					}
 				 }
                  break;
             case Amy: // Dark Amy
                  if (GetCvar("SuperMusic")) {
-					SetMusic("A_SUPER", 0);
+					SetMusic("A_SUPER", 0); // Break Through It All, Sonic Frontiers
 				 }
                  break;
             case ClassicSonic: // Classic Super Sonic
                  if (GetCvar("SuperMusic")) {
-					 SetMusic("C_SUPER", 0);
+					 SetMusic("C_SUPER", 0); // Glimmering Gift, Sonic Mania
 				 }
                  break;
             case Shadow: // Super Shadow
                  if (GetCvar("SuperMusic")) {
-					 SetMusic("D_SUPER", 0);
+					 SetMusic("D_SUPER", 0); // Live and Learn, Sonic 30th Anniversary
 				 }
                  break;
             case -1:
@@ -561,7 +575,7 @@ script "TakeRingsIfSuper" (void)
 	while (CheckInventory("PowerSuper"))
 	{
 		TakeInventory("ChaosEnergy", 1);
-		if (CheckInventory("ChaosEmeralds")) {
+		if (CheckInventory("ChaosEmeralds") || (GetCvar("StyleSystem") && GetCvar("StyleRank") >= A)) {
 			Delay(4);
 		}
 		else if (PlayerClass(PlayerNumber()) == Amy) {
@@ -1375,11 +1389,11 @@ script "StyleRank" ENTER
 	Delay(1);
 	while (GetCvar("StyleSystem")) {
 		int stylerank = GetCvar("StyleRank");
-		if 		(stylerank == 5)	SetFont("s_rank");
-		else if (stylerank == 4)	SetFont("a_rank");
-		else if (stylerank == 3)	SetFont("b_rank");
-		else if (stylerank == 2)	SetFont("c_rank");
-		else if (stylerank == 1)	SetFont("d_rank");
+		if 		(stylerank == S)	SetFont("s_rank");
+		else if (stylerank == A)	SetFont("a_rank");
+		else if (stylerank == B)	SetFont("b_rank");
+		else if (stylerank == C)	SetFont("c_rank");
+		else if (stylerank == D)	SetFont("d_rank");
 		if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
 			HudMessage(s:"A"; HUDMSG_PLAIN, 42, CR_UNTRANSLATED, 1.5, 0.3, 0.1, 1.0);
 			if (stylerank > oldrank && stylerank > oldcalloutrank) {
