@@ -573,7 +573,7 @@ class AmySlide : CustomInventory
 				cvar.FindCvar("Sliding").SetBool(true);
 				int forwardmax = 12800;
 				int sidemax = 10240;
-				int fspeed = 70;
+				int fspeed = 85;
 				int sspeed = (fspeed - 20) * -1;
 				if (CountInv("PowerSuper")) fspeed = 80;
 				if (!(GetPlayerInput(MODINPUT_BUTTONS) & BT_RUN)) {
