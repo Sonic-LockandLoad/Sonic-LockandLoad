@@ -265,6 +265,12 @@ class Caliburn : BoostEnabledWeapon
 	action void SwordAttack(int damage, double distance)
 	{
 		int AttackCount = 30;
+		if (GetPlayerInput(INPUT_FORWARDMOVE) / 6400) {
+			A_ChangeVelocity(distance / 4, 0, 0, CVF_Relative);
+		}
+		else {
+			A_ChangeVelocity(distance / 8, 0, 0, CVF_Relative);
+		}
 		for (int x = 0; x <= AttackCount; x++) {
 			FTranslatedLineTarget t;
 			LineAttack(angle + random(-75, 75), distance, pitch, damage / AttackCount * random(1, 8), 'Melee', "SwordPuff", LAF_ISMELEEATTACK, t);
