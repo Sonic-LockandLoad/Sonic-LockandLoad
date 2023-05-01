@@ -265,11 +265,11 @@ class Caliburn : BoostEnabledWeapon
 	action void SwordAttack(int damage, double distance)
 	{
 		int AttackCount = 30;
-		if (GetPlayerInput(INPUT_FORWARDMOVE) / 6400) {
-			A_ChangeVelocity(distance / 4, 0, 0, CVF_Relative);
-		}
-		else {
-			A_ChangeVelocity(distance / 8, 0, 0, CVF_Relative);
+		FTranslatedLineTarget enemy_in_way;
+		LineAttack(angle, distance, pitch, 0, 'Melee', "InvisiblePuff", LAF_ISMELEEATTACK, enemy_in_way);
+		if (!enemy_in_way.linetarget) {
+			if (GetPlayerInput(INPUT_FORWARDMOVE) / 6400) A_ChangeVelocity(distance / 4, 0, 0, CVF_Relative);
+			else A_ChangeVelocity(distance / 8, 0, 0, CVF_Relative);
 		}
 		for (int x = 0; x <= AttackCount; x++) {
 			FTranslatedLineTarget t;
