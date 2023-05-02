@@ -84,12 +84,12 @@ map TITLEMAP "The Next Level"
 
 clearepisodes
 
-episode S_LOBBY
+episode SDLobby
 {
 	name = "S:L&L Campaign"
 }
 
-map S_LOBBY "Station Square"
+map SDLobby "Station Square"
 {
 	music = S_LOBBY
 	nointermission
@@ -121,7 +121,7 @@ map SDLvl03 "Oceanic Fortress"
 	partime = 360
 }
 
-map THEBOSS "Dis Is It"
+map TheBoss "Dis Is It"
 {
 	levelnum = 30
 	titlepatch = "WILV27"
@@ -134,7 +134,7 @@ map THEBOSS "Dis Is It"
 	needclustertext
 }
 
-map S_HIRE "Hire This Zone"
+map SDHire "Hire This Zone"
 {
 	music = S_FRONT
 	sky1 = "GHZSKY"
@@ -144,7 +144,7 @@ map S_HIRE "Hire This Zone"
 	levelnum = 43
 }
 
-map S_CYBRSP "Cyber Space Arena"
+map SDCybrSp "Cyber Space Arena"
 {
 	music = C_LOBBY
 	author = "That1M8Head"

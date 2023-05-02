@@ -496,7 +496,10 @@ script "DeathScreen" DEATH
 					break;
 				}
 			case 11:
-				message = "death_msg11";
+				if (GetCvar("StyleRank") >= A) {
+					message = "death_msg11";
+					break;
+				}
 				break;
 			case 12:
 				if (Timer() < 70) {
@@ -1395,7 +1398,7 @@ script "StyleRank" ENTER
 		else if (stylerank == C)	SetFont("c_rank");
 		else if (stylerank == D)	SetFont("d_rank");
 		if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
-			HudMessage(s:"A"; HUDMSG_PLAIN, 42, CR_UNTRANSLATED, 1.5, 0.3, 0.1, 1.0);
+			HudMessage(s:"A"; HUDMSG_PLAIN, 42, CR_UNTRANSLATED, 1.5, 0.22, 0.1, 1.0);
 			if (stylerank > oldrank && stylerank > oldcalloutrank) {
 				if 		(stylerank == 5) callout = "sstyle/amazing";
 				else if (stylerank == 4) callout = "sstyle/outstanding";
@@ -1412,7 +1415,7 @@ script "StyleRank" ENTER
 		oldrank = GetCvar("StyleRank");
 		if (stylerank >= 1) {
 			SetFont("SMALLFONT");
-			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, 1.5, 0.38, 0.1, 1.0);
+			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, 1.5, 0.3, 0.1, 1.0);
 		}
 		Delay(1);
 	}
