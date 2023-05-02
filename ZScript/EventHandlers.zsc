@@ -130,30 +130,36 @@ class StyleSystem : EventHandler
 			score -= e.damage * penalty;
 		}
         else if (e.thing && e.thing.bIsMonster && (e.damagesource is "PlayerPawn"||e.inflictor is "PlayerPawn")) {
-			if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon && !(player.player.WeaponState & WF_WEAPONSWITCHOK)) {
+			if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon) {
 				consecutive_uses++;
 			}
 			
 			int stylerank = cvar.FindCvar("StyleRank").GetInt();
+			int scorebonus;
 			
-			int staleness = 1000 * consecutive_uses;
-			if (staleness < 0) staleness = 0;
-			if (staleness > e.damage) staleness = e.damage;
+			scorebonus += e.damage * 2;
 			
 			if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
-				score += 2500;
+				scorebonus += 2500;
 			}
 			
-			int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
-			score += total_vel / 14;
-			
-			if (!player.player.onground) score += 1000;
-			
-			score += e.damage * 4 - staleness;
+			if (!player.player.onground) scorebonus += 500 * (stylerank + 1);
 			
 			if (e.damage > e.thing.Health) {
-				score += 2000;
+				scorebonus += 2500 * (stylerank + 1);
 			}
+			
+			int staleness = 128 * consecutive_uses;
+			if (staleness < 0) staleness = 0;
+			if (staleness > scorebonus) staleness = scorebonus;
+			scorebonus -= staleness;
+			
+			int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
+			int velocity_bonus = total_vel / 21;
+			if (velocity_bonus < 1) velocity_bonus = 1;
+			scorebonus *= velocity_bonus;
+						
+			score += scorebonus;
 			if (score > 100000) score = 100000;
 			
 			/*
