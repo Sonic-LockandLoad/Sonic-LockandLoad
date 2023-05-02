@@ -220,6 +220,10 @@ class StyleSystem : EventHandler
 			deprecation /= 2;
 		}
 		
+		if (player.CountInv("PowerSuper") || player.CountInv("PowerHyper")) {
+			deprecation *= 2;
+		}
+		
 		if (current_tick > 2) {
 			current_tick = 0;
 			score -= deprecation;
