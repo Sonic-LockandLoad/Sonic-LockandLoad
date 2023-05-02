@@ -1392,15 +1392,36 @@ script "StyleRank" ENTER
 	Delay(1);
 	while (GetCvar("StyleSystem")) {
 		int stylerank = GetCvar("StyleRank");
-		if 		(stylerank == S)	SetFont("s_rank");
-		else if (stylerank == A)	SetFont("a_rank");
-		else if (stylerank == B)	SetFont("b_rank");
-		else if (stylerank == C)	SetFont("c_rank");
-		else if (stylerank == D)	SetFont("d_rank");
+		if      (stylerank == S) SetFont("s_rank");
+		else if (stylerank == A) SetFont("a_rank");
+		else if (stylerank == B) SetFont("b_rank");
+		else if (stylerank == C) SetFont("c_rank");
+		else if (stylerank == D) SetFont("d_rank");
+		str StyleName;
+		switch (GetCvar("StyleRank")) {
+			case S:
+				StyleName = "\c[S]Supersonic!!";
+				break;
+			case A:
+				StyleName = "\c[A]Adventurer!";
+				break;
+			case B:
+				StyleName = "\c[B]Blazing";
+				break;
+			case C:
+				StyleName = "\c[C]Cruising";
+				break;
+			case D:
+				StyleName = "\c[D]Drifting";
+				break;
+			default:
+				StyleName = "";
+				break;
+		}
 		if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
-			HudMessage(s:"A"; HUDMSG_PLAIN, 42, CR_UNTRANSLATED, 1.5, 0.22, 0.1, 1.0);
+			HudMessage(s:"A"; HUDMSG_PLAIN, 43, CR_UNTRANSLATED, 1.5, 0.16, 0.1, 1.0);
 			if (stylerank > oldrank && stylerank > oldcalloutrank) {
-				if 		(stylerank == 5) callout = "sstyle/amazing";
+				if      (stylerank == 5) callout = "sstyle/supersonic";
 				else if (stylerank == 4) callout = "sstyle/outstanding";
 				else if (stylerank == 3) callout = "sstyle/awesome";
 				else if (stylerank == 2) callout = "sstyle/great";
@@ -1412,10 +1433,14 @@ script "StyleRank" ENTER
 				oldcalloutrank = 0;
 			}
 		}
+		if (StyleName != "") {
+			SetFont("SMALLFONT");
+			HudMessage(s:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, 1.5, 0.24, 0.1, 1.0);
+		}
 		oldrank = GetCvar("StyleRank");
 		if (stylerank >= 1) {
 			SetFont("SMALLFONT");
-			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, 1.5, 0.3, 0.1, 1.0);
+			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, 1.5, 0.28, 0.1, 1.0);
 		}
 		Delay(1);
 	}

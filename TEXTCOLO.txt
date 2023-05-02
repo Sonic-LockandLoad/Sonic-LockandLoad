@@ -74,5 +74,30 @@ MenuInactive
 
 Hyper
 {
-	#c344c1  #f2bdf1
+	#f2bdf1  #c344c1  
+}
+
+S
+{
+	#8f6e1b  #eed873
+}
+
+A
+{
+	#525252  #c2c8cd
+}
+
+B
+{
+	#5a4d34  #d8be8d
+}
+
+C
+{
+	#536069  #b4cadb
+}
+
+D
+{
+	#424242  #a2a2a2
 }
