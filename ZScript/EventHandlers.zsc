@@ -11,7 +11,7 @@ class RemoveCyberSpaceArenaCorpses : EventHandler
 	
 	override void WorldThingDied(WorldEvent e)
     {
-        if (e.thing && e.thing.bIsMonster && level.mapname == "S_CYBRSP") {
+        if (e.thing && e.thing.bIsMonster && level.mapname == "SDCYBRSP") {
 			DeathInfo info = new("DeathInfo");
             info.actor = e.thing;
             info.tick = current_tick;
