@@ -231,15 +231,19 @@ script "TransformSuper" (void)
         }
 		while (CheckInventory("PowerSuper")) {
 		    SetMugShotState("Super");
+			ACS_NamedExecute("FormTint", 0);
 			Delay(35);
 		}
 		if (GetCvar("SuperMusic")) { 
 			SetMusic("*", 0);
 		}
+		FadeTo(0, 0, 0, 0.0, 0);
 		SetMugShotState("Normal");
 	}
 	else {
-		SetMusic("*", 0);
+		if (GetCvar("SuperMusic")) { 
+			SetMusic("*", 0);
+		}
 		FadeTo(0, 0, 0, 0.0, 0);
 	}
 }
@@ -263,6 +267,7 @@ script "TransformHyper" (void)
 				}
 			}
 		    SetMugShotState("Hyper");
+			ACS_NamedExecute("FormTint", 0);
 			Delay(35); 
 		}
 		if (GetCvar("SuperMusic")) { SetMusic("*", 0); }
@@ -1311,12 +1316,12 @@ script 69 (void)
 		HudMessage(s:"\c[Sonic] Sonic: \c[White] Consider this your bad Lock & Load!"; HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
 }
 
-script "FormTint" enter
+script "FormTint" (void)
 {
 	int counter;
 	int cdelay = 5;
 	bool redFlash = false;
-	while (1) {
+	while (CheckInventory("PowerSuper") || CheckInventory("PowerSuper")) {
 		counter++;
 		if (counter % cdelay == 0) {
 			redFlash = !redFlash;
@@ -1326,15 +1331,15 @@ script "FormTint" enter
 				case Sonic:
 					if (CheckInventory("PowerHyper")) {
 						if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
-							FadeTo(255, 0, 0, 0.2, 0.1);
+							FadeTo(255, 0, 0, 0.1, 0.1);
 						}
-						else FadeTo(255, 255, 255, 0.1, 0.1);	
+						else FadeTo(255, 255, 255, 0.1, 0.1);
 					}
 					else if (CheckInventory("PowerSuper")) {
 						if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
 							FadeTo(255, 0, 0, 0.2, 0.1);
 						}
-						else FadeTo(240, 188, 24, 0.2, 0.1);
+						else FadeTo(240, 188, 24, 0.1, 0.1);
 					}
 					break;
 				case Amy:
@@ -1356,7 +1361,7 @@ script "FormTint" enter
 						if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
 							FadeTo(255, 0, 0, 0.2, 0.1);
 						}
-						else FadeTo(240, 188, 24, 0.2, 0.1);
+						else FadeTo(240, 188, 24, 0.1, 0.1);
 					}
 					break;
 				case Shadow:
