@@ -296,12 +296,12 @@ class SlamAtkObject : CustomInventory
 	action void SlamAttack()
 	{
 		A_PlaySound("*slam", 1);
-		A_Explode(120, 300, XF_NOTMISSILE);
+		A_Explode(45, 300, XF_NOTMISSILE);
 		bool ok;
 		Actor below;
 		[ok, below] = TestMobjZ(true);
 		if (below) {
-			below.A_DamageSelf(random(1, 16) * 256);
+			below.A_DamageSelf(random(1, 4) * 512);
 		}
 	}
 	action void BoundAttack()
@@ -316,7 +316,7 @@ class SlamAtkObject : CustomInventory
 		Actor below;
 		[ok, below] = TestMobjZ(true);
 		if (below) {
-			below.A_DamageSelf(random(1, 16) * 256);
+			below.A_DamageSelf(random(1, 8) * 512);
 		}
 	}
 	override void Tick()
