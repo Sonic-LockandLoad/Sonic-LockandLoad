@@ -496,9 +496,23 @@ script "DeathScreen" DEATH
 					break;
 				}
 			case 11:
-				if (GetCvar("StyleRank") >= A) {
-					message = "death_msg11";
-					break;
+				switch (GetCvar("StyleRank")) {
+					case S:
+						message = "death_msg11s";
+						break;
+					case A:
+						message = "death_msg11a";
+						break;
+					case B:
+						message = "death_msg11b";
+						break;
+					case C:
+					case D:
+						message = "death_msg11cd";
+						break;
+					default:
+						message = "death_msg11";
+						break;
 				}
 				break;
 			case 12:
