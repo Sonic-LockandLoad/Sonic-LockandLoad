@@ -102,7 +102,7 @@ map SDLvl01 "Sunset Gardens"
 	music = S_LVL01
 	sky1 = "SUNSTSKY"
 	next = "SDLvl02"
-	partime = 240
+	partime = 270
 }
 
 map SDLvl02 "Marble Madness"
