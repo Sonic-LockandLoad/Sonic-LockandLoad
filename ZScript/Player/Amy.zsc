@@ -574,8 +574,8 @@ class AmySlide : CustomInventory
 				int forwardmax = 12800;
 				int sidemax = 10240;
 				int fspeed = 85;
+				if (CountInv("PowerSuper")) fspeed = 90;
 				int sspeed = (fspeed - 20) * -1;
-				if (CountInv("PowerSuper")) fspeed = 80;
 				if (!(GetPlayerInput(MODINPUT_BUTTONS) & BT_RUN)) {
 					forwardmax /= 2;
 					sidemax /= 2;
@@ -597,7 +597,7 @@ class AmySlide : CustomInventory
 			TNT1 A 4;
 			TNT1 AAAAAAAAA 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
-					A_ChangeVelocity(0, 0, 5, CVF_Relative);
+					A_ChangeVelocity(Vel.X * 1.35, Vel.Y * 1.35, Vel.Z + 5, CVF_Replace);
 					return ResolveState("EndSlide");
 				}
 				else if (GetPlayerInput(MODINPUT_BUTTONS) & BT_CROUCH && player.onground) {
@@ -613,7 +613,7 @@ class AmySlide : CustomInventory
 			SLID ABCD 1;
 			SLID EEEEEEEEE 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_SPEED)) {
-					A_ChangeVelocity(0, 0, 5, CVF_Relative);
+					A_ChangeVelocity(Vel.X * 1.35, Vel.Y * 1.35, Vel.Z + 5, CVF_Replace);
 					return ResolveState("EndSlide");
 				}
 				else if (GetPlayerInput(MODINPUT_BUTTONS) & BT_CROUCH && player.onground) {

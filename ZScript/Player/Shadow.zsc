@@ -583,7 +583,6 @@ class ChaosSnap : CustomInventory
 		}
 		Stop;
 	Snap:
-		TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 		TNT1 A 0 A_AlertMonsters();
 		TNT1 A 0 A_StartSound("shadow/teleport", 7);
 		TNT1 A 0
@@ -592,9 +591,8 @@ class ChaosSnap : CustomInventory
 			int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
 			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 			int input = 0;
-			int SnapSpeed = 200;
+			int SnapSpeed = 150;
 			DamageFactor = 0;
-			if (player.onground) SnapSpeed = 100;
 			
 			if (forward > 0) {
 				A_ChangeVelocity(SnapSpeed, 0, 0, CVF_Relative);
@@ -617,11 +615,18 @@ class ChaosSnap : CustomInventory
 			}
 			
 			if (!input) {
-				ThrustThingZ(0, 200, 0, 0);
+				ThrustThingZ(0, SnapSpeed, 0, 0);
 			}
 		}
 		TNT1 A 5;
-		TNT1 A 0 A_Stop();
+		TNT1 A 0 {
+			if (player.onground) {
+				A_ChangeVelocity(Vel.X / 2, Vel.Y / 2, Vel.Z / 2, CVF_Replace);
+			}
+			else {
+				A_ChangeVelocity(Vel.X / 3, Vel.Y / 3, Vel.Z / 3, CVF_Replace);
+			}
+		}
 		TNT1 A 5;
 		TNT1 A 0 { DamageFactor = 1; }
 		Stop;
