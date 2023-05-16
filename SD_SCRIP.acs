@@ -1417,9 +1417,9 @@ script "ParryEffect" (void)
 {
 	SetActivator(1001);
 	AmbientSound("sweapons/blockattackx", 127);
-	FadeTo(102, 88, 221, 0.8, 0.1);
+	FadeTo(255, 255, 255, 0.8, 0.1);
 	Delay(1);
-	FadeTo(102, 88, 221, 0.2, 0.1);
+	FadeTo(255, 255, 255, 0.2, 0.1);
 	Delay(6);
 	FadeTo(0, 0, 0, 0, 0.1); 
 }
