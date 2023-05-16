@@ -92,9 +92,9 @@ episode SDLobby
 map SDLobby "Station Square"
 {
 	music = S_LOBBY
-	nointermission
 	sky1 = "NIGHTSKY"
 	author = "That1M8Head"
+	nointermission
 }
 
 map SDLvl01 "Sunset Gardens"
@@ -104,6 +104,7 @@ map SDLvl01 "Sunset Gardens"
 	next = "SDLobby"
 	partime = 270
 	levelnum = 1
+	nointermission
 }
 
 map SDLvl02 "Marble Madness"
@@ -113,6 +114,7 @@ map SDLvl02 "Marble Madness"
 	next = "SDLobby"
 	partime = 450
 	levelnum = 2
+	nointermission
 }
 
 map SDLvl03 "Oceanic Fortress"
@@ -122,6 +124,7 @@ map SDLvl03 "Oceanic Fortress"
 	next = "SDLobby"
 	partime = 360
 	levelnum = 3
+	nointermission
 }
 
 map TheBoss "Dis Is It"
