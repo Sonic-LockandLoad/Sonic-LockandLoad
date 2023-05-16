@@ -129,6 +129,25 @@ class PowerBlocking : PowerProtection
 	}
 }
 
+class BoostDamageReduction : PowerupGiver
+{
+	Default
+	{
+		Powerup.Color "FF FF FF", 0;
+		Inventory.MaxAmount 0;
+		Powerup.Type "PowerBoostDamageReduction";
+		Powerup.Duration 3;
+		+INVENTORY.AUTOACTIVATE
+	}
+}
+class PowerBoostDamageReduction : PowerProtection
+{
+	Default
+	{
+		DamageFactor "Normal", 0.2;
+	}
+}
+
 class SwordParry : PowerupGiver
 {
 	Default

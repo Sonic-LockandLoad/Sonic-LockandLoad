@@ -778,46 +778,61 @@ script "GoalRing" (void)
 	targetscore += TotalMonsters * 90;
 	if (GameSkill() == 5) targetscore *= 1.5;	
 	
-	HudMessage(s:"Time: ", d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime), s:"\n",
-			   s:"Score: ", d:score, s:"\n\n",
+	str TimeString = "Time: ";
+	str ScoreString = "Score: ";
+	if (LevelTime <= ParTime) TimeString = "Time: \c[Gold]";
+	if (score >= targetscore) ScoreString = "Score: \c[Gold]";
+	
+	HudMessage(s:TimeString, d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime), s:"\n",
+			   s:ScoreString, d:score, s:"\n\n",
 			   s:"Target Time: ", d:ParTime / 60, s:":", s:DoubleDigitSeconds(ParTime), s:"\n", 
 			   s:"Target Score: ", d:targetscore, s:"\n"; 
 			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
 			   
 	// Victory message and rank
+	bool s_rank = score >= targetscore && LevelTime <= ParTime;
+	bool a_rank = score >= targetscore || score > targetscore / 2 && LevelTime <= ParTime;
+	bool b_rank = score >= targetscore / 2 || score > targetscore / 3 && LevelTime <= ParTime;
+	bool c_rank = score >= targetscore / 3 || LevelTime <= ParTime;
 	SetFont("BIGFONT");
+	int jingledelay;
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case Sonic:
-			SetMusic("S_VICTOR");
+			if (s_rank) {
+				SetMusic("S_PERFCT");
+				jingledelay = 35*7;
+			}
+			else {
+				SetMusic("S_VICTOR");
+				jingledelay = 35*6;
+			}
 			HudMessage(s:"\c[Sonic]Stage Clear"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			break;
 		case Amy:
 			SetMusic("A_VICTOR");
+			jingledelay = 35*5;
 			HudMessage(s:"\c[Amy]Act Clear!"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			break;
 		case ClassicSonic:
 			SetMusic("C_VICTOR");
+			jingledelay = 35*6;
 			HudMessage(s:"\c[Classic]SONIC \c[White]GOT THROUGH\n\c[White]", s:strParam(n:PRINTNAME_LEVELNAME); HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			break;
 		case Shadow:
 			SetMusic("D_VICTOR");
+			jingledelay = 35*6; 
 			HudMessage(s:"\c[Shadow]Mission Cleared"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			break;
 		default:
 			break;
 	}
-	bool s_rank = score > targetscore && LevelTime <= ParTime;
-	bool a_rank = score > targetscore || score > targetscore / 2 && LevelTime <= ParTime;
-	bool b_rank = score > targetscore / 2 || score > targetscore / 3 && LevelTime <= ParTime;
-	bool c_rank = score > targetscore / 3 || LevelTime <= ParTime;
+	Delay(jingledelay);
 	if 		(s_rank)	SetFont("s_rank");
 	else if (a_rank)	SetFont("a_rank");
 	else if (b_rank)	SetFont("b_rank");
 	else if (c_rank)	SetFont("c_rank");
 	else				SetFont("d_rank");
-	if (PlayerClass(PlayerNumber()) == Amy) Delay(35*5);
-	else Delay(35*6);
 	AmbientSound("sglobal/rankget", 127);
 	HudMessage(s:"A";
 			   HUDMSG_PLAIN, 8, CR_WHITE, 1.5, 0.65, 0, 1.0);

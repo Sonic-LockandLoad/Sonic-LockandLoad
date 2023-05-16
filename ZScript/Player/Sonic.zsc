@@ -159,6 +159,7 @@ class BoostEnabledWeapon : LockLoadWeapon
 				break;
 		}
 		A_PlaySound("sweapons/boosttrail", 1, 1.0, true);
+		A_GiveInventory("BoostDamageReduction");
 		A_ChangeVelocity(invoker.BoostSpeed, 0, Vel.Z, CVF_Relative|CVF_Replace);
 		if ((GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && A_CheckFloor("Null")) {
 			A_ChangeVelocity(0, 0, invoker.BoostSpeed / 10, CVF_Relative);
@@ -559,7 +560,7 @@ class KineticShotty : LockLoadWeapon
 	{
 		A_PlaySound("sweapons/nspeedyshot", 1);
 		double overall_vel	= sqrt(Vel.X ** 2 + Vel.Y ** 2);
-		int	num_bullets		= 20 + overall_vel / 2;
+		int	num_bullets		= 20 + overall_vel / 3;
 		A_FireBullets(20, 14, num_bullets, 7, "BulletPuff");
 		A_FireBullets(2, 2, 8, 5, "BulletPuff", 0);
 		A_GunFlash();

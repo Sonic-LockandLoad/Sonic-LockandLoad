@@ -163,6 +163,13 @@ OptionMenu "LLModsMenu"
 	StaticText "get a high style rank! Getting hit or just waiting will", "White"
 	StaticText "make your style go down. We're just going full ULTRAKILL here!", "White"
 	StaticText ""
+	
+	Option "Spongy Enemies", "SpongyEnemies", "EnabledOrNot"
+	Slider "Spongy Multiplier", "Sponginess", 2, 100, 1
+	StaticText "Are you sick and tired of enemies dying too quickly?", "White"
+	StaticText "Enable this gameplay modifier, and all enemies will have their", "White"
+	StaticText "health multiplied, so you can style on them all you like!", "White"
+	StaticText ""
 }
 OptionMenu "LLControlsMenu"
 {

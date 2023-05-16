@@ -17,7 +17,7 @@ gameinfo
    menufontcolor_selection = "MenuActive"
    DimColor = "00 00 00"
    DimAmount = 0.30
-   EventHandlers = "RemoveCyberSpaceArenaCorpses", "GiveEnergyOnDamage", "EnemiesBleedRings", "StyleSystem"
+   EventHandlers = "RemoveCyberSpaceArenaCorpses", "GiveEnergyOnDamage", "EnemiesBleedRings", "StyleSystem", "SpongyEnemies"
 }
 
 DamageType SonicKick
@@ -103,6 +103,7 @@ map SDLvl01 "Sunset Gardens"
 	sky1 = "SUNSTSKY"
 	next = "SDLvl02"
 	partime = 270
+	levelnum = 1
 }
 
 map SDLvl02 "Marble Madness"
@@ -111,6 +112,7 @@ map SDLvl02 "Marble Madness"
 	sky1 = "SUNSTSKY"
 	next = "SDLobby"
 	partime = 450
+	levelnum = 2
 }
 
 map SDLvl03 "Oceanic Fortress"
@@ -119,6 +121,7 @@ map SDLvl03 "Oceanic Fortress"
 	sky1 = "SUNSTSKY"
 	next = "SDLobby"
 	partime = 360
+	levelnum = 3
 }
 
 map TheBoss "Dis Is It"

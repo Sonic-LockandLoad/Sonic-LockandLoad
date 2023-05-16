@@ -45,7 +45,7 @@ class GiveEnergyOnDamage : EventHandler
 	
 	override void WorldThingDamaged(WorldEvent e)
     {
-        if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("EnemiesBleedRings").GetBool()) {
+        if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("GiveEnergyOnDamage").GetBool()) {
 			int energy_to_give, min_energy, max_energy;
 			if (e.damage > e.thing.health) {
 				energy_to_give = e.damage / 16;
@@ -101,99 +101,92 @@ class StyleSystem : EventHandler
 	override void WorldThingDamaged(WorldEvent e)
     {
 		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
-		PlayerPawn player = players[consoleplayer].mo;
 		if (e.thing && e.thing is "PlayerPawn") {
-			int penalty;
-			int stylerank = cvar.FindCvar("StyleRank").GetInt();
-			
-			switch (stylerank) {
-				case 0:
-					penalty = 0;
-					break;
-				case 1:
-					penalty = 64;
-					break;
-				case 2:
-					penalty = 128;
-					break;
-				case 3:
-					penalty = 256;
-					break;
-				case 4:
-					penalty = 1048;
-					break;
-				case 5:
-					penalty = 2096;
-					break;
-			}
-			
-			score -= e.damage * penalty;
+			DeductStyleScore(e);
 		}
-        else if (e.thing && e.thing.bIsMonster && (e.damagesource is "PlayerPawn"||e.inflictor is "PlayerPawn")) {
-			if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon) {
-				consecutive_uses++;
-			}
-			
-			int stylerank = cvar.FindCvar("StyleRank").GetInt();
-			int scorebonus;
-			
-			scorebonus += e.damage * 2;
-			
-			if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
-				scorebonus += 2500;
-			}
-			
-			if (!player.player.onground) scorebonus += 500 * (stylerank + 1);
-			
-			if (e.damage > e.thing.Health) {
-				scorebonus += 2500 * (stylerank + 1);
-			}
-			
-			int staleness = 128 * consecutive_uses;
-			if (staleness < 0) staleness = 0;
-			if (staleness > scorebonus) staleness = scorebonus;
-			scorebonus -= staleness;
-			
-			int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
-			int velocity_bonus = total_vel / 21;
-			if (velocity_bonus < 1) velocity_bonus = 1;
-			scorebonus *= velocity_bonus;
-						
-			score += scorebonus;
-			if (score > 100000) score = 100000;
-			
-			/*
-			It isn't here, but you can also gain Style Points
-			by parrying.
-			
-			Go and see Sonic.zsc and Amy.zsc for that code.
-			*/
+        else if (e.thing && e.thing.bIsMonster && !(e.damagesource && e.damagesource.bIsMonster) && !(e.inflictor && e.inflictor.bIsMonster)) {
+			UpdateStyleScore(e);
 		}
     }
 	
 	override void WorldTick()
 	{
 		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
-		cvar.FindCvar("StyleScore").SetInt(score);
-		
+		UpdateStyleRank();
+		UpdateWeapon();
+		DeprecateStyleScore();
+	}
+	
+	private void UpdateStyleScore(WorldEvent e)
+	{
 		PlayerPawn player = players[consoleplayer].mo;
-		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() != current_weapon) {
-			consecutive_uses = 0;
-			current_weapon = player.player.ReadyWeapon.GetClassName();
+		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon && player.player.ReadyWeapon.GetClassName() != current_weapon) {
+			consecutive_uses++;
 		}
 		
-		if (score < 0 || player.health <= 0) score = 0;
-		
-		current_tick++;
-		
-		if 		(score >= 75000) cvar.FindCvar("StyleRank").SetInt(5);
-		else if (score >= 40000) cvar.FindCvar("StyleRank").SetInt(4);
-		else if (score >= 20000) cvar.FindCvar("StyleRank").SetInt(3);
-		else if (score >= 10000) cvar.FindCvar("StyleRank").SetInt(2);
-		else if (score >= 2000)	 cvar.FindCvar("StyleRank").SetInt(1);
-		else 					 cvar.FindCvar("StyleRank").SetInt(0);
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
+		int scorebonus;
 		
+		scorebonus += e.damage * 3;
+		
+		if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
+			scorebonus += 2500;
+		}
+		
+		if (!player.player.onground) scorebonus += 500 * (stylerank + 1);
+		
+		if (e.damage > e.thing.Health) {
+			scorebonus += 2000 * (stylerank + 1);
+		}
+		
+		int staleness = 128 * consecutive_uses;
+		if (current_weapon == "Caliburn") staleness = 64 * consecutive_uses;
+		if (staleness < 0) staleness = 0;
+		if (staleness > scorebonus) staleness = scorebonus;
+		scorebonus -= staleness;
+					
+		score += scorebonus;
+		if (score > 100000) score = 100000;
+		
+		/*
+		It isn't here, but you can also gain Style Points
+		by parrying.
+		
+		Go and see Sonic.zsc and Amy.zsc for that code.
+		*/
+	}
+	
+	private void DeductStyleScore(WorldEvent e)
+	{
+		int penalty;
+		int stylerank = cvar.FindCvar("StyleRank").GetInt();
+		switch (stylerank) {
+			case 0:
+				penalty = 0;
+				break;
+			case 1:
+				penalty = 64;
+				break;
+			case 2:
+				penalty = 128;
+				break;
+			case 3:
+				penalty = 256;
+				break;
+			case 4:
+				penalty = 1048;
+				break;
+			case 5:
+				penalty = 2096;
+				break;
+		}
+		score -= e.damage * penalty;
+	}
+	
+	private void DeprecateStyleScore()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
+		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int deprecation;
 		switch (stylerank) {
 			case 0:
@@ -226,6 +219,8 @@ class StyleSystem : EventHandler
 			deprecation /= 2;
 		}
 		
+		// Since you can't take damage in Super or Hyper form, your
+		// Style Deprecation is twice as fast to balance it out.
 		if (player.CountInv("PowerSuper") || player.CountInv("PowerHyper")) {
 			deprecation *= 2;
 		}
@@ -235,4 +230,41 @@ class StyleSystem : EventHandler
 			score -= deprecation;
 		}
 	}
+	
+	private void UpdateStyleRank()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
+		if (score < 0 || player.health <= 0) score = 0;
+		cvar.FindCvar("StyleScore").SetInt(score);
+		
+		current_tick++;
+		
+		if 		(score >= 75000) cvar.FindCvar("StyleRank").SetInt(5);
+		else if (score >= 40000) cvar.FindCvar("StyleRank").SetInt(4);
+		else if (score >= 20000) cvar.FindCvar("StyleRank").SetInt(3);
+		else if (score >= 10000) cvar.FindCvar("StyleRank").SetInt(2);
+		else if (score >= 2000)	 cvar.FindCvar("StyleRank").SetInt(1);
+		else 					 cvar.FindCvar("StyleRank").SetInt(0);
+		int stylerank = cvar.FindCvar("StyleRank").GetInt();
+	}
+	
+	private void UpdateWeapon()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
+		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() != current_weapon) {
+			consecutive_uses = 0;
+			current_weapon = player.player.ReadyWeapon.GetClassName();
+		}
+	}
+}
+
+class SpongyEnemies : EventHandler
+{
+	override void WorldThingSpawned(WorldEvent e)
+    {
+        if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("SpongyEnemies").GetBool()) {
+			e.thing.health *= cvar.FindCvar("Sponginess").GetInt();
+			// It really is that fricking simple! :D
+		}
+    }
 }

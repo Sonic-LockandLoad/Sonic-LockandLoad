@@ -293,16 +293,21 @@ class SlamAtkObject : CustomInventory
 	int inuse;
 	int midfall;
 	int zdiff;
-	action void SlamAttack()
+	action void DealSlamDamage(int slam_damage)
 	{
-		A_PlaySound("*slam", 1);
-		A_Explode(45, 300, XF_NOTMISSILE);
 		bool ok;
 		Actor below;
 		[ok, below] = TestMobjZ(true);
 		if (below) {
-			below.A_DamageSelf(random(1, 4) * 512);
+			below.DamageMobj(self, null, slam_damage, "Melee");
+			if (below.Pos.Z > below.GetZAt()) below.A_ChangeVelocity(0, 0, -64);
 		}
+	}
+	action void SlamAttack()
+	{
+		A_PlaySound("*slam", 1);
+		A_Explode(35, 300, XF_NOTMISSILE);
+		DealSlamDamage(random(1, 8) * 128);
 	}
 	action void BoundAttack()
 	{
@@ -312,12 +317,7 @@ class SlamAtkObject : CustomInventory
 		if (bounce < 15) bounce = 15;
 		A_ChangeVelocity(0, 0, bounce);
 		cvar.FindCvar("DidJump").SetBool(true);
-		bool ok;
-		Actor below;
-		[ok, below] = TestMobjZ(true);
-		if (below) {
-			below.A_DamageSelf(random(1, 8) * 512);
-		}
+		DealSlamDamage(random(1, 8) * 64);
 	}
 	override void Tick()
 	{
