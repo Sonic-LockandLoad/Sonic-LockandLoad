@@ -974,6 +974,13 @@ script "GoalRing" (void)
 			break;
 	}
 	Delay(speechdelay);
+	if (GetLevelInfo(LEVELINFO_LEVELNUM) > 0) {
+		int unlocked_level = CheckInventory("CurrentlyUnlockedLevel");
+		int next_level = GetLevelInfo(LEVELINFO_LEVELNUM);
+		TakeInventory("CurrentlyUnlockedLevel", 4);
+		if (unlocked_level < next_level)
+			GiveInventory("CurrentlyUnlockedLevel", next_level);
+	}
 	SetActorProperty(1001, APROP_DamageFactor, 1.0);
 	Exit_Normal(0);
 }

@@ -128,3 +128,12 @@ class Doox : SwitchingDecoration
 			Stop;
 	}
 }
+
+class CurrentlyUnlockedLevel : Inventory
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.MaxAmount 3; // zero-indexed
+	}
+}

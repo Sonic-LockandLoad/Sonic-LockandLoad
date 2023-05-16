@@ -101,7 +101,7 @@ map SDLvl01 "Sunset Gardens"
 {
 	music = S_LVL01
 	sky1 = "SUNSTSKY"
-	next = "SDLvl02"
+	next = "SDLobby"
 	partime = 270
 	levelnum = 1
 }
