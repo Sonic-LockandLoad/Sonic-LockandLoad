@@ -180,7 +180,9 @@ class BoostEnabledWeapon : LockLoadWeapon
 		}
 		A_ChangeVelocity(CrashSpeed, 0, VerticalCrashSpeed, CVF_Relative|CVF_Replace);
 		A_StartSound("sweapons/finalhit", 8);
-		DamageThing(invoker.BoostSpeed / 10, 17);
+		if (Health > 20) {
+			DamageThing(invoker.BoostSpeed / 3, 17);
+		}
 	}
 	States
 	{

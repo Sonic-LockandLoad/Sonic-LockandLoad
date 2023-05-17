@@ -35,7 +35,11 @@ class LockLoadPlayer : PlayerPawn
 			for (int x = 1; x <= ringcount; x++) {
 				int x = random(maxrange * -1, maxrange);
 				int y = random(maxrange * -1, maxrange);
-				A_SpawnItemEx("DroppedRingPlayer", 0, 0, 1, x, y, 15);
+				int xo;
+				if (damagetype == "Falling") {
+					xo = x * cos(angle) - 75;
+				}
+				A_SpawnItemEx("DroppedRingPlayer", xo, 0, 1, x, y, 15);
 			}
 		}
 		return damage;

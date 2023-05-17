@@ -145,6 +145,7 @@ class PowerBoostDamageReduction : PowerProtection
 	Default
 	{
 		DamageFactor "Normal", 0.2;
+		DamageFactor "Falling", 1;
 	}
 }
 
