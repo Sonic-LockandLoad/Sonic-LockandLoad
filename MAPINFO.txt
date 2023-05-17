@@ -148,6 +148,7 @@ map SDHire "Hire This Zone"
 	author = "That1M8Head"
 	partime = 220
 	levelnum = 43
+	nointermission
 }
 
 map SDCybrSp "Cyber Space Arena"
