@@ -201,7 +201,7 @@ class LockLoadPlayer : PlayerPawn
 					A_StartSound("*jump", CHAN_BODY);
 				}
 				else {
-					if (dJumpCounter < dJumpCount || waterlevel > 1 && CountInv("SonicCheck")) {
+					if (dJumpCounter < dJumpCount || waterlevel > 1) {
 						dJumpCounter++;
 						A_ChangeVelocity(Vel.X, Vel.Y, JumpZ - 2, CVF_Replace);
 						A_StartSound("*doublejump", CHAN_BODY);
