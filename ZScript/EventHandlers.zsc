@@ -127,7 +127,14 @@ class StyleSystem : EventHandler
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int scorebonus;
 		
-		scorebonus += e.damage * 3;
+		if (e.damagesource && e.damagesource is "PlayerPawn") {
+			scorebonus += e.damage;
+		}
+		else {
+			int altereddamage = e.damage;
+			if (e.damage % 2) altereddamage -= 1;
+			scorebonus += altereddamage / 2;
+		}
 		
 		if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
 			scorebonus += 2500;
@@ -139,14 +146,14 @@ class StyleSystem : EventHandler
 			scorebonus += 2000 * (stylerank + 1);
 		}
 		
-		int staleness = 128 * consecutive_uses;
+		int staleness = 186 * consecutive_uses;
 		if (current_weapon == "Caliburn") staleness = 64 * consecutive_uses;
 		if (staleness < 0) staleness = 0;
 		if (staleness > scorebonus) staleness = scorebonus;
 		scorebonus -= staleness;
 					
 		score += scorebonus;
-		if (score > 100000) score = 100000;
+		if (score > 300000) score = 300000;
 		
 		/*
 		It isn't here, but you can also gain Style Points
@@ -191,19 +198,19 @@ class StyleSystem : EventHandler
 		switch (stylerank) {
 			case 0:
 			case 1:
-				deprecation = 64;
-				break;
-			case 2:
 				deprecation = 128;
 				break;
-			case 3:
+			case 2:
 				deprecation = 512;
 				break;
-			case 4:
+			case 3:
 				deprecation = 1024;
 				break;
-			case 5:
+			case 4:
 				deprecation = 2048;
+				break;
+			case 5:
+				deprecation = 4096;
 				break;
 		}
 		
@@ -239,12 +246,13 @@ class StyleSystem : EventHandler
 		
 		current_tick++;
 		
-		if 		(score >= 75000) cvar.FindCvar("StyleRank").SetInt(5);
-		else if (score >= 40000) cvar.FindCvar("StyleRank").SetInt(4);
-		else if (score >= 20000) cvar.FindCvar("StyleRank").SetInt(3);
-		else if (score >= 10000) cvar.FindCvar("StyleRank").SetInt(2);
-		else if (score >= 2000)	 cvar.FindCvar("StyleRank").SetInt(1);
-		else 					 cvar.FindCvar("StyleRank").SetInt(0);
+		if 		(score >= 200000) cvar.FindCvar("StyleRank").SetInt(5); // Supersonic!!
+		else if (score >= 90000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
+		else if (score >= 45000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
+		else if (score >= 20000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
+		else if (score >= 1500)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
+		else 					  cvar.FindCvar("StyleRank").SetInt(0); // Empty
+		
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 	}
 	
