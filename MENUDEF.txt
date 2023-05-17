@@ -3,10 +3,10 @@ LISTMENU "MainMenu"
 	Position 110, 54
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 	TextItem "$MENU_NEWGAME", "n", "PlayerClassMenu"
-	TextItem "$MENU_ABOUT", "r", "ReadThisMenu"
-	TextItem "$MENU_OPTIONS","o", "LockandLoadOptions"
 	TextItem "$MENU_LOAD", "l", "LoadGameMenu"
 	TextItem "$MENU_SAVE", "s", "SaveGameMenu"
+	TextItem "$MENU_OPTIONS","o", "LockandLoadOptions"
+	TextItem "$MENU_ABOUT", "r", "ReadThisMenu"
 	TextItem "$MENU_QUIT", "q", "QuitMenu"
 	IfGame(Heretic, Hexen, Strife, Chex)
 	{
