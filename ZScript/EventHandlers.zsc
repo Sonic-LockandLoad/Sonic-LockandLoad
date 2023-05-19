@@ -123,7 +123,9 @@ class StyleSystem : EventHandler
 		PlayerPawn player = players[consoleplayer].mo;
 		
 		/* Consecutive uses */
-		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon) {
+		let ReadyWeapon = player.player.ReadyWeapon;
+		let PlayerIsResponsible = e.damagesource && e.damagesource is "PlayerPawn";
+		if (ReadyWeapon && ReadyWeapon.GetClassName() == current_weapon && PlayerIsResponsible) {
 			consecutive_uses++;
 		}
 		
@@ -132,7 +134,7 @@ class StyleSystem : EventHandler
 		int scorebonus;
 		
 		/* Player responsibility */
-		if (e.damagesource && e.damagesource is "PlayerPawn") {
+		if (PlayerIsResponsible) {
 			scorebonus += e.damage;
 		}
 		else {
@@ -162,7 +164,7 @@ class StyleSystem : EventHandler
 		
 		/* Limit staleness */
 		int remaining_weapons = (6 - GetAmountOfWeapons()) + 1;
-		staleness /= remaining_weapons * 2;
+		staleness /= remaining_weapons;
 		
 		/* Apply staleness */
 		scorebonus -= staleness;
@@ -233,7 +235,7 @@ class StyleSystem : EventHandler
 				penalty = 2096;
 				break;
 		}
-		penalty += score / 8;
+		penalty += score / 16;
 		score -= e.damage * penalty;
 	}
 	
