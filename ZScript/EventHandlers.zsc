@@ -163,7 +163,6 @@ class StyleSystem : EventHandler
 		/* Limit staleness */
 		int remaining_weapons = (6 - GetAmountOfWeapons()) + 1;
 		staleness /= remaining_weapons * 2;
-		console.printf("%d", staleness);
 		
 		/* Apply staleness */
 		scorebonus -= staleness;
