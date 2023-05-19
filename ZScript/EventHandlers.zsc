@@ -119,14 +119,19 @@ class StyleSystem : EventHandler
 	
 	private void UpdateStyleScore(WorldEvent e)
 	{
+		/* Player object */
 		PlayerPawn player = players[consoleplayer].mo;
-		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon && player.player.ReadyWeapon.GetClassName() != current_weapon) {
+		
+		/* Consecutive uses */
+		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() == current_weapon) {
 			consecutive_uses++;
 		}
 		
+		/* Initialisation */
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int scorebonus;
 		
+		/* Player responsibility */
 		if (e.damagesource && e.damagesource is "PlayerPawn") {
 			scorebonus += e.damage;
 		}
@@ -136,57 +141,100 @@ class StyleSystem : EventHandler
 			scorebonus += altereddamage / 2;
 		}
 		
+		/* Using different weapon */
 		if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
-			scorebonus += 2500;
+			scorebonus += 3500;
 		}
 		
-		if (!player.player.onground) scorebonus += 500 * (stylerank + 1);
+		/* Player mid-air */
+		if (!player.player.onground) scorebonus *= 1.5;
 		
+		/* Enemy killed */
 		if (e.damage > e.thing.Health) {
-			scorebonus += 2000 * (stylerank + 1);
+			scorebonus += 4500 * (stylerank + 1);
 		}
 		
-		int staleness = 186 * consecutive_uses;
+		/* Calculate staleness */
+		int staleness = 96 * consecutive_uses;
 		if (current_weapon == "Caliburn") staleness = 64 * consecutive_uses;
 		if (staleness < 0) staleness = 0;
 		if (staleness > scorebonus) staleness = scorebonus;
+		
+		/* Limit staleness */
+		int remaining_weapons = (6 - GetAmountOfWeapons()) + 1;
+		staleness /= remaining_weapons * 2;
+		console.printf("%d", staleness);
+		
+		/* Apply staleness */
 		scorebonus -= staleness;
-					
+		
+		/* Total up and cap score */
 		score += scorebonus;
 		if (score > 300000) score = 300000;
 		
-		/*
-		It isn't here, but you can also gain Style Points
-		by parrying.
+		/* It isn't here, but the player can also gain Style
+		   Points by parrying attacks.
 		
-		Go and see Sonic.zsc and Amy.zsc for that code.
-		*/
+		   Go and see Sonic.zsc and Amy.zsc for that code. */
+	}
+	
+	private int GetAmountOfWeapons()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
+		
+		/* We can assume the player has Slot 1 and Slot 2
+		   weapons, since they're given at the start.
+		   
+		   Also, I hate that I have to resort to this. */
+		   
+		bool slot3 = player.CountInv("KineticShotty") || 
+		             player.CountInv("PrecisionShotgun") || 
+					 player.CountInv("SpeedyShotgun") ||
+					 player.CountInv("DarkAssault");
+					 
+		bool slot4 = player.CountInv("ShurikenCrossbow") || 
+		             player.CountInv("RailshotCannon") || 
+					 player.CountInv("ChaosRain") ||
+					 player.CountInv("QuadShotty");
+					 
+		bool slot5 = player.CountInv("EclipseBlaster") || 
+		             player.CountInv("AmyEclipseBlaster") || 
+					 player.CountInv("ClassicRocketStream") ||
+					 player.CountInv("ChaosEmerald");
+					 
+		bool slot6 = player.CountInv("AirStrikeLauncher") || 
+		             player.CountInv("RapidMissiles") || 
+					 player.CountInv("DualRockets");
+					 
+		return 2 + slot3 + slot4 + slot5 + slot6;
 	}
 	
 	private void DeductStyleScore(WorldEvent e)
 	{
+		/* Init variable and get style rank */
 		int penalty;
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		switch (stylerank) {
-			case 0:
+			case 0: // Empty
 				penalty = 0;
 				break;
-			case 1:
+			case 1: // Drifting
 				penalty = 64;
 				break;
-			case 2:
+			case 2: // Cruising
 				penalty = 128;
 				break;
-			case 3:
+			case 3: // Blazing
 				penalty = 256;
 				break;
-			case 4:
+			case 4: // Adventurer!
 				penalty = 1048;
 				break;
-			case 5:
+			case 5: // Supersonic!!
 				penalty = 2096;
 				break;
 		}
+		penalty += score / 8;
 		score -= e.damage * penalty;
 	}
 	
@@ -216,6 +264,7 @@ class StyleSystem : EventHandler
 		
 		int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
 		
+		/* Calculate based on velocity */
 		if (total_vel >= 100.0) {
 			deprecation /= 8;
 		}
@@ -226,12 +275,13 @@ class StyleSystem : EventHandler
 			deprecation /= 2;
 		}
 		
-		// Since you can't take damage in Super or Hyper form, your
-		// Style Deprecation is twice as fast to balance it out.
+		/* Super and Hyper forms are invincible,
+		   so this is to balance it out */
 		if (player.CountInv("PowerSuper") || player.CountInv("PowerHyper")) {
 			deprecation *= 2;
 		}
 		
+		/* Deducting score */
 		if (current_tick > 2) {
 			current_tick = 0;
 			score -= deprecation;
@@ -259,6 +309,10 @@ class StyleSystem : EventHandler
 	private void UpdateWeapon()
 	{
 		PlayerPawn player = players[consoleplayer].mo;
+		
+		/* If the player's weapon has previously been
+		   switched, reset the amount of consecutive
+		   uses and reset their current weapon. */
 		if (player.player.ReadyWeapon && player.player.ReadyWeapon.GetClassName() != current_weapon) {
 			consecutive_uses = 0;
 			current_weapon = player.player.ReadyWeapon.GetClassName();
