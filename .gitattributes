@@ -1,1 +1,2 @@
 *.zsc linguist-language=C#
+*.acs linguist-language=C++
