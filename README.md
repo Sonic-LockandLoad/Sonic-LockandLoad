@@ -14,6 +14,8 @@ The current stable version of Sonic: Lock & Load is **v1.3.3**, though it's reco
 
 To play an unstable version of S:L&L, use `git clone` to clone it to your computer, and open the cloned repo with GZDoom, like you would with a WAD or PK3. You can update with `git pull`. **Unstable versions contain unfinished stuff, the latest demo is recommended.**
 
+GitHub shows C# and C++ as Sonic: Lock & Load's main languages - these are in fact GZDoom's ZScript and ACS files, treated as C# and C++ by GitHub Linguist respectively, for syntax highlighting purposes.
+
 ## Copyright
 Sonic: Lock & Load is a fan-made DOOM mod. All copyrights go to their intended holders.<br>
 Sonic the Hedgehog is property of SEGA. DOOM is property of id Software.
