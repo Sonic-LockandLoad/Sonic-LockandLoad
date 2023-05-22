@@ -13,6 +13,7 @@
 #define B 3
 #define A 4
 #define S 5
+#define SS 6
 
 /* Following script taken from the ZDoom Forums <https://forum.zdoom.org/viewtopic.php?t=51848#p903998> */
 
@@ -1435,6 +1436,7 @@ script "StyleRank" ENTER
 	Delay(1);
 	while (GetCvar("StyleSystem")) {
 		int stylerank = GetCvar("StyleRank");
+		if      (stylerank == SS) SetFont("ss_rank");
 		if      (stylerank == S) SetFont("s_rank");
 		else if (stylerank == A) SetFont("a_rank");
 		else if (stylerank == B) SetFont("b_rank");
@@ -1442,8 +1444,11 @@ script "StyleRank" ENTER
 		else if (stylerank == D) SetFont("d_rank");
 		str StyleName;
 		switch (GetCvar("StyleRank")) {
+			case SS:
+				StyleName = "\c[S]Super Sonic!!!";
+				break;
 			case S:
-				StyleName = "\c[S]Supersonic!!";
+				StyleName = "\c[S]Skyrocketing!!";
 				break;
 			case A:
 				StyleName = "\c[A]Adventurer!";
@@ -1464,7 +1469,8 @@ script "StyleRank" ENTER
 		if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
 			HudMessage(s:"A"; HUDMSG_PLAIN, 43, CR_UNTRANSLATED, 1.5, 0.16, 0.1, 1.0);
 			if (stylerank > oldrank && stylerank > oldcalloutrank) {
-				if      (stylerank == 5) callout = "sstyle/supersonic";
+				if      (stylerank == 6) callout = "sstyle/supersonic";
+				else if (stylerank == 5) callout = "sstyle/amazing";
 				else if (stylerank == 4) callout = "sstyle/outstanding";
 				else if (stylerank == 3) callout = "sstyle/awesome";
 				else if (stylerank == 2) callout = "sstyle/great";
@@ -1472,9 +1478,9 @@ script "StyleRank" ENTER
 				oldcalloutrank = stylerank;
 				PlaySound(0, callout, 4096, 1.0, false, ATTN_NONE, false);
 			}
-			if (stylerank < oldcalloutrank - 1 || stylerank <= 0) {
-				oldcalloutrank = 0;
-			}
+		}
+		if (stylerank < oldcalloutrank - 1 || stylerank < D) {
+			oldcalloutrank = 0;
 		}
 		if (StyleName != "") {
 			SetFont("SMALLFONT");

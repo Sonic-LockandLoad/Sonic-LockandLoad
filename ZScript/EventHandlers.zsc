@@ -133,27 +133,26 @@ class StyleSystem : EventHandler
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int scorebonus;
 		
-		/* Player responsibility */
+		/* Dealing damage */
 		if (PlayerIsResponsible) {
-			scorebonus += e.damage;
+			scorebonus += e.damage * 28;
 		}
 		else {
-			int altereddamage = e.damage;
-			if (e.damage % 2) altereddamage -= 1;
-			scorebonus += altereddamage / 2;
+			scorebonus += e.damage * 14;
 		}
 		
 		/* Using different weapon */
 		if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
-			scorebonus += 3500;
+			scorebonus *= 1.5;
 		}
 		
 		/* Player mid-air */
-		if (!player.player.onground) scorebonus *= 1.5;
-		
-		/* Enemy killed */
-		if (e.damage > e.thing.Health) {
-			scorebonus += 4500 * (stylerank + 1);
+		if (!player.player.onground) {
+			int heightbonus = player.Pos.Z - player.GetZAt();
+			heightbonus /= 50;
+			if (heightbonus < 2) heightbonus = 2;
+			if (heightbonus > 6) heightbonus = 6;
+			scorebonus *= heightbonus;
 		}
 		
 		/* Calculate staleness */
@@ -171,7 +170,7 @@ class StyleSystem : EventHandler
 		
 		/* Total up and cap score */
 		score += scorebonus;
-		if (score > 300000) score = 300000;
+		if (score > 500000) score = 500000;
 		
 		/* It isn't here, but the player can also gain Style
 		   Points by parrying attacks.
@@ -231,12 +230,19 @@ class StyleSystem : EventHandler
 			case 4: // Adventurer!
 				penalty = 1048;
 				break;
-			case 5: // Supersonic!!
+			case 5: // Skyrocketing!!
 				penalty = 2096;
 				break;
+			case 6: // Super Sonic!!!
+				penalty = 3192;
+				break;
 		}
-		penalty += score / 16;
-		score -= e.damage * penalty;
+		penalty += e.damage / 3 * score / 16;
+		if (penalty < 1) {
+			score = 0;
+			return;
+		}
+		score -= penalty;
 	}
 	
 	private void DeprecateStyleScore()
@@ -261,6 +267,9 @@ class StyleSystem : EventHandler
 			case 5:
 				deprecation = 4096;
 				break;
+			case 6:
+				deprecation = 5128;
+				break;
 		}
 		
 		int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
@@ -270,16 +279,16 @@ class StyleSystem : EventHandler
 			deprecation /= 8;
 		}
 		else if (total_vel >= 50.0) {
-			deprecation /= 4;
+			deprecation /= 6;
 		}
 		else if (total_vel >= 33.0) {
-			deprecation /= 2;
+			deprecation /= 4;
 		}
 		
 		/* Super and Hyper forms are invincible,
 		   so this is to balance it out */
 		if (player.CountInv("PowerSuper") || player.CountInv("PowerHyper")) {
-			deprecation *= 2;
+			deprecation *= 1.5;
 		}
 		
 		/* Deducting score */
@@ -295,16 +304,25 @@ class StyleSystem : EventHandler
 		if (score < 0 || player.health <= 0) score = 0;
 		cvar.FindCvar("StyleScore").SetInt(score);
 		
+		// Used above, for deprecation delay
 		current_tick++;
 		
-		if 		(score >= 200000) cvar.FindCvar("StyleRank").SetInt(5); // Supersonic!!
+		// Set your Style Rank
+		if 		(score >= 350000) cvar.FindCvar("StyleRank").SetInt(6); // Super Sonic!!!
+		else if (score >= 200000) cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
 		else if (score >= 90000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
 		else if (score >= 45000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
-		else if (score >= 20000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
-		else if (score >= 1500)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
+		else if (score >= 15000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
+		else if (score >= 500)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
 		else 					  cvar.FindCvar("StyleRank").SetInt(0); // Empty
 		
+		// Obtain Style Rank to sync up
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
+		
+		// Style Bonuses
+		if (stylerank >= 3 && !(player.CountInv("PowerSuper") || player.CountInv("PowerHyper"))) {
+			player.A_GiveInventory("ChaosEnergy", stylerank - 3);
+		}
 	}
 	
 	private void UpdateWeapon()

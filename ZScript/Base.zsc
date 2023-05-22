@@ -130,9 +130,6 @@ class LockLoadPlayer : PlayerPawn
 		else {
 			A_SetSpeed(4);
 		}
-		if (GetCvar("StyleSystem") && GetCvar("StyleRank") >= 3 && !(CountInv("PowerSuper")||CountInv("PowerHyper"))) {
-			A_GiveInventory("ChaosEnergy", 1);
-		}
 		Super.Tick();
 	}
 	override void CheckJump()
