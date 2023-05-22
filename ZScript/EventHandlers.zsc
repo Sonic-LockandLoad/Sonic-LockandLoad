@@ -234,7 +234,7 @@ class StyleSystem : EventHandler
 				penalty = 2096;
 				break;
 			case 6: // Super Sonic!!!
-				penalty = 3192;
+				penalty = 2192;
 				break;
 		}
 		penalty += e.damage / 3 * score / 16;
@@ -268,7 +268,7 @@ class StyleSystem : EventHandler
 				deprecation = 4096;
 				break;
 			case 6:
-				deprecation = 5128;
+				deprecation = 4128;
 				break;
 		}
 		
@@ -308,8 +308,8 @@ class StyleSystem : EventHandler
 		current_tick++;
 		
 		// Set your Style Rank
-		if 		(score >= 350000) cvar.FindCvar("StyleRank").SetInt(6); // Super Sonic!!!
-		else if (score >= 200000) cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
+		if 		(score >= 200000) cvar.FindCvar("StyleRank").SetInt(6); // Super Sonic!!!
+		else if (score >= 135000) cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
 		else if (score >= 90000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
 		else if (score >= 45000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
 		else if (score >= 15000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
