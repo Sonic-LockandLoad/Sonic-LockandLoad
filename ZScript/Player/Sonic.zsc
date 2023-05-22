@@ -815,7 +815,7 @@ class SonicKick : CustomInventory
 	int inuse;
 	int EXKick;
 	bool DidTarget;
-	action void HomeInOnTarget()
+	action bool HomeInOnTarget()
 	{
 		invoker.DidTarget = false;
 		FTranslatedLineTarget ltinfo;
@@ -826,6 +826,18 @@ class SonicKick : CustomInventory
 			invoker.DidTarget = true;
 			A_Stop();
 			double ltdistance = Distance2D(ltarget);
+			A_SetAngle(ltinfo.angleFromSource);
+			Vel = (ltarget.Pos - Pos) / 2;
+			A_StartSound("sweapons/sdash", 8);
+			return true;
+		}
+		return false;
+	}
+	action void SnapToTarget()
+	{
+		if (target) {
+			double oriX = (-40 - target.radius) * cos(angle) - 0 * sin(angle);
+			double oriY = (-40 - target.radius) * sin(angle) + 0 * cos(angle);
 			double zoffset;
 			if (pitch <= -55) {
 				A_SetPitch(-55);
@@ -838,22 +850,18 @@ class SonicKick : CustomInventory
 				zoffset = 30;
 			}
 			else zoffset = 1.2;
-			A_SetAngle(ltinfo.angleFromSource);
-			double oriX = (-40 - ltarget.radius) * cos(angle) - 0 * sin(angle);
-			double oriY = (-40 - ltarget.radius) * sin(angle) + 0 * cos(angle);
-			SetOrigin(ltarget.Vec3Offset(oriX, oriY, zoffset), false);
-			A_StartSound("sweapons/sdash", 8);
+			SetOrigin(target.Vec3Offset(oriX, oriY, zoffset), false);
 		}
 	}
 	action void SonicKickAttack(int damage, int randfactor, int range)
 	{
 		if (invoker.DidTarget) {
 			ProjectileKickBack = 1000;
-			target.DamageMobj(self, null, damage * random(1, randfactor), "SonicKick");
+			target.DamageMobj(self, null, damage * random(2, randfactor * 2), "SonicKick");
 			A_StartSound("sweapons/finalhit", 10);
 		}
 		else {
-			A_CustomPunch(random(1, randfactor) * damage, true, CPF_NOTURN, "SonicKickPuff", range, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			A_CustomPunch(damage * random(1, randfactor), true, CPF_NOTURN, "SonicKickPuff", range, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		}
 	}
 	States
@@ -867,7 +875,7 @@ class SonicKick : CustomInventory
 			TNT1 A 0 A_CheckFloor("KickAttack");
 			TNT1 A 0 { invoker.EXKick = 1; }
 		KickAttack:
-			TNT1 A 0 HomeInOnTarget();
+			TNT1 A 0 A_JumpIf(HomeInOnTarget(), "TargetSnap");
 			TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
 			TNT1 A 0 A_JumpIfInventory("PowerHyper", 1, "HyperKickAttack");
 			TNT1 A 0 A_AlertMonsters();
@@ -878,14 +886,19 @@ class SonicKick : CustomInventory
 			KICK D 1 SonicKickAttack(48, 4, 120);
 			KICK EF 1;
 			Stop;
+		TargetSnap:
+			TNT1 A 1;
+			TNT1 A 1 A_Stop();
+			TNT1 A 1 SnapToTarget();
+			TNT1 A 0 A_ChangeVelocity(-12, 0, 12 + pitch / 8, CVF_Relative);
+			Goto KickAttack+1;
 		SonicEagle:
 			EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
-			EAGL BC 1 { if (invoker.DidTarget) A_Stop(); }
+			EAGL BC 1;
 			EAGL D 1 SonicKickAttack(96, 4, 160);
 			EAGL E 1;
 			Stop;
 		SuperKickAttack:
-			TNT1 A 0 A_GiveInventory("KickCooldown", 25);
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
@@ -896,7 +909,7 @@ class SonicKick : CustomInventory
 			Stop;
 		SuperSonicEagle:
 			SEAG A 1 A_PlaySound("sweapons/swordswing", 7);
-			SEAG BC 1 { if (invoker.DidTarget) A_Stop(); }
+			SEAG BC 1;
 			SEAG D 1 SonicKickAttack(96, 16, 160);
 			SEAG E 1;
 			Stop;
@@ -917,7 +930,7 @@ class SonicKick : CustomInventory
 				A_PlaySound("sweapons/shockwave", 7);
 				A_FireBullets(5, 5, 100, 10, "GibPuff", 0);
 			}
-			HEAG BC 1 { if (invoker.DidTarget) A_Stop(); }
+			HEAG BC 1;
 			HEAG D 1 SonicKickAttack(96, 16, 160);
 			HEAG E 1;
 			Stop;
@@ -935,7 +948,7 @@ class SonicKick : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 6;
+			inuse = 9;
 		}
 	}
 }
