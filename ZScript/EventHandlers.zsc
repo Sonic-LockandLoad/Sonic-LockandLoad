@@ -149,9 +149,10 @@ class StyleSystem : EventHandler
 		/* Player mid-air */
 		if (!player.player.onground) {
 			int heightbonus = player.Pos.Z - player.GetZAt();
-			heightbonus /= 50;
+			heightbonus /= 168;
 			if (heightbonus < 2) heightbonus = 2;
-			if (heightbonus > 6) heightbonus = 6;
+			if (heightbonus > 5) heightbonus = 5;
+			console.printf("%d", heightbonus);
 			scorebonus *= heightbonus;
 		}
 		
