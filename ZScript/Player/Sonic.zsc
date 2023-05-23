@@ -876,47 +876,69 @@ class SonicKick : CustomInventory
 			TNT1 A 0 { invoker.EXKick = 1; }
 		KickAttack:
 			TNT1 A 0 A_JumpIf(HomeInOnTarget(), "TargetSnap");
-			TNT1 A 0 A_JumpIfInventory("PowerSuper", 1, "SuperKickAttack");
-			TNT1 A 0 A_JumpIfInventory("PowerHyper", 1, "HyperKickAttack");
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
-			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SonicEagle");
+			TNT1 A 0 {
+				if (!invoker.EXKick) {
+					if (CountInv("PowerHyper")) A_Overlay(-5, "HyperGroundKick");
+					else if (CountInv("PowerSuper")) A_Overlay(-5, "SuperGroundKick");
+					else A_Overlay(-5, "GroundKick");
+				}
+				else {
+					if (CountInv("PowerHyper")) A_Overlay(-5, "HyperAerialKick");
+					else if (CountInv("PowerSuper")) A_Overlay(-5, "SuperAerialKick");
+					else A_Overlay(-5, "AerialKick");
+				}
+				A_OverlayOffset(-5, 0, 32);
+			}
+			Stop;
+		TargetSnap:
+			TNT1 A 1;
+			TNT1 A 0 A_AlertMonsters();
+			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+			TNT1 A 0 {
+				if (!invoker.EXKick) {
+					if (CountInv("PowerHyper")) A_Overlay(-5, "HyperGroundKick");
+					else if (CountInv("PowerSuper")) A_Overlay(-5, "SuperGroundKick");
+					else A_Overlay(-5, "GroundKick");
+					A_OverlayOffset(-5, 0, 32);
+				}
+				else {
+					if (CountInv("PowerHyper")) A_Overlay(-5, "HyperAerialKick");
+					else if (CountInv("PowerSuper")) A_Overlay(-5, "SuperAerialKick");
+					else A_Overlay(-5, "AerialKick");
+					A_OverlayOffset(-5, 0, 32);
+				}
+			}
+			TNT1 A 1 A_Stop();
+			TNT1 A 1 SnapToTarget();
+			TNT1 A 0 A_ChangeVelocity(-12, 0, 12 + pitch / 8, CVF_Relative);
+			Stop;
+		GroundKick:
 			KICK A 1 A_PlaySound("sweapons/swordswing", 7);
 			KICK BC 1;
 			KICK D 1 SonicKickAttack(48, 4, 120);
 			KICK EF 1;
 			Stop;
-		TargetSnap:
-			TNT1 A 1;
-			TNT1 A 1 A_Stop();
-			TNT1 A 1 SnapToTarget();
-			TNT1 A 0 A_ChangeVelocity(-12, 0, 12 + pitch / 8, CVF_Relative);
-			Goto KickAttack+1;
-		SonicEagle:
+		AerialKick:
 			EAGL A 1 A_PlaySound("sweapons/swordswing", 7);
 			EAGL BC 1;
 			EAGL D 1 SonicKickAttack(96, 4, 160);
 			EAGL E 1;
 			Stop;
-		SuperKickAttack:
-			TNT1 A 0 A_AlertMonsters();
-			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
-			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "SuperSonicEagle");
+		SuperGroundKick:
 			SKIK A 1 A_PlaySound("sweapons/swordswing", 7);
 			SKIK BC 1;
 			SKIK D 1 SonicKickAttack(48, 16, 120);
 			SKIK E 1;
 			Stop;
-		SuperSonicEagle:
+		SuperAerialKick:
 			SEAG A 1 A_PlaySound("sweapons/swordswing", 7);
 			SEAG BC 1;
 			SEAG D 1 SonicKickAttack(96, 16, 160);
 			SEAG E 1;
 			Stop;
-		HyperKickAttack:
-			TNT1 A 0 A_AlertMonsters();
-			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
-			TNT1 A 0 A_JumpIf(invoker.EXKick > 0, "HyperSonicEagle");
+		HyperGroundKick:
 			HKIK A 1 {
 				A_PlaySound("sweapons/shockwave", 7);
 				A_FireBullets(25, 10, 75, 5, "GibPuff", 0);
@@ -925,7 +947,7 @@ class SonicKick : CustomInventory
 			HKIK D 1 SonicKickAttack(48, 16, 120);
 			HKIK EF 1;
 			Stop;
-		HyperSonicEagle:
+		HyperAerialKick:
 			HEAG A 1 {
 				A_PlaySound("sweapons/shockwave", 7);
 				A_FireBullets(5, 5, 100, 10, "GibPuff", 0);
@@ -948,7 +970,7 @@ class SonicKick : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 9;
+			inuse = 10;
 		}
 	}
 }
