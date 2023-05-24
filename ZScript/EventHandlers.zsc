@@ -152,7 +152,6 @@ class StyleSystem : EventHandler
 			heightbonus /= 168;
 			if (heightbonus < 2) heightbonus = 2;
 			if (heightbonus > 5) heightbonus = 5;
-			console.printf("%d", heightbonus);
 			scorebonus *= heightbonus;
 		}
 		
