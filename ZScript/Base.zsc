@@ -147,16 +147,16 @@ class LockLoadPlayer : PlayerPawn
 		if (CountInv("SonicCheck") && CountInv("PowerHyper")) {
 			dJumpCount = 2; // Two extra jumps if you're Hyper Sonic
 		}
-		if (player.onground) {
+		if (player.onground || GetCvar("DidHoming")) {
 			dJumpCounter = 0; // Reset the double jump counter once you touch the ground
 			cvar.FindCvar("DidJump").SetBool(false); // Reset the DidJump CVAR as well
 		}
 		bool IsBoostingMidAir = (CountInv("SonicCheck") && player.ReadyWeapon.GetClassName() == "Caliburn" && (CountInv("PowerSuper") || CountInv("PowerHyper")) && (buttons & BT_ALTATTACK) && !player.onground);
 		bool IsClassicNotHyper = CountInv("ClassicCheck") && !CountInv("PowerHyper");
+		bool IsHovering = CountInv("ClassicCheck") && buttons & BT_ALTATTACK && (CountInv("PowerSuper")||CountInv("PowerHyper")) && !player.onground;
 		cvar.FindCvar("CanJump").SetBool(dJumpCounter < dJumpCount || IsClassicNotHyper);
 		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP) && !IsBoostingMidAir) {
 			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
-			bool IsHovering = buttons & BT_ALTATTACK && (CountInv("PowerSuper")||CountInv("PowerHyper")) && !player.onground;
 			if (bNoGravity) {
 				Vel.Z = 3.;
 			}

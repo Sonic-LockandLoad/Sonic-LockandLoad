@@ -11,7 +11,7 @@ class ShadowPlayer : LockLoadPlayer
 		Player.StartItem "ShadowCheck";
 		Player.StartItem "ChaosSnap";
 		Player.StartItem "ChaosSpearAtk";
-		Player.StartItem "HomingAttack";
+		Player.StartItem "HomingAssault";
 		Player.StartItem "SlamAtkObject";
 		Player.StartItem "ChaosEnergy", 200;
 		Player.WeaponSlot 1, "HighShovel", "ShadowKnife";
@@ -646,81 +646,53 @@ class ChaosSnap : CustomInventory
 	}
 }
 
-class HomingAttack : CustomInventory
+class HomingAssault : CustomInventory
 {
 	int inuse;
 	bool DidTarget;
-	action void HomeInOnTarget()
-	{
-		invoker.DidTarget = false;
-		FTranslatedLineTarget ltinfo;
-		bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
-		let ltarget = ltinfo.linetarget;
-		if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
-			target = ltarget;
-			invoker.DidTarget = true;
-			A_Stop();
-			double ltdistance = Distance2D(ltarget);
-			double zoffset;
-			if (pitch <= -55) {
-				A_SetPitch(-55);
-				zoffset = -65;
-			}
-			else if (pitch < 0) zoffset = pitch - 10;
-			else if (pitch < 7.0) zoffset = -10;
-			else if (pitch >= 40) {
-				A_SetPitch(40);
-				zoffset = 30;
-			}
-			else zoffset = 1.2;
-			A_SetAngle(ltinfo.angleFromSource);
-			double oriX = (-40 - ltarget.radius) * cos(angle) - 0 * sin(angle);
-			double oriY = (-40 - ltarget.radius) * sin(angle) + 0 * cos(angle);
-			SetOrigin(ltarget.Vec3Offset(oriX, oriY, zoffset), false);
-			A_StartSound("sweapons/sdash", 8);
-		}
-	}
 	States
 	{
-	Use:
-		TNT1 A 0 A_Overlay(-4, "HomingAttack");
-		TNT1 A 0 A_OverlayOffset(-4, 0, 32);
-		Fail;
-	HomingAttack:
-		TNT1 A 1 {
-			invoker.DidTarget = false;
-			FTranslatedLineTarget ltinfo;
-			bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
-			let ltarget = ltinfo.linetarget;
-			if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
-				target = ltarget;
-				invoker.DidTarget = true;
-				A_Stop();
-				double ltdistance = Distance2D(ltarget);
-				double zoffset;
-				if (pitch <= -55) {
-					A_SetPitch(-55);
-					zoffset = -65;
+		Use:
+			TNT1 A 0 A_Overlay(-4, "HomingAttack");
+			TNT1 A 0 A_OverlayOffset(-4, 0, 32);
+			Fail;
+		HomingAttack:
+			TNT1 A 1 {
+				invoker.DidTarget = false;
+				cvar.FindCvar("DidHoming").SetBool(false);
+				FTranslatedLineTarget ltinfo;
+				bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+				let ltarget = ltinfo.linetarget;
+				if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+					target = ltarget;
+					invoker.DidTarget = true;
+					cvar.FindCvar("DidHoming").SetBool(true);
+					A_Stop();
+					double ltdistance = Distance2D(ltarget);
+					double zoffset;
+					if (pitch <= -55) {
+						A_SetPitch(-55);
+						zoffset = -65;
+					}
+					else if (pitch < 0) zoffset = pitch - 10;
+					else if (pitch < 7.0) zoffset = -10;
+					else if (pitch >= 40) {
+						A_SetPitch(40);
+						zoffset = 30;
+					}
+					else zoffset = 1.2;
+					A_SetAngle(ltinfo.angleFromSource);
+					double oriX = (-40 - ltarget.radius) * cos(angle) - 0 * sin(angle);
+					double oriY = (-40 - ltarget.radius) * sin(angle) + 0 * cos(angle);
+					SetOrigin(ltarget.Vec3Offset(oriX, oriY, zoffset), false);
+					A_StartSound("sweapons/sdash", 8);
+					ProjectileKickBack = 1000;
+					target.DamageMobj(self, null, 150 * random(1, 5), "ShadowMelee");
+					A_StartSound("sweapons/finalhit", 10);
+					A_ChangeVelocity(-8, 0, 10, CVF_Relative|CVF_Replace);
 				}
-				else if (pitch < 0) zoffset = pitch - 10;
-				else if (pitch < 7.0) zoffset = -10;
-				else if (pitch >= 40) {
-					A_SetPitch(40);
-					zoffset = 30;
-				}
-				else zoffset = 1.2;
-				A_SetAngle(ltinfo.angleFromSource);
-				double oriX = (-40 - ltarget.radius) * cos(angle) - 0 * sin(angle);
-				double oriY = (-40 - ltarget.radius) * sin(angle) + 0 * cos(angle);
-				SetOrigin(ltarget.Vec3Offset(oriX, oriY, zoffset), false);
-				A_StartSound("sweapons/sdash", 8);
-				ProjectileKickBack = 1000;
-				target.DamageMobj(self, null, 150 * random(1, 5), "ShadowMelee");
-				A_StartSound("sweapons/finalhit", 10);
-				A_ChangeVelocity(-8, 0, 10, CVF_Relative|CVF_Replace);
 			}
-		}
-		Stop;
+			Stop;
 	}
 	override void DoEffect()
 	{
