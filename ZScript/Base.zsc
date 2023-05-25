@@ -122,10 +122,21 @@ class LockLoadPlayer : PlayerPawn
 			cvar.FindCvar("CanHoming").SetBool(reticleActive);
 		}
 		if (GetCvar("ReservedMode")) {
-			A_SetSpeed(2.5);
+			if (CountInv("PowerHyper")) {
+				A_SetSpeed(4);
+			}
+			else if (CountInv("PowerSuper")) {
+				A_SetSpeed(3);
+			}
+			else {
+				A_SetSpeed(2.5);
+			}
 		}
-		else if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+		else if (CountInv("PowerHyper")) {
 			A_SetSpeed(8);
+		}
+		else if (CountInv("PowerSuper")) {
+			A_SetSpeed(6);
 		}
 		else {
 			A_SetSpeed(4);
