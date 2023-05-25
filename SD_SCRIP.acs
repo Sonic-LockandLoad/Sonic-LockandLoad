@@ -1346,61 +1346,34 @@ script "FormTint" (void)
 	int counter;
 	int cdelay = 5;
 	bool redFlash = false;
-	while (CheckInventory("PowerSuper") || CheckInventory("PowerSuper")) {
+	while (CheckInventory("PowerSuper") || CheckInventory("PowerHyper")) {
 		counter++;
 		if (counter % cdelay == 0) {
 			redFlash = !redFlash;
 		}
+		Delay(1);
 		if (ClassifyActor(0) & ACTOR_ALIVE) {
 			switch (PlayerClass(PlayerNumber())) {
-				case Sonic:
-					if (CheckInventory("PowerHyper")) {
-						if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
-							FadeTo(255, 0, 0, 0.1, 0.1);
-						}
-						else FadeTo(255, 255, 255, 0.1, 0.1);
-					}
-					else if (CheckInventory("PowerSuper")) {
-						if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
-							FadeTo(255, 0, 0, 0.2, 0.1);
-						}
-						else FadeTo(240, 188, 24, 0.1, 0.1);
-					}
-					break;
 				case Amy:
-					if (CheckInventory("PowerSuper")) {
-						if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
-							FadeTo(255, 0, 0, 0.3, 0.1);
-						}
-						else FadeTo(123, 13, 102, 0.3, 0.1);
+					if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
+						FadeTo(255, 0, 0, 0.3, 0.1);
+					}
+					else {
+						FadeTo(123, 13, 102, 0.3, 0.1);
 					}
 					break;
-				case ClassicSonic:
-					if (CheckInventory("PowerHyper")) {
-						if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
-							FadeTo(255, 0, 0, 0.2, 0.1);
-						}
-						else FadeTo(255, 255, 255, 0.1, 0.1);
+				default:
+					if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
+						FadeTo(255, 0, 0, 0.2 + GetCvar("PowerHyper") * 0.1, 0.1);
 					}
-					else if (CheckInventory("PowerSuper")) {
-						if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
-							FadeTo(255, 0, 0, 0.2, 0.1);
-						}
-						else FadeTo(240, 188, 24, 0.1, 0.1);
-					}
-					break;
-				case Shadow:
-					if (CheckInventory("PowerSuper")) {
-						if (CheckInventory("ChaosEnergy") < 50 && redFlash && GetCvar("LowEnergySound")) {
-							FadeTo(255, 0, 0, 0.2, 0.1);
-						}
-						else FadeTo(234, 205, 114, 0.1, 0.1);
+					else {
+						FadeTo(128, 128, 128, 0.1, 0.1);
 					}
 					break;
 			}
 		}
-		Delay(1);
 	}
+	FadeTo(0, 0, 0, 0.0, 0);
 }
 
 script "HomingReticle" (void)
@@ -1418,13 +1391,15 @@ script "HomingReticle" (void)
 
 script "ParryEffect" (void)
 {
+	ACS_NamedSuspend("FormTint", 0);
 	SetActivator(1001);
 	AmbientSound("sweapons/blockattackx", 127);
 	FadeTo(255, 255, 255, 0.8, 0.1);
 	Delay(1);
 	FadeTo(255, 255, 255, 0.2, 0.1);
 	Delay(6);
-	FadeTo(0, 0, 0, 0, 0.1); 
+	ACS_NamedExecute("FormTint", 0);
+	FadeTo(0, 0, 0, 0, 0.1);
 }
 
 script "StyleRank" ENTER
