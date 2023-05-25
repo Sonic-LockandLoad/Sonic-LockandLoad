@@ -301,7 +301,7 @@ class Caliburn : BoostEnabledWeapon
 	{
 		FTranslatedLineTarget t;
 		LineAttack(angle, distance, pitch, 0, 'Melee', "SwordPuff", LAF_ISMELEEATTACK, t);
-		if (t.linetarget || !player.onground) return;
+		if (t.linetarget) return;
 		if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
 			A_PlaySound("sweapons/soulsurge", 6, 0.5);
 			string direction = rightFacing ? "Right" : "Left";
