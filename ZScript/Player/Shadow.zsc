@@ -544,7 +544,8 @@ class ChaosSpearAtk : CustomInventory
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
+		bool CanHomingWithOffhand = cvar.FindCvar("CanHoming").GetBool() && cvar.FindCvar("HomingAssaultOffhand").GetBool();
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS) & BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_RELOAD) && inuse == 0 && !CanHomingWithOffhand)
 		{
 			owner.UseInventory(self);
 			inuse = 15;
@@ -650,6 +651,52 @@ class HomingAssault : CustomInventory
 {
 	int inuse;
 	bool DidTarget;
+	action bool HomeInOnTarget()
+	{
+		invoker.DidTarget = false;
+		FTranslatedLineTarget ltinfo;
+		bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+		let ltarget = ltinfo.linetarget;
+		if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+			target = ltarget;
+			invoker.DidTarget = true;
+			A_Stop();
+			double ltdistance = Distance2D(ltarget);
+			A_SetAngle(ltinfo.angleFromSource);
+			Vel = (ltarget.Pos - Pos) / 2;
+			cvar.FindCvar("DidHoming").SetBool(true);
+			return true;
+		}
+		cvar.FindCvar("DidHoming").SetBool(false);
+		return false;
+	}
+	action void DamageTarget(Actor damagetarget)
+	{
+		target.DamageMobj(self, null, 150 * random(2, 10), "ShadowMelee");
+		A_Explode(35, 256, 0, false, 128);
+	}
+	action void SnapToTarget()
+	{
+		if (target) {
+			double oriX = (-40 - target.radius) * cos(angle) - 0 * sin(angle);
+			double oriY = (-40 - target.radius) * sin(angle) + 0 * cos(angle);
+			double zoffset;
+			if (pitch <= -55) {
+				A_SetPitch(-55);
+				zoffset = -65;
+			}
+			else if (pitch < 0) zoffset = pitch - 10;
+			else if (pitch < 7.0) zoffset = -10;
+			else if (pitch >= 40) {
+				A_SetPitch(40);
+				zoffset = 40;
+			}
+			else zoffset = 1.2;
+			ProjectileKickBack = 1000;
+			SetOrigin(target.Vec3Offset(oriX, oriY, zoffset), false);
+			DamageTarget(target);
+		}
+	}
 	States
 	{
 		Use:
@@ -657,41 +704,15 @@ class HomingAssault : CustomInventory
 			TNT1 A 0 A_OverlayOffset(-4, 0, 32);
 			Fail;
 		HomingAttack:
-			TNT1 A 1 {
-				invoker.DidTarget = false;
-				cvar.FindCvar("DidHoming").SetBool(false);
-				FTranslatedLineTarget ltinfo;
-				bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
-				let ltarget = ltinfo.linetarget;
-				if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
-					target = ltarget;
-					invoker.DidTarget = true;
-					cvar.FindCvar("DidHoming").SetBool(true);
-					A_Stop();
-					double ltdistance = Distance2D(ltarget);
-					double zoffset;
-					if (pitch <= -55) {
-						A_SetPitch(-55);
-						zoffset = -65;
-					}
-					else if (pitch < 0) zoffset = pitch - 10;
-					else if (pitch < 7.0) zoffset = -10;
-					else if (pitch >= 40) {
-						A_SetPitch(40);
-						zoffset = 30;
-					}
-					else zoffset = 1.2;
-					A_SetAngle(ltinfo.angleFromSource);
-					double oriX = (-40 - ltarget.radius) * cos(angle) - 0 * sin(angle);
-					double oriY = (-40 - ltarget.radius) * sin(angle) + 0 * cos(angle);
-					SetOrigin(ltarget.Vec3Offset(oriX, oriY, zoffset), false);
-					A_StartSound("sweapons/sdash", 8);
-					ProjectileKickBack = 1000;
-					target.DamageMobj(self, null, 150 * random(1, 5), "ShadowMelee");
-					A_StartSound("sweapons/finalhit", 10);
-					A_ChangeVelocity(-8, 0, 10, CVF_Relative|CVF_Replace);
-				}
-			}
+			TNT1 A 0 A_JumpIf(HomeInOnTarget(), "TargetSnap");
+			Stop;
+		TargetSnap:
+			TNT1 A 1 A_StartSound("sweapons/sdash", 8);
+			TNT1 A 0 A_AlertMonsters();
+			TNT1 A 1 A_Stop();
+			TNT1 A 1 SnapToTarget();
+			TNT1 A 0 A_ChangeVelocity(-6, 0, 16, CVF_Relative);
+			TNT1 A 0 { cvar.FindCvar("DidHoming").SetBool(false); }
 			Stop;
 	}
 	override void DoEffect()
@@ -704,10 +725,17 @@ class HomingAssault : CustomInventory
 		{
 			inuse--;
 		}
-		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_JUMP && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_JUMP) && inuse == 0 && !owner.player.onground)
+		int ActivationKey;
+		if (cvar.FindCvar("HomingAssaultOffhand").GetBool()) {
+			ActivationKey = BT_RELOAD; // Jump -> Offhand Attack
+		}
+		else {
+			ActivationKey = BT_JUMP; // Jump -> Jump
+		}
+		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS) & ActivationKey && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS) & ActivationKey) && inuse == 0 && !owner.player.onground)
 		{
 			owner.UseInventory(self);
-			inuse = 1;
+			inuse = 3;
 		}
 	}
 }

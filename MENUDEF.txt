@@ -54,6 +54,7 @@ OptionMenu "LockandLoadOptions"
 	SubMenu "Abilities", "LLAbilitiesMenu"
 	SubMenu "Modifiers", "LLModsMenu"
 	SubMenu "Miscellaneous", "LLMiscOptMenu"
+	SubMenu "Specific Controls", "LLSpecControl"
 	StaticText ""
 	
 	SubMenu "Advanced Options", "OptionsMenu"
@@ -64,37 +65,56 @@ OptionMenu "LLAbilitiesMenu"
 	Title "Abilities"
 	
 	StaticText "Configure character abilties.", "White"
-	StaticText "Toggle things like crashing into walls and Hyper forms,", "White"
-	StaticText "and change things like how far the Precision Shotgun", "White"
-	StaticText "zooms in or when the Homing Reticle appears.", "White"
+	StaticText "Toggle various abilities and adjust settings for", "White"
+	StaticText "specific characters.", "White"
 	StaticText ""
 	
 	Option "Reserved Mode", "ReservedMode", "EnabledOrNot"
 	StaticText "All characters", "Cyan"
-	StaticText "Tones down movement speed and jump height, intended", "White"
-	StaticText "for use with standard DOOM levels.", "White"
+	StaticText "Tones down movement speed and jump height,", "White"
+	StaticText "suitable for standard DOOM levels.", "White"
 	StaticText ""
 	
 	Option "Crash into walls when Boosting", "WallCrash", "EnabledOrNot"
 	StaticText "Sonic only", "Cyan"
+	StaticText "Enable or disable crashing into walls while performing the Boost.", "White"
 	StaticText ""
 	
 	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
 	StaticText "Amy only", "Cyan"
+	StaticText "Adjust the zoom factor of Amy's Precision Shotgun scope.", "White"
 	StaticText ""
 	
 	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
 	StaticText "Sonic or Classic", "Cyan"
+	StaticText "Enable or disable Hyper Sonic transformation.", "White"
 	StaticText ""
 	
 	Option "Homing Reticle", "HomingReticle", "HomingReticle"
 	StaticText "Sonic or Shadow", "Cyan"
-	StaticText ""
-
-    Option "Recoil Burst Activation", "RecoilBurstRelease", "RecoilBurstRelease"
-	StaticText "Sonic only", "Cyan"
+	StaticText "Change the Homing Reticle for Sonic or Shadow.", "White"
 	StaticText ""
 	
+}
+OptionMenu "LLSpecControl"
+{
+	Title "Specific Controls"
+	
+	StaticText "Configure alternative controls.", "White"
+	StaticText "Toggle what buttons to use for certain special abilities.", "White"
+	StaticText ""
+	
+    Option "Recoil Burst", "RecoilBurstRelease", "RecoilBurstRelease"
+	StaticText "Sonic only", "Cyan"
+	StaticText "Choose between one-button or two-button activation for", "White"
+	StaticText "the Accelerated Pistol's Recoil Burst.", "White"
+	StaticText ""
+
+    Option "Homing Assault", "HomingAssaultOffhand", "HomingAssaultOffhand"
+	StaticText "Shadow only", "Cyan"
+	StaticText "Choose between using the Jump key or Offhand Attack key", "White"
+	StaticText "for Shadow's Homing Assault.", "White"
+	StaticText ""
 }
 OptionMenu "LLMiscOptMenu"
 {
@@ -260,15 +280,15 @@ OptionValue "HUDType"
 	1, "Classic-Style" // Pre-Chaos Update HUD
 	2, "Legacy" // Minimal HUD, ripped from STHiD Legacy Edition
 }
-OptionValue "JumpThok"
-{
-	0, "Offhand Ability only"
-	1, "Off. Ability or Jump mid-air"
-}
 OptionValue "RecoilBurstRelease"
 {
-	0, "Press Fire while holding Alt-Fire"
+	0, "Fire while holding Alt-Fire"
 	1, "Release Alt-Fire"
+}
+OptionValue "HomingAssaultOffhand"
+{
+	0, "Jump"
+	1, "Offhand Attack"
 }
 OptionValue "HomingReticle"
 {
