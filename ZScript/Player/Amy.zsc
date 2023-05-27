@@ -36,7 +36,6 @@ class AmyPlayer : LockLoadPlayer
 	}
 	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod)
 	{
-		Super.DamageMobj(inflictor, source, damage, mod);
 		if (CountInv("PowerBlocking")) {
 			ACS_NamedExecute("ParryEffect");
 			if (inflictor is "Actor" && inflictor != null) {
@@ -55,7 +54,7 @@ class AmyPlayer : LockLoadPlayer
 			}
 			if (damage / 4) A_TakeInventory("ChaosEnergy", damage / 4);
 		}
-		return damage;
+		return Super.DamageMobj(inflictor, source, damage, mod);
 	}
 	States
 	{

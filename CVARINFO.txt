@@ -23,6 +23,7 @@ user bool EnemiesBleedRings			= false;
 user bool StyleSystem				= false;
 user bool SpongyEnemies				= false;
 user int Sponginess					= 2;
+user bool OneHitMode				= false;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
