@@ -87,6 +87,13 @@ class EnemiesBleedRings : EventHandler
 					spawned_ring.Vel += e.thing.Vel / 2;
 				}
 			}
+			FTranslatedLineTarget t;
+			for (int offset = 0; offset < 360; offset += 45) {
+				e.thing.LineAttack(e.thing.angle + offset, 192, e.thing.pitch, 0, "None", "InvisiblePuff", 0, t);
+				if (t.linetarget && t.linetarget is "PlayerPawn") {
+					t.linetarget.A_GiveInventory("Health", ringcount / 4);
+				}
+			}
 		}
     }
 }
