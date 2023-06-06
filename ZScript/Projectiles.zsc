@@ -5,7 +5,7 @@ class ChaosRocket : Actor
 	{
 		Radius 10;
 		Height 10;
-		Speed 20;
+		Speed 45;
 		Damage 25;
 		ExplosionDamage 100;
 		ExplosionRadius 200;
@@ -36,7 +36,7 @@ class ChaosRocket : Actor
 					// so it'll be left on in Hyper form
 				}
 				if (invoker.wasKicked) {
-					A_SeekerMissile(30, 45, SMF_LOOK, 255);
+					A_SeekerMissile(5, 10, SMF_LOOK|SMF_PRECISE, 256);
 					A_ScaleVelocity(1.15);
 				}
 				return ResolveState(null);
