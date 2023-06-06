@@ -197,6 +197,13 @@ OptionMenu "LLModsMenu"
 	StaticText "everything in your way? Enable this gameplay modifier to", "White"
 	StaticText "have any damage dealt to you instantly kill you!", "White"
 	StaticText ""
+	
+	Option "Death Counter", "CountDeaths", "EnabledOrNot"
+	StaticText "Want to know just how bad at the game you are? This gameplay", "White"
+	StaticText "modifier will tally up your deaths and display them on you", "White"
+	StaticText "when you enter a new level. Combine with One-Hit Mode for a", "White"
+	StaticText "metric of how you're doing on that mode!", "White"
+	StaticText ""
 }
 OptionMenu "LLControlsMenu"
 {

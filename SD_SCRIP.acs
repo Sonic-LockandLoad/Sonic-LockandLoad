@@ -997,13 +997,16 @@ script "Drowning" ENTER
 {
 	int drowntimer;
 	int maxdrown;
-	maxdrown = 15;
+	maxdrown = 30;
 	while (1) {
 		if (GetActorProperty(1001, APROP_Waterlevel) == 3) {
 			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper") && !CheckActorInventory(1001, "PowerInvulnerable")) {
 				drowntimer++;
 			}
-			if (drowntimer > 4)
+			if (drowntimer % 5 == 0 && drowntimer < 20) {
+				AmbientSound("sglobal/drowning", 127);
+			}
+			if (drowntimer > (maxdrown - 10))
 			{
 				switch(PlayerClass(PlayerNumber())) {
 					case Sonic:
@@ -1014,7 +1017,7 @@ script "Drowning" ENTER
 						break;
 					case ClassicSonic:
 						SetMusic("C_DROWN", 0);
-						maxdrown = 16;
+						maxdrown = 31;
 						break;
 					case Shadow:
 						SetMusic("D_DROWN", 0);
@@ -1467,5 +1470,15 @@ script "StyleRank" ENTER
 			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, 1.5, 0.28, 0.1, 1.0);
 		}
 		Delay(1);
+	}
+}
+
+script "DisplayFailures" (int failcount)
+{
+	if (failcount == 1) {
+		HudMessage(s:"You've died ", d:failcount, s:" time..."; HUDMSG_PLAIN, 96, CR_WHITE, 1.5, 0.7, 2.5, 1.0);
+	}
+	else {
+		HudMessage(s:"You've died ", d:failcount, s:" times..."; HUDMSG_PLAIN, 96, CR_WHITE, 1.5, 0.7, 2.5, 1.0);
 	}
 }

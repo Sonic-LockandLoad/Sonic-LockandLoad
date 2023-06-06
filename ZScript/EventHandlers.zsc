@@ -356,3 +356,21 @@ class SpongyEnemies : EventHandler
 		}
     }
 }
+
+class DeathCounter : StaticEventHandler
+{
+	override void PlayerSpawned(PlayerEvent e)
+	{
+		int counter = cvar.FindCvar("DeathCounter").GetInt();
+		if (counter > 0) {
+			CallACS("DisplayFailures", counter);
+		}
+	}
+	override void PlayerDied(PlayerEvent e)
+	{
+		int counter = cvar.FindCvar("DeathCounter").GetInt();
+		if (cvar.FindCvar("CountDeaths").GetBool()) {
+			cvar.FindCvar("DeathCounter").SetInt(counter + 1);
+		}
+	}
+}

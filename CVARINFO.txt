@@ -24,6 +24,7 @@ user bool StyleSystem				= false;
 user bool SpongyEnemies				= false;
 user int Sponginess					= 2;
 user bool OneHitMode				= false;
+user bool CountDeaths				= false;
 
 /* Temporary CVARs */
 user noarchive string LastWeapon		= "";
@@ -41,3 +42,4 @@ user noarchive bool	  CanJump			= false;
 user noarchive int 	  EclipseLimiter	= 0;
 user noarchive int	  StyleRank			= 0;
 user noarchive int	  StyleScore		= 0;
+user noarchive int	  DeathCounter		= 0;
