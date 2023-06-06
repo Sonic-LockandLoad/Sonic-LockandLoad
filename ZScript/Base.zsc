@@ -319,6 +319,11 @@ class SlamAtkObject : CustomInventory
 			if (below.Pos.Z > below.GetZAt()) below.A_ChangeVelocity(0, 0, -64);
 		}
 	}
+	action void DoSlamBounce()
+	{
+		Vel.Z = 20 + invoker.zdiff / 42;
+		cvar.FindCvar("DidJump").SetBool(true);
+	}
 	action void SlamAttack()
 	{
 		A_PlaySound("*slam", 1);
@@ -328,17 +333,13 @@ class SlamAtkObject : CustomInventory
 	action void BoundAttack()
 	{
 		A_PlaySound("*slam", 2);
-		int bounce = invoker.zdiff / 12 + 8;
-		if (bounce > 40) bounce = 40;
-		if (bounce < 15) bounce = 15;
-		A_ChangeVelocity(0, 0, bounce);
-		cvar.FindCvar("DidJump").SetBool(true);
+		DoSlamBounce();
 		DealSlamDamage(random(1, 8) * 64);
 	}
 	override void Tick()
 	{
 		Super.Tick();
-		if (owner.player.onground) 
+		if (owner.player.onground)
 			midfall = false;
 	}
 	States
@@ -362,6 +363,7 @@ class SlamAtkObject : CustomInventory
 			TNT1 A 0 A_PlaySound("*fall", 1);
 			/* passthrough */
 		SlamAttack:
+			TNT1 A 0 A_Stop();
 			TNT1 A 0 A_ChangeVelocity(0, 0, -500, CVF_Replace);
 			TNT1 A 1
 			{
@@ -388,8 +390,7 @@ class SlamAtkObject : CustomInventory
 			}
 			TNT1 AAAAA 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
-					int bounce = invoker.zdiff / 24;
-					A_ChangeVelocity(0, 0, bounce);
+					DoSlamBounce();
 					return ResolveState(null);
 				}
 				return ResolveState(null);
@@ -397,7 +398,9 @@ class SlamAtkObject : CustomInventory
 			TNT1 A 0 A_SetSpeed(2);
 			Stop;
 		BoundDone:
+			TNT1 AA 1 A_Stop();
 			TNT1 A 1 BoundAttack();
+			TNT1 AA 1;
 			Stop;
 	}
 	override void DoEffect()
@@ -406,11 +409,11 @@ class SlamAtkObject : CustomInventory
 		if (inuse > 0) {
 			inuse--;
 		}
-		int CrouchPressed = owner.GetPlayerInput(INPUT_BUTTONS) & BT_CROUCH && !(owner.GetPlayerInput(INPUT_OLDBUTTONS) & BT_CROUCH);
-		if (owner is "PlayerPawn" && !owner.player.onground && CrouchPressed && inuse == 0) {
-			owner.UseInventory(self);	
-			if (owner.CountInv("ClassicCheck")) inuse = 2;
-			else inuse = 6;
+		bool above_ground = !owner.player.onground;
+		bool crouch_pressed = owner.GetPlayerInput(INPUT_BUTTONS) & BT_CROUCH && !(owner.GetPlayerInput(INPUT_OLDBUTTONS) & BT_CROUCH);
+		if (owner is "PlayerPawn" && above_ground && crouch_pressed && inuse == 0) {
+			owner.UseInventory(self);
+			inuse = 6;
 		}
 	}
 }
