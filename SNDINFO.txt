@@ -13,6 +13,7 @@ sglobal/lowhealth			lohealth
 sglobal/lowenergy			loenergy
 sglobal/rankget				Rank
 sglobal/booster				booster
+sglobal/drowning			drowning
 
 // Style system callouts
 sstyle/good					GOOD
