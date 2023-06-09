@@ -1083,18 +1083,30 @@ script "WallJump" (int height, int distance, int angle)
 	   If you have a better solution for
 	   this send a PR or something. */
 	switch (angle) {
-		case 90:
-			jangle = 64;
-			break;
-		case 180:
-			jangle = 128;
-			break;
-		case 270:
-			jangle = 192;
-			break;
-		case 360:
+		case 360: // forwards
 		default:
 			jangle = 256;
+			break;
+		case 90: // to the right
+			jangle = 64;
+			break;
+		case 45: // to the forward-left
+			jangle = 32;
+			break;
+		case 135: // to the forward-right
+			jangle = 96;
+			break;
+		case 180: // behind
+			jangle = 128;
+			break;
+		case 270: // to the left
+			jangle = 192;
+			break;
+		case 225: // to the back-right
+			jangle = 160;
+			break;
+		case 315: // to the back-left
+			jangle = 224;
 			break;
 	}
 	ThrustThing((GetActorAngle(0) >> 8) + jangle, distance * -1, 1, 0);

@@ -151,8 +151,8 @@ class LockLoadPlayer : PlayerPawn
 	{
 		let player = self.player;
 		double wJumpHeight;
-		double wJumpHeightOffset = 50;
-		double wJumpDistance = 25;
+		double wJumpHeightOffset = 65;
+		double wJumpDistance = 20;
 		bool isTouchingWall = GetCvar("CanWallJump");
 		int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 		int dJumpCount = 1; // You get an extra jump
@@ -321,7 +321,9 @@ class SlamAtkObject : CustomInventory
 	}
 	action void DoSlamBounce()
 	{
-		Vel.Z = 20 + invoker.zdiff / 42;
+		Vel.Z = 20 + invoker.zdiff / 41;
+		if (invoker.zdiff > 300)
+			Vel.Z += 2 * (invoker.zdiff / 300);
 		cvar.FindCvar("DidJump").SetBool(true);
 	}
 	action void SlamAttack()
