@@ -2,7 +2,6 @@ class ClassicSonicPlayer : LockLoadPlayer
 {
 	Default
 	{
-		Health 125;
 		DamageFactor "RocketStream", 0.2;
 		Player.DisplayName "$classic";
 		Player.SoundClass "classic";

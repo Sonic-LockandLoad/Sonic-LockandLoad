@@ -2,7 +2,6 @@ class AmyPlayer : LockLoadPlayer
 {
 	Default
 	{
-		Health 100;
 		Player.DisplayName "$amy";
 		Player.Face "AMF";
 		Player.SoundClass "amy";

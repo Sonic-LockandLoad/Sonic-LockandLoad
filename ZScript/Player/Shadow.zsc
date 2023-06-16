@@ -2,7 +2,6 @@ class ShadowPlayer : LockLoadPlayer
 {
 	Default
 	{
-		Health 145;
 		Player.DisplayName "$shadow";
 		Player.Face "SHF";
 		Player.SoundClass "shadow";
