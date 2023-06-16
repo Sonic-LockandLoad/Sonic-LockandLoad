@@ -2,7 +2,6 @@ class SonicPlayer : LockLoadPlayer
 {
 	Default
 	{
-		Health 125;
 		Player.DisplayName "$sonic";
 		Player.Face "SNF";
 		Player.SoundClass "sonic";
@@ -250,6 +249,7 @@ class BoostEnabledWeapon : LockLoadWeapon
 class Caliburn : BoostEnabledWeapon
 {
 	double oldVelZ;
+	int DamageBonus;
 	override void Tick()
 	{
 		oldVelZ = vel.z;
@@ -284,7 +284,7 @@ class Caliburn : BoostEnabledWeapon
 		A_StartSound("sweapons/swordswing", 9);
 		AerialSwordDash(GetPlayerInput(INPUT_FORWARDMOVE), distance);
 		FireEnergyBlade(distance, rightFacing);
-		PerformMeleeAttack(damage, distance, angle, pitch, 30);
+		PerformMeleeAttack(damage + invoker.DamageBonus * 2, distance, angle, pitch, 30);
 	}
 
 	action void AerialSwordDash(double forwardMove, double distance)
@@ -356,9 +356,11 @@ class Caliburn : BoostEnabledWeapon
 		Slash1:
 			CAL1 A 1;
 			TNT1 A 0 SwordAttack(40, 90, false);
+			TNT1 A 0 { invoker.DamageBonus = 0; }
 			CAL1 BCD 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			CAL1 EEEEE 1 Bright {
+			CAL1 EEEEEEEEEEEEEE 1 Bright {
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+				invoker.DamageBonus++;
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_ATTACK))) {
 					return ResolveState("Slash2");
 				}
@@ -373,8 +375,9 @@ class Caliburn : BoostEnabledWeapon
 			CAL2 A 1;
 			TNT1 A 0 SwordAttack(40, 90, true);
 			CAL2 BCD 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			CAL2 EEEEE 1 Bright {
+			CAL2 EEEEEEEEEEEEEE 1 Bright {
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+				invoker.DamageBonus++;
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_ATTACK))) {
 					return ResolveState("Slash1");
 				}
@@ -458,11 +461,11 @@ class AcceleratedPistol : LockLoadWeapon
 			A_ChangeVelocity (Cos(Pitch) * (-10 - recoilbonus), 0, Sin(Pitch) * (10 + recoilbonus), CVF_Relative);
 		}
 		else if (invoker.charge >= 50) {
-			A_RailAttack(90 + strengthbonus, 0, 1, "009c9f", "6364bb", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
+			A_RailAttack(65 + strengthbonus, 0, 1, "009c9f", "6364bb", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
 			A_ChangeVelocity (Cos(Pitch) * (-10 - recoilbonus), 0, Sin(Pitch) * (10 + recoilbonus), CVF_Relative);
 		}
 		else {
-			A_RailAttack(60 + strengthbonus, 0, 1, "c5feff", "c5c6ff", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
+			A_RailAttack(30 + strengthbonus, 0, 1, "c5feff", "c5c6ff", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
 			A_ChangeVelocity (Cos(Pitch) * (-7 - recoilbonus), 0, Sin(Pitch) * (7 + recoilbonus), CVF_Relative);
 		}
 		A_GunFlash("BurstFlash");
