@@ -173,6 +173,19 @@ class AccelPrerequisite : PowerupGiver
 }
 class PowerAccel : Powerup {}
 
+
+class SwordDashPrerequisite : PowerupGiver
+{
+	Default
+	{
+		Powerup.Type "PowerSDash";
+		Powerup.Duration 5;
+		+INVENTORY.AUTOACTIVATE;
+		+NOPAIN;
+	}
+}
+class PowerSDash : Powerup {}
+
 class Unseen : PowerupGiver
 {
 	Default

@@ -41,6 +41,7 @@ class SonicPlayer : LockLoadPlayer
 		Super.Tick();
 		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_FORWARD && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_FORWARD)) {
 			A_GiveInventory("AccelPrerequisite");
+			A_GiveInventory("SwordDashPrerequisite");
 		}
 		if (player.ReadyWeapon != null && !(player.ReadyWeapon.GetClassName() == "EclipseBlaster" && GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK)) {
 			// One of these days I need to stop relying on CVARs
@@ -289,14 +290,10 @@ class Caliburn : BoostEnabledWeapon
 
 	action void SwordDash(double forwardMove, double distance)
 	{
-		if (CountInv("PowerAccel")) {
-			/* Check if the player recently pressed the forward key,
-			   i.e. did an Accel Boost rerequisite input.
-			   I figured I'd just repurpose that item here. */
-			if (!player.onground)
-				A_ChangeVelocity(distance / 6, 0, 0, CVF_Relative);
-			else
-				A_ChangeVelocity(distance / 3, 0, 0, CVF_Relative);
+		bool PressedForward = GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(INPUT_OLDBUTTONS) & BT_ATTACK));
+		if (CountInv("PowerSDash") || PressedForward) {
+			/* Check if the player recently pressed the forward key */
+			A_ChangeVelocity(distance / 4, 0, 0, CVF_Relative);
 		}
 	}
 
