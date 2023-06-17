@@ -282,18 +282,21 @@ class Caliburn : BoostEnabledWeapon
 	action void SwordAttack(int damage, double distance, bool rightFacing)
 	{
 		A_StartSound("sweapons/swordswing", 9);
-		AerialSwordDash(GetPlayerInput(INPUT_FORWARDMOVE), distance);
+		SwordDash(GetPlayerInput(INPUT_FORWARDMOVE), distance);
 		FireEnergyBlade(distance, rightFacing);
 		PerformMeleeAttack(damage + invoker.DamageBonus * 2, distance, angle, pitch, 30);
 	}
 
-	action void AerialSwordDash(double forwardMove, double distance)
+	action void SwordDash(double forwardMove, double distance)
 	{
-		if (!player.onground) {
-			if (forwardMove / 6400)
-				A_ChangeVelocity(distance / 4, 0, 0, CVF_Relative);
+		if (CountInv("PowerAccel")) {
+			/* Check if the player recently pressed the forward key,
+			   i.e. did an Accel Boost rerequisite input.
+			   I figured I'd just repurpose that item here. */
+			if (!player.onground)
+				A_ChangeVelocity(distance / 6, 0, 0, CVF_Relative);
 			else
-				A_ChangeVelocity(distance / 8, 0, 0, CVF_Relative);
+				A_ChangeVelocity(distance / 3, 0, 0, CVF_Relative);
 		}
 	}
 
