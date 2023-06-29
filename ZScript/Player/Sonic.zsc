@@ -293,7 +293,7 @@ class Caliburn : BoostEnabledWeapon
 		bool PressedForward = GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(INPUT_OLDBUTTONS) & BT_ATTACK));
 		if (CountInv("PowerSDash") || PressedForward) {
 			/* Check if the player recently pressed the forward key */
-			A_ChangeVelocity(distance / 4, 0, 0, CVF_Relative);
+			A_ChangeVelocity(distance / 3, 0, 0, CVF_Relative);
 		}
 	}
 
