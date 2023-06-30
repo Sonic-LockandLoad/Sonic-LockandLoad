@@ -1433,24 +1433,31 @@ script "StyleRank" ENTER
 		else if (stylerank == C) SetFont("c_rank");
 		else if (stylerank == D) SetFont("d_rank");
 		str StyleName;
+		str StyleColour;
 		switch (GetCvar("StyleRank")) {
 			case SS:
-				StyleName = "\c[S]Super Sonic!!!";
+				StyleName = "stylerank_ss";// Super Sonic!!!
+				StyleColour = "\c[S]";
 				break;
 			case S:
-				StyleName = "\c[S]Skyrocketing!!";
+				StyleName = "stylerank_s"; // Skyrocketing!!
+				StyleColour = "\c[S]";
 				break;
 			case A:
-				StyleName = "\c[A]Adventurer!";
+				StyleName = "stylerank_a"; // Adventurer!
+				StyleColour = "\c[A]";
 				break;
 			case B:
-				StyleName = "\c[B]Blazing";
+				StyleName = "stylerank_b"; // Blazing
+				StyleColour = "\c[B]";
 				break;
 			case C:
-				StyleName = "\c[C]Cruising";
+				StyleName = "stylerank_c"; // Cruising
+				StyleColour = "\c[C]";
 				break;
 			case D:
-				StyleName = "\c[D]Drifting";
+				StyleName = "stylerank_d"; // Drifting
+				StyleColour = "\c[D]";
 				break;
 			default:
 				StyleName = "";
@@ -1474,7 +1481,7 @@ script "StyleRank" ENTER
 		}
 		if (StyleName != "") {
 			SetFont("SMALLFONT");
-			HudMessage(s:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, 1.5, 0.24, 0.1, 1.0);
+			HudMessage(s:StyleColour, l:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, 1.5, 0.24, 0.1, 1.0);
 		}
 		oldrank = GetCvar("StyleRank");
 		if (stylerank >= 1) {

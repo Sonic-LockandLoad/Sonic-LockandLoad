@@ -246,6 +246,13 @@ cresult3		= "\c[Classic] Sonic: \c[White] Barely made it...";
 dresult1		= "\c[Shadow] Shadow: \c[White] Yes!";
 dresult2		= "\c[Shadow] Shadow: \c[White] Need to stay focused.";
 
+stylerank_ss	= "Super Sonic!!!";
+stylerank_s		= "Skyrocketing!!";
+stylerank_a		= "Adventurer!";
+stylerank_b		= "Blazing";
+stylerank_c		= "Cruising";
+stylerank_d		= "Drifting";
+
 death_msg1		= "Skill issue.";
 death_msg2		= "Wow, that was the gameplay ever.";
 death_msg3		= "To defeat the enemies, shoot at them until they die.";
