@@ -67,7 +67,7 @@ MenuActive
 	#1B1BFF  #9B9BFF
 }
 
-MenuInactive
+MenuInactive LiBlue
 {
 	#001a9c  #0078FF
 }

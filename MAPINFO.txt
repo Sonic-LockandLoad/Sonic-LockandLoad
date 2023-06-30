@@ -174,9 +174,8 @@ skill easy
 	PlayerClassName = "$classic", "$skill1_classic"
 	PlayerClassName = "$shadow", "$skill1_shadow"
 	name = "$skill1"
-	spawnfilter = 2
+	spawnfilter = 3
 	totalinfighting
-	slowmonsters
 	mustconfirm = "$skill_text1"
 }
 
@@ -187,7 +186,7 @@ skill standard
 	PlayerClassName = "$classic", "$skill2_classic"
 	PlayerClassName = "$shadow", "$skill2_shadow"
 	name = "$skill2"
-	spawnfilter = 3
+	spawnfilter = 4
 	defaultskill
 	mustconfirm = "$skill_text2"
 }
@@ -195,6 +194,7 @@ skill standard
 skill hard
 {
 	spawnfilter = 4
+	FastMonsters
 	PlayerClassName = "$sonic", "$skill3_sonic"
 	PlayerClassName = "$amy", "$skill3_amy"
 	PlayerClassName = "$classic", "$skill3_classic"
@@ -205,31 +205,15 @@ skill hard
 
 skill harder
 {
+	damagefactor = 2
+	spawnfilter = 5
+	FastMonsters
 	PlayerClassName = "$sonic", "$skill4_sonic"
 	PlayerClassName = "$amy", "$skill4_amy"
 	PlayerClassName = "$classic", "$skill4_classic"
 	PlayerClassName = "$shadow", "$skill4_shadow"
 	name = "$skill4"
-	spawnfilter = 4
-	FastMonsters
 	mustconfirm = "$skill_text4"
-}
-
-skill wtf
-{
-	damagefactor = 2
-	spawnfilter = 5
-	FastMonsters
-	PlayerClassName = "$sonic", "$skill5_sonic"
-	PlayerClassName = "$amy", "$skill5_amy"
-	PlayerClassName = "$classic", "$skill5_classic"
-	PlayerClassName = "$shadow", "$skill5_shadow"
-	name = "$skill5"
-	mustconfirm = "$skill_text5"
-	replaceactor = "ChaosRing", "Ring"
-	replaceactor = "ChaosRingGravity", "DroppedRing"
-	replaceactor = "RingBox", "ChaosCapsule"
-	replaceactor = "SpecialRing", "BlueChaosCapsule"
 }
 
 skill ohno
@@ -239,7 +223,7 @@ skill ohno
 	spawnfilter = 5
 	FastMonsters
 	picname = "ohno"
-	mustconfirm = "$skill_text6"
+	mustconfirm = "$skill_text5"
 	replaceactor = "ExplosiveBarrel", "BaronOfHell"
 	replaceactor = "ChaosEmeralds", "Cyberdemon"
 }

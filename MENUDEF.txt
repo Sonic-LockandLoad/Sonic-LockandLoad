@@ -30,9 +30,9 @@ ListMenu "EpisodeMenu"
 }
 ListMenu "SkillMenu"
 {
-	Position 58, 74
+	Position 58, 78
 	Font "BIGFONT", "ActiveOption"
-	StaticText 80, 58, "$MENU_SKSELECT"
+	StaticText 80, 48, "$MENU_SKSELECT"
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
 OptionMenu "LockandLoadOptions"

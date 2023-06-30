@@ -536,11 +536,11 @@ script "DeathScreen" DEATH
 					message = "death_msg13a";
 					break;
 				}
-				else if (GameSkill() == 4) {
+				else if (GameSkill() == 3) {
 					message = "death_msg13b";
 					break;
 				}
-				else if (GameSkill() == 5) {
+				else if (GameSkill() == 4) {
 					message = "death_msg13c";
 					break;
 				}
@@ -778,7 +778,7 @@ script "GoalRing" (void)
 	
 	// Your target score
 	targetscore += TotalMonsters * 90;
-	if (GameSkill() == 5) targetscore *= 1.5;	
+	if (GameSkill() >= 4) targetscore *= 1.5;
 	
 	str TimeString = "Time: ";
 	str ScoreString = "Score: ";
@@ -1000,7 +1000,7 @@ script "Drowning" ENTER
 	maxdrown = 30;
 	while (1) {
 		if (GetActorProperty(1001, APROP_Waterlevel) == 3) {
-			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper") && !CheckActorInventory(1001, "PowerInvulnerable")) {
+			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper") && !CheckActorInventory(1001, "PowerInvulnerable") && (ClassifyActor(0) & ACTOR_ALIVE)) {
 				drowntimer++;
 				if (drowntimer % 5 == 0 && drowntimer < 20) {
 					AmbientSound("sglobal/drowning", 127);
