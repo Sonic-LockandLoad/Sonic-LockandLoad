@@ -156,10 +156,16 @@ class PikoPikoHammer : LockLoadWeapon
 			PIKO E 8 { cvar.FindCvar("CanHammerJump").SetBool(false); }
 			Goto EndAnim;
 		HammerAerial:
-			PIKO AB 1;
+			PIKO A 1;
+			PIKO B 1 {
+				int speed = sqrt(Vel.X ** 2 + Vel.Y ** 2) / 2;
+				A_ChangeVelocity(Cos(Pitch) * 6 + speed, 0, Sin(Pitch) * -10, CVF_Relative);
+			}
 			TNT1 A 0 A_PlaySound("sweapons/hammerswing", 1);
 			PIKO CDE 1 A_CustomPunch(80, 0, 0, "PikoPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			PIKO FZZZGHIJ 1;
+			PIKO F 1;
+			TNT1 AAA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			PIKO GHIJ 1;
 			Goto Ready;
 		EndAnim:
 			PIKO DCB 1 { invoker.HJumpCheck = false; }
