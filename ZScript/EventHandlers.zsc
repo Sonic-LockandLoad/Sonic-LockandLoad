@@ -142,29 +142,35 @@ class StyleSystem : EventHandler
 		
 		/* Dealing damage */
 		if (PlayerIsResponsible) {
-			scorebonus += e.damage * 28;
+			scorebonus += e.damage * 48;
 		}
 		else {
-			scorebonus += e.damage * 14;
+			scorebonus += e.damage * 24;
 		}
 		
 		/* Using different weapon */
 		if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
-			scorebonus *= 1.5;
+			scorebonus *= 2;
 		}
 		
-		/* Player mid-air */
+		/* Height bonus */
 		if (!player.player.onground) {
-			int heightbonus = player.Pos.Z - player.GetZAt();
-			heightbonus /= 168;
-			if (heightbonus < 2) heightbonus = 2;
-			if (heightbonus > 5) heightbonus = 5;
+			double heightbonus = player.Pos.Z - player.GetZAt();
+			heightbonus /= 172;
+			if (heightbonus < 1) heightbonus = 1;
+			if (heightbonus > 3) heightbonus = 3;
 			scorebonus *= heightbonus;
 		}
 		
+		/* Velocity bonus */
+		double total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
+		double velocitybonus = total_vel / 256;
+		if (velocitybonus < 1) velocitybonus = 1;
+		if (velocitybonus > 3) velocitybonus = 3;
+		scorebonus *= velocitybonus;
+		
 		/* Calculate staleness */
-		int staleness = 96 * consecutive_uses;
-		if (current_weapon == "Caliburn") staleness = 64 * consecutive_uses;
+		int staleness = 48 * consecutive_uses;
 		if (staleness < 0) staleness = 0;
 		if (staleness > scorebonus) staleness = scorebonus;
 		
@@ -244,7 +250,7 @@ class StyleSystem : EventHandler
 				penalty = 2192;
 				break;
 		}
-		penalty += e.damage / 3 * score / 16;
+		penalty += e.damage / 4 * score / 16;
 		if (penalty < 1) {
 			score = 0;
 			return;
