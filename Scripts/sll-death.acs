@@ -1,0 +1,180 @@
+/* Visit sll-base.acs for information */
+
+script "DeathMusic" (int xdeath)
+{
+	if (GetCvar("DeathMusic") && GetLevelInfo(LEVELINFO_LEVELNUM) != 69) {
+		switch (PlayerClass(PlayerNumber())) {
+			case Sonic:
+				if (xdeath) SetMusic("S_DEADX", 0);
+				else 		SetMusic("S_DEADM", 0);
+				break;
+			case Amy:
+				SetMusic("A_DEADM", 0);
+				break;
+			case ClassicSonic:
+				if (xdeath) SetMusic("C_DEADX", 0);
+				else {
+					SetMusic("C_DEADM", 0);
+					Delay(9*35);
+					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic(""); }
+				}
+				break;
+			case Shadow:
+				if (xdeath) SetMusic("D_DEADX", 0);
+				else {
+					SetMusic("D_DEADM", 0);
+					Delay(7*35);
+					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic(""); }
+				}
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+script "DeathScreen" DEATH
+{
+	if (GetLevelInfo(LEVELINFO_LEVELNUM) == 69) terminate;
+    FadeTo(0, 0, 0, 1.0, 0.3);
+    Delay(10);
+	if (ClassifyActor(0) & ACTOR_ALIVE) {
+		FadeTo(0.0, 0.0, 0.0, 0.0, 0);
+		terminate;
+	}
+    Delay(20);
+	str message;
+	if (ClassifyActor(0) & ACTOR_DEAD) {
+		switch (random(1, 15)) {
+			case 1:
+				message = "death_msg1";
+				break;
+			case 2:
+				message = "death_msg2";
+				break;
+			case 3:
+				message = "death_msg3";
+				break;
+			case 4:
+				message = "death_msg4";
+				break;
+			case 5:
+				message = "death_msg5";
+				break;
+			case 6:
+				message = "death_msg6";
+				break;
+			case 7:
+				message = "death_msg7";
+				break;
+			case 8:
+				switch (PlayerClass(PlayerNumber())) {
+					case Sonic:
+						message = "death_msg8s";
+						break;
+					case Amy:
+						message = "death_msg8a";
+						break;
+					case ClassicSonic:
+						message = "death_msg8c";
+						break;
+					case Shadow:
+						message = "death_msg8d";
+						break;
+				}
+				break;
+			case 9:
+				message = "death_msg9";
+				break;
+			case 10:
+				if (GetActorProperty(0, APROP_Waterlevel) > 2) {
+					message = "death_msg10";
+					break;
+				}
+			case 11:
+				switch (GetCvar("StyleRank")) {
+					case S:
+						message = "death_msg11s";
+						break;
+					case A:
+						message = "death_msg11a";
+						break;
+					case B:
+						message = "death_msg11b";
+						break;
+					case C:
+					case D:
+						message = "death_msg11cd";
+						break;
+					default:
+						message = "death_msg11";
+						break;
+				}
+				break;
+			case 12:
+				if (Timer() < 70) {
+					message = "death_msg12";
+					break;
+				}
+			case 13:
+				if (GameSkill() < 2) {
+					message = "death_msg13a";
+					break;
+				}
+				else if (GameSkill() == 3) {
+					message = "death_msg13b";
+					break;
+				}
+				else if (GameSkill() == 4) {
+					message = "death_msg13c";
+					break;
+				}
+			case 14:
+				if (GameSkill() > 1) {
+					message = "death_msg14";
+					break;
+				}
+			case 15:
+				if (CheckWeapon("DualRockets")) {
+					message = "death_msg15";
+					break;
+				}
+			default:
+				message = "death_msg16";
+				break;
+		}
+		HudMessage(l:message; 0, 9, CR_WHITE, 0.5, 0.45, 0.0, 1.0);
+		HudMessage(s:"Press \c[Gold]", k:"+use", s:"\c[White] to try again"; 0, 10, CR_WHITE, 0.5, 0.55, 0.0, 1.0);
+	}
+}
+
+script "DidResurrect" RESPAWN
+{
+	SetMusic("*");
+	ACS_NamedTerminate("DeathScreen", 0);
+	HudMessage(s:""; 0, 9, CR_UNTRANSLATED, 0.0, 0.0, 0.0, 0.0);
+	HudMessage(s:""; 0, 10, CR_UNTRANSLATED, 0.0, 0.0, 0.0, 0.0);
+    FadeTo(0.0, 0.0, 0.0, 0.0, 0);
+	if (GetCvar("Subtitles")) {
+		switch (PlayerClass(PlayerNumber())) {
+			case Sonic:
+				HudMessage(s:"\c[Sonic] Sonic: \c[Grey] (Never happened.)";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case Amy:
+				HudMessage(s:"\c[Amy] Amy: \c[Grey] (Huh? I'm still alive?)";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case ClassicSonic:
+				HudMessage(s:"\c[Classic] Sonic: \c[Grey] (Cutting it too close...)";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			case Shadow:
+				HudMessage(s:"\c[Shadow] Shadow: \c[Grey] (Time to stop being so careless...)";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				break;
+			default:
+				break;
+		}
+	}
+}

@@ -1,0 +1,331 @@
+/* Visit sll-base.acs for information */
+
+script "Drowning" ENTER
+{
+	int drowntimer;
+	int maxdrown;
+	maxdrown = 30;
+	while (1) {
+		if (GetActorProperty(1001, APROP_Waterlevel) == 3) {
+			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper") && !CheckActorInventory(1001, "PowerInvulnerable") && (ClassifyActor(0) & ACTOR_ALIVE)) {
+				drowntimer++;
+				if (drowntimer % 5 == 0 && drowntimer < 20) {
+					AmbientSound("sglobal/drowning", 127);
+				}
+			}
+			if (drowntimer > (maxdrown - 10))
+			{
+				switch(PlayerClass(PlayerNumber())) {
+					case Sonic:
+						SetMusic("S_DROWN", 0);
+						break;
+					case Amy:
+						SetMusic("A_DROWN", 0);
+						break;
+					case ClassicSonic:
+						SetMusic("C_DROWN", 0);
+						maxdrown = 31;
+						break;
+					case Shadow:
+						SetMusic("D_DROWN", 0);
+						break;
+					default:
+						break;
+				}
+				SetFont("BIGFONT");
+				int drowncounter = maxdrown - drowntimer;
+				if (drowncounter >= 0 && drowncounter <= 9) {
+					HudMessage(s:"\c[Sapphire]", d:drowncounter; HUDMSG_PLAIN, 6, CR_UNTRANSLATED, 0.5, 0.55, 0.7);
+				}
+			}
+			if (drowntimer > maxdrown)
+			{
+				DamageActor(1001, AAPTR_PLAYER1, 0, AAPTR_NULL, 9999, "Drowned");
+				SetMusic("", 0);
+				break;
+			}
+		}
+		else {
+			if (drowntimer > 4) {
+				SetMusic("*");
+			}
+			drowntimer = 0;
+		}
+		Delay(35);
+	}
+}
+
+
+
+script "ControlHints" enter
+{
+	str PrimaryFire, SecondaryFire, Jump, Crouch, OffhandAttack, OffhandAbility, SuperForm;
+	int Character = PlayerClass(PlayerNumber());
+	while (GameType() == GAME_SINGLE_PLAYER) {
+		bool Midair = GetActorZ(0) > GetActorFloorZ(0);
+		int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+		
+		// Jump and crouch
+		if (GetCvar("CanJump")) {
+			bool IsClassicAndHyper = Character == ClassicSonic && CheckInventory("PowerHyper");
+			if (Midair && (Character != ClassicSonic || IsClassicAndHyper)) Jump = "Aerial Jump";
+			else Jump = "Jump";
+		}
+		else Jump = "\c[DarkGray]None";
+		Crouch = "Crouch";
+		if (Midair) Crouch = "Slam Attack";
+		
+		if (Character == Sonic) {
+			if (CheckInventory("PowerHyper")) OffhandAttack = "Shockwave Kick";
+			else OffhandAttack = "Kick";
+			OffhandAbility = "Quick Step";
+			if (GetCvar("CanHoming")) OffhandAttack = "Homing Attack";
+			if (Midair) {
+				if (GetCvar("CanHoming") && GetCvar("HomingSnap")) OffhandAbility = "Homing Snap";
+			}
+			if (GetCvar("CanWallJump") && Midair) {
+				Jump = "Wall Jump";
+			}
+		}
+		else if (Character == Amy) {
+			OffhandAttack = "Kick";
+			OffhandAbility = "Slide";
+			if (Midair) {
+				OffhandAbility = "\c[DarkGray]None";
+			}
+			if (GetCvar("Sliding")) Jump = "Slide Jump";
+			if (GetCvar("CanHammerJump")) Jump = "Hammer Jump";
+		}
+		else if (Character == ClassicSonic) {
+			OffhandAttack = "Spin Attack";
+			OffhandAbility = "Sonic Thok";
+			if (Midair) {
+				OffhandAttack = "D. Spin Attack";
+				Crouch = "Bounce Attack";
+				if (GetCvar("DidJump") && !CheckInventory("PowerHyper")) {
+					Jump = "Sonic Thok";
+				}
+			}
+		}
+		else if (Character == Shadow) {
+			if (GetCvar("CanHoming")) Jump = "Homing Attack";
+			OffhandAttack = "Chaos Spear";
+			if (GetCvar("CloseToEnemy")) OffhandAttack = "Punch";
+			OffhandAbility = "Chaos Snap";
+		}
+		
+		// Sonic's weapons
+		if (CheckWeapon("Caliburn")) {
+			PrimaryFire = "Sword Swing";
+			SecondaryFire = "Boost";
+			if (!Midair && (buttons & BT_ALTATTACK)) Jump = "Boost Jump";
+		}
+		if (CheckWeapon("AcceleratedPistol")) {
+			PrimaryFire = "Burst Fire";
+			SecondaryFire = "Recoil Charge"; 
+			if (buttons & BT_ALTATTACK) PrimaryFire = "Recoil Burst";
+		}
+		if (CheckWeapon("KineticShotty")) { PrimaryFire = "Shotty Burst"; SecondaryFire = "Kinetic Grenade"; }
+		if (CheckWeapon("ShurikenCrossbow")) { PrimaryFire = "Shuriken Launch"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("EclipseBlaster")) { PrimaryFire = "Eclipse Shot"; SecondaryFire = "Chaos Restore"; }
+		if (CheckWeapon("AirStrikeLauncher")) { PrimaryFire = "Rocket Launch"; SecondaryFire = "Remote Detonate"; }
+		
+		// Amy's weapons
+		if (CheckWeapon("PikoPikoHammer")) { PrimaryFire = "Piko Strike"; SecondaryFire = "Parry"; }
+		if (CheckWeapon("SilentRosePistol")) { PrimaryFire = "Silenced Shot"; SecondaryFire = "Reload"; }
+		if (CheckWeapon("PrecisionShotgun")) { 
+			if (buttons & BT_ALTATTACK) PrimaryFire = "Precise Shot"; 
+			else PrimaryFire = "Shotgun Blast";
+			SecondaryFire = "Precision Scope"; 
+		}
+		if (CheckWeapon("RailshotCannon")) { PrimaryFire = "Railshot Burst"; SecondaryFire = "Zoom"; }
+		if (CheckWeapon("AmyEclipseBlaster")) { PrimaryFire = "Eclipse Shot"; SecondaryFire = "Chaos Restore"; }
+		if (CheckWeapon("RapidMissiles")) { PrimaryFire = "Rapid Launch"; SecondaryFire = "Triple Launch"; }
+		
+		// Classic Sonic's weapons
+		if (CheckWeapon("ClassicAbilities")) {
+			if (Midair) {
+				PrimaryFire = "Drop Dash";
+				if (GetCvar("CanWallJump")) PrimaryFire = "Wall Dash";
+			}
+			else PrimaryFire = "Spin Dash";
+			bool CanFly = (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) && Midair;
+			if (CanFly) SecondaryFire = "Hover";
+			else if (!Midair) {
+				if (buttons & BT_CROUCH) {
+					SecondaryFire = "Healing";
+				}
+				else {
+					SecondaryFire = "Drift";
+				}
+			}
+			else SecondaryFire = "\c[DarkGray]None";
+			if (CanFly && (buttons & BT_ALTATTACK)) {
+				Jump = "Fly Up";
+				Crouch = "Fly Down";
+			}
+		}
+		if (CheckWeapon("ChaosBlaster")) { PrimaryFire = "Plasma Stream"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("SpeedyShotgun")) { PrimaryFire = "Speedy Shot"; SecondaryFire = "Burst Shot"; }
+		if (CheckWeapon("ChaosRain")) { PrimaryFire = "Bullet Rain"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("ClassicRocketStream")) { PrimaryFire = "Stream Launch"; SecondaryFire = "\c[DarkGray]None"; }
+		
+		// Shadow's weapons
+		if (CheckWeapon("HighShovel")) {
+			PrimaryFire = "Shovel Smash";
+			SecondaryFire = "Boost";
+			if (!Midair && (buttons & BT_ALTATTACK)) Jump = "Boost Jump";
+		}
+		if (CheckWeapon("ShadowKnife")) { PrimaryFire = "Ultimate Stab"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("ShadowMP5")) { PrimaryFire = "Rapid Fire"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("DarkAssault")) { PrimaryFire = "Assault Shot"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("QuadShotty")) { PrimaryFire = "Decimation Blast"; SecondaryFire = "\c[DarkGray]None"; }
+		if (CheckWeapon("ChaosEmerald")) { PrimaryFire = "Chaos Blast"; SecondaryFire = "Chaos Restore"; }
+		if (CheckWeapon("DualRockets")) { PrimaryFire = "Targeted Launch"; SecondaryFire = "Untargeted Launch"; }
+		
+		// Super/Dark/Hyper
+		if (CheckInventory("ChaosEmeralds")) {
+			switch (Character) {
+				case Sonic:
+				case ClassicSonic:
+					if (CheckInventory("PowerSuper")) SuperForm = "Hyper Sonic";
+					else SuperForm = "Super Sonic";
+					break;
+				case Amy:
+					SuperForm = "Dark Amy";
+					break;
+				case Shadow:
+					SuperForm = "Super Shadow";
+					break;
+			}
+		}
+		else SuperForm = "";
+		
+		if (GetCvar("ControlHints")) {
+			if (ClassifyActor(0) & ACTOR_DEAD) {
+				HudMessage(k:"+use", s:"\c[White]: Try Again\n";
+						   HUDMSG_PLAIN, 7, CR_GOLD, -0.02, -0.48, 1.0, 1.0);
+			}
+			else if (stricmp(SuperForm, "")) {
+				HudMessage(k:"+attack", s:"\c[White]: ", s:PrimaryFire, s:"\n",
+						   k:"+altattack", s:"\c[White]: ", s:SecondaryFire, s:"\n",
+						   k:"+jump", s:"\c[White]: ", s:Jump, s:"\n",
+						   k:"+crouch", s:"\c[White]: ", s:Crouch, s:"\n",
+						   k:"+reload", s:"\c[White]: ", s:OffhandAttack, s:"\n",
+						   k:"+zoom", s:"\c[White]: ", s:OffhandAbility, s:"\n",
+						   k:"pukename LastWeapon", s:"\c[White]: Last Used Weapon\n",
+						   k:"invuse", s:"\c[White]: ", s:SuperForm;
+						   HUDMSG_PLAIN, 7, CR_GOLD, -0.02, -0.4, 1.0, 1.0);
+			}
+			else {
+				HudMessage(k:"+attack", s:"\c[White]: ", s:PrimaryFire, s:"\n",
+						   k:"+altattack", s:"\c[White]: ", s:SecondaryFire, s:"\n",
+						   k:"+jump", s:"\c[White]: ", s:Jump, s:"\n",
+						   k:"+crouch", s:"\c[White]: ", s:Crouch, s:"\n",
+						   k:"+reload", s:"\c[White]: ", s:OffhandAttack, s:"\n",
+						   k:"+zoom", s:"\c[White]: ", s:OffhandAbility, s:"\n",
+						   k:"pukename LastWeapon", s:"\c[White]: Last Used Weapon\n";
+						   HUDMSG_PLAIN, 7, CR_GOLD, -0.02, -0.41, 0.1, 1.0);
+			}
+		}
+		Delay(1);
+	}
+}
+
+script 69 (void)
+{
+	if (PlayerClass(PlayerNumber()) == Sonic)
+		HudMessage(s:"\c[Sonic] Sonic: \c[White] Consider this your bad Lock & Load!"; HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+}
+
+script "FormTint" (void)
+{
+	int counter;
+	int cdelay = 5;
+	bool redFlash = false;
+	while (CheckInventory("PowerSuper") || CheckInventory("PowerHyper")) {
+		counter++;
+		if (counter % cdelay == 0) {
+			redFlash = !redFlash;
+		}
+		Delay(1);
+		if (ClassifyActor(0) & ACTOR_ALIVE) {
+			switch (PlayerClass(PlayerNumber())) {
+				case Amy:
+					if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
+						FadeTo(255, 0, 0, 0.3, 0.1);
+					}
+					else {
+						FadeTo(123, 13, 102, 0.3, 0.1);
+					}
+					break;
+				default:
+					if (CheckInventory("ChaosEnergy") < 100 && redFlash && GetCvar("LowEnergySound")) {
+						FadeTo(255, 0, 0, 0.2 + GetCvar("PowerHyper") * 0.1, 0.1);
+					}
+					else {
+						FadeTo(128, 128, 128, 0.1, 0.1);
+					}
+					break;
+			}
+		}
+	}
+	FadeTo(0, 0, 0, 0.0, 0);
+}
+
+script "HomingReticle" (void)
+{
+	switch (GetCvar("HomingReticle")) {
+		case 1: // Minimal
+			SetFont("reticlm");
+			break;
+		case 2: // Enabled
+			SetFont("reticle");
+			break;
+	}
+	HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD|HUDMSG_FADEOUT, 12, 0, 0.5, 0.5, 0.1, 0.1);
+}
+
+script "Subtitles" (int subtitle)
+{
+	if (GetCvar("Subtitles")) {
+		int subtitleref = strparam(s:"gsubtitle", d:subtitle);
+		HudMessage(l:subtitleref; HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+	}
+}
+
+script "AmyBlockTint" enter
+{
+	while (PlayerClass(PlayerNumber()) == Amy && ClassifyActor(0) & ACTOR_ALIVE) {
+		if (CheckInventory("PowerBlocking")) {
+			FadeTo(192, 23, 112, 0.2, 0.0);
+		}
+		else {
+			FadeTo(0, 0, 0, 0, 0.0); 
+		}
+		Delay(1);
+	}
+}
+
+script "DisplayFailures" (int failcount)
+{
+	if (failcount == 1) {
+		HudMessage(s:"You've died ", d:failcount, s:" time..."; HUDMSG_PLAIN, 96, CR_WHITE, 1.5, 0.7, 2.5, 1.0);
+	}
+	else {
+		HudMessage(s:"You've died ", d:failcount, s:" times..."; HUDMSG_PLAIN, 96, CR_WHITE, 1.5, 0.7, 2.5, 1.0);
+	}
+}
+
+script "ParryEffect" (void)
+{
+	ACS_NamedSuspend("FormTint", 0);
+	SetActivator(1001);
+	AmbientSound("sweapons/blockattackx", 127);
+	FadeTo(255, 255, 255, 0.8, 0.1);
+	Delay(1);
+	FadeTo(255, 255, 255, 0.2, 0.1);
+	Delay(6);
+	ACS_NamedExecute("FormTint", 0);
+	FadeTo(0, 0, 0, 0, 0.1);
+}

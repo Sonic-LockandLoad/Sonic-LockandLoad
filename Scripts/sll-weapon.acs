@@ -1,0 +1,28 @@
+/* Visit sll-base.acs for information */
+
+script "LastWeaponHandler" enter
+{
+    int pn            = PlayerNumber();
+    str currentWeapon = GetWeapon();
+    if (GetCvar("LastWeapon") == "") {
+		SetCvar("lastWeapon", currentWeapon);
+	}
+    
+    while (1) {
+        if (StrCmp(currentWeapon, GetWeapon())) {
+			SetCvar("lastWeapon", currentWeapon);
+		}
+        currentWeapon = GetWeapon();
+        Delay(1);
+    }
+}
+
+script "LastWeapon" (void)
+{
+    SetWeapon(GetCvar("lastWeapon"));
+}
+
+script "ReticleSound" (void)
+{
+	AmbientSound("sweapons/reticle", 127);
+}

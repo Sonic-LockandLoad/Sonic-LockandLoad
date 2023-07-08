@@ -1,0 +1,169 @@
+/* Visit sll-base.acs for information */
+
+script "Invincibility" (void)
+{
+	if (!CheckInventory("PowerSuper") && !CheckInventory("PowerHyper"))
+	{
+		if (CheckInventory("PowerInvulnerable"))
+		{
+			if (GetCvar("InvincMusic")) {
+				switch (PlayerClass(PlayerNumber()))
+				{
+						case 0: 
+							SetMusic("s_invinc", 0);
+							break;
+						case 1: 
+							SetMusic("a_invinc", 0);
+							break;
+						case 2: 
+							SetMusic("c_invinc", 0);
+							break;
+						case 3:
+							SetMusic("d_invinc", 0);
+							break;
+						case -1:
+						default:
+							break;
+				}
+			}
+			while (CheckInventory("PowerInvulnerable"))
+			{
+				delay(15);
+			}
+			if (GetCvar("InvincMusic")) { 
+				SetMusic("*", 0);
+			}
+		}
+		else
+		{
+			if (GetCvar("InvincMusic")) { 
+				SetMusic("*", 0);
+			}
+		}
+	}
+}
+
+script "TransformSuper" (void)
+{
+	if (CheckInventory("PowerSuper"))
+	{
+		switch (PlayerClass(PlayerNumber()))
+		{
+            case Sonic: // Super Sonic
+                 if (GetCvar("SuperMusic")) {
+					if (GetLevelInfo(LEVELINFO_LEVELNUM) == 43) { // 43 is Hire This Zone
+						SetMusic("S_SUPER2", 0); // Undefeatable, Sonic Frontiers
+					}
+					else {
+						SetMusic("S_SUPER", 0); // His World Zebrahead ver., Sonic '06
+					}
+				 }
+                 break;
+            case Amy: // Dark Amy
+                 if (GetCvar("SuperMusic")) {
+					SetMusic("A_SUPER", 0); // Break Through It All, Sonic Frontiers
+				 }
+                 break;
+            case ClassicSonic: // Classic Super Sonic
+                 if (GetCvar("SuperMusic")) {
+					 SetMusic("C_SUPER", 0); // Glimmering Gift, Sonic Mania
+				 }
+                 break;
+            case Shadow: // Super Shadow
+                 if (GetCvar("SuperMusic")) {
+					 SetMusic("D_SUPER", 0); // Live and Learn, Sonic 30th Anniversary
+				 }
+                 break;
+            case -1:
+            default:
+                 break;
+        }
+		while (CheckInventory("PowerSuper")) {
+		    SetMugShotState("Super");
+			ACS_NamedExecute("FormTint", 0);
+			Delay(35);
+		}
+		if (GetCvar("SuperMusic")) { 
+			SetMusic("*", 0);
+		}
+		FadeTo(0, 0, 0, 0.0, 0);
+		SetMugShotState("Normal");
+	}
+	else {
+		if (GetCvar("SuperMusic")) { 
+			SetMusic("*", 0);
+		}
+		FadeTo(0, 0, 0, 0.0, 0);
+	}
+}
+
+script "TransformHyper" (void)
+{
+	if (CheckInventory("PowerHyper"))
+	{
+		while (CheckInventory("PowerHyper"))
+		{
+			if (GetCvar("SuperMusic")) {
+				switch(PlayerClass(PlayerNumber())) {
+					case Sonic:
+						SetMusic("S_HYPER", 0);
+						break;
+					case ClassicSonic:
+						SetMusic("C_HYPER", 0);
+						break;
+					default:
+						 break;
+				}
+			}
+		    SetMugShotState("Hyper");
+			ACS_NamedExecute("FormTint", 0);
+			Delay(35); 
+		}
+		if (GetCvar("SuperMusic")) { SetMusic("*", 0); }
+		SetMugShotState("Normal");
+		SetActorProperty(1001, APROP_JumpZ, 12.0);
+		FadeTo(0, 0, 0, 0.0, 0);
+	}
+	else
+	{
+		if (GetCvar("HyperMusic")) { SetMusic("*", 0); }
+		SetActorProperty(1001, APROP_JumpZ, 12.0);
+		FadeTo(0, 0, 0, 0.0, 0);
+	}
+}
+
+script "TakeRingsIfSuper" (void)
+{
+	while (CheckInventory("PowerSuper"))
+	{
+		TakeInventory("ChaosEnergy", 1);
+		if (CheckInventory("ChaosEmeralds") || (GetCvar("StyleSystem") && GetCvar("StyleRank") >= A)) {
+			Delay(4);
+		}
+		else if (PlayerClass(PlayerNumber()) == Amy) {
+			Delay(2);
+		}
+		else {
+			Delay(3);
+		}
+		if (!CheckInventory("ChaosEnergy"))
+		{
+			TakeInventory("PowerSuper", 1);
+			TakeInventory("PowerInvulnerable", 1);
+		}
+	}
+}
+
+script "TakeRingsIfHyper" (void)
+{
+	while (CheckInventory("PowerHyper"))
+	{
+		Delay(2);
+		TakeInventory("ChaosEnergy", 1);
+		if (!CheckInventory("ChaosEnergy"))
+		{
+			TakeInventory("PowerHyper", 1);
+			TakeInventory("PowerInvulnerable", 1);
+		}
+	}
+}

@@ -1,0 +1,83 @@
+/* Visit sll-base.acs for information */
+
+script "ChaosEmeraldHandler" (void)
+{
+	int character = PlayerClass(PlayerNumber());
+	if (CheckInventory("PowerSuper") || CheckInventory("PowerHyper")) {
+		if ((character == Sonic || character == ClassicSonic) && !CheckInventory("PowerHyper") && GetCvar("HyperSonic")) {
+			Log(l:"s_press", k:"invuse", l:"hypersonic");
+		} else {
+			Log(s:"Chaos Energy refilled!");
+			TakeInventory("ChaosEmeralds", 1);
+			GiveInventory("ChaosEnergy", 999);
+		}
+	}
+	else
+	{
+		switch(PlayerClass(PlayerNumber()))
+		{
+			case Amy:
+				Log(l:"s_press", k:"invuse", l:"darkamy");
+				break;
+			case Shadow:
+				Log(l:"s_press", k:"invuse", l:"supershadow");
+				break;
+			default: // Sonic and Classic Sonic
+				Log(l:"s_press", k:"invuse", l:"supersonic");
+				break;
+		}
+	}
+}
+
+script "SuperTransformPrompt" enter
+{
+	while (1) {
+		Delay(1);
+		int x = 0.5;
+		int y;
+		int holdTime = 0.1;
+		switch (GetCvar("HUDType")) {
+			case 3:
+				// Legacy
+				y = 0.8;
+				break;
+			default:
+				// Unified, Classic-Style
+				y = 0.9;
+				break;
+		}
+		if (CheckInventory("ChaosEmeralds") && !GetCvar("ControlHints")) {
+			switch(PlayerClass(PlayerNumber()))
+			{
+				case Sonic:
+					if (CheckInventory("PowerSuper")) {
+						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Hyper Sonic";
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
+					} else {
+						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Sonic]Super Sonic";
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
+					}
+					break;
+				case Amy:
+					HudMessage(s:"\c[Purple]", k:"invuse", s:"  \c[Amy]Dark Amy";
+					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
+					break;
+				case ClassicSonic:
+					if (CheckInventory("PowerSuper")) {
+						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Hyper Sonic";
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
+					} else {
+						HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Classic]Super Sonic";
+						HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
+					}
+					break;
+				case Shadow:
+					HudMessage(s:"\c[Gold]", k:"invuse", s:"  \c[Shadow]Super Shadow";
+					HUDMSG_PLAIN, 1, CR_UNTRANSLATED, x, y, holdTime);
+					break;
+				default:
+					break;
+			}
+		}
+	}
+}

@@ -1,0 +1,76 @@
+/* Visit sll-base.acs for information */
+
+script "StyleRank" ENTER
+{
+	int oldrank;
+	str callout;
+	int oldcalloutrank;
+	SetCvar("StyleRank", 0);
+	Delay(1);
+	while (GetCvar("StyleSystem")) {
+		int stylerank = GetCvar("StyleRank");
+		if      (stylerank == SS) SetFont("ss_rank");
+		if      (stylerank == S) SetFont("s_rank");
+		else if (stylerank == A) SetFont("a_rank");
+		else if (stylerank == B) SetFont("b_rank");
+		else if (stylerank == C) SetFont("c_rank");
+		else if (stylerank == D) SetFont("d_rank");
+		str StyleName;
+		str StyleColour;
+		switch (GetCvar("StyleRank")) {
+			case SS:
+				StyleName = "stylerank_ss";// Super Sonic!!!
+				StyleColour = "\c[S]";
+				break;
+			case S:
+				StyleName = "stylerank_s"; // Skyrocketing!!
+				StyleColour = "\c[S]";
+				break;
+			case A:
+				StyleName = "stylerank_a"; // Adventurer!
+				StyleColour = "\c[A]";
+				break;
+			case B:
+				StyleName = "stylerank_b"; // Blazing
+				StyleColour = "\c[B]";
+				break;
+			case C:
+				StyleName = "stylerank_c"; // Cruising
+				StyleColour = "\c[C]";
+				break;
+			case D:
+				StyleName = "stylerank_d"; // Drifting
+				StyleColour = "\c[D]";
+				break;
+			default:
+				StyleName = "";
+				break;
+		}
+		if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
+			HudMessage(s:"A"; HUDMSG_PLAIN, 43, CR_UNTRANSLATED, 1.5, 0.16, 0.1, 1.0);
+			if (stylerank > oldrank && stylerank > oldcalloutrank) {
+				if      (stylerank == 6) callout = "sstyle/supersonic";
+				else if (stylerank == 5) callout = "sstyle/amazing";
+				else if (stylerank == 4) callout = "sstyle/outstanding";
+				else if (stylerank == 3) callout = "sstyle/awesome";
+				else if (stylerank == 2) callout = "sstyle/great";
+				else if (stylerank == 1) callout = "sstyle/good";
+				oldcalloutrank = stylerank;
+				PlaySound(0, callout, 4096, 1.0, false, ATTN_NONE, false);
+			}
+		}
+		if (stylerank < oldcalloutrank - 1 || stylerank < D) {
+			oldcalloutrank = 0;
+		}
+		if (StyleName != "") {
+			SetFont("SMALLFONT");
+			HudMessage(s:StyleColour, l:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, 1.5, 0.24, 0.1, 1.0);
+		}
+		oldrank = GetCvar("StyleRank");
+		if (stylerank >= 1) {
+			SetFont("SMALLFONT");
+			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, 1.5, 0.28, 0.1, 1.0);
+		}
+		Delay(1);
+	}
+}

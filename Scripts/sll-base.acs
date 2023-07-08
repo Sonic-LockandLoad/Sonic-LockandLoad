@@ -1,0 +1,44 @@
+#library "sonic-lockandload"
+#include "zcommon.acs"
+
+/*
+Welcome to Sonic: Lock & Load's base ACS file!
+
+This ACS file includes certain definitions for S:L&L stuff,
+as well as includes to the other ACS files.
+
+This was done like this so that I can have the ACS stuff
+be a little more modular.
+
+There's still a lot of work to be done, as there needs to be
+some refactoring in order to make it all properly modular,
+but this is certainly a start.
+*/
+
+// Character definitions
+#define Sonic 0
+#define Amy 1
+#define ClassicSonic 2
+#define Shadow 3
+
+// Style Rank definitions
+#define D 1
+#define C 2
+#define B 3
+#define A 4
+#define S 5
+#define SS 6
+
+// ACS file inclusions
+#include "sll-audio.acs"     // Sounds and music
+#include "sll-death.acs"     // Death/resurrection-related scripts
+#include "sll-forms.acs"     // Invincibility and transformations
+#include "sll-functions.acs" // ACS functions
+#include "sll-helper.acs"    // Miscellaneous helper scripts
+#include "sll-hud.acs"       // HUD and display-related scripts
+#include "sll-input.acs"     // Input prompts
+#include "sll-level.acs"     // Level-related scripts
+#include "sll-physics.acs"   // Movement and other physics-related code
+#include "sll-style.acs"     // Dedicated specifically to the Style System
+#include "sll-taunt.acs"     // Dedicated specifically to taunts
+#include "sll-weapon.acs"    // Weapon-related functionality

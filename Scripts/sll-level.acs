@@ -1,0 +1,275 @@
+/* Visit sll-base.acs for information */
+
+script "GoalRing" (void)
+{
+	// Variables
+	int score, targetscore;
+	int LevelTime = Timer() / 35;
+	int ParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
+	int CurrentRings = GetActorProperty(1001, APROP_Health);
+	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	str Rank;
+	
+	// Your score
+	if (CurrentRings > 300) {
+		score += 600 + (CurrentRings - 300);
+	}
+	else {
+		score += CurrentRings * 2;
+	}
+	score += KilledMonsters * 95;
+	if (score < 0) score = 0;
+	
+	// Stop the player and remove their form and invincibility
+	Thing_Stop(1001);
+	TakeInventory("PowerInvulnerable", 1);
+	TakeInventory("PowerSuper", 1);
+	TakeInventory("PowerHyper", 1);
+	ACS_NamedTerminate("TransformSuper", 0);
+	ACS_NamedTerminate("TransformHyper", 0);
+	SetMugShotState("Normal");
+	
+	Delay(5);
+	SetActorProperty(1001, APROP_DamageFactor, 0.0);
+	
+	// Your target score
+	targetscore += TotalMonsters * 90;
+	if (GameSkill() >= 4) targetscore *= 1.5;
+	
+	str TimeString = "Time: ";
+	str ScoreString = "Score: ";
+	if (LevelTime <= ParTime) TimeString = "Time: \c[Gold]";
+	if (score >= targetscore) ScoreString = "Score: \c[Gold]";
+	
+	HudMessage(s:TimeString, d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime), s:"\n",
+			   s:ScoreString, d:score, s:"\n\n",
+			   s:"Target Time: ", d:ParTime / 60, s:":", s:DoubleDigitSeconds(ParTime), s:"\n", 
+			   s:"Target Score: ", d:targetscore, s:"\n"; 
+			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
+			   
+	// Victory message and rank
+	bool s_rank = score >= targetscore && LevelTime <= ParTime;
+	bool a_rank = score >= targetscore;
+	bool b_rank = score >= targetscore / 2;
+	bool c_rank = score >= targetscore / 3;
+	bool rank_plus = !s_rank && LevelTime <= ParTime;
+	SetFont("BIGFONT");
+	int jingledelay;
+	switch (PlayerClass(PlayerNumber()))
+	{
+		case Sonic:
+			if (s_rank) {
+				SetMusic("S_PERFCT");
+				jingledelay = 35*7;
+			}
+			else {
+				SetMusic("S_VICTOR");
+				jingledelay = 35*6;
+			}
+			HudMessage(s:"\c[Sonic]Stage Clear"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
+			break;
+		case Amy:
+			SetMusic("A_VICTOR");
+			jingledelay = 35*5;
+			HudMessage(s:"\c[Amy]Act Clear!"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
+			break;
+		case ClassicSonic:
+			SetMusic("C_VICTOR");
+			jingledelay = 35*6;
+			HudMessage(s:"\c[Classic]SONIC \c[White]GOT THROUGH\n\c[White]", s:strParam(n:PRINTNAME_LEVELNAME); HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.37, 0, 1.0);
+			break;
+		case Shadow:
+			SetMusic("D_VICTOR");
+			jingledelay = 35*6; 
+			HudMessage(s:"\c[Shadow]Mission Cleared"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
+			break;
+		default:
+			break;
+	}
+	Delay(jingledelay);
+	
+	// Setting the image to be used with HudMessage
+	// In addition, we set the colour for the "+" addition
+	str plus_string;
+	if (s_rank) {
+		SetFont("s_rank");
+		plus_string = "\c[S]+";
+	}
+	else if (a_rank) {
+		SetFont("a_rank");
+		plus_string = "\c[A]+";
+	}
+	else if (b_rank) {
+		SetFont("b_rank");
+		plus_string = "\c[B]+";
+	}
+	else if (a_rank) {
+		SetFont("c_rank");
+		plus_string = "\c[C]+";
+	}
+	else {
+		SetFont("d_rank");
+		plus_string = "\c[D]+";
+	}
+	
+	AmbientSound("sglobal/rankget", 127);
+	// For the unenlightened, "A" plus an image font will display that image.
+	HudMessage(s:"A"; HUDMSG_PLAIN, 8, CR_UNTRANSLATED, 1.5, 0.65, 0, 1.0);
+	if (rank_plus) {
+		SetFont("BIGFONT");
+		HudMessage(s:plus_string; HUDMSG_PLAIN, 3, CR_UNTRANSLATED, 1.525, 0.65, 0, 1.0);
+	}
+	/*
+	Basically, if you get, for example, a D rank, but meet the time requirement,
+	you'll be given a "D+" rank, which is functionally similar to a D rank.
+	*/
+	SetMusic("");
+	Delay(14);
+	int speechdelay;
+	SetFont("SMALLFONT");
+	switch (PlayerClass(PlayerNumber()))
+	{
+		case Sonic:
+			if (s_rank)  {
+				bool thatwasright = (random(0, 5) == 5);
+				if (thatwasright)
+					PlaySound(1001, "sonic/thatwasright"); // "THAT WAS RIGHT!"
+				else
+					PlaySound(1001, "sonic/perfectresult"); // "That was incredible!"
+				speechdelay = 60;
+				SetMugshotState("Grin");
+				if (GetCvar("Subtitles")) {
+					if (thatwasright) {
+						HudMessage(l:"sresult0";
+								HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					else {
+						HudMessage(l:"sresult1";
+								HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+				}
+			}
+			else if (a_rank) {
+				PlaySound(1001, "sonic/goodresult"); // "No problem!"
+				speechdelay = 40;
+				SetMugshotState("Grin");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"sresult2";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else if (b_rank) {
+				PlaySound(1001, "sonic/okayresult"); // "Not my best run..."
+				speechdelay = 50;
+				SetMugshotState("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"sresult3";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else if (c_rank) {
+				PlaySound(1001, "sonic/badresult"); // "Aw, I gotta try that again!"
+				speechdelay = 60;
+				SetMugshotState("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"sresult4";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else {
+				PlaySound(1001, "sonic/terribleresult"); // "Nooo!!"
+				speechdelay = 40;
+				SetMugshotState("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"sresult5";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			break;
+		case Amy:
+			if (a_rank) {
+				PlaySound(1001, "amy/goodresult", CHAN_BODY, 0.7); // "Yay!"
+				speechdelay = 30;
+				SetMugshotState("Grin");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"aresult1";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else {
+				PlaySound(1001, "amy/badresult"); // Brief moment of silence
+				speechdelay = 105;
+				SetMugshotState("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"aresult2";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			break;
+		case ClassicSonic:
+			if (a_rank) {
+				PlaySound(1001, "classic/goodresult"); // Classic whistles and says "That was cool!"
+				speechdelay = 65;
+				SetMugshotState("Grin");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"cresult1";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else if (b_rank) {
+				PlaySound(1001, "classic/okayresult"); // "Huh... no problem."
+				speechdelay = 55;
+				SetMugshotState("OK");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"cresult2";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else {
+				PlaySound(1001, "classic/badresult"); // "Barely made it..."
+				speechdelay = 35;
+				SetMugshotState("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"cresult3";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			break;
+		case Shadow:
+			if (s_rank) {
+				PlaySound(1001, "shadow/goodresult"); // "Yes!"
+				speechdelay = 30;
+				SetMugshotState("OK");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"dresult1";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			else {
+				SetFont("SMALLFONT");
+				PlaySound(1001, "shadow/badresult"); // "Need to stay focused."
+				speechdelay = 50;
+				SetMugshotState("Failure");
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"dresult2";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			}
+			break;
+		case -1:
+		default:
+			break;
+	}
+	Delay(speechdelay);
+	if (GetLevelInfo(LEVELINFO_LEVELNUM) > 0) {
+		int unlocked_level = CheckInventory("CurrentlyUnlockedLevel");
+		int next_level = GetLevelInfo(LEVELINFO_LEVELNUM);
+		if (unlocked_level < next_level) {
+			TakeInventory("CurrentlyUnlockedLevel", 4);
+			GiveInventory("CurrentlyUnlockedLevel", next_level);
+		}
+	}
+	SetActorProperty(1001, APROP_DamageFactor, 1.0);
+	Exit_Normal(0);
+}

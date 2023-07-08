@@ -1,0 +1,142 @@
+/* Visit sll-base.acs for information */
+
+script "Taunt" (void)
+{
+	NoiseAlert(0, 0);
+	int tauntchance;
+	switch(PlayerClass(PlayerNumber())) {
+		case Sonic:
+			tauntchance = random(1, 3);
+			switch (tauntchance) {
+				case 1:
+					PlaySound(1001, "sonic/taunt1", 9, 1.0);
+					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
+						SetMugshotState("GrinSmol");
+					}
+					if (GetCvar("Subtitles")) {
+						HudMessage(l:"staunt1";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 1.5, 1.0);
+					}
+					break;
+				case 2:
+					PlaySound(1001, "sonic/taunt2", 9, 1.0);
+					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
+						SetMugshotState("GrinSmol");
+					}
+					if (GetCvar("Subtitles")) {
+						HudMessage(l:"staunt2";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+				case 3:
+					PlaySound(1001, "sonic/taunt3", 9, 1.0);
+					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
+						SetMugshotState("GrinSmol");
+					}
+					if (GetCvar("Subtitles")) {
+						HudMessage(l:"staunt3";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+			}
+			break;
+		case Amy:
+			PlaySound(1001, "amy/taunt", 9, 1.0);
+			if (!CheckInventory("PowerSuper")) {
+				SetMugshotState("GrinSmol");
+			}
+			if (GetCvar("Subtitles")) {
+				HudMessage(l:"ataunt1";
+						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+			}
+			break;
+		case ClassicSonic:
+			tauntchance = random(1, 5);
+			switch (tauntchance) {
+				case 1:
+					PlaySound(1001, "classic/taunt1", 9, 1.0);
+					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
+						SetMugshotState("GrinSmol");
+					}
+					if (GetCvar("Subtitles")) {
+						HudMessage(l:"ctaunt1";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+				case 2:
+					PlaySound(1001, "classic/taunt2", 9, 1.0);
+					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
+						SetMugshotState("GrinSmol");
+					}
+					if (GetCvar("Subtitles")) {
+						HudMessage(l:"ctaunt2";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+				case 3:
+					PlaySound(1001, "classic/taunt3", 9, 1.0);
+					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
+						SetMugshotState("GrinSmol");
+					}
+					if (GetCvar("Subtitles")) {
+						HudMessage(l:"ctaunt3";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 4.0, 1.0);
+					}
+					break;
+				case 4:
+					PlaySound(1001, "classic/taunt4", 9, 1.0);
+					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
+						SetMugshotState("GrinSmol");
+					}
+					if (GetCvar("Subtitles")) {
+						HudMessage(l:"ctaunt4";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+				case 5:
+					PlaySound(1001, "classic/taunt5", 9, 1.0);
+					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
+						SetMugshotState("FailSmol");
+					}
+					if (GetCvar("Subtitles")) {
+						HudMessage(l:"ctaunt5";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+					}
+					break;
+			}
+			break;
+		case Shadow:
+			tauntchance = random(1, 2);
+			if (random(1, 35) == 35) {
+				PlaySound(1001, "imthe/coolest", 9, 1.0);
+				if (!CheckInventory("PowerSuper")) {
+					SetMugshotState("Grin");
+				}
+				if (GetActorProperty(1001, APROP_Health) < 145) {
+					SetActorProperty(1001, APROP_Health, 145);
+				}
+				if (GetCvar("Subtitles")) {
+					HudMessage(l:"dtaunt3";
+							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+				}
+			} else {
+				switch (tauntchance) {
+					case 1:
+						PlaySound(1001, "shadow/taunt1", 9, 1.0);
+						if (GetCvar("Subtitles")) {
+							HudMessage(l:"dtaunt1";
+								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+						}
+						break;
+					case 2:
+						PlaySound(1001, "shadow/taunt2", 9, 1.0);
+						if (GetCvar("Subtitles")) {
+							HudMessage(l:"dtaunt2";
+									   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
+						}
+						break;
+				}
+			}
+			break;
+	}
+}

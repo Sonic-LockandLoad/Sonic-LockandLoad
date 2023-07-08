@@ -1,0 +1,48 @@
+/* Visit sll-base.acs for information */
+
+script "GiveTID" ENTER
+{
+	Thing_ChangeTID(0, 1001);
+}
+
+script "HowManyZFireLeft" (int clear)
+{
+	int RemainingShots = CheckInventory("ChaosEnergy") / 120;
+	if (CheckInventory("PowerSuper")) {
+		HudMessage(s:"\c[Purple]Infinite shots remaining"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 0.5, 0.6, 0.3);
+	} else {
+		HudMessage(s:"\c[Amy]", d:RemainingShots, s:"/", d:8, s:" shots remaining"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 0.5, 0.6, 0.3);
+	}
+}
+
+script "IsCrouching" (void)
+{
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+
+	if (buttons & BT_CROUCH) { SetResultValue(1); }
+	else { SetResultValue(0); }
+}
+
+
+
+script "RingCountCheck" ENTER
+{
+	while (true)
+	{
+		Delay(2);
+		if (CheckInventory("Health") > 500)
+		{
+			GiveInventory("OverRinged2", 1);
+		}
+		else if (CheckInventory("Health") > 300)
+		{
+			GiveInventory("OverRinged", 1);
+		}
+		else
+		{
+			TakeInventory("PowerOverRinged", 1);
+			TakeInventory("PowerOverRinged2", 1);
+		}
+	}
+	
+}

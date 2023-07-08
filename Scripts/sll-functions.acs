@@ -1,0 +1,17 @@
+/* Visit sll-base.acs for information */
+
+int oldz;
+
+function void ScaleVelocity(int TID, int scale)
+{
+	// credit: https://forum.zdoom.org/viewtopic.php?p=674662&sid=8584f1daa6b46cfa8b01858ef17fded2#p674662
+	SetActorVelocity(TID, FixedMul(scale,GetActorVelX(TID)), FixedMul(scale,GetActorVelY(TID)), FixedMul(scale,GetActorVelZ(TID)), false, false);
+}
+
+function str DoubleDigitSeconds(int seconds)
+{
+	if (StrLen(StrParam(d:seconds % 60)) < 2) {
+		return StrParam(s:"0", d:seconds % 60);
+	}
+	return StrParam(d:seconds % 60);
+}

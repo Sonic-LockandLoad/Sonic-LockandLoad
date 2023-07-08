@@ -1,0 +1,68 @@
+/* Visit sll-base.acs for information */
+
+script "SonicN64" (void)
+{
+	AmbientSound("sonic/nintendo64", 127);
+}
+
+script "Damn4thChaosEmerald" (void)
+{
+	AmbientSound("shadow/damn4thchaos", 127);
+}
+
+script "InitMusic" ENTER
+{
+	SetMugShotState("Normal");
+	SetMusic("*", 0);
+}
+
+script "NoMusic" (void)
+{
+	SetMusic("", 0);
+}
+
+script "ResetMusic" (void)
+{
+	SetMusic("*", 0);
+}
+
+script "ReactionTime" (void)
+{
+	AmbientSound("sglobal/reaction", 127);
+}
+
+script "BossMusic2" (void)
+{
+	SetMusic("B_SCRT2");
+}
+
+script "LowHealthSound" enter
+{
+	while (true) {
+		if (GetActorProperty(1001, APROP_Health) < 10 && GetCvar("LowHealthSound") && (ClassifyActor(1001) & ACTOR_ALIVE) && !(CheckInventory("PowerSuper")||CheckInventory("PowerHyper")||CheckInventory("PowerInvulnerable"))) {
+			AmbientSound("sglobal/lowhealth", 127);
+			Delay(12);
+		}
+		else {
+			Delay(1);
+		}
+	}
+}
+
+script "LowEnergySound" enter
+{
+	int EnergyThreshold;
+	while (true) {
+		if (PlayerClass(PlayerNumber()) == Amy) EnergyThreshold = 250;
+		else if (CheckInventory("PowerHyper"))  EnergyThreshold = 200;
+		else 									EnergyThreshold = 150;
+		
+		if (CheckInventory("ChaosEnergy") < EnergyThreshold && (CheckInventory("PowerSuper")||CheckInventory("PowerHyper")) && GetCvar("LowEnergySound")) {
+			AmbientSound("sglobal/lowenergy", 127);
+			Delay(50);
+		}
+		else {
+			Delay(1);
+		}
+	}
+}
