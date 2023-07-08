@@ -13,6 +13,10 @@ be a little more modular.
 There's still a lot of work to be done, as there needs to be
 some refactoring in order to make it all properly modular,
 but this is certainly a start.
+
+This of course doesn't make up all of S:L&L's codebase.
+The majority of the game is programmed in ZScript, which also
+needs to be modularised and refactored.
 */
 
 // Character definitions
