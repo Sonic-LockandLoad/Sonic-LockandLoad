@@ -280,12 +280,12 @@ class Caliburn : BoostEnabledWeapon
 		return null;
 	}
 	
-	action void SwordAttack(int damage, double distance, bool rightFacing)
+	action void SwordAttack(int damage, double distance, bool right_facing, int horizontal_spread = 75, int attack_count = 30)
 	{
 		A_StartSound("sweapons/swordswing", 9);
 		SwordDash(GetPlayerInput(INPUT_FORWARDMOVE), distance);
-		FireEnergyBlade(distance, rightFacing);
-		PerformMeleeAttack(damage + invoker.DamageBonus * 2, distance, angle, pitch, 30);
+		FireEnergyBlade(distance, right_facing);
+		PerformMeleeAttack(damage + invoker.DamageBonus * 2, distance, angle, pitch, attack_count, horizontal_spread);
 	}
 
 	action void SwordDash(double forwardMove, double distance)
@@ -297,14 +297,14 @@ class Caliburn : BoostEnabledWeapon
 		}
 	}
 
-	action void FireEnergyBlade(double distance, bool rightFacing)
+	action void FireEnergyBlade(double distance, bool right_facing)
 	{
 		FTranslatedLineTarget t;
 		LineAttack(angle, distance, pitch, 0, 'Melee', "SwordPuff", LAF_ISMELEEATTACK, t);
 		if (t.linetarget) return;
 		if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
 			A_PlaySound("sweapons/soulsurge", 6, 0.5);
-			string direction = rightFacing ? "Right" : "Left";
+			string direction = right_facing ? "Right" : "Left";
 			if (CountInv("PowerSuper")) {
 				A_FireProjectile("EnergyBlade"..direction, 0, 0);
 			}
@@ -314,11 +314,14 @@ class Caliburn : BoostEnabledWeapon
 		}
 	}
 
-	action void PerformMeleeAttack(int damage, double distance, double angle, double pitch, int attackCount)
+	action void PerformMeleeAttack(int damage, double distance, double angle, double pitch, int attack_count, int horizontal_spread)
 	{
 		FTranslatedLineTarget t;
-		for (int x = 0; x <= attackCount; x++) {
-			LineAttack(angle + random(-75, 75), distance, pitch, damage / attackCount * random(1, 8), 'Melee', "SwordPuff", LAF_ISMELEEATTACK, t);
+		for (int x = 0; x <= attack_count; x++) {
+			double spread_angle = random(horizontal_spread * -1, horizontal_spread);
+			int attack_angle = angle + spread_angle;
+			console.printf("%d", attack_angle);
+			LineAttack(attack_angle, distance, pitch, damage / attack_count * random(1, 8), 'Melee', "SwordPuff", LAF_ISMELEEATTACK, t);
 			if (t.linetarget) {
 				A_StartSound("sweapons/finalhit", CHAN_WEAPON);
 			}
@@ -348,11 +351,22 @@ class Caliburn : BoostEnabledWeapon
 			CALI # 1 A_Lower(20);
 			Loop;
 		Select:
+			TNT1 A 0 {
+				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK) {
+					A_Raise(200); // About as close as we can get for "instant"
+					return ResolveState("QuickswapSlash");
+				}
+				return ResolveState(null);
+			}
 			CALI A 1 A_Raise(20);
 			Loop;
 		Fire:
 			TNT1 A 0 A_GiveInventory("SwordParry");
-			/* passthrough */
+			Goto Slash1;
+		QuickswapSlash:
+			CAL1 A 1 A_GiveInventory("SwordParry");
+			TNT1 A 0 SwordAttack(80, 720, false, 25, 80);
+			Goto Slash1+2;
 		Slash1:
 			CAL1 A 1;
 			TNT1 A 0 SwordAttack(40, 90, false);
