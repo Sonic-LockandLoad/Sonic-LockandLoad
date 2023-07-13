@@ -187,7 +187,7 @@ class ProjectileChaingunner : ChaingunGuy replaces ChaingunGuy
     {
         Missile:
             CPOS E 10 A_FaceTarget;
-            CPOS FE 2 Bright A_SpawnProjectile("WeakProjectileBullet", 32, 0, random(-5, 5), 0, random(-3, 3));
+            CPOS FE 3 Bright A_SpawnProjectile("WeakProjectileBullet", 32, 0, random(-5, 5), 0, random(-3, 3));
             CPOS F 1 A_CPosRefire;
             Goto Missile+1;
     }
