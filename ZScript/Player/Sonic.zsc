@@ -320,7 +320,6 @@ class Caliburn : BoostEnabledWeapon
 		for (int x = 0; x <= attack_count; x++) {
 			double spread_angle = random(horizontal_spread * -1, horizontal_spread);
 			int attack_angle = angle + spread_angle;
-			console.printf("%d", attack_angle);
 			LineAttack(attack_angle, distance, pitch, damage / attack_count * random(1, 8), 'Melee', "SwordPuff", LAF_ISMELEEATTACK, t);
 			if (t.linetarget) {
 				A_StartSound("sweapons/finalhit", CHAN_WEAPON);
