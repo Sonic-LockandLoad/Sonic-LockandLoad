@@ -40,21 +40,14 @@ OptionMenu "LockandLoadOptions"
 	Title "Options"
 	
 	StaticText "Configure Sonic: Lock & Load.", "White"
-	StaticText "Change your controls, the choices of music tracks,", "White"
-	StaticText "the characters' abilities, or access the GZDoom", "White"
-	StaticText "options.", "White"
+	StaticText "Customise your gameplay experience with these options.", "White"
 	StaticText ""
-	
-	StaticText "General", "MenuActive"
-	SubMenu "Configure Controls", "LLControlsMenu"
-	SubMenu "Music Choices", "SDMusic"
-	StaticText ""
-	
-	StaticText "Gameplay", "MenuActive"
+
+	SubMenu "Controls", "LLControlsMenu"
 	SubMenu "Abilities", "LLAbilitiesMenu"
-	SubMenu "Modifiers", "LLModsMenu"
+	SubMenu "Music Options", "SDMusic"
+	SubMenu "Gameplay Modifiers", "LLModsMenu"
 	SubMenu "Miscellaneous", "LLMiscOptMenu"
-	SubMenu "Specific Controls", "LLSpecControl"
 	StaticText ""
 	
 	SubMenu "Advanced Options", "OptionsMenu"
@@ -64,37 +57,31 @@ OptionMenu "LLAbilitiesMenu"
 {
 	Title "Abilities"
 	
-	StaticText "Configure character abilties.", "White"
+	StaticText "Customise character abilities.", "White"
 	StaticText "Toggle various abilities and adjust settings for", "White"
 	StaticText "specific characters.", "White"
 	StaticText ""
-	
+
 	Option "Reserved Mode", "ReservedMode", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
 	StaticText "Tones down movement speed and jump height,", "White"
 	StaticText "suitable for standard DOOM levels.", "White"
 	StaticText ""
-	
+
 	Option "Crash into walls when Boosting", "WallCrash", "EnabledOrNot"
-	StaticText "Sonic only", "Cyan"
 	StaticText "Enable or disable crashing into walls while performing the Boost.", "White"
 	StaticText ""
-	
+
 	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
-	StaticText "Amy only", "Cyan"
 	StaticText "Adjust the zoom factor of Amy's Precision Shotgun scope.", "White"
 	StaticText ""
-	
+
 	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
-	StaticText "Sonic or Classic", "Cyan"
 	StaticText "Enable or disable Hyper Sonic transformation.", "White"
 	StaticText ""
-	
+
 	Option "Homing Reticle", "HomingReticle", "HomingReticle"
-	StaticText "Sonic or Shadow", "Cyan"
 	StaticText "Change the Homing Reticle for Sonic or Shadow.", "White"
 	StaticText ""
-	
 }
 OptionMenu "LLSpecControl"
 {
@@ -120,88 +107,76 @@ OptionMenu "LLMiscOptMenu"
 {
 	Title "Misc. Options"
 	
-	StaticText "Configure miscellaneous options.", "White"
+	StaticText "Customise miscellaneous options.", "White"
 	StaticText "Options that don't belong in any other category are put", "White"
 	StaticText "here, like your HUD style or whether or not you have", "White"
 	StaticText "subtitles for voiced lines.", "White"
 	StaticText ""
-	
+
 	Option "HUD Type", "HUDType", "HUDType"
-	StaticText "Fullscreen HUD is unchanged.", "LightBlue"
 	StaticText ""
-	
+
 	Option "Subtitles", "Subtitles", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
 	StaticText ""
-	
+
 	Option "Tutorials", "Tutorials", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
 	StaticText ""
-	
+
 	Option "Control Hints", "ControlHints", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
+	StaticText "Deprecated.", "Red"
 	StaticText ""
-	
+
 	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
 	StaticText ""
-	
+
 	Option "Low Energy Warning", "LowEnergySound", "EnabledOrNot"
-	StaticText "All characters", "Cyan"
-	StaticText "Will play when energy is low in", "White"
-	StaticText "Super, Dark or Hyper form.", "White"
+	StaticText "Play warning when energy is low in Super, Dark, or Hyper form.", "White"
 	StaticText ""
-	
+
 	Option "HIRE THIS MAN", "HireThisMan", "EnabledOrNot"
-	StaticText "If this is turned on, there's a random chance", "White"
-	StaticText "'NINTENDO, HIRE THIS MAN!' by Chris Voiceman will", "White"
-	StaticText "replace the title screen music.", "White"
+	StaticText "Enable this option to replace the title screen music", "White"
+	StaticText "with 'NINTENDO, HIRE THIS MAN!' by Chris Voiceman.", "White"
 	StaticText ""
 }
 OptionMenu "LLModsMenu"
 {
 	Title "Modifiers"
 	
-	StaticText "Configure gameplay modifiers.", "White"
-	StaticText "These options add or change mechanics entirely, and are intended", "White"
-	StaticText "for people who want to tinker with their gameplay experience.", "White"
+	StaticText "Customise gameplay mechanics.", "White"
+	StaticText "Add or change gameplay mechanics for a tailored experience.", "White"
 	StaticText ""
-	
+
 	Option "Give Energy On Damage", "GiveEnergyOnDamage", "EnabledOrNot"
 	StaticText "Dealing damage to or killing monsters will net you some", "White"
 	StaticText "Chaos Energy, which is capped at either 300 or 500 Energy", "White"
 	StaticText "depending on if the monster was only damaged or was killed.", "White"
 	StaticText ""
-	
+
 	Option "Enemies Bleed Rings", "EnemiesBleedRings", "EnabledOrNot"
 	StaticText "Upon taking damage, enemies will drop Rings that don't last too long", "White"
-	StaticText "and you'll receive a health boost if you're close up to the enemy,", "White"
-	StaticText "functioning similarly to the blood mechanic in ULTRAKILL.", "White"
+	StaticText "and you'll receive a health boost if you're close up to the enemy.", "White"
 	StaticText ""
-	
+
 	Option "Style System", "StyleSystem", "EnabledOrNot"
 	StaticText "Continuously attack enemies to rack up Style Points and", "White"
 	StaticText "get a high Style Rank! Getting hit or just waiting will", "White"
 	StaticText "make your Style Points go down.", "White"
 	StaticText ""
-	
+
 	Option "Spongy Enemies", "SpongyEnemies", "EnabledOrNot"
 	Slider "Spongy Multiplier", "Sponginess", 2, 100, 1
-	StaticText "Are you sick and tired of enemies dying too quickly?", "White"
-	StaticText "Enable this gameplay modifier, and all enemies will have their", "White"
-	StaticText "health multiplied, so you can style on them all you like!", "White"
+	StaticText "Enable this modifier to have enemies with multiplied health,", "White"
+	StaticText "so you can enjoy longer fights and show off your skills!", "White"
 	StaticText ""
-	
+
 	Option "One-Hit Mode", "OneHitMode", "EnabledOrNot"
-	StaticText "Think you're good at the game? Good enough to rush past", "White"
-	StaticText "everything in your way? Enable this gameplay modifier to", "White"
-	StaticText "have any damage dealt to you instantly kill you!", "White"
+	StaticText "Enable this mode for a challenging experience, where", "White"
+	StaticText "any damage dealt to you instantly results in death.", "White"
 	StaticText ""
-	
+
 	Option "Death Counter", "CountDeaths", "EnabledOrNot"
-	StaticText "Want to know just how bad at the game you are? This gameplay", "White"
-	StaticText "modifier will tally up your deaths and display them on you", "White"
-	StaticText "when you enter a new level. Combine with One-Hit Mode for a", "White"
+	StaticText "Display your death count on entering a new level for", "White"
+	StaticText "an added challenge. Combine with One-Hit Mode for a", "White"
 	StaticText "metric of how you're doing on that mode!", "White"
 	StaticText ""
 }
@@ -211,8 +186,7 @@ OptionMenu "LLControlsMenu"
 	
 	StaticText "Configure controls.", "White"
 	StaticText "This is not an extensive list of controls, but", "White"
-	StaticText "it contains every key needed for Sonic: Lock ", "White"
-	StaticText "& Load.", "White"
+	StaticText "it contains every key needed for Sonic: Lock & Load.", "White"
 	StaticText ""
 	
 	StaticText "Movement", "MenuActive"
@@ -250,21 +224,18 @@ OptionMenu "SDMusic"
 {
 	Title "Music Options"
 	
-	StaticText "Configure music choices.", "White"
-	StaticText "Change music tracks for invincibility, Super or ", "White"
+	StaticText "Customise music choices.", "White"
+	StaticText "Change music tracks for invincibility, Super, Hyper or ", "White"
 	StaticText "Dark form, and toggle music being played upon death.", "White"
 	StaticText ""
-	
-	Option "Invincibility", "InvincMusic", "EnabledOrNotMus"
-	StaticText "All characters", "Cyan"
+
+	Option "Invincibility Music", "InvincMusic", "EnabledOrNotMus"
 	StaticText ""
-	
-	Option "Super/Dark/Hyper Form", "SuperMusic", "EnabledOrNotMus"
-	StaticText "All characters", "Cyan"
+
+	Option "Super/Dark/Hyper Form Music", "SuperMusic", "EnabledOrNotMus"
 	StaticText ""
-	
+
 	Option "Death Music", "DeathMusic", "EnabledOrNotMus"
-	StaticText "All characters", "Cyan"
 	StaticText ""
 }
 AddOptionMenu "OptionsMenu"
