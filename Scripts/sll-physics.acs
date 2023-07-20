@@ -26,8 +26,8 @@ script "SetFriction" ENTER
 			SetActorProperty(0, APROP_Friction, 1.0);
 			SetAirControl(0.4);
 		}
-		else if (speed > 50.0 && !isMoving) {
-			SetActorProperty(0, APROP_Friction, 1.03);
+		else if (speed > 40.0 && !isMoving) {
+			SetActorProperty(0, APROP_Friction, 1.0);
 			SetAirControl(0.0);
 		}
 		else if (isMoving) {
