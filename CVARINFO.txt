@@ -17,12 +17,13 @@ user bool HomingAssaultOffhand      = false;
 user bool HireThisMan				= true;
 user bool ControlHints				= false;
 user bool Tutorials					= true;
+user bool EnergyBlades				= true;
 
 user bool GiveEnergyOnDamage		= false;
 user bool EnemiesBleedRings			= false;
 user bool StyleSystem				= false;
 user bool SpongyEnemies				= false;
-user int Sponginess					= 2;
+user int  Sponginess				= 2;
 user bool OneHitMode				= false;
 user bool CountDeaths				= false;
 

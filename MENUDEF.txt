@@ -68,7 +68,6 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText ""
 
 	Option "Crash into walls when Boosting", "WallCrash", "EnabledOrNot"
-	StaticText "Enable or disable crashing into walls while performing the Boost.", "White"
 	StaticText ""
 
 	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
@@ -76,11 +75,12 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText ""
 
 	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
-	StaticText "Enable or disable Hyper Sonic transformation.", "White"
 	StaticText ""
 
 	Option "Homing Reticle", "HomingReticle", "HomingReticle"
-	StaticText "Change the Homing Reticle for Sonic or Shadow.", "White"
+	StaticText ""
+
+	Option "Caliburn Energy Blades", "EnergyBlades", "EnabledOrNot"
 	StaticText ""
 }
 OptionMenu "LLSpecControl"

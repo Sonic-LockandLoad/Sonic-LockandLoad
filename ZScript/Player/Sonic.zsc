@@ -284,7 +284,7 @@ class Caliburn : BoostEnabledWeapon
 	{
 		A_StartSound("sweapons/swordswing", 9);
 		SwordDash(GetPlayerInput(INPUT_FORWARDMOVE), distance);
-		FireEnergyBlade(distance, right_facing);
+		if (GetCvar("EnergyBlades")) FireEnergyBlade(distance, right_facing);
 		PerformMeleeAttack(damage + invoker.DamageBonus * 2, distance, angle, pitch, attack_count, horizontal_spread);
 	}
 
