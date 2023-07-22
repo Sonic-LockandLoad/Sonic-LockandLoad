@@ -448,6 +448,7 @@ class SLL_Arachnotron : Arachnotron replaces Arachnotron
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_Archvile : Archvile replaces Archvile
@@ -456,6 +457,7 @@ class SLL_Archvile : Archvile replaces Archvile
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_BaronOfHell : BaronOfHell replaces BaronOfHell
@@ -464,6 +466,7 @@ class SLL_BaronOfHell : BaronOfHell replaces BaronOfHell
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_Cacodemon : Cacodemon replaces Cacodemon
@@ -472,6 +475,7 @@ class SLL_Cacodemon : Cacodemon replaces Cacodemon
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_Cyberdemon : Cyberdemon replaces Cyberdemon
@@ -480,6 +484,7 @@ class SLL_Cyberdemon : Cyberdemon replaces Cyberdemon
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_Demon : Demon replaces Demon
@@ -488,6 +493,7 @@ class SLL_Demon : Demon replaces Demon
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_DoomImp : DoomImp replaces DoomImp
@@ -496,6 +502,7 @@ class SLL_DoomImp : DoomImp replaces DoomImp
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_Fatso : Fatso replaces Fatso
@@ -504,6 +511,7 @@ class SLL_Fatso : Fatso replaces Fatso
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_HellKnight : HellKnight replaces HellKnight
@@ -512,6 +520,7 @@ class SLL_HellKnight : HellKnight replaces HellKnight
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_PainElemental : PainElemental replaces PainElemental
@@ -520,6 +529,7 @@ class SLL_PainElemental : PainElemental replaces PainElemental
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_Revenant : Revenant replaces Revenant
@@ -528,6 +538,7 @@ class SLL_Revenant : Revenant replaces Revenant
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_Spectre : Spectre replaces Spectre
@@ -536,6 +547,7 @@ class SLL_Spectre : Spectre replaces Spectre
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_SpiderMastermind : SpiderMastermind replaces SpiderMastermind
@@ -544,6 +556,7 @@ class SLL_SpiderMastermind : SpiderMastermind replaces SpiderMastermind
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_WolfensteinSS : WolfensteinSS replaces WolfensteinSS
@@ -552,6 +565,7 @@ class SLL_WolfensteinSS : WolfensteinSS replaces WolfensteinSS
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 class SLL_ZombieMan : ZombieMan replaces ZombieMan
@@ -560,6 +574,7 @@ class SLL_ZombieMan : ZombieMan replaces ZombieMan
 	{
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
 	}
 }
 // Enemies.zsc is now as big as Base.zsc. I hate this so much. WHY CAN'T IT BE

@@ -75,6 +75,10 @@ DamageType Drowned
 	Factor = 1
 	Obituary = "$OB_WATER"
 }
+DamageType Shockwave
+{
+	Factor = 0
+}
 
 map TITLEMAP "The Next Level"
 {
