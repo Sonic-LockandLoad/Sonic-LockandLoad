@@ -423,7 +423,7 @@ class SlamAtkObject : CustomInventory
 			FTranslatedLineTarget ltinfo;
 			bool ltattack = LineAttack(set_angle, range, 0, 0, 'Shockwave', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
-			if (ltarget && ltarget.bIsMonster) {
+			if (ltarget && (ltarget.bIsMonster || ltarget.GetClassName() == "Doox")) {
 				int min = 1;
 				int max = 20 + invoker.zdiff / 41;
 				if (thrust < min) thrust = min;
