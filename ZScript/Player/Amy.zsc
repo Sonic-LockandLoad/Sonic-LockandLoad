@@ -126,7 +126,9 @@ class PikoPikoHammer : LockLoadWeapon
 	action void DoRemoteAttack(int damage, Name damage_type)
 	{
 		A_StartSound("sweapons/finalhit", CHAN_WEAPON);
-		target.DamageMobj(self, null, damage, damage_type);
+		if (target) {
+			target.DamageMobj(self, null, damage, damage_type);
+		}
 	}
 	action bool DoHammerJump(int thrust)
 	{
