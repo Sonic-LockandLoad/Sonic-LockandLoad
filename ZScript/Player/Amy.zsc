@@ -93,6 +93,7 @@ class PikoPikoHammer : LockLoadWeapon
 {
 	bool GuardCheck;
 	bool HJumpCheck;
+	bool DidTarget;
 	Default
 	{
 		Weapon.SelectionOrder 1;
@@ -102,6 +103,31 @@ class PikoPikoHammer : LockLoadWeapon
 		+WEAPON.NOALERT
 		+WEAPON.NOAUTOFIRE
 	}
+	action bool HomeInOnTarget()
+	{
+		invoker.DidTarget = false;
+		FTranslatedLineTarget ltinfo;
+		bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+		let ltarget = ltinfo.linetarget;
+		if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
+			target = ltarget;
+			invoker.DidTarget = true;
+			A_Stop();
+			double ltdistance = Distance2D(ltarget);
+			A_SetAngle(ltinfo.angleFromSource);
+			A_StartSound("classic/dash", 6);
+			Vel = (ltarget.Pos - Pos) / 4;
+			cvar.FindCvar("DidHoming").SetBool(true);
+			return true;
+		}
+		cvar.FindCvar("DidHoming").SetBool(false);
+		return false;
+	}
+	action void DoRemoteAttack(int damage, Name damage_type)
+	{
+		A_StartSound("sweapons/finalhit", CHAN_WEAPON);
+		target.DamageMobj(self, null, damage, damage_type);
+	}
 	action bool DoHammerJump(int thrust)
 	{
 		if (player.onground && (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP) || (GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
@@ -110,6 +136,13 @@ class PikoPikoHammer : LockLoadWeapon
 			return true;
 		}
 		return false;
+	}
+	action void DoHammerDash(int strength)
+	{
+		if (!HomeInOnTarget()) {
+			int velocity = sqrt(Vel.X ** 2 + Vel.Y ** 2) / 2;
+			A_ChangeVelocity(Cos(Pitch) * 6 + velocity, 0, Sin(Pitch) * -10, CVF_Relative);
+		}
 	}
 	States
 	{
@@ -157,14 +190,22 @@ class PikoPikoHammer : LockLoadWeapon
 			Goto EndAnim;
 		HammerAerial:
 			PIKO A 1;
-			PIKO B 1 {
-				int speed = sqrt(Vel.X ** 2 + Vel.Y ** 2) / 2;
-				A_ChangeVelocity(Cos(Pitch) * 6 + speed, 0, Sin(Pitch) * -10, CVF_Relative);
-			}
 			TNT1 A 0 A_PlaySound("sweapons/hammerswing", 1);
-			PIKO CDE 1 A_CustomPunch(80, 0, 0, "PikoPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			PIKO F 1;
-			TNT1 AAA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			PIKO B 1 DoHammerDash(10);
+			PIKO C 1 A_CustomPunch(80, 0, 0, "PikoPuff", 120, 0, 0, "ArmorBonus", "sweapons/finalhit");
+			PIKO D 1 { 
+				if (invoker.DidTarget) {
+					DoRemoteAttack(80, "Piko"); 
+					A_ScaleVelocity(0.45);
+				}
+			}
+			PIKO EFZZZ 1 { 
+				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ALTATTACK && (!(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_ALTATTACK))) {
+					return ResolveState("AltFire");
+				}
+				return ResolveState(null);
+			}
 			PIKO GHIJ 1;
 			Goto Ready;
 		EndAnim:

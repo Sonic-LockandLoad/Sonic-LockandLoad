@@ -129,7 +129,11 @@ class LockLoadPlayer : PlayerPawn
 	void HandleReticle()
 	{
 		FTranslatedLineTarget ltinfo;
-		if (GetCvar("HomingReticle") && (CountInv("SonicCheck") || (CountInv("ShadowCheck") && !player.onground))) {
+		bool SonicPrerequisite = CountInv("SonicCheck");
+		bool ShadowPrerequisite = CountInv("ShadowCheck") && !player.onground;
+		bool AmyPrerequisite = CountInv("AmyCheck") && !player.onground && player.ReadyWeapon.GetClassName() == "PikoPikoHammer";
+		bool HomingPrerequisite = SonicPrerequisite || ShadowPrerequisite || AmyPrerequisite;
+		if (GetCvar("HomingReticle") && HomingPrerequisite) {
 			bool ltattack = LineAttack(angle, 896, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ | LAF_NOINTERACT, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
 			if (ltarget && Distance3D(ltarget) > 128 && health > 0) {
