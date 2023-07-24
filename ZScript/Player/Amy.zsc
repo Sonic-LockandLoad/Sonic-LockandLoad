@@ -266,7 +266,6 @@ class PrecisionShotgun : LockLoadWeapon
 		Ready:
 			AMSG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			TNT1 A 0 {
-				ACS_NamedExecute("KickCooldown");
 				A_ZoomFactor(1);
 				A_SetCrosshair(0);
 				invoker.isZoomed = false;
@@ -435,7 +434,6 @@ class AmyEclipseBlaster : LockLoadWeapon
 	{
 		Ready:
 			ACBL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			Loop;
 		Deselect:
 			#### # 1 A_Lower(10);
@@ -497,7 +495,6 @@ class RapidMissiles : LockLoadWeapon
 	{
 		Ready:
 			MMSL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
-			TNT1 A 0 ACS_NamedExecute("KickCooldown");
 			Loop;
 		Deselect:
 			#### # 1 A_Lower(10);
