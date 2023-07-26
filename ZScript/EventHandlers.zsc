@@ -330,11 +330,13 @@ class StyleSystem : EventHandler
 		else 					  cvar.FindCvar("StyleRank").SetInt(0); // Empty
 		
 		// Obtain Style Rank to sync up
-		int stylerank = cvar.FindCvar("StyleRank").GetInt();
+		int style_rank = cvar.FindCvar("StyleRank").GetInt();
+		
+		bool transformed = player.CountInv("PowerSuper") || player.CountInv("PowerHyper");
 		
 		// Style Bonuses
-		if (stylerank >= 3 && !(player.CountInv("PowerSuper") || player.CountInv("PowerHyper"))) {
-			player.A_GiveInventory("ChaosEnergy", stylerank - 3);
+		if (style_rank >= 3 && !transformed) {
+			player.A_GiveInventory("ChaosEnergy", style_rank - 3);
 		}
 	}
 	

@@ -43,7 +43,7 @@ class ChaosRocket : Actor
 			}
 			Loop;
 		Pain:
-			TNT1 A 0 {
+			MISL A 1 {
 				ACS_NamedExecute("ParryEffect");
 				invoker.bShootable = false;
 				invoker.bSeekerMissile = true;
