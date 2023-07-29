@@ -292,7 +292,6 @@ class Caliburn : BoostEnabledWeapon
 	{
 		bool PressedForward = GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(INPUT_OLDBUTTONS) & BT_ATTACK));
 		if (CountInv("PowerSDash") || PressedForward) {
-			/* Check if the player recently pressed the forward key */
 			A_ChangeVelocity(distance / 3, 0, 0, CVF_Relative);
 		}
 	}
@@ -316,6 +315,7 @@ class Caliburn : BoostEnabledWeapon
 
 	action void PerformMeleeAttack(int damage, double distance, double angle, double pitch, int attack_count, int horizontal_spread)
 	{
+		if (CountInv("ChaosEnergy") < 2) damage *= 5;
 		FTranslatedLineTarget t;
 		for (int x = 0; x <= attack_count; x++) {
 			double spread_angle = random(horizontal_spread * -1, horizontal_spread);
