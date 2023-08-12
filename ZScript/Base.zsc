@@ -253,6 +253,11 @@ class LockLoadPlayer : PlayerPawn
 		if (player.crouchoffset != 0) {
 			player.crouching = 1;
 		}
+		
+		if (GetCvar("IsCrouching")) {
+			Vel.X *= 1.5;
+			Vel.Y *= 1.5;
+		}
 
 		double speed = GetCurrentVelocity();
 		double slopebonus = (Pos.Z - OldZ) * (speed / 57);
