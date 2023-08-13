@@ -142,7 +142,7 @@ class StyleSystem : EventHandler
 		
 		/* Dealing damage */
 		if (PlayerIsResponsible) {
-			scorebonus += e.damage * 48;
+			scorebonus += e.damage * 72;
 		}
 		else {
 			scorebonus += e.damage * 24;
@@ -150,7 +150,7 @@ class StyleSystem : EventHandler
 		
 		/* Using different weapon */
 		if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
-			scorebonus *= 2;
+			scorebonus *= 3;
 		}
 		
 		/* Height bonus */
@@ -162,15 +162,32 @@ class StyleSystem : EventHandler
 			scorebonus *= heightbonus;
 		}
 		
+		/* Enemy mid-air bonus */
+		if (e.thing.Pos.Z > e.thing.GetZAt()) {
+			scorebonus *= 2;
+		}
+		
 		/* Velocity bonus */
 		double total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
-		double velocitybonus = total_vel / 256;
-		if (velocitybonus < 1) velocitybonus = 1;
-		if (velocitybonus > 3) velocitybonus = 3;
-		scorebonus *= velocitybonus;
+		double velocity_multiplier;
+		switch (total_vel) {
+			case 60:
+				velocity_multiplier = 3.0;
+				break;
+			case 30:
+				velocity_multiplier = 2.0;
+				break;
+			case 15:
+				velocity_multiplier = 1.0;
+				break;
+			default:
+				velocity_multiplier = 0.5;
+				break;
+		}
+		scorebonus *= velocity_multiplier;
 		
 		/* Calculate staleness */
-		int staleness = 48 * consecutive_uses;
+		int staleness = 64 * consecutive_uses;
 		if (staleness < 0) staleness = 0;
 		if (staleness > scorebonus) staleness = scorebonus;
 		
@@ -178,9 +195,16 @@ class StyleSystem : EventHandler
 		int remaining_weapons = (6 - GetAmountOfWeapons()) + 1;
 		staleness /= remaining_weapons;
 		
-		/* Apply staleness */
-		scorebonus -= staleness;
-		
+		/* Apply staleness, unless Offhand Attack was used */
+		bool melee_used = e.DamageType == "SonicKick" ||
+						  e.DamageType == "ShadowMelee" ||
+						  e.DamageType == "Piko" ||
+						  e.DamageType == "SonicPunch";
+						  
+		if (!melee_used) {
+			scorebonus -= staleness;
+		}
+ 		
 		/* Total up and cap score */
 		score += scorebonus;
 		if (score > 500000) score = 500000;
@@ -250,7 +274,7 @@ class StyleSystem : EventHandler
 				penalty = 2192;
 				break;
 		}
-		penalty += e.damage / 4 * score / 16;
+		penalty += (e.damage / 8) * (score / 16);
 		if (penalty < 1) {
 			score = 0;
 			return;
