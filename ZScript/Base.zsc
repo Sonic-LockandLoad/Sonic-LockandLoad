@@ -326,6 +326,42 @@ class LockLoadPlayer : PlayerPawn
 		Super.CanCrouch();
 		return true;
 	}
+	
+	void SetInitialCrouchSlideSpeed(double initial_speed)
+	{
+		if (GetCurrentVelocity() > initial_speed + 5) {
+			// If the player's already moving fast enough,
+			// don't bother increasing their speed
+			return;
+		}
+
+		int forward_input = GetPlayerInput(INPUT_FORWARDMOVE) / 6400;
+		int side_input = GetPlayerInput(INPUT_SIDEMOVE) / 6144;
+		int old_buttons = GetPlayerInput(INPUT_OLDBUTTONS);
+		
+		bool just_pressed_crouch = !(old_buttons & BT_CROUCH);
+
+		if (just_pressed_crouch) {
+			int x_velocity_change = 0;
+			int y_velocity_change = 0;
+			
+			if (forward_input < 0) {
+				x_velocity_change = -initial_speed;
+			}
+			else if (forward_input > 0) {
+				x_velocity_change = initial_speed;
+			}
+			
+			if (side_input < 0) {
+				y_velocity_change = initial_speed;
+			}
+			else if (side_input > 0) {
+				y_velocity_change = -initial_speed;
+			}
+			
+			A_ChangeVelocity(x_velocity_change, y_velocity_change, 0, CVF_Relative);
+		}
+	}
 
 	void HandleCrouch(PlayerInfo player, int buttons, bool totallyfrozen)
 	{
@@ -333,7 +369,10 @@ class LockLoadPlayer : PlayerPawn
 			cvar.FindCvar("IsCrouching").SetBool(true);
 			A_SetSize(-1, 24);
 			Player.ViewHeight = 24;
-			if (GetCurrentVelocity() >= 1.0) A_StartSound("*crouchslide", 12, CHANF_NOSTOP);
+			if (GetCurrentVelocity() >= 1.0) {
+				SetInitialCrouchSlideSpeed(30.0);
+				A_StartSound("*crouchslide", 12, CHANF_NOSTOP);
+			}
 			else if (!CountInv("ClassicCheck")) A_StopSound(12);
 		}
 		else {
