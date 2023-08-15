@@ -107,22 +107,27 @@ class StyleSystem : EventHandler
 	
 	override void WorldThingDamaged(WorldEvent e)
     {
-		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
-		if (e.thing && e.thing is "PlayerPawn") {
-			DeductStyleScore(e);
-		}
+        if (!cvar.FindCvar("StyleSystem").GetBool())
+            return;
+
+        if (e.thing && e.thing is "PlayerPawn") {
+            DeductStyleScore(e);
+        }
+		
         else if (e.thing && e.thing.bIsMonster && !(e.damagesource && e.damagesource.bIsMonster) && !(e.inflictor && e.inflictor.bIsMonster)) {
-			UpdateStyleScore(e);
-		}
+            UpdateStyleScore(e);
+        }
     }
-	
-	override void WorldTick()
-	{
-		if (!cvar.FindCvar("StyleSystem").GetBool()) return;
-		UpdateStyleRank();
-		UpdateWeapon();
-		DeprecateStyleScore();
-	}
+
+    override void WorldTick()
+    {
+        if (!cvar.FindCvar("StyleSystem").GetBool())
+            return;
+
+        UpdateStyleRank();
+        UpdateWeapon();
+        DeprecateStyleScore();
+    }
 	
 	private void UpdateStyleScore(WorldEvent e)
 	{
@@ -187,7 +192,7 @@ class StyleSystem : EventHandler
 		scorebonus *= velocity_multiplier;
 		
 		/* Calculate staleness */
-		int staleness = 64 * consecutive_uses;
+		int staleness = 256 * consecutive_uses;
 		if (staleness < 0) staleness = 0;
 		if (staleness > scorebonus) staleness = scorebonus;
 		
@@ -204,6 +209,10 @@ class StyleSystem : EventHandler
 		if (!melee_used) {
 			scorebonus -= staleness;
 		}
+		
+		/* Cap score bonus */
+		int cap = GetScoreBonusCap();
+		scorebonus = clamp(scorebonus, 1000, cap);
  		
 		/* Total up and cap score */
 		score += scorebonus;
@@ -274,12 +283,43 @@ class StyleSystem : EventHandler
 				penalty = 2192;
 				break;
 		}
-		penalty += (e.damage / 8) * (score / 16);
+		penalty += (e.damage / 16) * (score / 16);
+		penalty *= stylerank;
 		if (penalty < 1) {
 			score = 0;
 			return;
 		}
 		score -= penalty;
+	}
+	
+	private int GetScoreBonusCap()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
+		int stylerank = cvar.FindCvar("StyleRank").GetInt();
+		int cap;
+		switch (stylerank) {
+			case 0:
+			case 1:
+				cap = 10000;
+				break;
+			case 2:
+				cap = 15000;
+				break;
+			case 3:
+				cap = 30000;
+				break;
+			case 4:
+				cap = 60000;
+				break;
+			case 5:
+				cap = 100000;
+				break;
+			case 6:
+				cap = 200000;
+				break;
+		}
+		
+		return cap;
 	}
 	
 	private void DeprecateStyleScore()
@@ -346,11 +386,11 @@ class StyleSystem : EventHandler
 		
 		// Set your Style Rank
 		if 		(score >= 200000) cvar.FindCvar("StyleRank").SetInt(6); // Super Sonic!!!
-		else if (score >= 135000) cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
-		else if (score >= 90000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
-		else if (score >= 45000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
+		else if (score >= 100000) cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
+		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
+		else if (score >= 30000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
 		else if (score >= 15000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
-		else if (score >= 500)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
+		else if (score >= 5000)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
 		else 					  cvar.FindCvar("StyleRank").SetInt(0); // Empty
 		
 		// Obtain Style Rank to sync up
