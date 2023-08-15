@@ -288,6 +288,7 @@ script "HomingReticle" (void)
 
 script "Subtitles" (int subtitle)
 {
+	SetActivator(1001);
 	if (GetCvar("Subtitles")) {
 		int subtitleref = strparam(s:"gsubtitle", d:subtitle);
 		HudMessage(l:subtitleref; HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
