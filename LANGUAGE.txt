@@ -218,6 +218,7 @@ gsubtitle19		= "\c[Sonic] Sonic: \c[Grey] (Just an empty backpack.)";
 gsubtitle20		= "\c[Amy] Amy: \c[Grey] (What a pretty backpack!)";
 gsubtitle21		= "\c[Classic] Sonic: \c[Grey] (Oh, well, at least it looks cool.)";
 gsubtitle22		= "\c[Classic] Sonic: \c[Grey] (Chainsaw, huh? I can't use this...)";
+gsubtitle23		= "\c[Red] Doox: \c[White] Nyeeh!";
 
 staunt1			= "\c[Sonic] Sonic: \c[White] You're too slow!";
 staunt2			= "\c[Sonic] Sonic: \c[White] Come on, step it up!";

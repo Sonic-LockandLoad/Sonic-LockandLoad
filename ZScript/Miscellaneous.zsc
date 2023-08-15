@@ -120,7 +120,10 @@ class Doox : SwitchingDecoration
 			}
 			Loop;
 		Active:
-			DOOX A 1 A_StartSound("doox/nyeh");
+			DOOX A 1 {
+				A_StartSound("doox/nyeh");
+				ACS_NamedExecute("Subtitles", 0, 23);
+			}
 			TNT1 A 0 Thing_Deactivate(0);
 			Goto Spawn;
 		Death:
