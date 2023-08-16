@@ -17,3 +17,4 @@ This ZScript file doesn't have anything in it except includes.
 #include "zscript/player/amy.zsc"
 #include "zscript/player/shadow.zsc"
 #include "zscript/player/classicsonic.zsc"
+#include "zscript/statusbar.zsc"

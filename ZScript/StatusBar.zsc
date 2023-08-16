@@ -1,0 +1,188 @@
+class SLL_StatusBar : BaseStatusBar
+{
+	HUDFont mHUDFont;
+	HUDFont mIndexFont;
+	HUDFont mAmountFont;
+	InventoryBarState diparms;
+
+	override void Init()
+	{
+		Super.Init();
+		SetSize(0, 320, 200);
+
+		// Create the font used for the fullscreen HUD
+		Font fnt = "HUDFONT_DOOM";
+		mHUDFont = HUDFont.Create(fnt, fnt.GetCharWidth("0"), Mono_CellLeft, 1, 1);
+		fnt = "INDEXFONT_DOOM";
+		mIndexFont = HUDFont.Create(fnt, fnt.GetCharWidth("0"), Mono_CellLeft);
+		mAmountFont = HUDFont.Create("INDEXFONT");
+		diparms = InventoryBarState.Create();
+	}
+	
+	Inventory GetInventory(class<Inventory> item)
+	{
+		return CPlayer.mo.FindInventory(item);
+	}
+
+	override void Draw(int state, double TicFrac)
+	{
+		Super.Draw (state, TicFrac);
+
+		if (state == HUD_StatusBar)
+		{
+			BeginStatusBar();
+			switch (cvar.FindCvar("HUDType").GetInt()) {
+				case 0: // Unified
+					DrawUnifiedHUD(TicFrac);
+					break;
+				case 1: // Classic-Style
+					DrawClassicStyleHUD();
+					break;
+				case 2: // Legacy
+					DrawLegacyEditionHUD();
+					break;
+			}
+		}
+		else if (state == HUD_Fullscreen)
+		{
+			BeginHUD();
+			DrawFullScreenHUD();
+		}
+	}
+	
+	protected void DisplayUnifiedHUD(Vector2 hud_position)
+	{
+		if (GetInventory("PowerHyper")) {
+			DrawImage("hyp_hud", hud_position);
+		}
+		else if (GetInventory("PowerSuper")) {
+			if (GetInventory("AmyCheck")) {
+				DrawImage("drk_hud", hud_position);
+			}
+			else {
+				DrawImage("sup_hud", hud_position);
+			}
+		}
+		else {
+			if (GetInventory("SonicCheck")) 	{ DrawImage("snc_hud", hud_position); }
+			if (GetInventory("AmyCheck")) 		{ DrawImage("amy_hud", hud_position); }
+			if (GetInventory("ClassicCheck")) 	{ DrawImage("csn_hud", hud_position); }
+			if (GetInventory("ShadowCheck")) 	{ DrawImage("sha_hud", hud_position); }
+		}
+	}
+	
+	protected void DrawBarKeys()
+	{
+		// Taken from DoomStatusBar because I'm lazy
+		bool locks[6];
+		String image;
+		
+		for (int i = 0; i < 6; i++) {
+			locks[i] = CPlayer.mo.CheckKeys(i + 1, false, true);
+		}
+		
+		if (locks[1] && locks[4]) image = "STKEYS6";
+		else if (locks[1]) image = "STKEYS0";
+		else if (locks[4]) image = "STKEYS3";
+		DrawImage(image, (120, 117), DI_ITEM_OFFSETS);
+		
+		if (locks[2] && locks[5]) image = "STKEYS7";
+		else if (locks[2]) image = "STKEYS1";
+		else if (locks[5]) image = "STKEYS4";
+		else image = "";
+		DrawImage(image, (120, 127), DI_ITEM_OFFSETS);
+		
+		if (locks[0] && locks[3]) image = "STKEYS8";
+		else if (locks[0]) image = "STKEYS2";
+		else if (locks[3]) image = "STKEYS5";
+		else image = "";
+		DrawImage(image, (120, 137), DI_ITEM_OFFSETS);
+	}
+	
+	protected void DrawRingsAndEnergy(HUDFont fnt, Vector2 rings_position, Vector2 energy_position)
+	{
+		bool is_transformed = GetInventory("PowerSuper") || GetInventory("PowerHyper");
+		int energy = GetInventory("ChaosEnergy").Amount;
+		
+		if (!is_transformed) {
+			String rings_colour = "Gold";
+			if (CPlayer.health <= 20) rings_colour = "Red";
+			DrawString(fnt, String.Format("%03d", CPlayer.health), rings_position, DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW, Font.FindFontColor(rings_colour));
+		}
+		
+		String energy_colour = "Green";
+		if (GetInventory("PowerSuper")) {
+			if (GetInventory("AmyCheck")) energy_colour = "Purple";
+			else energy_colour = "Gold";
+		}
+		else {
+			if (GetInventory("PowerHyper")) energy_colour = "White";
+			else {
+				if (energy >= 1) energy_colour = "Green";
+				else energy_colour = "Red";
+			}
+		}
+		
+		if (is_transformed) {
+			energy_position = rings_position;
+		}
+		DrawString(fnt, String.Format("%03d", energy), energy_position, DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW, Font.FindFontColor(energy_colour));
+	}
+	
+	protected void DisplayTime(HUDFont fnt, Vector2 time_position)
+	{
+		Name time_colour;
+		
+		if (GetInventory("SonicCheck")) 	{ time_colour = "Sonic"; }
+		if (GetInventory("AmyCheck")) 		{ time_colour = "Amy"; }
+		if (GetInventory("ClassicCheck")) 	{ time_colour = "Classic"; }
+		if (GetInventory("ShadowCheck")) 	{ time_colour = "Shadow"; }
+		
+		if (GetInventory("PowerHyper")) { time_colour = "White"; }
+		if (GetInventory("PowerSuper")) {
+			time_colour = "Gold";
+			if (GetInventory("AmyCheck")) { time_colour = "Purple"; }
+		}
+		
+		int seconds = level.time / 35 % 60;
+		int minutes = seconds / 60;
+		int hours = minutes / 60;
+		if (minutes <= 0) minutes = 0;
+		if (hours <= 0) hours = 0;
+
+		String level_time = String.Format("%02d:%02d:%02d", hours, minutes, seconds);
+
+		DrawString(fnt, level_time, (43, 146), 0, Font.FindFontColor(time_colour));
+	}
+
+	protected void DisplayHead(Vector2 head_position, Vector2 emeralds_position)
+	{
+		if (GetInventory("ChaosEmeralds")) DrawImage("em_back", emeralds_position, DI_ITEM_OFFSETS);
+		DrawTexture(GetMugShot(1), head_position, DI_ITEM_OFFSETS);
+		if (GetInventory("ChaosEmeralds")) DrawImage("em_front", emeralds_position, DI_ITEM_OFFSETS);
+	}
+	
+	protected void DrawUnifiedHUD(double TicFrac)
+	{
+		DisplayUnifiedHUD((32, 156));
+		DisplayTime(HUDFont.Create("BIGFONT"), (43, 146));
+		DisplayHead((-46, 117), (-26, 174));
+		DrawBarKeys();
+		DrawRingsAndEnergy(HUDFont.Create("BIGFONT"), (31, 123), (90, 123));
+	}
+	
+	protected void DrawClassicStyleHUD(double TicFrac)
+	{
+		// To be implemented
+	}
+	
+	protected void DrawLegacyEditionHUD(double TicFrac)
+	{
+		// To be implemented
+	}
+	
+	protected void DrawFullScreenHUD(double TicFrac)
+	{
+		// To be implemented
+	}
+}

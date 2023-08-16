@@ -18,6 +18,7 @@ gameinfo
    DimColor = "00 00 00"
    DimAmount = 0.30
    EventHandlers = "RemoveCyberSpaceArenaCorpses", "GiveEnergyOnDamage", "EnemiesBleedRings", "StyleSystem", "SpongyEnemies", "DeathCounter"
+   StatusBarClass = "SLL_StatusBar"
 }
 
 DamageType SonicKick
