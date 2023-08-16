@@ -199,6 +199,73 @@ class LockLoadPlayer : PlayerPawn
 		return Pos.Z - GetZAt();
 	}
 	
+	override void MovePlayer()
+	{
+		// I probably don't need to re-implement all of this,
+		// but whatever lmao
+		
+		let player = self.player;
+		UserCmd cmd = player.cmd;
+
+		if (player.turnticks) {
+			player.turnticks--;
+			Angle += (180. / TURN180_TICKS);
+		}
+		else {
+			Angle += cmd.yaw * (360./65536.);
+		}
+
+		player.onground = (pos.z <= floorz) || bOnMobj || bMBFBouncer || (player.cheats & CF_NOCLIP2);
+
+		if (cmd.forwardmove | cmd.sidemove) {
+			double forwardmove, sidemove;
+			double bobfactor;
+			double friction, movefactor;
+			double fm, sm;
+
+			[friction, movefactor] = GetFriction();
+			bobfactor = friction < ORIG_FRICTION ? movefactor : ORIG_FRICTION_FACTOR;
+			
+			if (!player.onground && !bNoGravity && !waterlevel) {
+				movefactor *= level.aircontrol;
+				bobfactor  *= level.aircontrol;
+			}
+
+			fm = cmd.forwardmove;
+			sm = cmd.sidemove;
+			[fm, sm] = TweakSpeeds(fm, sm);
+			fm *= Speed / 256;
+			sm *= Speed / 256;
+
+			if (!(player.cheats & CF_PREDICTING) && (forwardmove != 0 || sidemove != 0)) {
+				PlayRunning ();
+			}
+
+			if (player.cheats & CF_REVERTPLEASE) {
+				player.cheats &= ~CF_REVERTPLEASE;
+				player.camera = player.mo;
+			}
+
+			forwardmove = fm * movefactor * (35 / TICRATE);
+			sidemove = sm * movefactor * (35 / TICRATE);
+
+			if (GetCvar("IsCrouching")) {
+				return;
+			}
+
+			if (forwardmove) {
+				Bob(Angle, cmd.forwardmove * bobfactor / 256., true);
+				ForwardThrust(forwardmove, Angle);
+			}
+			
+			if (sidemove) {
+				let a = Angle - 90;
+				Bob(a, cmd.sidemove * bobfactor / 256., false);
+				Thrust(sidemove, a);
+			}
+		}
+	}	
+	
 	override void CheckJump()
 	{
 		let player = self.player;
@@ -250,17 +317,17 @@ class LockLoadPlayer : PlayerPawn
 			jumpvelz *= jumpfac;
 		}
 		
-		if (player.crouchoffset != 0) {
-			player.crouching = 1;
-		}
-		
 		if (GetCvar("IsCrouching")) {
-			Vel.X *= 1.5;
-			Vel.Y *= 1.5;
+			int maxrange = 170;
+			Vel.X *= 1.7;
+			Vel.Y *= 1.7;
+			Vel.X = clamp(Vel.X, -maxrange, maxrange);
+			Vel.Y = clamp(Vel.Y, -maxrange, maxrange);
+			jumpvelz *= 1.15;
 		}
 
 		double speed = GetCurrentVelocity();
-		double slopebonus = (Pos.Z - OldZ) * (speed / 57);
+		double slopebonus = (Pos.Z - OldZ) * (speed / 56);
 		if (slopebonus < 0)  slopebonus = 0;
 		if (slopebonus > 15) slopebonus = 15;
 		Vel.Z = jumpvelz + slopebonus;
@@ -271,7 +338,7 @@ class LockLoadPlayer : PlayerPawn
 			A_StartSound("*jump", CHAN_BODY);
 		}
 	}
-	
+
 	bool DoDoubleJump(int DoubleJumpCounter, int DoubleJumpCount)
 	{
 		if (GetCvar("Sliding")) {
@@ -329,10 +396,10 @@ class LockLoadPlayer : PlayerPawn
 	
 	void SetInitialCrouchSlideSpeed(double initial_speed)
 	{
-		if (GetCurrentVelocity() > initial_speed + 5) {
+		if (GetCurrentVelocity() > initial_speed) {
 			// If the player's already moving fast enough,
-			// don't bother increasing their speed
-			return;
+			// then use that speed
+			initial_speed = GetCurrentVelocity();
 		}
 
 		int forward_input = GetPlayerInput(INPUT_FORWARDMOVE) / 6400;
@@ -359,7 +426,11 @@ class LockLoadPlayer : PlayerPawn
 				y_velocity_change = -initial_speed;
 			}
 			
-			A_ChangeVelocity(x_velocity_change, y_velocity_change, 0, CVF_Relative);
+			if (!x_velocity_change && !y_velocity_change) {
+				return;
+			}
+			
+			A_ChangeVelocity(x_velocity_change, y_velocity_change, 0, CVF_Relative|CVF_Replace);
 		}
 	}
 
@@ -370,7 +441,7 @@ class LockLoadPlayer : PlayerPawn
 			A_SetSize(-1, 24);
 			Player.ViewHeight = 24;
 			if (GetCurrentVelocity() >= 1.0) {
-				SetInitialCrouchSlideSpeed(30.0);
+				SetInitialCrouchSlideSpeed(45.0);
 				A_StartSound("*crouchslide", 12, CHANF_NOSTOP);
 			}
 			else if (!CountInv("ClassicCheck")) A_StopSound(12);
