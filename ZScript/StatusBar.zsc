@@ -36,10 +36,10 @@ class SLL_StatusBar : BaseStatusBar
 					DrawUnifiedHUD(TicFrac);
 					break;
 				case 1: // Classic-Style
-					DrawClassicStyleHUD();
+					DrawClassicStyleHUD(TicFrac);
 					break;
 				case 2: // Legacy
-					DrawLegacyEditionHUD();
+					DrawLegacyEditionHUD(TicFrac);
 					break;
 			}
 		}
@@ -181,7 +181,7 @@ class SLL_StatusBar : BaseStatusBar
 		// To be implemented
 	}
 	
-	protected void DrawFullScreenHUD(double TicFrac)
+	protected void DrawFullScreenHUD()
 	{
 		// To be implemented
 	}
