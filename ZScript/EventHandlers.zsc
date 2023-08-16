@@ -71,12 +71,9 @@ class EnemiesBleedRings : EventHandler
     {
         if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("EnemiesBleedRings").GetBool()) {
 			int ringcount = e.damage / 64;
-			if (ringcount < 1) ringcount = 1;
+			ringcount = clamp(ringcount, 1, 300);
 			int maxrange  = e.damage / 48;
-			if (maxrange < 2) {
-				maxrange = 2;
-			}
-			if (e.damage > e.thing.health) ringcount = e.damage / 16;
+			maxrange = clamp(maxrange, 2, 20);
 			for (int x = 1; x <= ringcount; x++) {
 				int x = random(maxrange * -1, maxrange);
 				int y = random(maxrange * -1, maxrange);
