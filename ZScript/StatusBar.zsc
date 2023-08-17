@@ -43,7 +43,7 @@ class SLL_StatusBar : BaseStatusBar
 					break;
 			}
 		}
-		else if (state == HUD_Fullscreen)
+		if (state == HUD_Fullscreen)
 		{
 			BeginHUD();
 			DrawFullScreenHUD();
@@ -165,12 +165,17 @@ class SLL_StatusBar : BaseStatusBar
 		return String.Format("%02d:%02d:%02d", hours, minutes, seconds);
 	}
 
-	protected void DisplayHead(Vector2 head_position)
+	protected void DisplayHead(Vector2 head_position, bool show_emeralds = false)
 	{
 		Vector2 emeralds_position = (head_position.x + 20, head_position.y + 57);
-		if (GetInventory("ChaosEmeralds")) DrawImage("em_back", emeralds_position, DI_ITEM_OFFSETS);
+		
+		if (GetInventory("ChaosEmeralds") && show_emeralds) 
+			DrawImage("em_back", emeralds_position, DI_ITEM_OFFSETS);
+			
 		DrawTexture(GetMugShot(1), head_position, DI_ITEM_OFFSETS);
-		if (GetInventory("ChaosEmeralds")) DrawImage("em_front", emeralds_position, DI_ITEM_OFFSETS);
+		
+		if (GetInventory("ChaosEmeralds") && show_emeralds)
+			DrawImage("em_front", emeralds_position, DI_ITEM_OFFSETS);
 	}
 	
 	protected void DisplayLabels(Vector2 position, HUDFont fnt)
@@ -186,7 +191,7 @@ class SLL_StatusBar : BaseStatusBar
 	{
 		DisplayUnifiedHUD((32, 156));
 		DrawString(HUDFont.Create("BIGFONT"), GetTimeDisplay(), (43, 146), 0, GetTimeColour());
-		DisplayHead((-46, 117));
+		DisplayHead((-46, 117), true);
 		DrawBarKeys(120, 147, 10);
 		DrawRingsAndEnergy(HUDFont.Create("BIGFONT"), (31, 123), (90, 123), true);
 	}
@@ -227,6 +232,13 @@ class SLL_StatusBar : BaseStatusBar
 	
 	protected void DrawFullScreenHUD()
 	{
-		// To be implemented
+		HUDFont fnt = HUDFont.Create("HUDFONT_DOOM");
+		DisplayHead((3, -35));
+		DrawString(HUDFont.Create("BIGFONT"), GetTimeDisplay(), (-80, 2), 0, GetTimeColour());
+		if (GetInventory("ChaosEmeralds")) {
+			DrawImage("em_smol", (-95, -4));
+		}
+		DrawBarKeys(-60, -17, 8);
+		DrawRingsAndEnergy(fnt, (79, -22), (-5, -22));
 	}
 }

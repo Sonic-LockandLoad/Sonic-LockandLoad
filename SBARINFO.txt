@@ -1,3 +1,101 @@
+/* Mugshot states */
+
+mugshot "Hyper"
+{
+  HYPR - 1;
+}
+
+mugshot "Super"
+{
+  SUPR - 1;
+}
+
+mugshot "Rampage"
+{
+  RMPG 20;
+}
+
+mugshot "Boost"
+{
+  BOOS 20;
+}
+
+mugshot "Failure"
+{
+  FAIL 245;
+}
+
+mugshot "Shield"
+{
+  SHLD 20;
+}
+
+mugshot "SuperBoost"
+{
+  SBOS 20;
+}
+
+mugshot "OK"
+{
+	{
+		ST00, ST01, ST02
+	}
+	245;
+}
+
+mugshot "Normal"
+{
+  {
+    ST00, ST01, ST02
+  }
+  17;
+}
+
+mugshot "Pain", directional
+{
+  {
+    TR00, KILL0, TL00
+  }
+  5;
+}
+
+mugshot "Ouch"
+{
+	OUCH0 5;
+}
+
+mugshot "Grin"
+{
+	EVL0 245;
+}
+
+mugshot "God"
+{
+	GOD0 - 1;
+}
+
+mugshot "Death"
+{
+	DEAD0 - 1;
+}
+
+mugshot "Healing"
+{
+	HEAL 35;
+}
+
+mugshot "GrinSmol"
+{
+	EVL0 60;
+}
+
+mugshot "FailSmol"
+{
+	FAIL 60;
+}
+
+/* Old HUDs, for reference, the new HUD is in ZScript */
+
 StatusBar Fullscreen, FullscreenOffsets
 {
 	DrawKeyBar 10, horizontal, auto, -38, -40, 0, 3, auto;
@@ -198,134 +296,4 @@ StatusBar Normal
 		  }
 	  }
   }
-}
-/*
-StatusBar Fullscreen
-{
-  DrawMugShot 1, 140, 165;
-  InInventory TeleportCooldown, 1
-  {
-    DrawNumber 3, BIGFONT, White, "TeleportCooldown", 155, 155;
-  }
-  DrawKeyBar 10, vertical, auto, 220, 145, 0, 3, auto;
-
-  IfHealth 10
-  {
-    DrawNumber 3, HUDFONT_DOOM, Gold, Health, fillzeros, 130, 180;
-  }
-  IfHealth Not 10
-  {
-    DrawNumber 3, HUDFONT_DOOM, Red, Health, fillzeros, 130, 180;
-  }
-  DrawImage "sprites/pickups/RIN2A0.png", 114, 175, centerbottom;
-
-  InInventory ChaosEnergy, 1
-  {
-    DrawNumber 4, HUDFONT_DOOM, Green, "ChaosEnergy", 220, 180;
-  }
-  InInventory Not ChaosEnergy, 1
-  {
-    DrawNumber 4, HUDFONT_DOOM, Red, "ChaosEnergy", 220, 180;
-  }
-  DrawImage "sprites/pickups/EMRLA0.png", 200, 170, centerbottom;
-
-  InInventory ZoomCharge, 100
-  {
-    DrawString BIGFONT, Purple, "Ready", 190, 90;
-  }
-}
-*/
-
-mugshot "Hyper"
-{
-  HYPR - 1;
-}
-
-mugshot "Super"
-{
-  SUPR - 1;
-}
-
-mugshot "Rampage"
-{
-  RMPG 20;
-}
-
-mugshot "Boost"
-{
-  BOOS 20;
-}
-
-mugshot "Failure"
-{
-  FAIL 245;
-}
-
-mugshot "Shield"
-{
-  SHLD 20;
-}
-
-mugshot "SuperBoost"
-{
-  SBOS 20;
-}
-
-mugshot "OK"
-{
-	{
-		ST00, ST01, ST02
-	}
-	245;
-}
-
-mugshot "Normal"
-{
-  {
-    ST00, ST01, ST02
-  }
-  17;
-}
-
-mugshot "Pain", directional
-{
-  {
-    TR00, KILL0, TL00
-  }
-  5;
-}
-
-mugshot "Ouch"
-{
-	OUCH0 5;
-}
-
-mugshot "Grin"
-{
-	EVL0 245;
-}
-
-mugshot "God"
-{
-	GOD0 - 1;
-}
-
-mugshot "Death"
-{
-	DEAD0 - 1;
-}
-
-mugshot "Healing"
-{
-	HEAL 35;
-}
-
-mugshot "GrinSmol"
-{
-	EVL0 60;
-}
-
-mugshot "FailSmol"
-{
-	FAIL 60;
 }
