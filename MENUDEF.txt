@@ -115,6 +115,9 @@ OptionMenu "LLMiscOptMenu"
 
 	Option "HUD Type", "HUDType", "HUDType"
 	StaticText ""
+	
+	Option "Show Score in HUD", "ShowScore", "EnabledOrNot"
+	StaticText ""
 
 	Option "Subtitles", "Subtitles", "EnabledOrNot"
 	StaticText ""

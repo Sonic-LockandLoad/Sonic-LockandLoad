@@ -18,6 +18,7 @@ user bool HireThisMan				= true;
 user bool ControlHints				= false;
 user bool Tutorials					= true;
 user bool EnergyBlades				= true;
+user bool ShowScore					= false;
 
 user bool GiveEnergyOnDamage		= false;
 user bool EnemiesBleedRings			= false;

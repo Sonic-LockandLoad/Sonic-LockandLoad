@@ -1,3 +1,10 @@
+enum RingCountStates
+{
+	RC_SHOW = 0,
+	RC_REPLACE = 1,
+	RC_HIDE = 2,
+};
+
 class SLL_StatusBar : BaseStatusBar
 {
 	HUDFont mHUDFont;
@@ -27,9 +34,19 @@ class SLL_StatusBar : BaseStatusBar
 	override void Draw(int state, double TicFrac)
 	{
 		Super.Draw (state, TicFrac);
+		
+		if (cvar.FindCvar("ShowScore").GetBool()) {
+			switch (state) {
+				case HUD_StatusBar:
+					DrawScore(HUDFont.Create("BIGFONT"), (470, -98));
+					break;
+				case HUD_Fullscreen:
+					DrawScore(HUDFont.Create("BIGFONT"), (-10, 18));
+					break;
+			}
+		}
 
-		if (state == HUD_StatusBar)
-		{
+		if (state == HUD_StatusBar) {
 			BeginStatusBar();
 			switch (cvar.FindCvar("HUDType").GetInt()) {
 				case 0: // Unified
@@ -43,8 +60,7 @@ class SLL_StatusBar : BaseStatusBar
 					break;
 			}
 		}
-		if (state == HUD_Fullscreen)
-		{
+		if (state == HUD_Fullscreen) {
 			BeginHUD();
 			DrawFullScreenHUD();
 		}
@@ -99,13 +115,13 @@ class SLL_StatusBar : BaseStatusBar
 		DrawImage(image, (base_x, base_y + spacing), DI_ITEM_OFFSETS);
 	}
 	
-	protected void DrawRingsAndEnergy(HUDFont fnt, Vector2 rings_position, Vector2 energy_position, bool replace_ringcount = false, String rings_colour = "Gold", String energy_colour = "Green")
+	protected void DrawRingsAndEnergy(HUDFont fnt, Vector2 rings_position, Vector2 energy_position, int ringcount = RC_SHOW, String rings_colour = "Gold", String energy_colour = "Green")
 	{
 		bool is_transformed = GetInventory("PowerSuper") || GetInventory("PowerHyper");
 		int energy = GetInventory("ChaosEnergy").Amount;
 		int flags = DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW;
 		
-		if (!replace_ringcount || !is_transformed) {
+		if (ringcount == RC_SHOW || !is_transformed) {
 			if (CPlayer.health <= 0) {
 				rings_colour = "Red";
 			}
@@ -128,7 +144,7 @@ class SLL_StatusBar : BaseStatusBar
 			}
 		}
 		
-		if (is_transformed && replace_ringcount) {
+		if (is_transformed && ringcount == RC_REPLACE) {
 			energy_position = rings_position;
 		}
 		
@@ -193,7 +209,7 @@ class SLL_StatusBar : BaseStatusBar
 		DrawString(HUDFont.Create("BIGFONT"), GetTimeDisplay(), (43, 146), 0, GetTimeColour());
 		DisplayHead((-46, 117), true);
 		DrawBarKeys(120, 147, 10);
-		DrawRingsAndEnergy(HUDFont.Create("BIGFONT"), (31, 123), (90, 123), true);
+		DrawRingsAndEnergy(HUDFont.Create("BIGFONT"), (31, 123), (90, 123), RC_REPLACE);
 	}
 	
 	protected void DrawClassicStyleHUD(double TicFrac)
@@ -234,11 +250,38 @@ class SLL_StatusBar : BaseStatusBar
 	{
 		HUDFont fnt = HUDFont.Create("HUDFONT_DOOM");
 		DisplayHead((3, -35));
-		DrawString(HUDFont.Create("BIGFONT"), GetTimeDisplay(), (-80, 2), 0, GetTimeColour());
+		DrawString(HUDFont.Create("BIGFONT"), GetTimeDisplay(), (-10, 2), DI_TEXT_ALIGN_RIGHT, GetTimeColour());
 		if (GetInventory("ChaosEmeralds")) {
 			DrawImage("em_smol", (-95, -4));
 		}
 		DrawBarKeys(-60, -17, 8);
-		DrawRingsAndEnergy(fnt, (79, -22), (-5, -22));
+		DrawRingsAndEnergy(fnt, (79, -22), (-5, -22), RC_HIDE);
+	}
+	
+	protected void DrawScore(HUDFont fnt, Vector2 position)
+	{
+		/* Target score */
+		int targetscore;
+		let skill_level = G_SkillPropertyInt(SKILLP_ACSReturn);
+		targetscore += Level.Total_Monsters * 90;
+		if (skill_level >= 4) targetscore *= 1.5;
+		
+		/* Current score */
+		int score;
+		if (CPlayer.health > 300) {
+			score += 600 + (CPlayer.health - 300);
+		}
+		else {
+			score += CPlayer.health * 2;
+		}
+		score += Level.Killed_Monsters * 95;
+		if (score < 0) score = 0;
+		
+		/* Decide colour */
+		int score_colour = GetTimeColour(false);
+		if (score >= targetscore) score_colour = Font.FindFontColor("Gold");
+		
+		/* Display it */
+		DrawString(fnt, String.Format("%d", score), position, DI_TEXT_ALIGN_RIGHT, score_colour);
 	}
 }
