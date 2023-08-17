@@ -342,7 +342,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 					int rx = random(-30, 30);
 					int ry = random(-30, 30);
 					double pitch = AimLineAttack(angle + rx, spin_dash_range, null, 0., ALF_CHECK3D);
-					LineAttack(angle + rx, spin_dash_range, pitch + ry, spin_dash_damage / 14, 'Melee', "SonicPunchPuff", LAF_ISMELEEATTACK, t);
+					LineAttack(angle + rx, spin_dash_range, pitch + ry, spin_dash_damage / 14, 'SpinDash', "InvisiblePuff", LAF_ISMELEEATTACK, t);
 					if (t.linetarget) A_StartSound("sweapons/finalhit", CHAN_WEAPON);
 				}
 				return ResolveState(null);

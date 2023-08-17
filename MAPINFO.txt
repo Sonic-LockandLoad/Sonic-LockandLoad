@@ -53,6 +53,10 @@ DamageType SonicPunch
 {
 	Factor = 1
 }
+DamageType SpinDash
+{
+	Factor = 1
+}
 DamageType Boost
 {
 	Factor = 1

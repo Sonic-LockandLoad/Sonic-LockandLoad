@@ -151,7 +151,7 @@ class StyleSystem : EventHandler
 		}
 		
 		/* Using different weapon */
-		if (player.player.ReadyWeapon.GetClassName() != current_weapon) {
+		if (ReadyWeapon.GetClassName() != current_weapon) {
 			scorebonus *= 3;
 		}
 		
@@ -190,8 +190,7 @@ class StyleSystem : EventHandler
 		
 		/* Calculate staleness */
 		int staleness = 256 * consecutive_uses;
-		if (staleness < 0) staleness = 0;
-		if (staleness > scorebonus) staleness = scorebonus;
+		staleness = clamp(staleness, 0, scorebonus);
 		
 		/* Limit staleness */
 		int remaining_weapons = (6 - GetAmountOfWeapons()) + 1;
@@ -210,6 +209,11 @@ class StyleSystem : EventHandler
 		/* Cap score bonus */
 		int cap = GetScoreBonusCap();
 		scorebonus = clamp(scorebonus, 1000, cap);
+		
+		/* Limit score bonus if attack was Spin Dash */
+		if (e.damagetype == "SpinDash") {
+			scorebonus /= 8;
+		}
  		
 		/* Total up and cap score */
 		score += scorebonus;
