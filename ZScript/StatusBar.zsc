@@ -99,13 +99,13 @@ class SLL_StatusBar : BaseStatusBar
 		DrawImage(image, (120, 137), DI_ITEM_OFFSETS);
 	}
 	
-	protected void DrawRingsAndEnergy(HUDFont fnt, Vector2 rings_position, Vector2 energy_position)
+	protected void DrawRingsAndEnergy(HUDFont fnt, Vector2 rings_position, Vector2 energy_position, String rings_colour = "Gold", String energy_colour = "Green")
 	{
 		bool is_transformed = GetInventory("PowerSuper") || GetInventory("PowerHyper");
 		int energy = GetInventory("ChaosEnergy").Amount;
+		int flags = DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW;
 		
 		if (!is_transformed) {
-			String rings_colour = "Gold";
 			if (CPlayer.health <= 0) {
 				rings_colour = "Red";
 			}
@@ -114,10 +114,9 @@ class SLL_StatusBar : BaseStatusBar
 					rings_colour = "Red";
 				}
 			}
-			DrawString(fnt, String.Format("%03d", CPlayer.health), rings_position, DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW, Font.FindFontColor(rings_colour));
+			DrawString(fnt, String.Format("%03d", CPlayer.health), rings_position, flags, Font.FindFontColor(rings_colour));
 		}
 		
-		String energy_colour = "Green";
 		if (GetInventory("PowerSuper")) {
 			if (GetInventory("AmyCheck")) energy_colour = "Purple";
 			else energy_colour = "Gold";
@@ -125,18 +124,17 @@ class SLL_StatusBar : BaseStatusBar
 		else {
 			if (GetInventory("PowerHyper")) energy_colour = "White";
 			else {
-				if (energy >= 1) energy_colour = "Green";
-				else energy_colour = "Red";
+				if (energy < 1) energy_colour = "Red";
 			}
 		}
 		
 		if (is_transformed) {
 			energy_position = rings_position;
 		}
-		DrawString(fnt, String.Format("%03d", energy), energy_position, DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW, Font.FindFontColor(energy_colour));
+		DrawString(fnt, String.Format("%03d", energy), energy_position, flags, Font.FindFontColor(energy_colour));
 	}
 	
-	protected void DisplayTime(HUDFont fnt, Vector2 time_position)
+	protected int GetTimeColour()
 	{
 		Name time_colour;
 		
@@ -151,14 +149,17 @@ class SLL_StatusBar : BaseStatusBar
 			if (GetInventory("AmyCheck")) { time_colour = "Purple"; }
 		}
 		
+		return Font.FindFontColor(time_colour);
+	}
+	
+	protected String GetTimeDisplay()
+	{
 		int overall_seconds = level.time / 35;
 		int seconds = overall_seconds % 60;
 		int minutes = (overall_seconds / 60) % 60;
 		int hours = overall_seconds / 3600;
 
-		String level_time = String.Format("%02d:%02d:%02d", hours, minutes, seconds);
-
-		DrawString(fnt, level_time, (43, 146), 0, Font.FindFontColor(time_colour));
+		return String.Format("%02d:%02d:%02d", hours, minutes, seconds);
 	}
 
 	protected void DisplayHead(Vector2 head_position, Vector2 emeralds_position)
@@ -168,10 +169,19 @@ class SLL_StatusBar : BaseStatusBar
 		if (GetInventory("ChaosEmeralds")) DrawImage("em_front", emeralds_position, DI_ITEM_OFFSETS);
 	}
 	
+	protected void DisplayLabels(Vector2 position, HUDFont fnt)
+	{
+		DrawString(fnt, "Time", position, 0, GetTimeColour());
+		position.y += 18;
+		DrawString(fnt, "Rings", position, 0, Font.FindFontColor("Gold"));
+		position.y += 18;
+		DrawString(fnt, "Energy", position, 0, Font.FindFontColor("Green"));
+	}
+
 	protected void DrawUnifiedHUD(double TicFrac)
 	{
 		DisplayUnifiedHUD((32, 156));
-		DisplayTime(HUDFont.Create("BIGFONT"), (43, 146));
+		DrawString(HUDFont.Create("BIGFONT"), GetTimeDisplay(), (43, 146), 0, GetTimeColour());
 		DisplayHead((-46, 117), (-26, 174));
 		DrawBarKeys();
 		DrawRingsAndEnergy(HUDFont.Create("BIGFONT"), (31, 123), (90, 123));
@@ -179,9 +189,16 @@ class SLL_StatusBar : BaseStatusBar
 	
 	protected void DrawClassicStyleHUD(double TicFrac)
 	{
-		// To be implemented
+		HUDFont fnt = HUDFont.Create("BIGFONT");
+		int base_x = -130;
+		int base_y = -60;
+		int gap = 175;
+		DisplayLabels((base_x, base_y), fnt);
+		DrawString(fnt, GetTimeDisplay(), (base_x + gap, base_y), DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW, Font.FindFontColor("White"));
+		DrawRingsAndEnergy(fnt, (base_x + gap, base_y + 18), (base_x + gap, base_y + 36), "White", "White");
+		DisplayHead((base_x, 143), (base_x + 20, 143 + 57));
 	}
-	
+
 	protected void DrawLegacyEditionHUD(double TicFrac)
 	{
 		// To be implemented
