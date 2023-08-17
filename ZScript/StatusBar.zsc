@@ -106,7 +106,14 @@ class SLL_StatusBar : BaseStatusBar
 		
 		if (!is_transformed) {
 			String rings_colour = "Gold";
-			if (CPlayer.health <= 20) rings_colour = "Red";
+			if (CPlayer.health <= 0) {
+				rings_colour = "Red";
+			}
+			else if (CPlayer.health <= 20) {
+				if ((level.time / (35 / 7)) % 2 == 0) {
+					rings_colour = "Red";
+				}
+			}
 			DrawString(fnt, String.Format("%03d", CPlayer.health), rings_position, DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW, Font.FindFontColor(rings_colour));
 		}
 		
@@ -144,11 +151,10 @@ class SLL_StatusBar : BaseStatusBar
 			if (GetInventory("AmyCheck")) { time_colour = "Purple"; }
 		}
 		
-		int seconds = level.time / 35 % 60;
-		int minutes = seconds / 60;
-		int hours = minutes / 60;
-		if (minutes <= 0) minutes = 0;
-		if (hours <= 0) hours = 0;
+		int overall_seconds = level.time / 35;
+		int seconds = overall_seconds % 60;
+		int minutes = (overall_seconds / 60) % 60;
+		int hours = overall_seconds / 3600;
 
 		String level_time = String.Format("%02d:%02d:%02d", hours, minutes, seconds);
 
