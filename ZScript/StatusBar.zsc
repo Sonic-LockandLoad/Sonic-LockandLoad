@@ -71,9 +71,9 @@ class SLL_StatusBar : BaseStatusBar
 		}
 	}
 	
-	protected void DrawBarKeys()
+	protected void DrawBarKeys(int base_x, int base_y, int spacing)
 	{
-		// Taken from DoomStatusBar because I'm lazy
+		// Taken from DoomStatusBar and adapted because I'm lazy
 		bool locks[6];
 		String image;
 		
@@ -84,19 +84,19 @@ class SLL_StatusBar : BaseStatusBar
 		if (locks[1] && locks[4]) image = "STKEYS6";
 		else if (locks[1]) image = "STKEYS0";
 		else if (locks[4]) image = "STKEYS3";
-		DrawImage(image, (120, 117), DI_ITEM_OFFSETS);
+		DrawImage(image, (base_x, base_y - spacing), DI_ITEM_OFFSETS);
 		
 		if (locks[2] && locks[5]) image = "STKEYS7";
 		else if (locks[2]) image = "STKEYS1";
 		else if (locks[5]) image = "STKEYS4";
 		else image = "";
-		DrawImage(image, (120, 127), DI_ITEM_OFFSETS);
+		DrawImage(image, (base_x, base_y), DI_ITEM_OFFSETS);
 		
 		if (locks[0] && locks[3]) image = "STKEYS8";
 		else if (locks[0]) image = "STKEYS2";
 		else if (locks[3]) image = "STKEYS5";
 		else image = "";
-		DrawImage(image, (120, 137), DI_ITEM_OFFSETS);
+		DrawImage(image, (base_x, base_y + spacing), DI_ITEM_OFFSETS);
 	}
 	
 	protected void DrawRingsAndEnergy(HUDFont fnt, Vector2 rings_position, Vector2 energy_position, String rings_colour = "Gold", String energy_colour = "Green")
@@ -133,7 +133,7 @@ class SLL_StatusBar : BaseStatusBar
 		}
 		DrawString(fnt, String.Format("%03d", energy), energy_position, flags, Font.FindFontColor(energy_colour));
 	}
-	
+
 	protected int GetTimeColour()
 	{
 		Name time_colour;
@@ -162,8 +162,9 @@ class SLL_StatusBar : BaseStatusBar
 		return String.Format("%02d:%02d:%02d", hours, minutes, seconds);
 	}
 
-	protected void DisplayHead(Vector2 head_position, Vector2 emeralds_position)
+	protected void DisplayHead(Vector2 head_position)
 	{
+		Vector2 emeralds_position = (head_position.x + 20, head_position.y + 57);
 		if (GetInventory("ChaosEmeralds")) DrawImage("em_back", emeralds_position, DI_ITEM_OFFSETS);
 		DrawTexture(GetMugShot(1), head_position, DI_ITEM_OFFSETS);
 		if (GetInventory("ChaosEmeralds")) DrawImage("em_front", emeralds_position, DI_ITEM_OFFSETS);
@@ -182,8 +183,8 @@ class SLL_StatusBar : BaseStatusBar
 	{
 		DisplayUnifiedHUD((32, 156));
 		DrawString(HUDFont.Create("BIGFONT"), GetTimeDisplay(), (43, 146), 0, GetTimeColour());
-		DisplayHead((-46, 117), (-26, 174));
-		DrawBarKeys();
+		DisplayHead((-46, 117));
+		DrawBarKeys(120, 147, 10);
 		DrawRingsAndEnergy(HUDFont.Create("BIGFONT"), (31, 123), (90, 123));
 	}
 	
@@ -196,12 +197,29 @@ class SLL_StatusBar : BaseStatusBar
 		DisplayLabels((base_x, base_y), fnt);
 		DrawString(fnt, GetTimeDisplay(), (base_x + gap, base_y), DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW, Font.FindFontColor("White"));
 		DrawRingsAndEnergy(fnt, (base_x + gap, base_y + 18), (base_x + gap, base_y + 36), "White", "White");
-		DisplayHead((base_x, 143), (base_x + 20, 143 + 57));
+		DisplayHead((base_x, 143));
+		DrawBarKeys(65, base_y + 20, 18);
 	}
 
 	protected void DrawLegacyEditionHUD(double TicFrac)
 	{
-		// To be implemented
+		int base_x = 145;
+		int base_y = 180;
+		int label_y = base_y + 11;
+		DisplayHead((base_x, base_y - 15));
+		DrawBarKeys(240, 182, 8);
+		if (GetInventory("ChaosEmeralds")) {
+			DrawImage("em_smol", (56, base_y + 15));
+		}
+		DrawRingsAndEnergy(HUDFont.Create("HUDFONT_DOOM"), (base_x - 10, base_y - 6), (base_x + 80, base_y - 6));
+		DrawString(HUDFont.Create("SMALLFONT"), "RINGS", (base_x - 11, label_y), DI_TEXT_ALIGN_RIGHT, Font.FindFontColor("Gold"));
+		string energy_colour = "Green";
+		string energy_text	 = "ENERGY";
+		if (GetInventory("PowerSuper")) {
+			energy_colour = "Gold";
+			energy_text   = "SUPER";
+		}
+		DrawString(HUDFont.Create("SMALLFONT"), energy_text, (base_x + 84, label_y), DI_TEXT_ALIGN_RIGHT, Font.FindFontColor(energy_colour));
 	}
 	
 	protected void DrawFullScreenHUD()
