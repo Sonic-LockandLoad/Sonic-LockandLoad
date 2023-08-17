@@ -34,17 +34,6 @@ class SLL_StatusBar : BaseStatusBar
 	override void Draw(int state, double TicFrac)
 	{
 		Super.Draw (state, TicFrac);
-		
-		if (cvar.FindCvar("ShowScore").GetBool()) {
-			switch (state) {
-				case HUD_StatusBar:
-					DrawScore(HUDFont.Create("BIGFONT"), (470, -98));
-					break;
-				case HUD_Fullscreen:
-					DrawScore(HUDFont.Create("BIGFONT"), (-10, 18));
-					break;
-			}
-		}
 
 		if (state == HUD_StatusBar) {
 			BeginStatusBar();
@@ -64,7 +53,19 @@ class SLL_StatusBar : BaseStatusBar
 			BeginHUD();
 			DrawFullScreenHUD();
 		}
+		
+		if (cvar.FindCvar("ShowScore").GetBool()) {
+			switch (state) {
+				case HUD_StatusBar:
+					DrawScore(HUDFont.Create("BIGFONT"), (470, -98));
+					break;
+				case HUD_Fullscreen:
+					DrawScore(HUDFont.Create("BIGFONT"), (-10, 18));
+					break;
+			}
+		}
 	}
+
 	
 	protected void DisplayUnifiedHUD(Vector2 hud_position)
 	{
