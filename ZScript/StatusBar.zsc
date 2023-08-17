@@ -99,13 +99,13 @@ class SLL_StatusBar : BaseStatusBar
 		DrawImage(image, (base_x, base_y + spacing), DI_ITEM_OFFSETS);
 	}
 	
-	protected void DrawRingsAndEnergy(HUDFont fnt, Vector2 rings_position, Vector2 energy_position, String rings_colour = "Gold", String energy_colour = "Green")
+	protected void DrawRingsAndEnergy(HUDFont fnt, Vector2 rings_position, Vector2 energy_position, bool replace_ringcount = false, String rings_colour = "Gold", String energy_colour = "Green")
 	{
 		bool is_transformed = GetInventory("PowerSuper") || GetInventory("PowerHyper");
 		int energy = GetInventory("ChaosEnergy").Amount;
 		int flags = DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW;
 		
-		if (!is_transformed) {
+		if (!replace_ringcount || !is_transformed) {
 			if (CPlayer.health <= 0) {
 				rings_colour = "Red";
 			}
@@ -117,7 +117,7 @@ class SLL_StatusBar : BaseStatusBar
 			DrawString(fnt, String.Format("%03d", CPlayer.health), rings_position, flags, Font.FindFontColor(rings_colour));
 		}
 		
-		if (GetInventory("PowerSuper")) {
+		if (GetInventory("PowerSuper") && cvar.FindCvar("HUDType").GetInt() != 1) {
 			if (GetInventory("AmyCheck")) energy_colour = "Purple";
 			else energy_colour = "Gold";
 		}
@@ -128,13 +128,14 @@ class SLL_StatusBar : BaseStatusBar
 			}
 		}
 		
-		if (is_transformed) {
+		if (is_transformed && replace_ringcount) {
 			energy_position = rings_position;
 		}
+		
 		DrawString(fnt, String.Format("%03d", energy), energy_position, flags, Font.FindFontColor(energy_colour));
 	}
 
-	protected int GetTimeColour()
+	protected int GetTimeColour(bool include_super = true)
 	{
 		Name time_colour;
 		
@@ -143,10 +144,12 @@ class SLL_StatusBar : BaseStatusBar
 		if (GetInventory("ClassicCheck")) 	{ time_colour = "Classic"; }
 		if (GetInventory("ShadowCheck")) 	{ time_colour = "Shadow"; }
 		
-		if (GetInventory("PowerHyper")) { time_colour = "White"; }
-		if (GetInventory("PowerSuper")) {
-			time_colour = "Gold";
-			if (GetInventory("AmyCheck")) { time_colour = "Purple"; }
+		if (include_super) {
+			if (GetInventory("PowerHyper")) { time_colour = "White"; }
+			if (GetInventory("PowerSuper")) {
+				time_colour = "Gold";
+				if (GetInventory("AmyCheck")) { time_colour = "Purple"; }
+			}
 		}
 		
 		return Font.FindFontColor(time_colour);
@@ -172,7 +175,7 @@ class SLL_StatusBar : BaseStatusBar
 	
 	protected void DisplayLabels(Vector2 position, HUDFont fnt)
 	{
-		DrawString(fnt, "Time", position, 0, GetTimeColour());
+		DrawString(fnt, "Time", position, 0, GetTimeColour(false));
 		position.y += 18;
 		DrawString(fnt, "Rings", position, 0, Font.FindFontColor("Gold"));
 		position.y += 18;
@@ -185,7 +188,7 @@ class SLL_StatusBar : BaseStatusBar
 		DrawString(HUDFont.Create("BIGFONT"), GetTimeDisplay(), (43, 146), 0, GetTimeColour());
 		DisplayHead((-46, 117));
 		DrawBarKeys(120, 147, 10);
-		DrawRingsAndEnergy(HUDFont.Create("BIGFONT"), (31, 123), (90, 123));
+		DrawRingsAndEnergy(HUDFont.Create("BIGFONT"), (31, 123), (90, 123), true);
 	}
 	
 	protected void DrawClassicStyleHUD(double TicFrac)
@@ -196,7 +199,7 @@ class SLL_StatusBar : BaseStatusBar
 		int gap = 175;
 		DisplayLabels((base_x, base_y), fnt);
 		DrawString(fnt, GetTimeDisplay(), (base_x + gap, base_y), DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW, Font.FindFontColor("White"));
-		DrawRingsAndEnergy(fnt, (base_x + gap, base_y + 18), (base_x + gap, base_y + 36), "White", "White");
+		DrawRingsAndEnergy(fnt, (base_x + gap, base_y + 18), (base_x + gap, base_y + 36), false, "White", "White");
 		DisplayHead((base_x, 143));
 		DrawBarKeys(65, base_y + 20, 18);
 	}
@@ -211,15 +214,15 @@ class SLL_StatusBar : BaseStatusBar
 		if (GetInventory("ChaosEmeralds")) {
 			DrawImage("em_smol", (56, base_y + 15));
 		}
-		DrawRingsAndEnergy(HUDFont.Create("HUDFONT_DOOM"), (base_x - 10, base_y - 6), (base_x + 80, base_y - 6));
-		DrawString(HUDFont.Create("SMALLFONT"), "RINGS", (base_x - 11, label_y), DI_TEXT_ALIGN_RIGHT, Font.FindFontColor("Gold"));
+		DrawRingsAndEnergy(HUDFont.Create("HUDFONT_DOOM"), (base_x - 10, base_y - 6), (base_x + 85, base_y - 6), false);
+		DrawString(HUDFont.Create("SMALLFONT"), "RINGS", (base_x - 30, label_y), DI_TEXT_ALIGN_CENTER, Font.FindFontColor("Gold"));
 		string energy_colour = "Green";
 		string energy_text	 = "ENERGY";
 		if (GetInventory("PowerSuper")) {
 			energy_colour = "Gold";
 			energy_text   = "SUPER";
 		}
-		DrawString(HUDFont.Create("SMALLFONT"), energy_text, (base_x + 84, label_y), DI_TEXT_ALIGN_RIGHT, Font.FindFontColor(energy_colour));
+		DrawString(HUDFont.Create("SMALLFONT"), energy_text, (base_x + 65, label_y), DI_TEXT_ALIGN_CENTER, Font.FindFontColor(energy_colour));
 	}
 	
 	protected void DrawFullScreenHUD()
