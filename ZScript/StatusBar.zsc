@@ -50,23 +50,29 @@ class SLL_StatusBar : BaseStatusBar
 	
 	protected void DisplayUnifiedHUD(Vector2 hud_position)
 	{
+		String hud;
 		if (GetInventory("PowerHyper")) {
-			DrawImage("hyp_hud", hud_position);
+			hud = "hyp_hud";
 		}
 		else if (GetInventory("PowerSuper")) {
 			if (GetInventory("AmyCheck")) {
-				DrawImage("drk_hud", hud_position);
+				hud = "drk_hud";
 			}
 			else {
-				DrawImage("sup_hud", hud_position);
+				hud = "sup_hud";
 			}
 		}
 		else {
-			if (GetInventory("SonicCheck")) 	{ DrawImage("snc_hud", hud_position); }
-			if (GetInventory("AmyCheck")) 		{ DrawImage("amy_hud", hud_position); }
-			if (GetInventory("ClassicCheck")) 	{ DrawImage("csn_hud", hud_position); }
-			if (GetInventory("ShadowCheck")) 	{ DrawImage("sha_hud", hud_position); }
+			if (GetInventory("SonicCheck")) 	{ hud = "snc_hud"; }
+			if (GetInventory("AmyCheck")) 		{ hud = "amy_hud"; }
+			if (GetInventory("ClassicCheck")) 	{ hud = "csn_hud"; }
+			if (GetInventory("ShadowCheck")) 	{ hud = "sha_hud"; }
 		}
+		if (!cvar.FindCvar("ShowScore").GetBool()) {
+			hud = String.Format("%st", hud);
+			hud_position.y -= 12.5;
+		}
+		DrawImage(hud, hud_position);
 	}
 	
 	protected void DrawBarKeys(int base_x, int base_y, int spacing)
@@ -246,7 +252,9 @@ class SLL_StatusBar : BaseStatusBar
 		DrawRings(fnt, rings_position, true, "Gold", DI_TEXT_ALIGN_CENTER|DI_NOSHADOW);
 		DrawEnergy(fnt, energy_position, "Green", DI_TEXT_ALIGN_CENTER|DI_NOSHADOW);
 		DrawString(fnt, GetTimeDisplay(), (48, 150), 0, GetTimeColour());
-		DrawScore(fnt, (48, 165), GetTimeColour(), DI_TEXT_ALIGN_LEFT);
+		if (cvar.FindCvar("ShowScore").GetBool()) {
+			DrawScore(fnt, (48, 165), GetTimeColour(), DI_TEXT_ALIGN_LEFT);
+		}
 	}
 
 	protected void DrawClassicStyleHUD(double TicFrac)
