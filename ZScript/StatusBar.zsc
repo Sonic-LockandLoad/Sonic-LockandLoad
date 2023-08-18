@@ -75,7 +75,7 @@ class SLL_StatusBar : BaseStatusBar
 		DrawImage(hud, hud_position);
 	}
 	
-	protected void DrawBarKeys(int base_x, int base_y, int spacing)
+	protected void DrawBarKeys(int base_x, int base_y, int spacing_x, int spacing_y)
 	{
 		// Taken from DoomStatusBar and adapted because I'm lazy
 		bool locks[6];
@@ -88,7 +88,7 @@ class SLL_StatusBar : BaseStatusBar
 		if (locks[1] && locks[4]) image = "STKEYS6";
 		else if (locks[1]) image = "STKEYS0";
 		else if (locks[4]) image = "STKEYS3";
-		DrawImage(image, (base_x, base_y - spacing), DI_ITEM_OFFSETS);
+		DrawImage(image, (base_x - spacing_x, base_y - spacing_y), DI_ITEM_OFFSETS);
 		
 		if (locks[2] && locks[5]) image = "STKEYS7";
 		else if (locks[2]) image = "STKEYS1";
@@ -100,7 +100,7 @@ class SLL_StatusBar : BaseStatusBar
 		else if (locks[0]) image = "STKEYS2";
 		else if (locks[3]) image = "STKEYS5";
 		else image = "";
-		DrawImage(image, (base_x, base_y + spacing), DI_ITEM_OFFSETS);
+		DrawImage(image, (base_x + spacing_x, base_y + spacing_y), DI_ITEM_OFFSETS);
 	}
 	
 	protected void DrawRings(HUDFont fnt, Vector2 rings_position, bool super_hide = false, String rings_colour = "Gold", int flags = DI_TEXT_ALIGN_RIGHT | DI_NOSHADOW)
@@ -243,7 +243,7 @@ class SLL_StatusBar : BaseStatusBar
 		HUDFont fnt = HUDFont.Create("BIGFONT");
 		DisplayUnifiedHUD((36, 175));
 		DisplayHead((-46, 117), true);
-		DrawBarKeys(120, 147, 10);
+		DrawBarKeys(120, 130, -3, 10);
 		Vector2 rings_position = (21, 126);
 		Vector2 energy_position = (82, 126);
 		if (GetInventory("PowerSuper") || GetInventory("PowerHyper")) {
@@ -272,7 +272,7 @@ class SLL_StatusBar : BaseStatusBar
 		DrawRings(fnt, (base_x + gap, base_y + 18), false, "White");
 		DrawEnergy(fnt, (base_x + gap, base_y + 36), "White");
 		DisplayHead((base_x, 143));
-		DrawBarKeys(65, base_y + 20, 18);
+		DrawBarKeys(65, base_y + 20, 0, 18);
 	}
 
 	protected void DrawLegacyEditionHUD(double TicFrac)
@@ -281,7 +281,7 @@ class SLL_StatusBar : BaseStatusBar
 		int base_y = 180;
 		int label_y = base_y + 11;
 		DisplayHead((base_x, base_y - 15));
-		DrawBarKeys(240, 182, 8);
+		DrawBarKeys(240, 182, 0, 8);
 		if (GetInventory("ChaosEmeralds")) {
 			DrawImage("em_smol", (56, base_y + 15));
 		}
@@ -309,7 +309,7 @@ class SLL_StatusBar : BaseStatusBar
 		if (GetInventory("ChaosEmeralds")) {
 			DrawImage("em_smol", (-95, -4));
 		}
-		DrawBarKeys(-60, -17, 8);
+		DrawBarKeys(-60, -17, 0, 8);
 		DrawRings(fnt, (79, -22), true);
 		DrawEnergy(fnt, (-5, -22));
 		if (cvar.FindCvar("ShowScore").GetBool()) {
