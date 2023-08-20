@@ -48,6 +48,13 @@ class SLL_StatusBar : BaseStatusBar
 		}
 	}
 	
+	protected bool ShouldDisplayScore()
+	{
+		bool score_enabled = cvar.FindCvar("ShowScore").GetBool();
+		bool is_arena = level.LevelName == "Cyber Space Arena";
+		return score_enabled && !is_arena;
+	}
+	
 	protected void DisplayUnifiedHUD(Vector2 hud_position)
 	{
 		String hud;
@@ -68,7 +75,7 @@ class SLL_StatusBar : BaseStatusBar
 			if (GetInventory("ClassicCheck")) 	{ hud = "csn_hud"; }
 			if (GetInventory("ShadowCheck")) 	{ hud = "sha_hud"; }
 		}
-		if (!cvar.FindCvar("ShowScore").GetBool()) {
+		if (!ShouldDisplayScore()) {
 			hud = String.Format("%st", hud);
 			hud_position.y -= 12.5;
 		}
@@ -231,8 +238,10 @@ class SLL_StatusBar : BaseStatusBar
 		score += Level.Killed_Monsters * 95;
 		if (score < 0) score = 0;
 		
-		/* Gold if good enough */
-		if (score >= targetscore) score_colour = Font.FindFontColor("Gold");
+		/* Gold if requirements met */
+		if (score >= targetscore && level.LevelName != "Station Square") {
+			score_colour = Font.FindFontColor("Gold");
+		}
 		
 		/* Display it */
 		DrawString(fnt, String.Format("%d", score), position, flags, score_colour);
@@ -252,7 +261,7 @@ class SLL_StatusBar : BaseStatusBar
 		DrawRings(fnt, rings_position, true, "Gold", DI_TEXT_ALIGN_CENTER|DI_NOSHADOW);
 		DrawEnergy(fnt, energy_position, "Green", DI_TEXT_ALIGN_CENTER|DI_NOSHADOW);
 		DrawString(fnt, GetTimeDisplay(), (48, 150), 0, GetTimeColour());
-		if (cvar.FindCvar("ShowScore").GetBool()) {
+		if (ShouldDisplayScore()) {
 			DrawScore(fnt, (48, 165), GetTimeColour(), DI_TEXT_ALIGN_LEFT);
 		}
 	}
@@ -264,7 +273,7 @@ class SLL_StatusBar : BaseStatusBar
 		int base_y = -60;
 		int gap = 175;
 		DisplayLabels((base_x, base_y), fnt);
-		if (cvar.FindCvar("ShowScore").GetBool()) {
+		if (ShouldDisplayScore()) {
 			base_y += 18;
 			DrawScore(fnt, (base_x + gap, base_y - 18), Font.FindFontColor("White"));
 		}
@@ -295,7 +304,7 @@ class SLL_StatusBar : BaseStatusBar
 			energy_text   = "SUPER";
 		}
 		DrawString(HUDFont.Create("SMALLFONT"), energy_text, (base_x + 65, label_y), DI_TEXT_ALIGN_CENTER, Font.FindFontColor(energy_colour));
-		if (cvar.FindCvar("ShowScore").GetBool()) {
+		if (ShouldDisplayScore()) {
 			DrawScore(HUDFont.Create("HUDFONT_DOOM"), (base_x + 137, base_y - 6), GetTimeColour(), DI_TEXT_ALIGN_CENTER);
 			DrawString(HUDFont.Create("SMALLFONT"), "SCORE", (base_x + 137, label_y), DI_TEXT_ALIGN_CENTER, GetTimeColour());
 		}
@@ -312,7 +321,7 @@ class SLL_StatusBar : BaseStatusBar
 		DrawBarKeys(-60, -17, 0, 8);
 		DrawRings(fnt, (79, -22), true);
 		DrawEnergy(fnt, (-5, -22));
-		if (cvar.FindCvar("ShowScore").GetBool()) {
+		if (ShouldDisplayScore()) {
 			DrawScore(HUDFont.Create("BIGFONT"), (-10, 18), GetTimeColour(false));
 		}
 	}
