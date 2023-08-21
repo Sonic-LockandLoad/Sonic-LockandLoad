@@ -51,8 +51,7 @@ class SLL_StatusBar : BaseStatusBar
 	protected bool ShouldDisplayScore()
 	{
 		bool score_enabled = cvar.FindCvar("ShowScore").GetBool();
-		bool is_arena = level.LevelName == "Cyber Space Arena";
-		return score_enabled && !is_arena;
+		return score_enabled;
 	}
 	
 	protected void DisplayUnifiedHUD(Vector2 hud_position)
@@ -238,8 +237,14 @@ class SLL_StatusBar : BaseStatusBar
 		score += Level.Killed_Monsters * 95;
 		if (score < 0) score = 0;
 		
+		/* If in Cyber Space Arena, use killed monsters as score */
+		if (level.LevelName == "Cyber Space Arena") {
+			score = Level.Killed_Monsters;
+		}
+		
 		/* Gold if requirements met */
-		if (score >= targetscore && level.LevelName != "Station Square") {
+		bool in_allowed_level = level.LevelName != "Station Square" && level.LevelName != "Cyber Space Arena";
+		if (score >= targetscore && in_allowed_level) {
 			score_colour = Font.FindFontColor("Gold");
 		}
 		
