@@ -605,8 +605,12 @@ class SlamAtkObject : CustomInventory
 				else {
 					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
+				int OFF_ABILITY = BT_ZOOM | BT_SPEED;
 				if (GetPlayerInput(INPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_JUMP)) {
-					return ResolveState("SlamCancel");
+					return ResolveState("SlamCancelJump");
+				}
+				if (GetPlayerInput(INPUT_BUTTONS) & OFF_ABILITY && !(GetPlayerInput(INPUT_OLDBUTTONS) & OFF_ABILITY)) {
+					return ResolveState("SlamCancelOffhandAbility");
 				}
 				if (player.onground) return ResolveState("SlamDone");
 				A_ChangeVelocity(0, 0, -75, CVF_Relative|CVF_Replace);
@@ -632,11 +636,23 @@ class SlamAtkObject : CustomInventory
 			}
 			TNT1 A 0 A_SetSpeed(2);
 			Stop;
+		SlamCancelJump:
+			TNT1 A 0 {
+				A_ChangeVelocity(Vel.X, Vel.Y, 20, CVF_Replace);
+				if (GetCvar("CanJump")) {
+					A_StopSound(1);
+				}
+				else {
+					A_PlaySound("*doublejump", 1);
+				}
+			}
+			Goto SlamCancel;
+		SlamCancelOffhandAbility:
+			TNT1 A 0 A_ChangeVelocity(Vel.X, Vel.Y, 0, CVF_Replace);
+			Goto SlamCancel;
 		SlamCancel:
 			TNT1 A 1 {
 				invoker.midfall = false;
-				A_ChangeVelocity(0, 0, 20, CVF_Replace);
-				A_PlaySound("*doublejump", 1);
 			}
 			TNT1 A 0 A_SetSpeed(2);
 			Stop;
