@@ -232,13 +232,20 @@ OptionMenu "SDMusic"
 	StaticText "Dark form, and toggle music being played upon death.", "White"
 	StaticText ""
 
-	Option "Invincibility Music", "InvincMusic", "EnabledOrNotMus"
+	Option "Invincibility", "InvincMusic", "EnabledOrNotMus"
 	StaticText ""
 
-	Option "Super/Dark/Hyper Form Music", "SuperMusic", "EnabledOrNotMus"
+	Option "Super/Dark/Hyper Form", "SuperMusic", "EnabledOrNotMus"
 	StaticText ""
 
-	Option "Death Music", "DeathMusic", "EnabledOrNotMus"
+	Option "On Death", "DeathMusic", "EnabledOrNotMus"
+	StaticText ""
+
+	Option "Cyber Space Arena", "ArenaMusic", "ArenaMusic"
+	StaticText ""
+
+	TextField "Custom CSA Music File", "ArenaCustomMusic"
+	StaticText "Must be the lump name (i.e. S_BATTLE)", "White"
 	StaticText ""
 }
 AddOptionMenu "OptionsMenu"
@@ -283,4 +290,13 @@ OptionValue "HomingReticle"
 	0, "Disabled"
 	1, "Minimal"
 	2, "Enabled"
+}
+OptionValue "ArenaMusic"
+{
+	0, "Character-Specific"
+	1, "Undefeatable"
+	2, "Break Through It All"
+	3, "Egg Reverie Zone"
+	4, "All Hail Shadow"
+	5, "Custom"
 }
