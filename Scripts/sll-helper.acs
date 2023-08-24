@@ -23,8 +23,6 @@ script "IsCrouching" (void)
 	else { SetResultValue(0); }
 }
 
-
-
 script "RingCountCheck" ENTER
 {
 	while (true)

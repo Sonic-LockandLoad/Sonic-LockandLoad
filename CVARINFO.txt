@@ -21,6 +21,7 @@ user bool ControlHints				= false;
 user bool Tutorials					= true;
 user bool EnergyBlades				= true;
 user bool ShowScore					= true;
+user bool DarkArena					= false;
 
 user bool GiveEnergyOnDamage		= false;
 user bool EnemiesBleedRings			= false;

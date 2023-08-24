@@ -273,3 +273,15 @@ script "GoalRing" (void)
 	SetActorProperty(1001, APROP_DamageFactor, 1.0);
 	Exit_Normal(0);
 }
+
+#define CYBER_SPACE_ARENA 69
+
+script "SetDarkCyberSpaceArena" ENTER
+{
+	if (GetCvar("DarkArena")) {
+		ReplaceTextures("SBOXGRID", "DBOXGRID");
+		if (GetLevelInfo(LEVELINFO_LEVELNUM) == CYBER_SPACE_ARENA) {
+			ChangeSky("NIGHTSKY", "NIGHTSKY");
+		}
+	}
+}

@@ -125,10 +125,6 @@ OptionMenu "LLMiscOptMenu"
 	Option "Tutorials", "Tutorials", "EnabledOrNot"
 	StaticText ""
 
-	Option "Control Hints", "ControlHints", "EnabledOrNot"
-	StaticText "Deprecated.", "Red"
-	StaticText ""
-
 	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
 	StaticText ""
 
@@ -136,9 +132,16 @@ OptionMenu "LLMiscOptMenu"
 	StaticText "Play warning when energy is low in Super, Dark, or Hyper form.", "White"
 	StaticText ""
 
+	Option "Dark Cyber Space Arena", "DarkArena", "EnabledOrNot"
+	StaticText ""
+
 	Option "HIRE THIS MAN", "HireThisMan", "EnabledOrNot"
 	StaticText "Enable this option to replace the title screen music", "White"
 	StaticText "with 'NINTENDO, HIRE THIS MAN!' by Chris Voiceman.", "White"
+	StaticText ""
+
+	Option "Control Hints", "ControlHints", "EnabledOrNot"
+	StaticText "Deprecated.", "Red"
 	StaticText ""
 }
 OptionMenu "LLModsMenu"
