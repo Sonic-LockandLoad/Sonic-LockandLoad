@@ -621,7 +621,9 @@ class SlamAtkObject : CustomInventory
 					}
 				}
 				if (GetPlayerInput(INPUT_BUTTONS) & OFF_ABILITY && !(GetPlayerInput(INPUT_OLDBUTTONS) & OFF_ABILITY)) {
-					return ResolveState("SlamCancelOffhandAbility");
+					if (invoker.fall_tics >= 4) {
+						return ResolveState("SlamCancelOffhandAbility");
+					}
 				}
 				
 				if (player.onground) return ResolveState("SlamDone");
