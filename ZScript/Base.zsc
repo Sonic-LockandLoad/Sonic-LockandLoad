@@ -516,6 +516,7 @@ class SlamAtkObject : CustomInventory
 	int inuse;
 	int midfall;
 	int zdiff;
+	int fall_tics;
 	
 	action void DealSlamDamage(int slam_damage)
 	{
@@ -599,26 +600,40 @@ class SlamAtkObject : CustomInventory
 			TNT1 A 0 A_ChangeVelocity(0, 0, -500, CVF_Replace);
 			TNT1 A 1
 			{
-				if (CountInv("PowerSuper")||CountInv("PowerHyper")) {
+				invoker.fall_tics++;
+				
+				if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
 					A_CustomPunch(70, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 				else {
 					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
+				
 				int OFF_ABILITY = BT_ZOOM | BT_SPEED;
+				
 				if (GetPlayerInput(INPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_JUMP)) {
-					return ResolveState("SlamCancelJump");
+					bool high_up_enough = Pos.Z - GetZAt() >= 10;
+					bool enough_time_passed = invoker.fall_tics >= 6;
+					bool just_pressed_crouch = GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_CROUCH;
+					
+					if (high_up_enough && enough_time_passed && !just_pressed_crouch) {
+						return ResolveState("SlamCancelJump");
+					}
 				}
 				if (GetPlayerInput(INPUT_BUTTONS) & OFF_ABILITY && !(GetPlayerInput(INPUT_OLDBUTTONS) & OFF_ABILITY)) {
 					return ResolveState("SlamCancelOffhandAbility");
 				}
+				
 				if (player.onground) return ResolveState("SlamDone");
+				
 				A_ChangeVelocity(0, 0, -75, CVF_Relative|CVF_Replace);
+				
 				return ResolveState(null);
 			}
 			Goto SlamAttack+1;
 		SlamDone:
 			TNT1 A 0 {
+				invoker.fall_tics = 0;
 				invoker.midfall = false;
 				if (CountInv("ClassicCheck")) {
 					return ResolveState("BoundDone");
@@ -628,7 +643,7 @@ class SlamAtkObject : CustomInventory
 				return ResolveState(null);
 			}
 			TNT1 AAAAA 1 {
-				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP)) {
+				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_JUMP)) {
 					DoSlamBounce();
 					return ResolveState(null);
 				}
@@ -638,7 +653,7 @@ class SlamAtkObject : CustomInventory
 			Stop;
 		SlamCancelJump:
 			TNT1 A 0 {
-				A_ChangeVelocity(Vel.X, Vel.Y, 20, CVF_Replace);
+				A_ChangeVelocity(Vel.X, Vel.Y, 10, CVF_Replace);
 				if (GetCvar("CanJump")) {
 					A_StopSound(1);
 				}
@@ -652,6 +667,7 @@ class SlamAtkObject : CustomInventory
 			Goto SlamCancel;
 		SlamCancel:
 			TNT1 A 1 {
+				invoker.fall_tics = 0;
 				invoker.midfall = false;
 			}
 			TNT1 A 0 A_SetSpeed(2);
