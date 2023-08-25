@@ -1,12 +1,12 @@
-class ChaosRocket : Actor
+class ChaosRocket : FastProjectile
 {
 	bool wasKicked;
 	Default
 	{
-		Radius 10;
-		Height 10;
-		Speed 45;
-		Damage 25;
+		Radius 20;
+		Height 20;
+		Speed 69;
+		Damage 35;
 		ExplosionDamage 100;
 		ExplosionRadius 200;
 		Projectile;
@@ -36,8 +36,8 @@ class ChaosRocket : Actor
 					// so it'll be left on in Hyper form
 				}
 				if (invoker.wasKicked) {
-					A_SeekerMissile(5, 10, SMF_LOOK|SMF_PRECISE, 256);
-					A_ScaleVelocity(1.15);
+					A_SeekerMissile(3, 45, SMF_LOOK|SMF_PRECISE|SMF_CURSPEED, 256);
+					A_ScaleVelocity(1.25);
 				}
 				return ResolveState(null);
 			}
@@ -58,22 +58,37 @@ class ChaosRocket : Actor
 	}
 }
 
-class AirstrikeRocket : ChaosRocket
+class RapidGrenade : Actor
 {
 	Default
 	{
-		Damage 100;
-	}
-}
-
-class RapidGrenade : ChaosRocket
-{
-	Default
-	{
-		-NOGRAVITY;
+		Radius 20;
+		Height 20;
 		Speed 40;
 		Damage 145;
-		ExplosionDamage 75;
+		ExplosionDamage 65;
+		ExplosionRadius 225;
+		Projectile;
+		ProjectileKickBack 0;
+		SeeSound "sweapons/missilefire";
+		DeathSound "weapons/rocklx";
+		-NOGRAVITY;
+		+RANDOMIZE;
+		+ROCKETTRAIL;
+		+SHOOTABLE;
+		+NOTARGETSWITCH;
+		+DONTTHRUST;
+	}
+	States
+	{
+		Spawn:
+			MISL A 1 Bright;
+			Loop;
+		Death:
+			MISL B 4 Bright A_Explode();
+			MISL C 3 Bright;
+			MISL D 2 Bright;
+			Stop;
 	}
 }
 

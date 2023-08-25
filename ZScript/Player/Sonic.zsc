@@ -604,6 +604,14 @@ class KineticShotty : LockLoadWeapon
 		A_FireBullets(2, 2, 8, 5, "BulletPuff", 0);
 		A_GunFlash();
 	}
+	action void KineticGrenade()
+	{
+		Actor x, rpg;
+		[x, rpg] = A_FireProjectile("RapidGrenade", 0, true, 0, 0, 0, 0);
+		if (rpg) {
+			rpg.Vel += Vel * 1.2;
+		}
+	}
 	Default
 	{
 		Weapon.SelectionOrder 1300;
@@ -639,12 +647,7 @@ class KineticShotty : LockLoadWeapon
 			SCTG BBBBBBBBBBBBBBCDE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto ForceReload;
 		AltFire:
-			SCTG B 1 {
-				Actor rpg = A_FireProjectile("RapidGrenade", 0, true, 0, 0, 0, 0);
-				if (rpg) {
-					rpg.Vel += Vel * 1.2;
-				}
-			}
+			SCTG B 1 KineticGrenade();
 			SCTG BBBBBCDEFFFFFFFFFFFFFEDCB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
         ForceReload:
@@ -793,33 +796,41 @@ class AirStrikeLauncher : LockLoadWeapon
 		Weapon.Kickback 1000;
 		+WEAPON.NOAUTOFIRE
 		+WEAPON.NOAUTOAIM
-		+WEAPON.ALT_AMMO_OPTIONAL
 	}
-	action void FireRocket(int Amount)
+	action void DecideFire(int amount)
 	{
 		if (CountInv("PowerHyper")) {
-			int SpreadX, SpreadY, Iterator;
-			for (Iterator = 1; Iterator <= Amount; Iterator++) {
-				if (A_CheckFloor("Null")) {
-					SpreadX = random(-30, 30);
-					SpreadY = random(-30, 30);
-					A_FireProjectile("ChaosRocket", 0, 0, SpreadX, SpreadY);
-				}
-				else {
-					SpreadX = random(-60, 60);
-					SpreadY = random(-60, 60);
-					A_FireProjectile("AirstrikeRocket", 0, 0, SpreadX, SpreadY);
-					A_ChangeVelocity(Cos(Pitch) * -10, 0, Sin(Pitch) * 10, CVF_Relative);
-				}
-			}
+			FireSpreadRockets(amount);
 		}
 		else {
-			if (A_CheckFloor("Null")) {
-				A_FireProjectile("ChaosRocket");
-			} 
+			FireRocket(!player.onground);
+		}
+	}
+	action void FireRocket(bool airstrike, double offset_x = 0, double offset_y = 0)
+	{
+		bool is_transformed = CountInv("PowerSuper") || CountInv("PowerHyper");
+	
+		Actor p1, p2;
+		[p1, p2] = A_FireProjectile("ChaosRocket", 0, !is_transformed, offset_x, offset_y);
+		
+		if (p2) {
+			p2.Vel += Vel;
+			if (!player.onground) p2.SetDamage(120);
+		}
+	}
+	action void FireSpreadRockets(int amount)
+	{
+		int spread_x, spread_y, iterator;
+		for (iterator = 1; iterator <= amount; iterator++) {
+			if (player.onground) {
+				spread_x = random(-30, 30);
+				spread_y = random(-30, 30);
+				FireRocket(false, spread_x, spread_y);
+			}
 			else {
-				A_FireProjectile("AirstrikeRocket");
-				A_ChangeVelocity(Cos(Pitch) * -5, 0, Sin(Pitch) * 5, CVF_Relative);
+				spread_x = random(-60, 60);
+				spread_y = random(-60, 60);
+				FireRocket(true, spread_x, spread_y);
 			}
 		}
 	}
@@ -835,13 +846,15 @@ class AirStrikeLauncher : LockLoadWeapon
 			MISG A 1 A_Raise(20);
 			Loop;
 		Fire:
-			TNT1 A 0 FireRocket(7);
-			MISG ABBBBB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			TNT1 A 0 DecideFire(7);
+			MISG A 1 A_GunFlash();
+			MISG BBBBBBBBBBBBBBBB 1 A_WeaponReady(WRF_NOBOB);
 			Goto Ready;
-		AltFire:
-			MISG B 1;
-			MISG A 1 A_ReFire();
-			Goto Ready;
+		Flash:
+			MISF A 1 Bright A_Light1;
+			MISF B 3 Bright;
+			MISF CD 3 Bright A_Light2;
+			Goto LightDone;
 		Spawn:
 			LAUN A -1;
 			Stop;
@@ -891,6 +904,15 @@ class SonicKick : CustomInventory
 			}
 			else zoffset = 1.2;
 			SetOrigin(target.Vec3Offset(oriX, oriY, zoffset), false);
+		}
+	}
+	action void HomingKnockback()
+	{
+		if (target && target.GetClassName() == "ChaosRocket") {
+			A_ChangeVelocity(target.speed / 1.5, 0, 15, CVF_Relative);
+		}
+		else {
+			A_ChangeVelocity(-12, 0, 15, CVF_Relative);
 		}
 	}
 	action void SonicKickAttack(int damage, int randfactor, int range)
@@ -952,7 +974,7 @@ class SonicKick : CustomInventory
 			}
 			TNT1 A 1 A_Stop();
 			TNT1 A 1 SnapToTarget();
-			TNT1 A 0 A_ChangeVelocity(-12, 0, 15, CVF_Relative);
+			TNT1 A 0 HomingKnockback();
 			TNT1 A 0 { cvar.FindCvar("DidHoming").SetBool(false); }
 			Stop;
 		GroundKick:
