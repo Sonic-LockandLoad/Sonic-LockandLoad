@@ -850,6 +850,15 @@ class AirStrikeLauncher : LockLoadWeapon
 			MISG A 1 A_GunFlash();
 			MISG BBBBBBBBBBBBBBBB 1 A_WeaponReady(WRF_NOBOB);
 			Goto Ready;
+		AltFire:
+			MISG A 1 {
+				if (GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK) {
+					return ResolveState("Fire");
+				}
+				return ResolveState(null);
+			}
+			TNT1 A 0 A_ReFire();
+			Goto Ready;
 		Flash:
 			MISF A 1 Bright A_Light1;
 			MISF B 3 Bright;
