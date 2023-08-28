@@ -787,7 +787,7 @@ class AirStrikeLauncher : LockLoadWeapon
 	Default
 	{
 		Weapon.SelectionOrder 1500;
-		Weapon.AmmoUse 40;
+		Weapon.AmmoUse 45;
 		Weapon.AmmoGive 200;
 		Weapon.AmmoType "ChaosEnergy";
 		Inventory.PickupMessage "Rocket Rioter";
@@ -918,7 +918,8 @@ class SonicKick : CustomInventory
 	action void HomingKnockback()
 	{
 		if (target && target.GetClassName() == "ChaosRocket") {
-			A_ChangeVelocity(target.speed / 1.5, 0, 15, CVF_Relative);
+			let rocket_velocity = sqrt(target.Vel.X ** 2 + target.Vel.Y ** 2);
+			A_ChangeVelocity(rocket_velocity / 1.5, 0, 15, CVF_Relative);
 		}
 		else {
 			A_ChangeVelocity(-12, 0, 15, CVF_Relative);

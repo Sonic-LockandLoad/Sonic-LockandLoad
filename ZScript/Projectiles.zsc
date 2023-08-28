@@ -6,9 +6,9 @@ class ChaosRocket : FastProjectile
 		Radius 20;
 		Height 20;
 		Speed 69;
-		Damage 35;
-		ExplosionDamage 100;
-		ExplosionRadius 200;
+		Damage 15;
+		ExplosionDamage 200;
+		ExplosionRadius 250;
 		Projectile;
 		ProjectileKickBack 0;
 		+RANDOMIZE
@@ -51,8 +51,9 @@ class ChaosRocket : FastProjectile
 			}
 			Goto Spawn;
 		Death:
-			MISL B 4 Bright A_Explode();
-			MISL C 3 Bright;
+			TNT1 A 0 A_SetScale(1.5, 1.5);
+			MISL B 6 Bright A_Explode();
+			MISL C 4 Bright;
 			MISL D 2 Bright;
 			Stop;
 	}
