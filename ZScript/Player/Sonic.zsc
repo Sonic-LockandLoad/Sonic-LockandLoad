@@ -1153,7 +1153,7 @@ class HomingSnapQuickStep : CustomInventory
 		QuickStepEnd:
 			TNT1 A 5;
 			TNT1 A 5 {
-				if (!GetCvar("DidJump") && !GetCvar("IsCrouching") && waterlevel < 1) {
+				if (!GetCvar("DidJump") && !GetCvar("IsCrouching")) {
 					A_ChangeVelocity(0, 0, Vel.Z, CVF_Replace);
 				}
 			}
