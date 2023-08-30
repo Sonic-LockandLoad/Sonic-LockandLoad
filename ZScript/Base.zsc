@@ -50,7 +50,9 @@ class LockLoadPlayer : PlayerPawn
 	}
 	override void FallAndSink(double grav, double oldfloorz)
 	{
-		if (waterlevel >= 2 && pos.z > oldfloorz && Vel.Z <= 5) Vel.Z -= Gravity;
+		if (waterlevel && pos.z > oldfloorz && Vel.Z <= 5) {
+			Vel.Z -= Gravity;
+		}
 		Super.FallAndSink(grav, oldfloorz);
 	}
 	States
@@ -101,6 +103,7 @@ class LockLoadPlayer : PlayerPawn
 		CheckEnemyProximity();
 		HandleReticle();
 		SetPlayerSpeed();
+		SetUnderwaterFriction();
 		Super.Tick();
 	}
 
@@ -124,6 +127,30 @@ class LockLoadPlayer : PlayerPawn
 	{
 		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY | CLOFF_SKIPOBJECT | CLOFF_MUSTBESHOOTABLE | CLOFF_JUMPNONHOSTILE, 128));
 		OldZ = Pos.Z;
+	}
+	
+	void SetUnderwaterFriction()
+	{
+		// This is kinda hacky, but it's better than nothing
+		int forward = GetPlayerInput(MODINPUT_FORWARDMOVE);
+		int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
+		bool is_moving = forward > 0 || sidem > 0 || forward < 0 || sidem < 0;
+		
+		if (waterlevel) {
+			bNOFRICTION = true;
+			if (GetCvar("IsCrouching")) {
+				A_ScaleVelocity(0.99);
+			}
+			else if (is_moving) {
+				A_ScaleVelocity(0.927);
+			}
+			else {
+				A_ScaleVelocity(0.85);
+			}
+		}
+		else {
+			bNOFRICTION = false;
+		}
 	}
 
 	void HandleReticle()

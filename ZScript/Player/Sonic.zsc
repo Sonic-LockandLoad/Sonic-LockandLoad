@@ -1056,14 +1056,7 @@ class HomingSnapQuickStep : CustomInventory
 		int deltaX = QuickStepSpeed * cos(GivenAngle);
 		int deltaY = QuickStepSpeed * sin(GivenAngle);
 		
-		if (waterlevel < 1) {
-			// If above ground, we use A_ChangeVelocity
-			A_ChangeVelocity(deltaX, deltaY, 0);
-		}
-		else {
-			// If underwater, attempt to set the position directly
-			SetOrigin(Vec3Offset(deltaX * 1.5, deltaY * 1.5, 0), true);
-		}
+		SetOrigin(Vec3Offset(deltaX * 1.5, deltaY * 1.5, 0), true);
 	}
 	States
 	{
