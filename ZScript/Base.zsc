@@ -376,7 +376,8 @@ class LockLoadPlayer : PlayerPawn
 			A_StartSound("*jump", CHAN_BODY);
 		}
 		else {
-			if (DoubleJumpCounter < DoubleJumpCount || waterlevel > 1) {
+			bool UnderwaterAndNotClassic = waterlevel > 1 && !CountInv("ClassicCheck");
+			if (DoubleJumpCounter < DoubleJumpCount || UnderwaterAndNotClassic) {
 				A_ChangeVelocity(Vel.X, Vel.Y, JumpZ - 2, CVF_Replace);
 				A_StartSound("*doublejump", CHAN_BODY);
 				return true;
