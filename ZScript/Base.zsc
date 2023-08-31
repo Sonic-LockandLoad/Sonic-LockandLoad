@@ -130,6 +130,29 @@ class LockLoadPlayer : PlayerPawn
 		OldZ = Pos.Z;
 	}
 	
+	void ScaleXYVelocity(double scale, int ptr = AAPTR_DEFAULT)
+	{
+		// Also implements CheckStopped, because it's private
+		let player = self.player;
+		let ref = GetPointer(ptr);
+
+		if (ref == NULL) {
+			return;
+		}
+
+		bool was_moving = ref.Vel != (0, 0, 0);
+
+		ref.Vel.X *= scale;
+		ref.Vel.Y *= scale;
+
+		if (was_moving) {
+			if (player && player.mo == self && !(player.cheats & CF_PREDICTING) && Vel == (0, 0, 0)) {
+				player.mo.PlayIdle();
+				player.Vel = (0, 0);
+			}
+		}
+	}
+
 	void SetUnderwaterFriction()
 	{
 		// This is kinda hacky, but it's better than nothing
@@ -139,17 +162,22 @@ class LockLoadPlayer : PlayerPawn
 		
 		if (waterlevel) {
 			bNOFRICTION = true;
+			
 			if (GetCvar("IsCrouching")) {
-				A_ScaleVelocity(0.99);
+				ScaleXYVelocity(0.99);
 			}
 			else if (is_moving) {
-				A_ScaleVelocity(0.927);
+				ScaleXYVelocity(0.927);
 			}
 			else if (!player.onground) {
-				A_ScaleVelocity(0.98);
+				ScaleXYVelocity(0.98);
 			}
 			else {
-				A_ScaleVelocity(0.85);
+				ScaleXYVelocity(0.85);
+			}
+			
+			if (Vel.Z >= 1) {
+				Vel.Z *= 0.95;
 			}
 		}
 		else {
