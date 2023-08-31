@@ -121,7 +121,7 @@ class BoostEnabledWeapon : LockLoadWeapon
 {
 	int BoostSpeed;
 	bool BoostCheck;
-	action void Boost(int form, int InitialBoostSpeed, int MaxBoostSpeed)
+	action void Boost (int form, int InitialBoostSpeed, int MaxBoostSpeed)
 	{
 		if (!invoker.BoostCheck) {
 			int speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
@@ -207,7 +207,7 @@ class BoostEnabledWeapon : LockLoadWeapon
 			BOOS A 1 Boost(0, 75, 175);
 			BOOS A 0 A_CheckLOF("WallCrash", CLOFF_JUMP_ON_MISS|CLOFF_SKIPENEMY|CLOFF_SKIPFRIEND|CLOFF_SKIPOBJECT|CLOFF_MUSTBESOLID|CLOFF_ALLOWNULL|CLOFF_NOAIM_VERT, 32);
 			BOOS A 0 {
-				if (Pos.Z - GetZAt() < 60) {
+				if (Pos.Z - GetZAt() < 60 || waterlevel) {
 					A_ReFire();
 				}
 			}

@@ -144,6 +144,9 @@ class LockLoadPlayer : PlayerPawn
 			else if (is_moving) {
 				A_ScaleVelocity(0.927);
 			}
+			else if (!player.onground) {
+				A_ScaleVelocity(0.98);
+			}
 			else {
 				A_ScaleVelocity(0.85);
 			}
