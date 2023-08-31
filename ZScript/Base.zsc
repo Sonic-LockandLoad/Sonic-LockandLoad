@@ -50,9 +50,10 @@ class LockLoadPlayer : PlayerPawn
 	}
 	override void FallAndSink(double grav, double oldfloorz)
 	{
-		if (waterlevel && pos.z > oldfloorz && Vel.Z <= 5) {
+		if (waterlevel && !player.onground && Vel.Z <= 5) {
 			Vel.Z -= Gravity;
 		}
+		
 		Super.FallAndSink(grav, oldfloorz);
 	}
 	States
@@ -228,7 +229,7 @@ class LockLoadPlayer : PlayerPawn
 	{
 		return Pos.Z - GetZAt();
 	}
-	
+
 	override void MovePlayer()
 	{
 		// I probably don't need to re-implement all of this,
@@ -294,7 +295,61 @@ class LockLoadPlayer : PlayerPawn
 				Thrust(sidemove, a);
 			}
 		}
-	}	
+	}
+	
+	/* Following code borrowed from https://forum.zdoom.org/viewtopic.php?t=63091 */
+	
+	void ForwardThrust (double move, double angle)
+	{
+		if ((bNoGravity) && Pitch != 0 && !player.GetClassicFlight())
+		{
+			double zpush = move * sin(Pitch);
+			//Vel.Z -= zpush;
+			move *= cos(Pitch);
+		}
+		Thrust(move, angle);
+	}
+
+	override void CheckMoveUpDown()
+	{
+		let player = self.player;
+		UserCmd cmd = player.cmd;
+		
+		if (cmd.upmove < 0)
+		{
+			if (bNoGravity)
+			{
+				bNoGravity = false;
+			}
+		}
+		else if (cmd.upmove != 0)
+		{
+			cmd.upmove = clamp(cmd.upmove, -0x300, 0x300);
+			if (bFly || (player.cheats & CF_NOCLIP2))
+			{
+				Vel.Z = Speed * cmd.upmove / 128.;
+				if (!bNoGravity)
+				{
+					bFly = true;
+					bNoGravity = true;
+					if ((Vel.Z <= -39) && !(player.cheats & CF_PREDICTING))
+					{
+						A_StopSound(CHAN_VOICE);
+					}
+				}
+			}
+			else if (cmd.upmove > 0 && !(player.cheats & CF_PREDICTING))
+			{
+				let fly = FindInventory("ArtiFly");
+				if (fly != NULL)
+				{
+					UseInventory(fly);
+				}
+			}
+		}
+	}
+	
+	/* This concludes the code borrowed from https://forum.zdoom.org/viewtopic.php?t=63091 */
 	
 	override void CheckJump()
 	{
