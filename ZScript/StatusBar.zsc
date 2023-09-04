@@ -245,7 +245,8 @@ class SLL_StatusBar : BaseStatusBar
 		/* Gold if requirements met */
 		bool in_allowed_level = level.LevelName != "Station Square" && level.LevelName != "Cyber Space Arena";
 		if (score >= targetscore && in_allowed_level) {
-			score_colour = Font.FindFontColor("Gold");
+			if (GetInventory("PowerSuper")) score_colour = Font.FindFontColor("Yellow");
+			else score_colour = Font.FindFontColor("Gold");
 		}
 		
 		/* Display it */
