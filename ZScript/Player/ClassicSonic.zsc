@@ -110,7 +110,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 				invoker.ShweeDelay = 10;
 				if (A_CheckFloor("Null")) return ResolveState("SpinCharge");
 				else if (GetCvar("CanWallJump") && !invoker.DidWallDash) return ResolveState("WallCharge");
-                else if (!A_CheckFloor("Null") && waterlevel < 1) return ResolveState("DropCharge");
+                else if (!A_CheckFloor("Null")) return ResolveState("DropCharge");
 				return ResolveState(null);
 			}
 			Goto Ready;
@@ -247,7 +247,7 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 					A_StartSound("sWeapons/dropdash", 5);
 				}
 				invoker.SpinCharges++;
-                if (A_CheckFloor("Null") || waterlevel > 1) {
+                if (player.onground) {
                     A_ClearOverlays(0, 0);
                     A_Light(0);
                     if (invoker.SpinCharges >= 10) {
