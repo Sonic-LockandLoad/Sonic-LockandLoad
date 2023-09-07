@@ -35,7 +35,6 @@ script "GoalRing" (void)
 	
 	// Your target score
 	targetscore += TotalMonsters * 90;
-	if (GameSkill() >= 4) targetscore *= 1.5;
 	
 	str TimeString = "Time: ";
 	str ScoreString = "Score: ";
