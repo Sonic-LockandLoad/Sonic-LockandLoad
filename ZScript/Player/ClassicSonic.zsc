@@ -19,6 +19,23 @@ class ClassicSonicPlayer : LockLoadPlayer
 		Player.WeaponSlot 4, "ChaosRain";
 		Player.WeaponSlot 5, "ClassicRocketStream";
 	}
+	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod)
+	{
+		if (CountInv("PowerSwordParry")) {
+			if (inflictor != null && inflictor is "Actor") {
+				ACS_NamedExecute("ParryEffect");
+				let oldangle = source.angle;
+				source.A_DamageSelf(source.health / 3 + damage / 2, "Parry");
+				source.A_SetAngle(angle);
+				source.A_Recoil(-damage * 2);
+				source.A_SetAngle(oldangle);
+				let style = StyleSystem(EventHandler.Find("StyleSystem"));
+				if (style) style.score += (damage * 512) * GetCvar("StyleRank") + 1;
+				damage = 0;
+			}
+		}
+		return Super.DamageMobj(inflictor, source, damage, mod);
+	}
 	States
 	{
 		Pain:
@@ -678,6 +695,7 @@ class SpinAttack : CustomInventory
 			int ry = random(-spread_y, spread_y);
 			double pitch = AimLineAttack(angle + rx, distance, null, 0., ALF_CHECK3D);
 			LineAttack(angle + rx, distance, pitch + ry, damage * random(1, 8), 'Melee', "SonicPunchPuff", LAF_ISMELEEATTACK, t);
+			A_GiveInventory("SwordParry");
 			if (t.linetarget) A_StartSound("sweapons/finalhit", CHAN_WEAPON);
 		}
 	}

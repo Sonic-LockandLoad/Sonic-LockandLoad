@@ -543,7 +543,7 @@ class LockLoadPlayer : PlayerPawn
 			if (!x_velocity_change && !y_velocity_change) {
 				return;
 			}
-			
+
 			A_ChangeVelocity(x_velocity_change, y_velocity_change, 0, CVF_Relative|CVF_Replace);
 		}
 	}
