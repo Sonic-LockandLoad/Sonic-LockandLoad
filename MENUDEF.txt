@@ -164,6 +164,8 @@ OptionMenu "LLModsMenu"
 	StaticText ""
 
 	Option "Style System", "StyleSystem", "EnabledOrNot"
+	Option "Style Callouts", "StyleCallouts", "EnabledOrNot"
+	Option "Style Points", "StylePoints", "EnabledOrNot"
 	StaticText "Continuously attack enemies to rack up Style Points and", "White"
 	StaticText "get a high Style Rank! Getting hit or just waiting will", "White"
 	StaticText "make your Style Points go down.", "White"

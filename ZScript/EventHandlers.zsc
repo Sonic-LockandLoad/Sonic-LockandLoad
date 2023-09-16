@@ -206,9 +206,15 @@ class StyleSystem : EventHandler
 			scorebonus -= staleness;
 		}
 		
-		/* Cap score bonus */
-		int cap = GetScoreBonusCap();
-		scorebonus = clamp(scorebonus, 1000, cap);
+		/* Boost score bonus if attack was Homing Attack */
+		if (e.DamageType == "SonicKick") {
+			scorebonus *= 1.5;
+		}
+		
+		/* Clamp score bonus */
+		int minimum_score = 1000 + GetScoreBonusCap() / 100;
+		int maximum_score = GetScoreBonusCap();
+		scorebonus = clamp(scorebonus, minimum_score, maximum_score);
 		
 		/* Limit score bonus if attack was Spin Dash */
 		if (e.damagetype == "SpinDash") {
@@ -217,7 +223,7 @@ class StyleSystem : EventHandler
  		
 		/* Total up and cap score */
 		score += scorebonus;
-		if (score > 500000) score = 500000;
+		if (score > 300000) score = 300000;
 		
 		/* It isn't here, but the player can also gain Style
 		   Points by parrying attacks.
@@ -280,8 +286,11 @@ class StyleSystem : EventHandler
 			case 5: // Skyrocketing!!
 				penalty = 2096;
 				break;
-			case 6: // Super Sonic!!!
+			case 6: // Speeding Style!!!
 				penalty = 2192;
+				break;
+			case 7: // Super Sonic Style!!!
+				penalty = 3048;
 				break;
 		}
 		penalty += (e.damage / 16) * (score / 16);
@@ -307,16 +316,19 @@ class StyleSystem : EventHandler
 				cap = 15000;
 				break;
 			case 3:
-				cap = 30000;
+				cap = 20000;
 				break;
 			case 4:
-				cap = 60000;
+				cap = 25000;
 				break;
 			case 5:
-				cap = 100000;
+				cap = 30000;
 				break;
 			case 6:
-				cap = 200000;
+				cap = 40000;
+				break;
+			case 7:
+				cap = 80000;
 				break;
 		}
 		
@@ -334,19 +346,22 @@ class StyleSystem : EventHandler
 				deprecation = 128;
 				break;
 			case 2:
-				deprecation = 512;
+				deprecation = 256;
 				break;
 			case 3:
-				deprecation = 1024;
+				deprecation = 512;
 				break;
 			case 4:
-				deprecation = 2048;
+				deprecation = 1024;
 				break;
 			case 5:
-				deprecation = 4096;
+				deprecation = 2048;
 				break;
 			case 6:
-				deprecation = 4128;
+				deprecation = 3072;
+				break;
+			case 7:
+				deprecation = 4096;
 				break;
 		}
 		
@@ -386,9 +401,10 @@ class StyleSystem : EventHandler
 		current_tick++;
 		
 		// Set your Style Rank
-		if 		(score >= 200000) cvar.FindCvar("StyleRank").SetInt(6); // Super Sonic!!!
-		else if (score >= 100000) cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
-		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
+		if 		(score >= 200000) cvar.FindCvar("StyleRank").SetInt(7); // Super Sonic Style!!!
+		else if	(score >= 100000) cvar.FindCvar("StyleRank").SetInt(6); // Speeding Style!!!
+		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
+		else if (score >= 45000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
 		else if (score >= 30000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
 		else if (score >= 15000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
 		else if (score >= 5000)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting

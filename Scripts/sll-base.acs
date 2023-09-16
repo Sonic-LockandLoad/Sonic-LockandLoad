@@ -32,6 +32,7 @@ needs to be modularised and refactored.
 #define A 4
 #define S 5
 #define SS 6
+#define SSS 7
 
 // ACS file inclusions
 #include "sll-audio.acs"     // Sounds and music
