@@ -41,7 +41,6 @@ class SonicPlayer : LockLoadPlayer
 		Super.Tick();
 		if (GetPlayerInput(MODINPUT_BUTTONS) & BT_FORWARD && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_FORWARD)) {
 			A_GiveInventory("AccelPrerequisite");
-			A_GiveInventory("SwordDashPrerequisite");
 		}
 		if (player.ReadyWeapon != null && !(player.ReadyWeapon.GetClassName() == "EclipseBlaster" && GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK)) {
 			// One of these days I need to stop relying on CVARs
@@ -283,17 +282,8 @@ class Caliburn : BoostEnabledWeapon
 	action void SwordAttack(int damage, double distance, bool right_facing, int horizontal_spread = 75, int attack_count = 30)
 	{
 		A_StartSound("sweapons/swordswing", 9);
-		SwordDash(GetPlayerInput(INPUT_FORWARDMOVE), distance);
 		if (GetCvar("EnergyBlades")) FireEnergyBlade(distance, right_facing);
 		PerformMeleeAttack(damage + invoker.DamageBonus * 2, distance, angle, pitch, attack_count, horizontal_spread);
-	}
-
-	action void SwordDash(double forwardMove, double distance)
-	{
-		bool PressedForward = GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(INPUT_OLDBUTTONS) & BT_ATTACK));
-		if (CountInv("PowerSDash") || PressedForward) {
-			A_ChangeVelocity(distance / 3, 0, 0, CVF_Relative);
-		}
 	}
 
 	action void FireEnergyBlade(double distance, bool right_facing)
