@@ -321,7 +321,7 @@ class ChaosEmerald : LockLoadWeapon
 			TNT1 A 0 A_PlaySound("sweapons/healthcharge", 4096);
 			CARM F 1 A_TakeInventory("ChaosEnergy", 5);
 			TNT1 A 0 A_GiveInventory("Health", 15);
-			TNT1 A 0 { if (Health > 300) { A_SetHealth(300); } }
+			TNT1 A 0 { if (Health > 150) { A_SetHealth(150); } }
 			TNT1 A 0 A_ReFire("AltFire");
 			TNT1 A 0 A_TakeInventory("Charging");
 			Goto Ready;
