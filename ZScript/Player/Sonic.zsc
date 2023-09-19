@@ -752,7 +752,7 @@ class EclipseBlaster : LockLoadWeapon
 				if ((Health < ringLimit) && CountInv("ChaosEnergy") && !(CountInv("PowerSuper") || CountInv("PowerHyper"))) {
 					A_PlaySound("sweapons/healthcharge", 4096);
 					A_TakeInventory("ChaosEnergy", 16);
-					A_GiveInventory("Health", 6);
+					A_GiveInventory("Health", 3);
 					if (Health > ringLimit) { A_SetHealth(ringLimit); }
 				}
 				else {
