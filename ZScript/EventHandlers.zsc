@@ -341,41 +341,22 @@ class StyleSystem : EventHandler
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int deprecation;
 		switch (stylerank) {
-			case 0:
-			case 1:
+			case 0: // E
+			case 1: // D
 				deprecation = 128;
 				break;
-			case 2:
+			case 2: // C
+			case 3: // B
 				deprecation = 256;
 				break;
-			case 3:
-				deprecation = 512;
-				break;
-			case 4:
+			case 4: // A
+			case 5: // S
 				deprecation = 1024;
 				break;
-			case 5:
+			case 6: // SS
+			case 7: // SSS
 				deprecation = 2048;
 				break;
-			case 6:
-				deprecation = 3072;
-				break;
-			case 7:
-				deprecation = 4096;
-				break;
-		}
-		
-		int total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
-		
-		/* Calculate based on velocity */
-		if (total_vel >= 100.0) {
-			deprecation /= 8;
-		}
-		else if (total_vel >= 50.0) {
-			deprecation /= 6;
-		}
-		else if (total_vel >= 33.0) {
-			deprecation /= 4;
 		}
 		
 		/* Super and Hyper forms are invincible,
@@ -401,13 +382,13 @@ class StyleSystem : EventHandler
 		current_tick++;
 		
 		// Set your Style Rank
-		if 		(score >= 200000) cvar.FindCvar("StyleRank").SetInt(7); // Super Sonic Style!!!
-		else if	(score >= 100000) cvar.FindCvar("StyleRank").SetInt(6); // Speeding Style!!!
+		if 		(score >= 100000) cvar.FindCvar("StyleRank").SetInt(7); // Super Sonic Style!!!
+		else if	(score >= 80000)  cvar.FindCvar("StyleRank").SetInt(6); // Speeding Style!!!
 		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
-		else if (score >= 45000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
-		else if (score >= 30000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
-		else if (score >= 15000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
-		else if (score >= 5000)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
+		else if (score >= 40000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
+		else if (score >= 20000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
+		else if (score >= 10000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
+		else if (score >= 1000)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
 		else 					  cvar.FindCvar("StyleRank").SetInt(0); // Empty
 		
 		// Obtain Style Rank to sync up
