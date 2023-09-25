@@ -450,27 +450,35 @@ class AcceleratedPistol : LockLoadWeapon
 	int charge;
 	action void RecoilBurst()
 	{
-		int strengthbonus, recoilbonus, ammopenalty;
+		int strength_bonus, recoil_bonus, ammo_penalty;
 		if (invoker.charge) {
-			strengthbonus = invoker.charge * 15;
-			recoilbonus = invoker.charge / 4;
-			ammopenalty = invoker.charge / 6;
-			invoker.AmmoUse2 = 8 + ammopenalty;
+			strength_bonus = invoker.charge * 15;
+			recoil_bonus = invoker.charge / 4;
+			ammo_penalty = invoker.charge / 6;
+			invoker.AmmoUse2 = 8 + ammo_penalty;
 		}
 		A_StopSound(11);
 		A_StartSound("weapons/rbeam", 1);
-		if (CountInv("PowerHyper")) {
-			A_RailAttack(160 + strengthbonus, 0, 1, "06b400", "fdff00", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
-			A_ChangeVelocity (Cos(Pitch) * (-10 - recoilbonus), 0, Sin(Pitch) * (10 + recoilbonus), CVF_Relative);
+		
+		int base_strength = 30;
+		int pierce_limit = 3;
+		string colour1 = "c5feff";
+		string colour2 = "c5c6ff";
+		int recoil_strength = 5;
+		
+		bool fully_charged = invoker.charge >= 50;
+		
+		if (fully_charged) {
+			base_strength = 65;
+			pierce_limit = 7;
+			colour1 = "009c9f";
+			colour2 = "6364bb";
+			recoil_strength = 7;
 		}
-		else if (invoker.charge >= 50) {
-			A_RailAttack(65 + strengthbonus, 0, 1, "009c9f", "6364bb", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
-			A_ChangeVelocity (Cos(Pitch) * (-10 - recoilbonus), 0, Sin(Pitch) * (10 + recoilbonus), CVF_Relative);
-		}
-		else {
-			A_RailAttack(30 + strengthbonus, 0, 1, "c5feff", "c5c6ff", RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0);
-			A_ChangeVelocity (Cos(Pitch) * (-7 - recoilbonus), 0, Sin(Pitch) * (7 + recoilbonus), CVF_Relative);
-		}
+		
+		A_RailAttack(base_strength + strength_bonus, 0, 1, colour1, colour2, RGF_FULLBRIGHT, 0, "BulletPuff", 0, 0, 0, 25, 1.0, 1.0, "None", 0, 270, pierce_limit);
+		A_ChangeVelocity(Cos(Pitch) * (-recoil_strength - recoil_bonus), 0, Sin(Pitch) * (recoil_strength + recoil_bonus), CVF_Relative);
+
 		A_GunFlash("BurstFlash");
 		invoker.charge = 0;
 		invoker.AmmoUse2 = 8;
