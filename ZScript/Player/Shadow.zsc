@@ -309,8 +309,8 @@ class ChaosEmerald : LockLoadWeapon
 			TNT1 A 0 A_JumpIf(CountInv("ChaosEnergy") < 1, "Error");
 			Goto Ready;
 		RingCheck:
-			TNT1 A 0 A_JumpIf(Health > 299, "Error");
-			TNT1 A 0 A_JumpIf(Health < 299, "ChaosCharge");
+			TNT1 A 0 A_JumpIf(Health > 149, "Error");
+			TNT1 A 0 A_JumpIf(Health < 149, "ChaosCharge");
 			Goto Ready;
 		Error:
 			TNT1 A 0 A_TakeInventory("Charging");
