@@ -15,22 +15,24 @@ script "Drowning" ENTER
 			}
 			if (drowntimer > (maxdrown - 10))
 			{
-				switch(PlayerClass(PlayerNumber())) {
-					case Sonic:
-						SetMusic("S_DROWN", 0);
-						break;
-					case Amy:
-						SetMusic("A_DROWN", 0);
-						break;
-					case ClassicSonic:
-						SetMusic("C_DROWN", 0);
-						maxdrown = 31;
-						break;
-					case Shadow:
-						SetMusic("D_DROWN", 0);
-						break;
-					default:
-						break;
+				if (GetLevelInfo(LEVELINFO_LEVELNUM) != 69) {
+					switch (PlayerClass(PlayerNumber())) {
+						case Sonic:
+							SetMusic("S_DROWN", 0);
+							break;
+						case Amy:
+							SetMusic("A_DROWN", 0);
+							break;
+						case ClassicSonic:
+							SetMusic("C_DROWN", 0);
+							maxdrown = 31;
+							break;
+						case Shadow:
+							SetMusic("D_DROWN", 0);
+							break;
+						default:
+							break;
+					}
 				}
 				SetFont("BIGFONT");
 				int drowncounter = maxdrown - drowntimer;
@@ -46,7 +48,7 @@ script "Drowning" ENTER
 			}
 		}
 		else {
-			if (drowntimer > 4) {
+			if (drowntimer > 4 && GetLevelInfo(LEVELINFO_LEVELNUM) != 69) {
 				SetMusic("*");
 			}
 			drowntimer = 0;
