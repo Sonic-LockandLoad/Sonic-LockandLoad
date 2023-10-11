@@ -351,17 +351,20 @@ class Caliburn : BoostEnabledWeapon
 			Loop;
 		Fire:
 			TNT1 A 0 A_GiveInventory("SwordParry");
+			TNT1 A 0 A_JumpIf(!player.onground, "AirSlash");
 			Goto Slash1;
 		QuickswapSlash:
+			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			CAL1 A 1 A_GiveInventory("SwordParry");
 			TNT1 A 0 SwordAttack(80, 720, false, 25, 80);
 			Goto Slash1+2;
 		Slash1:
+			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			CAL1 A 1;
 			TNT1 A 0 SwordAttack(40, 90, false);
 			TNT1 A 0 { invoker.DamageBonus = 0; }
 			CAL1 BCD 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			CAL1 EEEEEEEEEEEEEE 1 Bright {
+			CAL1 EEEEEEEEEEEEEE 1 {
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 				invoker.DamageBonus++;
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_ATTACK))) {
@@ -375,15 +378,26 @@ class Caliburn : BoostEnabledWeapon
 			TNT1 A 0 SwordAttack(120 + invoker.BoostSpeed, 240, false);
 			Goto Slash1+2;
 		Slash2:
+			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			CAL2 A 1;
 			TNT1 A 0 SwordAttack(40, 90, true);
 			CAL2 BCD 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			CAL2 EEEEEEEEEEEEEE 1 Bright {
+			CAL2 EEEEEEEEEEEEEE 1 {
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 				invoker.DamageBonus++;
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_ATTACK))) {
 					return ResolveState("Slash1");
 				}
+				return ResolveState(null);
+			}
+			Goto Ready;
+		AirSlash:
+			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
+			CAL3 A 1;
+			TNT1 A 0 SwordAttack(60, 160, true);
+			CAL3 BCD 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+			CAL3 EEEEEE 1 {
+				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 				return ResolveState(null);
 			}
 			Goto Ready;
