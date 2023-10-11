@@ -216,8 +216,16 @@ class StyleSystem : EventHandler
 		int maximum_score = GetScoreBonusCap();
 		scorebonus = clamp(scorebonus, minimum_score, maximum_score);
 		
-		/* Limit score bonus if attack was Spin Dash */
-		if (e.damagetype == "SpinDash") {
+		/* Limit score bonus if attack was Sword Slash */
+		bool is_sword_slash = 
+			e.DamageType == "Caliburn" && player.player.onground;
+		
+		if (is_sword_slash) {
+			scorebonus /= 3;
+		}
+		
+		/* Limit score bonus if attack was Spin Dash or Boost */
+		if (e.damagetype == "SpinDash" || e.DamageType == "Boost") {
 			scorebonus /= 8;
 		}
  		
