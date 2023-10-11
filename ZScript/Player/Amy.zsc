@@ -49,7 +49,7 @@ class AmyPlayer : LockLoadPlayer
 				source.A_SetAngle(oldangle);
 				A_GiveInventory("HammerBlock");
 				let style = StyleSystem(EventHandler.Find("StyleSystem"));
-				if (style) style.score += (damage * 512) * GetCvar("StyleRank") + 1;
+				if (style) style.score += (damage * 128) * GetCvar("StyleRank") + 1;
 			}
 			if (damage / 4) A_TakeInventory("ChaosEnergy", damage / 4);
 		}
