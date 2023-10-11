@@ -394,9 +394,9 @@ class Caliburn : BoostEnabledWeapon
 		AirSlash:
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			CAL3 A 1;
-			TNT1 A 0 SwordAttack(60, 160, true);
+			TNT1 A 0 SwordAttack(240, 160, true);
 			CAL3 BCD 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			CAL3 EEEEEE 1 {
+			CAL3 EEEEEEEEEE 1 {
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 				return ResolveState(null);
 			}
