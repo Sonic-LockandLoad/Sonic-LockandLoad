@@ -1,7 +1,19 @@
+/*
+Copyright (c) 2023 Arsalan "Velocity" Kazmi <sonicspeed848@gmail.com>
+
+Sonic: Lock & Load is distributed in the hope that it will be useful (and fun)
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the BSD 3-Clause License (LICENSE.txt) for more details.
+*/
+
 version "4.10.0"
+
 /*
 This ZScript file doesn't have anything in it except includes.
 */
+
 #include "zscript/ammo.zsc"
 #include "zscript/base.zsc"
 #include "zscript/dummyinv.zsc"
