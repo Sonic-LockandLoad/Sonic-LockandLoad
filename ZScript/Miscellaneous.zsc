@@ -5,6 +5,7 @@ class SonicSwitch : LLSwitch // 4156
 		//$Name Sonic Switch
 		//$Category Lock & Load Objects
 		DamageFactor "SonicKick", 1;
+		DamageFactor "Caliburn", 1;
 	}
 	States
 	{
@@ -71,6 +72,7 @@ class OmniSwitch : LLSwitch
 		//$Name Omni Switch
 		//$Category Lock & Load Objects
 		DamageFactor "SonicKick", 1;
+		DamageFactor "Caliburn", 1;
 		DamageFactor "Piko", 1;
 		DamageFactor "SonicPunch", 1;
 		DamageFactor "SpinDash", 1;
