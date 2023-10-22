@@ -1,5 +1,43 @@
 /* Visit sll-base.acs for information */
 
+script "GetLevelTargetScore" (void)
+// This is a separate script and not a function 
+// so I can call it from ZScript.
+{
+	int score;
+
+	// Here's the formula:
+	// 1. Finish a level with all monsters defeated and 999 health
+	// 2. Subtract 1998 from the final score
+	// 3. Round that to the nearest 1000
+
+	switch (GetLevelInfo(LEVELINFO_LEVELNUM)) {
+		case 1:  // Sunset Gardens
+			score = 13000;
+			break;
+		case 2:  // Marble Madness
+			score = 29000;
+			break;
+		case 3:  // Oceanic Fortress
+			score = 0;
+			// It's not finished yet, so we can decide later
+			break;
+		case 73: // Hire This Zone
+			score = 10000;
+			// 
+			break;
+		default:
+			score = 0;
+			break;
+	}
+	
+	if (score == 0) {
+		score = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) * 90;
+	}
+	
+	SetResultValue(score);
+}
+
 script "GoalRing" (void)
 {
 	// Variables
@@ -34,7 +72,7 @@ script "GoalRing" (void)
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 	
 	// Your target score
-	targetscore += TotalMonsters * 90;
+	targetscore = ACS_NamedExecuteWithResult("GetLevelTargetScore");
 	
 	str TimeString = "Time: ";
 	str ScoreString = "Score: ";

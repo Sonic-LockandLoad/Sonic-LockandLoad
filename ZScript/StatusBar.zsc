@@ -223,7 +223,7 @@ class SLL_StatusBar : BaseStatusBar
 		/* Target score */
 		int targetscore;
 		let skill_level = G_SkillPropertyInt(SKILLP_ACSReturn);
-		targetscore += Level.Total_Monsters * 90;
+		targetscore = CallACS("GetLevelTargetScore");
 		
 		/* Current score */
 		int score;
