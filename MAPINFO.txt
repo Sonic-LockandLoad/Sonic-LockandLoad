@@ -169,7 +169,6 @@ map SDCybrSp "Cyber Space Arena"
 	sky1 = "cybrback"
 	useplayerstartz
 	resethealth
-	resetinventory
 	nointermission
 	noinfighting
 }
