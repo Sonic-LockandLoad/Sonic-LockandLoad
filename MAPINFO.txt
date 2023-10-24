@@ -168,7 +168,6 @@ map SDCybrSp "Cyber Space Arena"
 	levelnum = 69
 	sky1 = "cybrback"
 	useplayerstartz
-	resethealth
 	nointermission
 	noinfighting
 }
