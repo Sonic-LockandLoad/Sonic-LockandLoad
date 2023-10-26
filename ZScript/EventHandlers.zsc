@@ -179,7 +179,7 @@ class StyleSystem : EventHandler
 			case 30:
 				velocity_multiplier = 2.0;
 				break;
-			case 15:
+			case 20:
 				velocity_multiplier = 1.0;
 				break;
 			default:
@@ -189,7 +189,7 @@ class StyleSystem : EventHandler
 		scorebonus *= velocity_multiplier;
 		
 		/* Calculate staleness */
-		int staleness = 256 * consecutive_uses;
+		int staleness = 512 * consecutive_uses;
 		staleness = clamp(staleness, 0, scorebonus);
 		
 		/* Limit staleness */
@@ -212,7 +212,7 @@ class StyleSystem : EventHandler
 		}
 		
 		/* Clamp score bonus */
-		int minimum_score = 1000 + GetScoreBonusCap() / 100;
+		int minimum_score = 500 + GetScoreBonusCap() / 100;
 		int maximum_score = GetScoreBonusCap();
 		scorebonus = clamp(scorebonus, minimum_score, maximum_score);
 		
@@ -221,7 +221,7 @@ class StyleSystem : EventHandler
 			e.DamageType == "Caliburn" && player.player.onground;
 		
 		if (is_sword_slash) {
-			scorebonus /= 3;
+			scorebonus /= 4;
 		}
 		
 		/* Limit score bonus if attack was Spin Dash or Boost */
@@ -280,19 +280,19 @@ class StyleSystem : EventHandler
 				penalty = 0;
 				break;
 			case 1: // Drifting
-				penalty = 64;
+				penalty = 32;
 				break;
 			case 2: // Cruising
-				penalty = 128;
+				penalty = 64;
 				break;
 			case 3: // Blazing
-				penalty = 256;
+				penalty = 128;
 				break;
 			case 4: // Adventurer!
-				penalty = 1048;
+				penalty = 524;
 				break;
 			case 5: // Skyrocketing!!
-				penalty = 2096;
+				penalty = 1048;
 				break;
 			case 6: // Speeding Style!!!
 				penalty = 2192;
@@ -351,11 +351,11 @@ class StyleSystem : EventHandler
 		switch (stylerank) {
 			case 0: // E
 			case 1: // D
-				deprecation = 128;
+				deprecation = 32;
 				break;
 			case 2: // C
 			case 3: // B
-				deprecation = 256;
+				deprecation = 128;
 				break;
 			case 4: // A
 			case 5: // S
@@ -396,7 +396,7 @@ class StyleSystem : EventHandler
 		else if (score >= 40000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
 		else if (score >= 20000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
 		else if (score >= 10000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
-		else if (score >= 1000)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
+		else if (score >= 1)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
 		else 					  cvar.FindCvar("StyleRank").SetInt(0); // Empty
 		
 		// Obtain Style Rank to sync up
