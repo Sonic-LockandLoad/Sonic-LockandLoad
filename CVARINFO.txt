@@ -33,8 +33,6 @@ user int  Sponginess				= 2;
 user bool OneHitMode				= false;
 user bool CountDeaths				= false;
 
-user string LastWeapon					= "";
-
 /* Temporary CVARs */
 user noarchive bool	  Sliding			= false;
 user noarchive bool   SoulSurgeReady	= false;

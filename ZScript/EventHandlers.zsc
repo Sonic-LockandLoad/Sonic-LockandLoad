@@ -452,3 +452,85 @@ class DeathCounter : StaticEventHandler
 		}
 	}
 }
+
+class LastWeaponHandler : StaticEventHandler
+{
+	string last_weapon;
+	string current_weapon;
+	
+	override void NetworkProcess(ConsoleEvent e)
+	{               
+		if (e.Name == "quickswap") {
+			SwitchWeapon();
+		}
+	}
+
+    string GetDefaultWeapon()
+    {
+        PlayerPawn player = players[consoleplayer].mo;
+
+        // Can't really use switch-case here, since we're working with strings
+        
+        // We can assume that the player just spawned in, so their weapons are
+        // easy enough to guess
+
+        if (player is "SonicPlayer") {
+            return "Caliburn";
+        }
+
+        if (player is "AmyPlayer") {
+            return "SilentRosePistol";
+        }
+
+        if (player is "ClassicSonicPlayer") {
+            return "ChaosBlaster";
+        }
+
+        if (player is "ShadowPlayer") {
+            return "HighShovel";
+        }
+
+        return "";
+    }
+	
+	string GetWeapon()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
+		
+		if (player.player.ReadyWeapon == null) {
+			return "";
+		}
+		
+		return player.player.ReadyWeapon.GetClassName();
+	}
+	
+	override void WorldTick()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
+		
+		if (player.player.ReadyWeapon == null) {
+			return;
+		}
+		
+		if (current_weapon != GetWeapon()) {
+			last_weapon = current_weapon;
+		}
+		
+		if (last_weapon == "") {
+			last_weapon = GetDefaultWeapon();
+		}
+		
+		current_weapon = GetWeapon();
+	}
+	
+	void SwitchWeapon()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
+		
+		if (!player.CountInv(last_weapon)) {
+			last_weapon = GetDefaultWeapon();
+		}
+		
+		player.A_SelectWeapon(last_weapon);
+	}
+}

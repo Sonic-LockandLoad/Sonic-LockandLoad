@@ -1,6 +1,6 @@
 bind Y 			invuse
 bind T 			"pukename Taunt"
-bind F 			"pukename LastWeapon"
+bind F 			quickswap
 bind Q			+reload
 bind Mouse3		+zoom
 bind Ctrl		+crouch
