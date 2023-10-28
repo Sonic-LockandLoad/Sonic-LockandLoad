@@ -147,7 +147,7 @@ class StyleSystem : EventHandler
 			scorebonus += e.damage * 72;
 		}
 		else {
-			scorebonus += e.damage * 24;
+			scorebonus += e.damage * 12;
 		}
 		
 		/* Using different weapon */
