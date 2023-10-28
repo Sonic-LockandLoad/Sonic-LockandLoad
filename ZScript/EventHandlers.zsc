@@ -192,10 +192,6 @@ class StyleSystem : EventHandler
 		int staleness = 512 * consecutive_uses;
 		staleness = clamp(staleness, 0, scorebonus);
 		
-		/* Limit staleness */
-		int remaining_weapons = (6 - GetAmountOfWeapons()) + 1;
-		staleness /= remaining_weapons;
-		
 		/* Apply staleness, unless Offhand Attack was used */
 		bool melee_used = e.DamageType == "SonicKick" ||
 						  e.DamageType == "ShadowMelee" ||
@@ -237,37 +233,6 @@ class StyleSystem : EventHandler
 		   Points by parrying attacks.
 		
 		   Go and see Sonic.zsc and Amy.zsc for that code. */
-	}
-	
-	private int GetAmountOfWeapons()
-	{
-		PlayerPawn player = players[consoleplayer].mo;
-		
-		/* We can assume the player has Slot 1 and Slot 2
-		   weapons, since they're given at the start.
-		   
-		   Also, I hate that I have to resort to this. */
-		   
-		bool slot3 = player.CountInv("KineticShotty") || 
-		             player.CountInv("PrecisionShotgun") || 
-					 player.CountInv("SpeedyShotgun") ||
-					 player.CountInv("DarkAssault");
-					 
-		bool slot4 = player.CountInv("ShurikenCrossbow") || 
-		             player.CountInv("RailshotCannon") || 
-					 player.CountInv("ChaosRain") ||
-					 player.CountInv("QuadShotty");
-					 
-		bool slot5 = player.CountInv("EclipseBlaster") || 
-		             player.CountInv("AmyEclipseBlaster") || 
-					 player.CountInv("ClassicRocketStream") ||
-					 player.CountInv("ChaosEmerald");
-					 
-		bool slot6 = player.CountInv("AirStrikeLauncher") || 
-		             player.CountInv("RapidMissiles") || 
-					 player.CountInv("DualRockets");
-					 
-		return 2 + slot3 + slot4 + slot5 + slot6;
 	}
 	
 	private void DeductStyleScore(WorldEvent e)
