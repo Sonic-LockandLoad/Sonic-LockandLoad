@@ -405,8 +405,8 @@ class StyleSystem : EventHandler
 		bool transformed = player.CountInv("PowerSuper") || player.CountInv("PowerHyper");
 		
 		// Style Bonuses
-		if (style_rank >= 3 && !transformed) {
-			player.A_GiveInventory("ChaosEnergy", style_rank - 3);
+		if (style_rank >= 4 && !transformed) {
+			player.A_GiveInventory("ChaosEnergy", style_rank - 4);
 		}
 	}
 	
