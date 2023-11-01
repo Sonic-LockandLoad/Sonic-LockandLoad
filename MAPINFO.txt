@@ -1,24 +1,28 @@
 gameinfo
 {
-   PlayerClasses = "SonicPlayer", "AmyPlayer", "ClassicSonicPlayer", "ShadowPlayer"
-   QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7", "$QUITMSG8"
-   InfoPage = "ABOUTLL"
-   TitlePage = "TITLEPIC"
-   CreditPage = "TITLEPIC"
-   TitleMusic = "S_TITLE"
-   IntermissionMusic = "S_INTER"
-   FinaleMusic = "S_RECAP"
-   menufontcolor_title = "ActiveOption"
-   menufontcolor_label = "MenuInactive"
-   menufontcolor_value = "White"
-   menufontcolor_action = "White"
-   menufontcolor_header = "MenuInactive"
-   menufontcolor_highlight = "MenuInactive"
-   menufontcolor_selection = "MenuActive"
-   DimColor = "00 00 00"
-   DimAmount = 0.30
-   EventHandlers = "LastWeaponHandler", "RemoveCyberSpaceArenaCorpses", "GiveEnergyOnDamage", "EnemiesBleedRings", "StyleSystem", "SpongyEnemies", "DeathCounter"
-   StatusBarClass = "SLL_StatusBar"
+	PlayerClasses = "SonicPlayer", "AmyPlayer", "ClassicSonicPlayer", "ShadowPlayer"
+	QuitMessages = "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7", "$QUITMSG8"
+	InfoPage = "ABOUTLL"
+	TitlePage = "TITLEPIC"
+	CreditPage = "TITLEPIC"
+	TitleMusic = "S_TITLE"
+	IntermissionMusic = "S_INTER"
+	FinaleMusic = "S_RECAP"
+	menufontcolor_title = "ActiveOption"
+	menufontcolor_label = "MenuInactive"
+	menufontcolor_value = "White"
+	menufontcolor_action = "White"
+	menufontcolor_header = "MenuInactive"
+	menufontcolor_highlight = "MenuInactive"
+	menufontcolor_selection = "MenuActive"
+	DimColor = "00 00 00"
+	DimAmount = 0.30
+	EventHandlers = "LastWeaponHandler", "RemoveCyberSpaceArenaCorpses", "GiveEnergyOnDamage", "EnemiesBleedRings", "StyleSystem", "SpongyEnemies", "DeathCounter"
+	StatusBarClass = "SLL_StatusBar"
+	Intro { 
+		Video = "Graphics/Intro.ivf"
+		Sound = "Graphics/Intro.ogg"
+	}
 }
 
 DamageType SonicKick
