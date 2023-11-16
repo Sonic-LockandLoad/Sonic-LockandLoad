@@ -164,8 +164,7 @@ OptionMenu "LLModsMenu"
 	StaticText ""
 
 	Option "Style System", "StyleSystem", "EnabledOrNot"
-	Option "Style Callouts", "StyleCallouts", "EnabledOrNot"
-	Option "Style Points", "StylePoints", "EnabledOrNot"
+	SubMenu "Configure...", "StyleSystemMenu"
 	StaticText "Continuously attack enemies to rack up Style Points and", "White"
 	StaticText "get a high Style Rank! Getting hit or just waiting will", "White"
 	StaticText "make your Style Points go down.", "White"
@@ -186,6 +185,31 @@ OptionMenu "LLModsMenu"
 	StaticText "Display your death count on entering a new level for", "White"
 	StaticText "an added challenge. Combine with One-Hit Mode for a", "White"
 	StaticText "metric of how you're doing on that mode!", "White"
+	StaticText ""
+}
+OptionMenu "StyleSystemMenu"
+{
+	Title "Configure Style System"
+	
+	StaticText "Configure Style System.", "White"
+	StaticText ""
+	
+	Option "Style Callouts", "StyleCallouts", "EnabledOrNot"
+	StaticText "When enabled, voice callouts will play upon raising your", "White"
+	StaticText "Style Rank. Doesn't play if the rank raises to a level", "White"
+	StaticText "it was previously on.", "White"
+	StaticText ""
+	
+	Option "Style Points", "StylePoints", "EnabledOrNot"
+	StaticText "Display your Style Points below the Style Rank name.", "White"
+	StaticText "Helpful for use as a metric on how much style you're", "White"
+	StaticText "accumulating.", "White"
+	StaticText ""
+	
+	Option "Style HUD Arrangement", "StyleRankOnSide", "Arrangement"
+	
+	StaticText "Either arrange the Style HUD vertically or horizontally.", "White"
+	StaticText "It still remains centred at the top of the screen.", "White"
 	StaticText ""
 }
 OptionMenu "LLControlsMenu"
@@ -266,6 +290,11 @@ OptionValue "EnabledOrNotMus"
 {
 	0, "Don't change music"
 	1, "Change music"
+}
+OptionValue "Arrangement"
+{
+	0, "Vertical"
+	1, "Horizontal"
 }
 OptionValue "DoubleJump"
 {

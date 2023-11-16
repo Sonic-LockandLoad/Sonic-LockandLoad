@@ -5,6 +5,15 @@ script "StyleRank" ENTER
 	int oldrank;
 	str callout;
 	int oldcalloutrank;
+	
+	int stylerank_x;
+	int stylename_x;
+	int stylescore_x;
+	
+	int stylerank_y;
+	int stylename_y;
+	int stylescore_y;
+	
 	SetCvar("StyleRank", 0);
 	Delay(1);
 	while (GetCvar("StyleSystem")) {
@@ -16,6 +25,7 @@ script "StyleRank" ENTER
 		else if (stylerank == B) SetFont("b_rank");
 		else if (stylerank == C) SetFont("c_rank");
 		else if (stylerank == D) SetFont("d_rank");
+		
 		str StyleName;
 		str StyleColour;
 		switch (GetCvar("StyleRank")) {
@@ -51,8 +61,28 @@ script "StyleRank" ENTER
 				StyleName = "";
 				break;
 		}
+		
+		if (GetCvar("StyleRankOnSide")) {
+			stylerank_x  = -0.44;
+			stylename_x  = -0.49;
+			stylescore_x = -0.49;
+			
+			stylerank_y  = 0.15;
+			stylename_y  = 0.15;
+			stylescore_y = 0.19;
+		}
+		else {
+			stylerank_x  = 1.5;
+			stylename_x  = 1.5;
+			stylescore_x = 1.5;
+			
+			stylerank_y  = 0.16;
+			stylename_y  = 0.24;
+			stylescore_y = 0.28;
+		}
+		
 		if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
-			HudMessage(s:"A"; HUDMSG_PLAIN, 43, CR_UNTRANSLATED, 1.5, 0.16, 0.1, 1.0);
+			HudMessage(s:"A"; HUDMSG_PLAIN, 43, CR_UNTRANSLATED, stylerank_x, stylerank_y, 0.1, 1.0);
 			if (stylerank > oldrank && stylerank > oldcalloutrank && GetCvar("StyleCallouts")) {
 				if      (stylerank == SSS) callout = "sstyle/supersonic";
 				else if (stylerank == SS)  callout = "sstyle/amazing";
@@ -65,18 +95,23 @@ script "StyleRank" ENTER
 				PlaySound(0, callout, 4096, 1.0, false, ATTN_NONE, false);
 			}
 		}
+		
 		if (stylerank < oldcalloutrank - 1 || stylerank < D) {
 			oldcalloutrank = 0;
 		}
+		
 		if (StyleName != "") {
 			SetFont("SMALLFONT");
-			HudMessage(s:StyleColour, l:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, 1.5, 0.24, 0.1, 1.0);
+			HudMessage(s:StyleColour, l:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, stylename_x, stylename_y, 0.1, 1.0);
 		}
+		
 		oldrank = GetCvar("StyleRank");
+		
 		if (stylerank >= 1 && GetCvar("StylePoints")) {
 			SetFont("SMALLFONT");
-			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, 1.5, 0.28, 0.1, 1.0);
+			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, stylescore_x, stylescore_y, 0.1, 1.0);
 		}
+		
 		Delay(1);
 	}
 }
