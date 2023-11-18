@@ -33,6 +33,40 @@ script "DeathMusic" (int xdeath)
 	}
 }
 
+function str DetermineRandomDeathMessage(void) {
+	str message;
+    switch (random(1, 9)) {
+        case 1:
+            message = "death_rmsg1";
+            break;
+        case 2:
+            message = "death_rmsg2";
+            break;
+        case 3:
+            message = "death_rmsg3";
+            break;
+        case 4:
+            message = "death_rmsg4";
+            break;
+        case 5:
+            message = "death_rmsg5";
+            break;
+        case 6:
+            message = "death_rmsg6";
+            break;
+        case 7:
+            message = "death_rmsg7";
+            break;
+        case 8:
+            message = "death_rmsg8";
+            break;
+        case 9:
+            message = "death_rmsg9";
+            break;
+    }
+    return message;
+}
+
 script "DeathScreen" DEATH
 {
 	if (GetLevelInfo(LEVELINFO_LEVELNUM) == 69) terminate;
@@ -44,105 +78,28 @@ script "DeathScreen" DEATH
 	}
     Delay(20);
 	str message;
+    if (GetActorProperty(0, APROP_Waterlevel) > 2) {
+        message = "death_drown";
+    }
+    if (Timer() < 70) {
+        message = "death_fast";
+    }
+    if (GameSkill() < 2) {
+        message = "death_easy";
+    }
+    if (GameSkill() == 3) {
+        message = "death_hard";
+    }
+    if (GameSkill() == 4) {
+        message = "death_ohno";
+    }
+    if (CheckWeapon("DualRockets")) {
+        message = "death_assm";
+    }
+    else {
+        message = DetermineRandomDeathMessage();
+    }
 	if (ClassifyActor(0) & ACTOR_DEAD) {
-		switch (random(1, 15)) {
-			case 1:
-				message = "death_msg1";
-				break;
-			case 2:
-				message = "death_msg2";
-				break;
-			case 3:
-				message = "death_msg3";
-				break;
-			case 4:
-				message = "death_msg4";
-				break;
-			case 5:
-				message = "death_msg5";
-				break;
-			case 6:
-				message = "death_msg6";
-				break;
-			case 7:
-				message = "death_msg7";
-				break;
-			case 8:
-				switch (PlayerClass(PlayerNumber())) {
-					case Sonic:
-						message = "death_msg8s";
-						break;
-					case Amy:
-						message = "death_msg8a";
-						break;
-					case ClassicSonic:
-						message = "death_msg8c";
-						break;
-					case Shadow:
-						message = "death_msg8d";
-						break;
-				}
-				break;
-			case 9:
-				message = "death_msg9";
-				break;
-			case 10:
-				if (GetActorProperty(0, APROP_Waterlevel) > 2) {
-					message = "death_msg10";
-					break;
-				}
-			case 11:
-				switch (GetCvar("StyleRank")) {
-					case S:
-						message = "death_msg11s";
-						break;
-					case A:
-						message = "death_msg11a";
-						break;
-					case B:
-						message = "death_msg11b";
-						break;
-					case C:
-					case D:
-						message = "death_msg11cd";
-						break;
-					default:
-						message = "death_msg11";
-						break;
-				}
-				break;
-			case 12:
-				if (Timer() < 70) {
-					message = "death_msg12";
-					break;
-				}
-			case 13:
-				if (GameSkill() < 2) {
-					message = "death_msg13a";
-					break;
-				}
-				else if (GameSkill() == 3) {
-					message = "death_msg13b";
-					break;
-				}
-				else if (GameSkill() == 4) {
-					message = "death_msg13c";
-					break;
-				}
-			case 14:
-				if (GameSkill() > 1) {
-					message = "death_msg14";
-					break;
-				}
-			case 15:
-				if (CheckWeapon("DualRockets")) {
-					message = "death_msg15";
-					break;
-				}
-			default:
-				message = "death_msg16";
-				break;
-		}
 		HudMessage(l:message; 0, 9, CR_WHITE, 0.5, 0.45, 0.0, 1.0);
 		HudMessage(s:"Press \c[Gold]", k:"+use", s:"\c[White] to try again"; 0, 10, CR_WHITE, 0.5, 0.55, 0.0, 1.0);
 	}
