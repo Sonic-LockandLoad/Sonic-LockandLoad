@@ -38,3 +38,5 @@ version "4.10.0"
 #include "zscript/player/classicsonic.zsc"
 #include "zscript/statusbar.zsc"
 
+/* https://github.com/mmaulwurff/main-menu-tips/ */
+#include "zscript/libraries/tp_tips.zsc"

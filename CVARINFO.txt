@@ -50,3 +50,6 @@ user noarchive int 	  EclipseLimiter	= 0;
 user noarchive int	  StyleRank			= 0;
 user noarchive int	  StyleScore		= 0;
 user noarchive int	  DeathCounter		= 0;
+
+/* tp_tips */
+server bool tp_show_notes = true;

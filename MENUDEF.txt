@@ -116,6 +116,9 @@ OptionMenu "LLMiscOptMenu"
 	Option "HUD Type", "HUDType", "HUDType"
 	StaticText ""
 	
+	Option "Title Screen Tips", "tp_show_notes", "EnabledOrNot"
+	StaticText ""
+	
 	Option "Show Score in HUD", "ShowScore", "EnabledOrNot"
 	StaticText ""
 
@@ -279,6 +282,11 @@ OptionMenu "SDMusic"
 AddOptionMenu "OptionsMenu"
 {
 	Title "Advanced Options"
+}
+
+OptionMenu tp_MenuInjector
+{
+  tp_MenuInjector
 }
 
 OptionValue "EnabledOrNot"

@@ -255,31 +255,41 @@ stylerank_b		= "Blazing";
 stylerank_c		= "Cruising";
 stylerank_d		= "Drifting";
 
-death_msg1		= "Skill issue.";
-death_msg2		= "Wow, that was the gameplay ever.";
-death_msg3		= "To defeat the enemies, shoot at them until they die.";
-death_msg4		= "Congratulations! You die.";
-death_msg5		= "Trouble with the game, eh?";
-death_msg6		= "You are die. Thank you forever.";
-death_msg7		= "You're really good at this.";
-death_msg8s		= "Clearly you feared the fall.";						// Sonic only
-death_msg8a		= "You ran out of sweet passion.";						// Amy only
-death_msg8c		= "That's no good!";									// Classic only
-death_msg8d		= "Nice going, Mr. Ultimate Life Form.";				// Shadow only
-death_msg9		= "You high-fived the ground.";
-death_msg10		= "You are not fish.";									// Drowning
-death_msg11s	= "And you were doing so well!";						// If at 'Supersonic!!' Style Rank
-death_msg11a	= "That was really stylish up until it wasn't.";		// If at 'Adventurer!' Style Rank
-death_msg11b	= "Not bad, but not great either.";						// If at 'Blazing' Style Rank
-death_msg11cd	= "Try switching weapons from time to time!";			// If at either 'Cruising' or 'Drifting' Style Rank
-death_msg11		= "That's not very stylish of you.";					// If Style System is enabled, but at no Style Rank
-death_msg12		= "You barely even started and you're already dead.";	// If dead within the first two seconds
-death_msg13a	= "Did you just die on easy mode?";						// On first two skill levels
-death_msg13b	= "Maybe don't play on the hardest difficulty.";		// On second-to-last skill level
-death_msg13c	= "I told you it wasn't remotely fair.";				// On 'Oh No'
-death_msg14		= "Easy mode is now selectable.";
-death_msg15		= "Stop trying to rocket jump!";						// If holding Dual Assimilator
-death_msg16		= "Try again.";											// Default message
+// Random death messages
+death_rmsg1		= "Skill issue.";
+death_rmsg2		= "Having trouble with enemies?\nTry focusing on evading attacks.";
+death_rmsg3		= "To defeat the enemies, shoot at them until they die.";
+death_rmsg4		= "Congratulations! You die.";
+death_rmsg6		= "Ah, I'm die. Thank you forever.";
+death_rmsg8s	= "Clearly you feared the fall.";						// Sonic only
+death_rmsg8a	= "You ran out of sweet passion.";						// Amy only
+death_rmsg8c	= "That's no good!";									// Classic Sonic only
+death_rmsg8d	= "Nice going, Mr. Ultimate Life Form.";				// Shadow only
+death_rmsg9		= "Easy mode is now selectable.";
+
+// Contextual death mesasges
+death_drown		= "If you're stuck underwater,\n rapidly press jump to swim up.";
+death_assm		= "Stop trying to rocket jump!";						// If holding Dual Assimilator
+death_fast		= "You barely even started and you're already dead.";	// If dead within the first two seconds
+death_easy		= "Did you just die on easy mode?";						// On first two skill levels
+death_hard		= "Maybe don't play on the hardest difficulty.";		// On second-to-last skill level
+death_ohno		= "I told you it wasn't remotely fair.";				// On 'Oh No'
+
+title_msg1		= "\c[LightBlue]'Nothing starts until you take action.\nIf you have time to worry, then run!'\n\c[White]— Sonic the Hedgehog, Sonic '06";
+title_msg2		= "If you're having trouble with enemies,\nlearn to get better at evasion before going in for attacks.";
+title_msg3		= "Every character has a unique \c[LightBlue]Offhand Attack \c[White]and \c[LightBlue]Offhand Ability\c[White].";
+title_msg4		= "Make sure you bind all your keys in \c[LightBlue]Options > Controls\c[White].";
+title_msg5		= "Welcome to Sonic: Lock & Load!\nAfter 3 years in development, hopefully it was worth the wait.";
+title_msg6		= "Also try \c[Gold]ULTRAKILL\c[White]!";
+title_msg7		= "Yes, it's a Sonic first person shooter.\nNo, you haven't gone insane.";
+title_msg8		= "\c[Gold]Did you know?\n\c[White]The whole reason this game exists\nis because of a Peter Knetter video.";
+title_msg9		= "The \c[LightBlue]Cyber Space Arena \c[White]is an endless arena mode.\nAccess it from Station Square after picking up weapons in the levels,\nor even just jump in with your default weapons!";
+title_msg10		= "Check out the \c[LightBlue]Gameplay Modifiers\c[White] in the Options menu!";
+title_msg11		= "\c[Sonic]Sonic the Hedgehog \c[White]excels at fast traversal and combat.\n\c[Amy]Amy Rose \c[White]has more grounded and defensive options.\n\c[Classic]Classic Sonic \c[White]is more platforming-focused.\n\c[Shadow]Shadow the Hedgehog \c[White]focuses on being more tactical.";
+title_msg12		= "Raise your hand if you played S:L&L at \c[Orange]SAGE 2022\c[White]!";
+title_msg13		= "I'm running out of ideas for title screen tips.";
+title_msg14		= "Made with \c[Red]♥ \c[White]by Arsalan \c[Purple]'Velocity'\c[White] Kazmi!\n\c[Green]<https://that1m8head.github.io>";
+title_msg15		= "Thanks to the ZDoom community and\nSonic fan game community\nfor the assistance and feedback over the years!";
 
 MENU_NEWGAME 	= "New Game";
 MENU_ABOUT 		= "About";
