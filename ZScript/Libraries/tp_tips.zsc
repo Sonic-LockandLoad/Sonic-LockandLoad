@@ -27,7 +27,7 @@ class tp_ListMenuNote : ListMenuItem
 
   tp_ListMenuNote init()
   {
-    for (int strng = 1; strng < 15; strng++) {
+    for (int strng = 1; strng <= 15; strng++) {
         string language_string = "$title_msg"..strng;
         add(StringTable.Localize(language_string));
     }
