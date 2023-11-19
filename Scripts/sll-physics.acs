@@ -60,7 +60,7 @@ script "JumpHeight" ENTER
 script "WallJump" (int height, int distance, int angle)
 { // Not technically a "physics" thing but idk where else to put it
 	Delay(1);
-	PlaySound(0, "sonic/walljump", CHAN_BODY);
+	PlaySound(0, "*walljump", CHAN_BODY);
 	int jangle;
 	/* I don't care that this sucks.
 	   If you have a better solution for

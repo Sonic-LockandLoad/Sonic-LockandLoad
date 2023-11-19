@@ -400,7 +400,7 @@ class LockLoadPlayer : PlayerPawn
 		bool JustJumped = GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP);
 		
 		cvar.FindCvar("CanJump").SetBool(DoubleJumpCounter < DoubleJumpCount || IsClassicNotHyper());
-		
+
 		if (JustJumped && !IsBoostingMidAir()) {
 			if (bNoGravity) {
 				Vel.Z = 3.;
@@ -408,7 +408,7 @@ class LockLoadPlayer : PlayerPawn
 			else if (level.IsJumpingAllowed() && player.onground) {
 				StandardJumpLogic();
 			}
-			else if (CountInv("SonicCheck") && TouchingWall && GetHeightFromFloor() > 60) {
+			else if (!CountInv("ClassicCheck") && TouchingWall && GetHeightFromFloor() > 60) {
 				DoubleJumpCounter = 0; // You get a free double jump after a wall jump
 				DoWallJump(WallJumpOffset, WallJumpDistance, JumpAngle);
 			}
