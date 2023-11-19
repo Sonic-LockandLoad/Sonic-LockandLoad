@@ -35,7 +35,7 @@ script "DeathMusic" (int xdeath)
 
 function str DetermineRandomDeathMessage(void) {
 	str message;
-    switch (random(1, 9)) {
+    switch (random(1, 7)) {
         case 1:
             message = "death_rmsg1";
             break;
@@ -56,12 +56,6 @@ function str DetermineRandomDeathMessage(void) {
             break;
         case 7:
             message = "death_rmsg7";
-            break;
-        case 8:
-            message = "death_rmsg8";
-            break;
-        case 9:
-            message = "death_rmsg9";
             break;
     }
     return message;
