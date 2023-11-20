@@ -133,7 +133,7 @@ map SDLvl02 "Marble Madness"
 map SDLvl03 "Oceanic Fortress"
 {
 	music = S_LVL03
-	sky1 = "SUNSTSKY"
+	sky1 = "GHZSKY"
 	next = "SDLobby"
 	partime = 360
 	levelnum = 3
