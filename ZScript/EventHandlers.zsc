@@ -237,25 +237,21 @@ class StyleSystem : EventHandler
 				penalty = 0;
 				break;
 			case 1: // Drifting
-				penalty = 32;
-				break;
 			case 2: // Cruising
+			case 3: // Blazing
 				penalty = 64;
 				break;
-			case 3: // Blazing
+			case 4: // Adventurer!
 				penalty = 128;
 				break;
-			case 4: // Adventurer!
+			case 5: // Skyrocketing!!
 				penalty = 524;
 				break;
-			case 5: // Skyrocketing!!
-				penalty = 1048;
-				break;
 			case 6: // Speeding Style!!!
-				penalty = 2192;
+				penalty = 1192;
 				break;
 			case 7: // Super Sonic Style!!!
-				penalty = 3048;
+				penalty = 2048;
 				break;
 		}
 		penalty += (e.damage / 16) * (score / 16);
