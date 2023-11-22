@@ -466,7 +466,7 @@ class AcceleratedPistol : LockLoadWeapon
 	{
 		int strength_bonus, recoil_bonus, ammo_penalty;
 		if (invoker.charge) {
-			strength_bonus = invoker.charge * 15;
+			strength_bonus = invoker.charge * 7;
 			recoil_bonus = invoker.charge / 4;
 			ammo_penalty = invoker.charge / 6;
 			invoker.AmmoUse2 = 8 + ammo_penalty;
@@ -483,7 +483,7 @@ class AcceleratedPistol : LockLoadWeapon
 		bool fully_charged = invoker.charge >= 50;
 		
 		if (fully_charged) {
-			base_strength = 65;
+			base_strength = 45;
 			pierce_limit = 7;
 			colour1 = "009c9f";
 			colour2 = "6364bb";
