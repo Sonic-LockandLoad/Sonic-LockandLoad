@@ -977,6 +977,7 @@ class SonicKick : CustomInventory
 			}
 			Stop;
 		TargetSnap:
+			TNT1 A 0 { DamageFactor = 0; }
 			TNT1 A 1;
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
@@ -997,6 +998,7 @@ class SonicKick : CustomInventory
 			TNT1 A 1 A_Stop();
 			TNT1 A 1 SnapToTarget();
 			TNT1 A 0 HomingKnockback();
+			TNT1 A 0 { DamageFactor = 1; }
 			TNT1 A 0 { cvar.FindCvar("DidHoming").SetBool(false); }
 			Stop;
 		GroundKick:

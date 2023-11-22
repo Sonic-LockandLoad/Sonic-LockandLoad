@@ -706,11 +706,13 @@ class HomingAssault : CustomInventory
 			TNT1 A 0 A_JumpIf(HomeInOnTarget(), "TargetSnap");
 			Stop;
 		TargetSnap:
+			TNT1 A 0 { DamageFactor = 0; }
 			TNT1 A 1 A_StartSound("sweapons/sdash", 8);
 			TNT1 A 0 A_AlertMonsters();
 			TNT1 A 1 A_Stop();
 			TNT1 A 1 SnapToTarget();
 			TNT1 A 0 A_ChangeVelocity(-6, 0, 16, CVF_Relative);
+			TNT1 A 0 { DamageFactor = 1; }
 			TNT1 A 0 { cvar.FindCvar("DidHoming").SetBool(false); }
 			Stop;
 	}
