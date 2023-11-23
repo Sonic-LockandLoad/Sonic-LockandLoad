@@ -337,7 +337,7 @@ class Caliburn : BoostEnabledWeapon
 			}
 			Loop;
 		Deselect:
-			CALI # 1 A_Lower(20);
+			CALI A 1 A_Lower(20);
 			Loop;
 		Select:
 			TNT1 A 0 {
