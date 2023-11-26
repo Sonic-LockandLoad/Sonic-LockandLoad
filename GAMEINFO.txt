@@ -1,4 +1,4 @@
-StartupTitle = "Sonic: Lock & Load (v1.4-pre)"
+StartupTitle = "Sonic: Lock & Load v1.4 \"Horizons\""
 StartupColors = "00E6FF", "1B1B5A"
 DiscordAppID = "805108809219571742"
 IWAD = "DOOM2.WAD"
