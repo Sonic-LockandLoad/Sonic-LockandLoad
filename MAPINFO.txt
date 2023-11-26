@@ -135,7 +135,7 @@ map SDLvl03 "Oceanic Fortress"
 	music = S_LVL03
 	sky1 = "GHZSKY"
 	next = "SDLobby"
-	partime = 360
+	partime = 480
 	levelnum = 3
 	nointermission
 }
