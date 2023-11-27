@@ -16,11 +16,10 @@ script "GetLevelTargetScore" (void)
 			score = 13000;
 			break;
 		case 2:  // Marble Madness
-			score = 29000;
+			score = 28000;
 			break;
 		case 3:  // Oceanic Fortress
-			score = 0;
-			// It's not finished yet, so we can decide later
+			score = 34000;
 			break;
 		case 73: // Hire This Zone
 			score = 10000;
