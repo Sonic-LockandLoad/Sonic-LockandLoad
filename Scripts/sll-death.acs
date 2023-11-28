@@ -55,12 +55,16 @@ function str DetermineRandomDeathMessage(void) {
             switch (PlayerClass(PlayerNumber())) {
 				case 0:
 					message = "death_rmsg6s";
+					break;
 				case 1:
 					message = "death_rmsg6a";
+					break;
 				case 2:
 					message = "death_rmsg6c";
+					break;
 				case 3:
 					message = "death_rmsg6d";
+					break;
 			}
             break;
         case 7:
