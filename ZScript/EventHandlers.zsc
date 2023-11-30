@@ -144,10 +144,15 @@ class StyleSystem : EventHandler
 		
 		/* Dealing damage */
 		if (PlayerIsResponsible) {
-			scorebonus += e.damage * 72;
+			scorebonus += e.damage * 73;
 		}
 		else {
-			scorebonus += e.damage * 12;
+			if (stylerank >= 1) {
+				scorebonus += e.damage * 12;
+			}
+			else {
+				return;
+			}
 		}
 		
 		/* Using different weapon */
@@ -160,7 +165,7 @@ class StyleSystem : EventHandler
 			double heightbonus = player.Pos.Z - player.GetZAt();
 			heightbonus /= 172;
 			if (heightbonus < 1) heightbonus = 1;
-			if (heightbonus > 3) heightbonus = 3;
+			if (heightbonus > 2) heightbonus = 2;
 			scorebonus *= heightbonus;
 		}
 		
@@ -169,43 +174,18 @@ class StyleSystem : EventHandler
 			scorebonus *= 2;
 		}
 		
-		/* Velocity bonus */
-		double total_vel = sqrt(player.vel.x ** 2 + player.vel.y ** 2);
-		double velocity_multiplier;
-		switch (total_vel) {
-			case 60:
-				velocity_multiplier = 3.0;
-				break;
-			case 30:
-				velocity_multiplier = 2.0;
-				break;
-			case 20:
-				velocity_multiplier = 1.0;
-				break;
-			default:
-				velocity_multiplier = 0.5;
-				break;
-		}
-		scorebonus *= velocity_multiplier;
+		/* Add case for Offhand Attack */
+		bool offhand_attack_used = e.DamageType == "SonicKick" ||
+								   e.DamageType == "ShadowMelee" ||
+								   e.DamageType == "Piko" ||
+								   e.DamageType == "SonicPunch";
 		
-		/* Calculate staleness */
-		int staleness = 512 * consecutive_uses;
-		staleness = clamp(staleness, 0, scorebonus);
-		
-		/* Apply staleness, unless Offhand Attack was used */
-		bool melee_used = e.DamageType == "SonicKick" ||
-						  e.DamageType == "ShadowMelee" ||
-						  e.DamageType == "Piko" ||
-						  e.DamageType == "SonicPunch";
-						  
-		if (!melee_used) {
-			scorebonus -= staleness;
-		}
-		
-		/* Boost score bonus if attack was Homing Attack */
-		if (e.DamageType == "SonicKick") {
-			scorebonus *= 1.5;
-		}
+		/* Add case for shotguns */
+		bool shotgun_used = current_weapon == "KineticShotty" ||
+							current_weapon == "PrecisionShotgun" ||
+							current_weapon == "SpeedyShotgun" ||
+							current_weapon == "DarkAssault" ||
+							current_weapon == "QuadShotty";
 		
 		/* Clamp score bonus */
 		int minimum_score = 500 + GetScoreBonusCap() / 100;
@@ -215,6 +195,17 @@ class StyleSystem : EventHandler
 		/* Limit score bonus if attack was Spin Dash or Boost */
 		if (e.damagetype == "SpinDash" || e.DamageType == "Boost") {
 			scorebonus /= 8;
+		}
+		
+		/* Calculate staleness */
+		int staleness_factor = 512;
+		if (shotgun_used) staleness_factor = 64;
+		int staleness = staleness_factor * consecutive_uses;
+		staleness = clamp(staleness, 0, scorebonus);
+		
+		// Apply staleness, unless an Offhand Attack was used
+		if (!offhand_attack_used) {
+			scorebonus -= staleness;
 		}
  		
 		/* Total up and cap score */
