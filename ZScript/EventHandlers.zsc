@@ -312,11 +312,11 @@ class StyleSystem : EventHandler
 				break;
 			case 4: // A
 			case 5: // S
-				deprecation = 1024;
+				deprecation = 256;
 				break;
 			case 6: // SS
 			case 7: // SSS
-				deprecation = 2048;
+				deprecation = 512;
 				break;
 		}
 		
