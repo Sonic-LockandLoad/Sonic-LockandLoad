@@ -4,17 +4,16 @@ script "Drowning" ENTER
 {
 	int drowntimer;
 	int maxdrown;
-	maxdrown = 30;
+	maxdrown = 30 * 35;
 	while (1) {
 		if (GetActorProperty(1001, APROP_Waterlevel) == 3) {
 			if (!CheckActorInventory(1001, "PowerSuper") && !CheckActorInventory(1001, "PowerHyper") && !CheckActorInventory(1001, "PowerInvulnerable") && (ClassifyActor(0) & ACTOR_ALIVE)) {
 				drowntimer++;
-				if (drowntimer % 5 == 0 && drowntimer < 20) {
+				if (drowntimer % (5 * 35) == 0 && drowntimer < (20 * 35)) {
 					AmbientSound("sglobal/drowning", 127);
 				}
 			}
-			if (drowntimer > (maxdrown - 10))
-			{
+			if (drowntimer > (maxdrown - 350)) {
 				if (GetLevelInfo(LEVELINFO_LEVELNUM) != 69) {
 					switch (PlayerClass(PlayerNumber())) {
 						case Sonic:
@@ -35,9 +34,9 @@ script "Drowning" ENTER
 					}
 				}
 				SetFont("BIGFONT");
-				int drowncounter = maxdrown - drowntimer;
+				int drowncounter = (maxdrown - drowntimer) / 35;
 				if (drowncounter >= 0 && drowncounter <= 9) {
-					HudMessage(s:"\c[Sapphire]", d:drowncounter; HUDMSG_PLAIN, 6, CR_UNTRANSLATED, 0.5, 0.55, 0.7);
+					HudMessage(s:"\c[Sapphire]", d:drowncounter; HUDMSG_PLAIN, 6, CR_UNTRANSLATED, 0.5, 0.55, 1.0 / 35 + 1);
 				}
 			}
 			if (drowntimer > maxdrown)
@@ -48,12 +47,12 @@ script "Drowning" ENTER
 			}
 		}
 		else {
-			if (drowntimer > 4 && GetLevelInfo(LEVELINFO_LEVELNUM) != 69) {
+			if (drowntimer > (4 * 35) && GetLevelInfo(LEVELINFO_LEVELNUM) != 69) {
 				SetMusic("*");
 			}
 			drowntimer = 0;
 		}
-		Delay(35);
+		Delay(1);
 	}
 }
 
