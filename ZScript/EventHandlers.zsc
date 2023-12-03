@@ -104,6 +104,8 @@ class StyleSystem : EventHandler
 	
 	override void WorldThingDamaged(WorldEvent e)
     {
+		bool is_attackable_target = e.thing.bIsMonster || e.thing.GetClassName() == "Doox";
+		
         if (!cvar.FindCvar("StyleSystem").GetBool())
             return;
 
@@ -111,7 +113,7 @@ class StyleSystem : EventHandler
             DeductStyleScore(e);
         }
 		
-        else if (e.thing && e.thing.bIsMonster && !(e.damagesource && e.damagesource.bIsMonster) && !(e.inflictor && e.inflictor.bIsMonster)) {
+        else if (e.thing && is_attackable_target && !(e.damagesource && e.damagesource.bIsMonster) && !(e.inflictor && e.inflictor.bIsMonster)) {
             UpdateStyleScore(e);
         }
     }
