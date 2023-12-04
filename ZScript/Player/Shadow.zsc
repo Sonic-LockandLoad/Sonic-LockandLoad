@@ -428,8 +428,10 @@ Class DualRockets : LockLoadWeapon
 {
 	Default
 	{
-		Weapon.AmmoType "ChaosEnergy";
-		Weapon.AmmoUse 42;
+		Weapon.AmmoType1 "ChaosEnergy";
+		Weapon.AmmoType2 "ChaosEnergy";
+		Weapon.AmmoUse1 42;
+		Weapon.AmmoUse2 42;
 		Weapon.AmmoGive 128;
 		Inventory.PickupMessage "Dual Assimilator";
 		Tag "Dual Assimilator";
