@@ -14,7 +14,12 @@ script "SetFriction" ENTER
 		int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
 		bool isMoving = forward > 0 || sidem > 0 || forward < 0 || sidem < 0;
 		if (GetCvar("IsSpinDashing")) {
-			SetActorProperty(0, APROP_Friction, 1.5);
+			if (PlayerClass(PlayerNumber()) == ClassicSonic) {
+				SetActorProperty(0, APROP_Friction, 1.5);
+			}
+			else {
+				SetCvar("IsSpinDashing", false);
+			}
 		}
 		else if (GetCvar("IsCrouching") && speed >= 1.0) {
 			SetActorProperty(0, APROP_Friction, 1.15);
