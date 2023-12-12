@@ -40,13 +40,16 @@ OptionMenu "LockandLoadOptions"
 	Title "Options"
 	
 	StaticText "Configure Sonic: Lock & Load.", "White"
-	StaticText "Customise your gameplay experience with these options.", "White"
+	StaticText ""
+	
+	SubMenu "Controls", "LLControlsMenu"
 	StaticText ""
 
-	SubMenu "Controls", "LLControlsMenu"
 	SubMenu "Abilities", "LLAbilitiesMenu"
-	SubMenu "Music Options", "SDMusic"
+	SubMenu "Assist Options", "LLAssistMenu"
 	SubMenu "Gameplay Modifiers", "LLModsMenu"
+	SubMenu "Heads-Up Display", "LLHUD"
+	SubMenu "Music & Sounds", "SDMusic"
 	SubMenu "Miscellaneous", "LLMiscOptMenu"
 	StaticText ""
 	
@@ -67,40 +70,52 @@ OptionMenu "LLAbilitiesMenu"
 	StaticText "suitable for standard DOOM levels.", "White"
 	StaticText ""
 
-	Option "Crash into walls when Boosting", "WallCrash", "EnabledOrNot"
-	StaticText ""
-
-	Slider "Scope Zoom Factor", "AmyZoomFactor", 4, 8, 0.5
-	StaticText "Adjust the zoom factor of Amy's Precision Shotgun scope.", "White"
-	StaticText ""
-
+	Option "Caliburn Energy Blades (Sonic)", "EnergyBlades", "EnabledOrNot"
+	Option "Crash into walls when Boosting (Sonic)", "WallCrash", "EnabledOrNot"
 	Option "Hyper Sonic", "HyperSonic", "EnabledOrNot"
 	StaticText ""
 
-	Option "Homing Reticle", "HomingReticle", "HomingReticle"
+	Slider "Scope Zoom Factor (Amy)", "AmyZoomFactor", 4, 8, 0.5
+	StaticText "Adjust the zoom factor of Amy's Precision Shotgun scope.", "White"
 	StaticText ""
-
-	Option "Caliburn Energy Blades", "EnergyBlades", "EnabledOrNot"
+	
+	Option "Recoil Burst Input (Sonic)", "RecoilBurstRelease", "RecoilBurstRelease"
+    Option "Homing Assault Input (Shadow)", "HomingAssaultOffhand", "HomingAssaultOffhand"
 	StaticText ""
 }
-OptionMenu "LLSpecControl"
+OptionMenu "LLHUD"
 {
-	Title "Specific Controls"
+	Title "Heads-Up Display"
 	
-	StaticText "Configure alternative controls.", "White"
-	StaticText "Toggle what buttons to use for certain special abilities.", "White"
+	StaticText "Customise Heads-Up-Display options.", "White"
 	StaticText ""
 	
-    Option "Recoil Burst", "RecoilBurstRelease", "RecoilBurstRelease"
-	StaticText "Sonic only", "Cyan"
-	StaticText "Choose between one-button or two-button activation for", "White"
-	StaticText "the Accelerated Pistol's Recoil Burst.", "White"
+	Option "HUD Type", "HUDType", "HUDType"
+	Option "Show Score in HUD", "ShowScore", "EnabledOrNot"
+	StaticText ""
+	
+	Option "Title Screen Tips", "tp_show_notes", "EnabledOrNot"
 	StaticText ""
 
-    Option "Homing Assault", "HomingAssaultOffhand", "HomingAssaultOffhand"
-	StaticText "Shadow only", "Cyan"
-	StaticText "Choose between using the Jump key or Offhand Attack key", "White"
-	StaticText "for Shadow's Homing Assault.", "White"
+	Option "Subtitles", "Subtitles", "EnabledOrNot"
+	StaticText ""
+
+	Option "Homing Reticle Style", "HomingReticle", "HomingReticle"
+	StaticText ""
+
+	Option "Control Hints", "ControlHints", "EnabledOrNot"
+	StaticText "Deprecated, no longer updated.", "Red"
+	StaticText ""
+}
+OptionMenu "LLAssistMenu"
+{
+	Title "Assist Options"
+	
+	StaticText "Enable or disable certain assists in-game.", "White"
+	StaticText ""
+	
+	Option "Checkpoints", "CheckpointsEnabled", "EnabledOrNot"
+	Option "Tutorials", "Tutorials", "EnabledOrNot"
 	StaticText ""
 }
 OptionMenu "LLMiscOptMenu"
@@ -108,31 +123,6 @@ OptionMenu "LLMiscOptMenu"
 	Title "Misc. Options"
 	
 	StaticText "Customise miscellaneous options.", "White"
-	StaticText "Options that don't belong in any other category are put", "White"
-	StaticText "here, like your HUD style or whether or not you have", "White"
-	StaticText "subtitles for voiced lines.", "White"
-	StaticText ""
-
-	Option "HUD Type", "HUDType", "HUDType"
-	StaticText ""
-	
-	Option "Title Screen Tips", "tp_show_notes", "EnabledOrNot"
-	StaticText ""
-	
-	Option "Show Score in HUD", "ShowScore", "EnabledOrNot"
-	StaticText ""
-
-	Option "Subtitles", "Subtitles", "EnabledOrNot"
-	StaticText ""
-
-	Option "Tutorials", "Tutorials", "EnabledOrNot"
-	StaticText ""
-
-	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
-	StaticText ""
-
-	Option "Low Energy Warning", "LowEnergySound", "EnabledOrNot"
-	StaticText "Play warning when energy is low in Super, Dark, or Hyper form.", "White"
 	StaticText ""
 
 	Option "Dark Cyber Space Arena", "DarkArena", "EnabledOrNot"
@@ -142,17 +132,12 @@ OptionMenu "LLMiscOptMenu"
 	StaticText "Enable this option to replace the title screen music", "White"
 	StaticText "with 'NINTENDO, HIRE THIS MAN!' by Chris Voiceman.", "White"
 	StaticText ""
-
-	Option "Control Hints", "ControlHints", "EnabledOrNot"
-	StaticText "Deprecated.", "Red"
-	StaticText ""
 }
 OptionMenu "LLModsMenu"
 {
 	Title "Modifiers"
 	
 	StaticText "Customise gameplay mechanics.", "White"
-	StaticText "Add or change gameplay mechanics for a tailored experience.", "White"
 	StaticText ""
 
 	Option "Give Energy On Damage", "GiveEnergyOnDamage", "EnabledOrNot"
@@ -220,8 +205,6 @@ OptionMenu "LLControlsMenu"
 	Title "Controls"
 	
 	StaticText "Configure controls.", "White"
-	StaticText "This is not an extensive list of controls, but", "White"
-	StaticText "it contains every key needed for Sonic: Lock & Load.", "White"
 	StaticText ""
 	
 	StaticText "Movement", "MenuActive"
@@ -256,27 +239,23 @@ OptionMenu "LLControlsMenu"
 }
 OptionMenu "SDMusic"
 {
-	Title "Music Options"
+	Title "Music & Sounds"
 	
-	StaticText "Customise music choices.", "White"
-	StaticText "Change music tracks for invincibility, Super, Hyper or ", "White"
-	StaticText "Dark form, and toggle music being played upon death.", "White"
+	StaticText "Customise music and sound choices.", "White"
 	StaticText ""
 
 	Option "Invincibility", "InvincMusic", "EnabledOrNotMus"
-	StaticText ""
-
 	Option "Super/Dark/Hyper Form", "SuperMusic", "EnabledOrNotMus"
-	StaticText ""
-
 	Option "On Death", "DeathMusic", "EnabledOrNotMus"
 	StaticText ""
-
-	Option "Cyber Space Arena", "ArenaMusic", "ArenaMusic"
-	StaticText ""
-
+	
+	Option "Cyber Space Arena Music", "ArenaMusic", "ArenaMusic"
 	TextField "Custom CSA Music File", "ArenaCustomMusic"
 	StaticText "Must be the lump name (i.e. S_BATTLE)", "White"
+	StaticText ""
+
+	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
+	Option "Low Energy Warning (Super Form)", "LowEnergySound", "EnabledOrNot"
 	StaticText ""
 }
 AddOptionMenu "OptionsMenu"
@@ -312,9 +291,9 @@ OptionValue "DoubleJump"
 }
 OptionValue "HUDType"
 {
-	0, "Unified" // Chaos Update HUD
-	1, "Classic-Style" // Pre-Chaos Update HUD
-	2, "Legacy" // Minimal HUD, ripped from STHiD Legacy Edition
+	0, "Unified" 		// Sonic: Lock & Load HUD
+	1, "Classic-Style" 	// Sonic Mania-style HUD
+	2, "Legacy" 		// Sonic the Hedgehog in DOOM: Legacy Edition HUD
 }
 OptionValue "RecoilBurstRelease"
 {
