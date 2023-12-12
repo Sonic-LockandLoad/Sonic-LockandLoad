@@ -38,6 +38,12 @@ PointLight HSwordGlow {
 	Size 80
 }
 
+PointLight SavePoint
+{
+	Color 0 0 1
+	Size 50
+}
+
 Object SonicSwitch
 {
 	Frame SONSA0 {
@@ -107,5 +113,12 @@ Object HyperEnergyBladeRight
 {
 	Frame ENSR {
 		Light HSwordGlow
+	}
+}
+
+Object sp_SaveDisk
+{
+	Frame SAVE {
+		Light SavePoint
 	}
 }

@@ -331,3 +331,7 @@ brain/sight						RIAHESON
 // Doox
 
 doox/nyeh						nyeh
+
+// Checkpoints.wad
+
+SP_SAVED						checkpnt
