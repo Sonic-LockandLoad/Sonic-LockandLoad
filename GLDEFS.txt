@@ -115,10 +115,3 @@ Object HyperEnergyBladeRight
 		Light HSwordGlow
 	}
 }
-
-Object sp_SaveDisk
-{
-	Frame SAVE {
-		Light SavePoint
-	}
-}
