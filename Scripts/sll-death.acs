@@ -127,8 +127,8 @@ script "HandlePermadeath" DEATH
 	}
 	SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
 	SetMusic("");
-	FadeTo(0, 0, 0, 1.0, 0.5);
-	Delay(45);
+	FadeTo(0, 0, 0, 1.0, 1.0);
+	Delay(35 * 2);
 	int level_flags = CHANGELEVEL_RESETHEALTH|CHANGELEVEL_RESETINVENTORY|CHANGELEVEL_NOINTERMISSION;
 	ChangeLevel("SDFAIL", 0, level_flags, -1);
 }
