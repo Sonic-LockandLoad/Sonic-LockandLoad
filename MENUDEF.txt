@@ -51,6 +51,7 @@ OptionMenu "LockandLoadOptions"
 	SubMenu "Heads-Up Display", "LLHUD"
 	SubMenu "Music & Sounds", "SDMusic"
 	SubMenu "Miscellaneous", "LLMiscOptMenu"
+	SubMenu "Style System", "StyleSystemMenu"
 	StaticText ""
 	
 	SubMenu "Advanced Options", "OptionsMenu"
@@ -140,13 +141,6 @@ OptionMenu "LLModsMenu"
 	StaticText "Customise gameplay mechanics.", "White"
 	StaticText ""
 
-	Option "Style System", "StyleSystem", "EnabledOrNot"
-	SubMenu "Configure...", "StyleSystemMenu"
-	StaticText "Continuously attack enemies to rack up Style Points and", "White"
-	StaticText "get a high Style Rank! Getting hit or just waiting will", "White"
-	StaticText "make your Style Points go down.", "White"
-	StaticText ""
-
 	Option "Enemies Bleed Rings", "EnemiesBleedRings", "EnabledOrNot"
 	StaticText "Upon taking damage, enemies will drop Rings that don't last too long", "White"
 	StaticText "and you'll receive a health boost if you're close up to the enemy.", "White"
@@ -180,7 +174,13 @@ OptionMenu "StyleSystemMenu"
 {
 	Title "Configure Style System"
 	
-	StaticText "Configure Style System.", "White"
+	StaticText "Enable and configure the style meter.", "White"
+	StaticText ""
+	
+	Option "Style System", "StyleSystem", "EnabledOrNot"
+	StaticText "Continuously attack enemies to rack up Style Points and", "White"
+	StaticText "get a high Style Rank! Getting hit or just waiting will", "White"
+	StaticText "make your Style Points go down.", "White"
 	StaticText ""
 	
 	Option "Style Callouts", "StyleCallouts", "EnabledOrNot"
@@ -196,7 +196,6 @@ OptionMenu "StyleSystemMenu"
 	StaticText ""
 	
 	Option "Style HUD Arrangement", "StyleRankOnSide", "Arrangement"
-	
 	StaticText "Either arrange the Style HUD vertically or horizontally.", "White"
 	StaticText "It still remains centred at the top of the screen.", "White"
 	StaticText ""
