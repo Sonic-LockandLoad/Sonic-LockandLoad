@@ -140,7 +140,7 @@ script "GoalRing" (void)
 		SetFont("b_rank");
 		plus_string = "\c[B]+";
 	}
-	else if (a_rank) {
+	else if (c_rank) {
 		SetFont("c_rank");
 		plus_string = "\c[C]+";
 	}
@@ -273,7 +273,7 @@ script "GoalRing" (void)
 			}
 			break;
 		case Shadow:
-			if (s_rank) {
+			if (a_rank) {
 				PlaySound(1001, "shadow/goodresult"); // "Yes!"
 				speechdelay = 30;
 				SetMugshotState("OK");
