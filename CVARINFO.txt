@@ -6,7 +6,7 @@ user int AmyZoomFactor				= 4;
 user int HomingReticle				= 2;
 user int InvincMusic 				= 1;
 user int SuperMusic 				= 1;
-user int ArenaMusic 				= 1;
+user int ArenaMusic 				= 0;
 user string ArenaCustomMusic 		= "";
 
 user bool WallCrash 				= true;
