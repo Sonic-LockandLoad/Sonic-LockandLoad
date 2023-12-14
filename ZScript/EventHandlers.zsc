@@ -485,10 +485,13 @@ class CheckpointRemovalHandler : EventHandler
 {
 	override void WorldThingSpawned(WorldEvent e)
 	{
-		bool checkpoints_disabled = cvar.FindCvar("CheckpointsEnabled").GetBool() == false;
+		bool checkpoints_disabled = !cvar.FindCvar("CheckpointsEnabled").GetBool();
+		bool permadeath_enabled = cvar.FindCvar("PermadeathMode").GetBool();
 		bool is_checkpoint = e.thing.GetClassName() == "sp_SaveDisk";
 		
-		if (checkpoints_disabled && is_checkpoint) {
+		bool checkpoints_should_spawn = checkpoints_disabled || permadeath_enabled;
+		
+		if (checkpoints_should_spawn && is_checkpoint) {
 			e.thing.Destroy();
 		}
 	}

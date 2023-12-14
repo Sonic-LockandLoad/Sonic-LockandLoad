@@ -34,6 +34,7 @@ user bool SpongyEnemies				= false;
 user int  Sponginess				= 2;
 user bool OneHitMode				= false;
 user bool CountDeaths				= false;
+user bool PermadeathMode			= false;
 
 /* Temporary CVARs */
 user noarchive bool	  Sliding			= false;

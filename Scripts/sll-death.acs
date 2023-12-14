@@ -2,31 +2,37 @@
 
 script "DeathMusic" (int xdeath)
 {
+	bool is_dead_or_game_over = ClassifyActor(0) & ACTOR_DEAD || GetLevelInfo(LEVELINFO_LEVELNUM) == 999;
+	
 	if (GetCvar("DeathMusic") && GetLevelInfo(LEVELINFO_LEVELNUM) != 69) {
 		switch (PlayerClass(PlayerNumber())) {
 			case Sonic:
 				if (xdeath) SetMusic("S_DEADX", 0);
 				else 		SetMusic("S_DEADM", 0);
 				break;
+				
 			case Amy:
 				SetMusic("A_DEADM", 0);
 				break;
+				
 			case ClassicSonic:
 				if (xdeath) SetMusic("C_DEADX", 0);
 				else {
 					SetMusic("C_DEADM", 0);
 					Delay(9*35);
-					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic(""); }
+					if (is_dead_or_game_over) { SetMusic(""); }
 				}
 				break;
+				
 			case Shadow:
 				if (xdeath) SetMusic("D_DEADX", 0);
 				else {
 					SetMusic("D_DEADM", 0);
 					Delay(7*35);
-					if (ClassifyActor(0) & ACTOR_DEAD) { SetMusic(""); }
+					if (is_dead_or_game_over) { SetMusic(""); }
 				}
 				break;
+				
 			default:
 				break;
 		}
@@ -76,7 +82,9 @@ function str DetermineRandomDeathMessage(void) {
 
 script "DeathScreen" DEATH
 {
-	if (GetLevelInfo(LEVELINFO_LEVELNUM) == 69) terminate;
+	if (GetLevelInfo(LEVELINFO_LEVELNUM) == 69 || GetCvar("PermadeathMode") == true) {
+		terminate;
+	}
     FadeTo(0, 0, 0, 1.0, 0.3);
     Delay(10);
 	if (ClassifyActor(0) & ACTOR_ALIVE) {
@@ -110,6 +118,19 @@ script "DeathScreen" DEATH
 		HudMessage(l:message; 0, 9, CR_WHITE, 0.5, 0.45, 0.0, 1.0);
 		HudMessage(s:"Press \c[Gold]", k:"+use", s:"\c[White] to try again"; 0, 10, CR_WHITE, 0.5, 0.55, 0.0, 1.0);
 	}
+}
+
+script "HandlePermadeath" DEATH
+{
+	if (GetCvar("PermadeathMode") == false) {
+		terminate;
+	}
+	SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
+	SetMusic("");
+	FadeTo(0, 0, 0, 1.0, 0.5);
+	Delay(45);
+	int level_flags = CHANGELEVEL_RESETHEALTH|CHANGELEVEL_RESETINVENTORY|CHANGELEVEL_NOINTERMISSION;
+	ChangeLevel("SDFAIL", 0, level_flags, -1);
 }
 
 script "DidResurrect" RESPAWN

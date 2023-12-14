@@ -176,6 +176,11 @@ map SDCybrSp "Cyber Space Arena"
 	noinfighting
 }
 
+map SDFail "Game Over"
+{
+	levelnum = 999
+}
+
 clearskills
 
 skill easy
