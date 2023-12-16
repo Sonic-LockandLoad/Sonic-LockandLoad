@@ -307,9 +307,9 @@ OptionValue "HomingAssaultOffhand"
 }
 OptionValue "HomingReticle"
 {
-	0, "Disabled"
-	1, "Minimal"
-	2, "Enabled"
+	0, "Hidden"
+	1, "Small"
+	2, "Large"
 }
 OptionValue "ArenaMusic"
 {
