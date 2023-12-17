@@ -234,6 +234,7 @@ OptionMenu "LLControlsMenu"
 	Control "Weapon 2", "slot 3"
 	Control "Weapon 3", "slot 4"
 	Control "Weapon 4", "slot 5"
+	Control "Weapon 5", "slot 6"
 	StaticText ""
 	SubMenu "All Control Bindings", "CustomizeControls"
 }
