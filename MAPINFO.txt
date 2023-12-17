@@ -29,6 +29,10 @@ DamageType SonicKick
 {
 	Factor = 1
 }
+DamageType AmyKick
+{
+	Factor = 1
+}
 DamageType ShadowMelee
 {
 	Factor = 1

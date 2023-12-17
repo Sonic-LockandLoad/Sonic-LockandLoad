@@ -256,7 +256,7 @@ class AmyKickPuff : BulletPuff
 		Alpha 0;
 		VSpeed 1;
 		Mass 5;
-		DamageType "Piko";
+		DamageType "AmyKick";
 		ProjectileKickBack 9999999;
 	}
 	States
