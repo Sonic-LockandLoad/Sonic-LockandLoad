@@ -500,7 +500,7 @@ class AcceleratedPistol : LockLoadWeapon
 	Default
 	{
 		Weapon.SelectionOrder 100;
-		Weapon.Kickback 1;
+		Weapon.Kickback 100;
 		Weapon.AmmoType1 "ChaosEnergy";
 		Weapon.AmmoType2 "ChaosEnergy";
 		Weapon.AmmoUse1 2;
@@ -514,6 +514,22 @@ class AcceleratedPistol : LockLoadWeapon
 		+ALWAYSPUFF
 		+WEAPON.NOAUTOFIRE
 	}
+	action void AccelFire()
+	{
+		A_PlaySound("sweapons/pistol", 1);
+		if (!player.onground) A_FireBullets(0, 0, 1, 20, "BulletPuff");
+		else A_FireBullets(0, 0, 1, 10, "BulletPuff");
+		A_GunFlash();
+		A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+	}
+	action state RefireOnAttack()
+	{
+		bool just_pressed_attack = GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK && !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_ATTACK);
+		if (just_pressed_attack && CountInv("ChaosEnergy") >= 2) {
+			return ResolveState("Fire");
+		}
+		return ResolveState(null);
+	}
 	States
 	{
 		Ready:
@@ -526,14 +542,13 @@ class AcceleratedPistol : LockLoadWeapon
 			SPIS A 1 A_Raise(20);
 			Loop;
 		Fire:
-			SPIS AAA 2 {
-				A_PlaySound("sweapons/pistol", 1);
-				if (!player.onground) A_FireBullets(0, 0, 1, 30, "BulletPuff");
-				else A_FireBullets(0, 0, 1, 15, "BulletPuff");
-				A_GunFlash();
-				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			}
-			SPIS BC 1 A_WeaponReady(WRF_NOBOB);
+			SPIS A 1 AccelFire();
+			SPIS A 1 RefireOnAttack();
+			SPIS A 1 AccelFire();
+			SPIS A 1 RefireOnAttack();
+			SPIS A 1 AccelFire();
+			SPIS A 1 RefireOnAttack();
+			SPIS BC 1 RefireOnAttack();
 			Goto Ready;
 		AltFire:
 			SPIS B 1 {
