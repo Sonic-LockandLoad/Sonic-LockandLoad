@@ -296,6 +296,39 @@ title_msg18		= "If ULTRAKILL is Quake + Devil May Cry,\nSonic: Lock & Load is SR
 title_msg19		= "I never thought I'd get this far.";
 title_msg20		= "If you see this, say 'flanksteak'.";
 
+level_instruct  = "This teleporter leads to";
+// level name is expected to go after level_instruct
+
+// The "funny" descriptions have a 1-in-5 chance of being used
+// instead of their more "normal" variants
+
+// Cyber Space Arena
+level0_normal   = "Fight endless waves of enemies in a grid-based zone.";
+level0_funny    = "Fight enemies until you get bored and leave.";
+
+// Sunset Gardens
+level1_normal   = "An island off the outskirts of South Island.";
+level1_funny    = "Green Hill's looking a lot more like Brown Hill!";
+
+// Marble Madness
+level2_normal   = "An oddly familiar labyrinth of pain.";
+level2_funny    = "A house. Made of marble.";
+
+// Oceanic Fortress
+level3_normal   = "A disused Eggman base, overrun with monsters.";
+level3_funny    = "A big wet.";
+
+// Hire This Zone
+levelh_funny1   = "There's a man who has artistic vision...";
+levelh_funny2   = "This man's still a master of the medium!";
+
+level_locked_1  = "This teleporter to";
+// level name is expected to go after level_locked_1
+level_locked_2  = "is locked.";
+level_locked_3  = "Complete";
+// previous level name is expected to go after level_locked_3
+level_locked_4  = "first.";
+
 MENU_NEWGAME 	= "New Game";
 MENU_ABOUT 		= "About";
 MENU_OPTIONS 	= "Options";
