@@ -21,6 +21,7 @@ class AmySwitch : LLSwitch
 	{
 		//$Name Amy Switch
 		//$Category Lock & Load Objects
+		DamageFactor "AmyKick", 1;
 		DamageFactor "Piko", 1;
 	}
 	States
@@ -73,6 +74,7 @@ class OmniSwitch : LLSwitch
 		//$Category Lock & Load Objects
 		DamageFactor "SonicKick", 1;
 		DamageFactor "Caliburn", 1;
+		DamageFactor "AmyKick", 1;
 		DamageFactor "Piko", 1;
 		DamageFactor "SonicPunch", 1;
 		DamageFactor "SpinDash", 1;
