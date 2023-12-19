@@ -299,10 +299,9 @@ script "Subtitles" (int subtitle)
 script "AmyBlockTint" enter
 {
 	bool is_amy = PlayerClass(PlayerNumber()) == Amy;
-	bool is_alive = ClassifyActor(0) & ACTOR_ALIVE;
 	bool is_game_over = GetLevelInfo(LEVELINFO_LEVELNUM) == 999;
 
-	while (is_amy && is_alive && !is_game_over) {
+	while (is_amy && ClassifyActor(0) & ACTOR_ALIVE && !is_game_over) {
 		if (CheckInventory("PowerBlocking")) {
 			FadeTo(192, 23, 112, 0.2, 0.0);
 		}
