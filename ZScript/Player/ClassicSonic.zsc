@@ -115,10 +115,10 @@ class ClassicAbilities : LockLoadWeapon replaces Fist
 			TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			TNT1 A 1 A_Lower(100);
+			TNT1 A 1 A_Lower(200);
 			Loop;
 		Select:
-			TNT1 A 1 A_Raise(100);
+			TNT1 A 1 A_Raise(200);
 			Loop;
 		Fire:
 			TNT1 A 0 {
@@ -465,10 +465,10 @@ class ChaosBlaster : LockLoadWeapon
 			PLSG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(10);
+			#### # 1 A_Lower(20);
 			Loop;
 		Select:
-			PLSG A 1 A_Raise(10);
+			PLSG A 1 A_Raise(20);
 			Loop;
 		Fire:
 			PLSG A 1 A_FireProjectile("MinorChaosEnergyBall");
@@ -510,10 +510,10 @@ class SpeedyShotgun : LockLoadWeapon
 			SHTG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(10);
+			#### # 1 A_Lower(20);
 			Loop;
 		Select:
-			SHTG A 1 A_Raise(10);
+			SHTG A 1 A_Raise(20);
 			Loop;
 		Fire:
 			SHTG A 4
@@ -573,10 +573,10 @@ class ChaosRain : LockLoadWeapon
 			CHGG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(10);
+			#### # 1 A_Lower(20);
 			Loop;
 		Select:
-			CHGG A 1 A_Raise(10);
+			CHGG A 1 A_Raise(20);
 			Loop;
 		Fire:
 			CHGG A 1 
@@ -643,10 +643,10 @@ class ClassicRocketStream : LockLoadWeapon
 			MISG A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(10);
+			#### # 1 A_Lower(20);
 			Loop;
 		Select:
-			MISG A 1 A_Raise(10);
+			MISG A 1 A_Raise(20);
 			Loop;
 		Fire:
 			MISG B 1 A_GunFlash();

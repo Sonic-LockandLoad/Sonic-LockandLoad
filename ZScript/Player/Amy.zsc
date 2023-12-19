@@ -152,10 +152,10 @@ class PikoPikoHammer : LockLoadWeapon
 			PIKO A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(15);
+			#### # 1 A_Lower(20);
 			Loop;
 		Select:
-			PIKO A 1 A_Raise(45);
+			PIKO A 1 A_Raise(20);
 			Loop;
 		Fire:
 			TNT1 A 0 A_JumpIf(Pos.Z - GetZAt() > 64, "HammerAerial");
@@ -263,10 +263,10 @@ class SilentRosePistol : LockLoadWeapon
 			RSFP A 1 A_WeaponReady();
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(10);
+			#### # 1 A_Lower(20);
 			Loop;
 		Select:
-			RSFP A 1 A_Raise(10);
+			RSFP A 1 A_Raise(20);
 			Loop;
 		Fire:
 			RSFP A 0 { invoker.ShotsFired++; }
@@ -316,13 +316,13 @@ class PrecisionShotgun : LockLoadWeapon
 			Loop;
 		Deselect:
 			#### # 1 {
-				A_Lower(10);
+				A_Lower(20);
 				A_ZoomFactor(1);
 				A_SetCrosshair(0);
 			}
 			Loop;
 		Select:
-			AMSG A 1 A_Raise(10);
+			AMSG A 1 A_Raise(20);
 			Loop;
 		Fire:
 			TNT1 A 0 A_JumpIf(CountInv("PowerSuper"), "SpeedFire");
@@ -417,10 +417,10 @@ class RailshotCannon : LockLoadWeapon
 			STPO AABBCC 1 Bright A_WeaponReady();
 			Loop;
 		Deselect:
-			STPO E 1 A_Lower(10);
+			STPO E 1 A_Lower(20);
 			Loop;
 		Select:
-			STPO E 1 A_Raise(10);
+			STPO E 1 A_Raise(20);
 			Loop;
 		Fire:
 			STPO F 0 Bright A_GunFlash();
@@ -434,7 +434,7 @@ class RailshotCannon : LockLoadWeapon
 				A_WeaponReady(WRF_NOFIRE);
 			}
 			STPO GH 4 Bright;
-			STPO E 20;
+			STPO EEEEEEEEEEEEEEEEEEEE 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			STPO D 6 A_StartSound("sweapons/amyrailgunreload");
 			STPO A 4;
 			Goto Ready;
@@ -479,10 +479,10 @@ class AmyEclipseBlaster : LockLoadWeapon
 			ACBL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(10);
+			#### # 1 A_Lower(20);
 			Loop;
 		Select:
-			ACBL A 1 A_Raise(10);
+			ACBL A 1 A_Raise(20);
 			Loop;
 		Fire:
 			ACBL B 3
@@ -540,10 +540,10 @@ class RapidMissiles : LockLoadWeapon
 			MMSL A 1 A_WeaponReady(WRF_ALLOWRELOAD);
 			Loop;
 		Deselect:
-			#### # 1 A_Lower(10);
+			#### # 1 A_Lower(20);
 			Loop;
 		Select:
-			MMSL A 1 A_Raise(10);
+			MMSL A 1 A_Raise(20);
 			Loop;
 		Fire:
 			MMSL B 2;
