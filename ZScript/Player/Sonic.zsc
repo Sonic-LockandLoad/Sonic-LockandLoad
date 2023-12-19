@@ -512,7 +512,6 @@ class AcceleratedPistol : LockLoadWeapon
 		+FORCEPAIN
 		+PUFFONACTORS
 		+ALWAYSPUFF
-		+WEAPON.NOAUTOFIRE
 	}
 	action void AccelFire()
 	{
@@ -653,7 +652,6 @@ class KineticShotty : LockLoadWeapon
 		Tag "Kinetic Shotty";
 		+PUFFONACTORS
 		+ALWAYSPUFF
-		+WEAPON.NOAUTOFIRE
 	}
 	States
 	{
@@ -703,7 +701,6 @@ class ShurikenCrossbow : LockLoadWeapon
 		Weapon.AmmoType "ChaosEnergy";
 		Inventory.PickupMessage "Shuriken Crossbow";
 		Tag "Shuriken Crossbow";
-		+WEAPON.NOAUTOFIRE
 	}
 	States
 	{
@@ -749,7 +746,6 @@ class EclipseBlaster : LockLoadWeapon
 		Weapon.KickBack 1000;
 		Weapon.BobSpeed 1.5;
 		+EXTREMEDEATH
-		+WEAPON.NOAUTOFIRE
 		Inventory.PickupMessage "Eclipse Blaster Mk. V";
 		Tag "Eclipse Blaster Mk. V";
 	}
@@ -821,7 +817,6 @@ class AirStrikeLauncher : LockLoadWeapon
 		Tag "Rocket Rioter";
 		Weapon.BobSpeed 1.5;
 		Weapon.Kickback 1000;
-		+WEAPON.NOAUTOFIRE
 		+WEAPON.NOAUTOAIM
 	}
 	action void DecideFire(int amount)
@@ -875,7 +870,13 @@ class AirStrikeLauncher : LockLoadWeapon
 		Fire:
 			TNT1 A 0 DecideFire(7);
 			MISG A 1 A_GunFlash();
-			MISG BBBBBBBBBBBBBBBB 1 A_WeaponReady(WRF_NOBOB);
+			MISG BBBBBBBAAAAAAAAAAAAAAAA 1 {
+				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+				if (GetPlayerInput(INPUT_BUTTONS) & BT_ATTACK && !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_ATTACK)) {
+					return ResolveState("Fire");
+				}
+				return ResolveState(null);
+			}
 			Goto Ready;
 		AltFire:
 			MISG A 1 {

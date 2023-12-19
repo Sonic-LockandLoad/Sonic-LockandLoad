@@ -436,7 +436,6 @@ Class DualRockets : LockLoadWeapon
 		Inventory.PickupMessage "Dual Assimilator";
 		Tag "Dual Assimilator";
 		+Weapon.Explosive
-		+Weapon.NoAutoFire
 	}
 	States
 	{
