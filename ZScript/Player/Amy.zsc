@@ -583,7 +583,7 @@ class AmyKick : CustomInventory
 	KickAttack:
 		AKIK A 1 A_PlaySound("sweapons/swordswing", 7);
 		AKIK BC 1 A_GiveInventory("LegOut", 1);
-		AKIK D 1 A_CustomPunch(10, false, CPF_NOTURN, "AmyKickPuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
+		AKIK D 1 A_CustomPunch(10, false, CPF_NOTURN, "AmyKickPuff", 200, 0, 0, "ArmorBonus", "sweapons/finalhit");
 		AKIK EFG 1;
 		TNT1 A 0 A_TakeInventory("LegOut", 1);
 		Stop;
