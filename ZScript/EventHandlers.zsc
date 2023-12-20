@@ -8,7 +8,7 @@ class RemoveCyberSpaceArenaCorpses : EventHandler
 	Array<DeathInfo> dead_monsters;
 	int current_tick;
 	int delay;
-	
+
 	override void WorldThingDied(WorldEvent e)
     {
         if (e.thing && e.thing.bIsMonster && level.mapname == "SDCYBRSP") {
@@ -42,7 +42,7 @@ class GiveEnergyOnDamage : EventHandler
 			recipient.A_GiveInventory("ChaosEnergy", energy);
 		}
 	}
-	
+
 	override void WorldThingDamaged(WorldEvent e)
     {
         if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("GiveEnergyOnDamage").GetBool()) {
@@ -101,18 +101,18 @@ class StyleSystem : EventHandler
 	int current_tick;
     string current_weapon;
     int consecutive_uses;
-	
+
 	override void WorldThingDamaged(WorldEvent e)
     {
 		bool is_attackable_target = e.thing.bIsMonster || e.thing.GetClassName() == "Doox";
-		
+
         if (!cvar.FindCvar("StyleSystem").GetBool())
             return;
 
         if (e.thing && e.thing is "PlayerPawn") {
             DeductStyleScore(e);
         }
-		
+
         else if (e.thing && is_attackable_target && !(e.damagesource && e.damagesource.bIsMonster) && !(e.inflictor && e.inflictor.bIsMonster)) {
             UpdateStyleScore(e);
         }
@@ -127,23 +127,23 @@ class StyleSystem : EventHandler
         UpdateWeapon();
         DeprecateStyleScore();
     }
-	
+
 	private void UpdateStyleScore(WorldEvent e)
 	{
 		/* Player object */
 		PlayerPawn player = players[consoleplayer].mo;
-		
+
 		/* Consecutive uses */
 		let ReadyWeapon = player.player.ReadyWeapon;
 		let PlayerIsResponsible = e.damagesource && e.damagesource is "PlayerPawn";
 		if (ReadyWeapon && ReadyWeapon.GetClassName() == current_weapon && PlayerIsResponsible) {
 			consecutive_uses++;
 		}
-		
+
 		/* Initialisation */
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int scorebonus;
-		
+
 		/* Dealing damage */
 		if (PlayerIsResponsible) {
 			scorebonus += e.damage * 73;
@@ -156,12 +156,12 @@ class StyleSystem : EventHandler
 				return;
 			}
 		}
-		
+
 		/* Using different weapon */
 		if (ReadyWeapon.GetClassName() != current_weapon) {
 			scorebonus *= 3;
 		}
-		
+
 		/* Height bonus */
 		if (!player.player.onground) {
 			double heightbonus = player.Pos.Z - player.GetZAt();
@@ -170,56 +170,56 @@ class StyleSystem : EventHandler
 			if (heightbonus > 2) heightbonus = 2;
 			scorebonus *= heightbonus;
 		}
-		
+
 		/* Enemy mid-air bonus */
 		if (e.thing.Pos.Z > e.thing.GetZAt()) {
 			scorebonus *= 2;
 		}
-		
+
 		/* Add case for Offhand Attack */
 		bool offhand_attack_used = e.DamageType == "SonicKick" ||
 								   e.DamageType == "ShadowMelee" ||
 								   e.DamageType == "Piko" ||
 								   e.DamageType == "SonicPunch";
-		
+
 		/* Add case for shotguns */
 		bool shotgun_used = current_weapon == "KineticShotty" ||
 							current_weapon == "PrecisionShotgun" ||
 							current_weapon == "SpeedyShotgun" ||
 							current_weapon == "DarkAssault" ||
 							current_weapon == "QuadShotty";
-		
+
 		/* Clamp score bonus */
-		int minimum_score = 500 + GetScoreBonusCap() / 100;
+		int minimum_score = 750 + GetScoreBonusCap() / 100;
 		int maximum_score = GetScoreBonusCap();
 		scorebonus = clamp(scorebonus, minimum_score, maximum_score);
-		
+
 		/* Limit score bonus if attack was Spin Dash or Boost */
 		if (e.damagetype == "SpinDash" || e.DamageType == "Boost") {
 			scorebonus /= 8;
 		}
-		
+
 		/* Calculate staleness */
 		int staleness_factor = 512;
 		if (shotgun_used) staleness_factor = 64;
 		int staleness = staleness_factor * consecutive_uses;
 		staleness = clamp(staleness, 0, scorebonus);
-		
+
 		// Apply staleness, unless an Offhand Attack was used
 		if (!offhand_attack_used) {
 			scorebonus -= staleness;
 		}
- 		
+
 		/* Total up and cap score */
 		score += scorebonus;
 		if (score > 300000) score = 300000;
-		
+
 		/* It isn't here, but the player can also gain Style
 		   Points by parrying attacks.
-		
+
 		   Go and see Sonic.zsc and Amy.zsc for that code. */
 	}
-	
+
 	private void DeductStyleScore(WorldEvent e)
 	{
 		/* Init variable and get style rank */
@@ -255,40 +255,32 @@ class StyleSystem : EventHandler
 		}
 		score -= penalty;
 	}
-	
+
 	private int GetScoreBonusCap()
 	{
 		PlayerPawn player = players[consoleplayer].mo;
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int cap;
 		switch (stylerank) {
-			case 0:
-			case 1:
-				cap = 10000;
-				break;
-			case 2:
+			case 0: // E
+			case 1: // D
+			case 2: // C
 				cap = 15000;
 				break;
-			case 3:
-				cap = 20000;
+			case 3: // B
+			case 4: // A
+				cap = 10000;
 				break;
-			case 4:
-				cap = 25000;
-				break;
-			case 5:
-				cap = 30000;
-				break;
-			case 6:
-				cap = 40000;
-				break;
-			case 7:
-				cap = 80000;
+			case 5: // S
+			case 6: // SS
+			case 7: // SSS
+				cap = 5000;
 				break;
 		}
-		
+
 		return cap;
 	}
-	
+
 	private void DeprecateStyleScore()
 	{
 		PlayerPawn player = players[consoleplayer].mo;
@@ -312,29 +304,29 @@ class StyleSystem : EventHandler
 				deprecation = 512;
 				break;
 		}
-		
+
 		/* Super and Hyper forms are invincible,
 		   so this is to balance it out */
 		if (player.CountInv("PowerSuper") || player.CountInv("PowerHyper")) {
 			deprecation *= 1.5;
 		}
-		
+
 		/* Deducting score */
 		if (current_tick > 2) {
 			current_tick = 0;
 			score -= deprecation;
 		}
 	}
-	
+
 	private void UpdateStyleRank()
 	{
 		PlayerPawn player = players[consoleplayer].mo;
 		if (score < 0 || player.health <= 0) score = 0;
 		cvar.FindCvar("StyleScore").SetInt(score);
-		
+
 		// Used above, for deprecation delay
 		current_tick++;
-		
+
 		// Set your Style Rank
 		if 		(score >= 100000) cvar.FindCvar("StyleRank").SetInt(7); // Super Sonic Style!!!
 		else if	(score >= 80000)  cvar.FindCvar("StyleRank").SetInt(6); // Speeding Style!!!
@@ -344,22 +336,22 @@ class StyleSystem : EventHandler
 		else if (score >= 10000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
 		else if (score >= 1)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
 		else 					  cvar.FindCvar("StyleRank").SetInt(0); // Empty
-		
+
 		// Obtain Style Rank to sync up
 		int style_rank = cvar.FindCvar("StyleRank").GetInt();
-		
+
 		bool transformed = player.CountInv("PowerSuper") || player.CountInv("PowerHyper");
-		
+
 		// Style Bonuses
 		if (style_rank >= 4 && !transformed) {
 			player.A_GiveInventory("ChaosEnergy", style_rank - 4);
 		}
 	}
-	
+
 	private void UpdateWeapon()
 	{
 		PlayerPawn player = players[consoleplayer].mo;
-		
+
 		/* If the player's weapon has previously been
 		   switched, reset the amount of consecutive
 		   uses and reset their current weapon. */
@@ -403,9 +395,9 @@ class LastWeaponHandler : StaticEventHandler
 {
 	string last_weapon;
 	string current_weapon;
-	
+
 	override void NetworkProcess(ConsoleEvent e)
-	{               
+	{
 		if (e.Name == "quickswap") {
 			SwitchWeapon();
 		}
@@ -416,7 +408,7 @@ class LastWeaponHandler : StaticEventHandler
         PlayerPawn player = players[consoleplayer].mo;
 
         // Can't really use switch-case here, since we're working with strings
-        
+
         // We can assume that the player just spawned in, so their weapons are
         // easy enough to guess
 
@@ -438,45 +430,45 @@ class LastWeaponHandler : StaticEventHandler
 
         return "";
     }
-	
+
 	string GetWeapon()
 	{
 		PlayerPawn player = players[consoleplayer].mo;
-		
+
 		if (player.player.ReadyWeapon == null) {
 			return "";
 		}
-		
+
 		return player.player.ReadyWeapon.GetClassName();
 	}
-	
+
 	override void WorldTick()
 	{
 		PlayerPawn player = players[consoleplayer].mo;
-		
+
 		if (player.player.ReadyWeapon == null) {
 			return;
 		}
-		
+
 		if (current_weapon != GetWeapon()) {
 			last_weapon = current_weapon;
 		}
-		
+
 		if (last_weapon == "") {
 			last_weapon = GetDefaultWeapon();
 		}
-		
+
 		current_weapon = GetWeapon();
 	}
-	
+
 	void SwitchWeapon()
 	{
 		PlayerPawn player = players[consoleplayer].mo;
-		
+
 		if (!player.CountInv(last_weapon)) {
 			last_weapon = GetDefaultWeapon();
 		}
-		
+
 		player.A_SelectWeapon(last_weapon);
 	}
 }
@@ -488,9 +480,9 @@ class CheckpointRemovalHandler : EventHandler
 		bool checkpoints_disabled = !cvar.FindCvar("CheckpointsEnabled").GetBool();
 		bool permadeath_enabled = cvar.FindCvar("PermadeathMode").GetBool();
 		bool is_checkpoint = e.thing.GetClassName() == "sp_SaveDisk";
-		
+
 		bool checkpoints_should_spawn = checkpoints_disabled || permadeath_enabled;
-		
+
 		if (checkpoints_should_spawn && is_checkpoint) {
 			e.thing.Destroy();
 		}
