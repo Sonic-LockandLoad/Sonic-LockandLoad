@@ -1,6 +1,6 @@
 class DeathInfo : Object {
-    Actor actor;
-    int tick;
+	Actor actor;
+	int tick;
 }
 
 class RemoveCyberSpaceArenaCorpses : EventHandler
@@ -10,26 +10,26 @@ class RemoveCyberSpaceArenaCorpses : EventHandler
 	int delay;
 
 	override void WorldThingDied(WorldEvent e)
-    {
-        if (e.thing && e.thing.bIsMonster && level.mapname == "SDCYBRSP") {
+	{
+		if (e.thing && e.thing.bIsMonster && level.mapname == "SDCYBRSP") {
 			DeathInfo info = new("DeathInfo");
-            info.actor = e.thing;
-            info.tick = current_tick;
-            dead_monsters.Push(info);
+			info.actor = e.thing;
+			info.tick = current_tick;
+			dead_monsters.Push(info);
 		}
-    }
+	}
 
-    override void WorldTick () {
-        current_tick++;
+	override void WorldTick () {
+		current_tick++;
 		delay = 60;
 		for (int i = 0; i < dead_monsters.Size(); i++) {
-            if (current_tick - dead_monsters[i].tick >= delay) {
-                dead_monsters[i].actor.Destroy();
-                dead_monsters.Delete(i);
-                i--;
-            }
-        }
-    }
+			if (current_tick - dead_monsters[i].tick >= delay) {
+				dead_monsters[i].actor.Destroy();
+				dead_monsters.Delete(i);
+				i--;
+			}
+		}
+	}
 }
 
 class GiveEnergyOnDamage : EventHandler
@@ -44,8 +44,8 @@ class GiveEnergyOnDamage : EventHandler
 	}
 
 	override void WorldThingDamaged(WorldEvent e)
-    {
-        if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("GiveEnergyOnDamage").GetBool()) {
+	{
+		if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("GiveEnergyOnDamage").GetBool()) {
 			int energy_to_give, min_energy, max_energy;
 			if (e.damage > e.thing.health) {
 				energy_to_give = e.damage / 16;
@@ -62,14 +62,14 @@ class GiveEnergyOnDamage : EventHandler
 			}
 			GiveEnergy(e.damagesource, energy_to_give, max_energy);
 		}
-    }
+	}
 }
 
 class EnemiesBleedRings : EventHandler
 {
 	override void WorldThingDamaged(WorldEvent e)
-    {
-        if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("EnemiesBleedRings").GetBool()) {
+	{
+		if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("EnemiesBleedRings").GetBool()) {
 			int ringcount = e.damage / 64;
 			ringcount = clamp(ringcount, 1, 300);
 			int maxrange  = e.damage / 48;
@@ -92,41 +92,42 @@ class EnemiesBleedRings : EventHandler
 				}
 			}
 		}
-    }
+	}
 }
 
 class StyleSystem : EventHandler
 {
 	int score;
-	int current_tick;
-    string current_weapon;
-    int consecutive_uses;
+	int deprecation_tick;
+	int reward_tick;
+	string current_weapon;
+	int consecutive_uses;
 
 	override void WorldThingDamaged(WorldEvent e)
-    {
+	{
 		bool is_attackable_target = e.thing.bIsMonster || e.thing.GetClassName() == "Doox";
 
-        if (!cvar.FindCvar("StyleSystem").GetBool())
-            return;
+		if (!cvar.FindCvar("StyleSystem").GetBool())
+			return;
 
-        if (e.thing && e.thing is "PlayerPawn") {
-            DeductStyleScore(e);
-        }
+		if (e.thing && e.thing is "PlayerPawn") {
+			DeductStyleScore(e);
+		}
 
-        else if (e.thing && is_attackable_target && !(e.damagesource && e.damagesource.bIsMonster) && !(e.inflictor && e.inflictor.bIsMonster)) {
-            UpdateStyleScore(e);
-        }
-    }
+		else if (e.thing && is_attackable_target && !(e.damagesource && e.damagesource.bIsMonster) && !(e.inflictor && e.inflictor.bIsMonster)) {
+			UpdateStyleScore(e);
+		}
+	}
 
-    override void WorldTick()
-    {
-        if (!cvar.FindCvar("StyleSystem").GetBool())
-            return;
+	override void WorldTick()
+	{
+		if (!cvar.FindCvar("StyleSystem").GetBool())
+			return;
 
-        UpdateStyleRank();
-        UpdateWeapon();
-        DeprecateStyleScore();
-    }
+		UpdateStyleRank();
+		UpdateWeapon();
+		DeprecateStyleScore();
+	}
 
 	private void UpdateStyleScore(WorldEvent e)
 	{
@@ -312,8 +313,8 @@ class StyleSystem : EventHandler
 		}
 
 		/* Deducting score */
-		if (current_tick > 2) {
-			current_tick = 0;
+		if (deprecation_tick > 2) {
+			deprecation_tick = 0;
 			score -= deprecation;
 		}
 	}
@@ -324,27 +325,55 @@ class StyleSystem : EventHandler
 		if (score < 0 || player.health <= 0) score = 0;
 		cvar.FindCvar("StyleScore").SetInt(score);
 
-		// Used above, for deprecation delay
-		current_tick++;
+		deprecation_tick++;
+		reward_tick++;
 
 		// Set your Style Rank
-		if 		(score >= 100000) cvar.FindCvar("StyleRank").SetInt(7); // Super Sonic Style!!!
-		else if	(score >= 80000)  cvar.FindCvar("StyleRank").SetInt(6); // Speeding Style!!!
-		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(5); // Skyrocketing!!
-		else if (score >= 40000)  cvar.FindCvar("StyleRank").SetInt(4); // Adventurer!
-		else if (score >= 20000)  cvar.FindCvar("StyleRank").SetInt(3); // Blazing
-		else if (score >= 10000)  cvar.FindCvar("StyleRank").SetInt(2); // Cruising
-		else if (score >= 1)	  cvar.FindCvar("StyleRank").SetInt(1); // Drifting
-		else 					  cvar.FindCvar("StyleRank").SetInt(0); // Empty
+		if 		(score >= 100000) cvar.FindCvar("StyleRank").SetInt(7); // SSS
+		else if	(score >= 80000)  cvar.FindCvar("StyleRank").SetInt(6); // SS
+		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(5); // S
+		else if (score >= 40000)  cvar.FindCvar("StyleRank").SetInt(4); // A
+		else if (score >= 20000)  cvar.FindCvar("StyleRank").SetInt(3); // B
+		else if (score >= 10000)  cvar.FindCvar("StyleRank").SetInt(2); // C
+		else if (score >= 1)	  cvar.FindCvar("StyleRank").SetInt(1); // D
+		else 					  cvar.FindCvar("StyleRank").SetInt(0); // E
 
 		// Obtain Style Rank to sync up
 		int style_rank = cvar.FindCvar("StyleRank").GetInt();
 
-		bool transformed = player.CountInv("PowerSuper") || player.CountInv("PowerHyper");
+		if (style_rank >= 3) {
+			GiveStyleRewards(player, style_rank);
+		}
+	}
 
-		// Style Bonuses
-		if (style_rank >= 4 && !transformed) {
-			player.A_GiveInventory("ChaosEnergy", style_rank - 4);
+	private void GiveStyleRewards(Actor player, int style_rank)
+	{
+		bool is_transformed = player.CountInv("PowerSuper") || player.CountInv("PowerHyper");
+		bool rewards_enabled = cvar.FindCvar("StyleBonuses").GetBool();
+
+		if (is_transformed && rewards_enabled) {
+			return;
+		}
+
+		int delay;
+
+		switch (style_rank) {
+			case 7:
+			case 6:
+				delay = 1;
+				break;
+			case 5:
+			case 4:
+				delay = 2;
+				break;
+			case 3:
+			default:
+				delay = 3;
+				break;
+		}
+
+		if (reward_tick % delay == 0) {
+			player.A_GiveInventory("ChaosEnergy", 1);
 		}
 	}
 
@@ -365,12 +394,12 @@ class StyleSystem : EventHandler
 class SpongyEnemies : EventHandler
 {
 	override void WorldThingSpawned(WorldEvent e)
-    {
-        if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("SpongyEnemies").GetBool()) {
+	{
+		if (e.thing && e.thing.bIsMonster && Cvar.FindCvar("SpongyEnemies").GetBool()) {
 			e.thing.health *= cvar.FindCvar("Sponginess").GetInt();
 			// It really is that fricking simple! :D
 		}
-    }
+	}
 }
 
 class DeathCounter : StaticEventHandler
@@ -403,33 +432,33 @@ class LastWeaponHandler : StaticEventHandler
 		}
 	}
 
-    string GetDefaultWeapon()
-    {
-        PlayerPawn player = players[consoleplayer].mo;
+	string GetDefaultWeapon()
+	{
+		PlayerPawn player = players[consoleplayer].mo;
 
-        // Can't really use switch-case here, since we're working with strings
+		// Can't really use switch-case here, since we're working with strings
 
-        // We can assume that the player just spawned in, so their weapons are
-        // easy enough to guess
+		// We can assume that the player just spawned in, so their weapons are
+		// easy enough to guess
 
-        if (player is "SonicPlayer") {
-            return "Caliburn";
-        }
+		if (player is "SonicPlayer") {
+			return "Caliburn";
+		}
 
-        if (player is "AmyPlayer") {
-            return "SilentRosePistol";
-        }
+		if (player is "AmyPlayer") {
+			return "SilentRosePistol";
+		}
 
-        if (player is "ClassicSonicPlayer") {
-            return "ChaosBlaster";
-        }
+		if (player is "ClassicSonicPlayer") {
+			return "ChaosBlaster";
+		}
 
-        if (player is "ShadowPlayer") {
-            return "HighShovel";
-        }
+		if (player is "ShadowPlayer") {
+			return "HighShovel";
+		}
 
-        return "";
-    }
+		return "";
+	}
 
 	string GetWeapon()
 	{
