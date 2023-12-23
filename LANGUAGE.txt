@@ -247,13 +247,13 @@ cresult3		= "\c[Classic] Sonic: \c[White] Barely made it...";
 dresult1		= "\c[Shadow] Shadow: \c[White] Yes!";
 dresult2		= "\c[Shadow] Shadow: \c[White] Need to stay focused.";
 
-stylerank_sss	= "Super Sonic Style!!!";
-stylerank_ss	= "Speeding Style!!!";
-stylerank_s		= "Skyrocketing!!";
-stylerank_a		= "Adventurer!";
-stylerank_b		= "Blazing";
-stylerank_c		= "Cruising";
-stylerank_d		= "Drifting";
+stylerank_d	    = "Drifting";
+stylerank_c	    = "Chaotic";
+stylerank_b	    = "Blazing";
+stylerank_a     = "Advanced";
+stylerank_s     = "Skyrocketing!";
+stylerank_ss    = "Speeding Style!!";
+stylerank_sss   = "Super Sonic Style!!!";
 
 // Random death messages
 death_rmsg1		= "Skill issue.";
