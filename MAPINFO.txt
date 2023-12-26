@@ -19,7 +19,7 @@ gameinfo
 	DimAmount = 0.30
 	EventHandlers = "LastWeaponHandler", "RemoveCyberSpaceArenaCorpses", "GiveEnergyOnDamage", "EnemiesBleedRings", "StyleSystem", "SpongyEnemies", "DeathCounter", "CheckpointRemovalHandler"
 	StatusBarClass = "SLL_StatusBar"
-	Intro { 
+	Intro {
 		Video = "Graphics/Intro.ivf"
 		Sound = "Graphics/Intro.ogg"
 	}
@@ -160,7 +160,7 @@ map TheBoss "Dis Is It"
 map SDHire "Hire This Zone"
 {
 	music = S_FRONT
-	sky1 = "GHZSKY"
+	sky1 = "REALSKY"
 	next = "SDLobby"
 	author = "That1M8Head"
 	partime = 220
