@@ -203,6 +203,7 @@ class PikoPikoHammer : LockLoadWeapon
 			}
 			PIKO EFZZZ 1 {
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+                cvar.FindCvar("DidHoming").SetBool(false);
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ALTATTACK && (!(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_ALTATTACK))) {
 					return ResolveState("AltFire");
 				}
