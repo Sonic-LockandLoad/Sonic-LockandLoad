@@ -1,4 +1,4 @@
-class LockLoadPlayer : PlayerPawn 
+class LockLoadPlayer : PlayerPawn
 {
 	int DoubleJumpCounter;
 	double OldZ;
@@ -53,7 +53,7 @@ class LockLoadPlayer : PlayerPawn
 		if (waterlevel && !player.onground && Vel.Z <= 5) {
 			Vel.Z -= Gravity;
 		}
-		
+
 		Super.FallAndSink(grav, oldfloorz);
 	}
 	States
@@ -72,7 +72,7 @@ class LockLoadPlayer : PlayerPawn
 			Goto Missile;
 		Pain:
 			PLAY G 4;
-			PLAY G 0; 
+			PLAY G 0;
 			PLAY G 4;
 			Goto Spawn;
 		Death.Drowned:
@@ -129,7 +129,7 @@ class LockLoadPlayer : PlayerPawn
 		cvar.FindCvar("CloseToEnemy").SetBool(CheckLOF(CLOFF_JUMPENEMY | CLOFF_SKIPOBJECT | CLOFF_MUSTBESHOOTABLE | CLOFF_JUMPNONHOSTILE, 128));
 		OldZ = Pos.Z;
 	}
-	
+
 	void ScaleXYVelocity(double scale, int ptr = AAPTR_DEFAULT)
 	{
 		// Also implements CheckStopped, because it's private
@@ -159,10 +159,10 @@ class LockLoadPlayer : PlayerPawn
 		int forward = GetPlayerInput(MODINPUT_FORWARDMOVE);
 		int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
 		bool is_moving = forward > 0 || sidem > 0 || forward < 0 || sidem < 0;
-		
+
 		if (waterlevel) {
 			bNOFRICTION = true;
-			
+
 			if (GetCvar("IsCrouching")) {
 				ScaleXYVelocity(0.99);
 			}
@@ -175,7 +175,7 @@ class LockLoadPlayer : PlayerPawn
 			else {
 				ScaleXYVelocity(0.85);
 			}
-			
+
 			if (Vel.Z >= 1) {
 				Vel.Z *= 0.95;
 			}
@@ -236,12 +236,12 @@ class LockLoadPlayer : PlayerPawn
 			A_SetSpeed(4);
 		}
 	}
-	
+
 	double GetCurrentVelocity()
 	{
 		return sqrt((Vel.X ** 2) + (Vel.Y ** 2));
 	}
-	
+
 	int GetDoubleJumpCount()
 	{
 		if (CountInv("ClassicCheck") && !CountInv("PowerHyper")) {
@@ -252,7 +252,7 @@ class LockLoadPlayer : PlayerPawn
 		}
 		return 1; // if all else fails, give an extra jump
 	}
-	
+
 	double GetHeightFromFloor()
 	{
 		return Pos.Z - GetZAt();
@@ -262,7 +262,7 @@ class LockLoadPlayer : PlayerPawn
 	{
 		// I probably don't need to re-implement all of this,
 		// but whatever lmao
-		
+
 		let player = self.player;
 		UserCmd cmd = player.cmd;
 
@@ -284,7 +284,7 @@ class LockLoadPlayer : PlayerPawn
 
 			[friction, movefactor] = GetFriction();
 			bobfactor = friction < ORIG_FRICTION ? movefactor : ORIG_FRICTION_FACTOR;
-			
+
 			if (!player.onground && !bNoGravity && !waterlevel) {
 				movefactor *= level.aircontrol;
 				bobfactor  *= level.aircontrol;
@@ -316,7 +316,7 @@ class LockLoadPlayer : PlayerPawn
 				Bob(Angle, cmd.forwardmove * bobfactor / 256., true);
 				ForwardThrust(forwardmove, Angle);
 			}
-			
+
 			if (sidemove) {
 				let a = Angle - 90;
 				Bob(a, cmd.sidemove * bobfactor / 256., false);
@@ -324,9 +324,9 @@ class LockLoadPlayer : PlayerPawn
 			}
 		}
 	}
-	
+
 	/* Following code borrowed from https://forum.zdoom.org/viewtopic.php?t=63091 */
-	
+
 	void ForwardThrust (double move, double angle)
 	{
 		if ((bNoGravity) && Pitch != 0 && !player.GetClassicFlight())
@@ -342,7 +342,7 @@ class LockLoadPlayer : PlayerPawn
 	{
 		let player = self.player;
 		UserCmd cmd = player.cmd;
-		
+
 		if (cmd.upmove < 0)
 		{
 			if (bNoGravity)
@@ -376,29 +376,29 @@ class LockLoadPlayer : PlayerPawn
 			}
 		}
 	}
-	
+
 	/* This concludes the code borrowed from https://forum.zdoom.org/viewtopic.php?t=63091 */
-	
+
 	override void CheckJump()
 	{
 		let player = self.player;
-		
+
 		double WallJumpOffset = 65;
 		double WallJumpDistance = 20;
-		
+
 		bool TouchingWall = GetCvar("CanWallJump");
 		int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 		int DoubleJumpCount = GetDoubleJumpCount();
-		
+
 		if (player.onground || GetCvar("DidHoming")) {
 			/* Reset the double jump counter once you touch the ground
 			   or do a Homing Attack */
 			DoubleJumpCounter = 0;
 			cvar.FindCvar("DidJump").SetBool(false); // Reset the DidJump CVAR as well
 		}
-		
+
 		bool JustJumped = GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP);
-		
+
 		cvar.FindCvar("CanJump").SetBool(DoubleJumpCounter < DoubleJumpCount || IsClassicNotHyper());
 
 		if (JustJumped && !IsBoostingMidAir()) {
@@ -419,7 +419,7 @@ class LockLoadPlayer : PlayerPawn
 			}
 		}
 	}
-	
+
 	void StandardJumpLogic()
 	{
 		cvar.FindCvar("DidJump").SetBool(true);
@@ -429,7 +429,7 @@ class LockLoadPlayer : PlayerPawn
 		if (jumpfac > 0) {
 			jumpvelz *= jumpfac;
 		}
-		
+
 		if (GetCvar("IsCrouching")) {
 			int maxrange = 170;
 			Vel.X *= 1.7;
@@ -444,7 +444,7 @@ class LockLoadPlayer : PlayerPawn
 		if (slopebonus < 0)  slopebonus = 0;
 		if (slopebonus > 15) slopebonus = 15;
 		Vel.Z = jumpvelz + slopebonus;
-		
+
 		bOnMobj = false;
 		player.jumpTics = 0;
 		if (!(player.cheats & CF_PREDICTING)) {
@@ -468,7 +468,7 @@ class LockLoadPlayer : PlayerPawn
 		}
 		return false;
 	}
-	
+
 	void DoWallJump(int WallJumpOffset, int WallJumpDistance, int JumpAngle)
 	{
 		int WallJumpHeight;
@@ -480,7 +480,7 @@ class LockLoadPlayer : PlayerPawn
 		}
 		ACS_NamedExecute("WallJump", 0, WallJumpHeight, WallJumpDistance, JumpAngle);
 	}
-	
+
 	bool IsBoostingMidAir()
 	{
 		int buttons = GetPlayerInput(MODINPUT_BUTTONS);
@@ -497,7 +497,7 @@ class LockLoadPlayer : PlayerPawn
 		int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 		return (CountInv("ClassicCheck") && buttons & BT_ALTATTACK && (CountInv("PowerSuper") || CountInv("PowerHyper")) && !player.onground);
 	}
-	
+
 	override bool CanCrouch()
 	{
 		player = self.player;
@@ -507,7 +507,7 @@ class LockLoadPlayer : PlayerPawn
 		Super.CanCrouch();
 		return true;
 	}
-	
+
 	void SetInitialCrouchSlideSpeed(double initial_speed)
 	{
 		if (GetCurrentVelocity() > initial_speed) {
@@ -519,27 +519,27 @@ class LockLoadPlayer : PlayerPawn
 		int forward_input = GetPlayerInput(INPUT_FORWARDMOVE) / 6400;
 		int side_input = GetPlayerInput(INPUT_SIDEMOVE) / 6144;
 		int old_buttons = GetPlayerInput(INPUT_OLDBUTTONS);
-		
+
 		bool just_pressed_crouch = !(old_buttons & BT_CROUCH);
 
 		if (just_pressed_crouch) {
 			int x_velocity_change = 0;
 			int y_velocity_change = 0;
-			
+
 			if (forward_input < 0) {
 				x_velocity_change = -initial_speed;
 			}
 			else if (forward_input > 0) {
 				x_velocity_change = initial_speed;
 			}
-			
+
 			if (side_input < 0) {
 				y_velocity_change = initial_speed;
 			}
 			else if (side_input > 0) {
 				y_velocity_change = -initial_speed;
 			}
-			
+
 			if (!x_velocity_change && !y_velocity_change) {
 				return;
 			}
@@ -582,11 +582,11 @@ class LockLoadPlayer : PlayerPawn
 		}
 		else A_StopSound(12);
 	}
-	
+
 	override void DeathThink()
 	{
 		// Yet another function I have to wholly re-implement :)
-		
+
 		let player = self.player;
 		int dir;
 		double delta;
@@ -633,12 +633,12 @@ class LockLoadPlayer : PlayerPawn
 			}
 		}
 		player.mo.CalcHeight ();
-			
+
 		if (player.attacker && player.attacker != self)
 		{ // Watch killer
 			double diff = deltaangle(angle, AngleTo(player.attacker));
 			double delta = abs(diff);
-	
+
 			if (delta < 10)
 			{ // Looking at killer, so fade damage and poison counters
 				if (player.damagecount)
@@ -671,9 +671,9 @@ class LockLoadPlayer : PlayerPawn
 			if (Level.maptime >= player.respawn_time || ((player.cmd.buttons & BT_USE) && player.Bot == NULL)) {
 				if (!cvar.FindCvar("PermadeathMode").GetBool()) {
 					player.cls = NULL;
-					
+
 					player.playerstate = (multiplayer || level.AllowRespawn || sv_singleplayerrespawn || G_SkillPropertyInt(SKILLP_PlayerRespawn)) ? PST_REBORN : PST_ENTER;
-					
+
 					if (special1 > 2) {
 						special1 = 0;
 					}
@@ -700,6 +700,11 @@ class LLSwitch : Actor
 		DamageFactor "Normal", 0;
 		DeathSound "switches/normbutn";
 	}
+    override void Tick()
+    {
+        Thing_Stop(0);
+        Super.Tick();
+    }
 	States
 	{
 		Death:
@@ -731,7 +736,7 @@ class SlamAtkObject : CustomInventory
 	int midfall;
 	int zdiff;
 	int fall_tics;
-	
+
 	action void DealSlamDamage(int slam_damage)
 	{
 		bool ok;
@@ -750,7 +755,7 @@ class SlamAtkObject : CustomInventory
 			Vel.Z += 2 * (invoker.zdiff / 300);
 		cvar.FindCvar("DidJump").SetBool(true);
 	}
-	
+
 	action void LaunchEnemies(int range, int thrust)
 	{
 		for (int set_angle = 0; set_angle <= 360; set_angle++) {
@@ -815,21 +820,21 @@ class SlamAtkObject : CustomInventory
 			TNT1 A 1
 			{
 				invoker.fall_tics++;
-				
+
 				if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
 					A_CustomPunch(70, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
 				else {
 					A_CustomPunch(45, CPF_PULLIN, 0, "InvisiblePuff", 75, 0, 0, "ArmorBonus", "sweapons/finalhit");
 				}
-				
+
 				int OFF_ABILITY = BT_ZOOM | BT_SPEED;
-				
+
 				if (GetPlayerInput(INPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_JUMP)) {
 					bool high_up_enough = Pos.Z - GetZAt() >= 10;
 					bool enough_time_passed = invoker.fall_tics >= 6;
 					bool just_pressed_crouch = GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_CROUCH;
-					
+
 					if (high_up_enough && enough_time_passed && !just_pressed_crouch) {
 						return ResolveState("SlamCancelJump");
 					}
@@ -839,11 +844,11 @@ class SlamAtkObject : CustomInventory
 						return ResolveState("SlamCancelOffhandAbility");
 					}
 				}
-				
+
 				if (player.onground) return ResolveState("SlamDone");
-				
+
 				A_ChangeVelocity(0, 0, -75, CVF_Relative|CVF_Replace);
-				
+
 				return ResolveState(null);
 			}
 			Goto SlamAttack+1;
