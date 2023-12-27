@@ -250,9 +250,9 @@ dresult2		= "\c[Shadow] Shadow: \c[White] Need to stay focused.";
 stylerank_d	    = "Drifting";
 stylerank_c	    = "Chaotic";
 stylerank_b	    = "Blazing";
-stylerank_a     = "Advanced";
+stylerank_a     = "Accelerated";
 stylerank_s     = "Skyrocketing!";
-stylerank_ss    = "Speeding Style!!";
+stylerank_ss    = "Speedy Skills!!";
 stylerank_sss   = "Super Sonic Style!!!";
 
 // Random death messages
