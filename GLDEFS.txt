@@ -23,6 +23,11 @@ PointLight OmniSwitch {
 	Size 50
 }
 
+PointLight SecretSwitch {
+	Color 1 0.8 0
+	Size 50
+}
+
 PointLight ActivatedSwitch {
 	Color 0 1 0
 	Size 50
@@ -84,6 +89,15 @@ Object OmniSwitch
 {
 	Frame ALLSA0 {
 		Light OmniSwitch
+	}
+	Frame ACTSA0 {
+		Light ActivatedSwitch
+	}
+}
+Object SecretSwitch
+{
+	Frame ALLSA0 {
+		Light SecretSwitch
 	}
 	Frame ACTSA0 {
 		Light ActivatedSwitch

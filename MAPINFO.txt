@@ -345,6 +345,7 @@ DoomEdNums
 	4158  = "AmySwitch"
 	4159  = "OmniSwitch"
 	4160  = "ClassicSonicSwitch"
+    4161  = "SecretSwitch"
 
 	19924 = "FastSpiderdemon"
 	19926 = "MechZombie"

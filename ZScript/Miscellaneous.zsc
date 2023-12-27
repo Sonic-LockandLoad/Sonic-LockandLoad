@@ -89,6 +89,15 @@ class OmniSwitch : LLSwitch
 	}
 }
 
+class SecretSwitch : OmniSwitch
+{
+    Default
+    {
+        //$Name Secret Switch
+		//$Category Lock & Load Objects
+    }
+}
+
 class Doox : SwitchingDecoration
 {
 	int speed;
