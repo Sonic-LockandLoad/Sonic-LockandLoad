@@ -254,6 +254,7 @@ stylerank_a     = "Accelerated";
 stylerank_s     = "Skyrocketing!";
 stylerank_ss    = "Speedy Skills!!";
 stylerank_sss   = "Super Sonic Style!!!";
+stylerank_u     = "UNDEFEATABLE"; // unimplemented as of now, but maybe in future?
 
 // Random death messages
 death_rmsg1		= "Skill issue.";
