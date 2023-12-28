@@ -517,11 +517,40 @@ class AcceleratedPistol : LockLoadWeapon
 		+PUFFONACTORS
 		+ALWAYSPUFF
 	}
+    action actor CheckTarget()
+    {
+        FTranslatedLineTarget ltinfo;
+        bool ltattack = LineAttack(angle, 8192, pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+        return ltinfo.linetarget;
+    }
+    action void SendEnemyUp(Actor enemy)
+    {
+        if (enemy == null) {
+            return;
+        }
+
+        if (enemy.Vel.Z > 0) {
+            enemy.Vel.Z += 1;
+        }
+        else {
+            enemy.Vel.Z = 0;
+        }
+    }
 	action void AccelFire()
 	{
 		A_PlaySound("sweapons/pistol", 1);
-		if (!player.onground) A_FireBullets(0, 0, 1, 20, "BulletPuff");
-		else A_FireBullets(0, 0, 1, 10, "BulletPuff");
+		if (!player.onground) {
+            A_FireBullets(0, 0, 1, 20, "BulletPuff");
+        }
+		else {
+            A_FireBullets(0, 0, 1, 10, "BulletPuff");
+        }
+        let hit_enemy = CheckTarget();
+        let enemy_touching_floor = hit_enemy && hit_enemy.Pos.Z > hit_enemy.GetZAt();
+        let looking_up = pitch < -10;
+        if (hit_enemy && enemy_touching_floor && looking_up) {
+            SendEnemyUp(hit_enemy);
+        }
 		A_GunFlash();
 		A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 	}
@@ -961,7 +990,7 @@ class SonicKick : CustomInventory
 	{
 		if (invoker.DidTarget) {
 			ProjectileKickBack = 1000;
-			target.DamageMobj(self, null, damage * random(1, randfactor), "SonicKick");
+			target.DamageMobj(self, self, damage * random(1, randfactor), "SonicKick");
 			A_StartSound("sweapons/finalhit", 10);
 		}
 		else {
