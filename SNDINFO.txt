@@ -23,6 +23,7 @@ sstyle/awesome				AWESOME	 // A
 sstyle/outstanding			OUTSTAND // S
 sstyle/amazing				AMAZING	 // SS
 sstyle/supersonic			SUPSONIC // SSS
+sstyle/unlimited   			SUPSONIC // U
 
 // Pickups
 
@@ -259,7 +260,7 @@ $random classic/taunt 		{ classic/taunt1 classic/taunt2 classic/taunt3 classic/t
 
 $random sglobal/nextlevel { sonic/nextlevel amy/nextlevel classic/nextlevel shadow/nextlevel }
 $alias intermission/paststats sglobal/nextlevel
-	
+
 /*
 		sonic/startup		s_strtup
 $alias  misc/startupdone	sonic/startup

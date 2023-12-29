@@ -41,6 +41,7 @@ as well as includes to the other ACS files.
 #define S 5
 #define SS 6
 #define SSS 7
+#define U 8
 
 // ACS file inclusions
 #include "sll-audio.acs"     // Sounds and music

@@ -74,7 +74,7 @@ MenuInactive LiBlue
 
 Hyper
 {
-	#f2bdf1  #c344c1  
+	#f2bdf1  #c344c1
 }
 
 S
@@ -100,4 +100,44 @@ C
 D
 {
 	#424242  #a2a2a2
+}
+
+U_Style
+{
+    #4e1487  #cc1cff
+}
+
+SSS_Style
+{
+    #8f6e1b  #FFD259
+}
+
+SS_Style
+{
+    #8f6e1b  #FFE759
+}
+
+S_Style
+{
+    #8f6e1b  #F5FF59
+}
+
+A_Style
+{
+    #001844  #4d87ff
+}
+
+B_Style
+{
+    #5c2d0a  #FF6D00
+}
+
+C_Style
+{
+    #006112  #00EE2D
+}
+
+D_Style
+{
+    #005577  #06B1F6
 }

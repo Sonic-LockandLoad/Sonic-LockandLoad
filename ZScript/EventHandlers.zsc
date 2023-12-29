@@ -223,26 +223,29 @@ class StyleSystem : EventHandler
 		int penalty;
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		switch (stylerank) {
-			case 0: // Empty
+			case 0: // E
 				penalty = 0;
 				break;
-			case 1: // Drifting
-			case 2: // Cruising
-			case 3: // Blazing
+			case 1: // D
+			case 2: // C
+			case 3: // B
 				penalty = 64;
 				break;
-			case 4: // Adventurer!
+			case 4: // A
 				penalty = 128;
 				break;
-			case 5: // Skyrocketing!!
+			case 5: // S
 				penalty = 524;
 				break;
-			case 6: // Speeding Style!!!
+			case 6: // SS
 				penalty = 1192;
 				break;
-			case 7: // Super Sonic Style!!!
+			case 7: // SSS
 				penalty = 2048;
 				break;
+			case 8: // U
+                penalty = 4096;
+                break;
 		}
 		penalty += (e.damage / 16) * (score / 16);
 		penalty *= stylerank;
@@ -271,6 +274,7 @@ class StyleSystem : EventHandler
 			case 5: // S
 			case 6: // SS
 			case 7: // SSS
+			case 8: // U
 				cap = 5000;
 				break;
 		}
@@ -298,6 +302,7 @@ class StyleSystem : EventHandler
 				break;
 			case 6: // SS
 			case 7: // SSS
+			case 8: // U
 				deprecation = 512;
 				break;
 		}
@@ -325,13 +330,14 @@ class StyleSystem : EventHandler
 		reward_tick++;
 
 		// Set your Style Rank
-		if 		(score >= 230000) cvar.FindCvar("StyleRank").SetInt(7); // SSS
-		else if	(score >= 180000) cvar.FindCvar("StyleRank").SetInt(6); // SS
-		else if (score >= 150000) cvar.FindCvar("StyleRank").SetInt(5); // S
-		else if (score >= 100000) cvar.FindCvar("StyleRank").SetInt(4); // A
-		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(3); // B
-		else if (score >= 30000)  cvar.FindCvar("StyleRank").SetInt(2); // C
-		else if (score >= 15000)  cvar.FindCvar("StyleRank").SetInt(1); // D
+		if 		(score >= 230000) cvar.FindCvar("StyleRank").SetInt(8); // U
+		else if	(score >= 180000) cvar.FindCvar("StyleRank").SetInt(7); // SSS
+		else if (score >= 150000) cvar.FindCvar("StyleRank").SetInt(6); // SS
+		else if (score >= 100000) cvar.FindCvar("StyleRank").SetInt(5); // S
+		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(4); // A
+		else if (score >= 30000)  cvar.FindCvar("StyleRank").SetInt(3); // B
+		else if (score >= 15000)  cvar.FindCvar("StyleRank").SetInt(2); // C
+		else if (score >= 10000)  cvar.FindCvar("StyleRank").SetInt(1); // D
 		else 					  cvar.FindCvar("StyleRank").SetInt(0); // E
 
 		// Obtain Style Rank to sync up
@@ -355,6 +361,7 @@ class StyleSystem : EventHandler
         int multiplier;
 
 		switch (style_rank) {
+			case 8:
 			case 7:
 				delay = 1;
                 multiplier = 2;
