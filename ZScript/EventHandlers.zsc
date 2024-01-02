@@ -219,7 +219,6 @@ class StyleSystem : EventHandler
 
 	private void DeductStyleScore(WorldEvent e)
 	{
-		/* Init variable and get style rank */
 		int penalty;
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		switch (stylerank) {
@@ -227,31 +226,29 @@ class StyleSystem : EventHandler
 				penalty = 0;
 				break;
 			case 1: // D
+				penalty = 5000;
+				break;
 			case 2: // C
+				penalty = 5000;
+				break;
 			case 3: // B
-				penalty = 64;
+				penalty = 15000;
 				break;
 			case 4: // A
-				penalty = 128;
+				penalty = 30000;
 				break;
 			case 5: // S
-				penalty = 524;
+				penalty = 40000;
 				break;
 			case 6: // SS
-				penalty = 1192;
+				penalty = 50000;
 				break;
 			case 7: // SSS
-				penalty = 2048;
+				penalty = 60000;
 				break;
 			case 8: // U
-                penalty = 4096;
+                penalty = 70000;
                 break;
-		}
-		penalty += (e.damage / 16) * (score / 16);
-		penalty *= stylerank;
-		if (penalty < 1) {
-			score = 0;
-			return;
 		}
 		score -= penalty;
 	}
@@ -330,8 +327,8 @@ class StyleSystem : EventHandler
 		reward_tick++;
 
 		// Set your Style Rank
-		if 		(score >= 230000) cvar.FindCvar("StyleRank").SetInt(8); // U
-		else if	(score >= 180000) cvar.FindCvar("StyleRank").SetInt(7); // SSS
+		if 		(score >= 280000) cvar.FindCvar("StyleRank").SetInt(8); // U
+		else if	(score >= 210000) cvar.FindCvar("StyleRank").SetInt(7); // SSS
 		else if (score >= 150000) cvar.FindCvar("StyleRank").SetInt(6); // SS
 		else if (score >= 100000) cvar.FindCvar("StyleRank").SetInt(5); // S
 		else if (score >= 60000)  cvar.FindCvar("StyleRank").SetInt(4); // A
