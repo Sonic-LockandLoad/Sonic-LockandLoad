@@ -194,7 +194,8 @@ skill easy
 	PlayerClassName = "$classic", "$skill1_classic"
 	PlayerClassName = "$shadow", "$skill1_shadow"
 	name = "$skill1"
-	spawnfilter = 3
+	spawnfilter = 4
+    damagefactor = 0.5
 	totalinfighting
 	mustconfirm = "$skill_text1"
 }

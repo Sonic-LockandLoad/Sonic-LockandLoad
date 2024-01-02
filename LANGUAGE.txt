@@ -161,7 +161,7 @@ DOSY = "\c[LiBlue] Thanks for playing Sonic: Lock & Load!\nAre you sure you want
 
 STARTUP1 = "\c[Sonic]Welcome to Sonic: Lock & Load!";
 
-skill_text1 = "\c[Green]Fewer enemies are around, providing\na relaxing and stress-free experience.\n\nRecommended if you're new\nto action games.";
+skill_text1 = "\c[Green]Enemies deal half the damage they normally would.\n\nRecommended if you're new\nto action games.";
 skill_text2 = "\c[Yellow]Enemies attack and move slower,\nso it's easier to avoid attacks.\n\nRecommended for people new\nto Sonic: Lock & Load.";
 skill_text3 = "\c[LiBlue]Standard gameplay across the board.\nGetting careless won't end well.\n\nThe recommended Sonic: Lock & Load experience.";
 skill_text4 = "\c[Red]You take twice the usual damage.\nYou'd best bring your best.\n\nRecommended for those seeking\nmore of a challenge.";
@@ -254,7 +254,7 @@ stylerank_a     = "Accelerated";
 stylerank_s     = "Skyrocketing!";
 stylerank_ss    = "Speedy Skills!!";
 stylerank_sss   = "Super Sonic Style!!!";
-stylerank_u     = "UNDEFEATABLE"; // unimplemented as of now, but maybe in future?
+stylerank_u     = "UNDEFEATABLE";
 
 // Random death messages
 death_rmsg1		= "Skill issue.";
@@ -293,7 +293,7 @@ title_msg14		= "Made with \c[Red]♥ \c[White]by Arsalan 'Velocity' Kazmi!\n\c[G
 title_msg15		= "Thanks to the ZDoom community and\nSonic fan game community for the assistance\nand feedback over the years!";
 title_msg16		= "Don't stand still in combat.\nIt'll lead to a quick failure.";
 title_msg17		= "While you're in the heat of the moment,\ntry not to get overconfident. It won't end well.";
-title_msg18		= "If ULTRAKILL is Quake + Devil May Cry,\nSonic: Lock & Load is SRB2 + Devil May Cry.";
+title_msg18		= "Devil May Blast. Devil May Robo Blast?\nEh, I'll come up with a better metaphor later.";
 title_msg19		= "I never thought I'd get this far.";
 title_msg20		= "If you see this, say 'flanksteak'.";
 
