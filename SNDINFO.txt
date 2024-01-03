@@ -299,6 +299,7 @@ $playersound classic male 		*death                	sonicdoom/cdeath
 $playeralias classic male 		*usefail              	classic/cantuse
 $playersound classic male 		*jump                 	cjump
 $playersound classic male 		*doublejump				cjump
+$playersound classic male 		*walljump				cjump
 $playersound classic male 		*grunt                	C_LAND
 $playersound classic male 		*land                 	C_LAND
 $playersound classic male 		*fall	                bfall

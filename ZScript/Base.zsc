@@ -408,7 +408,7 @@ class LockLoadPlayer : PlayerPawn
 			else if (level.IsJumpingAllowed() && player.onground) {
 				StandardJumpLogic();
 			}
-			else if (!CountInv("ClassicCheck") && TouchingWall && GetHeightFromFloor() > 60) {
+			else if (TouchingWall && GetHeightFromFloor() > 60) {
 				DoubleJumpCounter = 0; // You get a free double jump after a wall jump
 				DoWallJump(WallJumpOffset, WallJumpDistance, JumpAngle);
 			}
