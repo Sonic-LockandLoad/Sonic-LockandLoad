@@ -23,7 +23,7 @@ sstyle/awesome				AWESOME	 // A
 sstyle/outstanding			OUTSTAND // S
 sstyle/amazing				AMAZING	 // SS
 sstyle/supersonic			SUPSONIC // SSS
-sstyle/unlimited   			SUPSONIC // U
+sstyle/unlimited   			UNLIMTED // U
 
 // Pickups
 
