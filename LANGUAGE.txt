@@ -323,6 +323,10 @@ level3_funny    = "A big wet.";
 levelh_funny1   = "There's a man who has artistic vision...";
 levelh_funny2   = "This man's still a master of the medium!";
 
+// Entryway (DOOM II levels)
+leveld_normal   = "Play the standard DOOM II levels as per usual.";
+leveld_funny    = "What, do you not like the Sonic levels?";
+
 level_locked_1  = "This teleporter to";
 // level name is expected to go after level_locked_1
 level_locked_2  = "is locked.";
