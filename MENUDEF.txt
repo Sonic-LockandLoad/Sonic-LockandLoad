@@ -178,21 +178,12 @@ OptionMenu "StyleSystemMenu"
 	StaticText ""
 
 	Option "Style System", "StyleSystem", "EnabledOrNot"
-	StaticText "Continuously attack enemies to rack up Style Points and", "White"
-	StaticText "get a high Style Rank! Getting hit or just waiting will", "White"
-	StaticText "make your Style Points go down.", "White"
 	StaticText ""
 
 	Option "Callouts", "StyleCallouts", "EnabledOrNot"
-	StaticText "When enabled, voice callouts will play upon raising your", "White"
-	StaticText "Style Rank. Doesn't play if the rank raises to a level", "White"
-	StaticText "it was previously on.", "White"
 	StaticText ""
 
-	Option "Show Points", "StylePoints", "EnabledOrNot"
-	StaticText "Display your Style Points below the Style Rank name.", "White"
-	StaticText "Helpful for use as a metric on how much style you're", "White"
-	StaticText "accumulating.", "White"
+    Option "Staleness Multiplier", "StaleMultiplier", "StaleMultiplier"
 	StaticText ""
 
 	Option "Energy Regeneration", "StyleBonuses", "EnabledOrNot"
@@ -320,4 +311,11 @@ OptionValue "ArenaMusic"
 	3, "Egg Reverie Zone"
 	4, "All Hail Shadow"
 	5, "Custom"
+}
+OptionValue "StaleMultiplier"
+{
+    0.0, "No Staling (0x)"
+	0.5, "Generous (0.5x)"
+	1.0, "Standard (1x)"
+	2.0, "Harsh (2x)"
 }

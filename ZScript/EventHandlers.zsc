@@ -200,6 +200,7 @@ class StyleSystem : EventHandler
 		int staleness_factor = 224;
 		if (shotgun_used) staleness_factor = 96;
 		int staleness = staleness_factor * consecutive_uses;
+        staleness *= cvar.FindCvar("StaleMultiplier").GetFloat();
 		staleness = clamp(staleness, 0, scorebonus);
 
 		// Apply staleness, unless an Offhand Attack was used

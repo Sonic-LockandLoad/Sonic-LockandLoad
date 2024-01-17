@@ -26,15 +26,17 @@ user bool CheckpointsEnabled		= true;
 
 user bool GiveEnergyOnDamage		= false;
 user bool EnemiesBleedRings			= false;
-user bool StyleSystem				= true;
-user bool StyleCallouts				= true;
-user bool StylePoints				= true;
-user bool StyleBonuses  			= true;
 user bool SpongyEnemies				= false;
 user int  Sponginess				= 2;
 user bool OneHitMode				= false;
 user bool CountDeaths				= false;
 user bool PermadeathMode			= false;
+
+user bool StyleSystem				= true;
+user bool StyleCallouts				= true;
+user bool StylePoints				= true;
+user bool StyleBonuses  			= true;
+user float StaleMultiplier          = 1;
 
 /* Temporary CVARs */
 user noarchive bool	  Sliding			= false;
