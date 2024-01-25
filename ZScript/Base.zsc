@@ -770,19 +770,14 @@ class SlamAtkObject : CustomInventory
 		}
 	}
 
-	action void SlamAttack()
+	action void SlamAttack(bool is_slam_bounce = false)
 	{
 		A_PlaySound("*slam", 1);
 		LaunchEnemies(512, 20 + invoker.zdiff / 41);
 		DealSlamDamage(random(1, 8) * 128);
-	}
-
-	action void BoundAttack()
-	{
-		A_PlaySound("*slam", 2);
-		LaunchEnemies(512, 20 + invoker.zdiff / 41);
-		DoSlamBounce();
-		DealSlamDamage(random(1, 8) * 64);
+        if (is_slam_bounce) {
+            DoSlamBounce();
+        }
 	}
 
 	override void Tick()
@@ -893,7 +888,7 @@ class SlamAtkObject : CustomInventory
 			Stop;
 		BoundDone:
 			TNT1 A 1 A_Stop();
-			TNT1 A 1 BoundAttack();
+			TNT1 A 1 SlamAttack(true);
 			TNT1 A 3;
 			Stop;
 	}
