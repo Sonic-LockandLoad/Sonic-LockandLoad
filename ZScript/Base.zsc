@@ -763,11 +763,9 @@ class SlamAtkObject : CustomInventory
 			bool ltattack = LineAttack(set_angle, range, 0, 0, 'Shockwave', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
 			let ltarget = ltinfo.linetarget;
 			if (ltarget && (ltarget.bIsMonster || ltarget.GetClassName() == "Doox")) {
-				int min = 1;
-				int max = 20;
-				if (thrust < min) thrust = min;
-				if (thrust > max) thrust = max;
-				ltarget.Vel.Z += thrust;
+				thrust = clamp(thrust, 1, 300);
+                ltarget.DamageMobj(self, self, 35, "Shockwave");
+				ltarget.Vel.Z = thrust + random(-3, 3);
 			}
 		}
 	}
@@ -775,14 +773,14 @@ class SlamAtkObject : CustomInventory
 	action void SlamAttack()
 	{
 		A_PlaySound("*slam", 1);
-		LaunchEnemies(512, invoker.zdiff / 256);
-		A_Explode(35, 300, XF_NOTMISSILE, false, 0, 0, 10, "BulletPuff");
+		LaunchEnemies(512, 20 + invoker.zdiff / 41);
 		DealSlamDamage(random(1, 8) * 128);
 	}
 
 	action void BoundAttack()
 	{
 		A_PlaySound("*slam", 2);
+		LaunchEnemies(512, 20 + invoker.zdiff / 41);
 		DoSlamBounce();
 		DealSlamDamage(random(1, 8) * 64);
 	}
