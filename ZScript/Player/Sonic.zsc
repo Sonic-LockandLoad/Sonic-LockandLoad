@@ -231,7 +231,7 @@ class BoostEnabledWeapon : LockLoadWeapon
 				A_Light(0);
 				if (CountInv("PowerHyper")) A_Overlay(-27, "HyperBoostFadeOut");
 				else if (CountInv("PowerSuper")) A_Overlay(-27, "SuperBoostFadeOut");
-				else A_Overlay(-27, "BoostFadeOut");
+				else if (CountInv("ChaosEnergy")) A_Overlay(-27, "BoostFadeOut");
 			}
 			Goto Ready;
 		BoostFadeOut:
