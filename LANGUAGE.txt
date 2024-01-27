@@ -140,14 +140,14 @@ BOSSEND =
 	"stone wall, waiting for the player to\n"
 	"start a new game...";
 
-QUITMSG1 = "\c[MenuActive] I see your problem... too slow!";
-QUITMSG2 = "\c[MenuActive] What's the matter? Can't keep up?";
-QUITMSG3 = "\c[MenuActive] I've already lapped you three times...";
-QUITMSG4 = "\c[MenuActive] Wait! What about your memories?!";
-QUITMSG5 = "\c[MenuActive] Talk about low budget mods...";
-QUITMSG6 = "\c[MenuActive] How long is this gonna go on?";
-QUITMSG7 = "\c[MenuActive] You going off to play a better fan game?";
-QUITMSG8 = "\c[MenuActive] <Insert funny Sonic reference here>";
+QUITMSG1 = "\c[LiBlue] I see your problem... too slow!";
+QUITMSG2 = "\c[LiBlue] What's wrong? Too fast for you?";
+QUITMSG3 = "\c[LiBlue] Heeey!! What about your memories?!";
+QUITMSG4 = "\c[LiBlue] Talk about low budget mods, no food or movies... I'm outta here!";
+QUITMSG5 = "\c[LiBlue] How long is this gonna go on?";
+QUITMSG6 = "\c[LiBlue] You're trying to say you like Sonic Robo Blast 2 better, huh?";
+QUITMSG7 = "\c[LiBlue] You're coming back, though, right? Right??";
+QUITMSG8 = "\c[LiBlue] Oh, I get it, you're going to go get some DLC!";
 
 NEWSAVE = "New Save Data";
 SAVEDEAD = "\c[MenuInactive] You're not currently playing.\n\nPress a key to go back.";
