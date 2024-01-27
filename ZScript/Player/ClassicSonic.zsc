@@ -671,24 +671,9 @@ class SpinAttack : CustomInventory
 		A_SetSize(-1, height);
 		Player.ViewHeight = height;
 	}
-	action void GroundSpin(int damage)
-	{
-		int forward = GetPlayerInput(MODINPUT_FORWARDMOVE);
-		int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
-		bool holding_movement_keys = forward > 0 || sidem > 0 || forward < 0 || sidem < 0;
-		if (holding_movement_keys) {
-			A_CustomPunch(damage, false, CPF_NOTURN, "SonicPunchPuff", 256, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			int speed = sqrt((Vel.X ** 2) + (Vel.Y ** 2));
-			SetHeight(21);
-			A_ChangeVelocity(forward / 200 * speed / 32, sidem / -200 * speed / 32, 0, CVF_Relative|CVF_Replace);
-		}
-		else {
-			A_CustomPunch(damage, false, CPF_NOTURN, "SonicPunchPuff", 128, 0, 0, "ArmorBonus", "sweapons/finalhit");
-			A_ChangeVelocity(30, 0, 0, CVF_Relative|CVF_Replace);
-		}
-	}
 	action void DoubleSpin(int spread_x, int spread_y, int distance, int damage)
 	{
+		A_Light(0);
 		for (int x = 0; x <= 80; x++) {
 			FTranslatedLineTarget t;
 			int rx = random(-spread_x, spread_x);
@@ -699,16 +684,6 @@ class SpinAttack : CustomInventory
 			if (t.linetarget) A_StartSound("sweapons/finalhit", CHAN_WEAPON);
 		}
 	}
-	action void DoSpinAttack()
-	{
-		A_Light(0);
-		if (player.onground) {
-			GroundSpin(80);
-		}
-		else {
-			DoubleSpin(15, 15, 256, 8);
-		}
-	}
 	States
 	{
 		Use:
@@ -717,13 +692,8 @@ class SpinAttack : CustomInventory
 			Fail;
 		StartAttack:
 			TNT1 A 0 {
-				if (player.onground) {
-					A_StartSound("sweapons/spin", 8);
-				}
-				else {
-					A_StartSound("sweapons/instashield", 8);
-					A_GiveInventory("InstaShield");
-				}
+				A_StartSound("sweapons/instashield", 8);
+				A_GiveInventory("InstaShield");
 				A_Light(3);
 				A_OverlayOffset(9, 0, 128);
 				if (CountInv("PowerHyper")) {
@@ -739,19 +709,16 @@ class SpinAttack : CustomInventory
 			}
 			Stop;
 		Attack:
-			SPIN A 1 DoSpinAttack();
+			SPIN A 1 DoubleSpin(5, 5, 128, 4);
 			SPIN BCDEFEDCB 1;
-			Goto EndAttack;
+			Stop;
 		SuperAttack:
-			SSPN A 1 DoSpinAttack();
+			SSPN A 1 DoubleSpin(15, 15, 256, 8);
 			SSPN BCDEFEDCB 1;
-			Goto EndAttack;
+			Stop;
 		HyperAttack:
-			HSPN A 1 DoSpinAttack();
+			HSPN A 1 DoubleSpin(15, 15, 256, 8);
 			HSPN BCDEFEDCB 1;
-			Goto EndAttack;
-		EndAttack:
-			TNT1 A 10 SetHeight(42);
 			Stop;
 	}
 	override void DoEffect()
@@ -764,7 +731,7 @@ class SpinAttack : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS)&BT_RELOAD && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS)&BT_RELOAD) && inuse == 0)
 		{
 			owner.UseInventory(self);
-			inuse = 30;
+			inuse = 10;
 		}
 	}
 }
