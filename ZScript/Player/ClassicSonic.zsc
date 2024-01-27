@@ -674,7 +674,9 @@ class SpinAttack : CustomInventory
 	action void DoubleSpin(int spread_x, int spread_y, int distance, int damage)
 	{
 		A_Light(0);
-		for (int x = 0; x <= 80; x++) {
+        int tracer_count = 15;
+        damage = clamp(damage, 1, damage / tracer_count);
+		for (int x = 0; x <= tracer_count; x++) {
 			FTranslatedLineTarget t;
 			int rx = random(-spread_x, spread_x);
 			int ry = random(-spread_y, spread_y);
@@ -693,6 +695,7 @@ class SpinAttack : CustomInventory
 		StartAttack:
 			TNT1 A 0 {
 				A_StartSound("sweapons/instashield", 8);
+                A_AlertMonsters();
 				A_GiveInventory("InstaShield");
 				A_Light(3);
 				A_OverlayOffset(9, 0, 128);
@@ -709,15 +712,15 @@ class SpinAttack : CustomInventory
 			}
 			Stop;
 		Attack:
-			SPIN A 1 DoubleSpin(5, 5, 128, 4);
+			SPIN A 1 DoubleSpin(5, 5, 128, 32);
 			SPIN BCDEFEDCB 1;
 			Stop;
 		SuperAttack:
-			SSPN A 1 DoubleSpin(15, 15, 256, 8);
+			SSPN A 1 DoubleSpin(15, 15, 256, 64);
 			SSPN BCDEFEDCB 1;
 			Stop;
 		HyperAttack:
-			HSPN A 1 DoubleSpin(15, 15, 256, 8);
+			HSPN A 1 DoubleSpin(15, 15, 256, 128);
 			HSPN BCDEFEDCB 1;
 			Stop;
 	}
