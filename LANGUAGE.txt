@@ -334,6 +334,9 @@ level_locked_3  = "Complete";
 // previous level name is expected to go after level_locked_3
 level_locked_4  = "first.";
 
+autosave_alert = "Save data warning!";
+change_autosave_level = "Please go into Options > Advanced Options > Miscellaneous Options and set 'Enable autosaves' to 'Scripts Only'. Checkpoints and on-level-entry saving will not work or break otherwise.";
+
 MENU_NEWGAME 	= "New Game";
 MENU_ABOUT 		= "About";
 MENU_OPTIONS 	= "Options";

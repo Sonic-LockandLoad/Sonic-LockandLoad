@@ -1,7 +1,7 @@
 /* Visit sll-base.acs for information */
 
 script "GetLevelTargetScore" (void)
-// This is a separate script and not a function 
+// This is a separate script and not a function
 // so I can call it from ZScript.
 {
 	int score;
@@ -23,17 +23,17 @@ script "GetLevelTargetScore" (void)
 			break;
 		case 73: // Hire This Zone
 			score = 10000;
-			// 
+			//
 			break;
 		default:
 			score = 0;
 			break;
 	}
-	
+
 	if (score == 0) {
 		score = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) * 90;
 	}
-	
+
 	SetResultValue(score);
 }
 
@@ -47,7 +47,7 @@ script "GoalRing" (void)
 	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
 	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
 	str Rank;
-	
+
 	// Your score
 	if (CurrentRings > 300) {
 		score += 600 + (CurrentRings - 300);
@@ -57,7 +57,7 @@ script "GoalRing" (void)
 	}
 	score += KilledMonsters * 95;
 	if (score < 0) score = 0;
-	
+
 	// Stop the player and remove their form and invincibility
 	Thing_Stop(1001);
 	TakeInventory("PowerInvulnerable", 1);
@@ -66,24 +66,24 @@ script "GoalRing" (void)
 	ACS_NamedTerminate("TransformSuper", 0);
 	ACS_NamedTerminate("TransformHyper", 0);
 	SetMugShotState("Normal");
-	
+
 	Delay(5);
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
-	
+
 	// Your target score
 	targetscore = ACS_NamedExecuteWithResult("GetLevelTargetScore");
-	
+
 	str TimeString = "Time: ";
 	str ScoreString = "Score: ";
 	if (LevelTime <= ParTime) TimeString = "Time: \c[Gold]";
 	if (score >= targetscore) ScoreString = "Score: \c[Gold]";
-	
+
 	HudMessage(s:TimeString, d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime), s:"\n",
 			   s:ScoreString, d:score, s:"\n\n",
-			   s:"Target Time: ", d:ParTime / 60, s:":", s:DoubleDigitSeconds(ParTime), s:"\n", 
-			   s:"Target Score: ", d:targetscore, s:"\n"; 
+			   s:"Target Time: ", d:ParTime / 60, s:":", s:DoubleDigitSeconds(ParTime), s:"\n",
+			   s:"Target Score: ", d:targetscore, s:"\n";
 			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
-			   
+
 	// Victory message and rank
 	bool s_rank = score >= targetscore && LevelTime <= ParTime;
 	bool a_rank = score >= targetscore;
@@ -117,14 +117,14 @@ script "GoalRing" (void)
 			break;
 		case Shadow:
 			SetMusic("D_VICTOR");
-			jingledelay = 35*6; 
+			jingledelay = 35*6;
 			HudMessage(s:"\c[Shadow]Mission Cleared"; HUDMSG_PLAIN, 6, CR_WHITE, 1.5, 0.4, 0, 1.0);
 			break;
 		default:
 			break;
 	}
 	Delay(jingledelay);
-	
+
 	// Setting the image to be used with HudMessage
 	// In addition, we set the colour for the "+" addition
 	str plus_string;
@@ -148,7 +148,7 @@ script "GoalRing" (void)
 		SetFont("d_rank");
 		plus_string = "\c[D]+";
 	}
-	
+
 	AmbientSound("sglobal/rankget", 127);
 	// For the unenlightened, "A" plus an image font will display that image.
 	HudMessage(s:"A"; HUDMSG_PLAIN, 8, CR_UNTRANSLATED, 1.5, 0.65, 0, 1.0);
@@ -320,4 +320,19 @@ script "SetDarkCyberSpaceArena" ENTER
 			ChangeSky("NIGHTSKY", "NIGHTSKY");
 		}
 	}
+}
+
+#define AUTOSAVE_ON_REQUEST 1 // known as "Scripts Only" in the options menu
+
+script "SaveOnLevelEnter" ENTER
+{
+    int level = GetLevelInfo(LEVELINFO_LEVELNUM);
+
+    if (GetCvar("disableautosave") != AUTOSAVE_ON_REQUEST) {
+        Log(s:"\c[Yellow]", l:"autosave_alert", s:" \c[Red]", l:"change_autosave_level");
+    }
+
+    if (level != CYBER_SPACE_ARENA) {
+        AutoSave();
+    }
 }
