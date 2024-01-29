@@ -193,12 +193,12 @@ class StyleSystem : EventHandler
 
 		/* Limit score bonus if attack was Spin Dash or Boost */
 		if (e.damagetype == "SpinDash" || e.DamageType == "Boost") {
-			scorebonus /= 8;
+			scorebonus /= 4;
 		}
 
 		/* Calculate staleness */
 		int staleness_factor = 224;
-		if (shotgun_used) staleness_factor = 96;
+		if (shotgun_used) staleness_factor /= 2;
 		int staleness = staleness_factor * consecutive_uses;
         staleness *= cvar.FindCvar("StaleMultiplier").GetFloat();
 		staleness = clamp(staleness, 0, scorebonus);
