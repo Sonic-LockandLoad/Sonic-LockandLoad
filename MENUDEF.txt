@@ -270,17 +270,6 @@ OptionValue "EnabledOrNotMus"
 	0, "Don't change music"
 	1, "Change music"
 }
-OptionValue "Arrangement"
-{
-	0, "Vertical"
-	1, "Horizontal"
-}
-OptionValue "DoubleJump"
-{
-	0, "Disabled"
-	1, "No Momentum"
-	2, "Keep Momentum"
-}
 OptionValue "HUDType"
 {
 	0, "Unified" 		// Sonic: Lock & Load HUD
