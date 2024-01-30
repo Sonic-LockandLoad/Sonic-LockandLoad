@@ -205,6 +205,11 @@ OptionMenu "CyberSpaceArenaMenu"
     Option "Dark Mode", "CSA_DarkMode", "EnabledOrNot"
     StaticText ""
 
+	Option "Music", "ArenaMusic", "ArenaMusic"
+	TextField "Custom Music File", "ArenaCustomMusic"
+	StaticText "Must be the lump name (i.e. S_BATTLE)", "White"
+	StaticText ""
+
     Option "Spawn Ring Boxes", "CSA_SpawnRings", "EnabledOrNot"
     StaticText ""
 
@@ -315,10 +320,10 @@ OptionValue "HomingReticle"
 OptionValue "ArenaMusic"
 {
 	0, "Character-Specific"
-	1, "Undefeatable"
-	2, "Break Through It All"
-	3, "Egg Reverie Zone"
-	4, "All Hail Shadow"
+	1, "$ARENAMUS_SONIC"
+	2, "$ARENAMUS_AMY"
+	3, "$ARENAMUS_CLASSIC"
+	4, "$ARENAMUS_SHADOW"
 	5, "Custom"
 }
 OptionValue "ArenaEnergy"

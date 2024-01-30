@@ -256,6 +256,11 @@ stylerank_ss    = "Speedy Skills!!";
 stylerank_sss   = "Super Sonic Style!!!";
 stylerank_u     = "UNDEFEATABLE";
 
+ARENAMUS_SONIC   = "Signs (Cyber Space 4-9)";
+ARENAMUS_AMY     = "Ephemeral (Cyber Space 4-2)";
+ARENAMUS_CLASSIC = "Rewind to go ahead (Cyber Space 4-7)";
+ARENAMUS_SHADOW  = "Hype Street -Revisited- (Cyber Space 4-F)";
+
 // Random death messages
 death_rmsg1		= "Skill issue.";
 death_rmsg2		= "Having trouble with enemies?\nTry focusing on evading attacks.";
