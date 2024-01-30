@@ -669,7 +669,8 @@ class LockLoadPlayer : PlayerPawn
 		// Modified code starts here
 		if ((player.cmd.buttons & BT_USE || ((deathmatch || alwaysapplydmflags) && sv_forcerespawn)) && !sv_norespawn) {
 			if (Level.maptime >= player.respawn_time || ((player.cmd.buttons & BT_USE) && player.Bot == NULL)) {
-				if (!cvar.FindCvar("PermadeathMode").GetBool()) {
+                let is_cyber_space_arena = level.levelnum == 69;
+				if (!cvar.FindCvar("PermadeathMode").GetBool() && !is_cyber_space_arena) {
 					player.cls = NULL;
 
 					player.playerstate = (multiplayer || level.AllowRespawn || sv_singleplayerrespawn || G_SkillPropertyInt(SKILLP_PlayerRespawn)) ? PST_REBORN : PST_ENTER;

@@ -21,7 +21,6 @@ user bool ControlHints				= false;
 user bool Tutorials					= true;
 user bool EnergyBlades				= true;
 user bool ShowScore					= true;
-user bool DarkArena					= false;
 user bool CheckpointsEnabled		= true;
 
 user bool GiveEnergyOnDamage		= false;
@@ -37,6 +36,11 @@ user bool StyleCallouts				= true;
 user bool StylePoints				= true;
 user bool StyleBonuses  			= true;
 user float StaleMultiplier          = 1;
+
+user bool CSA_DarkMode              = false;
+user bool CSA_SpawnEnergy           = true;
+user bool CSA_SpawnRings            = true;
+user bool CSA_SpawnWeapons          = false;
 
 /* Temporary CVARs */
 user noarchive bool	  Sliding			= false;
@@ -54,6 +58,7 @@ user noarchive int 	  EclipseLimiter	= 0;
 user noarchive int	  StyleRank			= 0;
 user noarchive int	  StyleScore		= 0;
 user noarchive int	  DeathCounter		= 0;
+server noarchive int  CurrentLevel		= 0;
 
 /* tp_tips */
 server bool tp_show_notes = true;

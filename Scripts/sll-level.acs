@@ -46,6 +46,7 @@ script "GoalRing" (void)
 	int CurrentRings = GetActorProperty(1001, APROP_Health);
 	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
 	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+    int CurrentLevel = GetCvar("CurrentLevel");
 	str Rank;
 
 	// Your score
@@ -299,11 +300,10 @@ script "GoalRing" (void)
 	}
 	Delay(speechdelay);
 	if (GetLevelInfo(LEVELINFO_LEVELNUM) > 0) {
-		int unlocked_level = CheckInventory("CurrentlyUnlockedLevel");
+        int current_level = GetCvar("CurrentLevel");
 		int next_level = GetLevelInfo(LEVELINFO_LEVELNUM);
-		if (unlocked_level < next_level) {
-			TakeInventory("CurrentlyUnlockedLevel", 4);
-			GiveInventory("CurrentlyUnlockedLevel", next_level);
+		if (current_level < next_level) {
+            SetCvar("CurrentLevel", next_level);
 		}
 	}
 	SetActorProperty(1001, APROP_DamageFactor, 1.0);
@@ -314,7 +314,7 @@ script "GoalRing" (void)
 
 script "SetDarkCyberSpaceArena" ENTER
 {
-	if (GetCvar("DarkArena")) {
+	if (GetCvar("CSA_DarkMode")) {
 		ReplaceTextures("SBOXGRID", "DBOXGRID");
 		if (GetLevelInfo(LEVELINFO_LEVELNUM) == CYBER_SPACE_ARENA) {
 			ChangeSky("NIGHTSKY", "NIGHTSKY");

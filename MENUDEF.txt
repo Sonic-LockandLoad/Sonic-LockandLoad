@@ -47,6 +47,7 @@ OptionMenu "LockandLoadOptions"
 
 	SubMenu "Abilities", "LLAbilitiesMenu"
 	SubMenu "Assist Options", "LLAssistMenu"
+	SubMenu "Cyber Space Arena", "CyberSpaceArenaMenu"
 	SubMenu "Gameplay Modifiers", "LLModsMenu"
 	SubMenu "Heads-Up Display", "LLHUD"
 	SubMenu "Music & Sounds", "SDMusic"
@@ -191,6 +192,25 @@ OptionMenu "StyleSystemMenu"
 	StaticText "regenerate Chaos Energy, going faster for higher ranks.", "White"
 	StaticText ""
 }
+OptionMenu "CyberSpaceArenaMenu"
+{
+    Title "Cyber Space Arena"
+
+    StaticText "Configure the Cyber Space Arena's parameters."
+    StaticText ""
+
+    Option "Chaos Energy", "CSA_SpawnEnergy", "ArenaEnergy"
+    StaticText ""
+
+    Option "Dark Mode", "CSA_DarkMode", "EnabledOrNot"
+    StaticText ""
+
+    Option "Spawn Ring Boxes", "CSA_SpawnRings", "EnabledOrNot"
+    StaticText ""
+
+    Option "Spawn Weapons", "CSA_SpawnWeapons", "EnabledOrNot"
+    StaticText ""
+}
 OptionMenu "LLControlsMenu"
 {
 	Title "Controls"
@@ -300,6 +320,11 @@ OptionValue "ArenaMusic"
 	3, "Egg Reverie Zone"
 	4, "All Hail Shadow"
 	5, "Custom"
+}
+OptionValue "ArenaEnergy"
+{
+    0, "Regenerate Energy"
+    1, "Spawn Energy pickups"
 }
 OptionValue "StaleMultiplier"
 {
