@@ -843,9 +843,11 @@ class AirStrikeLauncher : LockLoadWeapon
 	Default
 	{
 		Weapon.SelectionOrder 1500;
-		Weapon.AmmoUse 45;
+		Weapon.AmmoUse1 45;
+		Weapon.AmmoUse2 45;
 		Weapon.AmmoGive 200;
-		Weapon.AmmoType "ChaosEnergy";
+		Weapon.AmmoType1 "ChaosEnergy";
+		Weapon.AmmoType2 "ChaosEnergy";
 		Inventory.PickupMessage "Rocket Rioter";
 		Tag "Rocket Rioter";
 		Weapon.BobSpeed 1.5;
