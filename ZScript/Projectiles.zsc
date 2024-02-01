@@ -24,11 +24,6 @@ class ChaosRocket : FastProjectile
 	{
 		Spawn:
 			MISL A 1 Bright {
-				int buttons = target.GetPlayerInput(MODINPUT_BUTTONS);
-				if (target.player.ReadyWeapon.GetClassName() == "AirStrikeLauncher" && buttons & BT_ALTATTACK) {
-					A_StartSound("weapons/rocklx");
-					return ResolveState("Death");
-				}
 				if (!target.CountInv("PowerHyper")) {
 					A_ChangeLinkFlags(false);
 					// if not in Hyper form, set NOBLOCKMAP to false so that parrying works
