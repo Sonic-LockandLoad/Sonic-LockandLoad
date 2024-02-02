@@ -143,6 +143,7 @@ class StyleSystem : EventHandler
 		/* Consecutive uses */
 		let ReadyWeapon = player.player.ReadyWeapon;
 		let PlayerIsResponsible = e.damagesource && e.damagesource is "PlayerPawn";
+        console.printf("%d", PlayerIsResponsible);
 		if (ReadyWeapon && ReadyWeapon.GetClassName() == current_weapon && PlayerIsResponsible) {
 			consecutive_uses++;
 		}
@@ -185,26 +186,14 @@ class StyleSystem : EventHandler
 								   e.DamageType == "Piko" ||
 								   e.DamageType == "SonicPunch";
 
-		/* Add case for shotguns */
-		bool shotgun_used = current_weapon == "KineticShotty" ||
-							current_weapon == "PrecisionShotgun" ||
-							current_weapon == "SpeedyShotgun" ||
-							current_weapon == "DarkAssault" ||
-							current_weapon == "QuadShotty";
-
 		/* Clamp score bonus */
 		int minimum_score = 750 + GetScoreBonusCap() / 100;
 		int maximum_score = GetScoreBonusCap();
 		scorebonus = clamp(scorebonus, minimum_score, maximum_score);
 
-		/* Limit score bonus if attack was Spin Dash or Boost */
-		if (e.damagetype == "SpinDash" || e.DamageType == "Boost") {
-			scorebonus /= 4;
-		}
-
 		/* Calculate staleness */
 		int staleness_factor = 224;
-		if (shotgun_used) staleness_factor /= 2;
+        if (e.damagetype == "SpinDash") staleness_factor /= 16;
 		int staleness = staleness_factor * consecutive_uses;
         staleness *= cvar.FindCvar("StaleMultiplier").GetFloat();
 		staleness = clamp(staleness, 0, scorebonus);
