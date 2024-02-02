@@ -17,7 +17,7 @@ gameinfo
 	menufontcolor_selection = "MenuActive"
 	DimColor = "00 00 00"
 	DimAmount = 0.30
-	EventHandlers = "LastWeaponHandler", "RemoveCyberSpaceArenaCorpses", "GiveEnergyOnDamage", "EnemiesBleedRings", "StyleSystem", "SpongyEnemies", "DeathCounter", "CheckpointRemovalHandler"
+	EventHandlers = "LastWeaponHandler", "CyberSpaceArenaHandler", "GiveEnergyOnDamage", "EnemiesBleedRings", "StyleSystem", "SpongyEnemies", "DeathCounter", "CheckpointRemovalHandler"
 	StatusBarClass = "SLL_StatusBar"
 	Intro {
 		Video = "Graphics/Intro.ivf"

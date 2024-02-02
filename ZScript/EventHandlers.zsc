@@ -3,7 +3,7 @@ class DeathInfo : Object {
 	int tick;
 }
 
-class RemoveCyberSpaceArenaCorpses : EventHandler
+class CyberSpaceArenaHandler : EventHandler
 {
 	Array<DeathInfo> dead_monsters;
 	int current_tick;
@@ -30,6 +30,12 @@ class RemoveCyberSpaceArenaCorpses : EventHandler
 			}
 		}
 	}
+
+    override void NewGame() {
+        // This is indirectly related to the Arena, which is why it doesn't
+        // have its own event handler
+        cvar.FindCvar("CurrentLevel").SetInt(0);
+    }
 }
 
 class GiveEnergyOnDamage : EventHandler
