@@ -143,7 +143,6 @@ class StyleSystem : EventHandler
 		/* Consecutive uses */
 		let ReadyWeapon = player.player.ReadyWeapon;
 		let PlayerIsResponsible = e.damagesource && e.damagesource is "PlayerPawn";
-        console.printf("%d", PlayerIsResponsible);
 		if (ReadyWeapon && ReadyWeapon.GetClassName() == current_weapon && PlayerIsResponsible) {
 			consecutive_uses++;
 		}
