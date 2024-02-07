@@ -996,7 +996,7 @@ class SonicKick : CustomInventory
 	}
 	action void SonicKickAttack(int damage, int randfactor, int range)
 	{
-		if (invoker.DidTarget) {
+		if (invoker.DidTarget && target != null) {
 			ProjectileKickBack = 1000;
 			target.DamageMobj(self, self, damage * random(1, randfactor), "SonicKick");
 			A_StartSound("sweapons/finalhit", 10);
