@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2020-2023 Arsalan "Velocity" Kazmi <sonicspeed848@gmail.com>
+Copyright (c) 2020-2024 Arsalan "Velocity" Kazmi <sonicspeed848@gmail.com>
 
 This file is part of Sonic: Lock & Load.
 
@@ -21,22 +21,23 @@ version "4.10.0"
 
 /* This ZScript file doesn't have anything in it except includes. */
 
-#include "zscript/ammo.zsc"
-#include "zscript/base.zsc"
-#include "zscript/dummyinv.zsc"
-#include "zscript/enemies.zsc"
-#include "zscript/eventhandlers.zsc" 
-#include "zscript/miscellaneous.zsc"
-#include "zscript/pickups.zsc"
-#include "zscript/powerups.zsc"
-#include "zscript/projectiles.zsc"
-#include "zscript/puffs.zsc"
-#include "zscript/replacements.zsc"
-#include "zscript/player/sonic.zsc"
-#include "zscript/player/amy.zsc"
-#include "zscript/player/shadow.zsc"
-#include "zscript/player/classicsonic.zsc"
-#include "zscript/statusbar.zsc"
+#include "ZScript/Ammo.zsc"
+#include "ZScript/Base.zsc"
+#include "ZScript/DummyInv.zsc"
+#include "ZScript/Enemies.zsc"
+#include "ZScript/EventHandlers.zsc"
+#include "ZScript/Miscellaneous.zsc"
+#include "ZScript/Pickups.zsc"
+#include "ZScript/Powerups.zsc"
+#include "ZScript/Projectiles.zsc"
+#include "ZScript/Puffs.zsc"
+#include "ZScript/Replacements.zsc"
+#include "ZScript/Player/Sonic.zsc"
+#include "ZScript/Player/Amy.zsc"
+#include "ZScript/Player/Shadow.zsc"
+#include "ZScript/Player/ClassicSonic.zsc"
+#include "ZScript/StatusBar.zsc"
+#include "ZScript/StyleSystem.zsc"
 
 /* https://github.com/mmaulwurff/main-menu-tips/ */
-#include "zscript/libraries/tp_tips.zsc"
+#include "ZScript/Libraries/tp_tips.zsc"

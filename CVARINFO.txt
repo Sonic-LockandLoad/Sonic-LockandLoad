@@ -33,7 +33,7 @@ user bool PermadeathMode			= false;
 
 user bool StyleSystem				= true;
 user bool StyleCallouts				= true;
-user bool StylePoints				= true;
+user int  StylePoints				= 3;
 user bool StyleBonuses  			= true;
 user float StaleMultiplier          = 1;
 

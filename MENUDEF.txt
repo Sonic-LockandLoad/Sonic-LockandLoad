@@ -184,6 +184,9 @@ OptionMenu "StyleSystemMenu"
 	Option "Callouts", "StyleCallouts", "EnabledOrNot"
 	StaticText ""
 
+    Option "Style Points Display", "StylePoints", "StylePoints"
+	StaticText ""
+
     Option "Staleness Multiplier", "StaleMultiplier", "StaleMultiplier"
 	StaticText ""
 
@@ -238,7 +241,7 @@ OptionMenu "LLControlsMenu"
 	Control "Offhand Ability", "+speed"
 	Control "Interact", "+use"
 	Control "Super Form", "invuse"
-	Control "Taunt", "pukename Taunt"
+	Control "Taunt", "netevent taunt"
 	StaticText ""
 	StaticText "Weapons", "MenuActive"
 	Control "Last Used Weapon", "netevent quickswap"
@@ -337,4 +340,11 @@ OptionValue "StaleMultiplier"
 	0.5, "Generous (0.5x)"
 	1.0, "Standard (1x)"
 	2.0, "Harsh (2x)"
+}
+OptionValue "StylePoints"
+{
+    0, "Don't Show"
+    1, "Numerical"
+    2, "Fractional"
+    3, "Percentage"
 }

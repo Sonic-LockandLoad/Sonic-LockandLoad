@@ -247,6 +247,7 @@ cresult3		= "\c[Classic] Sonic: \c[White] Barely made it...";
 dresult1		= "\c[Shadow] Shadow: \c[White] Yes!";
 dresult2		= "\c[Shadow] Shadow: \c[White] Need to stay focused.";
 
+stylerank_base  = "Style";
 stylerank_d	    = "Drifting";
 stylerank_c	    = "Chaotic";
 stylerank_b	    = "Blazing";

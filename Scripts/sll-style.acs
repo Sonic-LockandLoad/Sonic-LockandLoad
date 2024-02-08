@@ -1,4 +1,8 @@
-/* Visit sll-base.acs for information */
+// Style Points display styles
+#define SPOINTS_NONE 0
+#define SPOINTS_NUMERICAL 1
+#define SPOINTS_FRACTIONAL 2
+#define SPOINTS_PERCENTAGE 3
 
 script "StyleRank" ENTER
 {
@@ -18,6 +22,7 @@ script "StyleRank" ENTER
 	Delay(1);
 	while (GetCvar("StyleSystem")) {
 		int stylerank = GetCvar("StyleRank");
+
 		if      (stylerank == U) SetFont("u_style");
         else if (stylerank == SSS) SetFont("sss_style");
 		else if (stylerank == SS) SetFont("ss_style");
@@ -30,7 +35,7 @@ script "StyleRank" ENTER
 		str StyleName;
 		str StyleColour;
         str StyleFont;
-		switch (GetCvar("StyleRank")) {
+		switch (stylerank) {
 			case U:
 				StyleName = "stylerank_u";
 				StyleColour = "\c[U_Style]";
@@ -72,7 +77,9 @@ script "StyleRank" ENTER
                 StyleFont = "SMALLFONT";
 				break;
 			default: // E
-				StyleName = "";
+				StyleName = "stylerank_base";
+				StyleColour = "\c[Gray]";
+                StyleFont = "SMALLFONT";
 				break;
 		}
 
@@ -100,21 +107,40 @@ script "StyleRank" ENTER
 			}
 		}
 
-		if (stylerank < oldcalloutrank - 1 || stylerank < D) {
+        int stylescore = GetCvar("StyleScore");
+
+		if (stylerank < oldcalloutrank - 1 || stylescore <= 0) {
 			oldcalloutrank = 0;
 		}
 
-		if (StyleName != "") {
+		if (stylescore > 0) {
 			SetFont(StyleFont);
 			HudMessage(s:StyleColour, l:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, stylename_x, stylename_y, 0.1, 1.0);
 		}
 
 		oldrank = GetCvar("StyleRank");
 
-		if (stylerank >= 1 && GetCvar("StylePoints")) {
-			SetFont("SMALLFONT");
-			HudMessage(d:GetCvar("StyleScore"); HUDMSG_PLAIN, 41, CR_WHITE, stylescore_x, stylescore_y, 0.1, 1.0);
-		}
+        int StylePointsDisplay = GetCvar("StylePoints");
+        if (StylePointsDisplay != SPOINTS_NONE) {
+            int display_score = stylescore % 25000 % 25000;
+
+            if (stylerank == U && display_score == 0) {
+                display_score = 25000;
+            }
+
+            if (stylescore >= 1) {
+                SetFont("SMALLFONT");
+                if (StylePointsDisplay == SPOINTS_NUMERICAL) {
+                    HudMessage(d:display_score; HUDMSG_PLAIN, 41, CR_WHITE, stylescore_x, stylescore_y, 0.1, 1.0);
+                }
+                else if (StylePointsDisplay == SPOINTS_FRACTIONAL) {
+                    HudMessage(d:display_score / 100, s:"/", d:250; HUDMSG_PLAIN, 41, CR_WHITE, stylescore_x, stylescore_y, 0.1, 1.0);
+                }
+                else if (StylePointsDisplay == SPOINTS_PERCENTAGE) {
+                    HudMessage(d:display_score / 250, s:"%"; HUDMSG_PLAIN, 41, CR_WHITE, stylescore_x, stylescore_y, 0.1, 1.0);
+                }
+            }
+        }
 
 		Delay(1);
 	}

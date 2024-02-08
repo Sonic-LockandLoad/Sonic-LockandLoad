@@ -3,6 +3,7 @@
 script "Taunt" (void)
 {
 	NoiseAlert(0, 0);
+    SetActivator(1001);
 	int tauntchance;
 	switch(PlayerClass(PlayerNumber())) {
 		case Sonic:

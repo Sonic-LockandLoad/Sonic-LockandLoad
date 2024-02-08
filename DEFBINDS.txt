@@ -1,6 +1,6 @@
 bind Y 			invuse
-bind T 			"pukename Taunt"
-bind F 			quickswap
+bind T 			"netevent taunt"
+bind F 			"netevent quickswap"
 bind Q			+reload
-bind Mouse3		+zoom
+bind Shift		+speed
 bind Ctrl		+crouch
