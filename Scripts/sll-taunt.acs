@@ -2,142 +2,103 @@
 
 script "Taunt" (void)
 {
-	NoiseAlert(0, 0);
+    NoiseAlert(0, 0);
     SetActivator(1001);
-	int tauntchance;
-	switch(PlayerClass(PlayerNumber())) {
-		case Sonic:
-			tauntchance = random(1, 3);
-			switch (tauntchance) {
-				case 1:
-					PlaySound(1001, "sonic/taunt1", 9, 1.0);
-					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
-						SetMugshotState("GrinSmol");
-					}
-					if (GetCvar("Subtitles")) {
-						HudMessage(l:"staunt1";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 1.5, 1.0);
-					}
-					break;
-				case 2:
-					PlaySound(1001, "sonic/taunt2", 9, 1.0);
-					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
-						SetMugshotState("GrinSmol");
-					}
-					if (GetCvar("Subtitles")) {
-						HudMessage(l:"staunt2";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-					}
-					break;
-				case 3:
-					PlaySound(1001, "sonic/taunt3", 9, 1.0);
-					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
-						SetMugshotState("GrinSmol");
-					}
-					if (GetCvar("Subtitles")) {
-						HudMessage(l:"staunt3";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-					}
-					break;
-			}
-			break;
-		case Amy:
-			PlaySound(1001, "amy/taunt", 9, 1.0);
-			if (!CheckInventory("PowerSuper")) {
-				SetMugshotState("GrinSmol");
-			}
-			if (GetCvar("Subtitles")) {
-				HudMessage(l:"ataunt1";
-						   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-			}
-			break;
-		case ClassicSonic:
-			tauntchance = random(1, 5);
-			switch (tauntchance) {
-				case 1:
-					PlaySound(1001, "classic/taunt1", 9, 1.0);
-					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
-						SetMugshotState("GrinSmol");
-					}
-					if (GetCvar("Subtitles")) {
-						HudMessage(l:"ctaunt1";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-					}
-					break;
-				case 2:
-					PlaySound(1001, "classic/taunt2", 9, 1.0);
-					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
-						SetMugshotState("GrinSmol");
-					}
-					if (GetCvar("Subtitles")) {
-						HudMessage(l:"ctaunt2";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-					}
-					break;
-				case 3:
-					PlaySound(1001, "classic/taunt3", 9, 1.0);
-					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
-						SetMugshotState("GrinSmol");
-					}
-					if (GetCvar("Subtitles")) {
-						HudMessage(l:"ctaunt3";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 4.0, 1.0);
-					}
-					break;
-				case 4:
-					PlaySound(1001, "classic/taunt4", 9, 1.0);
-					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
-						SetMugshotState("GrinSmol");
-					}
-					if (GetCvar("Subtitles")) {
-						HudMessage(l:"ctaunt4";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-					}
-					break;
-				case 5:
-					PlaySound(1001, "classic/taunt5", 9, 1.0);
-					if (!(CheckInventory("PowerSuper")||CheckInventory("PowerHyper"))) {
-						SetMugshotState("FailSmol");
-					}
-					if (GetCvar("Subtitles")) {
-						HudMessage(l:"ctaunt5";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-					}
-					break;
-			}
-			break;
-		case Shadow:
-			tauntchance = random(1, 2);
-			if (random(1, 35) == 35) {
-				PlaySound(1001, "imthe/coolest", 9, 1.0);
-				if (!CheckInventory("PowerSuper")) {
-					SetMugshotState("Grin");
-				}
-				if (GetActorProperty(1001, APROP_Health) < 145) {
-					SetActorProperty(1001, APROP_Health, 145);
-				}
-				if (GetCvar("Subtitles")) {
-					HudMessage(l:"dtaunt3";
-							   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-				}
-			} else {
-				switch (tauntchance) {
-					case 1:
-						PlaySound(1001, "shadow/taunt1", 9, 1.0);
-						if (GetCvar("Subtitles")) {
-							HudMessage(l:"dtaunt1";
-								   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-						}
-						break;
-					case 2:
-						PlaySound(1001, "shadow/taunt2", 9, 1.0);
-						if (GetCvar("Subtitles")) {
-							HudMessage(l:"dtaunt2";
-									   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 2.0, 1.0);
-						}
-						break;
-				}
-			}
-			break;
-	}
+
+    int tauntchance;
+    str sound;
+    str mugshot;
+    str subtitle_id;
+
+    switch(PlayerClass(PlayerNumber())) {
+        case Sonic:
+            tauntchance = random(1, 3);
+            switch (tauntchance) {
+                case 1:
+                    sound = "sonic/taunt1";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "staunt1";
+                    break;
+                case 2:
+                    sound = "sonic/taunt2";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "staunt2";
+                    break;
+                case 3:
+                    sound = "sonic/taunt3";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "staunt3";
+                    break;
+            }
+            break;
+
+        case Amy:
+            sound = "amy/taunt";
+            mugshot = "GrinSmol";
+            subtitle_id = "ataunt1";
+            break;
+
+        case ClassicSonic:
+            tauntchance = random(1, 5);
+            switch (tauntchance) {
+                case 1:
+                    sound = "classic/taunt1";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "ctaunt1";
+                    break;
+                case 2:
+                    sound = "classic/taunt2";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "ctaunt2";
+                    break;
+                case 3:
+                    sound = "classic/taunt3";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "ctaunt3";
+                    break;
+                case 4:
+                    sound = "classic/taunt4";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "ctaunt4";
+                    break;
+                case 5:
+                    sound = "classic/taunt5";
+                    mugshot = "FailSmol";
+                    subtitle_id = "ctaunt5";
+                    break;
+            }
+            break;
+
+        case Shadow:
+            tauntchance = random(1, 2);
+            if (random(1, 35) == 35) {
+                sound = "imthe/coolest";
+                mugshot = "Grin";
+                subtitle_id = "dtaunt3";
+            }
+            else {
+                switch (tauntchance) {
+                    case 1:
+                        sound = "shadow/taunt1";
+                        subtitle_id = "dtaunt1";
+                        break;
+                    case 2:
+                        sound = "shadow/taunt2";
+                        subtitle_id = "dtaunt2";
+                        break;
+                }
+            }
+            break;
+    }
+
+    PlaySound(1001, sound, 5, 1.0);
+
+    if (!(CheckInventory("PowerSuper") || CheckInventory("PowerHyper"))) {
+        SetMugshotState(mugshot);
+    }
+
+    if (GetCvar("Subtitles")) {
+        HudMessage(l: subtitle_id;
+                   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 1.5, 1.0);
+    }
 }
