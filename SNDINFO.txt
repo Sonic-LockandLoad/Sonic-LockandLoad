@@ -14,6 +14,7 @@ sglobal/lowenergy			loenergy
 sglobal/rankget				Rank
 sglobal/booster				booster
 sglobal/drowning			drowning
+sglobal/founddoox           triumph
 
 // Style system callouts
 sstyle/dontgiveup			DONTGIVE // D

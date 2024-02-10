@@ -196,6 +196,8 @@ skill4_amy		= "\c[Amy]Rose With Thorns";
 skill4_classic	= "\c[Classic]Strange, Isn't It?";
 skill4_shadow	= "\c[Red]Ultimate Life Form";
 
+found_doox      = "Hidden Doox found!!";
+
 gsubtitle1 		= "\c[Sonic] Sonic: \c[White] Well. That was lame.";
 gsubtitle2 		= "\c[Red] Knuckles: \c[White] Oh no.";
 gsubtitle3 		= "\c[Sonic] Sonic: \c[White] Ugh, thanks a lot, wall!";

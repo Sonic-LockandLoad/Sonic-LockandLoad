@@ -336,3 +336,9 @@ script "SaveOnLevelEnter" ENTER
         AutoSave();
     }
 }
+
+script "AnnounceDooxFound" (void)
+{
+    AmbientSound("sglobal/founddoox", 127);
+    Print(s:"\c[Gold]", l:"found_doox");
+}
