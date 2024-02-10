@@ -89,6 +89,12 @@ class StyleSystem : EventHandler
 			scorebonus *= 1.3;
 		}
 
+        /* Crouch slide bonus */
+        bool is_moving = sqrt(player.vel.x ** 2 + player.vel.y ** 2) > 0.0;
+        if (cvar.FindCvar("IsCrouching").GetBool() && is_moving) {
+            scorebonus *= 2;
+        }
+
 		/* Enemy mid-air bonus */
 		if (e.thing.Pos.Z > e.thing.GetZAt()) {
 			scorebonus *= 2;
