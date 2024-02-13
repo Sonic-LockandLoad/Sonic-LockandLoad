@@ -64,7 +64,7 @@ class StyleSystem : EventHandler
 
 		/* Base increment */
 		if (PlayerIsResponsible) {
-			scorebonus += SCORE_THRESHOLD / random(6, 8);
+			scorebonus += SCORE_THRESHOLD / random(8, 10);
 		}
 		else {
 			if (stylerank >= 1) {
@@ -93,6 +93,16 @@ class StyleSystem : EventHandler
 		if (!offhand_attack_used) {
 			scorebonus -= staleness;
 		}
+
+        let used_weapon = ReadyWeapon.GetClassName();
+        bool spread_attack_used = used_weapon == "KineticShotty" ||
+                                  used_weapon == "QuadShotty" ||
+                                  used_weapon == "SpeedyShotgun" ||
+                                  e.DamageType == "SonicPunch";
+
+        if (spread_attack_used) {
+            scorebonus /= 5;
+        }
 
 		score += scorebonus;
 
