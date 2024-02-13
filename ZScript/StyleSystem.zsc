@@ -50,10 +50,7 @@ class StyleSystem : EventHandler
 
 	private void UpdateStyleScore(WorldEvent e)
 	{
-		/* Player object */
 		PlayerPawn player = players[consoleplayer].mo;
-
-		/* Consecutive uses */
 		let ReadyWeapon = player.player.ReadyWeapon;
 		let PlayerIsResponsible = e.damagesource && e.damagesource is "PlayerPawn";
 		if (ReadyWeapon && ReadyWeapon.GetClassName() == current_weapon && PlayerIsResponsible) {
@@ -63,6 +60,7 @@ class StyleSystem : EventHandler
 		/* Initialisation */
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int scorebonus;
+        string style_bonus;
 
 		/* Base increment */
 		if (PlayerIsResponsible) {
@@ -77,66 +75,67 @@ class StyleSystem : EventHandler
 			}
 		}
 
-		/* Using different weapon */
-		if (ReadyWeapon.GetClassName() != current_weapon) {
-			scorebonus *= 2;
-		}
-
 		UpdateWeapon();
 
-		/* Height bonus */
-		if (!player.player.onground) {
-            console.printf("Player was mid-air");
-			scorebonus *= 1.3;
-		}
+        scorebonus = GetStyleBonuses(e, scorebonus);
 
-        /* Crouch slide bonus */
-        bool is_moving = sqrt(player.vel.x ** 2 + player.vel.y ** 2) > 0.0;
-        if (cvar.FindCvar("IsCrouching").GetBool() && is_moving) {
-            console.printf("Player was crouch sliding");
-            scorebonus *= 2;
-        }
-
-		/* Enemy mid-air bonus */
-		if (e.thing.Pos.Z > e.thing.GetZAt()) {
-            console.printf("Enemy was mid-air");
-			scorebonus *= 2;
-		}
-
-        /* Enemy killed bonus */
-        if (e.damage > e.thing.Health) {
-            console.printf("Enemy killed");
-            scorebonus *= 2;
-        }
-
-		/* Add case for Offhand Attack */
 		bool offhand_attack_used = e.DamageType == "SonicKick" ||
 								   e.DamageType == "ShadowMelee" ||
                                    e.DamageType == "Spear" ||
 								   e.DamageType == "Piko" ||
 								   e.DamageType == "SonicPunch";
 
-        /* Calculate staleness */
         int staleness_factor = SCORE_THRESHOLD / 48;
         int staleness = staleness_factor * consecutive_uses;
         staleness *= cvar.FindCvar("StaleMultiplier").GetFloat();
         staleness = clamp(staleness, 0, scorebonus);
 
-		// Apply staleness, unless an Offhand Attack was used
 		if (!offhand_attack_used) {
 			scorebonus -= staleness;
 		}
 
-		/* Total up score */
 		score += scorebonus;
 
         CapStyleScore();
 
-		/* It isn't here, but the player can also gain Style
-		   Points by parrying attacks.
-
-		   Go and see Sonic.zsc and Amy.zsc for that code. */
+		/* It isn't here, but the player can also gain style
+           by parrying attacks, which is handled in the files
+           under the Player directory. */
 	}
+
+    private int GetStyleBonuses(WorldEvent e, int scorebonus)
+    {
+		PlayerPawn player = players[consoleplayer].mo;
+		let ReadyWeapon = player.player.ReadyWeapon;
+
+        /* Player is mid-air */
+		if (!player.player.onground) {
+			scorebonus *= 1.3;
+		}
+
+        /* Player is crouch sliding */
+        bool is_moving = sqrt(player.vel.x ** 2 + player.vel.y ** 2) > 0.0;
+        if (cvar.FindCvar("IsCrouching").GetBool() && is_moving) {
+            scorebonus *= 2;
+        }
+
+		/* Enemy is mid-air */
+		if (e.thing.Pos.Z > e.thing.GetZAt()) {
+			scorebonus *= 2;
+		}
+
+        /* Enemy was killed */
+        if (e.damage > e.thing.Health) {
+            scorebonus *= 2;
+        }
+
+		/* Different weapon used */
+		if (ReadyWeapon.GetClassName() != current_weapon) {
+			scorebonus *= 2;
+		}
+
+        return scorebonus;
+    }
 
     private void CapStyleScore()
     {
