@@ -45,7 +45,6 @@ class StyleSystem : EventHandler
 			return;
 
 		UpdateStyleRank();
-		UpdateWeapon();
 		DeprecateStyleScore();
 	}
 
@@ -65,14 +64,13 @@ class StyleSystem : EventHandler
 		int stylerank = cvar.FindCvar("StyleRank").GetInt();
 		int scorebonus;
 
-		/* Dealing damage */
-        int accumulation_factor = 75;
+		/* Base increment */
 		if (PlayerIsResponsible) {
-			scorebonus += e.damage * accumulation_factor;
+			scorebonus += SCORE_THRESHOLD / random(6, 8);
 		}
 		else {
 			if (stylerank >= 1) {
-				scorebonus += e.damage * (accumulation_factor / 6);
+				scorebonus += SCORE_THRESHOLD / random(14, 16);
 			}
 			else {
 				return;
@@ -84,21 +82,32 @@ class StyleSystem : EventHandler
 			scorebonus *= 2;
 		}
 
+		UpdateWeapon();
+
 		/* Height bonus */
 		if (!player.player.onground) {
+            console.printf("Player was mid-air");
 			scorebonus *= 1.3;
 		}
 
         /* Crouch slide bonus */
         bool is_moving = sqrt(player.vel.x ** 2 + player.vel.y ** 2) > 0.0;
         if (cvar.FindCvar("IsCrouching").GetBool() && is_moving) {
+            console.printf("Player was crouch sliding");
             scorebonus *= 2;
         }
 
 		/* Enemy mid-air bonus */
 		if (e.thing.Pos.Z > e.thing.GetZAt()) {
+            console.printf("Enemy was mid-air");
 			scorebonus *= 2;
 		}
+
+        /* Enemy killed bonus */
+        if (e.damage > e.thing.Health) {
+            console.printf("Enemy killed");
+            scorebonus *= 2;
+        }
 
 		/* Add case for Offhand Attack */
 		bool offhand_attack_used = e.DamageType == "SonicKick" ||
@@ -107,13 +116,8 @@ class StyleSystem : EventHandler
 								   e.DamageType == "Piko" ||
 								   e.DamageType == "SonicPunch";
 
-		/* Clamp score bonus */
-		int minimum_score = 525 + GetScoreBonusCap() / 100;
-		int maximum_score = GetScoreBonusCap();
-		scorebonus = clamp(scorebonus, minimum_score, maximum_score);
-
         /* Calculate staleness */
-        int staleness_factor = 64 + e.damage;
+        int staleness_factor = SCORE_THRESHOLD / 48;
         int staleness = staleness_factor * consecutive_uses;
         staleness *= cvar.FindCvar("StaleMultiplier").GetFloat();
         staleness = clamp(staleness, 0, scorebonus);
@@ -155,32 +159,6 @@ class StyleSystem : EventHandler
         }
 
 		score -= penalty;
-	}
-
-	private int GetScoreBonusCap()
-	{
-		PlayerPawn player = players[consoleplayer].mo;
-		int stylerank = cvar.FindCvar("StyleRank").GetInt();
-		int cap;
-		switch (stylerank) {
-			case 0: // E
-			case 1: // D
-			case 2: // C
-				cap = 15000;
-				break;
-			case 3: // B
-			case 4: // A
-				cap = 10000;
-				break;
-			case 5: // S
-			case 6: // SS
-			case 7: // SSS
-			case 8: // U
-				cap = 5000;
-				break;
-		}
-
-		return cap;
 	}
 
     private void DeprecateStyleScore()
