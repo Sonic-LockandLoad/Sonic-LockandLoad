@@ -68,7 +68,7 @@ class StyleSystem : EventHandler
 		}
 		else {
 			if (stylerank >= 1) {
-				scorebonus += SCORE_THRESHOLD / random(14, 16);
+				scorebonus += SCORE_THRESHOLD / random(13, 15);
 			}
 			else {
 				return;
@@ -85,7 +85,7 @@ class StyleSystem : EventHandler
 								   e.DamageType == "Piko" ||
 								   e.DamageType == "SonicPunch";
 
-        int staleness_factor = SCORE_THRESHOLD / 48;
+        int staleness_factor = SCORE_THRESHOLD / 150;
         int staleness = staleness_factor * consecutive_uses;
         staleness *= cvar.FindCvar("StaleMultiplier").GetFloat();
         staleness = clamp(staleness, 0, scorebonus);
