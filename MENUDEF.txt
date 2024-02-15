@@ -5,7 +5,7 @@ LISTMENU "MainMenu"
 	TextItem "$MENU_NEWGAME", "n", "PlayerClassMenu"
 	TextItem "$MENU_LOAD", "l", "LoadGameMenu"
 	TextItem "$MENU_SAVE", "s", "SaveGameMenu"
-	TextItem "$MENU_OPTIONS","o", "LockandLoadOptions"
+	TextItem "$MENU_OPTIONS","o", "LLOptionsMenu"
 	TextItem "$MENU_ABOUT", "r", "ReadThisMenu"
 	TextItem "$MENU_QUIT", "q", "QuitMenu"
 	IfGame(Heretic, Hexen, Strife, Chex)
@@ -13,6 +13,11 @@ LISTMENU "MainMenu"
 		Font "SMALLFONT"
 		StaticText 78, 40, "$MENU_UNSUPPORTED"
 	}
+}
+
+AddOptionMenu "OptionsMenu"
+{
+	Title "Advanced Options"
 }
 ListMenu "PlayerClassMenu"
 {
@@ -35,30 +40,31 @@ ListMenu "SkillMenu"
 	StaticText 80, 48, "$MENU_SKSELECT"
 	Font "BIGFONT", "InactiveOption", "ActiveOption"
 }
-OptionMenu "LockandLoadOptions"
+
+OptionMenu "SLL_Options"
 {
 	Title "Options"
 
 	StaticText "Configure Sonic: Lock & Load.", "White"
 	StaticText ""
 
-	SubMenu "Controls", "LLControlsMenu"
+	SubMenu "Controls", "SLL_Controls"
 	StaticText ""
 
-	SubMenu "Abilities", "LLAbilitiesMenu"
-	SubMenu "Assist Options", "LLAssistMenu"
-	SubMenu "Cyber Space Arena", "CyberSpaceArenaMenu"
-	SubMenu "Gameplay Modifiers", "LLModsMenu"
-	SubMenu "Heads-Up Display", "LLHUD"
-	SubMenu "Music & Sounds", "SDMusic"
-	SubMenu "Miscellaneous", "LLMiscOptMenu"
-	SubMenu "Style System", "StyleSystemMenu"
+	SubMenu "Abilities", "SLL_Abilities"
+	SubMenu "Assist Options", "SLL_Assist"
+	SubMenu "Cyber Space Arena", "SLL_CyberSpace"
+	SubMenu "Gameplay Modifiers", "SLL_Modifiers"
+	SubMenu "Heads-Up Display", "SLL_HUD"
+	SubMenu "Music & Sounds", "SLL_Audio"
+	SubMenu "Miscellaneous", "SLL_Misc"
+	SubMenu "Style System", "SLL_Style"
 	StaticText ""
 
 	SubMenu "Advanced Options", "OptionsMenu"
 	SubMenu "Option Search", "os_menu"
 }
-OptionMenu "LLAbilitiesMenu"
+OptionMenu "SLL_Abilities"
 {
 	Title "Abilities"
 
@@ -85,31 +91,7 @@ OptionMenu "LLAbilitiesMenu"
     Option "Homing Assault Input (Shadow)", "HomingAssaultOffhand", "HomingAssaultOffhand"
 	StaticText ""
 }
-OptionMenu "LLHUD"
-{
-	Title "Heads-Up Display"
-
-	StaticText "Customise Heads-Up-Display options.", "White"
-	StaticText ""
-
-	Option "HUD Type", "HUDType", "HUDType"
-	Option "Show Score in HUD", "ShowScore", "EnabledOrNot"
-	StaticText ""
-
-	Option "Title Screen Tips", "tp_show_notes", "EnabledOrNot"
-	StaticText ""
-
-	Option "Subtitles", "Subtitles", "EnabledOrNot"
-	StaticText ""
-
-	Option "Homing Reticle Style", "HomingReticle", "HomingReticle"
-	StaticText ""
-
-	Option "Control Hints", "ControlHints", "EnabledOrNot"
-	StaticText "Deprecated, no longer updated.", "Red"
-	StaticText ""
-}
-OptionMenu "LLAssistMenu"
+OptionMenu "SLL_Assist"
 {
 	Title "Assist Options"
 
@@ -120,106 +102,27 @@ OptionMenu "LLAssistMenu"
 	Option "Tutorials", "Tutorials", "EnabledOrNot"
 	StaticText ""
 }
-OptionMenu "LLMiscOptMenu"
+OptionMenu "SLL_Audio"
 {
-	Title "Misc. Options"
+	Title "Music & Sounds"
 
-	StaticText "Customise miscellaneous options.", "White"
+	StaticText "Customise music and sound choices.", "White"
 	StaticText ""
 
-	Option "Dark Cyber Space Arena", "DarkArena", "EnabledOrNot"
+	Option "Invincibility", "InvincMusic", "EnabledOrNotMus"
+	Option "Super/Dark/Hyper Form", "SuperMusic", "EnabledOrNotMus"
+	Option "On Death", "DeathMusic", "EnabledOrNotMus"
 	StaticText ""
 
-	Option "HIRE THIS MAN", "HireThisMan", "EnabledOrNot"
-	StaticText "Enable this option to replace the title screen music", "White"
-	StaticText "with 'NINTENDO, HIRE THIS MAN!' by Chris Voiceman.", "White"
-	StaticText ""
-}
-OptionMenu "LLModsMenu"
-{
-	Title "Modifiers"
-
-	StaticText "Customise gameplay mechanics.", "White"
-	StaticText ""
-
-	Option "Enemies Bleed Rings", "EnemiesBleedRings", "EnabledOrNot"
-	StaticText "Upon taking damage, enemies will drop Rings that don't last too long", "White"
-	StaticText "and you'll receive a health boost if you're close up to the enemy.", "White"
-	StaticText ""
-
-	Option "Give Energy On Damage", "GiveEnergyOnDamage", "EnabledOrNot"
-	StaticText "Dealing damage to or killing monsters will net you some", "White"
-	StaticText "Chaos Energy, which is capped at either 300 or 500 Energy", "White"
-	StaticText "depending on if the monster was only damaged or was killed.", "White"
-	StaticText ""
-
-	Option "Iron Hedgehog", "PermadeathMode", "EnabledOrNot"
-	StaticText "When you lose all your Rings, you won't be able to retry the", "White"
-	StaticText "level with all your progress intact - you'll be sent straight", "White"
-	StaticText "to a Game Over screen. This modifier removes checkpoints from", "White"
-	StaticText "the levels regardless of the Checkpoints setting.", "White"
-	StaticText ""
-
-	Option "One-Hit Mode", "OneHitMode", "EnabledOrNot"
-	StaticText "Enable this mode for a challenging experience, where", "White"
-	StaticText "any damage dealt to you instantly results in death.", "White"
-	StaticText ""
-
-	Option "Spongy Enemies", "SpongyEnemies", "EnabledOrNot"
-	Slider "Spongy Multiplier", "Sponginess", 2, 100, 1
-	StaticText "Enable this modifier to have enemies with multiplied health,", "White"
-	StaticText "so you can enjoy longer fights and show off your skills!", "White"
-	StaticText ""
-}
-OptionMenu "StyleSystemMenu"
-{
-	Title "Configure Style System"
-
-	StaticText "Enable and configure the style meter.", "White"
-	StaticText ""
-
-	Option "Style System", "StyleSystem", "EnabledOrNot"
-	StaticText ""
-
-	Option "Callouts", "StyleCallouts", "EnabledOrNot"
-	StaticText ""
-
-    Option "Style Points Display", "StylePoints", "StylePoints"
-	StaticText ""
-
-    Option "Staleness Multiplier", "StaleMultiplier", "StaleMultiplier"
-	StaticText ""
-
-	Option "Energy Regeneration", "StyleBonuses", "EnabledOrNot"
-	StaticText "Keeping your Style Rank at B or above will constantly", "White"
-	StaticText "regenerate Chaos Energy, going faster for higher ranks.", "White"
-	StaticText ""
-}
-OptionMenu "CyberSpaceArenaMenu"
-{
-    Title "Cyber Space Arena"
-
-    StaticText "Configure the Cyber Space Arena's parameters."
-    StaticText ""
-
-    Option "Chaos Energy", "CSA_SpawnEnergy", "ArenaEnergy"
-    StaticText ""
-
-    Option "Dark Mode", "CSA_DarkMode", "EnabledOrNot"
-    StaticText ""
-
-	Option "Music", "ArenaMusic", "ArenaMusic"
-	TextField "Custom Music File", "ArenaCustomMusic"
+	Option "Cyber Space Arena Music", "ArenaMusic", "ArenaMusic"
+	TextField "Custom CSA Music File", "ArenaCustomMusic"
 	StaticText "Must be the lump name (i.e. S_BATTLE)", "White"
 	StaticText ""
 
-    Option "Spawn Ring Boxes", "CSA_SpawnRings", "EnabledOrNot"
-    StaticText ""
-
-    Option "Spawn Weapons", "CSA_SpawnWeapons", "EnabledOrNot"
-    StaticText ""
-}
-OptionMenu "LLControlsMenu"
+	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
+	Option "Low Energy Warning (Super Form)", "LowEnergySound", "EnabledOrNot"
+	StaticText ""
+}OptionMenu "SLL_Controls"
 {
 	Title "Controls"
 
@@ -257,35 +160,133 @@ OptionMenu "LLControlsMenu"
 	StaticText ""
 	SubMenu "All Control Bindings", "CustomizeControls"
 }
-OptionMenu "SDMusic"
+OptionMenu "SLL_CyberSpace"
 {
-	Title "Music & Sounds"
+    Title "Cyber Space Arena"
 
-	StaticText "Customise music and sound choices.", "White"
-	StaticText ""
+    StaticText "Configure the Cyber Space Arena's parameters."
+    StaticText ""
 
-	Option "Invincibility", "InvincMusic", "EnabledOrNotMus"
-	Option "Super/Dark/Hyper Form", "SuperMusic", "EnabledOrNotMus"
-	Option "On Death", "DeathMusic", "EnabledOrNotMus"
-	StaticText ""
+    Option "Chaos Energy", "CSA_SpawnEnergy", "ArenaEnergy"
+    StaticText ""
 
-	Option "Cyber Space Arena Music", "ArenaMusic", "ArenaMusic"
-	TextField "Custom CSA Music File", "ArenaCustomMusic"
+    Option "Dark Mode", "CSA_DarkMode", "EnabledOrNot"
+    StaticText ""
+
+	Option "Music", "ArenaMusic", "ArenaMusic"
+	TextField "Custom Music File", "ArenaCustomMusic"
 	StaticText "Must be the lump name (i.e. S_BATTLE)", "White"
 	StaticText ""
 
-	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
-	Option "Low Energy Warning (Super Form)", "LowEnergySound", "EnabledOrNot"
+    Option "Spawn Ring Boxes", "CSA_SpawnRings", "EnabledOrNot"
+    StaticText ""
+
+    Option "Spawn Weapons", "CSA_SpawnWeapons", "EnabledOrNot"
+    StaticText ""
+}
+OptionMenu "SLL_HUD"
+{
+	Title "Heads-Up Display"
+
+	StaticText "Customise Heads-Up-Display options.", "White"
+	StaticText ""
+
+	Option "HUD Type", "HUDType", "HUDType"
+	Option "Show Score in HUD", "ShowScore", "EnabledOrNot"
+	StaticText ""
+
+	Option "Title Screen Tips", "tp_show_notes", "EnabledOrNot"
+	StaticText ""
+
+	Option "Subtitles", "Subtitles", "EnabledOrNot"
+	StaticText ""
+
+	Option "Homing Reticle Style", "HomingReticle", "HomingReticle"
+	StaticText ""
+
+	Option "Control Hints", "ControlHints", "EnabledOrNot"
+	StaticText "Deprecated, no longer updated.", "Red"
 	StaticText ""
 }
-AddOptionMenu "OptionsMenu"
+OptionMenu "SLL_Misc"
 {
-	Title "Advanced Options"
+	Title "Misc. Options"
+
+	StaticText "Customise miscellaneous options.", "White"
+	StaticText ""
+
+	Option "Dark Cyber Space Arena", "DarkArena", "EnabledOrNot"
+	StaticText ""
+
+	Option "HIRE THIS MAN", "HireThisMan", "EnabledOrNot"
+	StaticText "Enable this option to replace the title screen music", "White"
+	StaticText "with 'NINTENDO, HIRE THIS MAN!' by Chris Voiceman.", "White"
+	StaticText ""
+}
+OptionMenu "SLL_Modifiers"
+{
+	Title "Modifiers"
+
+	StaticText "Customise gameplay mechanics.", "White"
+	StaticText ""
+
+	Option "Enemies Bleed Rings", "EnemiesBleedRings", "EnabledOrNot"
+	StaticText "Upon taking damage, enemies will drop Rings that don't last too long", "White"
+	StaticText "and you'll receive a health boost if you're close up to the enemy.", "White"
+	StaticText ""
+
+	Option "Give Energy On Damage", "GiveEnergyOnDamage", "EnabledOrNot"
+	StaticText "Dealing damage to or killing monsters will net you some", "White"
+	StaticText "Chaos Energy, which is capped at either 300 or 500 Energy", "White"
+	StaticText "depending on if the monster was only damaged or was killed.", "White"
+	StaticText ""
+
+	Option "Iron Hedgehog", "PermadeathMode", "EnabledOrNot"
+	StaticText "When you lose all your Rings, you won't be able to retry the", "White"
+	StaticText "level with all your progress intact - you'll be sent straight", "White"
+	StaticText "to a Game Over screen. This modifier removes checkpoints from", "White"
+	StaticText "the levels regardless of the Checkpoints setting.", "White"
+	StaticText ""
+
+	Option "One-Hit Mode", "OneHitMode", "EnabledOrNot"
+	StaticText "Enable this mode for a challenging experience, where", "White"
+	StaticText "any damage dealt to you instantly results in death.", "White"
+	StaticText ""
+
+	Option "Spongy Enemies", "SpongyEnemies", "EnabledOrNot"
+	Slider "Spongy Multiplier", "Sponginess", 2, 100, 1
+	StaticText "Enable this modifier to have enemies with multiplied health,", "White"
+	StaticText "so you can enjoy longer fights and show off your skills!", "White"
+	StaticText ""
+}
+OptionMenu "SLL_Style"
+{
+	Title "Configure Style System"
+
+	StaticText "Enable and configure the style meter.", "White"
+	StaticText ""
+
+	Option "Style System", "StyleSystem", "EnabledOrNot"
+	StaticText ""
+
+	Option "Callouts", "StyleCallouts", "EnabledOrNot"
+	StaticText ""
+
+    Option "Style Points Display", "StylePoints", "StylePoints"
+	StaticText ""
+
+    Option "Staleness Multiplier", "StaleMultiplier", "StaleMultiplier"
+	StaticText ""
+
+	Option "Energy Regeneration", "StyleBonuses", "EnabledOrNot"
+	StaticText "Keeping your Style Rank at B or above will constantly", "White"
+	StaticText "regenerate Chaos Energy, going faster for higher ranks.", "White"
+	StaticText ""
 }
 
 OptionMenu tp_MenuInjector
 {
-  tp_MenuInjector
+    tp_MenuInjector
 }
 
 OptionValue "EnabledOrNot"
