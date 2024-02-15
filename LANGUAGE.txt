@@ -172,27 +172,31 @@ amy			= "\c[Amy]Amy";
 classic		= "\c[Classic]C.Sonic";
 shadow		= "\c[Red]Shadow";
 
+// Normal speed enemies, halved damage
 skill1 			= "\c[Green]Effortless";
 skill1_sonic	= "\c[Green]Piece of cake!";
 skill1_amy		= "\c[Green]A breeze";
 skill1_classic	= "\c[Green]Genesis";
 skill1_shadow	= "\c[Green]Waste of time";
 
+// Normal speed enemies
 skill2 			= "\c[Yellow]Simplified";
 skill2_sonic	= "\c[Yellow]Bring it on!";
 skill2_amy		= "\c[Yellow]Just perfect!";
 skill2_classic	= "\c[Yellow]Like 1991";
 skill2_shadow	= "\c[Yellow]Chaos Controller";
 
+// Fast enemies
 skill3 			= "\c[MenuInactive]Standard";
 skill3_sonic	= "\c[MenuInactive]I can still fly!";
 skill3_amy		= "\c[MenuInactive]Never give up!";
 skill3_classic	= "\c[MenuInactive]I am SEGA!";
 skill3_shadow	= "\c[MenuInactive]Another mission";
 
+// Fast enemies, double damage
 skill4 			= "\c[Red]Insane";
 skill4_sonic	= "\c[Sonic]Chaotic Velocity";
-skill4_amy		= "\c[Amy]Rose With Thorns";
+skill4_amy		= "\c[Amy]Shattered Rose";
 skill4_classic	= "\c[Classic]Strange, Isn't It?";
 skill4_shadow	= "\c[Red]Ultimate Life Form";
 
