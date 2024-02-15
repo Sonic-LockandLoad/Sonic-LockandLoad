@@ -5,7 +5,7 @@ LISTMENU "MainMenu"
 	TextItem "$MENU_NEWGAME", "n", "PlayerClassMenu"
 	TextItem "$MENU_LOAD", "l", "LoadGameMenu"
 	TextItem "$MENU_SAVE", "s", "SaveGameMenu"
-	TextItem "$MENU_OPTIONS","o", "LLOptionsMenu"
+	TextItem "$MENU_OPTIONS","o", "SLL_Options"
 	TextItem "$MENU_ABOUT", "r", "ReadThisMenu"
 	TextItem "$MENU_QUIT", "q", "QuitMenu"
 	IfGame(Heretic, Hexen, Strife, Chex)
