@@ -122,7 +122,8 @@ OptionMenu "SLL_Audio"
 	Option "Low Health Warning", "LowHealthSound", "EnabledOrNot"
 	Option "Low Energy Warning (Super Form)", "LowEnergySound", "EnabledOrNot"
 	StaticText ""
-}OptionMenu "SLL_Controls"
+}
+OptionMenu "SLL_Controls"
 {
 	Title "Controls"
 
@@ -164,7 +165,7 @@ OptionMenu "SLL_CyberSpace"
 {
     Title "Cyber Space Arena"
 
-    StaticText "Configure the Cyber Space Arena's parameters."
+    StaticText "Configure the Cyber Space Arena's parameters.", "White"
     StaticText ""
 
     Option "Chaos Energy", "CSA_SpawnEnergy", "ArenaEnergy"
