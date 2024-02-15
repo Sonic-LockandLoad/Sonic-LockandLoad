@@ -145,6 +145,10 @@ amy/ohno           			amohno
 amy/hurt1          			amyhurt1
 amy/hurt2          			amyhurt2
 amy/hurt3          			amyhurt3
+amy/taunt1                  a_taunt1
+amy/taunt2                  a_taunt2
+amy/taunt3                  a_taunt3
+amy/taunt4                  a_taunt4
 amy/deadend1          		deadend1
 amy/deadend2          		deadend2
 amy/nextlevel				alright
@@ -253,11 +257,6 @@ $random shadow/cgrunt   	{ shadow/gruntc shadow/there }
 $random sonic/pain 			{ sonic/hurt sonic/painx1 sonic/painx2 }
 $random amy/pain 			{ amy/hurt1 amy/hurt2 amy/hurt3 }
 		shadow/pain        	  d_pain
-
-$random sonic/taunt 		{ sonic/taunt1 sonic/taunt2 sonic/taunt3 }
-		amy/taunt			  a_taunt
-$random shadow/taunt 		{ shadow/taunt1 shadow/taunt2 }
-$random classic/taunt 		{ classic/taunt1 classic/taunt2 classic/taunt3 classic/taunt4 }
 
 $random sglobal/nextlevel { sonic/nextlevel amy/nextlevel classic/nextlevel shadow/nextlevel }
 $alias intermission/paststats sglobal/nextlevel

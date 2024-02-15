@@ -9,6 +9,7 @@ script "Taunt" (void)
     str sound;
     str mugshot;
     str subtitle_id;
+    int subtitle_delay = 1.5;
 
     switch(PlayerClass(PlayerNumber())) {
         case Sonic:
@@ -33,9 +34,31 @@ script "Taunt" (void)
             break;
 
         case Amy:
-            sound = "amy/taunt";
-            mugshot = "GrinSmol";
-            subtitle_id = "ataunt1";
+            tauntchance = random(1, 4);
+            switch (tauntchance) {
+                case 1:
+                    sound = "amy/taunt1";
+                    mugshot = "FailSmol";
+                    subtitle_id = "ataunt1";
+                    break;
+                case 2:
+                    sound = "amy/taunt2";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "ataunt2";
+                    subtitle_delay = 1.8;
+                    break;
+                case 3:
+                    sound = "amy/taunt3";
+                    mugshot = "FailSmol";
+                    subtitle_id = "ataunt3";
+                    subtitle_delay = 2.4;
+                    break;
+                case 4:
+                    sound = "amy/taunt4";
+                    mugshot = "GrinSmol";
+                    subtitle_id = "ataunt4";
+                    break;
+            }
             break;
 
         case ClassicSonic:
@@ -99,6 +122,6 @@ script "Taunt" (void)
 
     if (GetCvar("Subtitles")) {
         HudMessage(l: subtitle_id;
-                   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, 1.5, 1.0);
+                   HUDMSG_PLAIN, 4, CR_LIGHTBLUE, 1.5, 0.8, subtitle_delay, 1.0);
     }
 }
