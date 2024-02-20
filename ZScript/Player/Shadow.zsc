@@ -589,7 +589,8 @@ class ChaosSnap : CustomInventory
 			int sidem = GetPlayerInput(MODINPUT_SIDEMOVE);
 			int buttons = GetPlayerInput(MODINPUT_BUTTONS);
 			int input = 0;
-			int SnapSpeed = 150;
+			int SnapSpeed = 100;
+            int VSnapSpeed = 150;
 			DamageFactor = 0;
 
 			if (forward > 0) {
@@ -613,7 +614,7 @@ class ChaosSnap : CustomInventory
 			}
 
 			if (!input) {
-				ThrustThingZ(0, SnapSpeed, 0, 0);
+				ThrustThingZ(0, VSnapSpeed, 0, 0);
 			}
 		}
 		TNT1 A 5;
@@ -734,7 +735,7 @@ class HomingAssault : CustomInventory
 		if (owner is "PlayerPawn" && owner.GetPlayerInput(MODINPUT_BUTTONS) & ActivationKey && !(owner.GetPlayerInput(MODINPUT_OLDBUTTONS) & ActivationKey) && inuse == 0 && !owner.player.onground)
 		{
 			owner.UseInventory(self);
-			inuse = 3;
+			inuse = 15;
 		}
 	}
 }
