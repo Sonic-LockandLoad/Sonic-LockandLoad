@@ -670,7 +670,7 @@ class HomingAssault : CustomInventory
 	}
 	action void DamageTarget(Actor damagetarget)
 	{
-		target.DamageMobj(self, null, 150 * random(2, 10), "ShadowMelee");
+		target.DamageMobj(self, null, 100 * random(2, 10), "ShadowMelee");
 		A_Explode(35, 256, 0, false, 128);
 	}
 	action void SnapToTarget()
