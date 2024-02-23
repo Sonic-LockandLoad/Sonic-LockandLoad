@@ -7,6 +7,13 @@ class StyleSystem : EventHandler
 	int consecutive_uses;
     const SCORE_THRESHOLD = 25000;
 
+    actor CheckTarget(int distance)
+    {
+        PlayerPawn player = players[consoleplayer].mo;
+        FTranslatedLineTarget ltinfo;
+        bool ltattack = player.LineAttack(player.angle, distance, player.pitch, 0, 'None', "InvisiblePuff", LAF_NORANDOMPUFFZ, ltinfo, 0);
+        return ltinfo.linetarget;
+    }
 	override void WorldThingDamaged(WorldEvent e)
 	{
 		bool is_attackable_target = e.thing.bIsMonster || e.thing.GetClassName() == "Doox";
@@ -25,15 +32,14 @@ class StyleSystem : EventHandler
     override void NetworkProcess(ConsoleEvent e)
     {
         if (e.Name == "taunt") {
-            int score_bonus = SCORE_THRESHOLD / 2;
-            int rank = cvar.FindCvar("StyleRank").GetInt() + 1;
+            Actor lookat_target = CheckTarget(512);
+            if (lookat_target && (lookat_target.bIsMonster || lookat_target.GetClassName() == "Doox")) {
+                int score_bonus = SCORE_THRESHOLD / 6;
+                int rank = cvar.FindCvar("StyleRank").GetInt() + 1;
 
-            score_bonus = score_bonus / rank;
-
-            score_bonus = max(score_bonus, 1);
-
-            score += score_bonus;
-            CapStyleScore();
+                score += score_bonus;
+                CapStyleScore();
+            }
             CallACS("Taunt");
         }
     }
