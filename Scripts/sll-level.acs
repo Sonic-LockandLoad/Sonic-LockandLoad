@@ -1,38 +1,24 @@
 /* Visit sll-base.acs for information */
 
+function int RoundToNearestThousand (int value)
+{
+    int result;
+    int remainder = value % 1000;
+    if (remainder < 500) {
+        result = value - remainder;
+    }
+    else {
+        result = value + (1000 - remainder);
+    }
+    return result;
+}
+
 script "GetLevelTargetScore" (void)
 // This is a separate script and not a function
 // so I can call it from ZScript.
 {
-	int score;
-
-	// Here's the formula:
-	// 1. Finish a level with all monsters defeated and 999 health
-	// 2. Subtract 1998 from the final score
-	// 3. Round that to the nearest 1000
-
-	switch (GetLevelInfo(LEVELINFO_LEVELNUM)) {
-		case 1:  // Sunset Gardens
-			score = 13000;
-			break;
-		case 2:  // Marble Madness
-			score = 28000;
-			break;
-		case 3:  // Oceanic Fortress
-			score = 34000;
-			break;
-		case 73: // Hire This Zone
-			score = 10000;
-			//
-			break;
-		default:
-			score = 0;
-			break;
-	}
-
-	if (score == 0) {
-		score = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) * 90;
-	}
+	int score = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) * 90;
+    score = RoundToNearestThousand(score);
 
 	SetResultValue(score);
 }
