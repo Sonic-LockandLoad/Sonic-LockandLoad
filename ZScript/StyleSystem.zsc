@@ -164,8 +164,8 @@ class StyleSystem : EventHandler
 		int penalty = SCORE_THRESHOLD;
 
         bool does_damage_more_than_once =
-            e.Inflictor is "ProjectileShotgunner" ||
-            e.Inflictor is "ProjectileChaingunner" ||
+            e.Inflictor is "SLL_Shotgunner" ||
+            e.Inflictor is "SLL_Chaingunner" ||
             e.Inflictor is "SLL_Cyberdemon" ||
             e.Inflictor is "SLL_SpiderMastermind";
 

@@ -37,7 +37,7 @@ class FastSpiderdemon : SpiderMastermind // 19924
 			SPID H 1 Bright A_SpidReFire();
 			Goto Missile+1;
 		SecPhasStart:
-			SPID A 5 Bright A_PlaySound("spider/sight"); 
+			SPID A 5 Bright A_PlaySound("spider/sight");
 		PMissile:
 			TNT1 A 0 ACS_NamedExecute("BossMusic2");
 			SPID A 10 Bright A_FaceTarget;
@@ -137,62 +137,6 @@ class MechZombie : Actor
 	}
 }
 
-class ProjectileZombieMan : ZombieMan replaces ZombieMan
-{
-	Default
-	{
-		PainChance "Caliburn", 0;
-	}
-	Default
-	{
-		DropItem "FadingChaosCapsule";
-	}
- 	States
-	{
-		Missile:
-			POSS E 10 A_FaceTarget;
-			POSS F 8 Bright A_SpawnProjectile("ProjectileBullet");
-			POSS E 8;
-			Goto See;
-	}
-}
-
-class ProjectileShotgunner : ShotgunGuy replaces ShotgunGuy
-{
-	Default
-	{
-		PainChance "Caliburn", 0;
-	}
-    States
-    {
-        Missile:
-            SPOS E 10 A_FaceTarget;
-            SPOS F 10 Bright {
-                for (int x = 0; x < 10; x++) {
-                    A_SpawnProjectile("ProjectilePellet", random(24, 42), 0, random(-2, 2));
-                }
-            }
-            SPOS E 10;
-            Goto See;
-    }
-}
-
-class ProjectileChaingunner : ChaingunGuy replaces ChaingunGuy
-{
-	Default
-	{
-		PainChance "Caliburn", 0;
-	}
-    States
-    {
-        Missile:
-            CPOS E 10 A_FaceTarget;
-            CPOS FE 3 Bright A_SpawnProjectile("WeakProjectileBullet", 32, 0, random(-5, 5), 0, random(-3, 3));
-            CPOS F 1 A_CPosRefire;
-            Goto Missile+1;
-    }
-}
-
 class WalkingCapsule : Demon
 {
 	Default
@@ -227,7 +171,7 @@ class FrickingCyberdemon : Actor
 		DamageFactor "Boost", 0;
 		Monster;
 		MinMissileChance 160;
-		+BOSS 
+		+BOSS
 		+MISSILEMORE
 		+FLOORCLIP
 		+NORADIUSDMG
@@ -425,7 +369,7 @@ class GigantoCyberdemon : FrickingCyberdemon
 			}
 			Goto See;
 		Death:
-			TNT1 A 0 { 
+			TNT1 A 0 {
 				target.A_StartSound("sonic/bossvictory", 0);
 				target.ACS_NamedExecute("Subtitles", 0, 18);
 			}
@@ -477,6 +421,23 @@ class SLL_Cacodemon : Cacodemon replaces Cacodemon
 		PainChance "Parry", 255;
 		PainChance "Shockwave", 255;
 	}
+}
+class SLL_Chaingunner : ChaingunGuy replaces ChaingunGuy
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
+	}
+    States
+    {
+        Missile:
+            CPOS E 10 A_FaceTarget;
+            CPOS FE 3 Bright A_SpawnProjectile("WeakProjectileBullet", 32, 0, random(-5, 5), 0, random(-3, 3));
+            CPOS F 1 A_CPosRefire;
+            Goto Missile+1;
+    }
 }
 class SLL_Cyberdemon : Cyberdemon replaces Cyberdemon
 {
@@ -541,7 +502,7 @@ class SLL_Revenant : Revenant replaces Revenant
 		PainChance "Shockwave", 255;
 	}
 }
-class SLL_Spectre : Spectre replaces Spectre
+class SLL_Shotgunner : ShotgunGuy replaces ShotgunGuy
 {
 	Default
 	{
@@ -549,8 +510,38 @@ class SLL_Spectre : Spectre replaces Spectre
 		PainChance "Parry", 255;
 		PainChance "Shockwave", 255;
 	}
+    States
+    {
+        Missile:
+            SPOS E 10 A_FaceTarget;
+            SPOS F 10 Bright {
+                for (int x = 0; x < 10; x++) {
+                    A_SpawnProjectile("ProjectilePellet", random(24, 42), 0, random(-2, 2));
+                }
+            }
+            SPOS E 10;
+            Goto See;
+    }
 }
 class SLL_SpiderMastermind : SpiderMastermind replaces SpiderMastermind
+{
+	Default
+	{
+		PainChance "Caliburn", 0;
+		PainChance "Parry", 255;
+		PainChance "Shockwave", 255;
+	}
+    States
+    {
+        Missile:
+            SPID A 20 Bright A_FaceTarget;
+            SPID G 4 Bright A_SpawnProjectile("WeakProjectileBullet", 32, 0, random(-5, 5), 0, random(-3, 3));
+            SPID H 4 Bright A_SpawnProjectile("WeakProjectileBullet", 32, 0, random(-5, 5), 0, random(-3, 3));
+            SPID H 1 Bright A_SpidRefire;
+            Goto Missile+1;
+    }
+}
+class SLL_Spectre : Spectre replaces Spectre
 {
 	Default
 	{
@@ -575,6 +566,18 @@ class SLL_ZombieMan : ZombieMan replaces ZombieMan
 		PainChance "Caliburn", 0;
 		PainChance "Parry", 255;
 		PainChance "Shockwave", 255;
+	}
+	Default
+	{
+		DropItem "FadingChaosCapsule";
+	}
+ 	States
+	{
+		Missile:
+			POSS E 10 A_FaceTarget;
+			POSS F 8 Bright A_SpawnProjectile("ProjectileBullet");
+			POSS E 8;
+			Goto See;
 	}
 }
 // Enemies.zsc is now as big as Base.zsc. I hate this so much. WHY CAN'T IT BE
