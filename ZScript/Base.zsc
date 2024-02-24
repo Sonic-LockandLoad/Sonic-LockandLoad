@@ -332,7 +332,7 @@ class LockLoadPlayer : PlayerPawn
 		if ((bNoGravity) && Pitch != 0 && !player.GetClassicFlight())
 		{
 			double zpush = move * sin(Pitch);
-			//Vel.Z -= zpush;
+			Vel.Z -= zpush;
 			move *= cos(Pitch);
 		}
 		Thrust(move, angle);
@@ -398,10 +398,11 @@ class LockLoadPlayer : PlayerPawn
 		}
 
 		bool JustJumped = GetPlayerInput(MODINPUT_BUTTONS) & BT_JUMP && !(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_JUMP);
+        bool Flying = bFly && player.cmd.buttons & BT_JUMP;
 
 		cvar.FindCvar("CanJump").SetBool(DoubleJumpCounter < DoubleJumpCount || IsClassicNotHyper());
 
-		if (JustJumped && !IsBoostingMidAir()) {
+		if ((JustJumped || Flying) && !IsBoostingMidAir()) {
 			if (bNoGravity) {
 				Vel.Z = 3.;
 			}
