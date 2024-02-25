@@ -32,9 +32,9 @@ class StyleSystem : EventHandler
     override void NetworkProcess(ConsoleEvent e)
     {
         if (e.Name == "taunt") {
-            Actor lookat_target = CheckTarget(512);
+            Actor lookat_target = CheckTarget(1024);
             if (lookat_target && (lookat_target.bIsMonster || lookat_target.GetClassName() == "Doox")) {
-                int score_bonus = SCORE_THRESHOLD / 6;
+                int score_bonus = SCORE_THRESHOLD / 2;
                 int rank = cvar.FindCvar("StyleRank").GetInt() + 1;
 
                 score += score_bonus;
