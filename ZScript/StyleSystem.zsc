@@ -35,6 +35,7 @@ class StyleSystem : EventHandler
         if (e.Name == "taunt") {
             Actor lookat_target = CheckTarget(1024);
             if (lookat_target == null) {
+                CallACS("Taunt");
                 return;
             }
             bool is_different_target = lookat_target != old_lookat_target;
