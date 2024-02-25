@@ -712,7 +712,7 @@ class SpinAttack : CustomInventory
 			}
 			Stop;
 		Attack:
-			SPIN A 1 DoubleSpin(5, 5, 128, 32);
+			SPIN A 1 DoubleSpin(5, 5, 256, 32);
 			SPIN BCDEFEDCB 1;
 			Stop;
 		SuperAttack:
