@@ -373,13 +373,10 @@ class Caliburn : BoostEnabledWeapon
 			}
 			Goto Ready;
 		BoostedSlash:
-			CAL1 A 1;
 			TNT1 A 0 SwordAttack(120 + invoker.BoostSpeed, 240, false);
-			Goto Slash1+2;
-		BoostedSlashAir:
-			CAL3 A 1;
-			TNT1 A 0 SwordAttack(240 + invoker.BoostSpeed, 310, false);
-			Goto AirSlash+2;
+			CAL4 ABC 1;
+            CAL4 DDDDDDDDDDDD 1 A_WeaponReady(WRF_NOBOB);
+			Goto Ready;
 		Slash2:
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			CAL2 A 1;
@@ -405,16 +402,17 @@ class Caliburn : BoostEnabledWeapon
 			}
 			Goto Ready;
 		AltFire:
-			TNT1 A 0 {
+			CAL4 A 1 {
 				if (GetPlayerInput(MODINPUT_BUTTONS) & BT_ATTACK && (!(GetPlayerInput(MODINPUT_OLDBUTTONS) & BT_ATTACK))) {
 					A_Overlay(-3, "BoostEnd");
 					A_GiveInventory("SwordParry");
-					if (player.onground) return ResolveState("BoostedSlash");
-					else return ResolveState("BoostedSlashAir");
+                    return ResolveState("BoostedSlash");
 				}
 				A_Overlay(-3, "BoostStart");
+                A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 				return ResolveState(null);
 			}
+            CAL4 AAAAAAAAAAA 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			Goto Ready;
 		SoulCharge:
 			SOUS AAABBBCCCDDDEEEFFFGGG 1 {
