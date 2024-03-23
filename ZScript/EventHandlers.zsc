@@ -160,7 +160,7 @@ class LastWeaponHandler : StaticEventHandler
 		}
 
 		if (player is "ClassicSonicPlayer") {
-			return "ChaosBlaster";
+			return "SpeedforcePistol";
 		}
 
 		if (player is "ShadowPlayer") {

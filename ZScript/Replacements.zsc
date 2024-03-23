@@ -20,7 +20,7 @@ class MegasphereReplace : CustomInventory replaces Megasphere // 83
 		//$Category Lock & Load Replacements
 		//$Sprite CHSMA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("RedChaosCapsule");
@@ -111,7 +111,7 @@ class PistolReplace : Actor replaces Pistol // 5010
 					A_SpawnItem("ShadowKnife");
 				}
 				else if (CountInv("ClassicCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("ChaosBlaster");
+					A_SpawnItem("SpeedforcePistol");
 				}
 			}
 			Stop;
@@ -125,7 +125,7 @@ class ChainsawReplace : Actor replaces Chainsaw // 2005
 		//$Category Lock & Load Weapons
 		//$Sprite CSAWA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay
@@ -154,7 +154,7 @@ class ShotgunReplace : Actor replaces Shotgun // 2001
 		//$Category Lock & Load Weapons
 		//$Sprite SCATA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay
@@ -183,7 +183,7 @@ class ChaingunReplace : Actor replaces Chaingun // 2002
 		//$Category Lock & Load Weapons
 		//$Sprite MGUNA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay
@@ -215,7 +215,7 @@ class SSGReplace : Actor replaces SuperShotgun // 82
 		//$Category Lock & Load Weapons
 		//$Sprite SURIA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay
@@ -244,7 +244,7 @@ class RocketReplace : Actor replaces RocketLauncher // 2003
 		//$Category Lock & Load Weapons
 		//$Sprite LAUNA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay
@@ -273,7 +273,7 @@ class PlasmaRifleReplace : Actor replaces PlasmaRifle // 2004
 		//$Category Lock & Load Weapons
 		//$Sprite ECLIA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay
@@ -288,7 +288,7 @@ class PlasmaRifleReplace : Actor replaces PlasmaRifle // 2004
 					A_SpawnItem("ChaosEmerald");
 				}
 				else if (CountInv("ClassicCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("ChaosRain");
+					A_SpawnItem("ChaosBlaster");
 				}
 			}
 			Stop;
@@ -302,7 +302,7 @@ class ClipReplace : Actor replaces Clip // 2007
 		//$Category Lock & Load Replacements
 		//$Sprite RIN2A0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("ChaosRingGravity");
@@ -317,7 +317,7 @@ class ArmorReplace : Actor replaces GreenArmor // 2018
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("ChaosCapsule");
@@ -332,7 +332,7 @@ class BlueArmorReplace : Actor replaces BlueArmor // 2019
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCC0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("RedChaosCapsule");
@@ -347,7 +347,7 @@ class ShellReplace : Actor replaces Shell // 2008
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("ChaosCapsule");
@@ -362,7 +362,7 @@ class ClipBoxReplace : Actor replaces ClipBox // 2048
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCA0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("ChaosCapsule");
@@ -377,7 +377,7 @@ class ShellBoxReplace : Actor replaces ShellBox // 2049
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCB0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("BlueChaosCapsule");
@@ -392,7 +392,7 @@ class RocketAmmoReplace : Actor replaces RocketAmmo // 2010
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCB0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("BlueChaosCapsule");
@@ -407,7 +407,7 @@ class RocketBoxReplace : Actor replaces RocketBox // 2046
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCC0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("RedChaosCapsule");
@@ -422,7 +422,7 @@ class CellReplace : Actor replaces Cell // 2047
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCB0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("BlueChaosCapsule");
@@ -436,7 +436,7 @@ class CellPackReplace : Actor replaces CellPack // 17
 		//$Category Lock & Load Replacements
 		//$Sprite CHSCC0
 	}
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SpawnItem("RedChaosCapsule");
