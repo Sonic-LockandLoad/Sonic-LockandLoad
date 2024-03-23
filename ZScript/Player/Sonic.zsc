@@ -279,26 +279,25 @@ class Caliburn : BoostEnabledWeapon
 		return null;
 	}
 
-	action void SwordAttack(int damage, double distance, bool right_facing, int horizontal_spread = 75, int attack_count = 30)
+	action void SwordAttack(int damage, double distance, int horizontal_spread = 75, int attack_count = 30)
 	{
 		A_StartSound("sweapons/swordswing", 9);
-		if (GetCvar("EnergyBlades")) FireEnergyBlade(distance, right_facing);
+		if (GetCvar("EnergyBlades")) FireEnergyBlade(distance);
 		PerformMeleeAttack(damage + invoker.DamageBonus * 2, distance, angle, pitch, attack_count, horizontal_spread);
 	}
 
-	action void FireEnergyBlade(double distance, bool right_facing)
+	action void FireEnergyBlade(double distance)
 	{
 		FTranslatedLineTarget t;
 		LineAttack(angle, distance, pitch, 0, 'Melee', "SwordPuff", LAF_ISMELEEATTACK, t);
 		if (t.linetarget) return;
 		if (CountInv("PowerSuper") || CountInv("PowerHyper")) {
 			A_PlaySound("sweapons/soulsurge", 6, 0.5);
-			string direction = right_facing ? "Right" : "Left";
 			if (CountInv("PowerSuper")) {
-				A_FireProjectile("EnergyBlade"..direction, 0, 0);
+				A_FireProjectile("EnergyBlade", 0, 0);
 			}
 			else if (CountInv("PowerHyper")) {
-				A_FireProjectile("HyperEnergyBlade"..direction, 0, 0);
+				A_FireProjectile("HyperEnergyBlade", 0, 0);
 			}
 		}
 	}
@@ -360,7 +359,7 @@ class Caliburn : BoostEnabledWeapon
 		Slash1:
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);
 			CAL1 A 1;
-			TNT1 A 0 SwordAttack(40, 90, false);
+			TNT1 A 0 SwordAttack(40, 90);
 			TNT1 A 0 { invoker.DamageBonus = 0; }
 			CAL1 BCD 1;
 			CAL1 EEEEEEEEEEEEEE 1 {
@@ -374,11 +373,11 @@ class Caliburn : BoostEnabledWeapon
 			Goto Ready;
 		BoostedSlash:
 			CAL1 A 1;
-			TNT1 A 0 SwordAttack(120 + invoker.BoostSpeed, 240, false);
+			TNT1 A 0 SwordAttack(120 + invoker.BoostSpeed, 240);
 			Goto Slash1+2;
 		BoostedSlashAir:
 			CAL3 A 1;
-			TNT1 A 0 SwordAttack(240 + invoker.BoostSpeed, 310, false);
+			TNT1 A 0 SwordAttack(240 + invoker.BoostSpeed, 310);
 			Goto AirSlash+2;
 		Slash2:
 			TNT1 A 0 A_PlaySound("sonic/grunt", 8);

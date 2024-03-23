@@ -34,13 +34,8 @@ PointLight ActivatedSwitch {
 }
 
 PointLight SwordGlow {
-	Color 0 0.4 1
-	Size 75
-}
-
-PointLight HSwordGlow {
-	Color 1 0 0
-	Size 80
+	Color 1 1 1
+	Size 15
 }
 
 PointLight SavePoint
@@ -104,28 +99,16 @@ Object SecretSwitch
 	}
 }
 
-Object EnergyBladeLeft
+Object EnergyBlade
 {
 	Frame ENSL {
-		Light SwordGlow
-	}
-}
-Object EnergyBladeRight
-{
-	Frame ENSR {
 		Light SwordGlow
 	}
 }
 
-Object HyperEnergyBladeLeft
+Object HyperEnergyBlade
 {
 	Frame ENSL {
-		Light HSwordGlow
-	}
-}
-Object HyperEnergyBladeRight
-{
-	Frame ENSR {
-		Light HSwordGlow
+		Light SwordGlow
 	}
 }

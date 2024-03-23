@@ -505,7 +505,7 @@ class LaserTrail : Actor
 	}
 }
 
-class EnergyBladeLeft : FastProjectile
+class EnergyBlade : FastProjectile
 {
 	Default
 	{
@@ -513,7 +513,7 @@ class EnergyBladeLeft : FastProjectile
 		Scale 0.5;
 		Height 2;
 		Speed 80;
-		Damage 8;
+		Damage 32;
 		Projectile;
 		+RIPPER
 		+EXTREMEDEATH
@@ -523,43 +523,22 @@ class EnergyBladeLeft : FastProjectile
 	States {
 		Spawn:
 			ENSL A 12;
-			TNT1 A 0 A_Die();
-			Stop;
+			// passthrough
 		Death:
-			Stop;
-	}
-}
-
-class EnergyBladeRight : EnergyBladeLeft
-{
-	States {
-		Spawn:
-			ENSR A -1;
+			ENSL # 2 A_FadeOut(0.1);
 			Loop;
 	}
 }
 
-class HyperEnergyBladeLeft : EnergyBladeLeft
+class HyperEnergyBlade : EnergyBlade
 {
 	Default
 	{
-		Scale 0.6;
-		Damage 16;
+		Damage 64;
 	}
 	States {
 		Spawn:
 			ENSL B -1;
-			Loop;
-		Death:
-			Stop;
-	}
-}
-
-class HyperEnergyBladeRight : HyperEnergyBladeLeft
-{
-	States {
-		Spawn:
-			ENSR B -1;
 			Loop;
 	}
 }
