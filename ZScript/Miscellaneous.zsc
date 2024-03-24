@@ -113,6 +113,7 @@ class Doox : SwitchingDecoration
 		+DROPOFF
 		+SLIDESONWALLS
 		-ISMONSTER
+        -COUNTKILL
 		+PICKUP
 		BounceType "Doom";
 		Health 1000000;
