@@ -119,7 +119,7 @@ map SDLvl01 "Sunset Gardens"
 	music = S_LVL01
 	sky1 = "SUNSTSKY"
 	next = "SDLobby"
-	partime = 270
+	partime = 300
 	levelnum = 1
 	nointermission
 }
@@ -129,7 +129,7 @@ map SDLvl02 "Marble Madness"
 	music = S_LVL02
 	sky1 = "SUNSTSKY"
 	next = "SDLobby"
-	partime = 450
+	partime = 480
 	levelnum = 2
 	nointermission
 }
