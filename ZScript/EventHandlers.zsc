@@ -3,6 +3,68 @@ class DeathInfo : Object {
 	int tick;
 }
 
+class SLL_ScoreHandler : EventHandler
+{
+    int score;
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        cvar.FindCvar("GameScore").SetInt(score);
+    }
+
+    int GetStyleRank()
+    {
+        return cvar.FindCvar("StyleRank").GetInt();
+    }
+
+    void DeductScore(int amount)
+    {
+        score -= amount;
+        if (score < 0) score = 0;
+        cvar.FindCvar("GameScore").SetInt(score);
+    }
+
+    void IncrementScore(int amount)
+    {
+        score += amount;
+        cvar.FindCvar("GameScore").SetInt(score);
+    }
+
+    bool IsTransformed()
+    {
+        PlayerPawn player = players[consoleplayer].mo;
+
+        return player.CountInv("PowerSuper") || player.CountInv("PowerHyper");
+    }
+
+    override void WorldThingDamaged(WorldEvent e)
+    {
+        if (!e.thing) {
+            return;
+        }
+
+        bool player_damaged = e.thing is "PlayerPawn";
+        bool enemy_defeated = e.thing.bIsMonster && e.damage > e.thing.health;
+
+        if (player_damaged) {
+            DeductScore(e.damage * 8);
+		}
+        if (enemy_defeated) {
+            int initial_bonus = e.thing.SpawnHealth() / 6;
+            if (IsTransformed()) initial_bonus * 2;
+            IncrementScore(initial_bonus * (GetStyleRank() + 1));
+		}
+    }
+
+    override void WorldThingDied(WorldEvent e)
+    {
+        if (e.thing && e.thing is "PlayerPawn") {
+            score = 0;
+        }
+        cvar.FindCvar("GameScore").SetInt(score);
+    }
+}
+
 class CyberSpaceArenaHandler : EventHandler
 {
 	Array<DeathInfo> dead_monsters;
@@ -19,7 +81,8 @@ class CyberSpaceArenaHandler : EventHandler
 		}
 	}
 
-	override void WorldTick () {
+	override void WorldTick()
+    {
 		current_tick++;
 		delay = 60;
 		for (int i = 0; i < dead_monsters.Size(); i++) {

@@ -17,7 +17,7 @@ script "GetLevelTargetScore" (void)
 // This is a separate script and not a function
 // so I can call it from ZScript.
 {
-	int score = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) * 90;
+	int score = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) * 196;
     score = RoundToNearestThousand(score);
 
 	SetResultValue(score);
@@ -37,15 +37,7 @@ script "GoalRing" (void)
     int CurrentLevel = GetCvar("CurrentLevel");
 	str Rank;
 
-	// Your score
-	if (CurrentRings > 300) {
-		score += 600 + (CurrentRings - 300);
-	}
-	else {
-		score += CurrentRings * 2;
-	}
-	score += KilledMonsters * 95;
-	if (score < 0) score = 0;
+	score = GetCvar("GameScore");
 
 	// Stop the player and remove their form and invincibility
 	Thing_Stop(1001);
@@ -78,8 +70,8 @@ script "GoalRing" (void)
 			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
 
 	// Victory message and rank
-	bool d_rank = score >= targetscore / 4;
-	bool c_rank = score >= targetscore / 3;
+	bool d_rank = score >= targetscore / 8;
+	bool c_rank = score >= targetscore / 4;
 	bool b_rank = score >= targetscore / 2;
 	bool a_rank = score >= targetscore;
 	bool s_rank = a_rank && LevelTime <= ParTime;

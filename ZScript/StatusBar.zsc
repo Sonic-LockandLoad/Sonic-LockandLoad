@@ -18,7 +18,7 @@ class SLL_StatusBar : BaseStatusBar
 		mAmountFont = HUDFont.Create("INDEXFONT");
 		diparms = InventoryBarState.Create();
 	}
-	
+
 	Inventory GetInventory(class<Inventory> item)
 	{
 		return CPlayer.mo.FindInventory(item);
@@ -47,13 +47,13 @@ class SLL_StatusBar : BaseStatusBar
 			DrawFullScreenHUD();
 		}
 	}
-	
+
 	protected bool ShouldDisplayScore()
 	{
 		bool score_enabled = cvar.FindCvar("ShowScore").GetBool();
 		return score_enabled;
 	}
-	
+
 	protected void DisplayUnifiedHUD(Vector2 hud_position)
 	{
 		String hud;
@@ -80,35 +80,35 @@ class SLL_StatusBar : BaseStatusBar
 		}
 		DrawImage(hud, hud_position);
 	}
-	
+
 	protected void DrawBarKeys(int base_x, int base_y, int spacing_x, int spacing_y)
 	{
 		// Taken from DoomStatusBar and adapted because I'm lazy
 		bool locks[6];
 		String image;
-		
+
 		for (int i = 0; i < 6; i++) {
 			locks[i] = CPlayer.mo.CheckKeys(i + 1, false, true);
 		}
-		
+
 		if (locks[1] && locks[4]) image = "STKEYS6";
 		else if (locks[1]) image = "STKEYS0";
 		else if (locks[4]) image = "STKEYS3";
 		DrawImage(image, (base_x - spacing_x, base_y - spacing_y), DI_ITEM_OFFSETS);
-		
+
 		if (locks[2] && locks[5]) image = "STKEYS7";
 		else if (locks[2]) image = "STKEYS1";
 		else if (locks[5]) image = "STKEYS4";
 		else image = "";
 		DrawImage(image, (base_x, base_y), DI_ITEM_OFFSETS);
-		
+
 		if (locks[0] && locks[3]) image = "STKEYS8";
 		else if (locks[0]) image = "STKEYS2";
 		else if (locks[3]) image = "STKEYS5";
 		else image = "";
 		DrawImage(image, (base_x + spacing_x, base_y + spacing_y), DI_ITEM_OFFSETS);
 	}
-	
+
 	protected void DrawRings(HUDFont fnt, Vector2 rings_position, bool super_hide = false, String rings_colour = "Gold", int flags = DI_TEXT_ALIGN_RIGHT | DI_NOSHADOW)
 	{
 		bool is_transformed = GetInventory("PowerSuper") || GetInventory("PowerHyper");
@@ -155,12 +155,12 @@ class SLL_StatusBar : BaseStatusBar
 	protected int GetTimeColour(bool include_super = true)
 	{
 		Name time_colour;
-		
+
 		if (GetInventory("SonicCheck")) 	{ time_colour = "Sonic"; }
 		if (GetInventory("AmyCheck")) 		{ time_colour = "Amy"; }
 		if (GetInventory("ClassicCheck")) 	{ time_colour = "Classic"; }
 		if (GetInventory("ShadowCheck")) 	{ time_colour = "Shadow"; }
-		
+
 		if (include_super) {
 			if (GetInventory("PowerHyper")) { time_colour = "White"; }
 			if (GetInventory("PowerSuper")) {
@@ -168,10 +168,10 @@ class SLL_StatusBar : BaseStatusBar
 				if (GetInventory("AmyCheck")) { time_colour = "Purple"; }
 			}
 		}
-		
+
 		return Font.FindFontColor(time_colour);
 	}
-	
+
 	protected String GetTimeDisplay()
 	{
 		int overall_seconds = level.time / 35;
@@ -181,7 +181,7 @@ class SLL_StatusBar : BaseStatusBar
 
 		return String.Format("%02d:%02d:%02d", hours, minutes, seconds);
 	}
-	
+
 	protected String GetClassicTimeDisplay()
 	{
 		int overall_seconds = level.time / 35;
@@ -195,16 +195,16 @@ class SLL_StatusBar : BaseStatusBar
 	protected void DisplayHead(Vector2 head_position, bool show_emeralds = false)
 	{
 		Vector2 emeralds_position = (head_position.x + 20, head_position.y + 57);
-		
-		if (GetInventory("ChaosEmeralds") && show_emeralds) 
+
+		if (GetInventory("ChaosEmeralds") && show_emeralds)
 			DrawImage("em_back", emeralds_position, DI_ITEM_OFFSETS);
-			
+
 		DrawTexture(GetMugShot(1), head_position, DI_ITEM_OFFSETS);
-		
+
 		if (GetInventory("ChaosEmeralds") && show_emeralds)
 			DrawImage("em_front", emeralds_position, DI_ITEM_OFFSETS);
 	}
-	
+
 	protected void DisplayLabels(Vector2 position, HUDFont fnt)
 	{
 		if (cvar.FindCvar("ShowScore").GetBool()) {
@@ -217,37 +217,21 @@ class SLL_StatusBar : BaseStatusBar
 		position.y += 18;
 		DrawString(fnt, "Energy", position, 0, Font.FindFontColor("Green"));
 	}
-	
+
 	protected void DrawScore(HUDFont fnt, Vector2 position, int score_colour, int flags = DI_TEXT_ALIGN_RIGHT)
 	{
-		/* Target score */
+        int score = cvar.FindCvar("GameScore").GetInt();
 		int targetscore;
 		let skill_level = G_SkillPropertyInt(SKILLP_ACSReturn);
 		targetscore = CallACS("GetLevelTargetScore");
-		
-		/* Current score */
-		int score;
-		if (CPlayer.health > 300) {
-			score += 600 + (CPlayer.health - 300);
-		}
-		else {
-			score += CPlayer.health * 2;
-		}
-		score += Level.Killed_Monsters * 95;
-		if (score < 0) score = 0;
-		
-		/* If in Cyber Space Arena, use killed monsters as score */
-		if (level.LevelName == "Cyber Space Arena") {
-			score = Level.Killed_Monsters;
-		}
-		
+
 		/* Gold if requirements met */
 		bool in_allowed_level = level.LevelName != "Station Square" && level.LevelName != "Cyber Space Arena";
 		if (score >= targetscore && in_allowed_level) {
 			if (GetInventory("PowerSuper")) score_colour = Font.FindFontColor("Yellow");
 			else score_colour = Font.FindFontColor("Gold");
 		}
-		
+
 		/* Display it */
 		DrawString(fnt, String.Format("%d", score), position, flags, score_colour);
 	}
