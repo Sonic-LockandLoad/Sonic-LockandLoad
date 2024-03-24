@@ -32,6 +32,8 @@ script "GoalRing" (void)
 	int CurrentRings = GetActorProperty(1001, APROP_Health);
 	int KilledMonsters = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
 	int TotalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+    int FoundSecrets = GetLevelInfo(LEVELINFO_FOUND_SECRETS);
+    int TotalSecrets = GetLevelInfo(LEVELINFO_TOTAL_SECRETS);
     int CurrentLevel = GetCvar("CurrentLevel");
 	str Rank;
 
@@ -62,27 +64,34 @@ script "GoalRing" (void)
 
 	str TimeString = "Time: ";
 	str ScoreString = "Score: ";
+    str SecretsString = "Secrets: ";
 	if (LevelTime <= ParTime) TimeString = "Time: \c[Gold]";
 	if (score >= targetscore) ScoreString = "Score: \c[Gold]";
+	if (FoundSecrets == TotalSecrets) SecretsString = "Secrets: \c[Gold]";
 
-	HudMessage(s:TimeString, d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime), s:"\n",
-			   s:ScoreString, d:score, s:"\n\n",
-			   s:"Target Time: ", d:ParTime / 60, s:":", s:DoubleDigitSeconds(ParTime), s:"\n",
-			   s:"Target Score: ", d:targetscore, s:"\n";
+    str f_LevelTime  = StrParam(d:LevelTime / 60, s:":", s:DoubleDigitSeconds(LevelTime));
+    str f_TargetTime = StrParam(d:ParTime / 60, s:":", s:DoubleDigitSeconds(ParTime));
+
+	HudMessage(s:TimeString, s:f_LevelTime, s:"/", s:f_TargetTime, s:"\n",
+			   s:ScoreString, d:score, s:"/", d:targetscore, s:"\n",
+			   s:SecretsString, d:FoundSecrets, s:"/", d:TotalSecrets, s:"\n";
 			   HUDMSG_PLAIN, 5, CR_WHITE, 1.5, 0.5, 0, 1.0);
 
 	// Victory message and rank
-	bool s_rank = score >= targetscore && LevelTime <= ParTime;
-	bool a_rank = score >= targetscore;
-	bool b_rank = score >= targetscore / 2;
+	bool d_rank = score >= targetscore / 4;
 	bool c_rank = score >= targetscore / 3;
-	bool rank_plus = !s_rank && LevelTime <= ParTime;
+	bool b_rank = score >= targetscore / 2;
+	bool a_rank = score >= targetscore;
+	bool s_rank = a_rank && LevelTime <= ParTime;
+    bool x_rank = s_rank && FoundSecrets == TotalSecrets;
+	bool rank_plus = !(s_rank || x_rank) && LevelTime <= ParTime;
+
 	SetFont("BIGFONT");
 	int jingledelay;
 	switch (PlayerClass(PlayerNumber()))
 	{
 		case Sonic:
-			if (s_rank) {
+			if (x_rank || s_rank) {
 				SetMusic("S_PERFCT");
 				jingledelay = 35*7;
 			}
@@ -114,39 +123,36 @@ script "GoalRing" (void)
 
 	// Setting the image to be used with HudMessage
 	// In addition, we set the colour for the "+" addition
-	str plus_string;
-	if (s_rank) {
-		SetFont("s_rank");
-		plus_string = "\c[S]+";
+	str rank_prefix;
+    if (x_rank) {
+		rank_prefix = "x";
+	}
+	else if (s_rank) {
+		rank_prefix = "s";
 	}
 	else if (a_rank) {
-		SetFont("a_rank");
-		plus_string = "\c[A]+";
+		rank_prefix = "a";
 	}
 	else if (b_rank) {
-		SetFont("b_rank");
-		plus_string = "\c[B]+";
+		rank_prefix = "b";
 	}
 	else if (c_rank) {
-		SetFont("c_rank");
-		plus_string = "\c[C]+";
+        rank_prefix = "c";
 	}
 	else {
-		SetFont("d_rank");
-		plus_string = "\c[D]+";
+		rank_prefix = "d";
 	}
+
+    if (rank_plus) {
+        SetFont(StrParam(s:rank_prefix, s:"p_rank"));
+    }
+    else {
+        SetFont(StrParam(s:rank_prefix, s:"_rank"));
+    }
 
 	AmbientSound("sglobal/rankget", 127);
 	// For the unenlightened, "A" plus an image font will display that image.
 	HudMessage(s:"A"; HUDMSG_PLAIN, 8, CR_UNTRANSLATED, 1.5, 0.65, 0, 1.0);
-	if (rank_plus) {
-		SetFont("BIGFONT");
-		HudMessage(s:plus_string; HUDMSG_PLAIN, 3, CR_UNTRANSLATED, 1.525, 0.65, 0, 1.0);
-	}
-	/*
-	Basically, if you get, for example, a D rank, but meet the time requirement,
-	you'll be given a "D+" rank, which is functionally similar to a D rank.
-	*/
 	SetMusic("");
 	Delay(14);
 	int speechdelay;
