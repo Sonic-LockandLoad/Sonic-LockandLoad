@@ -1,0 +1,41 @@
+class LevelScores
+{
+    static int GetLevelTargetScore() {
+        string level = level.MapName;
+
+        int target_score = 0;
+
+        int lump = -1;
+
+        if (lump = Wads.FindLump("LVLSCORE")) {
+            string score_text = Wads.ReadLump(lump);
+            target_score = ParseLevelScores(level, score_text);
+        }
+
+        return target_score;
+    }
+
+    static int ParseLevelScores(string level, string score_text) {
+        Array<String> lines;
+        score_text.Split(lines, "\n", TOK_SKIPEMPTY);
+
+        foreach (t_line : lines) {
+            Array<String> parts;
+            t_line.Split(parts, " ", TOK_SKIPEMPTY);
+
+            if (parts.Size() == 2) {
+                string level_name = parts[0];
+                int result;
+                int level_score = parts[1].ToInt();
+
+                if (level == level_name) {
+                    return level_score;
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
+}

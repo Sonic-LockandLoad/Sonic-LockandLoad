@@ -52,7 +52,12 @@ script "GoalRing" (void)
 	SetActorProperty(1001, APROP_DamageFactor, 0.0);
 
 	// Your target score
-	targetscore = ACS_NamedExecuteWithResult("GetLevelTargetScore");
+    if (ScriptCall("LevelScores", "GetLevelTargetScore") > 0) {
+        targetscore = ScriptCall("LevelScores", "GetLevelTargetScore");
+    }
+    else {
+        targetscore = ACS_NamedExecuteWithResult("GetLevelTargetScore");
+    }
 
 	str TimeString = "Time: ";
 	str ScoreString = "Score: ";
