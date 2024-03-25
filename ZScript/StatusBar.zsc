@@ -229,6 +229,11 @@ class SLL_StatusBar : BaseStatusBar
             targetscore = CallACS("GetLevelTargetScore");
         }
 
+        if (level.MapName == "SDCYBRSP") {
+            score = level.Killed_Monsters;
+            targetscore = level.Total_Monsters;
+        }
+
 		/* Gold if requirements met */
 		bool in_allowed_level = level.LevelName != "Station Square" && level.LevelName != "Cyber Space Arena";
 		if (score >= targetscore && in_allowed_level) {
@@ -237,7 +242,9 @@ class SLL_StatusBar : BaseStatusBar
 		}
 
 		/* Display it */
-		DrawString(fnt, String.Format("%d", score), position, flags, score_colour);
+        string score_display = String.Format("%d/%d", score, targetscore);
+        if (targetscore < 1) { score_display = String.Format("%d", score); }
+		DrawString(fnt, score_display, position, flags, score_colour);
 	}
 
 	protected void DrawUnifiedHUD(double TicFrac)
