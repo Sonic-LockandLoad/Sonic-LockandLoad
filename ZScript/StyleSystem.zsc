@@ -19,9 +19,6 @@ class StyleSystem : EventHandler
 	{
 		bool is_attackable_target = e.thing.bIsMonster || e.thing.GetClassName() == "Doox";
 
-		if (!cvar.FindCvar("StyleSystem").GetBool())
-			return;
-
 		if (e.thing && e.thing is "PlayerPawn") {
 			DeductStyleScore(e);
 		}
@@ -52,9 +49,6 @@ class StyleSystem : EventHandler
 
 	override void WorldTick()
 	{
-		if (!cvar.FindCvar("StyleSystem").GetBool())
-			return;
-
 		UpdateStyleRank();
 		DeprecateStyleScore();
 	}

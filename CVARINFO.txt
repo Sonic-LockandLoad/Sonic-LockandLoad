@@ -31,7 +31,7 @@ user bool OneHitMode				= false;
 user bool CountDeaths				= false;
 user bool PermadeathMode			= false;
 
-user bool StyleSystem				= true;
+user bool StyleRankVisible          = true;
 user bool StyleCallouts				= true;
 user int  StylePoints				= 3;
 user bool StyleBonuses  			= true;

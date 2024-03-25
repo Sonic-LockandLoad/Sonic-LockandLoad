@@ -20,68 +20,68 @@ script "StyleRank" ENTER
 
 	SetCvar("StyleRank", 0);
 	Delay(1);
-	while (GetCvar("StyleSystem")) {
-		int stylerank = GetCvar("StyleRank");
+	while (GetCvar("StyleRankVisible")) {
+        int stylerank = GetCvar("StyleRank");
 
-		if      (stylerank == U) SetFont("u_style");
+        if      (stylerank == U) SetFont("u_style");
         else if (stylerank == SSS) SetFont("sss_style");
-		else if (stylerank == SS) SetFont("ss_style");
-		else if (stylerank == S) SetFont("s_style");
-		else if (stylerank == A) SetFont("a_style");
-		else if (stylerank == B) SetFont("b_style");
-		else if (stylerank == C) SetFont("c_style");
-		else if (stylerank == D) SetFont("d_style");
+        else if (stylerank == SS) SetFont("ss_style");
+        else if (stylerank == S) SetFont("s_style");
+        else if (stylerank == A) SetFont("a_style");
+        else if (stylerank == B) SetFont("b_style");
+        else if (stylerank == C) SetFont("c_style");
+        else if (stylerank == D) SetFont("d_style");
 
-		str StyleName;
-		str StyleColour;
+        str StyleName;
+        str StyleColour;
         str StyleFont;
-		switch (stylerank) {
-			case U:
-				StyleName = "stylerank_u";
-				StyleColour = "\c[U_Style]";
+        switch (stylerank) {
+            case U:
+                StyleName = "stylerank_u";
+                StyleColour = "\c[U_Style]";
                 StyleFont = "BIGFONT";
-				break;
-			case SSS:
-				StyleName = "stylerank_sss";
-				StyleColour = "\c[SSS_Style]";
+                break;
+            case SSS:
+                StyleName = "stylerank_sss";
+                StyleColour = "\c[SSS_Style]";
                 StyleFont = "SMALLFONT";
-				break;
-			case SS:
-				StyleName = "stylerank_ss";
-				StyleColour = "\c[SS_Style]";
+                break;
+            case SS:
+                StyleName = "stylerank_ss";
+                StyleColour = "\c[SS_Style]";
                 StyleFont = "SMALLFONT";
-				break;
-			case S:
-				StyleName = "stylerank_s";
-				StyleColour = "\c[S_Style]";
+                break;
+            case S:
+                StyleName = "stylerank_s";
+                StyleColour = "\c[S_Style]";
                 StyleFont = "SMALLFONT";
-				break;
-			case A:
-				StyleName = "stylerank_a";
-				StyleColour = "\c[A_Style]";
+                break;
+            case A:
+                StyleName = "stylerank_a";
+                StyleColour = "\c[A_Style]";
                 StyleFont = "SMALLFONT";
-				break;
-			case B:
-				StyleName = "stylerank_b";
-				StyleColour = "\c[B_Style]";
+                break;
+            case B:
+                StyleName = "stylerank_b";
+                StyleColour = "\c[B_Style]";
                 StyleFont = "SMALLFONT";
-				break;
-			case C:
-				StyleName = "stylerank_c";
-				StyleColour = "\c[C_Style]";
+                break;
+            case C:
+                StyleName = "stylerank_c";
+                StyleColour = "\c[C_Style]";
                 StyleFont = "SMALLFONT";
-				break;
-			case D:
-				StyleName = "stylerank_d";
-				StyleColour = "\c[D_Style]";
+                break;
+            case D:
+                StyleName = "stylerank_d";
+                StyleColour = "\c[D_Style]";
                 StyleFont = "SMALLFONT";
-				break;
-			default: // E
-				StyleName = "stylerank_base";
-				StyleColour = "\c[Gray]";
+                break;
+            default: // E
+                StyleName = "stylerank_base";
+                StyleColour = "\c[Gray]";
                 StyleFont = "SMALLFONT";
-				break;
-		}
+                break;
+        }
 
         stylerank_x  = 1.5;
         stylename_x  = 1.5;
@@ -91,34 +91,34 @@ script "StyleRank" ENTER
         stylename_y  = 0.24;
         stylescore_y = 0.28;
 
-		if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
-			HudMessage(s:"A"; HUDMSG_PLAIN, 43, CR_UNTRANSLATED, stylerank_x, stylerank_y, 0.1, 1.0);
-			if (stylerank > oldrank && stylerank > oldcalloutrank && GetCvar("StyleCallouts")) {
-				if      (stylerank == U)   callout = "sstyle/unlimited";
+        if (stylerank > 0 && ClassifyActor(0) & ACTOR_ALIVE) {
+            HudMessage(s:"A"; HUDMSG_PLAIN, 43, CR_UNTRANSLATED, stylerank_x, stylerank_y, 0.1, 1.0);
+            if (stylerank > oldrank && stylerank > oldcalloutrank && GetCvar("StyleCallouts")) {
+                if      (stylerank == U)   callout = "sstyle/unlimited";
                 else if (stylerank == SSS) callout = "sstyle/supersonic";
-				else if (stylerank == SS)  callout = "sstyle/amazing";
-				else if (stylerank == S)   callout = "sstyle/outstanding";
-				else if (stylerank == A)   callout = "sstyle/awesome";
-				else if (stylerank == B)   callout = "sstyle/great";
-				else if (stylerank == C)   callout = "sstyle/good";
-				else if (stylerank == D)   callout = "sstyle/dontgiveup";
-				oldcalloutrank = stylerank;
-				PlaySound(0, callout, 4096, 1.0, false, ATTN_NONE, false);
-			}
-		}
+                else if (stylerank == SS)  callout = "sstyle/amazing";
+                else if (stylerank == S)   callout = "sstyle/outstanding";
+                else if (stylerank == A)   callout = "sstyle/awesome";
+                else if (stylerank == B)   callout = "sstyle/great";
+                else if (stylerank == C)   callout = "sstyle/good";
+                else if (stylerank == D)   callout = "sstyle/dontgiveup";
+                oldcalloutrank = stylerank;
+                PlaySound(0, callout, 4096, 1.0, false, ATTN_NONE, false);
+            }
+        }
 
         int stylescore = GetCvar("StyleScore");
 
-		if (stylerank < oldcalloutrank - 1 || stylescore <= 0) {
-			oldcalloutrank = 0;
-		}
+        if (stylerank < oldcalloutrank - 1 || stylescore <= 0) {
+            oldcalloutrank = 0;
+        }
 
-		if (stylescore > 0) {
-			SetFont(StyleFont);
-			HudMessage(s:StyleColour, l:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, stylename_x, stylename_y, 0.1, 1.0);
-		}
+        if (stylescore > 0) {
+            SetFont(StyleFont);
+            HudMessage(s:StyleColour, l:StyleName; HUDMSG_PLAIN, 42, CR_WHITE, stylename_x, stylename_y, 0.1, 1.0);
+        }
 
-		oldrank = GetCvar("StyleRank");
+        oldrank = GetCvar("StyleRank");
 
         int StylePointsDisplay = GetCvar("StylePoints");
         if (StylePointsDisplay != SPOINTS_NONE) {
@@ -142,6 +142,6 @@ script "StyleRank" ENTER
             }
         }
 
-		Delay(1);
-	}
+        Delay(1);
+    }
 }

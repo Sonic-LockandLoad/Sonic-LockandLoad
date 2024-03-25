@@ -267,7 +267,7 @@ OptionMenu "SLL_Style"
 	StaticText "Enable and configure the style meter.", "White"
 	StaticText ""
 
-	Option "Style System", "StyleSystem", "EnabledOrNot"
+	Option "Display Rank", "StyleRankVisible", "EnabledOrNot"
 	StaticText ""
 
 	Option "Callouts", "StyleCallouts", "EnabledOrNot"
