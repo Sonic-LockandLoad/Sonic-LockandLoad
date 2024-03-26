@@ -81,7 +81,11 @@ script "GoalRing" (void)
 	bool a_rank = score >= targetscore;
 	bool s_rank = a_rank && LevelTime <= ParTime;
     bool x_rank = s_rank && FoundSecrets == TotalSecrets;
-	bool rank_plus = !(s_rank || x_rank) && LevelTime <= ParTime;
+
+    bool extra_credit = !(s_rank || x_rank) && LevelTime <= ParTime;
+    bool a_rank_plus  = a_rank && FoundSecrets == TotalSecrets;
+
+	bool rank_plus = extra_credit || a_rank_plus;
 
 	SetFont("BIGFONT");
 	int jingledelay;
