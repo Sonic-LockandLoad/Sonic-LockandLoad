@@ -166,7 +166,7 @@ class ShotgunReplace : Actor replaces Shotgun // 2001
 					A_SpawnItem("PrecisionShotgun");
 				}
 				else if (CountInv("ShadowCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("DarkAssault");
+					A_SpawnItem("QuadShotty");
 				}
 				else if (CountInv("ClassicCheck", AAPTR_PLAYER1)) {
 					A_SpawnItem("SpeedyShotgun");
@@ -227,7 +227,7 @@ class SSGReplace : Actor replaces SuperShotgun // 82
 					A_SpawnItem("RailshotCannon");
 				}
 				else if (CountInv("ShadowCheck", AAPTR_PLAYER1)) {
-					A_SpawnItem("QuadShotty");
+					A_SpawnItem("ChaosReaper");
 				}
 				else if (CountInv("ClassicCheck", AAPTR_PLAYER1)) {
 					A_SpawnItem("SpeedyShotgun");

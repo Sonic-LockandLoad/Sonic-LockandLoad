@@ -15,8 +15,8 @@ class ShadowPlayer : LockLoadPlayer
 		Player.StartItem "ChaosEnergy", 200;
 		Player.WeaponSlot 1, "HighShovel", "ShadowKnife";
 		Player.WeaponSlot 2, "ShadowMP5";
-		Player.WeaponSlot 3, "DarkAssault";
-		Player.WeaponSlot 4, "QuadShotty";
+		Player.WeaponSlot 3, "QuadShotty";
+        Player.WeaponSlot 4, "ChaosReaper";
 		Player.WeaponSlot 5, "ChaosEmerald";
 		Player.WeaponSlot 6, "DualRockets";
 	}
@@ -193,7 +193,7 @@ class ShadowMP5 : LockLoadWeapon
 			Loop;
 		Fire:
 			MP51 A 1 {
-				A_FireBullets(3, 5, -1, 10, "BulletPuff");
+				A_FireBullets(3, 5, -1, 15, "BulletPuff");
 				A_PlaySound("sweapons/shadowmp5", CHAN_WEAPON);
 				A_GunFlash();
 			}
@@ -204,55 +204,6 @@ class ShadowMP5 : LockLoadWeapon
 			Goto LightDone;
 		Spawn:
 			SMG1 A -1;
-			Stop;
-	}
-}
-
-class DarkAssault : LockLoadWeapon
-{
-	Default
-	{
-		Weapon.SelectionOrder 1300;
-		Weapon.AmmoUse 10;
-		Weapon.AmmoGive 20;
-		Weapon.KickBack 500;
-		Weapon.AmmoType "ChaosEnergy";
-		AttackSound "weapons/shotgf";
-		Tag "Dark Assaulter";
-		Inventory.PickupMessage "Dark Assaulter";
-	}
-	States
-	{
-		Ready:
-			AA12 A 1 A_WeaponReady();
-			Loop;
-		Deselect:
-			#### # 1 A_Lower(20);
-			Loop;
-		Select:
-			AA12 A 1 A_Raise(20);
-			Loop;
-		Fire:
-			AA12 A 2;
-			AA12 A 0 A_FireBullets(6, 2, 5, 9, "BulletPuff");
-			AA12 A 0 A_PlaySound("sweapons/darkshotty", CHAN_WEAPON);
-			AA12 A 0 {
-				if (CountInv("PowerSuper")) A_GunFlash("SuperFlash");
-				else A_GunFlash();
-			}
-			AA12 A 3 { if (CountInv("PowerSuper")) A_ReFire(); }
-			AA12 B 2;
-			TNT1 A 0 A_ReFire();
-			AA12 BBBBBBBBBBBBBBBBBBBBB 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
-			Goto Ready;
-		Flash:
-			AAFL A 2 Bright A_Light1;
-			Goto LightDone;
-		SuperFlash:
-			AAFL A 1 Bright A_Light1;
-			Goto LightDone;
-		Spawn:
-			SHOT A -1;
 			Stop;
 	}
 }
@@ -398,12 +349,12 @@ class QuadShotty : LockLoadWeapon
 			Loop;
 		Fire:
 			SHT4 A 3 {
-				A_FireBullets(12, 9, 12, 46, "BulletPuff");
+				A_FireBullets(12, 9, 12, 36, "BulletPuff");
 				A_PlaySound("weapons/sshotf", CHAN_WEAPON);
 				A_ChangeVelocity(Cos(Pitch) * -30, 0, Sin(Pitch) * 5, CVF_Relative);
 			}
+            TNT1 A 0 A_GunFlash();
 			SHT4 BBBBBBBBB 1 {
-				A_GunFlash();
 				A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
 			}
 			TNT1 A 0 { if (CountInv("PowerSuper")) { A_ReFire(); } }
@@ -413,12 +364,84 @@ class QuadShotty : LockLoadWeapon
 			TNT1 A 0 A_ReFire();
 			Goto Ready;
 		Flash:
-			SH4F A 1 Bright A_Light1;
+			SH4F A 4 Bright A_Light1;
 			Goto LightDone;
 		Spawn:
 			SGN2 A -1;
 			Stop;
 	}
+}
+
+class ChaosReaper : LockLoadWeapon
+{
+    Default
+    {
+        Weapon.KickBack 900;
+        Weapon.AmmoType1 "ChaosEnergy";
+        Weapon.AmmoType2 "ChaosEnergy";
+        Weapon.AmmoUse1 64;
+        Weapon.AmmoUse2 32;
+        Weapon.AmmoGive 256;
+        Inventory.PickupMessage "Chaos Reaper";
+        Tag "Chaos Reaper";
+    }
+    action void FireSpreadShot(int distance)
+    {
+        A_GunFlash();
+        A_FireProjectile("ChaosEnergyBall", distance * -2, 1);
+        A_FireProjectile("ChaosEnergyBall", distance * -1, 0);
+        A_FireProjectile("ChaosEnergyBall", 0, 0);
+        A_FireProjectile("ChaosEnergyBall", distance, 0);
+        A_FireProjectile("ChaosEnergyBall", distance * 2, 0);
+    }
+    States
+    {
+        Ready:
+            BSTA AAABBBCCCDDDBBB 1 Bright A_WeaponReady();
+            Loop;
+        Deselect:
+            #### A 1 A_Lower(20);
+            Loop;
+        Select:
+            BSTA A 1 Bright A_Raise(20);
+            Loop;
+        Fire:
+            BSTA E 0 A_GunFlash();
+            BSTA E 0 A_ChangeVelocity(Cos(Pitch) * -18, 0, Sin(Pitch) * 18, CVF_Relative);
+            BSTA E 0 A_StartSound("sweapons/shadowcrossbow", CHAN_WEAPON);
+            BSTA E 2 Bright A_FireBullets(0, 0, 9, 36, "BulletPuff");
+            BSTA FGH 2 Bright;
+            BSTA IIIIIIIIIIIIIIII 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA IIJJJJJJ 1 Bright Offset(0,31) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA JJ 1 Offset(0,32) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA JJ 1 Offset(0,30) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA KK 1 Offset(0,31) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA KKKKKKLM 1 Offset(0,32) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            Goto Ready;
+        AltFire:
+            BSTA E 0 A_ChangeVelocity(Cos(Pitch) * -12, 0, Sin(Pitch) * 12, CVF_Relative);
+            BSTA E 0 A_StartSound("sweapons/shadowcrossbow", CHAN_WEAPON);
+            BSTA E 3 Bright FireSpreadShot(5);
+            BSTA E 3 Bright FireSpreadShot(7);
+            BSTA E 3 Bright FireSpreadShot(9);
+            BSTA E 3 Bright FireSpreadShot(11);
+            BSTA FGH 2 Bright;
+            BSTA IIIIIIIIIIIIIIII 1 A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA IIJJJJJJ 1 Bright Offset(0,31) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA JJ 1 Offset(0,32) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA JJ 1 Offset(0,30) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA KK 1 Offset(0,31) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            BSTA KKKKKKLM 1 Offset(0,32) A_WeaponReady(WRF_NOBOB|WRF_NOFIRE);
+            Goto Ready;
+        Flash:
+            TNT1 A 2 Bright A_Light1();
+            TNT1 A 2 Bright A_Light2();
+            TNT1 A 1 Bright A_Light1();
+            Goto LightDone;
+        Spawn:
+            WBOW A -1;
+            Stop;
+    }
 }
 
 Class DualRockets : LockLoadWeapon
