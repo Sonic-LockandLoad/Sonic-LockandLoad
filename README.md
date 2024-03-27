@@ -2,13 +2,11 @@
 <p align=center><a href="https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/releases">Downloads</a> | <a href="https://sonic-lockandload.github.io">Website</a> | <a href="https://forum.zdoom.org/viewtopic.php?f=19&t=72593">ZDoom Forum page</a> | <a href="https://sonicfangameshq.com/forums/showcase/sonic-lock-load.1199">SFGHQ Showcase page</a></p>
 <p align=center><img src="https://raw.githubusercontent.com/Sonic-LockandLoad/Sonic-LockandLoad/edge/Graphics/LOGO.png" width=400px /></p>
 
-### *Sonic: Lock & Load* is a hyper-fast character-action first-person shooter based on the Sonic the Hedgehog series of games and built on GZDoom.
+### *Sonic: Lock & Load* is a hyper-fast stylish action first-person shooter based on the Sonic the Hedgehog series of games and built on GZDoom.
 
-It draws inspiration from Sonic games, as well as titles like Sonic Robo Blast 2, ULTRAKILL and Devil May Cry. It also features elements from other GZDoom mods, retro FPS games and other character-action games.
+It's heavily inspired by the high-speed platforming of Sonic Robo Blast 2, the heavily movement-based FPS gameplay of ULTRAKILL and the stylish action of Devil May Cry.
 
-Sonic: Lock & Load is not fully completed yet, and development is progressing slowly. However, it aims to provide an extremely fun and thrilling experience reminiscent of old-school shooters, as well as their modern-day revivals.
-
-The current stable version of Sonic: Lock & Load is **v1.4 "Horizons"**.
+The current version of Sonic: Lock & Load is v1.4 "Horizons", part of Season 1: Chaos.
 
 **Have any suggestions for or problems with the mod?** Open a [GitHub issue](https://github.com/Sonic-LockandLoad/Sonic-LockandLoad/issues/new/choose), it'll probably be resolved soon if possible.
 
